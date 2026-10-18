@@ -1,0 +1,869 @@
+{
+ "total": 70.42,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.48,
+   "texto": "Se você colocar um ventilador gigante em cima de um carro, terá um helicóptero.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "um",
+     "t": 1.07
+    },
+    {
+     "w": "ventilador",
+     "t": 1.164
+    },
+    {
+     "w": "gigante",
+     "t": 1.707
+    },
+    {
+     "w": "em",
+     "t": 2.143
+    },
+    {
+     "w": "cima",
+     "t": 2.214
+    },
+    {
+     "w": "de",
+     "t": 2.508
+    },
+    {
+     "w": "um",
+     "t": 2.591
+    },
+    {
+     "w": "carro",
+     "t": 2.709
+    },
+    {
+     "w": "terá",
+     "t": 3.263
+    },
+    {
+     "w": "um",
+     "t": 3.475
+    },
+    {
+     "w": "helicóptero",
+     "t": 3.617
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.63,
+   "fim": 11.24,
+   "texto": "Mas o ventilador mal faz vento. O carro não sai do lugar. E ele é pesado demais.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.677
+    },
+    {
+     "w": "o",
+     "t": 4.889
+    },
+    {
+     "w": "ventilador",
+     "t": 5.031
+    },
+    {
+     "w": "mal",
+     "t": 5.632
+    },
+    {
+     "w": "faz",
+     "t": 5.845
+    },
+    {
+     "w": "vento",
+     "t": 6.116
+    },
+    {
+     "w": "O",
+     "t": 7.295
+    },
+    {
+     "w": "carro",
+     "t": 7.448
+    },
+    {
+     "w": "não",
+     "t": 7.814
+    },
+    {
+     "w": "sai",
+     "t": 8.026
+    },
+    {
+     "w": "do",
+     "t": 8.297
+    },
+    {
+     "w": "lugar",
+     "t": 8.38
+    },
+    {
+     "w": "E",
+     "t": 9.536
+    },
+    {
+     "w": "ele",
+     "t": 9.677
+    },
+    {
+     "w": "é",
+     "t": 9.842
+    },
+    {
+     "w": "pesado",
+     "t": 9.901
+    },
+    {
+     "w": "demais",
+     "t": 10.408
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.39,
+   "fim": 22.56,
+   "texto": "Então, você troca por pás longas, finas e curvadas como asas. Girando muito rápido, cada pá funciona como uma asa de avião rodando em círculo, e empurra o ar pra baixo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.437
+    },
+    {
+     "w": "você",
+     "t": 12.18
+    },
+    {
+     "w": "troca",
+     "t": 12.428
+    },
+    {
+     "w": "por",
+     "t": 12.734
+    },
+    {
+     "w": "pás",
+     "t": 12.876
+    },
+    {
+     "w": "longas",
+     "t": 13.123
+    },
+    {
+     "w": "finas",
+     "t": 13.796
+    },
+    {
+     "w": "e",
+     "t": 14.055
+    },
+    {
+     "w": "curvadas",
+     "t": 14.173
+    },
+    {
+     "w": "como",
+     "t": 14.692
+    },
+    {
+     "w": "asas",
+     "t": 14.951
+    },
+    {
+     "w": "Girando",
+     "t": 16.201
+    },
+    {
+     "w": "muito",
+     "t": 16.638
+    },
+    {
+     "w": "rápido",
+     "t": 17.039
+    },
+    {
+     "w": "cada",
+     "t": 17.687
+    },
+    {
+     "w": "pá",
+     "t": 17.958
+    },
+    {
+     "w": "funciona",
+     "t": 18.076
+    },
+    {
+     "w": "como",
+     "t": 18.654
+    },
+    {
+     "w": "uma",
+     "t": 18.866
+    },
+    {
+     "w": "asa",
+     "t": 19.032
+    },
+    {
+     "w": "de",
+     "t": 19.35
+    },
+    {
+     "w": "avião",
+     "t": 19.432
+    },
+    {
+     "w": "rodando",
+     "t": 19.751
+    },
+    {
+     "w": "em",
+     "t": 20.128
+    },
+    {
+     "w": "círculo",
+     "t": 20.223
+    },
+    {
+     "w": "e",
+     "t": 20.977
+    },
+    {
+     "w": "empurra",
+     "t": 21.06
+    },
+    {
+     "w": "o",
+     "t": 21.543
+    },
+    {
+     "w": "ar",
+     "t": 21.614
+    },
+    {
+     "w": "pra",
+     "t": 21.744
+    },
+    {
+     "w": "baixo",
+     "t": 21.921
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.71,
+   "fim": 34.62,
+   "texto": "Mas, quando o rotor gira pra um lado, o corpo do helicóptero começa a girar pro outro. Então, você coloca uma hélice pequena na cauda, de lado, que empurra a cauda e segura o corpo parado.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 22.757
+    },
+    {
+     "w": "quando",
+     "t": 23.406
+    },
+    {
+     "w": "o",
+     "t": 23.63
+    },
+    {
+     "w": "rotor",
+     "t": 23.665
+    },
+    {
+     "w": "gira",
+     "t": 24.066
+    },
+    {
+     "w": "pra",
+     "t": 24.349
+    },
+    {
+     "w": "um",
+     "t": 24.491
+    },
+    {
+     "w": "lado",
+     "t": 24.597
+    },
+    {
+     "w": "o",
+     "t": 25.198
+    },
+    {
+     "w": "corpo",
+     "t": 25.316
+    },
+    {
+     "w": "do",
+     "t": 25.729
+    },
+    {
+     "w": "helicóptero",
+     "t": 25.811
+    },
+    {
+     "w": "começa",
+     "t": 26.389
+    },
+    {
+     "w": "a",
+     "t": 26.826
+    },
+    {
+     "w": "girar",
+     "t": 26.861
+    },
+    {
+     "w": "pro",
+     "t": 27.179
+    },
+    {
+     "w": "outro",
+     "t": 27.38
+    },
+    {
+     "w": "Então",
+     "t": 28.5
+    },
+    {
+     "w": "você",
+     "t": 29.243
+    },
+    {
+     "w": "coloca",
+     "t": 29.514
+    },
+    {
+     "w": "uma",
+     "t": 29.927
+    },
+    {
+     "w": "hélice",
+     "t": 30.069
+    },
+    {
+     "w": "pequena",
+     "t": 30.446
+    },
+    {
+     "w": "na",
+     "t": 30.835
+    },
+    {
+     "w": "cauda",
+     "t": 30.977
+    },
+    {
+     "w": "de",
+     "t": 31.519
+    },
+    {
+     "w": "lado",
+     "t": 31.649
+    },
+    {
+     "w": "que",
+     "t": 32.215
+    },
+    {
+     "w": "empurra",
+     "t": 32.321
+    },
+    {
+     "w": "a",
+     "t": 32.734
+    },
+    {
+     "w": "cauda",
+     "t": 32.781
+    },
+    {
+     "w": "e",
+     "t": 33.123
+    },
+    {
+     "w": "segura",
+     "t": 33.17
+    },
+    {
+     "w": "o",
+     "t": 33.547
+    },
+    {
+     "w": "corpo",
+     "t": 33.594
+    },
+    {
+     "w": "parado",
+     "t": 33.936
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.77,
+   "fim": 44.83,
+   "texto": "E pra ir pra frente? Você não vira o motor. Um prato embaixo do rotor muda o ângulo de cada pá enquanto ela gira, e o disco inteiro inclina pra frente.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 34.817
+    },
+    {
+     "w": "pra",
+     "t": 34.959
+    },
+    {
+     "w": "ir",
+     "t": 35.195
+    },
+    {
+     "w": "pra",
+     "t": 35.324
+    },
+    {
+     "w": "frente",
+     "t": 35.513
+    },
+    {
+     "w": "Você",
+     "t": 36.81
+    },
+    {
+     "w": "não",
+     "t": 37.152
+    },
+    {
+     "w": "vira",
+     "t": 37.388
+    },
+    {
+     "w": "o",
+     "t": 37.624
+    },
+    {
+     "w": "motor",
+     "t": 37.647
+    },
+    {
+     "w": "Um",
+     "t": 38.874
+    },
+    {
+     "w": "prato",
+     "t": 39.062
+    },
+    {
+     "w": "embaixo",
+     "t": 39.369
+    },
+    {
+     "w": "do",
+     "t": 39.805
+    },
+    {
+     "w": "rotor",
+     "t": 39.888
+    },
+    {
+     "w": "muda",
+     "t": 40.265
+    },
+    {
+     "w": "o",
+     "t": 40.572
+    },
+    {
+     "w": "ângulo",
+     "t": 40.666
+    },
+    {
+     "w": "de",
+     "t": 41.008
+    },
+    {
+     "w": "cada",
+     "t": 41.138
+    },
+    {
+     "w": "pá",
+     "t": 41.433
+    },
+    {
+     "w": "enquanto",
+     "t": 41.562
+    },
+    {
+     "w": "ela",
+     "t": 41.928
+    },
+    {
+     "w": "gira",
+     "t": 42.129
+    },
+    {
+     "w": "e",
+     "t": 42.742
+    },
+    {
+     "w": "o",
+     "t": 42.86
+    },
+    {
+     "w": "disco",
+     "t": 42.919
+    },
+    {
+     "w": "inteiro",
+     "t": 43.261
+    },
+    {
+     "w": "inclina",
+     "t": 43.567
+    },
+    {
+     "w": "pra",
+     "t": 43.98
+    },
+    {
+     "w": "frente",
+     "t": 44.145
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 44.98,
+   "fim": 51,
+   "texto": "E aquele barulho de tuc tuc tuc? É cada pá batendo no ar que a pá anterior deixou bagunçado.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 45.027
+    },
+    {
+     "w": "aquele",
+     "t": 45.157
+    },
+    {
+     "w": "barulho",
+     "t": 45.499
+    },
+    {
+     "w": "de",
+     "t": 45.923
+    },
+    {
+     "w": "tuc",
+     "t": 46.065
+    },
+    {
+     "w": "tuc",
+     "t": 46.324
+    },
+    {
+     "w": "tuc",
+     "t": 46.607
+    },
+    {
+     "w": "É",
+     "t": 47.704
+    },
+    {
+     "w": "cada",
+     "t": 47.846
+    },
+    {
+     "w": "pá",
+     "t": 48.164
+    },
+    {
+     "w": "batendo",
+     "t": 48.27
+    },
+    {
+     "w": "no",
+     "t": 48.647
+    },
+    {
+     "w": "ar",
+     "t": 48.754
+    },
+    {
+     "w": "que",
+     "t": 48.942
+    },
+    {
+     "w": "a",
+     "t": 49.06
+    },
+    {
+     "w": "pá",
+     "t": 49.155
+    },
+    {
+     "w": "anterior",
+     "t": 49.296
+    },
+    {
+     "w": "deixou",
+     "t": 49.827
+    },
+    {
+     "w": "bagunçado",
+     "t": 50.145
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 51.15,
+   "fim": 63.45,
+   "texto": "Mas e se o motor parar? O helicóptero não cai como pedra. O ar que sobe faz o rotor continuar girando sozinho, como uma semente de árvore, e o piloto usa esse giro pra frear perto do chão.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 51.197
+    },
+    {
+     "w": "e",
+     "t": 51.433
+    },
+    {
+     "w": "se",
+     "t": 51.61
+    },
+    {
+     "w": "o",
+     "t": 51.728
+    },
+    {
+     "w": "motor",
+     "t": 51.763
+    },
+    {
+     "w": "parar",
+     "t": 52.105
+    },
+    {
+     "w": "O",
+     "t": 53.249
+    },
+    {
+     "w": "helicóptero",
+     "t": 53.367
+    },
+    {
+     "w": "não",
+     "t": 53.992
+    },
+    {
+     "w": "cai",
+     "t": 54.181
+    },
+    {
+     "w": "como",
+     "t": 54.393
+    },
+    {
+     "w": "pedra",
+     "t": 54.629
+    },
+    {
+     "w": "O",
+     "t": 55.843
+    },
+    {
+     "w": "ar",
+     "t": 55.985
+    },
+    {
+     "w": "que",
+     "t": 56.162
+    },
+    {
+     "w": "sobe",
+     "t": 56.303
+    },
+    {
+     "w": "faz",
+     "t": 56.657
+    },
+    {
+     "w": "o",
+     "t": 56.846
+    },
+    {
+     "w": "rotor",
+     "t": 56.964
+    },
+    {
+     "w": "continuar",
+     "t": 57.306
+    },
+    {
+     "w": "girando",
+     "t": 57.872
+    },
+    {
+     "w": "sozinho",
+     "t": 58.202
+    },
+    {
+     "w": "como",
+     "t": 59.004
+    },
+    {
+     "w": "uma",
+     "t": 59.216
+    },
+    {
+     "w": "semente",
+     "t": 59.358
+    },
+    {
+     "w": "de",
+     "t": 59.794
+    },
+    {
+     "w": "árvore",
+     "t": 59.912
+    },
+    {
+     "w": "e",
+     "t": 60.667
+    },
+    {
+     "w": "o",
+     "t": 60.761
+    },
+    {
+     "w": "piloto",
+     "t": 60.82
+    },
+    {
+     "w": "usa",
+     "t": 61.268
+    },
+    {
+     "w": "esse",
+     "t": 61.468
+    },
+    {
+     "w": "giro",
+     "t": 61.645
+    },
+    {
+     "w": "pra",
+     "t": 61.952
+    },
+    {
+     "w": "frear",
+     "t": 62.093
+    },
+    {
+     "w": "perto",
+     "t": 62.435
+    },
+    {
+     "w": "do",
+     "t": 62.777
+    },
+    {
+     "w": "chão",
+     "t": 62.872
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 63.6,
+   "fim": 69.82,
+   "texto": "Coloque esquis embaixo e um vidro enorme na frente. Parabéns, você construiu um helicóptero.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 63.647
+    },
+    {
+     "w": "esquis",
+     "t": 64.095
+    },
+    {
+     "w": "embaixo",
+     "t": 64.367
+    },
+    {
+     "w": "e",
+     "t": 64.944
+    },
+    {
+     "w": "um",
+     "t": 64.98
+    },
+    {
+     "w": "vidro",
+     "t": 65.109
+    },
+    {
+     "w": "enorme",
+     "t": 65.428
+    },
+    {
+     "w": "na",
+     "t": 65.805
+    },
+    {
+     "w": "frente",
+     "t": 65.935
+    },
+    {
+     "w": "Parabéns",
+     "t": 67.185
+    },
+    {
+     "w": "você",
+     "t": 67.987
+    },
+    {
+     "w": "construiu",
+     "t": 68.282
+    },
+    {
+     "w": "um",
+     "t": 68.8
+    },
+    {
+     "w": "helicóptero",
+     "t": 68.93
+    }
+   ]
+  }
+ ]
+}

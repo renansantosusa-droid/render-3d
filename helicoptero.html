@@ -1,0 +1,163 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("helicoptero", { fundo: 0x9cc8ea, seed: 7171 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- chão (o mundo se move; o helicóptero fica na origem) ----------
+const chao = grupo(0, 0, 0);
+add(new THREE.PlaneGeometry(300, 300), mat(0xffffff, { map: texRuido("#6aa84f", 40, 40), roughness: 1 }), 0, 0, 0, chao).rotation.x = -Math.PI / 2;
+const heliponto = add(new THREE.CircleGeometry(4, 40), mat(0xffffff, { map: rotulo("H", "#ffffff", { fundo: "#3a3d42", w: 256, h: 256, tam: 180 }) }), 0, .01, 0, chao); heliponto.rotation.x = -Math.PI / 2; heliponto.rotation.z = Math.PI / 2;
+for (let i = 0; i < 60; i++) { const x = (rnd() - .5) * 120, z = -8 - rnd() * 50; add(new THREE.ConeGeometry(.6 + rnd() * .4, 2 + rnd() * 1.5, 8), mat(0x2f6a2a), x, 1.1, z, chao); }
+for (let i = 0; i < 10; i++) add(new THREE.BoxGeometry(3, 2 + rnd() * 5, 3), mat([0xd8c8a8, 0xa8b8c8, 0xc89878][i % 3]), -40 + i * 9, 2, -20, chao);
+
+// ---------- carro com ventilador ----------
+const carro = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(3.6, .8, 1.7), mat(0x2a8cff, { roughness: .35 }), 0, .75, 0, carro);
+add(new THREE.BoxGeometry(2, .7, 1.6), mat(0x2a8cff, { roughness: .35 }), -.2, 1.45, 0, carro);
+add(new THREE.BoxGeometry(2.02, .5, 1.5), mat(0x203040, { roughness: .1 }), -.2, 1.45, 0, carro);
+for (const x of [-1.2, 1.2]) for (const z of [-.85, .85]) add(new THREE.CylinderGeometry(.35, .35, .25, 18), mat(0x1b1b1b), x, .35, z, carro).rotation.x = Math.PI / 2;
+const ventG = grupo(-.2, 2.1, 0, carro);
+add(new THREE.CylinderGeometry(.05, .05, .4, 8), mat(0x555555), 0, -.15, 0, ventG);
+add(new THREE.TorusGeometry(1.1, .06, 8, 40), mat(0xdddddd), 0, .1, 0, ventG).rotation.x = Math.PI / 2;
+const helVent = grupo(0, .1, 0, ventG);
+for (let i = 0; i < 3; i++) { const p = add(new THREE.BoxGeometry(.9, .03, .35), mat(0xf2f2f2), .5, 0, 0, grupo(0, 0, 0, helVent)); p.parent.rotation.y = i * 2.094; p.rotation.x = .3; }
+const ventinho = Array.from({ length: 8 }, () => ({ s: sprite(0xffffff), a: rnd() * 6.28, r: rnd() * 1, f: rnd() }));
+
+// ---------- helicóptero (bico = +x) ----------
+const h = grupo(0, 0, 0);
+const corpo = grupo(0, 0, 0, h);
+const mCorpo = mat(0xd83a3a, { roughness: .35 });
+add(new THREE.SphereGeometry(.95, 28, 20), mCorpo, -.2, 1.3, 0, corpo).scale.set(1.35, .95, .9);
+const vidroF = add(new THREE.SphereGeometry(.9, 28, 20, -Math.PI / 2, Math.PI, 0, Math.PI * .75), vidro(.45, 0x9fd0f0), .25, 1.35, 0, corpo); vidroF.scale.set(1.0, .9, .85);
+const brilhoVidro = add(new THREE.SphereGeometry(.92, 28, 20, -Math.PI / 2, Math.PI, 0, Math.PI * .75), new THREE.MeshBasicMaterial({ color: 0x9fe0ff, transparent: true, opacity: 0, depthWrite: false }), .25, 1.35, 0, corpo); brilhoVidro.scale.set(1.0, .9, .85);
+add(new THREE.CylinderGeometry(.12, .25, 3.6, 14), mCorpo, -2.9, 1.55, 0, corpo).rotation.z = Math.PI / 2;
+add(new THREE.BoxGeometry(.6, 1.0, .08), mCorpo, -4.5, 1.95, 0, corpo).rotation.z = -.3;
+const cauda = grupo(-4.55, 1.8, .2, corpo);
+const helCauda = grupo(0, 0, 0, cauda);
+for (let i = 0; i < 2; i++) { const g = grupo(0, 0, 0, helCauda); g.rotation.z = i * Math.PI; add(new THREE.BoxGeometry(.08, .55, .03), mat(0x222222), 0, .28, 0, g); }
+const discoCauda = add(new THREE.CircleGeometry(.55, 24), new THREE.MeshBasicMaterial({ color: 0x333333, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), 0, 0, .02, cauda);
+const arCauda = fluxo(new THREE.LineCurve3(V(-4.55, 1.8, -1.2), V(-4.55, 1.8, 2.6)), 12, 0xffffff);
+add(new THREE.CylinderGeometry(.07, .07, .6, 10), mat(0x444444), 0, 2.35, 0, corpo);
+const prato = grupo(0, 2.25, 0, corpo);
+add(new THREE.CylinderGeometry(.28, .28, .05, 24), mat(0xffd23a, { metalness: .6, emissive: 0xffd23a, emissiveIntensity: 0 }), 0, 0, 0, prato);
+const rotor = grupo(0, 2.68, 0, corpo);
+add(new THREE.CylinderGeometry(.16, .16, .12, 16), mat(0x333333), 0, 0, 0, rotor);
+const pas = [];
+for (let i = 0; i < 4; i++) { const g = grupo(0, 0, 0, rotor); g.rotation.y = i * Math.PI / 2; const b = grupo(0, 0, 0, g); add(new THREE.BoxGeometry(3.5, .04, .26), mat(0x2a2a2a), 1.85, 0, 0, b); add(new THREE.BoxGeometry(.25, .045, .27), mat(0xffd23a), 3.45, 0, 0, b); pas.push(b); }
+const disco = add(new THREE.CircleGeometry(3.6, 48), new THREE.MeshBasicMaterial({ color: 0x222222, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), 0, 0, 0, rotor); disco.rotation.x = -Math.PI / 2;
+const esquis = grupo(0, 0, 0, corpo);
+for (const z of [-.7, .7]) { add(new THREE.CylinderGeometry(.05, .05, 3, 10), mat(0x333333), -.2, .4, z, esquis).rotation.z = Math.PI / 2; for (const x of [-.9, .5]) add(new THREE.CylinderGeometry(.04, .04, .5, 8), mat(0x333333), x, .62, z * .9, esquis).rotation.x = z > 0 ? -.3 : .3; }
+// ar pelo rotor (desce normalmente; sobe na autorrotação)
+const arRotor = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), a: rnd() * 6.28, r: .5 + rnd() * 3, f: rnd() }));
+const vortice = Array.from({ length: 50 }, (_, k) => ({ s: sprite(0xffffff), k }));
+const ondas = Array.from({ length: 3 }, () => { const m = add(new THREE.TorusGeometry(1, .03, 6, 40), new THREE.MeshBasicMaterial({ color: 0xffd23a, transparent: true, opacity: 0 }), 0, 2.68, 0); m.rotation.x = Math.PI / 2; return m; });
+// semente que gira (samara)
+const semente = grupo(2.5, 3, 2.5);
+const asaSem = grupo(0, 0, 0, semente);
+add(new THREE.SphereGeometry(.12, 12, 10), mat(0x6a4a2a), 0, 0, 0, asaSem);
+add(new THREE.BoxGeometry(.9, .02, .28), mat(0xb08a4a), .5, 0, 0, asaSem).rotation.x = .25;
+
+// ---------- câmera ----------
+K.camera_({
+  carro: [V(8.5, 4.6, 11.5), V(0, 1.9, 0)], geral: [V(8.5, 5, 12), V(-1, 2, 0)], topo: [V(3, 13, 7), V(-1, 1.5, 0)],
+  cauda: [V(-2.4, 2.8, 5.2), V(-4.4, 1.7, 0)], prato: [V(1.9, 3.0, 2.6), V(0, 2.4, 0)], tuc: [V(7, 5, 10), V(0, 2.4, 0)],
+  semente: [V(7.5, 3, 11), V(.5, 2, 0)], fim: [V(7, 2.8, 9.5), V(-1, 1.5, 0)],
+}, [
+  [0, "carro"], [F(1), "carro"],
+  [C(2), "carro"], [F(2), "carro"],
+  [C(3), "geral"], [F(3), "geral"],
+  [C(4), "topo"], [P(4, "helice") - .2, "topo"], [P(4, "helice") + .4, "cauda"], [F(4), "cauda"],
+  [C(5), "prato"], [P(5, "disco") - .4, "prato"], [P(5, "disco") + .3, "geral"], [F(5), "geral"],
+  [C(6), "tuc"], [F(6), "tuc"],
+  [C(7), "geral"], [P(7, "semente") - .5, "semente"], [F(7), "semente"],
+  [C(8), "fim"], [T, "fim"],
+]);
+
+function alt(t) {
+  if (t < C(3)) return 0;
+  if (t < C(4)) return 6 * prog(t, P(3, "baixo") - .2, F(3) + 1);
+  if (t < C(7)) return 6 + 2 * prog(t, C(5), F(6));
+  if (t < C(8)) return 8 * (1 - prog(t, P(7, "parar"), P(7, "chao")));
+  return 0;
+}
+const frente = (t) => (t > P(5, "inclina") && t < C(7)) ? 6 * prog(t, P(5, "inclina"), P(5, "inclina") + 1.5) : 0;
+function percurso(t) { let d = 0, ang = 0; for (let s = 0; s < t; s += .04) { d += frente(s) * .04; ang += giro(s) * .04; } return [d, ang]; }
+function giro(t) {
+  if (t < C(3)) return 0;
+  if (t < C(4)) return 18 * prog(t, P(3, "girando") - .5, P(3, "rapido") + .3);
+  if (t < P(7, "parar")) return 18;
+  if (t < C(8)) return 18 - 6 * prog(t, P(7, "parar"), P(7, "sozinho"));
+  return 12 * (1 - prog(t, C(8) + 1, T));
+}
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const [d, ang] = percurso(t);
+  const a = alt(t);
+  chao.position.set(-d % 60, .0 - a, 0);
+  // carro
+  carro.visible = t < C(3);
+  helVent.rotation.y = t * 9;
+  ventinho.forEach((v) => { const k = frac(t * .8 + v.f); v.s.position.set(-.2 + Math.cos(v.a) * v.r, 1.9 - k * .8, Math.sin(v.a) * v.r); v.s.scale.setScalar(.12); v.s.material.opacity = em(P(2, "vento") - .5, C(3)) ? .35 * (1 - k) : 0; });
+  carro.position.y = -.05 * pulse(t, P(2, "pesado") - .3, .6);
+  // helicóptero
+  h.visible = t >= C(3);
+  const w = giro(t);
+  rotor.rotation.y = ang;
+  disco.material.opacity = clamp((w - 6) / 12, 0, 1) * .22;
+  pas.forEach((b, i) => { const ai = ang + i * Math.PI / 2; const cic = em(P(5, "angulo") - .3, C(6)) ? .25 * Math.sin(ai) : 0; b.rotation.x = .08 + cic; b.visible = w < 15 || em(C(5), P(5, "disco") + .3) || true; });
+  // torque e rotor de cauda
+  const temCauda = t > P(4, "helice") - .2 || t > C(5);
+  helCauda.visible = temCauda || t < C(4); cauda.visible = t < C(4) ? false : temCauda;
+  if (t >= C(5)) cauda.visible = true;
+  helCauda.rotation.z = t * 40; discoCauda.material.opacity = cauda.visible ? .25 : 0;
+  let giraCorpo = 0;
+  if (em(P(4, "corpo") - .4, P(4, "helice"))) { const k = lin(t, P(4, "corpo") - .4, P(4, "helice")); giraCorpo = -2.4 * k * k; }
+  if (em(P(4, "helice"), C(5))) giraCorpo = -2.4 * (1 - prog(t, P(4, "helice"), P(4, "parado")));
+  corpo.rotation.y = giraCorpo;
+  arCauda.atualiza(t, em(P(4, "empurra") - .3, C(5)), 1.4, .18);
+  // prato e inclinação pra frente
+  prato.children[0].material.emissiveIntensity = em(P(5, "prato") - .3, P(5, "disco")) ? 1 : 0;
+  const incl = em(C(5), C(7)) ? prog(t, P(5, "inclina") - .3, P(5, "inclina") + .6) : 0;
+  prato.rotation.z = -.2 * prog(t, P(5, "angulo") - .3, P(5, "angulo") + .4) * (t < C(7) ? 1 : 0);
+  rotor.rotation.z = -.18 * incl;
+  // flare antes de pousar
+  const flare = em(C(7), C(8)) ? pulse(t, P(7, "frear") - .4, F(7) - P(7, "frear") + .4) : 0;
+  corpo.rotation.z = -.12 * incl + .2 * flare;
+  // ar pelo rotor
+  const sobe = em(P(7, "sobe") - .4, F(7));
+  arRotor.forEach((p) => { const k = frac(t * 1.2 + p.f); const y = sobe ? -1 + k * 4 : 3.4 - k * 4.5; p.s.position.set(Math.cos(p.a) * p.r, y, Math.sin(p.a) * p.r); p.s.scale.setScalar(.2); p.s.material.color.set(sobe ? 0x3aff7a : 0xffffff); p.s.material.opacity = (em(P(3, "baixo") - .4, C(4)) || sobe) ? .8 * Math.sin(k * Math.PI) : 0; });
+  // tuc tuc: anéis e vórtices das pontas
+  const tuc = em(C(6), C(7));
+  ondas.forEach((o, i) => { const k = frac(t * 1.6 + i / 3); o.scale.setScalar(3.6 + k * 3); o.position.y = 2.68 - k * .5; o.material.opacity = tuc ? .8 * (1 - k) : 0; });
+  vortice.forEach((v) => { const aa = ang - v.k * .22; v.s.position.set(Math.cos(aa) * 3.55, 2.62 - v.k * .045, -Math.sin(aa) * 3.55); v.s.scale.setScalar(.14); v.s.material.opacity = tuc ? .8 * (1 - v.k / 50) : 0; });
+  // semente
+  semente.visible = em(P(7, "semente") - .5, F(7) + .3);
+  asaSem.rotation.y = t * 9; semente.position.y = 3.6 - 1.6 * lin(t, P(7, "semente") - .5, F(7));
+  // fim
+  esquis.visible = t > P(8, "esquis") - .2;
+  brilhoVidro.material.opacity = em(P(8, "vidro") - .2, P(8, "parabens")) ? .35 + .2 * Math.sin(t * 8) : 0;
+
+  K.cartoes(t, [
+    [P(2, "vento") - .4, P(2, "pesado") - .4, "MAL FAZ VENTO", "#ff4a3a"],
+    [P(2, "pesado") - .4, F(2), "PESADO DEMAIS", "#ff4a3a"],
+    [P(3, "asas") - .3, P(3, "baixo") - .4, "PÁ = ASA GIRANDO", "#ffd23a"],
+    [P(3, "baixo") - .4, F(3), "AR PRA BAIXO", "#ffffff"],
+    [P(4, "outro") - .5, P(4, "helice") - .2, "O CORPO GIRA AO CONTRÁRIO", "#ff4a3a"],
+    [P(4, "helice") - .2, F(4), "ROTOR DE CAUDA", "#3aff7a"],
+    [P(5, "prato") - .3, P(5, "disco") - .3, "PRATO OSCILANTE", "#ffd23a"],
+    [P(5, "disco") - .3, F(5), "DISCO INCLINA = VAI PRA FRENTE", "#3aff7a"],
+    [P(6, "tuc") - .3, F(6), "TUC TUC TUC", "#ffd23a"],
+    [P(7, "parar") - .5, P(7, "sobe") - .4, "MOTOR PAROU", "#ff4a3a"],
+    [P(7, "sobe") - .4, P(7, "semente") - .5, "AUTORROTAÇÃO", "#3aff7a"],
+    [P(7, "frear") - .4, F(7), "FREIA NO FIM", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
