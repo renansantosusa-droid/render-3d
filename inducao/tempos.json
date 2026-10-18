@@ -1,0 +1,1141 @@
+{
+ "total": 97.4,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.74,
+   "texto": "Se você colocar uma panela em cima do fogo, terá um fogão.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.681
+    },
+    {
+     "w": "uma",
+     "t": 1.105
+    },
+    {
+     "w": "panela",
+     "t": 1.27
+    },
+    {
+     "w": "em",
+     "t": 1.636
+    },
+    {
+     "w": "cima",
+     "t": 1.718
+    },
+    {
+     "w": "do",
+     "t": 2.025
+    },
+    {
+     "w": "fogo",
+     "t": 2.131
+    },
+    {
+     "w": "terá",
+     "t": 2.744
+    },
+    {
+     "w": "um",
+     "t": 2.968
+    },
+    {
+     "w": "fogão",
+     "t": 3.051
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.89,
+   "fim": 12.35,
+   "texto": "Mas a fumaça suja tudo. A cozinha vira uma sauna. E mais da metade do calor passa pelos lados da panela e vai embora.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.937
+    },
+    {
+     "w": "a",
+     "t": 4.138
+    },
+    {
+     "w": "fumaça",
+     "t": 4.279
+    },
+    {
+     "w": "suja",
+     "t": 4.751
+    },
+    {
+     "w": "tudo",
+     "t": 5.116
+    },
+    {
+     "w": "A",
+     "t": 6.248
+    },
+    {
+     "w": "cozinha",
+     "t": 6.366
+    },
+    {
+     "w": "vira",
+     "t": 6.815
+    },
+    {
+     "w": "uma",
+     "t": 7.062
+    },
+    {
+     "w": "sauna",
+     "t": 7.215
+    },
+    {
+     "w": "E",
+     "t": 8.477
+    },
+    {
+     "w": "mais",
+     "t": 8.595
+    },
+    {
+     "w": "da",
+     "t": 8.866
+    },
+    {
+     "w": "metade",
+     "t": 8.961
+    },
+    {
+     "w": "do",
+     "t": 9.373
+    },
+    {
+     "w": "calor",
+     "t": 9.48
+    },
+    {
+     "w": "passa",
+     "t": 9.869
+    },
+    {
+     "w": "pelos",
+     "t": 10.223
+    },
+    {
+     "w": "lados",
+     "t": 10.482
+    },
+    {
+     "w": "da",
+     "t": 10.848
+    },
+    {
+     "w": "panela",
+     "t": 10.965
+    },
+    {
+     "w": "e",
+     "t": 11.425
+    },
+    {
+     "w": "vai",
+     "t": 11.508
+    },
+    {
+     "w": "embora",
+     "t": 11.673
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.5,
+   "fim": 21.54,
+   "texto": "Então, você troca o fogo por um fio que esquenta com a eletricidade. Mas ele demora pra esquentar, demora pra esfriar, e quem encosta se queima.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.547
+    },
+    {
+     "w": "você",
+     "t": 13.29
+    },
+    {
+     "w": "troca",
+     "t": 13.561
+    },
+    {
+     "w": "o",
+     "t": 13.833
+    },
+    {
+     "w": "fogo",
+     "t": 13.868
+    },
+    {
+     "w": "por",
+     "t": 14.186
+    },
+    {
+     "w": "um",
+     "t": 14.316
+    },
+    {
+     "w": "fio",
+     "t": 14.422
+    },
+    {
+     "w": "que",
+     "t": 14.705
+    },
+    {
+     "w": "esquenta",
+     "t": 14.788
+    },
+    {
+     "w": "com",
+     "t": 15.224
+    },
+    {
+     "w": "a",
+     "t": 15.354
+    },
+    {
+     "w": "eletricidade",
+     "t": 15.389
+    },
+    {
+     "w": "Mas",
+     "t": 16.934
+    },
+    {
+     "w": "ele",
+     "t": 17.146
+    },
+    {
+     "w": "demora",
+     "t": 17.417
+    },
+    {
+     "w": "pra",
+     "t": 17.842
+    },
+    {
+     "w": "esquentar",
+     "t": 17.96
+    },
+    {
+     "w": "demora",
+     "t": 18.667
+    },
+    {
+     "w": "pra",
+     "t": 19.139
+    },
+    {
+     "w": "esfriar",
+     "t": 19.269
+    },
+    {
+     "w": "e",
+     "t": 20.035
+    },
+    {
+     "w": "quem",
+     "t": 20.094
+    },
+    {
+     "w": "encosta",
+     "t": 20.307
+    },
+    {
+     "w": "se",
+     "t": 20.755
+    },
+    {
+     "w": "queima",
+     "t": 20.908
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.69,
+   "fim": 32.95,
+   "texto": "Agora, uma coisa que pouca gente sabe: quando um ímã se mexe perto de um metal, ele cria correntes elétricas girando dentro desse metal. E corrente elétrica dentro do metal vira calor.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 21.737
+    },
+    {
+     "w": "uma",
+     "t": 22.468
+    },
+    {
+     "w": "coisa",
+     "t": 22.681
+    },
+    {
+     "w": "que",
+     "t": 23.011
+    },
+    {
+     "w": "pouca",
+     "t": 23.164
+    },
+    {
+     "w": "gente",
+     "t": 23.494
+    },
+    {
+     "w": "sabe",
+     "t": 23.789
+    },
+    {
+     "w": "quando",
+     "t": 24.449
+    },
+    {
+     "w": "um",
+     "t": 24.673
+    },
+    {
+     "w": "ímã",
+     "t": 24.78
+    },
+    {
+     "w": "se",
+     "t": 24.956
+    },
+    {
+     "w": "mexe",
+     "t": 25.11
+    },
+    {
+     "w": "perto",
+     "t": 25.416
+    },
+    {
+     "w": "de",
+     "t": 25.747
+    },
+    {
+     "w": "um",
+     "t": 25.817
+    },
+    {
+     "w": "metal",
+     "t": 25.876
+    },
+    {
+     "w": "ele",
+     "t": 26.619
+    },
+    {
+     "w": "cria",
+     "t": 26.784
+    },
+    {
+     "w": "correntes",
+     "t": 27.044
+    },
+    {
+     "w": "elétricas",
+     "t": 27.456
+    },
+    {
+     "w": "girando",
+     "t": 28.034
+    },
+    {
+     "w": "dentro",
+     "t": 28.388
+    },
+    {
+     "w": "desse",
+     "t": 28.718
+    },
+    {
+     "w": "metal",
+     "t": 29.013
+    },
+    {
+     "w": "E",
+     "t": 30.228
+    },
+    {
+     "w": "corrente",
+     "t": 30.334
+    },
+    {
+     "w": "elétrica",
+     "t": 30.77
+    },
+    {
+     "w": "dentro",
+     "t": 31.301
+    },
+    {
+     "w": "do",
+     "t": 31.619
+    },
+    {
+     "w": "metal",
+     "t": 31.702
+    },
+    {
+     "w": "vira",
+     "t": 32.103
+    },
+    {
+     "w": "calor.",
+     "t": 32.339
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.1,
+   "fim": 49.26,
+   "texto": "Então, você coloca embaixo de um vidro uma bobina de cobre com uma corrente que muda de sentido dezenas de milhares de vezes por segundo. Ela faz um ímã invisível que vai e volta sem parar. E o fundo da panela esquenta sozinho, por dentro. Isso é a indução.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 33.147
+    },
+    {
+     "w": "você",
+     "t": 33.925
+    },
+    {
+     "w": "coloca",
+     "t": 34.185
+    },
+    {
+     "w": "embaixo",
+     "t": 34.598
+    },
+    {
+     "w": "de",
+     "t": 35.034
+    },
+    {
+     "w": "um",
+     "t": 35.116
+    },
+    {
+     "w": "vidro",
+     "t": 35.234
+    },
+    {
+     "w": "uma",
+     "t": 35.565
+    },
+    {
+     "w": "bobina",
+     "t": 35.671
+    },
+    {
+     "w": "de",
+     "t": 36.048
+    },
+    {
+     "w": "cobre",
+     "t": 36.166
+    },
+    {
+     "w": "com",
+     "t": 36.532
+    },
+    {
+     "w": "uma",
+     "t": 36.697
+    },
+    {
+     "w": "corrente",
+     "t": 36.826
+    },
+    {
+     "w": "que",
+     "t": 37.275
+    },
+    {
+     "w": "muda",
+     "t": 37.392
+    },
+    {
+     "w": "de",
+     "t": 37.711
+    },
+    {
+     "w": "sentido",
+     "t": 37.817
+    },
+    {
+     "w": "dezenas",
+     "t": 38.253
+    },
+    {
+     "w": "de",
+     "t": 38.713
+    },
+    {
+     "w": "milhares",
+     "t": 38.808
+    },
+    {
+     "w": "de",
+     "t": 39.208
+    },
+    {
+     "w": "vezes",
+     "t": 39.315
+    },
+    {
+     "w": "por",
+     "t": 39.68
+    },
+    {
+     "w": "segundo",
+     "t": 39.822
+    },
+    {
+     "w": "Ela",
+     "t": 41.072
+    },
+    {
+     "w": "faz",
+     "t": 41.355
+    },
+    {
+     "w": "um",
+     "t": 41.52
+    },
+    {
+     "w": "ímã",
+     "t": 41.744
+    },
+    {
+     "w": "invisível",
+     "t": 41.897
+    },
+    {
+     "w": "que",
+     "t": 42.44
+    },
+    {
+     "w": "vai",
+     "t": 42.558
+    },
+    {
+     "w": "e",
+     "t": 42.746
+    },
+    {
+     "w": "volta",
+     "t": 42.805
+    },
+    {
+     "w": "sem",
+     "t": 43.159
+    },
+    {
+     "w": "parar",
+     "t": 43.371
+    },
+    {
+     "w": "E",
+     "t": 44.48
+    },
+    {
+     "w": "o",
+     "t": 44.609
+    },
+    {
+     "w": "fundo",
+     "t": 44.668
+    },
+    {
+     "w": "da",
+     "t": 45.034
+    },
+    {
+     "w": "panela",
+     "t": 45.14
+    },
+    {
+     "w": "esquenta",
+     "t": 45.494
+    },
+    {
+     "w": "sozinho",
+     "t": 45.883
+    },
+    {
+     "w": "por",
+     "t": 46.65
+    },
+    {
+     "w": "dentro",
+     "t": 46.826
+    },
+    {
+     "w": "Isso",
+     "t": 48.017
+    },
+    {
+     "w": "é",
+     "t": 48.359
+    },
+    {
+     "w": "a",
+     "t": 48.43
+    },
+    {
+     "w": "indução",
+     "t": 48.466
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 49.41,
+   "fim": 59.4,
+   "texto": "Mas panela de alumínio ou de vidro não funciona. Precisa ter ferro no fundo. O teste é fácil: se o ímã de geladeira gruda, a panela serve.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 49.457
+    },
+    {
+     "w": "panela",
+     "t": 49.74
+    },
+    {
+     "w": "de",
+     "t": 50.141
+    },
+    {
+     "w": "alumínio",
+     "t": 50.212
+    },
+    {
+     "w": "ou",
+     "t": 50.636
+    },
+    {
+     "w": "de",
+     "t": 50.731
+    },
+    {
+     "w": "vidro",
+     "t": 50.849
+    },
+    {
+     "w": "não",
+     "t": 51.179
+    },
+    {
+     "w": "funciona",
+     "t": 51.379
+    },
+    {
+     "w": "Precisa",
+     "t": 52.806
+    },
+    {
+     "w": "ter",
+     "t": 53.301
+    },
+    {
+     "w": "ferro",
+     "t": 53.502
+    },
+    {
+     "w": "no",
+     "t": 53.879
+    },
+    {
+     "w": "fundo",
+     "t": 53.974
+    },
+    {
+     "w": "O",
+     "t": 55.188
+    },
+    {
+     "w": "teste",
+     "t": 55.353
+    },
+    {
+     "w": "é",
+     "t": 55.719
+    },
+    {
+     "w": "fácil",
+     "t": 55.754
+    },
+    {
+     "w": "se",
+     "t": 56.544
+    },
+    {
+     "w": "o",
+     "t": 56.674
+    },
+    {
+     "w": "ímã",
+     "t": 56.78
+    },
+    {
+     "w": "de",
+     "t": 57.028
+    },
+    {
+     "w": "geladeira",
+     "t": 57.122
+    },
+    {
+     "w": "gruda",
+     "t": 57.618
+    },
+    {
+     "w": "a",
+     "t": 58.184
+    },
+    {
+     "w": "panela",
+     "t": 58.29
+    },
+    {
+     "w": "serve",
+     "t": 58.691
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 59.55,
+   "fim": 67.29,
+   "texto": "E se não tiver panela? Um sensor percebe e desliga. Sem metal em cima, ele não esquenta nem a sua mão.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 59.597
+    },
+    {
+     "w": "se",
+     "t": 59.727
+    },
+    {
+     "w": "não",
+     "t": 59.88
+    },
+    {
+     "w": "tiver",
+     "t": 60.045
+    },
+    {
+     "w": "panela",
+     "t": 60.352
+    },
+    {
+     "w": "Um",
+     "t": 61.661
+    },
+    {
+     "w": "sensor",
+     "t": 61.814
+    },
+    {
+     "w": "percebe",
+     "t": 62.286
+    },
+    {
+     "w": "e",
+     "t": 62.828
+    },
+    {
+     "w": "desliga",
+     "t": 62.875
+    },
+    {
+     "w": "Sem",
+     "t": 64.184
+    },
+    {
+     "w": "metal",
+     "t": 64.432
+    },
+    {
+     "w": "em",
+     "t": 64.821
+    },
+    {
+     "w": "cima",
+     "t": 64.916
+    },
+    {
+     "w": "ele",
+     "t": 65.458
+    },
+    {
+     "w": "não",
+     "t": 65.623
+    },
+    {
+     "w": "esquenta",
+     "t": 65.765
+    },
+    {
+     "w": "nem",
+     "t": 66.236
+    },
+    {
+     "w": "a",
+     "t": 66.472
+    },
+    {
+     "w": "sua",
+     "t": 66.531
+    },
+    {
+     "w": "mão",
+     "t": 66.767
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 67.44,
+   "fim": 84.14,
+   "texto": "Mas a eletrônica lá dentro esquenta. Então, você coloca uma ventoinha. É ela aquele ventinho que continua depois que você desliga. E o vidro só fica quente porque a panela encostou nele. Por isso aparece esse agá: é o aviso de calor que sobrou.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 67.487
+    },
+    {
+     "w": "a",
+     "t": 67.688
+    },
+    {
+     "w": "eletrônica",
+     "t": 67.794
+    },
+    {
+     "w": "lá",
+     "t": 68.419
+    },
+    {
+     "w": "dentro",
+     "t": 68.572
+    },
+    {
+     "w": "esquenta",
+     "t": 68.926
+    },
+    {
+     "w": "Então",
+     "t": 70.223
+    },
+    {
+     "w": "você",
+     "t": 70.99
+    },
+    {
+     "w": "coloca",
+     "t": 71.261
+    },
+    {
+     "w": "uma",
+     "t": 71.65
+    },
+    {
+     "w": "ventoinha",
+     "t": 71.803
+    },
+    {
+     "w": "É",
+     "t": 73.171
+    },
+    {
+     "w": "ela",
+     "t": 73.301
+    },
+    {
+     "w": "aquele",
+     "t": 73.513
+    },
+    {
+     "w": "ventinho",
+     "t": 73.773
+    },
+    {
+     "w": "que",
+     "t": 74.268
+    },
+    {
+     "w": "continua",
+     "t": 74.374
+    },
+    {
+     "w": "depois",
+     "t": 74.881
+    },
+    {
+     "w": "que",
+     "t": 75.282
+    },
+    {
+     "w": "você",
+     "t": 75.388
+    },
+    {
+     "w": "desliga",
+     "t": 75.648
+    },
+    {
+     "w": "E",
+     "t": 76.945
+    },
+    {
+     "w": "o",
+     "t": 77.074
+    },
+    {
+     "w": "vidro",
+     "t": 77.157
+    },
+    {
+     "w": "só",
+     "t": 77.464
+    },
+    {
+     "w": "fica",
+     "t": 77.64
+    },
+    {
+     "w": "quente",
+     "t": 77.923
+    },
+    {
+     "w": "porque",
+     "t": 78.254
+    },
+    {
+     "w": "a",
+     "t": 78.548
+    },
+    {
+     "w": "panela",
+     "t": 78.643
+    },
+    {
+     "w": "encostou",
+     "t": 79.032
+    },
+    {
+     "w": "nele",
+     "t": 79.504
+    },
+    {
+     "w": "Por",
+     "t": 80.671
+    },
+    {
+     "w": "isso",
+     "t": 80.86
+    },
+    {
+     "w": "aparece",
+     "t": 81.107
+    },
+    {
+     "w": "esse",
+     "t": 81.556
+    },
+    {
+     "w": "agá",
+     "t": 81.685
+    },
+    {
+     "w": "é",
+     "t": 82.298
+    },
+    {
+     "w": "o",
+     "t": 82.405
+    },
+    {
+     "w": "aviso",
+     "t": 82.475
+    },
+    {
+     "w": "de",
+     "t": 82.865
+    },
+    {
+     "w": "calor",
+     "t": 82.947
+    },
+    {
+     "w": "que",
+     "t": 83.324
+    },
+    {
+     "w": "sobrou",
+     "t": 83.442
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 84.29,
+   "fim": 96.8,
+   "texto": "O fogão por indução não esquenta nada. Ele faz a panela esquentar sozinha. Coloque um vidro preto, uns botões de toque e um timer. Parabéns, você construiu um fogão por indução.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 84.337
+    },
+    {
+     "w": "fogão",
+     "t": 84.431
+    },
+    {
+     "w": "por",
+     "t": 84.856
+    },
+    {
+     "w": "indução",
+     "t": 84.986
+    },
+    {
+     "w": "não",
+     "t": 85.457
+    },
+    {
+     "w": "esquenta",
+     "t": 85.611
+    },
+    {
+     "w": "nada",
+     "t": 86.059
+    },
+    {
+     "w": "Ele",
+     "t": 87.215
+    },
+    {
+     "w": "faz",
+     "t": 87.45
+    },
+    {
+     "w": "a",
+     "t": 87.627
+    },
+    {
+     "w": "panela",
+     "t": 87.757
+    },
+    {
+     "w": "esquentar",
+     "t": 88.064
+    },
+    {
+     "w": "sozinha",
+     "t": 88.571
+    },
+    {
+     "w": "Coloque",
+     "t": 89.974
+    },
+    {
+     "w": "um",
+     "t": 90.481
+    },
+    {
+     "w": "vidro",
+     "t": 90.587
+    },
+    {
+     "w": "preto",
+     "t": 90.858
+    },
+    {
+     "w": "uns",
+     "t": 91.436
+    },
+    {
+     "w": "botões",
+     "t": 91.554
+    },
+    {
+     "w": "de",
+     "t": 92.002
+    },
+    {
+     "w": "toque",
+     "t": 92.132
+    },
+    {
+     "w": "e",
+     "t": 92.45
+    },
+    {
+     "w": "um",
+     "t": 92.498
+    },
+    {
+     "w": "timer",
+     "t": 92.651
+    },
+    {
+     "w": "Parabéns",
+     "t": 93.83
+    },
+    {
+     "w": "você",
+     "t": 94.597
+    },
+    {
+     "w": "construiu",
+     "t": 94.903
+    },
+    {
+     "w": "um",
+     "t": 95.398
+    },
+    {
+     "w": "fogão",
+     "t": 95.516
+    },
+    {
+     "w": "por",
+     "t": 95.906
+    },
+    {
+     "w": "indução",
+     "t": 96.047
+    }
+   ]
+  }
+ ]
+}
