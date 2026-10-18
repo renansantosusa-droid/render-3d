@@ -1,0 +1,873 @@
+{
+ "total": 74.44,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.39,
+   "texto": "Se você colocar um guarda apitando no meio do cruzamento, terá um semáforo.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "colocar",
+     "t": 0.692
+    },
+    {
+     "w": "um",
+     "t": 1.105
+    },
+    {
+     "w": "guarda",
+     "t": 1.188
+    },
+    {
+     "w": "apitando",
+     "t": 1.506
+    },
+    {
+     "w": "no",
+     "t": 1.978
+    },
+    {
+     "w": "meio",
+     "t": 2.072
+    },
+    {
+     "w": "do",
+     "t": 2.284
+    },
+    {
+     "w": "cruzamento",
+     "t": 2.402
+    },
+    {
+     "w": "terá",
+     "t": 3.24
+    },
+    {
+     "w": "um",
+     "t": 3.452
+    },
+    {
+     "w": "semáforo",
+     "t": 3.534
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.54,
+   "fim": 9.66,
+   "texto": "Mas o guarda cansa. Chove. E ninguém enxerga ele à noite.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.587
+    },
+    {
+     "w": "o",
+     "t": 4.788
+    },
+    {
+     "w": "guarda",
+     "t": 4.929
+    },
+    {
+     "w": "cansa",
+     "t": 5.307
+    },
+    {
+     "w": "Chove",
+     "t": 6.557
+    },
+    {
+     "w": "E",
+     "t": 7.877
+    },
+    {
+     "w": "ninguém",
+     "t": 7.983
+    },
+    {
+     "w": "enxerga",
+     "t": 8.384
+    },
+    {
+     "w": "ele",
+     "t": 8.821
+    },
+    {
+     "w": "à",
+     "t": 8.939
+    },
+    {
+     "w": "noite",
+     "t": 9.009
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.81,
+   "fim": 21.09,
+   "texto": "Então, você troca o guarda por três luzes: vermelho em cima, amarelo no meio e verde embaixo. Sempre nessa ordem, pra quem não enxerga cores saber qual acendeu pela posição.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.857
+    },
+    {
+     "w": "você",
+     "t": 10.612
+    },
+    {
+     "w": "troca",
+     "t": 10.883
+    },
+    {
+     "w": "o",
+     "t": 11.178
+    },
+    {
+     "w": "guarda",
+     "t": 11.213
+    },
+    {
+     "w": "por",
+     "t": 11.591
+    },
+    {
+     "w": "três",
+     "t": 11.756
+    },
+    {
+     "w": "luzes",
+     "t": 12.051
+    },
+    {
+     "w": "vermelho",
+     "t": 12.817
+    },
+    {
+     "w": "em",
+     "t": 13.277
+    },
+    {
+     "w": "cima",
+     "t": 13.371
+    },
+    {
+     "w": "amarelo",
+     "t": 13.949
+    },
+    {
+     "w": "no",
+     "t": 14.421
+    },
+    {
+     "w": "meio",
+     "t": 14.527
+    },
+    {
+     "w": "e",
+     "t": 14.834
+    },
+    {
+     "w": "verde",
+     "t": 14.904
+    },
+    {
+     "w": "embaixo",
+     "t": 15.258
+    },
+    {
+     "w": "Sempre",
+     "t": 16.544
+    },
+    {
+     "w": "nessa",
+     "t": 17.015
+    },
+    {
+     "w": "ordem",
+     "t": 17.275
+    },
+    {
+     "w": "pra",
+     "t": 17.841
+    },
+    {
+     "w": "quem",
+     "t": 18.006
+    },
+    {
+     "w": "não",
+     "t": 18.183
+    },
+    {
+     "w": "enxerga",
+     "t": 18.324
+    },
+    {
+     "w": "cores",
+     "t": 18.76
+    },
+    {
+     "w": "saber",
+     "t": 19.044
+    },
+    {
+     "w": "qual",
+     "t": 19.338
+    },
+    {
+     "w": "acendeu",
+     "t": 19.586
+    },
+    {
+     "w": "pela",
+     "t": 20.069
+    },
+    {
+     "w": "posição",
+     "t": 20.294
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.24,
+   "fim": 30.48,
+   "texto": "E o tempo do amarelo não é chute. Ele é calculado pela velocidade da rua: quanto mais rápida a via, mais longo o amarelo, pra dar tempo de frear.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 21.287
+    },
+    {
+     "w": "o",
+     "t": 21.417
+    },
+    {
+     "w": "tempo",
+     "t": 21.511
+    },
+    {
+     "w": "do",
+     "t": 21.865
+    },
+    {
+     "w": "amarelo",
+     "t": 21.959
+    },
+    {
+     "w": "não",
+     "t": 22.443
+    },
+    {
+     "w": "é",
+     "t": 22.679
+    },
+    {
+     "w": "chute",
+     "t": 22.749
+    },
+    {
+     "w": "Ele",
+     "t": 24.011
+    },
+    {
+     "w": "é",
+     "t": 24.212
+    },
+    {
+     "w": "calculado",
+     "t": 24.282
+    },
+    {
+     "w": "pela",
+     "t": 24.872
+    },
+    {
+     "w": "velocidade",
+     "t": 25.073
+    },
+    {
+     "w": "da",
+     "t": 25.674
+    },
+    {
+     "w": "rua",
+     "t": 25.804
+    },
+    {
+     "w": "quanto",
+     "t": 26.382
+    },
+    {
+     "w": "mais",
+     "t": 26.688
+    },
+    {
+     "w": "rápida",
+     "t": 26.9
+    },
+    {
+     "w": "a",
+     "t": 27.242
+    },
+    {
+     "w": "via",
+     "t": 27.29
+    },
+    {
+     "w": "mais",
+     "t": 27.797
+    },
+    {
+     "w": "longo",
+     "t": 28.021
+    },
+    {
+     "w": "o",
+     "t": 28.363
+    },
+    {
+     "w": "amarelo",
+     "t": 28.41
+    },
+    {
+     "w": "pra",
+     "t": 29.07
+    },
+    {
+     "w": "dar",
+     "t": 29.247
+    },
+    {
+     "w": "tempo",
+     "t": 29.436
+    },
+    {
+     "w": "de",
+     "t": 29.801
+    },
+    {
+     "w": "frear",
+     "t": 29.907
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 30.63,
+   "fim": 51.28,
+   "texto": "Mas e se a rua de cima estiver vazia e a sua, cheia? Então, você enterra no asfalto, antes da faixa, um laço de fio. Quando um carro para em cima, o metal mexe no campo magnético do fio, e o semáforo sente que tem alguém esperando. Por isso, às vezes, a moto não abre o sinal: ela tem pouco metal.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 30.677
+    },
+    {
+     "w": "e",
+     "t": 30.913
+    },
+    {
+     "w": "se",
+     "t": 31.055
+    },
+    {
+     "w": "a",
+     "t": 31.184
+    },
+    {
+     "w": "rua",
+     "t": 31.255
+    },
+    {
+     "w": "de",
+     "t": 31.503
+    },
+    {
+     "w": "cima",
+     "t": 31.632
+    },
+    {
+     "w": "estiver",
+     "t": 31.904
+    },
+    {
+     "w": "vazia",
+     "t": 32.257
+    },
+    {
+     "w": "e",
+     "t": 32.729
+    },
+    {
+     "w": "a",
+     "t": 32.8
+    },
+    {
+     "w": "sua",
+     "t": 32.882
+    },
+    {
+     "w": "cheia",
+     "t": 33.437
+    },
+    {
+     "w": "Então",
+     "t": 34.698
+    },
+    {
+     "w": "você",
+     "t": 35.489
+    },
+    {
+     "w": "enterra",
+     "t": 35.724
+    },
+    {
+     "w": "no",
+     "t": 36.149
+    },
+    {
+     "w": "asfalto",
+     "t": 36.243
+    },
+    {
+     "w": "antes",
+     "t": 36.951
+    },
+    {
+     "w": "da",
+     "t": 37.257
+    },
+    {
+     "w": "faixa",
+     "t": 37.387
+    },
+    {
+     "w": "um",
+     "t": 38.036
+    },
+    {
+     "w": "laço",
+     "t": 38.213
+    },
+    {
+     "w": "de",
+     "t": 38.507
+    },
+    {
+     "w": "fio",
+     "t": 38.614
+    },
+    {
+     "w": "Quando",
+     "t": 39.722
+    },
+    {
+     "w": "um",
+     "t": 40.005
+    },
+    {
+     "w": "carro",
+     "t": 40.099
+    },
+    {
+     "w": "para",
+     "t": 40.43
+    },
+    {
+     "w": "em",
+     "t": 40.595
+    },
+    {
+     "w": "cima",
+     "t": 40.689
+    },
+    {
+     "w": "o",
+     "t": 41.373
+    },
+    {
+     "w": "metal",
+     "t": 41.444
+    },
+    {
+     "w": "mexe",
+     "t": 41.833
+    },
+    {
+     "w": "no",
+     "t": 42.163
+    },
+    {
+     "w": "campo",
+     "t": 42.269
+    },
+    {
+     "w": "magnético",
+     "t": 42.552
+    },
+    {
+     "w": "do",
+     "t": 43.118
+    },
+    {
+     "w": "fio",
+     "t": 43.224
+    },
+    {
+     "w": "e",
+     "t": 43.849
+    },
+    {
+     "w": "o",
+     "t": 43.955
+    },
+    {
+     "w": "semáforo",
+     "t": 44.003
+    },
+    {
+     "w": "sente",
+     "t": 44.545
+    },
+    {
+     "w": "que",
+     "t": 44.911
+    },
+    {
+     "w": "tem",
+     "t": 45.04
+    },
+    {
+     "w": "alguém",
+     "t": 45.17
+    },
+    {
+     "w": "esperando",
+     "t": 45.477
+    },
+    {
+     "w": "Por",
+     "t": 46.868
+    },
+    {
+     "w": "isso",
+     "t": 47.033
+    },
+    {
+     "w": "às",
+     "t": 47.552
+    },
+    {
+     "w": "vezes",
+     "t": 47.776
+    },
+    {
+     "w": "a",
+     "t": 48.413
+    },
+    {
+     "w": "moto",
+     "t": 48.496
+    },
+    {
+     "w": "não",
+     "t": 48.873
+    },
+    {
+     "w": "abre",
+     "t": 49.073
+    },
+    {
+     "w": "o",
+     "t": 49.274
+    },
+    {
+     "w": "sinal",
+     "t": 49.309
+    },
+    {
+     "w": "ela",
+     "t": 49.911
+    },
+    {
+     "w": "tem",
+     "t": 50.111
+    },
+    {
+     "w": "pouco",
+     "t": 50.288
+    },
+    {
+     "w": "metal",
+     "t": 50.606
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 51.43,
+   "fim": 58.18,
+   "texto": "E aquele segundinho com vermelho pros dois lados? É de propósito: é o tempo de esvaziar o cruzamento.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 51.477
+    },
+    {
+     "w": "aquele",
+     "t": 51.619
+    },
+    {
+     "w": "segundinho",
+     "t": 51.949
+    },
+    {
+     "w": "com",
+     "t": 52.562
+    },
+    {
+     "w": "vermelho",
+     "t": 52.715
+    },
+    {
+     "w": "pros",
+     "t": 53.199
+    },
+    {
+     "w": "dois",
+     "t": 53.399
+    },
+    {
+     "w": "lados",
+     "t": 53.682
+    },
+    {
+     "w": "É",
+     "t": 54.968
+    },
+    {
+     "w": "de",
+     "t": 55.109
+    },
+    {
+     "w": "propósito",
+     "t": 55.204
+    },
+    {
+     "w": "é",
+     "t": 56.053
+    },
+    {
+     "w": "o",
+     "t": 56.171
+    },
+    {
+     "w": "tempo",
+     "t": 56.277
+    },
+    {
+     "w": "de",
+     "t": 56.654
+    },
+    {
+     "w": "esvaziar",
+     "t": 56.737
+    },
+    {
+     "w": "o",
+     "t": 57.22
+    },
+    {
+     "w": "cruzamento",
+     "t": 57.279
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 58.33,
+   "fim": 66.72,
+   "texto": "E o botão de pedestre? Em muitos lugares, ele funciona. Em outros, ele está lá só pra você esperar mais calmo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 58.377
+    },
+    {
+     "w": "o",
+     "t": 58.519
+    },
+    {
+     "w": "botão",
+     "t": 58.566
+    },
+    {
+     "w": "de",
+     "t": 58.967
+    },
+    {
+     "w": "pedestre",
+     "t": 59.061
+    },
+    {
+     "w": "Em",
+     "t": 60.464
+    },
+    {
+     "w": "muitos",
+     "t": 60.618
+    },
+    {
+     "w": "lugares",
+     "t": 61.019
+    },
+    {
+     "w": "ele",
+     "t": 61.797
+    },
+    {
+     "w": "funciona",
+     "t": 61.962
+    },
+    {
+     "w": "Em",
+     "t": 63.389
+    },
+    {
+     "w": "outros",
+     "t": 63.566
+    },
+    {
+     "w": "ele",
+     "t": 64.226
+    },
+    {
+     "w": "está",
+     "t": 64.368
+    },
+    {
+     "w": "lá",
+     "t": 64.568
+    },
+    {
+     "w": "só",
+     "t": 64.674
+    },
+    {
+     "w": "pra",
+     "t": 64.898
+    },
+    {
+     "w": "você",
+     "t": 65.052
+    },
+    {
+     "w": "esperar",
+     "t": 65.323
+    },
+    {
+     "w": "mais",
+     "t": 65.747
+    },
+    {
+     "w": "calmo",
+     "t": 66.089
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 66.87,
+   "fim": 73.84,
+   "texto": "Coloque uma caixa de controle na esquina e sincronize os sinais da avenida. Parabéns, você construiu um semáforo.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 66.917
+    },
+    {
+     "w": "uma",
+     "t": 67.401
+    },
+    {
+     "w": "caixa",
+     "t": 67.578
+    },
+    {
+     "w": "de",
+     "t": 67.884
+    },
+    {
+     "w": "controle",
+     "t": 67.967
+    },
+    {
+     "w": "na",
+     "t": 68.379
+    },
+    {
+     "w": "esquina",
+     "t": 68.462
+    },
+    {
+     "w": "e",
+     "t": 68.804
+    },
+    {
+     "w": "sincronize",
+     "t": 68.851
+    },
+    {
+     "w": "os",
+     "t": 69.441
+    },
+    {
+     "w": "sinais",
+     "t": 69.511
+    },
+    {
+     "w": "da",
+     "t": 69.854
+    },
+    {
+     "w": "avenida",
+     "t": 69.948
+    },
+    {
+     "w": "Parabéns",
+     "t": 71.233
+    },
+    {
+     "w": "você",
+     "t": 72.035
+    },
+    {
+     "w": "construiu",
+     "t": 72.354
+    },
+    {
+     "w": "um",
+     "t": 72.861
+    },
+    {
+     "w": "semáforo",
+     "t": 72.967
+    }
+   ]
+  }
+ ]
+}

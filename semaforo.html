@@ -1,0 +1,120 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("semaforo", { fundo: 0x9cc8ea, seed: 4545 });
+const { THREE, scene, camera, sol, add, grupo, mat, brilho, V, sprite, fluxo, texRuido, grade, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd } = K;
+const hemi = scene.children.find((o) => o.isHemisphereLight);
+
+// ---------- cruzamento ----------
+add(new THREE.PlaneGeometry(80, 80), mat(0xffffff, { map: grade("#c8c4bc", "#a8a49c", 64, 30), roughness: .9 }), 0, -.01, 0).rotation.x = -Math.PI / 2;
+const mAsf = mat(0xffffff, { map: texRuido("#3c3f44", 30, 10), roughness: .95 });
+add(new THREE.BoxGeometry(60, .02, 3), mAsf, 0, 0, 0); add(new THREE.BoxGeometry(3, .021, 60), mAsf, 0, 0, 0);
+for (let i = 0; i < 6; i++) { add(new THREE.BoxGeometry(.25, .025, 1.2), brilho(0xffffff), 1.8 + i * .0, .0, -1.2 + i * .48).scale.set(1, 1, .3); }
+const faixaPare = add(new THREE.BoxGeometry(.12, .025, 1.5), brilho(0xffffff), 1.6, 0, .75);
+for (let i = 0; i < 8; i++) add(new THREE.BoxGeometry(4 + rnd() * 2, 6 + rnd() * 8, 4), mat(0x8aa0b8), -14 + (i % 4) * 8, 4, -12 - Math.floor(i / 4) * 10);
+// laço no asfalto (antes da faixa, faixa da direita da rua A)
+const laco = add(new THREE.TorusGeometry(1, .02, 6, 4), mat(0x777777, { emissive: 0xffd23a, emissiveIntensity: 0 }), 2.6, .02, .75); laco.rotation.set(Math.PI / 2, 0, Math.PI / 4); laco.scale.set(.75, .45, 1);
+const ondaLaco = [0, 1, 2].map(() => { const o = add(new THREE.TorusGeometry(.5, .01, 6, 30), new THREE.MeshBasicMaterial({ color: 0x5ad8ff, transparent: true, opacity: 0 }), 2.6, .05, .75); o.rotation.x = Math.PI / 2; return o; });
+const caixa = add(new THREE.BoxGeometry(.4, .8, .3), mat(0x5a6a5a, { emissive: 0x3aff7a, emissiveIntensity: 0 }), 2.3, .4, 2.3);
+const fioCurva = new THREE.CatmullRomCurve3([V(2.6, .02, 1.1), V(2.5, .02, 2.0), V(2.3, .2, 2.2)]);
+const sinal = fluxo(fioCurva, 8, 0xffd23a);
+// semáforo: 2 cabeças no mesmo poste
+const poste = add(new THREE.CylinderGeometry(.06, .07, 3.2, 12), mat(0x333333), 1.8, 1.6, 1.8);
+function cabeca(rotY, pai = scene, x = 1.8, z = 1.8) { const g = grupo(x, 2.8, z, pai); g.rotation.y = rotY; add(new THREE.BoxGeometry(.32, .95, .25), mat(0x1b1b1b), 0, 0, 0, g); const l = [.3, 0, -.3].map((y, i) => add(new THREE.SphereGeometry(.11, 20, 14), new THREE.MeshBasicMaterial({ color: 0x222222 }), 0, y, .1, g)); return { g, l }; }
+const A = cabeca(Math.PI / 2, scene, 1.8, 1.45), B = cabeca(0, scene, 1.45, 1.8);
+for (const [x, z] of [[1.8, 1.62], [1.62, 1.8]]) add(new THREE.BoxGeometry(.06, .06, .06), mat(0x333333), x, 2.8, z);
+const CORES = [0xff2a2a, 0xffc020, 0x2aff6a];
+const acende = (h, i, cinza = false) => h.l.forEach((s, j) => s.material.color.set(j === i ? (cinza ? 0xffffff : CORES[j]) : (cinza ? 0x2a2a2a : 0x222222)));
+const botao = add(new THREE.BoxGeometry(.12, .18, .08), mat(0xffd23a), 1.8, 1.1, 1.9);
+const dedo = add(new THREE.CapsuleGeometry(.025, .1, 4, 8), mat(0xe0a07a), 1.8, 1.1, 2.15); dedo.rotation.x = Math.PI / 2;
+const placa60 = add(new THREE.CircleGeometry(.3, 32), new THREE.MeshBasicMaterial({ map: rotulo("60", "#111", { fundo: "#fff", w: 256, h: 256, tam: 140 }) }), 4.5, 2.0, 1.85); placa60.rotation.y = Math.PI / 2;
+add(new THREE.CylinderGeometry(.03, .03, 2, 8), mat(0x777777), 4.5, 1, 1.85);
+// guarda
+const guarda = grupo(0, 0, 0);
+const corpoG = grupo(0, 0, 0, guarda);
+add(new THREE.CapsuleGeometry(.22, .8, 8, 16), mat(0x2a3f7a), 0, .7, 0, corpoG); add(new THREE.SphereGeometry(.16, 16, 12), mat(0xe0a07a), 0, 1.4, 0, corpoG);
+add(new THREE.CylinderGeometry(.2, .2, .1, 20), mat(0xffffff), 0, 1.57, 0, corpoG);
+const bracoG = add(new THREE.CapsuleGeometry(.06, .5, 6, 10), mat(0x2a3f7a), .3, 1.0, 0, corpoG);
+// carros
+const carroA = [], carroB = [];
+const carro = (cor, x, z, rot) => { const g = grupo(x, 0, z); g.rotation.y = rot; add(new THREE.BoxGeometry(1.4, .45, .75), mat(cor, { roughness: .3 }), 0, .35, 0, g); add(new THREE.BoxGeometry(.75, .35, .7), mat(0x9fd0f0, { roughness: .1 }), .1, .72, 0, g); return g; };
+[0xe0405a, 0x2e6fd0, 0xf2b42a].forEach((c, i) => carroA.push(carro(c, 3.0 + i * 1.8, .75, 0)));
+[0x3ad08a, 0xffffff].forEach((c, i) => carroB.push(carro(c, -.75, 3.2 + i * 1.8, Math.PI / 2)));
+const moto = grupo(2.6, 0, .75); add(new THREE.BoxGeometry(.8, .3, .12), mat(0x111111), 0, .4, 0, moto); for (const x of [-.3, .3]) { const r = add(new THREE.TorusGeometry(.14, .04, 8, 20), mat(0x222222), x, .16, 0, moto); }
+const chuva = Array.from({ length: 70 }, () => ({ s: sprite(0x9fd0ff), f: rnd(), x: (rnd() - .5) * 8, z: (rnd() - .5) * 8 }));
+// avenida (onda verde)
+const SX = 60;
+add(new THREE.BoxGeometry(30, .02, 3), mAsf, SX, 0, 0); add(new THREE.PlaneGeometry(80, 80), mat(0xffffff, { map: grade("#c8c4bc", "#a8a49c", 64, 30), roughness: .9 }), SX, -.01, 0).rotation.x = -Math.PI / 2;
+const onda = Array.from({ length: 5 }, (_, i) => { add(new THREE.CylinderGeometry(.06, .07, 3.2, 12), mat(0x333333), SX - 8 + i * 4, 1.6, 1.8); return cabeca(Math.PI / 2, scene, SX - 8 + i * 4, 1.8); });
+const carroOnda = carro(0xe0405a, SX + 10, .75, 0);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(5.5, 6.5, 9), V(.6, .8, .4)], guarda: [V(1.5, 2.2, 4.2), V(0, 1.3, 0)], luz: [V(4.3, 3.1, 1.5), V(1.8, 2.75, 1.45)],
+  laco: [V(4.8, 3.6, 4.5), V(2.4, .6, .7)], botao: [V(2.6, 1.7, 3.6), V(1.8, 1.4, 1.8)], avenida: [V(SX + 12, 4, 5), V(SX - 3, 2.2, 1.8)],
+}, [
+  [0, "geral"], [P(1, "guarda") - .2, "guarda"], [F(1), "guarda"],
+  [C(2), "guarda"], [F(2), "geral"],
+  [C(3), "geral"], [P(3, "vermelho") - .4, "luz"], [F(3), "luz"],
+  [C(4), "luz"], [F(4), "luz"],
+  [C(5), "geral"], [P(5, "laco") - .4, "laco"], [F(5), "laco"],
+  [C(6), "geral"], [F(6), "geral"],
+  [C(7), "botao"], [F(7), "botao"],
+  [C(8), "geral"], [P(8, "sincronize") - .3, "avenida"], [T, "avenida"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // noite e chuva na cena 2
+  const noite = prog(t, P(2, "noite") - .3, P(2, "noite") + .4) * (t < C(3) ? 1 : 0);
+  scene.background.setRGB(.61 - .55 * noite, .78 - .7 * noite, .92 - .78 * noite);
+  sol.intensity = 1.5 - 1.3 * noite; hemi.intensity = 1.3 - 1.0 * noite;
+  chuva.forEach((c) => { const k = frac(t * 1.6 + c.f); c.s.position.set(c.x, 6 - k * 6, c.z); c.s.scale.set(.03, .3, 1); c.s.material.opacity = em(P(2, "chove") - .2, C(3)) ? .8 : 0; });
+  guarda.visible = t < C(3);
+  corpoG.rotation.z = .35 * prog(t, P(2, "cansa") - .3, P(2, "cansa") + .4);
+  bracoG.rotation.z = 1.2 + .6 * Math.sin(t * 6) * (t < C(2) ? 1 : 0);
+  poste.visible = A.g.visible = B.g.visible = t > C(3) - .1;
+  // estados do semáforo
+  let a = 0, b = 2, cinza = false;
+  if (em(C(3), C(4))) { const v = P(3, "vermelho"), am = P(3, "amarelo"), vd = P(3, "verde"); a = t < am - .1 ? 0 : t < vd - .1 ? 1 : 2; if (t > P(3, "cores") - .3) { cinza = true; a = Math.floor((t - P(3, "cores")) * 1.2) % 3; } b = -1; }
+  else if (em(C(4), C(5))) { a = 1; b = 0; }
+  else if (em(C(5), C(6))) { const sente = P(5, "sente") - .2; a = t > sente + .8 && t < P(5, "moto") - .5 ? 2 : 0; b = t > sente && t < sente + .8 ? 1 : t > sente + .8 && t < P(5, "moto") - .5 ? 0 : 2; }
+  else if (em(C(6), C(7))) { a = 0; b = t < P(6, "vermelho") - .2 ? 1 : 0; }
+  else if (em(C(7), C(8))) { a = 0; b = 2; }
+  else if (t >= C(8)) { a = 2; b = 0; }
+  acende(A, a, cinza); if (b >= 0) acende(B, b); else acende(B, -1);
+  // carros: B passa, A espera; no laço o carro para e a rua abre
+  carroA[0].visible = !(em(P(5, "moto") - .6, C(6)));
+  carroA[0].position.x = em(C(5), C(6)) ? 3.6 - 1.0 * prog(t, P(5, "carro") - .8, P(5, "carro") + .3) - (t > P(5, "sente") + 1 ? 6 * prog(t, P(5, "sente") + 1, P(5, "sente") + 3) : 0) : 3.0;
+  moto.visible = em(P(5, "moto") - .6, C(6)); moto.position.x = 2.6;
+  carroB.forEach((c, i) => { const passando = em(C(2), C(3)) || em(C(4) + 1, C(5)) || em(C(7), C(8)); c.position.z = passando ? 3.2 + i * 1.8 - frac(t * .15 + i * .5) * 12 : 3.2 + i * 1.8; });
+  carroA.slice(1).forEach((c, i) => c.position.x = 4.8 + i * 1.8);
+  const detecta = em(P(5, "metal") - .3, P(5, "moto") - .6);
+  laco.material.emissiveIntensity = em(P(5, "laco") - .3, P(5, "moto") - .6) ? (detecta ? 1.5 : .5) : 0;
+  ondaLaco.forEach((o, i) => { const k = frac(t * 1.2 + i / 3); o.scale.setScalar(.6 + k); o.material.opacity = detecta ? (1 - k) * .9 : 0; });
+  caixa.material.emissiveIntensity = em(P(5, "sente") - .3, P(5, "sente") + .8) || (t > C(8) && frac(t * 2) < .5) ? 1 : 0;
+  sinal.atualiza(t, em(P(5, "sente") - .5, P(5, "sente") + .5), 1.5, .07);
+  dedo.position.z = 2.15 - .12 * (pulse(t, P(7, "botao") - .1, .4) + pulse(t, P(7, "botao") + .5, .4) + pulse(t, P(7, "calmo") - .5, .4)); dedo.visible = em(C(7), C(8));
+  placa60.visible = em(C(4), C(5));
+  // onda verde
+  onda.forEach((h, i) => acende(h, t > P(8, "avenida") - .2 + i * .5 ? 2 : 0));
+  carroOnda.position.x = SX + 10 - 20 * prog(t, P(8, "avenida") - .2, T);
+  K.cartoes(t, [
+    [P(1, "apitando") - .2, F(1), "PRIIIII!", "#ffffff"],
+    [P(3, "cores") - .3, F(3), "VALE A POSIÇÃO", "#ffffff"],
+    [P(4, "velocidade") - .3, F(4), "RUA RÁPIDA = AMARELO LONGO", "#ffc020"],
+    [P(5, "laco") - .3, P(5, "moto") - .6, "LAÇO DE FIO", "#ffd23a"],
+    [P(5, "moto") - .5, F(5), "MOTO: POUCO METAL", "#ff4a3a"],
+    [P(6, "vermelho") - .2, F(6), "TODOS NO VERMELHO", "#ff4a3a"],
+    [P(7, "funciona") - .3, P(7, "outros") - .2, "FUNCIONA ✓", "#3aff7a"],
+    [P(7, "outros") - .2, F(7), "...OU NÃO", "#ffd23a"],
+    [P(8, "sincronize") - .2, T, "ONDA VERDE", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>
