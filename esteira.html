@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("esteira", { fundo: 0xdfe6ee, seed: 5656 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd } = K;
+
+// ---------- saguão ----------
+add(new THREE.PlaneGeometry(60, 40), mat(0xffffff, { map: grade("#e8e4dc", "#cfc9bd", 128, 16), roughness: .3 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+const paredeFundo = add(new THREE.PlaneGeometry(30, 6), mat(0xc8d0da), 0, 3, -2.6);
+const buraco = add(new THREE.PlaneGeometry(1.2, 1), brilho(0x101010), -3, .9, -2.59);
+const cortina = Array.from({ length: 8 }, (_, i) => add(new THREE.BoxGeometry(.14, .9, .02), mat(0x222222, { roughness: .9 }), -3.5 + i * .145, .95, -2.55));
+const giroflex = add(new THREE.SphereGeometry(.1, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), mat(0xff8a1a, { emissive: 0xff8a1a, emissiveIntensity: 0 }), -2.2, 1.6, -2.55);
+const luzGiro = new THREE.SpotLight(0xff8a1a, 0, 6, .4); luzGiro.position.set(-2.2, 1.7, -2.4); scene.add(luzGiro); scene.add(luzGiro.target);
+// ---------- esteira oval de plaquinhas ----------
+const RET = 4, R = 1;
+const PER = 2 * RET + 2 * Math.PI * R;
+function caminho(u) { let d = frac(u) * PER; if (d < RET) return [V(-RET / 2 + d, 0, R), 0]; d -= RET; if (d < Math.PI * R) { const a = d / R; return [V(RET / 2 + Math.sin(a) * R, 0, Math.cos(a) * R), -a]; } d -= Math.PI * R; if (d < RET) return [V(RET / 2 - d, 0, -R), -Math.PI]; d -= RET; const a = d / R; return [V(-RET / 2 - Math.sin(a) * R, 0, -Math.cos(a) * R), -Math.PI - a]; }
+const est = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(RET + .2, .45, 2 * R - .6), mat(0x9aa3ad, { metalness: .5 }), 0, .22, 0, est);
+for (const x of [-RET / 2, RET / 2]) add(new THREE.CylinderGeometry(R - .3, R - .3, .45, 32), mat(0x9aa3ad, { metalness: .5 }), x, .22, 0, est);
+const N = 64, placas = [];
+const mPlaca = mat(0x7a808a, { metalness: .6, roughness: .3 });
+for (let i = 0; i < N; i++) { const p = add(new THREE.BoxGeometry(.3, .025, .55), mPlaca, 0, 0, 0, est); placas.push(p); }
+const malasCores = [0xe0405a, 0x2e6fd0, 0x3ad08a, 0x222222, 0x9a5ad0, 0xf2b42a, 0xff7a1a];
+const malas = Array.from({ length: 9 }, (_, i) => { const g = grupo(0, 0, 0); add(new THREE.BoxGeometry(.5, .3, .35), mat(i === 5 ? 0xf2b42a : malasCores[i % 7], { roughness: .4 }), 0, .15, 0, g); add(new THREE.BoxGeometry(.18, .04, .04), mat(0x111111), 0, .32, 0, g); return { g, u: i / 9, pilha: V((rnd() - .5) * 1.6, rnd() * .6, (rnd() - .5) * 1.4), r: rnd() * 3 }; });
+const prio = add(new THREE.PlaneGeometry(.28, .12), new THREE.MeshBasicMaterial({ map: rotulo("PRIORITY", "#fff", { fundo: "#ff7a1a", w: 512, h: 220, tam: 100 }) }), 0, .2, .18, malas[2].g);
+const prio2 = prio.clone(); malas[6].g.add(prio2);
+// pessoas
+const pessoas = Array.from({ length: 6 }, (_, i) => { const g = grupo(Math.cos(i) * 1.8, 0, 1.5 + Math.sin(i) * .6); add(new THREE.CapsuleGeometry(.2, .8, 8, 16), mat([0x2e6fd0, 0x3ad08a, 0xe0405a, 0x6a4a2e, 0x9a5ad0, 0xffffff][i]), 0, .65, 0, g); add(new THREE.SphereGeometry(.14, 16, 12), mat(0xe0a07a), 0, 1.33, 0, g); return g; });
+// esteira de borracha que não curva
+const borracha = add(new THREE.BoxGeometry(4, .05, .6), mat(0x1b1b1b, { roughness: .9 }), 0, .47, 1);
+
+// ---------- atrás da parede: triagem ----------
+const SX = 40;
+add(new THREE.PlaneGeometry(30, 20), mat(0xb8bcc2), SX, .001, 0).rotation.x = -Math.PI / 2;
+const trilho = new THREE.CatmullRomCurve3([V(SX - 5, .6, 0), V(SX + 6, .6, 0)]);
+add(new THREE.BoxGeometry(8, .1, .7), mat(0x444a52), SX + .5, .55, 0);
+const ramal = add(new THREE.BoxGeometry(.7, .1, 4), mat(0x444a52), SX + .6, .55, -2.3);
+const ramalX = add(new THREE.BoxGeometry(.7, .1, 3), mat(0x444a52), SX + 3.3, .55, 1.8);
+const arco = grupo(SX - 1.5, 0, 0); for (const z of [-.5, .5]) add(new THREE.BoxGeometry(.14, 1.4, .14), mat(0xffd23a), 0, .7, z, arco); add(new THREE.BoxGeometry(.14, .14, 1.14), mat(0xffd23a), 0, 1.4, 0, arco);
+const laser = add(new THREE.BoxGeometry(.01, .8, .9), new THREE.MeshBasicMaterial({ color: 0xff2020, transparent: true, opacity: 0 }), 0, 1.0, 0, arco);
+const raiox = add(new THREE.BoxGeometry(1.4, 1.0, 1.0), mat(0x7a8a9a, { transparent: true, opacity: .55 }), SX + 2.3, 1.0, 0);
+const telaX = add(new THREE.PlaneGeometry(.6, .4), new THREE.MeshBasicMaterial({ color: 0x0a3a1a }), SX + 2.3, 1.75, .51);
+const empurra = add(new THREE.BoxGeometry(.1, .3, .6), mat(0xffd23a), SX + .6, .75, .55);
+const empurraX = add(new THREE.BoxGeometry(.1, .3, .6), mat(0xffd23a), SX + 3.3, .75, -.55);
+const malaT = grupo(SX - 3.3, .6, 0); add(new THREE.BoxGeometry(.5, .3, .35), mat(0xf2b42a), 0, .15, 0, malaT);
+const etiqueta = add(new THREE.PlaneGeometry(.3, .16), new THREE.MeshBasicMaterial({ map: rotulo("||| | || |||", "#111", { fundo: "#fff", w: 512, h: 256, tam: 120 }) }), 0, .16, .18, malaT);
+const malaX = grupo(SX - .5, .6, 0); add(new THREE.BoxGeometry(.5, .3, .35), mat(0x9a5ad0), 0, .15, 0, malaX);
+const aviao = grupo(SX + .6, 0, -5.5); add(new THREE.CylinderGeometry(.6, .6, 5, 20), mat(0xf4f4f4), 0, 1.2, 0, aviao).rotation.x = Math.PI / 2; add(new THREE.BoxGeometry(5, .1, 1.2), mat(0xf4f4f4), 0, 1.1, 0, aviao);
+const inspetor = grupo(SX + 3.9, 0, 2.9); add(new THREE.CapsuleGeometry(.2, .8, 8, 16), mat(0x2a3f7a), 0, .65, 0, inspetor); add(new THREE.SphereGeometry(.14, 16, 12), mat(0xe0a07a), 0, 1.33, 0, inspetor);
+
+// ---------- câmera ----------
+K.camera_({
+  saguao: [V(1.2, 4.8, 7.5), V(0, .6, 0)], gente: [V(.5, 2.4, 5.0), V(0, 1.0, .5)], curva: [V(3.8, 3.0, 3.0), V(2.4, .45, 0)],
+  cimaCurva: [V(2.7, 4.4, 1.8), V(2.4, .4, 0)], triagem: [V(SX - .5, 6.5, 10.5), V(SX - .4, 1.0, -1.5)], scanner: [V(SX - 1.0, 1.4, 1.9), V(SX - 1.5, .85, 0)],
+  raiox: [V(SX + 3.0, 2.6, 4.6), V(SX + 2.8, 1.0, .8)], parede: [V(-1.5, 2.6, 4.2), V(-2.5, 1.2, -1.5)],
+}, [
+  [0, "saguao"], [P(1, "monte") - .3, "gente"], [F(1), "gente"],
+  [C(2), "gente"], [F(2), "gente"],
+  [C(3), "saguao"], [F(3), "saguao"],
+  [C(4), "curva"], [P(4, "leque") - .5, "cimaCurva"], [F(4), "cimaCurva"],
+  [C(5) - .02, "cimaCurva"], [C(5), "triagem"], [P(5, "etiqueta") - .3, "scanner"], [P(5, "labirinto") - .3, "triagem"], [F(5), "triagem"],
+  [C(6), "raiox"], [F(6), "raiox"],
+  [C(7) - .02, "raiox"], [C(7), "saguao"], [F(7), "saguao"],
+  [C(8), "parede"], [T, "saguao"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const fase = t < C(3) ? "monte" : "esteira";
+  // esteira girando
+  const rodando = t > P(3, "voltas") - .3;
+  const vel = rodando ? .025 : 0;
+  const base = (t - P(3, "voltas")) * vel;
+  est.visible = t > C(3) - .1;
+  borracha.visible = em(P(3, "borracha") - .4, F(3));
+  borracha.rotation.y = .05 * Math.sin(t * 20) * (t > P(3, "curva") - .2 ? 1 : 0);
+  placas.forEach((p, i) => { const [pos, ang] = caminho(i / N + Math.max(0, base)); p.position.set(pos.x, .47 + (i % 2) * .012, pos.z); p.rotation.y = ang; });
+  // malas
+  malas.forEach((m, i) => {
+    if (fase === "monte") { m.g.position.copy(m.pilha); m.g.rotation.y = m.r; m.g.visible = !(i === 5 && t > P(2, "leva") - .2); }
+    else { m.g.visible = true; const [pos, ang] = caminho(m.u + Math.max(0, base)); m.g.position.set(pos.x, .49, pos.z); m.g.rotation.y = ang; if (em(C(7), C(8)) && (i === 2 || i === 6)) { m.g.position.y += .1 * Math.abs(Math.sin(t * 6)); } }
+  });
+  prio.visible = prio2.visible = t > C(7) - .1;
+  // pessoas se empurrando
+  pessoas.forEach((p, i) => { const k = em(P(2, "empurra") - .3, C(3)) ? 1 : .2; p.position.x = Math.cos(i) * 1.8 + Math.sin(t * 5 + i) * .08 * k; p.position.z = (t < C(3) ? 1.5 : 2.6) + Math.sin(i) * .6; p.rotation.z = Math.sin(t * 6 + i * 2) * .12 * k; });
+  const ladrao = pessoas[2]; if (t > P(2, "leva") - .2 && t < C(3)) { const k = prog(t, P(2, "leva") - .2, F(2) + .3); ladrao.position.set(Math.cos(2) * 1.8 + k * 3, 0, 1.5 + Math.sin(2) * .6 + k * 2); malas[5].g.visible = true; malas[5].g.position.copy(ladrao.position).add(V(.3, .4, 0)); }
+  // giroflex e cortina
+  const gira = t > C(8) - .1 || (rodando && em(P(3, "voltas") - .3, P(3, "voltas") + 2));
+  giroflex.material.emissiveIntensity = gira ? 1.5 : 0; luzGiro.intensity = gira ? 30 : 0; luzGiro.target.position.set(-2.2 + Math.cos(t * 6) * 2, 1, -2.4 + Math.sin(t * 6) * 2);
+  cortina.forEach((c, i) => c.rotation.x = Math.sin(t * 3 + i) * .15 * (t > C(8) ? 1 : 0));
+  // triagem
+  const lido = P(5, "le") - .1;
+  malaT.position.x = SX - 3.3 + 1.8 * prog(t, C(5) + .3, lido) + 2.1 * prog(t, P(5, "labirinto"), P(5, "bracos") + .3);
+  const vira = prog(t, P(5, "bracos") + .1, P(5, "aviao"));
+  malaT.position.z = -3.5 * vira;
+  empurra.position.z = .55 - .9 * pulse(t, P(5, "bracos"), .8);
+  laser.material.opacity = em(lido - .5, lido + .8) ? .5 + .3 * Math.sin(t * 30) : 0;
+  aviao.visible = true;
+  // raio-x desvia
+  malaX.position.x = SX - .5 + 2.8 * prog(t, C(6) + .2, P(6, "desconfiar")) + 1.0 * prog(t, P(6, "desviada") - .4, P(6, "desviada"));
+  malaX.position.z = 2.3 * prog(t, P(6, "desviada"), P(6, "pessoa") + .5);
+  empurraX.position.z = -.55 + .9 * pulse(t, P(6, "desviada") - .1, .8);
+  telaX.material.color.set(em(P(6, "desconfiar") - .3, F(6)) && frac(t * 3) < .5 ? 0xff2020 : 0x0a3a1a);
+  inspetor.rotation.y = em(P(6, "pessoa") - .3, F(6)) ? Math.sin(t * 4) * .3 : 0;
+  K.cartoes(t, [
+    [P(2, "leva") - .3, F(2), "LEVARAM A SUA!", "#ff4a3a"],
+    [P(3, "borracha") - .3, F(3), "BORRACHA NÃO FAZ CURVA", "#ff4a3a"],
+    [P(4, "escamas") - .3, P(4, "leque") - .3, "ESCAMAS", "#7fd3ff"],
+    [P(4, "leque") - .3, F(4), "ABRE NA CURVA", "#ffd23a"],
+    [P(5, "codigo") - .3, P(5, "labirinto") - .3, "CÓDIGO DE BARRAS", "#ffffff"],
+    [P(5, "bracos") - .3, F(5), "BRAÇO EMPURRA", "#ffd23a"],
+    [P(6, "desconfiar") - .3, F(6), "DESVIADA", "#ff4a3a"],
+    [P(7, "prioridade") - .3, F(7), "PRIORITY", "#ff7a1a"],
+  ]);
+});
+</script>
+</body></html>

@@ -1,0 +1,841 @@
+{
+ "total": 69.95,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.22,
+   "texto": "Se você jogar todas as malas num monte no meio do aeroporto, terá uma esteira de bagagem.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "jogar",
+     "t": 0.645
+    },
+    {
+     "w": "todas",
+     "t": 1.011
+    },
+    {
+     "w": "as",
+     "t": 1.306
+    },
+    {
+     "w": "malas",
+     "t": 1.494
+    },
+    {
+     "w": "num",
+     "t": 1.872
+    },
+    {
+     "w": "monte",
+     "t": 2.013
+    },
+    {
+     "w": "no",
+     "t": 2.343
+    },
+    {
+     "w": "meio",
+     "t": 2.438
+    },
+    {
+     "w": "do",
+     "t": 2.662
+    },
+    {
+     "w": "aeroporto",
+     "t": 2.756
+    },
+    {
+     "w": "terá",
+     "t": 3.593
+    },
+    {
+     "w": "uma",
+     "t": 3.865
+    },
+    {
+     "w": "esteira",
+     "t": 3.971
+    },
+    {
+     "w": "de",
+     "t": 4.36
+    },
+    {
+     "w": "bagagem",
+     "t": 4.454
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.37,
+   "fim": 11.33,
+   "texto": "Mas todo mundo se empurra. As malas se misturam. E alguém leva a sua.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.417
+    },
+    {
+     "w": "todo",
+     "t": 5.724
+    },
+    {
+     "w": "mundo",
+     "t": 6.03
+    },
+    {
+     "w": "se",
+     "t": 6.384
+    },
+    {
+     "w": "empurra",
+     "t": 6.502
+    },
+    {
+     "w": "As",
+     "t": 7.811
+    },
+    {
+     "w": "malas",
+     "t": 8.035
+    },
+    {
+     "w": "se",
+     "t": 8.424
+    },
+    {
+     "w": "misturam",
+     "t": 8.519
+    },
+    {
+     "w": "E",
+     "t": 9.887
+    },
+    {
+     "w": "alguém",
+     "t": 10.004
+    },
+    {
+     "w": "leva",
+     "t": 10.346
+    },
+    {
+     "w": "a",
+     "t": 10.653
+    },
+    {
+     "w": "sua",
+     "t": 10.688
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.48,
+   "fim": 17.93,
+   "texto": "Então, você coloca as malas numa esteira que dá voltas. Mas uma esteira de borracha não faz curva.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.527
+    },
+    {
+     "w": "você",
+     "t": 12.258
+    },
+    {
+     "w": "coloca",
+     "t": 12.518
+    },
+    {
+     "w": "as",
+     "t": 12.919
+    },
+    {
+     "w": "malas",
+     "t": 13.037
+    },
+    {
+     "w": "numa",
+     "t": 13.449
+    },
+    {
+     "w": "esteira",
+     "t": 13.591
+    },
+    {
+     "w": "que",
+     "t": 13.956
+    },
+    {
+     "w": "dá",
+     "t": 14.063
+    },
+    {
+     "w": "voltas",
+     "t": 14.18
+    },
+    {
+     "w": "Mas",
+     "t": 15.513
+    },
+    {
+     "w": "uma",
+     "t": 15.69
+    },
+    {
+     "w": "esteira",
+     "t": 15.855
+    },
+    {
+     "w": "de",
+     "t": 16.221
+    },
+    {
+     "w": "borracha",
+     "t": 16.315
+    },
+    {
+     "w": "não",
+     "t": 16.846
+    },
+    {
+     "w": "faz",
+     "t": 17.022
+    },
+    {
+     "w": "curva",
+     "t": 17.282
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 18.08,
+   "fim": 30.24,
+   "texto": "Então, você faz a esteira de plaquinhas que se sobrepõem, como escamas de peixe. Na curva, elas deslizam umas por baixo das outras e abrem como um leque. Na reta, fecham de novo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 18.127
+    },
+    {
+     "w": "você",
+     "t": 18.917
+    },
+    {
+     "w": "faz",
+     "t": 19.177
+    },
+    {
+     "w": "a",
+     "t": 19.342
+    },
+    {
+     "w": "esteira",
+     "t": 19.436
+    },
+    {
+     "w": "de",
+     "t": 19.802
+    },
+    {
+     "w": "plaquinhas",
+     "t": 19.896
+    },
+    {
+     "w": "que",
+     "t": 20.427
+    },
+    {
+     "w": "se",
+     "t": 20.533
+    },
+    {
+     "w": "sobrepõem",
+     "t": 20.651
+    },
+    {
+     "w": "como",
+     "t": 21.476
+    },
+    {
+     "w": "escamas",
+     "t": 21.689
+    },
+    {
+     "w": "de",
+     "t": 22.101
+    },
+    {
+     "w": "peixe",
+     "t": 22.219
+    },
+    {
+     "w": "Na",
+     "t": 23.41
+    },
+    {
+     "w": "curva",
+     "t": 23.622
+    },
+    {
+     "w": "elas",
+     "t": 24.318
+    },
+    {
+     "w": "deslizam",
+     "t": 24.566
+    },
+    {
+     "w": "umas",
+     "t": 25.085
+    },
+    {
+     "w": "por",
+     "t": 25.309
+    },
+    {
+     "w": "baixo",
+     "t": 25.497
+    },
+    {
+     "w": "das",
+     "t": 25.863
+    },
+    {
+     "w": "outras",
+     "t": 25.981
+    },
+    {
+     "w": "e",
+     "t": 26.347
+    },
+    {
+     "w": "abrem",
+     "t": 26.488
+    },
+    {
+     "w": "como",
+     "t": 26.818
+    },
+    {
+     "w": "um",
+     "t": 27.042
+    },
+    {
+     "w": "leque",
+     "t": 27.148
+    },
+    {
+     "w": "Na",
+     "t": 28.328
+    },
+    {
+     "w": "reta",
+     "t": 28.528
+    },
+    {
+     "w": "fecham",
+     "t": 29.141
+    },
+    {
+     "w": "de",
+     "t": 29.519
+    },
+    {
+     "w": "novo",
+     "t": 29.648
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 30.39,
+   "fim": 46.5,
+   "texto": "Mas a parte mais impressionante fica atrás da parede. Quando você despacha a mala, ela ganha uma etiqueta com código de barras. Uma máquina lê o código, e a mala entra num labirinto de esteiras, com braços que empurram cada uma pro caminho certo, até o avião certo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 30.437
+    },
+    {
+     "w": "a",
+     "t": 30.626
+    },
+    {
+     "w": "parte",
+     "t": 30.779
+    },
+    {
+     "w": "mais",
+     "t": 31.157
+    },
+    {
+     "w": "impressionante",
+     "t": 31.381
+    },
+    {
+     "w": "fica",
+     "t": 32.112
+    },
+    {
+     "w": "atrás",
+     "t": 32.371
+    },
+    {
+     "w": "da",
+     "t": 32.678
+    },
+    {
+     "w": "parede",
+     "t": 32.784
+    },
+    {
+     "w": "Quando",
+     "t": 34.057
+    },
+    {
+     "w": "você",
+     "t": 34.352
+    },
+    {
+     "w": "despacha",
+     "t": 34.588
+    },
+    {
+     "w": "a",
+     "t": 35.072
+    },
+    {
+     "w": "mala",
+     "t": 35.107
+    },
+    {
+     "w": "ela",
+     "t": 35.626
+    },
+    {
+     "w": "ganha",
+     "t": 35.815
+    },
+    {
+     "w": "uma",
+     "t": 36.062
+    },
+    {
+     "w": "etiqueta",
+     "t": 36.168
+    },
+    {
+     "w": "com",
+     "t": 36.664
+    },
+    {
+     "w": "código",
+     "t": 36.84
+    },
+    {
+     "w": "de",
+     "t": 37.218
+    },
+    {
+     "w": "barras",
+     "t": 37.324
+    },
+    {
+     "w": "Uma",
+     "t": 38.633
+    },
+    {
+     "w": "máquina",
+     "t": 38.881
+    },
+    {
+     "w": "lê",
+     "t": 39.282
+    },
+    {
+     "w": "o",
+     "t": 39.435
+    },
+    {
+     "w": "código",
+     "t": 39.517
+    },
+    {
+     "w": "e",
+     "t": 40.284
+    },
+    {
+     "w": "a",
+     "t": 40.378
+    },
+    {
+     "w": "mala",
+     "t": 40.461
+    },
+    {
+     "w": "entra",
+     "t": 40.72
+    },
+    {
+     "w": "num",
+     "t": 40.956
+    },
+    {
+     "w": "labirinto",
+     "t": 41.098
+    },
+    {
+     "w": "de",
+     "t": 41.569
+    },
+    {
+     "w": "esteiras",
+     "t": 41.652
+    },
+    {
+     "w": "com",
+     "t": 42.418
+    },
+    {
+     "w": "braços",
+     "t": 42.619
+    },
+    {
+     "w": "que",
+     "t": 43.043
+    },
+    {
+     "w": "empurram",
+     "t": 43.126
+    },
+    {
+     "w": "cada",
+     "t": 43.586
+    },
+    {
+     "w": "uma",
+     "t": 43.786
+    },
+    {
+     "w": "pro",
+     "t": 43.94
+    },
+    {
+     "w": "caminho",
+     "t": 44.105
+    },
+    {
+     "w": "certo",
+     "t": 44.447
+    },
+    {
+     "w": "até",
+     "t": 45.083
+    },
+    {
+     "w": "o",
+     "t": 45.355
+    },
+    {
+     "w": "avião",
+     "t": 45.437
+    },
+    {
+     "w": "certo",
+     "t": 45.803
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.65,
+   "fim": 54.19,
+   "texto": "No caminho, ela passa por um raio-X. Se a máquina desconfiar de alguma coisa, a mala é desviada pra uma pessoa abrir.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 46.697
+    },
+    {
+     "w": "caminho",
+     "t": 46.862
+    },
+    {
+     "w": "ela",
+     "t": 47.487
+    },
+    {
+     "w": "passa",
+     "t": 47.7
+    },
+    {
+     "w": "por",
+     "t": 48.03
+    },
+    {
+     "w": "um",
+     "t": 48.183
+    },
+    {
+     "w": "raio-X",
+     "t": 48.277
+    },
+    {
+     "w": "Se",
+     "t": 49.751
+    },
+    {
+     "w": "a",
+     "t": 49.975
+    },
+    {
+     "w": "máquina",
+     "t": 50.058
+    },
+    {
+     "w": "desconfiar",
+     "t": 50.483
+    },
+    {
+     "w": "de",
+     "t": 51.072
+    },
+    {
+     "w": "alguma",
+     "t": 51.143
+    },
+    {
+     "w": "coisa",
+     "t": 51.438
+    },
+    {
+     "w": "a",
+     "t": 52.063
+    },
+    {
+     "w": "mala",
+     "t": 52.145
+    },
+    {
+     "w": "é",
+     "t": 52.393
+    },
+    {
+     "w": "desviada",
+     "t": 52.44
+    },
+    {
+     "w": "pra",
+     "t": 52.994
+    },
+    {
+     "w": "uma",
+     "t": 53.124
+    },
+    {
+     "w": "pessoa",
+     "t": 53.277
+    },
+    {
+     "w": "abrir",
+     "t": 53.643
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 54.34,
+   "fim": 61.17,
+   "texto": "E por que algumas malas saem antes? Elas ganham uma etiqueta de prioridade e são separadas pra sair primeiro.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 54.387
+    },
+    {
+     "w": "por",
+     "t": 54.517
+    },
+    {
+     "w": "que",
+     "t": 54.717
+    },
+    {
+     "w": "algumas",
+     "t": 54.847
+    },
+    {
+     "w": "malas",
+     "t": 55.295
+    },
+    {
+     "w": "saem",
+     "t": 55.649
+    },
+    {
+     "w": "antes",
+     "t": 55.92
+    },
+    {
+     "w": "Elas",
+     "t": 57.182
+    },
+    {
+     "w": "ganham",
+     "t": 57.559
+    },
+    {
+     "w": "uma",
+     "t": 57.913
+    },
+    {
+     "w": "etiqueta",
+     "t": 57.996
+    },
+    {
+     "w": "de",
+     "t": 58.467
+    },
+    {
+     "w": "prioridade",
+     "t": 58.573
+    },
+    {
+     "w": "e",
+     "t": 59.14
+    },
+    {
+     "w": "são",
+     "t": 59.175
+    },
+    {
+     "w": "separadas",
+     "t": 59.352
+    },
+    {
+     "w": "pra",
+     "t": 59.977
+    },
+    {
+     "w": "sair",
+     "t": 60.118
+    },
+    {
+     "w": "primeiro",
+     "t": 60.484
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 61.32,
+   "fim": 69.35,
+   "texto": "Coloque uma cortina de borracha, uma luz que gira e uma mala igualzinha à sua. Parabéns, você construiu uma esteira de bagagem.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 61.367
+    },
+    {
+     "w": "uma",
+     "t": 61.851
+    },
+    {
+     "w": "cortina",
+     "t": 62.004
+    },
+    {
+     "w": "de",
+     "t": 62.44
+    },
+    {
+     "w": "borracha",
+     "t": 62.523
+    },
+    {
+     "w": "uma",
+     "t": 63.348
+    },
+    {
+     "w": "luz",
+     "t": 63.525
+    },
+    {
+     "w": "que",
+     "t": 63.82
+    },
+    {
+     "w": "gira",
+     "t": 63.926
+    },
+    {
+     "w": "e",
+     "t": 64.197
+    },
+    {
+     "w": "uma",
+     "t": 64.233
+    },
+    {
+     "w": "mala",
+     "t": 64.398
+    },
+    {
+     "w": "igualzinha",
+     "t": 64.622
+    },
+    {
+     "w": "à",
+     "t": 65.141
+    },
+    {
+     "w": "sua",
+     "t": 65.176
+    },
+    {
+     "w": "Parabéns",
+     "t": 66.379
+    },
+    {
+     "w": "você",
+     "t": 67.157
+    },
+    {
+     "w": "construiu",
+     "t": 67.476
+    },
+    {
+     "w": "uma",
+     "t": 67.971
+    },
+    {
+     "w": "esteira",
+     "t": 68.089
+    },
+    {
+     "w": "de",
+     "t": 68.466
+    },
+    {
+     "w": "bagagem",
+     "t": 68.549
+    }
+   ]
+  }
+ ]
+}

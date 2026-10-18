@@ -65,7 +65,7 @@ export async function iniciar(video, { fundo = 0x9cc8ea, seed = 7, fov = 36 } = 
   async function pronto(quadro) {
     window.renderFrame = (t) => { moverCamera(t); quadro(t); legenda(t); renderer.render(scene, camera); };
     await document.fonts.load("900 40px Nunito"); await document.fonts.ready;
-    window.renderFrame(0); window.pronto = true;
+    window.__cena = { scene, camera }; window.renderFrame(0); window.pronto = true;
   }
   return { THREE, TEMPOS, scene, camera, renderer, sol, rnd, clamp, ease, prog, lin, pulse, entre, frac, C, F, P, T: TEMPOS.total,
     tex, texMancha, grade, texMadeira, texRuido, mat, vidro, brilho, add, grupo, V, sprite, rotulo, fluxo, visor, naTela, cartoes, camera_, pronto };
