@@ -63,7 +63,7 @@ export async function iniciar(video, { fundo = 0x9cc8ea, seed = 7, fov = 36 } = 
 
   const legenda = montarLegenda(TEMPOS.cenas.flatMap((c) => c.palavras.map((p) => [(p.w.charAt(0).toUpperCase() + p.w.slice(1)).replace(/[.,!?;:"]+$/, ""), p.t])));
   async function pronto(quadro) {
-    window.renderFrame = (t) => { quadro(t); moverCamera(t); legenda(t); renderer.render(scene, camera); };
+    window.renderFrame = (t) => { moverCamera(t); quadro(t); legenda(t); renderer.render(scene, camera); };
     await document.fonts.load("900 40px Nunito"); await document.fonts.ready;
     window.renderFrame(0); window.pronto = true;
   }

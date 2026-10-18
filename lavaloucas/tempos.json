@@ -1,0 +1,1129 @@
+{
+ "total": 93.48,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.2,
+   "texto": "Se você colocar a louça suja numa caixa e jogar água por cima, terá uma lava-louças.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "a",
+     "t": 1.058
+    },
+    {
+     "w": "louça",
+     "t": 1.105
+    },
+    {
+     "w": "suja",
+     "t": 1.435
+    },
+    {
+     "w": "numa",
+     "t": 1.718
+    },
+    {
+     "w": "caixa",
+     "t": 1.942
+    },
+    {
+     "w": "e",
+     "t": 2.367
+    },
+    {
+     "w": "jogar",
+     "t": 2.438
+    },
+    {
+     "w": "água",
+     "t": 2.803
+    },
+    {
+     "w": "por",
+     "t": 3.075
+    },
+    {
+     "w": "cima",
+     "t": 3.24
+    },
+    {
+     "w": "terá",
+     "t": 3.758
+    },
+    {
+     "w": "uma",
+     "t": 4.006
+    },
+    {
+     "w": "lava-louças",
+     "t": 4.148
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.35,
+   "fim": 11.98,
+   "texto": "Mas a água só escorre. A gordura continua lá. E os pratos de baixo nem se molham.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.397
+    },
+    {
+     "w": "a",
+     "t": 5.609
+    },
+    {
+     "w": "água",
+     "t": 5.751
+    },
+    {
+     "w": "só",
+     "t": 6.022
+    },
+    {
+     "w": "escorre",
+     "t": 6.199
+    },
+    {
+     "w": "A",
+     "t": 7.543
+    },
+    {
+     "w": "gordura",
+     "t": 7.673
+    },
+    {
+     "w": "continua",
+     "t": 8.168
+    },
+    {
+     "w": "lá",
+     "t": 8.699
+    },
+    {
+     "w": "E",
+     "t": 9.784
+    },
+    {
+     "w": "os",
+     "t": 9.902
+    },
+    {
+     "w": "pratos",
+     "t": 10.043
+    },
+    {
+     "w": "de",
+     "t": 10.48
+    },
+    {
+     "w": "baixo",
+     "t": 10.562
+    },
+    {
+     "w": "nem",
+     "t": 10.999
+    },
+    {
+     "w": "se",
+     "t": 11.246
+    },
+    {
+     "w": "molham",
+     "t": 11.364
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.13,
+   "fim": 26,
+   "texto": "Então, você coloca uma bomba que empurra a água por um braço cheio de furinhos. Os furos são tortos de propósito: a água sai de lado e empurra o braço, que gira sozinho, sem motor. Esse é o braço aspersor.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.177
+    },
+    {
+     "w": "você",
+     "t": 12.955
+    },
+    {
+     "w": "coloca",
+     "t": 13.227
+    },
+    {
+     "w": "uma",
+     "t": 13.663
+    },
+    {
+     "w": "bomba",
+     "t": 13.805
+    },
+    {
+     "w": "que",
+     "t": 14.194
+    },
+    {
+     "w": "empurra",
+     "t": 14.3
+    },
+    {
+     "w": "a",
+     "t": 14.736
+    },
+    {
+     "w": "água",
+     "t": 14.783
+    },
+    {
+     "w": "por",
+     "t": 15.09
+    },
+    {
+     "w": "um",
+     "t": 15.231
+    },
+    {
+     "w": "braço",
+     "t": 15.314
+    },
+    {
+     "w": "cheio",
+     "t": 15.691
+    },
+    {
+     "w": "de",
+     "t": 15.998
+    },
+    {
+     "w": "furinhos",
+     "t": 16.08
+    },
+    {
+     "w": "Os",
+     "t": 17.425
+    },
+    {
+     "w": "furos",
+     "t": 17.625
+    },
+    {
+     "w": "são",
+     "t": 17.979
+    },
+    {
+     "w": "tortos",
+     "t": 18.191
+    },
+    {
+     "w": "de",
+     "t": 18.58
+    },
+    {
+     "w": "propósito",
+     "t": 18.663
+    },
+    {
+     "w": "a",
+     "t": 19.642
+    },
+    {
+     "w": "água",
+     "t": 19.736
+    },
+    {
+     "w": "sai",
+     "t": 20.043
+    },
+    {
+     "w": "de",
+     "t": 20.29
+    },
+    {
+     "w": "lado",
+     "t": 20.397
+    },
+    {
+     "w": "e",
+     "t": 20.715
+    },
+    {
+     "w": "empurra",
+     "t": 20.739
+    },
+    {
+     "w": "o",
+     "t": 21.139
+    },
+    {
+     "w": "braço",
+     "t": 21.175
+    },
+    {
+     "w": "que",
+     "t": 21.8
+    },
+    {
+     "w": "gira",
+     "t": 21.953
+    },
+    {
+     "w": "sozinho",
+     "t": 22.236
+    },
+    {
+     "w": "sem",
+     "t": 22.991
+    },
+    {
+     "w": "motor",
+     "t": 23.203
+    },
+    {
+     "w": "Esse",
+     "t": 24.441
+    },
+    {
+     "w": "é",
+     "t": 24.724
+    },
+    {
+     "w": "o",
+     "t": 24.772
+    },
+    {
+     "w": "braço",
+     "t": 24.83
+    },
+    {
+     "w": "aspersor",
+     "t": 25.208
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.15,
+   "fim": 38.16,
+   "texto": "Mas água fria não derrete gordura. Então, você coloca uma resistência que esquenta a água a uns sessenta graus. E uma tampinha que abre sozinha, na hora certa, e solta o detergente.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 26.197
+    },
+    {
+     "w": "água",
+     "t": 26.398
+    },
+    {
+     "w": "fria",
+     "t": 26.787
+    },
+    {
+     "w": "não",
+     "t": 27.082
+    },
+    {
+     "w": "derrete",
+     "t": 27.282
+    },
+    {
+     "w": "gordura",
+     "t": 27.718
+    },
+    {
+     "w": "Então",
+     "t": 29.027
+    },
+    {
+     "w": "você",
+     "t": 29.817
+    },
+    {
+     "w": "coloca",
+     "t": 30.065
+    },
+    {
+     "w": "uma",
+     "t": 30.454
+    },
+    {
+     "w": "resistência",
+     "t": 30.572
+    },
+    {
+     "w": "que",
+     "t": 31.209
+    },
+    {
+     "w": "esquenta",
+     "t": 31.303
+    },
+    {
+     "w": "a",
+     "t": 31.681
+    },
+    {
+     "w": "água",
+     "t": 31.728
+    },
+    {
+     "w": "a",
+     "t": 32.023
+    },
+    {
+     "w": "uns",
+     "t": 32.082
+    },
+    {
+     "w": "sessenta",
+     "t": 32.258
+    },
+    {
+     "w": "graus",
+     "t": 32.683
+    },
+    {
+     "w": "E",
+     "t": 33.933
+    },
+    {
+     "w": "uma",
+     "t": 34.075
+    },
+    {
+     "w": "tampinha",
+     "t": 34.263
+    },
+    {
+     "w": "que",
+     "t": 34.7
+    },
+    {
+     "w": "abre",
+     "t": 34.853
+    },
+    {
+     "w": "sozinha",
+     "t": 35.089
+    },
+    {
+     "w": "na",
+     "t": 35.773
+    },
+    {
+     "w": "hora",
+     "t": 35.891
+    },
+    {
+     "w": "certa",
+     "t": 36.126
+    },
+    {
+     "w": "e",
+     "t": 36.787
+    },
+    {
+     "w": "solta",
+     "t": 36.858
+    },
+    {
+     "w": "o",
+     "t": 37.2
+    },
+    {
+     "w": "detergente",
+     "t": 37.247
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 38.31,
+   "fim": 54.16,
+   "texto": "Mas, desse jeito, ia ser água demais. Então, você faz a mesma água dar várias voltas: ela cai, passa por uma peneira no fundo e volta pros braços. Esse é o filtro. Por isso a lava-louças gasta menos água do que lavar na pia.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 38.357
+    },
+    {
+     "w": "desse",
+     "t": 39.018
+    },
+    {
+     "w": "jeito",
+     "t": 39.336
+    },
+    {
+     "w": "ia",
+     "t": 39.937
+    },
+    {
+     "w": "ser",
+     "t": 40.126
+    },
+    {
+     "w": "água",
+     "t": 40.327
+    },
+    {
+     "w": "demais",
+     "t": 40.574
+    },
+    {
+     "w": "Então",
+     "t": 41.93
+    },
+    {
+     "w": "você",
+     "t": 42.685
+    },
+    {
+     "w": "faz",
+     "t": 42.933
+    },
+    {
+     "w": "a",
+     "t": 43.086
+    },
+    {
+     "w": "mesma",
+     "t": 43.216
+    },
+    {
+     "w": "água",
+     "t": 43.522
+    },
+    {
+     "w": "dar",
+     "t": 43.817
+    },
+    {
+     "w": "várias",
+     "t": 43.994
+    },
+    {
+     "w": "voltas",
+     "t": 44.348
+    },
+    {
+     "w": "ela",
+     "t": 45.079
+    },
+    {
+     "w": "cai",
+     "t": 45.279
+    },
+    {
+     "w": "passa",
+     "t": 45.763
+    },
+    {
+     "w": "por",
+     "t": 46.081
+    },
+    {
+     "w": "uma",
+     "t": 46.211
+    },
+    {
+     "w": "peneira",
+     "t": 46.352
+    },
+    {
+     "w": "no",
+     "t": 46.694
+    },
+    {
+     "w": "fundo",
+     "t": 46.824
+    },
+    {
+     "w": "e",
+     "t": 47.166
+    },
+    {
+     "w": "volta",
+     "t": 47.237
+    },
+    {
+     "w": "pros",
+     "t": 47.591
+    },
+    {
+     "w": "braços",
+     "t": 47.756
+    },
+    {
+     "w": "Esse",
+     "t": 49.135
+    },
+    {
+     "w": "é",
+     "t": 49.454
+    },
+    {
+     "w": "o",
+     "t": 49.513
+    },
+    {
+     "w": "filtro",
+     "t": 49.584
+    },
+    {
+     "w": "Por",
+     "t": 50.81
+    },
+    {
+     "w": "isso",
+     "t": 51.01
+    },
+    {
+     "w": "a",
+     "t": 51.27
+    },
+    {
+     "w": "lava-louças",
+     "t": 51.305
+    },
+    {
+     "w": "gasta",
+     "t": 51.907
+    },
+    {
+     "w": "menos",
+     "t": 52.225
+    },
+    {
+     "w": "água",
+     "t": 52.508
+    },
+    {
+     "w": "do",
+     "t": 52.838
+    },
+    {
+     "w": "que",
+     "t": 52.956
+    },
+    {
+     "w": "lavar",
+     "t": 53.062
+    },
+    {
+     "w": "na",
+     "t": 53.452
+    },
+    {
+     "w": "pia",
+     "t": 53.581
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 54.31,
+   "fim": 62.78,
+   "texto": "No fim, outra bomba manda a água suja pro esgoto. E aquele barulho de ralo logo que você liga é ela esvaziando o que sobrou da última vez.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 54.357
+    },
+    {
+     "w": "fim",
+     "t": 54.534
+    },
+    {
+     "w": "outra",
+     "t": 55.077
+    },
+    {
+     "w": "bomba",
+     "t": 55.336
+    },
+    {
+     "w": "manda",
+     "t": 55.643
+    },
+    {
+     "w": "a",
+     "t": 55.949
+    },
+    {
+     "w": "água",
+     "t": 55.996
+    },
+    {
+     "w": "suja",
+     "t": 56.303
+    },
+    {
+     "w": "pro",
+     "t": 56.61
+    },
+    {
+     "w": "esgoto",
+     "t": 56.763
+    },
+    {
+     "w": "E",
+     "t": 58.025
+    },
+    {
+     "w": "aquele",
+     "t": 58.154
+    },
+    {
+     "w": "barulho",
+     "t": 58.485
+    },
+    {
+     "w": "de",
+     "t": 58.874
+    },
+    {
+     "w": "ralo",
+     "t": 58.98
+    },
+    {
+     "w": "logo",
+     "t": 59.286
+    },
+    {
+     "w": "que",
+     "t": 59.664
+    },
+    {
+     "w": "você",
+     "t": 59.77
+    },
+    {
+     "w": "liga",
+     "t": 60.041
+    },
+    {
+     "w": "é",
+     "t": 60.383
+    },
+    {
+     "w": "ela",
+     "t": 60.442
+    },
+    {
+     "w": "esvaziando",
+     "t": 60.584
+    },
+    {
+     "w": "o",
+     "t": 61.161
+    },
+    {
+     "w": "que",
+     "t": 61.197
+    },
+    {
+     "w": "sobrou",
+     "t": 61.303
+    },
+    {
+     "w": "da",
+     "t": 61.657
+    },
+    {
+     "w": "última",
+     "t": 61.786
+    },
+    {
+     "w": "vez",
+     "t": 62.14
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 62.93,
+   "fim": 76.08,
+   "texto": "E pra secar? Não tem ventilador. A louça sai quente e o vapor gruda na parede de metal, que está mais fria, vira gota e escorre. Por isso o pote de plástico sai molhado: ele guarda pouco calor.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 62.977
+    },
+    {
+     "w": "pra",
+     "t": 63.095
+    },
+    {
+     "w": "secar",
+     "t": 63.248
+    },
+    {
+     "w": "Não",
+     "t": 64.451
+    },
+    {
+     "w": "tem",
+     "t": 64.746
+    },
+    {
+     "w": "ventilador",
+     "t": 64.935
+    },
+    {
+     "w": "A",
+     "t": 66.362
+    },
+    {
+     "w": "louça",
+     "t": 66.48
+    },
+    {
+     "w": "sai",
+     "t": 66.845
+    },
+    {
+     "w": "quente",
+     "t": 67.081
+    },
+    {
+     "w": "e",
+     "t": 67.388
+    },
+    {
+     "w": "o",
+     "t": 67.411
+    },
+    {
+     "w": "vapor",
+     "t": 67.447
+    },
+    {
+     "w": "gruda",
+     "t": 67.789
+    },
+    {
+     "w": "na",
+     "t": 68.083
+    },
+    {
+     "w": "parede",
+     "t": 68.201
+    },
+    {
+     "w": "de",
+     "t": 68.567
+    },
+    {
+     "w": "metal",
+     "t": 68.649
+    },
+    {
+     "w": "que",
+     "t": 69.286
+    },
+    {
+     "w": "está",
+     "t": 69.404
+    },
+    {
+     "w": "mais",
+     "t": 69.628
+    },
+    {
+     "w": "fria",
+     "t": 69.876
+    },
+    {
+     "w": "vira",
+     "t": 70.406
+    },
+    {
+     "w": "gota",
+     "t": 70.678
+    },
+    {
+     "w": "e",
+     "t": 70.984
+    },
+    {
+     "w": "escorre",
+     "t": 71.031
+    },
+    {
+     "w": "Por",
+     "t": 72.329
+    },
+    {
+     "w": "isso",
+     "t": 72.529
+    },
+    {
+     "w": "o",
+     "t": 72.788
+    },
+    {
+     "w": "pote",
+     "t": 72.836
+    },
+    {
+     "w": "de",
+     "t": 73.119
+    },
+    {
+     "w": "plástico",
+     "t": 73.225
+    },
+    {
+     "w": "sai",
+     "t": 73.72
+    },
+    {
+     "w": "molhado",
+     "t": 73.921
+    },
+    {
+     "w": "ele",
+     "t": 74.605
+    },
+    {
+     "w": "guarda",
+     "t": 74.746
+    },
+    {
+     "w": "pouco",
+     "t": 75.147
+    },
+    {
+     "w": "calor.",
+     "t": 75.465
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 76.23,
+   "fim": 80.98,
+   "texto": "E o secante faz a água escorrer em lâmina, em vez de virar gotinha e manchar o copo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 76.277
+    },
+    {
+     "w": "o",
+     "t": 76.395
+    },
+    {
+     "w": "secante",
+     "t": 76.454
+    },
+    {
+     "w": "faz",
+     "t": 76.985
+    },
+    {
+     "w": "a",
+     "t": 77.138
+    },
+    {
+     "w": "água",
+     "t": 77.268
+    },
+    {
+     "w": "escorrer",
+     "t": 77.515
+    },
+    {
+     "w": "em",
+     "t": 77.905
+    },
+    {
+     "w": "lâmina",
+     "t": 78.022
+    },
+    {
+     "w": "em",
+     "t": 78.671
+    },
+    {
+     "w": "vez",
+     "t": 78.813
+    },
+    {
+     "w": "de",
+     "t": 79.048
+    },
+    {
+     "w": "virar",
+     "t": 79.143
+    },
+    {
+     "w": "gotinha",
+     "t": 79.426
+    },
+    {
+     "w": "e",
+     "t": 79.874
+    },
+    {
+     "w": "manchar",
+     "t": 79.933
+    },
+    {
+     "w": "o",
+     "t": 80.31
+    },
+    {
+     "w": "copo",
+     "t": 80.381
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 81.13,
+   "fim": 92.88,
+   "texto": "A sua lava-louças não seca a louça. A louça seca sozinha, com o próprio calor. Coloque uns cestos, uma porta que trava e um painel. Parabéns, você construiu uma lava-louças.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 81.177
+    },
+    {
+     "w": "sua",
+     "t": 81.283
+    },
+    {
+     "w": "lava-louças",
+     "t": 81.531
+    },
+    {
+     "w": "não",
+     "t": 82.239
+    },
+    {
+     "w": "seca",
+     "t": 82.439
+    },
+    {
+     "w": "a",
+     "t": 82.793
+    },
+    {
+     "w": "louça",
+     "t": 82.816
+    },
+    {
+     "w": "A",
+     "t": 84.019
+    },
+    {
+     "w": "louça",
+     "t": 84.137
+    },
+    {
+     "w": "seca",
+     "t": 84.467
+    },
+    {
+     "w": "sozinha",
+     "t": 84.739
+    },
+    {
+     "w": "com",
+     "t": 85.493
+    },
+    {
+     "w": "o",
+     "t": 85.647
+    },
+    {
+     "w": "próprio",
+     "t": 85.694
+    },
+    {
+     "w": "calor.",
+     "t": 86.047
+    },
+    {
+     "w": "Coloque",
+     "t": 86.33
+    },
+    {
+     "w": "uns",
+     "t": 86.755
+    },
+    {
+     "w": "cestos",
+     "t": 86.92
+    },
+    {
+     "w": "uma",
+     "t": 87.639
+    },
+    {
+     "w": "porta",
+     "t": 87.875
+    },
+    {
+     "w": "que",
+     "t": 88.229
+    },
+    {
+     "w": "trava",
+     "t": 88.359
+    },
+    {
+     "w": "e",
+     "t": 88.689
+    },
+    {
+     "w": "um",
+     "t": 88.736
+    },
+    {
+     "w": "painel",
+     "t": 88.854
+    },
+    {
+     "w": "Parabéns",
+     "t": 90.128
+    },
+    {
+     "w": "você",
+     "t": 90.882
+    },
+    {
+     "w": "construiu",
+     "t": 91.189
+    },
+    {
+     "w": "uma",
+     "t": 91.696
+    },
+    {
+     "w": "lava-louças",
+     "t": 91.838
+    }
+   ]
+  }
+ ]
+}

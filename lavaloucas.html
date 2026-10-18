@@ -1,0 +1,147 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("lavaloucas", { fundo: 0xf3e6d2, seed: 912 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texMancha, grade, texMadeira, prog, pulse, entre, frac, C, F, P, T, rnd } = K;
+
+// ---------- cozinha com vão pra máquina ----------
+add(new THREE.PlaneGeometry(30, 20), mat(0xffffff, { map: grade("#d9d2c6", "#bfb6a6", 64, 10), roughness: .8 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(30, 8), mat(0xffffff, { map: grade("#f4f1ea", "#d8d2c4", 32, 14) }), 0, 4, -1.2);
+const mBal = mat(0xffffff, { map: texMadeira("#c99a62") }), mTampo = mat(0x3a3f47, { roughness: .3 });
+for (const x of [-.98, .98]) { add(new THREE.BoxGeometry(1.26, .9, 1.1), mBal, x, .45, -.6); add(new THREE.BoxGeometry(1.3, .06, 1.2), mTampo, x, .93, -.6); }
+const tampoMeio = add(new THREE.BoxGeometry(.7, .06, 1.2), mTampo, 0, .93, -.6);
+// cuba da máquina (frente aberta = corte)
+const M = grupo(0, 0, -.6);
+const inox = mat(0xc9cdd2, { metalness: .7, roughness: .35, side: THREE.DoubleSide });
+add(new THREE.BoxGeometry(.6, .02, .55), inox, 0, .15, 0, M);
+add(new THREE.BoxGeometry(.02, .72, .55), inox, -.3, .5, 0, M); add(new THREE.BoxGeometry(.02, .72, .55), inox, .3, .5, 0, M);
+add(new THREE.BoxGeometry(.6, .72, .02), inox, 0, .5, -.275, M);
+const teto = add(new THREE.BoxGeometry(.6, .02, .55), inox, 0, .86, 0, M);
+add(new THREE.BoxGeometry(.62, .15, .55), mat(0x5a5f66), 0, .075, -.01, M);
+// cestos e louça
+const mCesto = mat(0x8a9099, { metalness: .5 });
+for (const y of [.24, .58]) { for (let i = 0; i < 7; i++) add(new THREE.BoxGeometry(.006, .006, .5), mCesto, -.27 + i * .09, y, 0, M); for (let i = 0; i < 6; i++) add(new THREE.BoxGeometry(.55, .006, .006), mCesto, 0, y, -.24 + i * .096, M); }
+const pratos = [], gorduras = [];
+for (let i = 0; i < 6; i++) { const p = add(new THREE.CylinderGeometry(.1, .1, .008, 32), mat(0xf6f6f2, { roughness: .25 }), -.22 + i * .088, .35, -.02, M); p.rotation.z = Math.PI / 2; pratos.push(p);
+  for (let j = 0; j < 3; j++) { const g = add(new THREE.CircleGeometry(.018 + rnd() * .012, 12), new THREE.MeshBasicMaterial({ color: 0x8a5a22, transparent: true }), -.22 + i * .088 + .006, .32 + rnd() * .08, -.04 + rnd() * .06, M); g.rotation.y = Math.PI / 2; gorduras.push(g); } }
+const copos = [];
+for (let i = 0; i < 4; i++) copos.push(add(new THREE.CylinderGeometry(.04, .035, .1, 20, 1, true), vidro(.35, 0xdff3ff), -.2 + i * .1, .64, .05, M));
+const pote = add(new THREE.BoxGeometry(.12, .07, .1), mat(0x3ad08a, { roughness: .5, transparent: true, opacity: .9 }), .2, .63, -.12, M);
+// braço aspersor
+const braco = grupo(0, .2, 0, M);
+add(new THREE.BoxGeometry(.48, .018, .04), mat(0x9aa3ad, { metalness: .5 }), 0, 0, 0, braco);
+add(new THREE.CylinderGeometry(.025, .025, .05, 16), mat(0x9aa3ad, { metalness: .5 }), 0, -.02, 0, M).position.y = .18;
+const jatos = Array.from({ length: 40 }, () => ({ s: sprite(0x5ab8ff, M), f: rnd(), lado: rnd() < .5 ? 1 : -1, r: .08 + rnd() * .15 }));
+// água no fundo, resistência, filtro, bombas, canos
+const aguaFundo = add(new THREE.BoxGeometry(.56, .02, .5), mat(0x5aa8e0, { transparent: true, opacity: .75, roughness: .05 }), 0, .17, 0, M);
+const resist = add(new THREE.TorusGeometry(.18, .008, 8, 40, Math.PI * 1.6), mat(0x555555, { emissive: 0xff2a00, emissiveIntensity: 0 }), 0, .175, 0, M); resist.rotation.x = Math.PI / 2;
+const filtro = add(new THREE.CylinderGeometry(.04, .04, .1, 16, 3, true), new THREE.MeshBasicMaterial({ color: 0x444444, wireframe: true }), 0, .12, .12, M);
+const bomba = add(new THREE.CylinderGeometry(.045, .045, .07, 20), mat(0x2e6fd0, { emissive: 0x2e6fd0, emissiveIntensity: 0 }), 0, .05, 0, M);
+const bomba2 = add(new THREE.CylinderGeometry(.035, .035, .06, 20), mat(0xe0405a, { emissive: 0xe0405a, emissiveIntensity: 0 }), .2, .05, .08, M);
+const volta = new THREE.CatmullRomCurve3([V(0, .16, .12), V(0, .07, .12), V(0, .05, .05), V(0, .05, 0), V(0, .2, 0)]);
+add(new THREE.TubeGeometry(volta, 30, .012, 8), vidro(.35, 0x9fd0f0), 0, 0, 0, M);
+const fVolta = fluxo(volta, 18, 0x3a9cff, M);
+const ralo = new THREE.CatmullRomCurve3([V(.2, .05, .08), V(.34, .05, .05), V(.4, .5, -.25), V(.45, .25, -.4), V(.5, .1, -.45)]);
+add(new THREE.TubeGeometry(ralo, 40, .014, 8), mat(0x777777, { transparent: true, opacity: .55 }), 0, 0, 0, M);
+const fRalo = fluxo(ralo, 18, 0x8a6a3a, M);
+// tampinha do detergente (parede direita)
+add(new THREE.BoxGeometry(.03, .08, .1), mat(0x333333), .28, .5, .12, M);
+const tampinha = grupo(.265, .54, .12, M); add(new THREE.BoxGeometry(.006, .08, .1), mat(0x2e6fd0), 0, -.04, 0, tampinha);
+const sabao = Array.from({ length: 14 }, () => ({ s: sprite(0x7affd8, M), f: rnd(), z: .08 + rnd() * .08 }));
+// vapor e gotas na parede
+const vapor = Array.from({ length: 22 }, () => ({ s: sprite(0xffffff, M), f: rnd(), x: (rnd() - .5) * .5, z: (rnd() - .5) * .3 }));
+const gotasParede = Array.from({ length: 30 }, () => ({ s: sprite(0x9fd8ff, M), f: rnd(), x: rnd() < .5 ? -.28 : .28, z: (rnd() - .5) * .45, y0: .45 + rnd() * .35 }));
+const gotasPote = Array.from({ length: 8 }, () => ({ s: sprite(0x9fd8ff, M), x: .15 + rnd() * .1, z: -.07 }));
+// balde e caixa (cenas 1-2)
+const balde = grupo(-.15, 1.35, -.6);
+add(new THREE.CylinderGeometry(.12, .09, .2, 24, 1, true), mat(0x2e6fd0, { side: THREE.DoubleSide }), 0, 0, 0, balde); balde.rotation.z = -1.9;
+const queda = Array.from({ length: 30 }, () => ({ s: sprite(0x5ab8ff), f: rnd(), x: (rnd() - .5) * .1, z: (rnd() - .5) * .2 }));
+const escorre = Array.from({ length: 16 }, () => ({ s: sprite(0x5ab8ff, M), f: rnd(), i: Math.floor(rnd() * 6) }));
+// porta (fecha no final)
+const porta = grupo(0, .02, -.32);
+const portaP = add(new THREE.BoxGeometry(.6, .82, .03), mat(0xb8bec6, { metalness: .6, roughness: .3 }), 0, .41, 0, porta);
+const luz = add(new THREE.CircleGeometry(.01, 16), brilho(0x333333), .2, .78, .016, porta);
+
+// ---------- estúdio: copo ----------
+const SX = 40;
+add(new THREE.PlaneGeometry(6, 6), mat(0x2b3a52), SX, 1, -1.2);
+const copo = grupo(SX, .7, -.5);
+add(new THREE.CylinderGeometry(.18, .15, .45, 40, 1, true), vidro(.25, 0xdff3ff), 0, 0, 0, copo);
+const gotinhas = Array.from({ length: 26 }, () => { const a = (rnd() - .5) * 2, y = (rnd() - .5) * .38; const g = add(new THREE.SphereGeometry(.012 + rnd() * .01, 10, 8), mat(0xbfe6ff, { roughness: .05, transparent: true, opacity: .8 }), Math.sin(a) * .17, y, Math.cos(a) * .17, copo); g.scale.z = .5; g.lookAt(copo.position.clone().add(V(0, y, 0))); return g; });
+const manchas = gotinhas.slice(0, 10).map((g) => { const m = add(new THREE.CircleGeometry(.014, 12), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }), g.position.x * 1.01, g.position.y, g.position.z * 1.01, copo); m.lookAt(V(SX, .7 + g.position.y, 2)); return m; });
+const lamina = add(new THREE.CylinderGeometry(.181, .151, .45, 40, 1, true, -Math.PI / 2, Math.PI), new THREE.MeshPhysicalMaterial({ color: 0x8fd0ff, transparent: true, opacity: 0, roughness: .02, depthWrite: false }), 0, 0, 0, copo);
+
+// ---------- câmera ----------
+K.camera_({
+  cozinha: [V(0, 1.6, 3.3), V(0, 1.0, -.6)], caixa: [V(0, 1.15, 1.25), V(0, .78, -.6)], corte: [V(0, .95, 1.15), V(0, .7, -.6)],
+  baixo: [V(.05, .55, .55), V(0, .4, -.6)], cima: [V(0, 1.0, .55), V(.05, .75, -.65)], copo: [V(SX, 1.0, 1.0), V(SX, .9, -.5)], final: [V(.3, 1.4, 2.6), V(0, .95, -.6)],
+}, [
+  [0, "cozinha"], [P(1, "caixa") - .2, "caixa"], [F(2), "caixa"],
+  [C(3), "corte"], [P(3, "braco") - .3, "baixo"], [F(3), "baixo"],
+  [C(4), "baixo"], [P(4, "tampinha") - .4, "corte"], [F(4), "corte"],
+  [C(5), "corte"], [P(5, "peneira") - .5, "baixo"], [F(5), "baixo"],
+  [C(6), "baixo"], [F(6), "corte"],
+  [C(7), "corte"], [P(7, "plastico") - .6, "cima"], [F(7), "cima"],
+  [C(8) - .02, "cima"], [C(8), "copo"], [F(8), "copo"],
+  [C(9) - .02, "copo"], [C(9), "corte"], [C(9) + 2, "final"], [T, "final"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const maquina = t > C(3) - .1;
+  [braco, aguaFundo, resist, filtro, bomba, bomba2].forEach((o) => o.visible = maquina);
+  teto.visible = tampoMeio.visible = t > C(3) - .1;
+  balde.visible = t < C(3);
+  queda.forEach((q) => { const k = frac(t * 1.3 + q.f); q.s.position.set(-.05 + q.x + k * .05, 1.3 - k * .9, -.6 + q.z); q.s.scale.setScalar(.04); q.s.material.opacity = em(P(1, "agua") - .2, F(2)) ? 1 : 0; });
+  escorre.forEach((e) => { const k = frac(t * .8 + e.f); e.s.position.set(-.22 + e.i * .088 + .01, .45 - k * .2, -.02 + (e.f - .5) * .1); e.s.scale.setScalar(.025); e.s.material.opacity = em(P(1, "agua") + .4, F(2)) && e.i > 1 ? 1 : 0; });
+  // braço girando e jatos
+  const lavando = em(P(3, "bomba") - .2, P(6, "bomba") - .3);
+  const ang = lavando ? (t - P(3, "bomba")) * 6 * prog(t, P(3, "gira") - 1, P(3, "gira")) : 0;
+  braco.rotation.y = ang;
+  const fervendo = t > P(4, "resistencia") - .2;
+  jatos.forEach((j) => { const k = frac(t * 1.5 + j.f); const a = ang + (j.lado > 0 ? 0 : Math.PI); const r = j.r; const tg = a - k * .6; j.s.position.set(Math.cos(tg) * r, .2 + k * .4, -Math.sin(tg) * r * .9); j.s.scale.setScalar(.025); j.s.material.color.set(fervendo ? 0xff7a5a : 0x5ab8ff); j.s.material.opacity = lavando && k < .9 ? .9 : 0; });
+  bomba.material.emissiveIntensity = lavando ? .5 + .3 * Math.sin(t * 20) : 0;
+  aguaFundo.material.color.set(fervendo && t < P(6, "bomba") ? 0xe07a5a : 0x5aa8e0);
+  aguaFundo.scale.y = t > P(6, "bomba") ? Math.max(.05, 1 - prog(t, P(6, "bomba"), P(6, "esgoto") + .5)) : 1;
+  resist.material.emissiveIntensity = em(P(4, "resistencia") - .2, F(5)) ? 1.2 + .2 * Math.sin(t * 6) : 0;
+  tampinha.rotation.y = -1.3 * prog(t, P(4, "abre") - .2, P(4, "abre") + .3);
+  sabao.forEach((s) => { const k = frac(t * .9 + s.f); s.s.position.set(.25 - k * .1, .52 - k * .35, s.z); s.s.scale.setScalar(.025); s.s.material.opacity = em(P(4, "detergente") - .3, F(4) + .5) ? 1 : 0; });
+  const limpa = prog(t, P(4, "detergente"), C(5) + 3);
+  gorduras.forEach((g) => g.material.opacity = 1 - limpa);
+  fVolta.atualiza(t, em(P(5, "voltas") - .4, F(5)), .7, .03);
+  filtro.material.color.set(em(P(5, "peneira") - .3, F(5)) ? 0xffd23a : 0x444444);
+  bomba2.material.emissiveIntensity = em(P(6, "bomba") - .2, P(6, "barulho")) ? .6 + .3 * Math.sin(t * 20) : em(P(6, "ralo") - .2, F(6)) ? .6 : 0;
+  fRalo.atualiza(t, em(P(6, "bomba") - .2, F(6)), .8, .035);
+  // secagem
+  const seca = em(C(7), C(9) + 1);
+  vapor.forEach((v) => { const k = frac(t * .3 + v.f); v.s.position.set(v.x * (1 - k * .3) + (v.x > 0 ? k * .1 : -k * .1), .35 + k * .45, v.z); v.s.scale.setScalar(.06 + k * .08); v.s.material.opacity = seca ? .45 * (1 - k) : 0; });
+  gotasParede.forEach((g) => { const k = frac(t * .25 + g.f); g.s.position.set(g.x, g.y0 - k * .3, g.z); g.s.scale.setScalar(.018); g.s.material.opacity = seca && t > P(7, "parede") - .3 ? 1 : 0; });
+  gotasPote.forEach((g, i) => { g.s.position.set(g.x, .61 + (i % 3) * .015, g.z - .0); g.s.scale.setScalar(.02); g.s.material.opacity = em(P(7, "plastico") - .4, C(8)) ? 1 : 0; });
+  pote.scale.setScalar(1 + .15 * pulse(t, P(7, "plastico") - .2, .8));
+  // copo: gotinhas -> lâmina
+  const sec = prog(t, P(8, "secante") - .2, P(8, "lamina") + .2);
+  gotinhas.forEach((g) => { g.visible = sec < .95; g.scale.setScalar(1 - sec); });
+  lamina.material.opacity = .35 * sec; lamina.position.y = -.05 * sec;
+  manchas.forEach((m) => m.material.opacity = em(P(8, "manchar") - .2, F(8)) && sec > .9 ? 0 : 0);
+  // porta fecha no final
+  porta.rotation.x = -Math.PI / 2 * (1 - prog(t, C(9) + 2.5, C(9) + 4)); porta.visible = t > C(9) + 2;
+  luz.material.color.set(t > C(9) + 4.2 ? 0x3aff7a : 0x333333);
+  K.cartoes(t, [
+    [P(2, "gordura") - .2, F(2), "GORDURA FICA", "#ffb03a"],
+    [P(3, "sozinho") - .3, F(3), "GIRA SEM MOTOR", "#5ab8ff"],
+    [P(4, "sessenta") - .3, P(4, "tampinha") - .3, "60 °C", "#ff4a3a"],
+    [P(5, "voltas") - .3, P(5, "filtro") - .2, "A MESMA ÁGUA", "#5ab8ff"],
+    [P(5, "filtro") - .2, F(5), "~12 LITROS", "#3aff7a"],
+    [P(6, "barulho") - .3, F(6), "GLUB GLUB", "#ffffff"],
+    [P(7, "ventilador") - .4, P(7, "plastico") - .4, "SEM VENTILADOR", "#ffd23a"],
+    [P(7, "plastico") - .4, F(7), "PLÁSTICO = POUCO CALOR", "#3ad08a"],
+    [P(8, "lamina") - .3, F(8), "LÂMINA, NÃO GOTA", "#7fd3ff"],
+  ]);
+});
+</script>
+</body></html>
