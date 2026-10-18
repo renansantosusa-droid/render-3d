@@ -1,0 +1,182 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("paraquedas", { fundo: 0x7fb8ec, seed: 4242 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+scene.fog = new THREE.Fog(0x7fb8ec, 25, 80);
+
+// ---------- céu, nuvens e chão ----------
+const nuvens = Array.from({ length: 70 }, () => ({ s: sprite(0xffffff), x: (rnd() - .5) * 26, y: rnd() * 60, z: -3 - rnd() * 18, r: 1.5 + rnd() * 3.5 }));
+const vento = Array.from({ length: 24 }, () => ({ s: sprite(0xffffff), x: (rnd() - .5) * 2.4, z: (rnd() - .5) * 2, f: rnd() }));
+const chaoG = grupo(0, -40, 0);
+add(new THREE.PlaneGeometry(200, 200), mat(0xffffff, { map: texRuido("#5f9a45", 50, 30), roughness: 1 }), 0, 0, 0, chaoG).rotation.x = -Math.PI / 2;
+for (let i = 0; i < 40; i++) { const a = rnd() * 6.28, r = 4 + rnd() * 25; add(new THREE.ConeGeometry(.4 + rnd() * .3, 1.4 + rnd(), 8), mat(0x2f6a2a), Math.cos(a) * r, .7, Math.sin(a) * r - 6, chaoG); }
+const alvo = add(new THREE.CircleGeometry(1.2, 32), mat(0xffffff, { map: rotulo("X", "#ff3a3a", { fundo: "#f2f2f2", w: 256, h: 256, tam: 200 }) }), 1.2, .01, -.6, chaoG); alvo.rotation.x = -Math.PI / 2;
+// avião de onde ele pula
+const aviao = grupo(-1.6, 4.2, -4);
+add(new THREE.CapsuleGeometry(.45, 3, 8, 16), mat(0xf2f2f2), 0, 0, 0, aviao).rotation.z = Math.PI / 2;
+add(new THREE.BoxGeometry(.9, .06, 5), mat(0xd8d8d8), 0, .1, 0, aviao);
+add(new THREE.BoxGeometry(.5, .8, .06), mat(0xd04040), -1.8, .45, 0, aviao);
+
+// ---------- paraquedista ----------
+const sist = grupo(0, 0, 0);          // paraquedista + velame (tudo gira junto nas curvas)
+const pes = grupo(0, 0, 0, sist);
+const corpo = grupo(0, 0, 0, pes);
+const mRoupa = mat(0xff6a1a), mCalca = mat(0x24324a);
+add(new THREE.CapsuleGeometry(.17, .45, 8, 16), mRoupa, 0, .35, 0, corpo);
+add(new THREE.SphereGeometry(.13, 18, 14), mat(0xe0a07a), 0, .82, 0, corpo);
+const capacete = add(new THREE.SphereGeometry(.15, 18, 10, 0, Math.PI * 2, 0, Math.PI / 1.8), mat(0x222222, { roughness: .25 }), 0, .84, 0, corpo);
+add(new THREE.BoxGeometry(.3, .42, .14), mat(0x1d2b45), 0, .4, -.18, corpo);
+const daa = add(new THREE.BoxGeometry(.08, .06, .04), mat(0x333333, { emissive: 0x3aff7a, emissiveIntensity: 0 }), .08, .56, -.27, corpo);
+const pernas = [-1, 1].map((s) => { const g = grupo(s * .08, .02, 0, corpo); add(new THREE.CapsuleGeometry(.065, .42, 6, 10), mCalca, 0, -.25, 0, g); return g; });
+const bracos = [-1, 1].map((s) => { const g = grupo(s * .2, .62, 0, corpo); add(new THREE.CapsuleGeometry(.05, .36, 6, 10), mRoupa, 0, -.22, 0, g); return g; });
+const altim = add(new THREE.BoxGeometry(.08, .05, .08), mat(0x111111, { emissive: 0xffd23a, emissiveIntensity: 0 }), 0, -.36, .03, bracos[1]);
+// guarda-chuva na mão direita
+const guarda = grupo(0, -.42, 0, bracos[1]); guarda.rotation.x = Math.PI;
+add(new THREE.CylinderGeometry(.012, .012, .9, 8), mat(0x333333), 0, .45, 0, guarda);
+const copa = add(new THREE.SphereGeometry(.55, 24, 8, 0, Math.PI * 2, 0, Math.PI / 2.6), mat(0xe03a5a, { side: THREE.DoubleSide }), 0, .72, 0, guarda);
+
+// ---------- velames (origem = ombros) ----------
+function linhas(pontos, cor = 0xeeeeee) { const g = new THREE.BufferGeometry(); const a = []; for (const p of pontos) a.push(-.12 + (p.x > 0 ? .24 : 0), 0, 0, p.x, p.y, p.z); g.setAttribute("position", new THREE.Float32BufferAttribute(a, 3)); return new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: cor })); }
+function asa(pai, c1, c2) {
+  const g = grupo(0, 2.4, 0, pai), pts = [];
+  for (let i = 0; i < 7; i++) { const x = (i - 3) * .44, y = -Math.pow(i - 3, 2) * .035; const cel = add(new THREE.BoxGeometry(.43, .26, 1.15), mat(i % 2 ? c1 : c2, { roughness: .7 }), x, y, 0, g); cel.rotation.z = -(i - 3) * .06; pts.push(V(x, 2.4 + y - .13, .45), V(x, 2.4 + y - .13, -.45)); }
+  const l = linhas(pts); pai.add(l); return { g, l };
+}
+const velaA = grupo(0, .66, 0, sist);
+const domo = grupo(0, 0, 0, velaA);
+add(new THREE.SphereGeometry(1.3, 32, 12, 0, Math.PI * 2, 0, Math.PI / 2.5), mat(0xd83a3a, { side: THREE.DoubleSide, roughness: .7 }), 0, 1.75, 0, domo);
+domo.add(linhas(Array.from({ length: 10 }, (_, i) => V(Math.cos(i / 10 * 6.28) * 1.24, 2.15, Math.sin(i / 10 * 6.28) * 1.24))));
+const piloto = add(new THREE.SphereGeometry(.28, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), mat(0xffd23a, { side: THREE.DoubleSide }), 0, 0, -.2, velaA);
+const cabo = new THREE.Line(new THREE.BufferGeometry().setFromPoints([V(0, 0, -.2), V(0, 1, -.2)]), new THREE.LineBasicMaterial({ color: 0xffd23a })); velaA.add(cabo);
+const slider = add(new THREE.TorusGeometry(.42, .03, 6, 4), mat(0x2a8cff, { emissive: 0x2a8cff, emissiveIntensity: .3 }), 0, 2, 0, velaA); slider.rotation.x = Math.PI / 2;
+const principal = asa(velaA, 0xffd23a, 0x2a6cd0);
+const cordas = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([V(-.25, .1, .05), V(-1.3, 2.2, -.5), V(.25, .1, .05), V(1.3, 2.2, -.5)]), new THREE.LineBasicMaterial({ color: 0xffd23a })); velaA.add(cordas);
+const velaB = grupo(0, .66, 0, sist);
+const reserva = asa(velaB, 0xffffff, 0xe03a3a);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(5.2, 2.2, 7.4), V(0, 1.5, 0)], perto: [V(3.2, 1.6, 4.4), V(0, 1.0, 0)], queda: [V(3.4, 1.9, 3.8), V(0, .45, 0)],
+  costas: [V(2.2, .9, -4.2), V(0, 1.6, 0)], baixo: [V(4.2, .4, 6.4), V(0, 1.3, 0)], fim: [V(5.8, 1.2, 8.5), V(0, 1.4, 0)],
+}, [
+  [0, "geral"], [F(1), "geral"],
+  [C(2), "perto"], [F(2), "perto"],
+  [C(3), "queda"], [P(3, "pano") + .2, "geral"], [F(3), "geral"],
+  [C(4), "queda"], [P(4, "paraquedinha"), "queda"], [P(4, "grande") + .4, "costas"], [F(4), "costas"],
+  [C(5), "geral"], [F(5), "geral"],
+  [C(6), "geral"], [P(6, "juntas") - .3, "baixo"], [F(6), "baixo"],
+  [C(7), "geral"], [F(7), "geral"],
+  [C(8), "baixo"], [T, "fim"],
+]);
+
+// velocidade de queda (o mundo sobe) e de planeio (o mundo vai pro lado)
+function vel(t) {
+  if (t < P(3, "pano")) return 7;
+  if (t < C(4)) return 7 - 5.8 * prog(t, P(3, "pano"), P(3, "freia"));
+  if (t < P(4, "grande")) return 7;
+  if (t < C(5)) return 7 - 5.8 * prog(t, P(4, "grande"), P(4, "argolas") + 1);
+  if (t < C(6)) return 1.1;
+  if (t < C(7)) return 1.1 * (1 - prog(t, P(6, "juntas"), P(6, "degrau")));
+  if (t < P(7, "reserva")) return 4;
+  if (t < C(8)) return 1.1;
+  return 1.1 * (1 - prog(t, C(8), C(8) + 2.2));
+}
+const plana = (t) => (t > P(5, "retangular") && t < F(6)) || t > P(7, "reserva") ? 1.6 : 0;
+function percurso(t) { let d = 0, h = 0; for (let s = 0; s < t; s += .05) { d += vel(s) * .05; h += plana(s) * .05; } return [d, h]; }
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const [d, h] = percurso(t);
+  nuvens.forEach((n) => { n.s.position.set(((n.x - h + 13) % 26 + 26) % 26 - 13, ((n.y + d) % 60) - 30, n.z); n.s.scale.set(n.r * 1.6, n.r, 1); n.s.material.opacity = .85; });
+  const v = vel(t);
+  vento.forEach((p) => { const k = frac(t * v * .25 + p.f); p.s.position.set(p.x, -1.5 + k * 4, p.z); p.s.scale.set(.03, .5, 1); p.s.material.opacity = v > 3 ? .7 * Math.sin(k * Math.PI) : 0; });
+  aviao.visible = t < C(2); aviao.position.set(-1.6 - t * .5, 4.2 + d * .6, -4);
+
+  // chão: aparece no pouso (cena 6) e no fim
+  const pe = -.47;
+  let yc = -60;
+  if (em(C(6), C(7))) yc = pe - 26 * (1 - prog(t, C(6) + .3, P(6, "degrau")));
+  if (t >= C(8)) yc = pe - 9 * (1 - prog(t, C(8), C(8) + 2.2));
+  chaoG.position.y = yc; chaoG.visible = yc > -50; chaoG.position.x = -h % 20;
+
+  // postura: 1 = em pé (sob o velame), 0 = deitado (queda livre)
+  let u = 1;
+  if (em(C(3), C(4))) u = prog(t, P(3, "pano"), P(3, "pano") + 1);
+  else if (em(C(4), C(5))) u = prog(t, P(4, "grande"), P(4, "grande") + 1);
+  corpo.rotation.x = (1 - u) * Math.PI / 2;
+  const flare = em(C(6), C(7)) ? prog(t, P(6, "juntas") - .2, P(6, "juntas") + .4) : 0;
+  const comGuarda = t < C(3);
+  bracos[0].rotation.z = -(1 - u) * 1.3 - u * (comGuarda ? .3 : 2.6 - flare * 2);
+  bracos[1].rotation.z = (1 - u) * 1.3 + u * (comGuarda ? 2.9 : 2.6 - flare * 2);
+  pernas.forEach((g, i) => { g.rotation.x = (1 - u) * .5; g.rotation.z = (i ? 1 : -1) * (1 - u) * .25; });
+  const tranco = pulse(t, P(4, "tranco") - .35, .5);
+  pes.position.y = -.25 * tranco;
+  // guarda-chuva vira do avesso
+  guarda.visible = comGuarda;
+  const avesso = prog(t, P(2, "avesso") - .15, P(2, "avesso") + .1);
+  copa.scale.set(1, 1 - 2 * avesso, 1); copa.rotation.z = Math.sin(t * 9) * .08 * avesso;
+
+  // velame redondo (cenas 3 a 5) + tranco
+  let sd = 0;
+  if (em(C(3), C(4))) sd = prog(t, P(3, "pano") - .1, P(3, "enorme") + .4);
+  if (em(C(4), C(5))) sd = Math.max(prog(t, P(4, "tranco") - .6, P(4, "tranco") - .45) * (t < P(4, "tranco") + .5 ? 1 : 0), prog(t, P(4, "grande"), P(4, "argolas") + 1.4));
+  if (em(C(5), P(5, "retangular"))) sd = 1;
+  domo.visible = sd > .02; domo.scale.setScalar(Math.max(sd, .02)); domo.scale.y = Math.max(sd, .02) * (.4 + .6 * sd);
+  piloto.visible = cabo.visible = em(P(4, "paraquedinha") - .2, C(5));
+  const sobe = prog(t, P(4, "paraquedinha") - .1, P(4, "grande"));
+  piloto.position.set(Math.sin(t * 5) * .05, .1 + 3.6 * sobe, -.25 + .1 * sobe);
+  cabo.geometry.setFromPoints([V(0, .05, -.22), piloto.position]);
+  slider.visible = em(P(4, "argolas") - .3, C(5)); slider.position.y = 2.0 - 1.8 * prog(t, P(4, "argolas") - .2, F(4) - .2);
+  slider.material.emissiveIntensity = .3 + pulse(t, P(4, "argolas") - .3, 1) * 1.5;
+
+  // velame retangular (asa)
+  const cortado = t > P(7, "corta") - .1;
+  const sa = em(C(5), C(8)) ? prog(t, P(5, "retangular") - .2, P(5, "retangular") + .5) : 0;
+  principal.g.visible = principal.l.visible = sa > .02; principal.g.scale.set(Math.max(sa, .02), 1, 1);
+  velaA.visible = !(cortado && em(C(7), C(8))) || t < P(7, "corta") + 2;
+  velaA.position.y = .66 + (cortado && t < C(8) ? 9 * prog(t, P(7, "corta") - .1, P(7, "corta") + 1.6) : 0);
+  if (em(C(7), C(8)) && !cortado) { principal.g.scale.set(.45, 1, .6); principal.g.rotation.y = t * 5; } else principal.g.rotation.y = 0;
+  cordas.visible = em(P(5, "cordinhas") - .3, P(5, "direita") + 1) || em(P(6, "cordinhas") - .3, P(6, "juntas") + 1);
+  // reserva
+  const sr = t > C(7) ? prog(t, P(7, "reserva") - .2, P(7, "reserva") + .5) : 0;
+  velaB.visible = sr > .02; reserva.g.scale.set(Math.max(sr, .02), Math.max(sr, .02), 1);
+  daa.material.emissiveIntensity = em(P(7, "aparelhinho") - .2, F(7)) ? 2 + Math.sin(t * 12) : 0;
+  // balanço do redondo, curvas, flare, giro do enrolado
+  let rz = 0, ry = 0, rx = 0;
+  if (em(C(5), P(5, "retangular") + .3)) rz = Math.sin(t * 3.2) * .3;
+  rz += .35 * pulse(t, P(5, "esquerda") - .3, 1.3) - .35 * pulse(t, P(5, "direita") - .3, 1.3);
+  ry += .6 * pulse(t, P(5, "esquerda") - .3, 1.3) - .6 * pulse(t, P(5, "direita") - .3, 1.3);
+  rx = -.35 * flare;
+  if (em(C(7), P(7, "corta"))) ry = t * 3;
+  sist.rotation.set(0, ry, rz);
+  velaA.rotation.x = velaB.rotation.x = rx;
+  // depois de pousar o velame deita pra frente
+  const deita = Math.max(em(C(6), C(7)) ? prog(t, P(6, "degrau") + .4, F(6)) : 0, t > C(8) ? prog(t, C(8) + 2.4, C(8) + 4) : 0);
+  if (deita > 0) { velaA.rotation.x = velaB.rotation.x = rx + deita * 1.1; }
+  capacete.visible = t > P(8, "capacete") - .2;
+  altim.material.emissiveIntensity = t > P(8, "altimetro") - .2 ? 2 : 0;
+
+  K.cartoes(t, [
+    [P(2, "avesso") - .2, P(2, "duzentos") - .3, "VIROU DO AVESSO", "#ff4a3a"],
+    [P(2, "duzentos") - .3, P(2, "chao") - .3, "~200 KM/H", "#ffd23a"],
+    [P(2, "chao") - .3, F(2), "< 1 MIN ATÉ O CHÃO", "#ff4a3a"],
+    [P(3, "freia") - .5, F(3), "+ AR = + FREIO", "#3aff7a"],
+    [P(4, "tranco") - .4, P(4, "paraquedinha") - .3, "TRANCO!", "#ff4a3a"],
+    [P(4, "paraquedinha") - .3, P(4, "argolas") - .3, "PARAQUEDAS-PILOTO", "#ffd23a"],
+    [P(4, "argolas") - .3, F(4), "SLIDER", "#2a8cff"],
+    [P(5, "vento") - .5, P(5, "retangular") - .2, "BALANÇA", "#ff4a3a"],
+    [P(5, "asa") - .3, P(5, "esquerda") - .5, "VIRA UMA ASA", "#3aff7a"],
+    [P(6, "juntas") - .3, P(6, "degrau") + .3, "FLARE", "#ffd23a"],
+    [P(7, "enrolar") - .3, P(7, "corta") - .2, "ENROLOU!", "#ff4a3a"],
+    [P(7, "corta") - .2, P(7, "aparelhinho") - .3, "CORTA E ABRE A RESERVA", "#ffffff"],
+    [P(7, "aparelhinho") - .3, F(7), "ABRE SOZINHO", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>

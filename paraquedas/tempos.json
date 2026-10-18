@@ -1,0 +1,913 @@
+{
+ "total": 76.54,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.34,
+   "texto": "Se você pular de um avião segurando um guarda-chuva, terá um paraquedas.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.433
+    },
+    {
+     "w": "pular",
+     "t": 0.692
+    },
+    {
+     "w": "de",
+     "t": 1.07
+    },
+    {
+     "w": "um",
+     "t": 1.164
+    },
+    {
+     "w": "avião",
+     "t": 1.27
+    },
+    {
+     "w": "segurando",
+     "t": 1.577
+    },
+    {
+     "w": "um",
+     "t": 2.06
+    },
+    {
+     "w": "guarda-chuva",
+     "t": 2.143
+    },
+    {
+     "w": "terá",
+     "t": 3.051
+    },
+    {
+     "w": "um",
+     "t": 3.263
+    },
+    {
+     "w": "paraquedas",
+     "t": 3.369
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.49,
+   "fim": 12.52,
+   "texto": "Mas ele vira do avesso na hora. Você cai a quase duzentos quilômetros por hora. E o chão chega em menos de um minuto.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.537
+    },
+    {
+     "w": "ele",
+     "t": 4.749
+    },
+    {
+     "w": "vira",
+     "t": 5.056
+    },
+    {
+     "w": "do",
+     "t": 5.327
+    },
+    {
+     "w": "avesso",
+     "t": 5.445
+    },
+    {
+     "w": "na",
+     "t": 5.882
+    },
+    {
+     "w": "hora",
+     "t": 6.023
+    },
+    {
+     "w": "Você",
+     "t": 7.12
+    },
+    {
+     "w": "cai",
+     "t": 7.438
+    },
+    {
+     "w": "a",
+     "t": 7.65
+    },
+    {
+     "w": "quase",
+     "t": 7.733
+    },
+    {
+     "w": "duzentos",
+     "t": 8.11
+    },
+    {
+     "w": "quilômetros",
+     "t": 8.617
+    },
+    {
+     "w": "por",
+     "t": 9.195
+    },
+    {
+     "w": "hora",
+     "t": 9.384
+    },
+    {
+     "w": "E",
+     "t": 10.469
+    },
+    {
+     "w": "o",
+     "t": 10.61
+    },
+    {
+     "w": "chão",
+     "t": 10.657
+    },
+    {
+     "w": "chega",
+     "t": 10.952
+    },
+    {
+     "w": "em",
+     "t": 11.212
+    },
+    {
+     "w": "menos",
+     "t": 11.294
+    },
+    {
+     "w": "de",
+     "t": 11.66
+    },
+    {
+     "w": "um",
+     "t": 11.766
+    },
+    {
+     "w": "minuto",
+     "t": 11.86
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.67,
+   "fim": 20.97,
+   "texto": "Então, você troca por um pano enorme e leve, que prende muito ar embaixo dele. Quanto mais ar ele empurra, mais ele te freia.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.717
+    },
+    {
+     "w": "você",
+     "t": 13.484
+    },
+    {
+     "w": "troca",
+     "t": 13.755
+    },
+    {
+     "w": "por",
+     "t": 14.097
+    },
+    {
+     "w": "um",
+     "t": 14.238
+    },
+    {
+     "w": "pano",
+     "t": 14.356
+    },
+    {
+     "w": "enorme",
+     "t": 14.604
+    },
+    {
+     "w": "e",
+     "t": 15.005
+    },
+    {
+     "w": "leve",
+     "t": 15.04
+    },
+    {
+     "w": "que",
+     "t": 15.595
+    },
+    {
+     "w": "prende",
+     "t": 15.76
+    },
+    {
+     "w": "muito",
+     "t": 16.137
+    },
+    {
+     "w": "ar",
+     "t": 16.55
+    },
+    {
+     "w": "embaixo",
+     "t": 16.656
+    },
+    {
+     "w": "dele",
+     "t": 17.139
+    },
+    {
+     "w": "Quanto",
+     "t": 18.271
+    },
+    {
+     "w": "mais",
+     "t": 18.602
+    },
+    {
+     "w": "ar",
+     "t": 18.802
+    },
+    {
+     "w": "ele",
+     "t": 18.967
+    },
+    {
+     "w": "empurra",
+     "t": 19.085
+    },
+    {
+     "w": "mais",
+     "t": 19.745
+    },
+    {
+     "w": "ele",
+     "t": 19.946
+    },
+    {
+     "w": "te",
+     "t": 20.194
+    },
+    {
+     "w": "freia",
+     "t": 20.312
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.12,
+   "fim": 35.24,
+   "texto": "Mas, se ele abrir de uma vez nessa velocidade, o tranco te machuca. Então, você solta primeiro um paraquedinha, que puxa o grande pra fora da mochila. E um pano com argolas desce devagar pelas cordas e segura a abertura.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 21.167
+    },
+    {
+     "w": "se",
+     "t": 21.863
+    },
+    {
+     "w": "ele",
+     "t": 22.016
+    },
+    {
+     "w": "abrir",
+     "t": 22.122
+    },
+    {
+     "w": "de",
+     "t": 22.441
+    },
+    {
+     "w": "uma",
+     "t": 22.523
+    },
+    {
+     "w": "vez",
+     "t": 22.688
+    },
+    {
+     "w": "nessa",
+     "t": 22.924
+    },
+    {
+     "w": "velocidade",
+     "t": 23.184
+    },
+    {
+     "w": "o",
+     "t": 24.104
+    },
+    {
+     "w": "tranco",
+     "t": 24.233
+    },
+    {
+     "w": "te",
+     "t": 24.575
+    },
+    {
+     "w": "machuca",
+     "t": 24.67
+    },
+    {
+     "w": "Então",
+     "t": 25.99
+    },
+    {
+     "w": "você",
+     "t": 26.78
+    },
+    {
+     "w": "solta",
+     "t": 27.04
+    },
+    {
+     "w": "primeiro",
+     "t": 27.382
+    },
+    {
+     "w": "um",
+     "t": 27.747
+    },
+    {
+     "w": "paraquedinha",
+     "t": 27.83
+    },
+    {
+     "w": "que",
+     "t": 28.667
+    },
+    {
+     "w": "puxa",
+     "t": 28.82
+    },
+    {
+     "w": "o",
+     "t": 29.115
+    },
+    {
+     "w": "grande",
+     "t": 29.151
+    },
+    {
+     "w": "pra",
+     "t": 29.516
+    },
+    {
+     "w": "fora",
+     "t": 29.67
+    },
+    {
+     "w": "da",
+     "t": 29.976
+    },
+    {
+     "w": "mochila",
+     "t": 30.082
+    },
+    {
+     "w": "E",
+     "t": 31.368
+    },
+    {
+     "w": "um",
+     "t": 31.486
+    },
+    {
+     "w": "pano",
+     "t": 31.615
+    },
+    {
+     "w": "com",
+     "t": 31.945
+    },
+    {
+     "w": "argolas",
+     "t": 32.087
+    },
+    {
+     "w": "desce",
+     "t": 32.547
+    },
+    {
+     "w": "devagar",
+     "t": 32.771
+    },
+    {
+     "w": "pelas",
+     "t": 33.231
+    },
+    {
+     "w": "cordas",
+     "t": 33.537
+    },
+    {
+     "w": "e",
+     "t": 33.915
+    },
+    {
+     "w": "segura",
+     "t": 34.021
+    },
+    {
+     "w": "a",
+     "t": 34.434
+    },
+    {
+     "w": "abertura",
+     "t": 34.469
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.39,
+   "fim": 48.64,
+   "texto": "Mas um pano redondo balança e cai onde o vento quer. Então, você faz ele retangular, com gomos que enchem de ar, como uma asa. Ele plana pra frente, e duas cordinhas viram pra esquerda ou pra direita.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 35.437
+    },
+    {
+     "w": "um",
+     "t": 35.638
+    },
+    {
+     "w": "pano",
+     "t": 35.838
+    },
+    {
+     "w": "redondo",
+     "t": 36.133
+    },
+    {
+     "w": "balança",
+     "t": 36.546
+    },
+    {
+     "w": "e",
+     "t": 37.053
+    },
+    {
+     "w": "cai",
+     "t": 37.1
+    },
+    {
+     "w": "onde",
+     "t": 37.348
+    },
+    {
+     "w": "o",
+     "t": 37.619
+    },
+    {
+     "w": "vento",
+     "t": 37.666
+    },
+    {
+     "w": "quer",
+     "t": 37.984
+    },
+    {
+     "w": "Então",
+     "t": 39.022
+    },
+    {
+     "w": "você",
+     "t": 39.777
+    },
+    {
+     "w": "faz",
+     "t": 40.013
+    },
+    {
+     "w": "ele",
+     "t": 40.19
+    },
+    {
+     "w": "retangular",
+     "t": 40.414
+    },
+    {
+     "w": "com",
+     "t": 41.298
+    },
+    {
+     "w": "gomos",
+     "t": 41.475
+    },
+    {
+     "w": "que",
+     "t": 41.84
+    },
+    {
+     "w": "enchem",
+     "t": 41.982
+    },
+    {
+     "w": "de",
+     "t": 42.289
+    },
+    {
+     "w": "ar",
+     "t": 42.43
+    },
+    {
+     "w": "como",
+     "t": 42.89
+    },
+    {
+     "w": "uma",
+     "t": 43.138
+    },
+    {
+     "w": "asa",
+     "t": 43.338
+    },
+    {
+     "w": "Ele",
+     "t": 44.482
+    },
+    {
+     "w": "plana",
+     "t": 44.718
+    },
+    {
+     "w": "pra",
+     "t": 45.06
+    },
+    {
+     "w": "frente",
+     "t": 45.201
+    },
+    {
+     "w": "e",
+     "t": 45.862
+    },
+    {
+     "w": "duas",
+     "t": 45.968
+    },
+    {
+     "w": "cordinhas",
+     "t": 46.286
+    },
+    {
+     "w": "viram",
+     "t": 46.852
+    },
+    {
+     "w": "pra",
+     "t": 47.1
+    },
+    {
+     "w": "esquerda",
+     "t": 47.23
+    },
+    {
+     "w": "ou",
+     "t": 47.701
+    },
+    {
+     "w": "pra",
+     "t": 47.807
+    },
+    {
+     "w": "direita",
+     "t": 47.961
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 48.79,
+   "fim": 58.58,
+   "texto": "E aquela freada antes de pousar? Você puxa as duas cordinhas juntas, e a asa quase para no ar. O pé encosta no chão como se descesse um degrau.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 48.837
+    },
+    {
+     "w": "aquela",
+     "t": 48.967
+    },
+    {
+     "w": "freada",
+     "t": 49.321
+    },
+    {
+     "w": "antes",
+     "t": 49.781
+    },
+    {
+     "w": "de",
+     "t": 50.111
+    },
+    {
+     "w": "pousar",
+     "t": 50.205
+    },
+    {
+     "w": "Você",
+     "t": 51.455
+    },
+    {
+     "w": "puxa",
+     "t": 51.773
+    },
+    {
+     "w": "as",
+     "t": 52.139
+    },
+    {
+     "w": "duas",
+     "t": 52.233
+    },
+    {
+     "w": "cordinhas",
+     "t": 52.54
+    },
+    {
+     "w": "juntas",
+     "t": 53.035
+    },
+    {
+     "w": "e",
+     "t": 53.755
+    },
+    {
+     "w": "a",
+     "t": 53.825
+    },
+    {
+     "w": "asa",
+     "t": 53.896
+    },
+    {
+     "w": "quase",
+     "t": 54.203
+    },
+    {
+     "w": "para",
+     "t": 54.568
+    },
+    {
+     "w": "no",
+     "t": 54.745
+    },
+    {
+     "w": "ar.",
+     "t": 54.875
+    },
+    {
+     "w": "O",
+     "t": 55.83
+    },
+    {
+     "w": "pé",
+     "t": 55.972
+    },
+    {
+     "w": "encosta",
+     "t": 56.148
+    },
+    {
+     "w": "no",
+     "t": 56.667
+    },
+    {
+     "w": "chão",
+     "t": 56.762
+    },
+    {
+     "w": "como",
+     "t": 57.033
+    },
+    {
+     "w": "se",
+     "t": 57.257
+    },
+    {
+     "w": "descesse",
+     "t": 57.375
+    },
+    {
+     "w": "um",
+     "t": 57.847
+    },
+    {
+     "w": "degrau",
+     "t": 57.929
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 58.73,
+   "fim": 69.83,
+   "texto": "Mas e se o principal enrolar? Então, você corta ele fora e abre um reserva. E um aparelhinho abre o reserva sozinho, se você passar de certa altura ainda caindo rápido.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 58.777
+    },
+    {
+     "w": "e",
+     "t": 58.989
+    },
+    {
+     "w": "se",
+     "t": 59.19
+    },
+    {
+     "w": "o",
+     "t": 59.296
+    },
+    {
+     "w": "principal",
+     "t": 59.343
+    },
+    {
+     "w": "enrolar",
+     "t": 59.827
+    },
+    {
+     "w": "Então",
+     "t": 61.03
+    },
+    {
+     "w": "você",
+     "t": 61.796
+    },
+    {
+     "w": "corta",
+     "t": 62.055
+    },
+    {
+     "w": "ele",
+     "t": 62.397
+    },
+    {
+     "w": "fora",
+     "t": 62.539
+    },
+    {
+     "w": "e",
+     "t": 62.798
+    },
+    {
+     "w": "abre",
+     "t": 62.881
+    },
+    {
+     "w": "um",
+     "t": 63.152
+    },
+    {
+     "w": "reserva",
+     "t": 63.235
+    },
+    {
+     "w": "E",
+     "t": 64.614
+    },
+    {
+     "w": "um",
+     "t": 64.732
+    },
+    {
+     "w": "aparelhinho",
+     "t": 64.874
+    },
+    {
+     "w": "abre",
+     "t": 65.44
+    },
+    {
+     "w": "o",
+     "t": 65.688
+    },
+    {
+     "w": "reserva",
+     "t": 65.711
+    },
+    {
+     "w": "sozinho",
+     "t": 66.171
+    },
+    {
+     "w": "se",
+     "t": 66.961
+    },
+    {
+     "w": "você",
+     "t": 67.067
+    },
+    {
+     "w": "passar",
+     "t": 67.303
+    },
+    {
+     "w": "de",
+     "t": 67.704
+    },
+    {
+     "w": "certa",
+     "t": 67.834
+    },
+    {
+     "w": "altura",
+     "t": 68.14
+    },
+    {
+     "w": "ainda",
+     "t": 68.506
+    },
+    {
+     "w": "caindo",
+     "t": 68.789
+    },
+    {
+     "w": "rápido",
+     "t": 69.143
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 69.98,
+   "fim": 75.94,
+   "texto": "Coloque um altímetro no pulso e um capacete. Parabéns, você construiu um paraquedas.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 70.027
+    },
+    {
+     "w": "um",
+     "t": 70.499
+    },
+    {
+     "w": "altímetro",
+     "t": 70.605
+    },
+    {
+     "w": "no",
+     "t": 71.112
+    },
+    {
+     "w": "pulso",
+     "t": 71.23
+    },
+    {
+     "w": "e",
+     "t": 71.596
+    },
+    {
+     "w": "um",
+     "t": 71.655
+    },
+    {
+     "w": "capacete",
+     "t": 71.749
+    },
+    {
+     "w": "Parabéns",
+     "t": 73.258
+    },
+    {
+     "w": "você",
+     "t": 74.048
+    },
+    {
+     "w": "construiu",
+     "t": 74.343
+    },
+    {
+     "w": "um",
+     "t": 74.838
+    },
+    {
+     "w": "paraquedas",
+     "t": 74.968
+    }
+   ]
+  }
+ ]
+}
