@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("fumaca", { fundo: 0x0e1626, seed: 2024 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, grade, texMadeira, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd, sol } = K;
+sol.intensity = .5; sol.color.set(0x9fb4ff);
+const lamp = new THREE.PointLight(0xffd9a0, 6, 6); lamp.position.set(-.9, 1.1, -.4); scene.add(lamp);
+
+// ---------- quarto em corte ----------
+add(new THREE.PlaneGeometry(4, 3), mat(0xffffff, { map: texMadeira("#9a6a3e", 3) }), 0, 0, -.5).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(4, 2.7), mat(0x8fa3c0), 0, 1.35, -2);
+add(new THREE.PlaneGeometry(3, 2.7), mat(0x7f93b0), -2, 1.35, -.5).rotation.y = Math.PI / 2;
+const parDir = add(new THREE.PlaneGeometry(3, 2.7), mat(0x7f93b0, { side: THREE.DoubleSide }), 2, 1.35, -.5); parDir.rotation.y = -Math.PI / 2;
+add(new THREE.PlaneGeometry(4, 3), mat(0xe8e8e8, { side: THREE.DoubleSide }), 0, 2.7, -.5).rotation.x = Math.PI / 2;
+const porta = add(new THREE.PlaneGeometry(.9, 2), new THREE.MeshBasicMaterial({ color: 0x1a0a04 }), 1.99, 1, -.9); porta.rotation.y = -Math.PI / 2;
+const fogoLuz = new THREE.PointLight(0xff6a1a, 0, 4); fogoLuz.position.set(2.3, 1, -.9); scene.add(fogoLuz);
+// cama, criado-mudo, abajur
+add(new THREE.BoxGeometry(1.1, .35, 2), mat(0x6a4a2e), -1.2, .18, -.9);
+add(new THREE.BoxGeometry(1.05, .15, 1.95), mat(0xf0f0f0), -1.2, .42, -.9);
+add(new THREE.BoxGeometry(1.06, .1, 1.3), mat(0x3a6ad0), -1.2, .5, -.6);
+add(new THREE.BoxGeometry(.5, .1, .3), mat(0xffffff), -1.2, .53, -1.65);
+const dormindo = grupo(-1.2, .55, -.9); add(new THREE.SphereGeometry(.13, 16, 12), mat(0xe0a07a), 0, .05, -.7, dormindo);
+add(new THREE.BoxGeometry(.4, .5, .35), mat(0x8a6a4a), .3, .25, -1.75);
+add(new THREE.CylinderGeometry(.08, .12, .2, 16), mat(0xffe0a0, { emissive: 0xffc070, emissiveIntensity: .8 }), .3, .62, -1.75);
+const relogio = add(new THREE.PlaneGeometry(.25, .1), new THREE.MeshBasicMaterial({ map: rotulo("03:12", "#ff3a3a", { fundo: "#050505", w: 256, h: 104, tam: 80 }) }), .38, .55, -1.57);
+// vigia sentado
+const vigia = grupo(.6, 0, -.6);
+add(new THREE.BoxGeometry(.45, .05, .45), mat(0x6a4a2e), 0, .45, 0, vigia); for (const [x, z] of [[-.2, -.2], [.2, -.2], [-.2, .2], [.2, .2]]) add(new THREE.BoxGeometry(.04, .45, .04), mat(0x6a4a2e), x, .22, z, vigia);
+const corpo = grupo(0, .48, 0, vigia);
+add(new THREE.CapsuleGeometry(.16, .4, 8, 16), mat(0x2e8f6a), 0, .35, 0, corpo);
+const cabeca = add(new THREE.SphereGeometry(.13, 16, 12), mat(0xe0a07a), 0, .78, 0, corpo);
+const zzz = Array.from({ length: 3 }, (_, i) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: rotulo("Z", "#ffffff", { w: 128, h: 128, tam: 110 }), transparent: true, opacity: 0 })); scene.add(s); return s; });
+// fumaça entrando pelo teto
+const fumQuarto = Array.from({ length: 40 }, () => ({ s: sprite(0x777a80), f: rnd(), z: -1.8 + rnd() * 2, y: rnd() }));
+// detector no teto
+const det = grupo(0, 2.66, -.7);
+add(new THREE.CylinderGeometry(.09, .1, .05, 32), mat(0xf4f4f4, { roughness: .4 }), 0, 0, 0, det);
+const ledDet = add(new THREE.SphereGeometry(.01, 10, 8), brilho(0x330000), .05, -.026, .03, det);
+const ondas = [0, 1, 2].map(() => { const o = add(new THREE.TorusGeometry(.1, .006, 6, 40), new THREE.MeshBasicMaterial({ color: 0xff3a3a, transparent: true, opacity: 0 }), 0, -.03, 0, det); o.rotation.x = Math.PI / 2; return o; });
+
+// ---------- estúdio: detector gigante em corte ----------
+const SX = 40, SY = 1.5;
+add(new THREE.PlaneGeometry(8, 8), mat(0x2b3a52), SX, SY, -1.5);
+const O = grupo(SX, SY, 0);
+add(new THREE.CircleGeometry(.75, 48), mat(0xf4f4f4), 0, 0, -.06, O); add(new THREE.TorusGeometry(.7, .06, 12, 60), mat(0xf4f4f4), 0, 0, 0, O);
+const camara = grupo(0, 0, .02, O);
+add(new THREE.CircleGeometry(.5, 40), mat(0x111111), 0, 0, -.01, camara);
+for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2; const w = add(new THREE.BoxGeometry(.16, .04, .2), mat(0x1c1c1c), Math.cos(a) * .45, Math.sin(a) * .45, .08, camara); w.rotation.z = a + .7; }
+const LED = V(-.3, -.05, .1), SEN = V(.22, .22, .1);
+const led = add(new THREE.SphereGeometry(.04, 14, 10), brilho(0xff5a5a), LED.x, LED.y, LED.z, camara);
+const sensor = add(new THREE.BoxGeometry(.08, .08, .05), mat(0x335533, { emissive: 0x3aff7a, emissiveIntensity: 0 }), SEN.x, SEN.y, SEN.z, camara);
+add(new THREE.BoxGeometry(.04, .2, .15), mat(0x222222), .1, .12, .1, camara);
+const feixe = add(new THREE.CylinderGeometry(.015, .05, .55, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xff8a8a, transparent: true, opacity: .45, depthWrite: false }), LED.x + .3, LED.y, LED.z, camara); feixe.rotation.z = -Math.PI / 2;
+const fumDet = Array.from({ length: 30 }, () => ({ s: sprite(0xb0b4bc, camara), f: rnd(), y: (rnd() - .5) * .5 }));
+const raios = Array.from({ length: 6 }, () => { const m = add(new THREE.CylinderGeometry(.006, .006, 1, 6), new THREE.MeshBasicMaterial({ color: 0xffb0b0, transparent: true, opacity: 0 }), 0, 0, .1, camara); return m; });
+// câmara de ionização
+const ion = grupo(0, 0, .05, O);
+add(new THREE.CircleGeometry(.5, 40), mat(0x111111), 0, 0, -.03, ion);
+const placas = [-1, 1].map((s) => add(new THREE.BoxGeometry(.04, .5, .2), mat(0xc0c6cc, { metalness: .7 }), s * .25, 0, .05, ion));
+const am = add(new THREE.CylinderGeometry(.06, .06, .02, 20), mat(0x3aff7a, { emissive: 0x3aff7a, emissiveIntensity: 1 }), -.2, 0, .08, ion); am.rotation.z = Math.PI / 2;
+const amTxt = add(new THREE.PlaneGeometry(.22, .11), new THREE.MeshBasicMaterial({ map: rotulo("Am", "#3aff7a"), transparent: true }), -.35, .3, .1, ion);
+const ions = Array.from({ length: 24 }, () => ({ s: sprite(rnd() < .5 ? 0x5ab8ff : 0xff6a6a, ion), f: rnd(), y: (rnd() - .5) * .4 }));
+const fumIon = Array.from({ length: 16 }, () => ({ s: sprite(0x9a9ea6, ion), f: rnd(), y: (rnd() - .5) * .45, x: (rnd() - .5) * .4 }));
+const medidor = add(new THREE.BoxGeometry(.5, .05, .02), brilho(0x3aff7a), 0, -.62, .2, O); medidor.geometry.translate(.25, 0, 0); medidor.position.x = -.25;
+
+// ---------- câmera ----------
+K.camera_({
+  quarto: [V(.1, 1.7, 3.6), V(0, 1.55, -.7)], vigia: [V(.5, 1.55, 2.2), V(.3, 1.5, -.6)], teto: [V(0, 2.25, .45), V(0, 2.62, -.7)],
+  corte: [V(SX, SY - .05, 3.7), V(SX, SY + .25, 0)], close: [V(SX - .02, SY - .05, 2.4), V(SX - .02, SY + .2, 0)],
+  noite: [V(-.2, 1.5, 2.4), V(-.4, 1.6, -.9)], final: [V(.15, 2.15, .7), V(0, 2.5, -.7)],
+}, [
+  [0, "quarto"], [P(1, "acordado") - .2, "vigia"], [F(1), "vigia"],
+  [C(2), "vigia"], [P(2, "fumaca") - .4, "quarto"], [F(2), "quarto"],
+  [C(3), "quarto"], [P(3, "sobe") - .2, "teto"], [P(3, "dentro") - .3, "teto"], [P(3, "dentro"), "corte"], [F(3), "corte"],
+  [C(4), "corte"], [P(4, "poeira"), "close"], [F(4), "close"],
+  [C(5) - .02, "close"], [C(5), "corte"], [F(5), "corte"],
+  [C(6) - .02, "corte"], [C(6), "noite"], [P(6, "bateria") - .3, "teto"], [F(6), "teto"],
+  [C(7), "teto"], [C(7) + 1, "final"], [T, "final"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  vigia.visible = t < C(3);
+  const dorme = prog(t, P(2, "dorme") - .3, P(2, "dorme") + .4);
+  corpo.rotation.z = .3 * dorme; cabeca.position.x = -.0; corpo.rotation.x = Math.sin(t * 3) * .03 * (1 - dorme);
+  cabeca.rotation.y = (1 - dorme) * Math.sin(t * 4) * .4;
+  zzz.forEach((z, i) => { const k = frac(t * .4 + i / 3); z.position.set(.75 + k * .3, 1.55 + k * .5, -.6); z.scale.setScalar(.12 + k * .1); z.material.opacity = em(P(2, "dorme"), C(3)) ? 1 - k : 0; });
+  // fumaça no quarto (entra pela porta e sobe pro teto)
+  const fumando = em(P(2, "fumaca") - .4, P(3, "dentro"));
+  fogoLuz.intensity = fumando ? 4 + 1.5 * Math.sin(t * 11) : 0;
+  fumQuarto.forEach((f) => { const k = frac(t * .18 + f.f); const x = 2 - k * 3.8; f.s.position.set(x, 1.2 + Math.min(1, k * 4) * (1.3 - f.y * .3), f.z); f.s.scale.setScalar(.4 + k * .4); f.s.material.opacity = fumando ? .55 * Math.min(1, (1 - k) * 3) : 0; });
+  det.visible = t > P(3, "teto") - .3;
+  // estúdio: óptico
+  const optico = t < C(5) - .02; camara.visible = optico; ion.visible = !optico;
+  const fum = em(C(4) - .2, C(5));
+  fumDet.forEach((f) => { const k = frac(t * .2 + f.f); f.s.position.set(-.45 + k * .9, f.y + Math.sin(t + f.f * 9) * .03, .12); f.s.scale.setScalar(.07); f.s.material.opacity = fum ? .8 : 0; });
+  const reflete = t > P(4, "refletem") - .2 && fum;
+  raios.forEach((r, i) => { const f = fumDet[i * 4].s.position; const a = new THREE.Vector3(f.x, f.y, .12), b = SEN.clone(); const mid = a.clone().add(b).multiplyScalar(.5); r.position.copy(mid); r.scale.y = a.distanceTo(b); r.lookAt(b.clone().add(O.position).add(camara.position)); r.rotateX(Math.PI / 2); r.material.opacity = reflete && Math.abs(f.y - LED.y) < .12 ? .9 : 0; });
+  sensor.material.emissiveIntensity = reflete ? 1.2 : 0;
+  // ionização
+  const fum2 = t > P(5, "fumaca") - .3 && t < C(6);
+  ions.forEach((o) => { const k = frac(t * (fum2 ? .25 : .9) + o.f); o.s.position.set(-.22 + k * .44, o.y, .1); o.s.scale.setScalar(.04); o.s.material.opacity = t > P(5, "eletricidade") - .5 ? (fum2 && o.f > .35 ? .15 : 1) : 0; });
+  fumIon.forEach((f) => { f.s.position.set(f.x + Math.sin(t + f.f * 7) * .03, f.y, .14); f.s.scale.setScalar(.12); f.s.material.opacity = fum2 ? .8 : 0; });
+  medidor.visible = !optico; medidor.scale.x = t > P(5, "eletricidade") - .5 ? (fum2 ? .25 : 1) : .02; medidor.material.color.set(fum2 ? 0xff3a3a : 0x3aff7a);
+  // alarme
+  const alarme = em(P(4, "alarme") - .1, C(5)) || em(P(5, "alarme") - .1, P(5, "seguro") - .3) || t > C(7) + 1;
+  const bip = em(P(6, "bip") - .1, F(6)) && frac(t * .5) < .15;
+  ledDet.material.color.set((alarme && frac(t * 3) < .5) || bip || (t > P(7, "luzinha") - .2 && frac(t * 2) < .3) ? 0xff2020 : 0x330000);
+  ondas.forEach((o, i) => { const k = frac(t * 1.2 + i / 3); o.scale.setScalar(1 + k * 4); o.material.opacity = (t > P(7, "sirene") - .2 || bip) ? (1 - k) * .9 : 0; });
+  led.scale.setScalar(1 + .2 * Math.sin(t * 9));
+  K.cartoes(t, [
+    [P(1, "cheirando") - .3, F(1), "SNIFF... SNIFF...", "#ffffff"],
+    [P(2, "fumaca") - .3, F(2), "A FUMAÇA MATA ANTES", "#ff4a3a"],
+    [P(3, "sobe") - .4, P(3, "dentro") - .3, "FUMAÇA QUENTE SOBE", "#ffd23a"],
+    [P(3, "labirinto") - .3, F(3), "LABIRINTO ESCURO", "#ffffff"],
+    [P(4, "alarme") - .2, F(4), "DETECTOR ÓPTICO", "#ff4a3a"],
+    [P(5, "americio") - .3, P(5, "fumaca") - .3, "AMERÍCIO", "#3aff7a"],
+    [P(5, "atrapalha") - .3, P(5, "seguro") - .3, "CORRENTE CAIU", "#ff4a3a"],
+    [P(5, "seguro") - .3, F(5), "E É SEGURO", "#3aff7a"],
+    [P(6, "bip") - .2, P(6, "bateria") - .2, "BIP!", "#ff4a3a"],
+    [P(6, "bateria") - .2, P(6, "fria") - .3, "BATERIA ACABANDO", "#ffd23a"],
+    [P(6, "fria") - .3, F(6), "FRIO = BATERIA RENDE MENOS", "#7fd3ff"],
+  ]);
+});
+</script>
+</body></html>

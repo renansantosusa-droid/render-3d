@@ -1,0 +1,825 @@
+{
+ "total": 72.39,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.05,
+   "texto": "Se você deixar alguém acordado a noite toda cheirando o ar, terá um detector de fumaça.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "deixar",
+     "t": 0.681
+    },
+    {
+     "w": "alguém",
+     "t": 1.011
+    },
+    {
+     "w": "acordado",
+     "t": 1.258
+    },
+    {
+     "w": "a",
+     "t": 1.766
+    },
+    {
+     "w": "noite",
+     "t": 1.801
+    },
+    {
+     "w": "toda",
+     "t": 2.19
+    },
+    {
+     "w": "cheirando",
+     "t": 2.438
+    },
+    {
+     "w": "o",
+     "t": 2.85
+    },
+    {
+     "w": "ar",
+     "t": 2.921
+    },
+    {
+     "w": "terá",
+     "t": 3.334
+    },
+    {
+     "w": "um",
+     "t": 3.546
+    },
+    {
+     "w": "detector",
+     "t": 3.617
+    },
+    {
+     "w": "de",
+     "t": 4.171
+    },
+    {
+     "w": "fumaça",
+     "t": 4.277
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.2,
+   "fim": 12.22,
+   "texto": "Mas ele dorme. E, num incêndio de madrugada, é a fumaça que mata, muito antes do fogo chegar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.247
+    },
+    {
+     "w": "ele",
+     "t": 5.483
+    },
+    {
+     "w": "dorme",
+     "t": 5.778
+    },
+    {
+     "w": "E",
+     "t": 7.028
+    },
+    {
+     "w": "num",
+     "t": 7.606
+    },
+    {
+     "w": "incêndio",
+     "t": 7.759
+    },
+    {
+     "w": "de",
+     "t": 8.195
+    },
+    {
+     "w": "madrugada",
+     "t": 8.278
+    },
+    {
+     "w": "é",
+     "t": 9.092
+    },
+    {
+     "w": "a",
+     "t": 9.209
+    },
+    {
+     "w": "fumaça",
+     "t": 9.28
+    },
+    {
+     "w": "que",
+     "t": 9.764
+    },
+    {
+     "w": "mata",
+     "t": 9.882
+    },
+    {
+     "w": "muito",
+     "t": 10.448
+    },
+    {
+     "w": "antes",
+     "t": 10.813
+    },
+    {
+     "w": "do",
+     "t": 11.12
+    },
+    {
+     "w": "fogo",
+     "t": 11.238
+    },
+    {
+     "w": "chegar",
+     "t": 11.568
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.37,
+   "fim": 22.53,
+   "texto": "Então, você coloca no teto uma caixinha, porque a fumaça quente sobe. Dentro dela tem uma luzinha e um sensor escondido num labirinto escuro, onde a luz não alcança.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.417
+    },
+    {
+     "w": "você",
+     "t": 13.184
+    },
+    {
+     "w": "coloca",
+     "t": 13.443
+    },
+    {
+     "w": "no",
+     "t": 13.856
+    },
+    {
+     "w": "teto",
+     "t": 13.997
+    },
+    {
+     "w": "uma",
+     "t": 14.245
+    },
+    {
+     "w": "caixinha",
+     "t": 14.387
+    },
+    {
+     "w": "porque",
+     "t": 15.118
+    },
+    {
+     "w": "a",
+     "t": 15.354
+    },
+    {
+     "w": "fumaça",
+     "t": 15.436
+    },
+    {
+     "w": "quente",
+     "t": 15.92
+    },
+    {
+     "w": "sobe",
+     "t": 16.238
+    },
+    {
+     "w": "Dentro",
+     "t": 17.464
+    },
+    {
+     "w": "dela",
+     "t": 17.865
+    },
+    {
+     "w": "tem",
+     "t": 18.16
+    },
+    {
+     "w": "uma",
+     "t": 18.302
+    },
+    {
+     "w": "luzinha",
+     "t": 18.443
+    },
+    {
+     "w": "e",
+     "t": 18.868
+    },
+    {
+     "w": "um",
+     "t": 18.915
+    },
+    {
+     "w": "sensor",
+     "t": 19.009
+    },
+    {
+     "w": "escondido",
+     "t": 19.375
+    },
+    {
+     "w": "num",
+     "t": 19.882
+    },
+    {
+     "w": "labirinto",
+     "t": 20.023
+    },
+    {
+     "w": "escuro",
+     "t": 20.424
+    },
+    {
+     "w": "onde",
+     "t": 21.049
+    },
+    {
+     "w": "a",
+     "t": 21.262
+    },
+    {
+     "w": "luz",
+     "t": 21.309
+    },
+    {
+     "w": "não",
+     "t": 21.58
+    },
+    {
+     "w": "alcança",
+     "t": 21.78
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.68,
+   "fim": 34.43,
+   "texto": "Quando a fumaça entra, as partículas refletem a luz pra dentro do sensor, como poeira num raio de sol. O sensor enxerga a luz, e o alarme dispara. Esse é o detector óptico.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 22.727
+    },
+    {
+     "w": "a",
+     "t": 22.998
+    },
+    {
+     "w": "fumaça",
+     "t": 23.057
+    },
+    {
+     "w": "entra",
+     "t": 23.517
+    },
+    {
+     "w": "as",
+     "t": 24.083
+    },
+    {
+     "w": "partículas",
+     "t": 24.237
+    },
+    {
+     "w": "refletem",
+     "t": 24.803
+    },
+    {
+     "w": "a",
+     "t": 25.322
+    },
+    {
+     "w": "luz",
+     "t": 25.38
+    },
+    {
+     "w": "pra",
+     "t": 25.687
+    },
+    {
+     "w": "dentro",
+     "t": 25.864
+    },
+    {
+     "w": "do",
+     "t": 26.159
+    },
+    {
+     "w": "sensor",
+     "t": 26.253
+    },
+    {
+     "w": "como",
+     "t": 27.031
+    },
+    {
+     "w": "poeira",
+     "t": 27.314
+    },
+    {
+     "w": "num",
+     "t": 27.668
+    },
+    {
+     "w": "raio",
+     "t": 27.833
+    },
+    {
+     "w": "de",
+     "t": 28.128
+    },
+    {
+     "w": "sol",
+     "t": 28.246
+    },
+    {
+     "w": "O",
+     "t": 29.39
+    },
+    {
+     "w": "sensor",
+     "t": 29.52
+    },
+    {
+     "w": "enxerga",
+     "t": 29.932
+    },
+    {
+     "w": "a",
+     "t": 30.369
+    },
+    {
+     "w": "luz",
+     "t": 30.392
+    },
+    {
+     "w": "e",
+     "t": 31.017
+    },
+    {
+     "w": "o",
+     "t": 31.1
+    },
+    {
+     "w": "alarme",
+     "t": 31.171
+    },
+    {
+     "w": "dispara",
+     "t": 31.572
+    },
+    {
+     "w": "Esse",
+     "t": 32.869
+    },
+    {
+     "w": "é",
+     "t": 33.163
+    },
+    {
+     "w": "o",
+     "t": 33.234
+    },
+    {
+     "w": "detector",
+     "t": 33.293
+    },
+    {
+     "w": "óptico",
+     "t": 33.777
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.58,
+   "fim": 51,
+   "texto": "Alguns modelos usam outro truque: um tiquinho de material radioativo, o amerício, que faz o ar conduzir eletricidade. A fumaça atrapalha essa corrente, e o alarme toca. Sim, tem material radioativo no teto de muita casa. E é seguro.",
+   "palavras": [
+    {
+     "w": "Alguns",
+     "t": 34.627
+    },
+    {
+     "w": "modelos",
+     "t": 35.028
+    },
+    {
+     "w": "usam",
+     "t": 35.464
+    },
+    {
+     "w": "outro",
+     "t": 35.842
+    },
+    {
+     "w": "truque",
+     "t": 36.137
+    },
+    {
+     "w": "um",
+     "t": 36.797
+    },
+    {
+     "w": "tiquinho",
+     "t": 36.938
+    },
+    {
+     "w": "de",
+     "t": 37.363
+    },
+    {
+     "w": "material",
+     "t": 37.469
+    },
+    {
+     "w": "radioativo",
+     "t": 37.917
+    },
+    {
+     "w": "o",
+     "t": 38.931
+    },
+    {
+     "w": "amerício",
+     "t": 39.026
+    },
+    {
+     "w": "que",
+     "t": 39.745
+    },
+    {
+     "w": "faz",
+     "t": 39.91
+    },
+    {
+     "w": "o",
+     "t": 40.134
+    },
+    {
+     "w": "ar",
+     "t": 40.276
+    },
+    {
+     "w": "conduzir",
+     "t": 40.417
+    },
+    {
+     "w": "eletricidade",
+     "t": 40.936
+    },
+    {
+     "w": "A",
+     "t": 42.516
+    },
+    {
+     "w": "fumaça",
+     "t": 42.634
+    },
+    {
+     "w": "atrapalha",
+     "t": 43.071
+    },
+    {
+     "w": "essa",
+     "t": 43.519
+    },
+    {
+     "w": "corrente",
+     "t": 43.719
+    },
+    {
+     "w": "e",
+     "t": 44.403
+    },
+    {
+     "w": "o",
+     "t": 44.474
+    },
+    {
+     "w": "alarme",
+     "t": 44.545
+    },
+    {
+     "w": "toca",
+     "t": 44.957
+    },
+    {
+     "w": "Sim",
+     "t": 46.089
+    },
+    {
+     "w": "tem",
+     "t": 46.679
+    },
+    {
+     "w": "material",
+     "t": 46.809
+    },
+    {
+     "w": "radioativo",
+     "t": 47.257
+    },
+    {
+     "w": "no",
+     "t": 47.905
+    },
+    {
+     "w": "teto",
+     "t": 48.023
+    },
+    {
+     "w": "de",
+     "t": 48.342
+    },
+    {
+     "w": "muita",
+     "t": 48.436
+    },
+    {
+     "w": "casa",
+     "t": 48.849
+    },
+    {
+     "w": "E",
+     "t": 50.028
+    },
+    {
+     "w": "é",
+     "t": 50.146
+    },
+    {
+     "w": "seguro",
+     "t": 50.24
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 51.15,
+   "fim": 63.69,
+   "texto": "E aquele bip sozinho, de minuto em minuto, no meio da madrugada? É ele avisando que a bateria está acabando. E costuma ser de madrugada porque, com a casa fria, a bateria fraca rende menos.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 51.197
+    },
+    {
+     "w": "aquele",
+     "t": 51.327
+    },
+    {
+     "w": "bip",
+     "t": 51.633
+    },
+    {
+     "w": "sozinho",
+     "t": 51.881
+    },
+    {
+     "w": "de",
+     "t": 52.648
+    },
+    {
+     "w": "minuto",
+     "t": 52.754
+    },
+    {
+     "w": "em",
+     "t": 53.096
+    },
+    {
+     "w": "minuto",
+     "t": 53.166
+    },
+    {
+     "w": "no",
+     "t": 53.874
+    },
+    {
+     "w": "meio",
+     "t": 53.992
+    },
+    {
+     "w": "da",
+     "t": 54.251
+    },
+    {
+     "w": "madrugada",
+     "t": 54.346
+    },
+    {
+     "w": "É",
+     "t": 55.737
+    },
+    {
+     "w": "ele",
+     "t": 55.867
+    },
+    {
+     "w": "avisando",
+     "t": 56.044
+    },
+    {
+     "w": "que",
+     "t": 56.551
+    },
+    {
+     "w": "a",
+     "t": 56.622
+    },
+    {
+     "w": "bateria",
+     "t": 56.657
+    },
+    {
+     "w": "está",
+     "t": 57.034
+    },
+    {
+     "w": "acabando",
+     "t": 57.27
+    },
+    {
+     "w": "E",
+     "t": 58.65
+    },
+    {
+     "w": "costuma",
+     "t": 58.756
+    },
+    {
+     "w": "ser",
+     "t": 59.251
+    },
+    {
+     "w": "de",
+     "t": 59.464
+    },
+    {
+     "w": "madrugada",
+     "t": 59.558
+    },
+    {
+     "w": "porque",
+     "t": 60.077
+    },
+    {
+     "w": "com",
+     "t": 60.666
+    },
+    {
+     "w": "a",
+     "t": 60.808
+    },
+    {
+     "w": "casa",
+     "t": 60.879
+    },
+    {
+     "w": "fria",
+     "t": 61.197
+    },
+    {
+     "w": "a",
+     "t": 61.775
+    },
+    {
+     "w": "bateria",
+     "t": 61.834
+    },
+    {
+     "w": "fraca",
+     "t": 62.282
+    },
+    {
+     "w": "rende",
+     "t": 62.683
+    },
+    {
+     "w": "menos",
+     "t": 62.99
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 63.84,
+   "fim": 71.79,
+   "texto": "Coloque um botão de teste, uma luzinha que pisca e uma sirene bem chata. Parabéns, você construiu um detector de fumaça.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 63.887
+    },
+    {
+     "w": "um",
+     "t": 64.347
+    },
+    {
+     "w": "botão",
+     "t": 64.406
+    },
+    {
+     "w": "de",
+     "t": 64.748
+    },
+    {
+     "w": "teste",
+     "t": 64.89
+    },
+    {
+     "w": "uma",
+     "t": 65.515
+    },
+    {
+     "w": "luzinha",
+     "t": 65.668
+    },
+    {
+     "w": "que",
+     "t": 66.092
+    },
+    {
+     "w": "pisca",
+     "t": 66.21
+    },
+    {
+     "w": "e",
+     "t": 66.611
+    },
+    {
+     "w": "uma",
+     "t": 66.67
+    },
+    {
+     "w": "sirene",
+     "t": 66.823
+    },
+    {
+     "w": "bem",
+     "t": 67.189
+    },
+    {
+     "w": "chata",
+     "t": 67.413
+    },
+    {
+     "w": "Parabéns",
+     "t": 68.651
+    },
+    {
+     "w": "você",
+     "t": 69.441
+    },
+    {
+     "w": "construiu",
+     "t": 69.736
+    },
+    {
+     "w": "um",
+     "t": 70.22
+    },
+    {
+     "w": "detector",
+     "t": 70.338
+    },
+    {
+     "w": "de",
+     "t": 70.904
+    },
+    {
+     "w": "fumaça",
+     "t": 71.01
+    }
+   ]
+  }
+ ]
+}
