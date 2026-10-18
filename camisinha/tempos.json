@@ -1,0 +1,777 @@
+{
+ "total": 67.53,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.61,
+   "texto": "Se você enrolar um saquinho de plástico, terá uma camisinha.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "enrolar",
+     "t": 0.657
+    },
+    {
+     "w": "um",
+     "t": 1.058
+    },
+    {
+     "w": "saquinho",
+     "t": 1.129
+    },
+    {
+     "w": "de",
+     "t": 1.541
+    },
+    {
+     "w": "plástico",
+     "t": 1.648
+    },
+    {
+     "w": "terá",
+     "t": 2.343
+    },
+    {
+     "w": "uma",
+     "t": 2.591
+    },
+    {
+     "w": "camisinha",
+     "t": 2.744
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.76,
+   "fim": 9.67,
+   "texto": "Mas o plástico rasga. Ele não estica. E ninguém sente nada com ele.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.807
+    },
+    {
+     "w": "o",
+     "t": 3.996
+    },
+    {
+     "w": "plástico",
+     "t": 4.149
+    },
+    {
+     "w": "rasga",
+     "t": 4.644
+    },
+    {
+     "w": "Ele",
+     "t": 5.906
+    },
+    {
+     "w": "não",
+     "t": 6.13
+    },
+    {
+     "w": "estica",
+     "t": 6.39
+    },
+    {
+     "w": "E",
+     "t": 7.699
+    },
+    {
+     "w": "ninguém",
+     "t": 7.805
+    },
+    {
+     "w": "sente",
+     "t": 8.194
+    },
+    {
+     "w": "nada",
+     "t": 8.619
+    },
+    {
+     "w": "com",
+     "t": 8.949
+    },
+    {
+     "w": "ele",
+     "t": 9.161
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.82,
+   "fim": 19.33,
+   "texto": "Então, você troca por látex, uma borracha que vem da seiva de uma árvore. Ela estica umas sete vezes o próprio tamanho, e é mais fina que um fio de cabelo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.867
+    },
+    {
+     "w": "você",
+     "t": 10.598
+    },
+    {
+     "w": "troca",
+     "t": 10.858
+    },
+    {
+     "w": "por",
+     "t": 11.164
+    },
+    {
+     "w": "látex",
+     "t": 11.318
+    },
+    {
+     "w": "uma",
+     "t": 12.061
+    },
+    {
+     "w": "borracha",
+     "t": 12.226
+    },
+    {
+     "w": "que",
+     "t": 12.709
+    },
+    {
+     "w": "vem",
+     "t": 12.803
+    },
+    {
+     "w": "da",
+     "t": 12.957
+    },
+    {
+     "w": "seiva",
+     "t": 13.075
+    },
+    {
+     "w": "de",
+     "t": 13.44
+    },
+    {
+     "w": "uma",
+     "t": 13.535
+    },
+    {
+     "w": "árvore",
+     "t": 13.688
+    },
+    {
+     "w": "Ela",
+     "t": 14.914
+    },
+    {
+     "w": "estica",
+     "t": 15.103
+    },
+    {
+     "w": "umas",
+     "t": 15.457
+    },
+    {
+     "w": "sete",
+     "t": 15.634
+    },
+    {
+     "w": "vezes",
+     "t": 15.928
+    },
+    {
+     "w": "o",
+     "t": 16.259
+    },
+    {
+     "w": "próprio",
+     "t": 16.377
+    },
+    {
+     "w": "tamanho",
+     "t": 16.707
+    },
+    {
+     "w": "e",
+     "t": 17.379
+    },
+    {
+     "w": "é",
+     "t": 17.462
+    },
+    {
+     "w": "mais",
+     "t": 17.544
+    },
+    {
+     "w": "fina",
+     "t": 17.827
+    },
+    {
+     "w": "que",
+     "t": 18.11
+    },
+    {
+     "w": "um",
+     "t": 18.252
+    },
+    {
+     "w": "fio",
+     "t": 18.37
+    },
+    {
+     "w": "de",
+     "t": 18.594
+    },
+    {
+     "w": "cabelo",
+     "t": 18.676
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.48,
+   "fim": 31.56,
+   "texto": "Mas ela precisa barrar tudo. Então, cada uma é vestida num molde de metal e mergulhada em água com corrente elétrica. Se tiver um furinho invisível, a corrente passa, e ela vai pro lixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 19.527
+    },
+    {
+     "w": "ela",
+     "t": 19.728
+    },
+    {
+     "w": "precisa",
+     "t": 20.034
+    },
+    {
+     "w": "barrar",
+     "t": 20.412
+    },
+    {
+     "w": "tudo",
+     "t": 20.765
+    },
+    {
+     "w": "Então",
+     "t": 21.921
+    },
+    {
+     "w": "cada",
+     "t": 22.629
+    },
+    {
+     "w": "uma",
+     "t": 22.9
+    },
+    {
+     "w": "é",
+     "t": 23.124
+    },
+    {
+     "w": "vestida",
+     "t": 23.183
+    },
+    {
+     "w": "num",
+     "t": 23.572
+    },
+    {
+     "w": "molde",
+     "t": 23.725
+    },
+    {
+     "w": "de",
+     "t": 24.02
+    },
+    {
+     "w": "metal",
+     "t": 24.114
+    },
+    {
+     "w": "e",
+     "t": 24.515
+    },
+    {
+     "w": "mergulhada",
+     "t": 24.563
+    },
+    {
+     "w": "em",
+     "t": 25.117
+    },
+    {
+     "w": "água",
+     "t": 25.247
+    },
+    {
+     "w": "com",
+     "t": 25.506
+    },
+    {
+     "w": "corrente",
+     "t": 25.683
+    },
+    {
+     "w": "elétrica",
+     "t": 26.096
+    },
+    {
+     "w": "Se",
+     "t": 27.44
+    },
+    {
+     "w": "tiver",
+     "t": 27.652
+    },
+    {
+     "w": "um",
+     "t": 27.959
+    },
+    {
+     "w": "furinho",
+     "t": 28.041
+    },
+    {
+     "w": "invisível",
+     "t": 28.407
+    },
+    {
+     "w": "a",
+     "t": 29.232
+    },
+    {
+     "w": "corrente",
+     "t": 29.327
+    },
+    {
+     "w": "passa",
+     "t": 29.751
+    },
+    {
+     "w": "e",
+     "t": 30.353
+    },
+    {
+     "w": "ela",
+     "t": 30.435
+    },
+    {
+     "w": "vai",
+     "t": 30.647
+    },
+    {
+     "w": "pro",
+     "t": 30.801
+    },
+    {
+     "w": "lixo",
+     "t": 30.954
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.71,
+   "fim": 39.13,
+   "texto": "E aquela pontinha na frente? É o reservatório. Ele guarda o sêmen e evita que a pressão estoure a camisinha.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 31.757
+    },
+    {
+     "w": "aquela",
+     "t": 31.887
+    },
+    {
+     "w": "pontinha",
+     "t": 32.217
+    },
+    {
+     "w": "na",
+     "t": 32.653
+    },
+    {
+     "w": "frente",
+     "t": 32.783
+    },
+    {
+     "w": "É",
+     "t": 34.033
+    },
+    {
+     "w": "o",
+     "t": 34.175
+    },
+    {
+     "w": "reservatório",
+     "t": 34.21
+    },
+    {
+     "w": "Ele",
+     "t": 35.849
+    },
+    {
+     "w": "guarda",
+     "t": 36.05
+    },
+    {
+     "w": "o",
+     "t": 36.38
+    },
+    {
+     "w": "sêmen",
+     "t": 36.427
+    },
+    {
+     "w": "e",
+     "t": 36.828
+    },
+    {
+     "w": "evita",
+     "t": 36.875
+    },
+    {
+     "w": "que",
+     "t": 37.276
+    },
+    {
+     "w": "a",
+     "t": 37.359
+    },
+    {
+     "w": "pressão",
+     "t": 37.418
+    },
+    {
+     "w": "estoure",
+     "t": 37.866
+    },
+    {
+     "w": "a",
+     "t": 38.219
+    },
+    {
+     "w": "camisinha",
+     "t": 38.278
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 39.28,
+   "fim": 48.79,
+   "texto": "Os espermatozoides não passam. E os vírus, como o do HIV, também não. O látex não tem poros: é uma barreira contínua.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 39.327
+    },
+    {
+     "w": "espermatozoides",
+     "t": 39.445
+    },
+    {
+     "w": "não",
+     "t": 40.495
+    },
+    {
+     "w": "passam",
+     "t": 40.719
+    },
+    {
+     "w": "E",
+     "t": 41.957
+    },
+    {
+     "w": "os",
+     "t": 42.098
+    },
+    {
+     "w": "vírus",
+     "t": 42.252
+    },
+    {
+     "w": "como",
+     "t": 42.9
+    },
+    {
+     "w": "o",
+     "t": 43.172
+    },
+    {
+     "w": "do",
+     "t": 43.219
+    },
+    {
+     "w": "HIV",
+     "t": 43.348
+    },
+    {
+     "w": "também",
+     "t": 44.256
+    },
+    {
+     "w": "não",
+     "t": 44.669
+    },
+    {
+     "w": "O",
+     "t": 45.766
+    },
+    {
+     "w": "látex",
+     "t": 45.872
+    },
+    {
+     "w": "não",
+     "t": 46.344
+    },
+    {
+     "w": "tem",
+     "t": 46.509
+    },
+    {
+     "w": "poros",
+     "t": 46.686
+    },
+    {
+     "w": "é",
+     "t": 47.311
+    },
+    {
+     "w": "uma",
+     "t": 47.393
+    },
+    {
+     "w": "barreira",
+     "t": 47.535
+    },
+    {
+     "w": "contínua",
+     "t": 47.936
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.94,
+   "fim": 60.27,
+   "texto": "Mas o látex tem dois inimigos: óleo e calor. Vaselina e creme enfraquecem a borracha. Por isso, o lubrificante tem que ser à base de água. E nada de guardar na carteira.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 48.987
+    },
+    {
+     "w": "o",
+     "t": 49.188
+    },
+    {
+     "w": "látex",
+     "t": 49.317
+    },
+    {
+     "w": "tem",
+     "t": 49.789
+    },
+    {
+     "w": "dois",
+     "t": 49.966
+    },
+    {
+     "w": "inimigos",
+     "t": 50.225
+    },
+    {
+     "w": "óleo",
+     "t": 51.11
+    },
+    {
+     "w": "e",
+     "t": 51.381
+    },
+    {
+     "w": "calor.",
+     "t": 51.416
+    },
+    {
+     "w": "Vaselina",
+     "t": 51.747
+    },
+    {
+     "w": "e",
+     "t": 52.265
+    },
+    {
+     "w": "creme",
+     "t": 52.336
+    },
+    {
+     "w": "enfraquecem",
+     "t": 52.631
+    },
+    {
+     "w": "a",
+     "t": 53.209
+    },
+    {
+     "w": "borracha",
+     "t": 53.268
+    },
+    {
+     "w": "Por",
+     "t": 54.636
+    },
+    {
+     "w": "isso",
+     "t": 54.824
+    },
+    {
+     "w": "o",
+     "t": 55.402
+    },
+    {
+     "w": "lubrificante",
+     "t": 55.461
+    },
+    {
+     "w": "tem",
+     "t": 56.228
+    },
+    {
+     "w": "que",
+     "t": 56.369
+    },
+    {
+     "w": "ser",
+     "t": 56.475
+    },
+    {
+     "w": "à",
+     "t": 56.64
+    },
+    {
+     "w": "base",
+     "t": 56.699
+    },
+    {
+     "w": "de",
+     "t": 57.077
+    },
+    {
+     "w": "água",
+     "t": 57.195
+    },
+    {
+     "w": "E",
+     "t": 58.339
+    },
+    {
+     "w": "nada",
+     "t": 58.456
+    },
+    {
+     "w": "de",
+     "t": 58.798
+    },
+    {
+     "w": "guardar",
+     "t": 58.893
+    },
+    {
+     "w": "na",
+     "t": 59.353
+    },
+    {
+     "w": "carteira",
+     "t": 59.471
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 60.42,
+   "fim": 66.93,
+   "texto": "Coloque um envelope bem fechado e uma data de validade. Parabéns, você construiu uma camisinha.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 60.467
+    },
+    {
+     "w": "um",
+     "t": 60.951
+    },
+    {
+     "w": "envelope",
+     "t": 61.021
+    },
+    {
+     "w": "bem",
+     "t": 61.529
+    },
+    {
+     "w": "fechado",
+     "t": 61.705
+    },
+    {
+     "w": "e",
+     "t": 62.283
+    },
+    {
+     "w": "uma",
+     "t": 62.354
+    },
+    {
+     "w": "data",
+     "t": 62.543
+    },
+    {
+     "w": "de",
+     "t": 62.849
+    },
+    {
+     "w": "validade",
+     "t": 62.932
+    },
+    {
+     "w": "Parabéns",
+     "t": 64.323
+    },
+    {
+     "w": "você",
+     "t": 65.09
+    },
+    {
+     "w": "construiu",
+     "t": 65.373
+    },
+    {
+     "w": "uma",
+     "t": 65.88
+    },
+    {
+     "w": "camisinha",
+     "t": 66.033
+    }
+   ]
+  }
+ ]
+}

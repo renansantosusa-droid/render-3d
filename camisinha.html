@@ -1,0 +1,167 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("camisinha", { fundo: 0xe4ecf4, seed: 1212 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texMadeira, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- mesa ----------
+add(new THREE.PlaneGeometry(600, 60), mat(0xf4f6f8, { roughness: .8 }), 150, 0, 0).rotation.x = -Math.PI / 2;
+const placa = (txt, cor, fundo, x, y, z, w = .8, pai = scene) => add(new THREE.PlaneGeometry(w, w / 2), new THREE.MeshBasicMaterial({ map: rotulo(txt, cor, { fundo, tam: txt.length > 6 ? 90 : 140 }), transparent: true }), x, y, z, pai);
+
+// ---------- camisinha (perfil girado) ----------
+const perfil = [[.33, 0], [.33, 1.2], [.31, 1.33], [.25, 1.44], [.15, 1.51], [.075, 1.54], [.07, 1.62], [.06, 1.69], [.03, 1.72], [0, 1.73]].map(([r, y]) => new THREE.Vector2(r, y));
+const geoCam = new THREE.LatheGeometry(perfil, 40);
+const mLatex = new THREE.MeshPhysicalMaterial({ color: 0xf2d8a6, transparent: true, opacity: .62, roughness: .25, side: THREE.DoubleSide, depthWrite: false, emissive: 0x000000 });
+const cam = grupo(0, .06, 0);
+const corpoCam = add(geoCam, mLatex, 0, 0, 0, cam);
+const aro = add(new THREE.TorusGeometry(.35, .045, 12, 40), new THREE.MeshPhysicalMaterial({ color: 0xe8c890, roughness: .3 }), 0, 0, 0, cam); aro.rotation.x = Math.PI / 2;
+const ponta = add(new THREE.SphereGeometry(.12, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffd23a, transparent: true, opacity: 0, depthWrite: false }), 0, 1.64, 0, cam);
+const semen = Array.from({ length: 14 }, () => ({ s: sprite(0xffffff, cam), x: (rnd() - .5) * .08, y: 1.58 + rnd() * .12, z: (rnd() - .5) * .08 }));
+// saquinho de plástico
+const geoSaco = new THREE.LatheGeometry([[.42, 0], [.4, .5], [.44, 1.0], [.38, 1.4], [.2, 1.65], [0, 1.72]].map(([r, y]) => new THREE.Vector2(r, y)), 14, 0, Math.PI * 2);
+{ const p = geoSaco.attributes.position; for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * (1 + (rnd() - .5) * .18), p.getY(i), p.getZ(i) * (1 + (rnd() - .5) * .18)); geoSaco.computeVertexNormals(); }
+const saco = grupo(0, .06, 0);
+const sacoA = add(geoSaco, new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: .55, roughness: .4, side: THREE.DoubleSide, flatShading: true }), 0, 0, 0, saco);
+const rasgo = new THREE.Line(new THREE.BufferGeometry().setFromPoints([V(.42, .4, .1), V(.46, .6, .15), V(.42, .75, .05), V(.47, .95, .12), V(.42, 1.1, .02)]), new THREE.LineBasicMaterial({ color: 0xff2a2a })); saco.add(rasgo);
+const rolinho = add(new THREE.TorusGeometry(.36, .08, 12, 40), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: .7, roughness: .4 }), 0, .08, 0); rolinho.rotation.x = Math.PI / 2;
+
+// ---------- seringueira ----------
+const arv = grupo(-3.2, 0, -.4);
+add(new THREE.CylinderGeometry(.35, .45, 4, 16), mat(0xffffff, { map: texMadeira("#6a4a2a", 1) }), 0, 2, 0, arv);
+add(new THREE.SphereGeometry(1.6, 16, 12), mat(0x2f7a32), 0, 4.4, 0, arv);
+add(new THREE.TorusGeometry(.38, .03, 6, 30, Math.PI), brilho(0xf8f4e8), 0, 1.6, 0, arv).rotation.set(-.3, 0, -.4);
+const cuia = add(new THREE.CylinderGeometry(.18, .12, .2, 16, 1, true), mat(0x8a5a2a, { side: THREE.DoubleSide }), .25, 1.05, .35, arv);
+const seiva = Array.from({ length: 5 }, () => ({ s: sprite(0xfff8e8, arv), f: rnd() }));
+
+// ---------- fino como um fio de cabelo (x = 100) ----------
+const fino = grupo(100, 0, 0);
+add(new THREE.BoxGeometry(.5, .05, .4), new THREE.MeshPhysicalMaterial({ color: 0xf2d8a6, roughness: .3 }), -.18, 0, 0, fino);
+add(new THREE.CylinderGeometry(.035, .035, .6, 16), mat(0x3a2a1a), .22, .0, 0, fino).rotation.x = Math.PI / 2;
+placa("LÁTEX", "#c08a3a", null, -.18, .16, 0, .32, fino); placa("CABELO", "#3a2a1a", null, .22, .16, 0, .32, fino);
+placa("~0,05 mm", "#111", null, -.18, -.14, 0, .32, fino); placa("~0,07 mm", "#111", null, .22, -.14, 0, .32, fino);
+
+// ---------- fábrica: moldes, tanque e corrente (x = 50) ----------
+const fab = grupo(50, 0, 0);
+add(new THREE.BoxGeometry(6, .9, 1.6), vidro(.35, 0x3a8cff), 0, .45, 0, fab);
+add(new THREE.BoxGeometry(6, .05, 1.6), new THREE.MeshBasicMaterial({ color: 0x5aa0ff, transparent: true, opacity: .5 }), 0, .8, 0, fab);
+add(new THREE.BoxGeometry(7, .08, .08), mat(0x555555), 0, 3.4, 0, fab);
+const moldes = Array.from({ length: 5 }, (_, i) => { const g = grupo(-2.4 + i * 1.2, 1.6, 0, fab); add(new THREE.CylinderGeometry(.03, .03, 1.2, 8), mat(0x666666), 0, 1.2, 0, g); const m = add(new THREE.CapsuleGeometry(.22, .9, 8, 16), mat(0xd0d4da, { metalness: .9, roughness: .2 }), 0, 0, 0, g); const c = add(new THREE.CapsuleGeometry(.235, .9, 8, 16), new THREE.MeshPhysicalMaterial({ color: 0xf2d8a6, transparent: true, opacity: .55, roughness: .3, emissive: 0xff2a2a, emissiveIntensity: 0, depthWrite: false }), 0, 0, 0, g); return { g, c }; });
+const furo = add(new THREE.CircleGeometry(.03, 10), brilho(0x111111), .236, -.2, 0, moldes[3].g); furo.rotation.y = Math.PI / 2;
+const faiscas = Array.from({ length: 20 }, () => ({ s: sprite(0xffe14a, fab), f: rnd(), a: rnd() * 6.28 }));
+const lixo = grupo(3.6, 0, .6, fab); add(new THREE.CylinderGeometry(.45, .38, .9, 20, 1, true), mat(0x444444, { side: THREE.DoubleSide }), 0, .45, 0, lixo); placa("LIXO", "#fff", "#c03030", 0, .5, .46, .5, lixo);
+const rejeitada = add(new THREE.CapsuleGeometry(.235, .9, 8, 16), new THREE.MeshPhysicalMaterial({ color: 0xf2d8a6, transparent: true, opacity: .7, emissive: 0xff2a2a, emissiveIntensity: .6 }), 0, 0, 0, fab);
+
+// ---------- barreira: espermatozoides e vírus (x = 150) ----------
+const bar = grupo(150, 1.6, 0);
+const parede = add(new THREE.BoxGeometry(.18, 3.4, 1.5), new THREE.MeshPhysicalMaterial({ color: 0xf2d8a6, roughness: .35, transparent: true, opacity: .9 }), .8, 0, 0, bar);
+const esp = Array.from({ length: 9 }, (_, i) => { const g = grupo(0, 0, 0, bar); add(new THREE.SphereGeometry(.07, 12, 10), mat(0xffffff), 0, 0, 0, g).scale.set(1.4, 1, 1); const cauda = add(new THREE.CylinderGeometry(.008, .015, .45, 6), mat(0xffffff), -.3, 0, 0, g); cauda.rotation.z = Math.PI / 2; return { g, y: (i / 8 - .5) * 2.6, f: rnd(), cauda }; });
+const virus = Array.from({ length: 10 }, (_, i) => { const g = grupo(0, 0, 0, bar); add(new THREE.IcosahedronGeometry(.05, 1), mat(0xd83a3a), 0, 0, 0, g); for (let k = 0; k < 10; k++) { const sp = add(new THREE.ConeGeometry(.012, .04, 5), mat(0xffb020), 0, 0, 0, g); const d = V(rnd() - .5, rnd() - .5, rnd() - .5).normalize(); sp.position.copy(d.clone().multiplyScalar(.06)); sp.quaternion.setFromUnitVectors(V(0, 1, 0), d); } return { g, y: (i / 9 - .5) * 2.8, f: rnd() }; });
+
+// ---------- óleo x água e carteira (x = 200) ----------
+const oleo = grupo(200, 0, 0);
+const amostra = (x, cor) => add(new THREE.BoxGeometry(.9, .04, .9), new THREE.MeshPhysicalMaterial({ color: cor, roughness: .35 }), x, .3, 0, oleo);
+const amA = amostra(-.6, 0xf2d8a6), amB = amostra(.6, 0xf2d8a6);
+for (const x of [-.6, .6]) add(new THREE.CylinderGeometry(.04, .04, .3, 8), mat(0x888888), x, .14, 0, oleo);
+const gotaO = add(new THREE.SphereGeometry(.09, 16, 12), mat(0xf0c020, { roughness: .1 }), -.6, 1.6, 0, oleo);
+const gotaA = add(new THREE.SphereGeometry(.09, 16, 12), new THREE.MeshPhysicalMaterial({ color: 0x5ab0ff, roughness: .05, transparent: true, opacity: .8 }), .6, 1.6, 0, oleo);
+const buracos = Array.from({ length: 7 }, () => { const b = add(new THREE.CircleGeometry(.04 + rnd() * .04, 12), brilho(0x5a3a1a), -.6 + (rnd() - .5) * .5, .325, (rnd() - .5) * .5, oleo); b.rotation.x = -Math.PI / 2; return b; });
+placa("VASELINA", "#c08a00", null, -.6, 1.15, 0, .6, oleo); placa("ÁGUA", "#2a7ad0", null, .6, 1.15, 0, .6, oleo);
+const okA = placa("OK", "#2aa84a", null, .6, .65, .2, .45, oleo), xO = placa("FRACA", "#d83a3a", null, -.6, .65, .2, .55, oleo);
+oleo.scale.setScalar(.78);
+const carteira = grupo(204, 0, 0);
+add(new THREE.BoxGeometry(1.2, .14, .8), mat(0x6a3a1a, { roughness: .7 }), 0, .1, 0, carteira);
+add(new THREE.BoxGeometry(1.2, .14, .8), mat(0x7a4a2a, { roughness: .7 }), 0, .26, 0, carteira).rotation.z = -.05;
+const calor = Array.from({ length: 16 }, () => ({ s: sprite(0xff7a2a), x: (rnd() - .5) * 1.1, f: rnd() }));
+
+// ---------- envelope + validade ----------
+const env = grupo(.95, .02, .5);
+const mFoil = mat(0xd4af37, { metalness: .9, roughness: .25 });
+add(new THREE.BoxGeometry(.9, .03, .9), mFoil, 0, 0, 0, env);
+add(new THREE.TorusGeometry(.28, .02, 8, 30), mFoil, 0, .02, 0, env).rotation.x = Math.PI / 2;
+const val = placa("VAL 10/2029", "#111", "#ffffff", 0, .03, .3, .55, env); val.rotation.x = -Math.PI / 2;
+env.rotation.y = -.4;
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(1.6, 1.7, 5.8), V(0, .95, 0)], estica: [V(2.2, 3.2, 10.5), V(0, 2.9, 0)], arvore: [V(-1.4, 2.3, 7), V(-3, 1.9, 0)],
+  fino: [V(100.1, .12, 1.15), V(100.02, 0, 0)], fabrica: [V(52.5, 2.6, 8.5), V(50.5, 1.4, 0)], ponta: [V(.9, 2.0, 2.6), V(0, 1.5, 0)],
+  barreira: [V(149.4, 1.6, 4.6), V(150.1, 1.6, 0)], oleo: [V(200, 1.9, 4.8), V(200, .75, 0)], carteira: [V(204.3, 1.2, 3), V(204, .55, 0)],
+  fim: [V(1.8, 1.8, 5.2), V(.4, .85, 0)],
+}, [
+  [0, "geral"], [F(1), "geral"],
+  [C(2), "geral"], [F(2), "geral"],
+  [C(3), "arvore"], [P(3, "estica") - .4, "arvore"], [P(3, "estica") - .4, "geral"], [P(3, "sete") + .2, "estica"], [P(3, "fina") - .4, "estica"], [P(3, "fina") - .4, "fino"], [F(3), "fino"],
+  [C(4), "fabrica"], [F(4), "fabrica"],
+  [C(5), "geral"], [P(5, "reservatorio") - .3, "ponta"], [F(5), "ponta"],
+  [C(6), "barreira"], [F(6), "barreira"],
+  [C(7), "oleo"], [P(7, "carteira") - .5, "oleo"], [P(7, "carteira") - .5, "carteira"], [F(7), "carteira"],
+  [C(8), "geral"], [P(8, "parabens"), "fim"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // saquinho (cenas 1 e 2)
+  const desenrola = prog(t, P(1, "enrolar") - .2, P(1, "saquinho") + .6);
+  rolinho.visible = t < C(3) && desenrola < .98; rolinho.scale.setScalar(1 - .2 * desenrola);
+  saco.visible = t < C(3) && desenrola > .02; saco.scale.set(1, desenrola, 1);
+  rasgo.visible = em(P(2, "rasga") - .2, C(3)); rasgo.scale.setScalar(Math.max(.01, prog(t, P(2, "rasga") - .2, P(2, "rasga") + .3)));
+  const puxa = pulse(t, P(2, "estica") - .3, .9);
+  saco.scale.y = desenrola * (1 + .08 * puxa); sacoA.rotation.y = .1 * puxa;
+  // camisinha de látex
+  cam.visible = (t >= P(3, "estica") - .5 && t < C(4)) || (t >= C(5) && t < C(6)) || t >= C(8);
+  const estica = em(C(3), C(4)) ? Math.sin(clamp(lin(t, P(3, "estica") - .2, P(3, "fina") - .5), 0, 1) * Math.PI) : 0;
+  cam.scale.set(1 - .45 * estica, 1 + 2.6 * estica, 1 - .45 * estica);
+  // seringueira e seiva
+  arv.visible = t < C(4);
+  seiva.forEach((s) => { const k = frac(t * .6 + s.f); s.s.position.set(.25, 1.5 - k * .45, .35); s.s.scale.setScalar(.09); s.s.material.opacity = em(P(3, "seiva") - .6, P(3, "estica")) ? 1 : 0; });
+  // fábrica: os moldes descem na água, a corrente acha o furo
+  const desce = prog(t, P(4, "mergulhada") - .3, P(4, "mergulhada") + .6) * (1 - prog(t, P(4, "lixo") - 1.2, P(4, "lixo") - .6));
+  moldes.forEach((m, i) => { m.g.position.y = 1.6 - .9 * desce; m.c.visible = i !== 3 || t < P(4, "lixo") - .5; m.c.material.emissiveIntensity = i === 3 && em(P(4, "passa") - .3, P(4, "lixo")) ? .9 + .3 * Math.sin(t * 20) : 0; });
+  furo.visible = em(P(4, "furinho") - .3, P(4, "lixo") - .5);
+  faiscas.forEach((f) => { const k = frac(t * 3 + f.f); f.s.position.set(-2.4 + 3 * 1.2 + Math.cos(f.a) * (.25 + k * .3), .75 + Math.sin(f.a) * .2 + k * .1, .3); f.s.scale.setScalar(.12 * (1 - k)); f.s.material.opacity = em(P(4, "passa") - .3, P(4, "lixo") - .6) ? 1 : 0; });
+  const voa = prog(t, P(4, "lixo") - .5, P(4, "lixo") + .5);
+  rejeitada.visible = em(P(4, "lixo") - .5, C(5)); rejeitada.position.set(1.2 + 2.4 * voa, 1.6 + .9 * Math.sin(voa * Math.PI) - 1.1 * voa, .6 * voa); rejeitada.rotation.z = -voa * 2.5;
+  // reservatório
+  const res = em(P(5, "reservatorio") - .3, F(5));
+  ponta.material.opacity = res ? .35 + .25 * Math.sin(t * 6) : 0;
+  const enche = prog(t, P(5, "guarda") - .2, P(5, "guarda") + .8);
+  semen.forEach((s) => { s.s.position.set(s.x, s.y, s.z); s.s.scale.setScalar(.05); s.s.material.opacity = em(P(5, "guarda") - .2, C(6)) ? enche * .9 : 0; });
+  // barreira
+  esp.forEach((e) => { const k = frac(t * .35 + e.f); const x = -2.2 + 2.9 * Math.min(k * 1.4, 1) - (k > .72 ? (k - .72) * 1.2 : 0); e.g.position.set(x, e.y + Math.sin(t * 3 + e.f * 9) * .05, 0); e.cauda.rotation.y = Math.sin(t * 18 + e.f * 9) * .4; e.g.visible = t < P(6, "virus") + .5 || true; });
+  virus.forEach((v) => { const k = frac(t * .5 + v.f); const x = -2.2 + 2.9 * Math.min(k * 1.3, 1) - (k > .77 ? (k - .77) * 1.5 : 0); v.g.position.set(x, v.y, .3); v.g.rotation.set(t, t * 1.3, 0); v.g.visible = t > P(6, "virus") - .3; });
+  // óleo x água
+  const caiO = prog(t, P(7, "vaselina") - .3, P(7, "vaselina") + .3), caiA = prog(t, P(7, "agua") - .4, P(7, "agua") + .2);
+  gotaO.position.y = 1.6 - 1.28 * caiO; gotaO.scale.set(1 + caiO * 1.5, 1 - caiO * .7, 1 + caiO * 1.5);
+  gotaA.position.y = 1.6 - 1.28 * caiA; gotaA.scale.set(1 + caiA * 1.5, 1 - caiA * .7, 1 + caiA * 1.5);
+  const fraca = prog(t, P(7, "enfraquecem") - .3, P(7, "borracha") + .3);
+  buracos.forEach((b, i) => { b.visible = fraca > i / 7; });
+  amA.material.color.set(0xf2d8a6).lerp(new THREE.Color(0xb08a50), fraca);
+  xO.visible = fraca > .5; okA.visible = t > P(7, "agua") + .2;
+  calor.forEach((c) => { const k = frac(t * .7 + c.f); c.s.position.set(204 + c.x, .4 + k * 1.2, .2); c.s.scale.setScalar(.12 + k * .1); c.s.material.opacity = em(P(7, "carteira") - .5, F(7) + .3) ? .7 * (1 - k) : 0; });
+  // fim
+  env.visible = t > P(8, "envelope") - .3; val.visible = t > P(8, "validade") - .3;
+
+  K.cartoes(t, [
+    [P(2, "rasga") - .3, P(2, "estica") - .3, "RASGA", "#ff4a3a"],
+    [P(2, "estica") - .3, P(2, "ninguem") - .2, "NÃO ESTICA", "#ff4a3a"],
+    [P(3, "latex") - .3, P(3, "estica") - .5, "LÁTEX = SEIVA DA SERINGUEIRA", "#ffffff"],
+    [P(3, "sete") - .3, P(3, "fina") - .5, "ESTICA ~7X", "#3aff7a"],
+    [P(3, "fina") - .4, F(3), "+ FINA QUE UM FIO DE CABELO", "#ffd23a"],
+    [P(4, "corrente") - .3, P(4, "furinho") - .3, "TESTE ELÉTRICO", "#ffd23a"],
+    [P(4, "passa") - .3, F(4), "FURO = REPROVADA", "#ff4a3a"],
+    [P(5, "reservatorio") - .3, F(5), "RESERVATÓRIO", "#ffd23a"],
+    [P(6, "espermatozoides") - .3, P(6, "virus") - .3, "NÃO PASSA", "#3aff7a"],
+    [P(6, "virus") - .3, P(6, "latex") - .3, "NEM O HIV", "#3aff7a"],
+    [P(6, "poros") - .4, F(6), "SEM POROS", "#ffffff"],
+    [P(7, "oleo") - .3, P(7, "vaselina") - .3, "ÓLEO E CALOR", "#ff4a3a"],
+    [P(7, "lubrificante") - .3, P(7, "carteira") - .5, "LUBRIFICANTE À BASE DE ÁGUA", "#2a8cff"],
+    [P(7, "carteira") - .5, F(7), "CARTEIRA = CALOR", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>
