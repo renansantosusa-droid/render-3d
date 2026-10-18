@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("radar", { fundo: 0x14223a, seed: 8181 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texRuido, grade, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+for (let i = 0; i < 120; i++) { const s = sprite(0xffffff); const a = rnd() * 6.28, e = .15 + rnd() * 1.2; s.position.set(Math.cos(a) * 120 * Math.cos(e), 120 * Math.sin(e), Math.sin(a) * 120 * Math.cos(e) - 40); s.scale.setScalar(.6 + rnd() * .6); s.material.opacity = .8; }
+
+// ---------- eco: pessoa gritando pro paredão (x = -200) ----------
+const eco = grupo(-200, 0, 0);
+add(new THREE.PlaneGeometry(40, 40), mat(0x2a3a2a, { roughness: 1 }), 0, 0, 0, eco).rotation.x = -Math.PI / 2;
+add(new THREE.BoxGeometry(14, 5, 2), mat(0xffffff, { map: texRuido("#6a6a72", 60, 3), roughness: 1 }), 0, 2.5, -6, eco);
+const pessoa = grupo(0, 0, 0, eco);
+add(new THREE.CapsuleGeometry(.2, .6, 8, 14), mat(0xff6a1a), 0, .95, 0, pessoa);
+add(new THREE.SphereGeometry(.16, 16, 12), mat(0xe0a07a), 0, 1.55, 0, pessoa);
+add(new THREE.CircleGeometry(.05, 12), brilho(0x331111), 0, 1.5, -.16, pessoa).rotation.y = Math.PI;
+function arcos(pai, n, cor, sentido) { return Array.from({ length: n }, () => { const g = grupo(0, 0, 0, pai); g.rotation.y = sentido * Math.PI / 2; const m = add(new THREE.TorusGeometry(1, .03, 6, 32, Math.PI), new THREE.MeshBasicMaterial({ color: cor, transparent: true, opacity: 0 }), 0, 0, 0, g); m.rotation.z = -Math.PI / 2; return g; }); }
+const gritos = arcos(eco, 4, 0xffffff, 1), ecos = arcos(eco, 4, 0x9fd0ff, -1);
+const aviaoLonge = add(new THREE.BoxGeometry(.5, .08, .1), brilho(0xff3a3a), -1.5, 13, -30, eco);
+
+// ---------- radar (origem) ----------
+add(new THREE.PlaneGeometry(400, 400), mat(0x1f2f22, { roughness: 1 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.CylinderGeometry(.5, .9, 4, 12), mat(0xd8d8d8), 0, 2, 0);
+add(new THREE.CylinderGeometry(1.1, 1.1, .3, 16), mat(0x888888), 0, 4.15, 0);
+const antena = grupo(0, 4.7, 0);
+const prato = add(new THREE.CylinderGeometry(2.2, 2.2, .9, 32, 1, true, -.6, 1.2), mat(0xeeeeee, { side: THREE.DoubleSide, metalness: .4, roughness: .3 }), 0, .3, 1.6, antena); prato.rotation.y = Math.PI;
+add(new THREE.BoxGeometry(.2, .9, .2), mat(0x666666), 0, -.05, 0, antena);
+const feixe = add(new THREE.ConeGeometry(4, 60, 24, 1, true), new THREE.MeshBasicMaterial({ color: 0x3aff7a, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), 0, .3, -30, antena); feixe.rotation.x = Math.PI / 2;
+const PA = V(0, 5, 0);
+// avião alvo
+const alvoAv = grupo(-8, 12, -35);
+add(new THREE.CapsuleGeometry(.35, 2.6, 6, 14), mat(0xf2f2f2, { emissive: 0x3aff7a, emissiveIntensity: 0 }), 0, 0, 0, alvoAv).rotation.x = Math.PI / 2;
+add(new THREE.BoxGeometry(4, .08, .8), mat(0xdddddd), 0, 0, 0, alvoAv);
+add(new THREE.BoxGeometry(.06, .7, .5), mat(0xdddddd), 0, .35, 1.4, alvoAv);
+const luzAv = [add(new THREE.SphereGeometry(.08, 8, 6), brilho(0xff3a3a), -2, 0, 0, alvoAv), add(new THREE.SphereGeometry(.08, 8, 6), brilho(0x3aff7a), 2, 0, 0, alvoAv)];
+const PP0 = V(-8, 12, -35);
+const bearing = Math.atan2(8, 35), elev = Math.atan2(7, 36);
+// pulso (pacote de luz) e eco
+const pulsoS = Array.from({ length: 8 }, () => sprite(0x3aff7a));
+const ecoS = Array.from({ length: 5 }, () => sprite(0xffd23a));
+// anéis do Doppler
+const anel = (cor) => { const m = add(new THREE.TorusGeometry(.7, .05, 6, 32), new THREE.MeshBasicMaterial({ color: cor, transparent: true, opacity: 0 }), 0, 0, 0); return m; };
+const ida = Array.from({ length: 6 }, () => anel(0x2a8cff)), volta = Array.from({ length: 10 }, () => anel(0xff4a3a));
+
+// ---------- sala de controle (x = 200) ----------
+const sala = grupo(200, 0, 0);
+add(new THREE.BoxGeometry(12, .2, 10), mat(0x3a3d44), 0, -.1, 0, sala);
+add(new THREE.BoxGeometry(12, 6, .2), mat(0x2a2d34), 0, 3, -1.5, sala);
+add(new THREE.BoxGeometry(3, .9, 1.2), mat(0x4a4d54), 0, .45, .2, sala);
+add(new THREE.BoxGeometry(1.7, 1.7, .4), mat(0x222222), 0, 1.8, -.3, sala);
+const cv = document.createElement("canvas"); cv.width = cv.height = 512; const g2 = cv.getContext("2d");
+const texTela = new THREE.CanvasTexture(cv); texTela.colorSpace = THREE.SRGBColorSpace;
+add(new THREE.PlaneGeometry(1.5, 1.5), new THREE.MeshBasicMaterial({ map: texTela }), 0, 1.8, -.09, sala);
+const operador = grupo(.1, 0, 1.6, sala);
+add(new THREE.CapsuleGeometry(.25, .6, 8, 14), mat(0x2e6fd0), 0, 1.05, 0, operador);
+add(new THREE.SphereGeometry(.2, 16, 12), mat(0xe0a07a), 0, 1.7, 0, operador);
+const fone = add(new THREE.TorusGeometry(.22, .035, 8, 24, Math.PI), mat(0x111111), 0, 1.72, 0, operador); fone.rotation.y = Math.PI / 2;
+const giroflex = grupo(1.8, 4.4, -1.2, sala);
+add(new THREE.CylinderGeometry(.2, .2, .3, 16), mat(0xff2a2a, { emissive: 0xff2a2a, emissiveIntensity: 0, transparent: true, opacity: .9 }), 0, 0, 0, giroflex);
+const luzAlarme = new THREE.PointLight(0xff2a2a, 0, 8); luzAlarme.position.set(1.8, 4.2, -.8); sala.add(luzAlarme);
+const blips = [[bearing, .62], [2.3, .4], [4.1, .78], [5.2, .3]];
+function desenhaTela(th, acesa) {
+  g2.fillStyle = "#031a08"; g2.fillRect(0, 0, 512, 512);
+  g2.strokeStyle = "rgba(58,255,122,.35)"; g2.lineWidth = 2;
+  for (const r of [60, 120, 180, 240]) { g2.beginPath(); g2.arc(256, 256, r, 0, 6.29); g2.stroke(); }
+  g2.beginPath(); g2.moveTo(16, 256); g2.lineTo(496, 256); g2.moveTo(256, 16); g2.lineTo(256, 496); g2.stroke();
+  if (!acesa) { texTela.needsUpdate = true; return; }
+  for (let k = 0; k < 30; k++) { const a = th - k * .02; g2.strokeStyle = `rgba(58,255,122,${.5 * (1 - k / 30)})`; g2.lineWidth = 6; g2.beginPath(); g2.moveTo(256, 256); g2.lineTo(256 - Math.sin(a) * 240, 256 - Math.cos(a) * 240); g2.stroke(); }
+  for (const [b, r] of blips) { const dl = ((th - b) % 6.283 + 6.283) % 6.283; const al = Math.exp(-dl * .8); g2.fillStyle = `rgba(160,255,180,${al})`; g2.beginPath(); g2.arc(256 - Math.sin(b) * r * 240, 256 - Math.cos(b) * r * 240, 12, 0, 6.29); g2.fill(); }
+  texTela.needsUpdate = true;
+}
+
+// ---------- câmera ----------
+K.camera_({
+  eco: [V(-192.5, 4.5, 9.5), V(-200, 2.6, -3)], longe: [V(-196, 2, 8), V(-200, 9, -12)],
+  radar: [V(6, 5, 13), V(-2.5, 7, -14)], antena: [V(5, 6.2, 6.5), V(0, 5, 0)], aviao: [V(-3, 14.5, -25), V(-8, 12, -35)],
+  alto: [V(7, 17, 17), V(-3, 5.2, -13)], tela: [V(200, 1.8, 2.2), V(200, 1.8, -.1)], sala: [V(203.6, 2.8, 6.5), V(200, 1.9, -.3)],
+}, [
+  [0, "eco"], [F(1), "eco"],
+  [C(2), "eco"], [P(2, "aviao") - .5, "longe"], [F(2), "longe"],
+  [C(3), "radar"], [P(3, "antena") - .4, "antena"], [F(3), "antena"],
+  [C(4), "radar"], [P(4, "bate") + .3, "aviao"], [P(4, "radar") - .2, "radar"], [F(4), "radar"],
+  [C(5), "radar"], [P(5, "girar") - .3, "alto"], [F(5), "alto"],
+  [C(6), "tela"], [F(6), "tela"],
+  [C(7), "radar"], [F(7), "radar"],
+  [C(8), "sala"], [T, "sala"],
+]);
+
+const tGira = () => P(5, "girar") - .3;
+function anguloAntena(t) { if (t < tGira()) return bearing; return bearing + 2.2 * (t - tGira()); }
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // eco: gritos e ecos
+  const parede = 5.8;
+  gritos.forEach((g, i) => { const t0 = P(1, "gritar") - .2 + i * .25; const k = (t - t0) / 1.6; const lento = em(C(2), C(3)); const kk = lento ? frac((t - C(2)) * .25 + i / 4) : k; const r = .3 + kk * parede; g.position.set(0, 1.5, 0); g.scale.setScalar(r); const vivo = lento ? 1 - kk * 1.6 : 1; g.children[0].material.opacity = (t < C(3) && kk > 0 && kk < 1 && (lento || t < F(1))) ? Math.max(0, vivo) * .9 : 0; });
+  ecos.forEach((g, i) => { const t0 = P(1, "eco") - .3 + i * .25; const k = (t - t0) / 1.6; g.position.set(0, 1.5, -parede); g.scale.setScalar(.3 + k * (parede - .3)); g.children[0].material.opacity = em(C(1), C(2)) && k > 0 && k < 1 ? .6 * (1 - k) + .2 : 0; });
+  aviaoLonge.visible = em(P(2, "aviao") - .6, C(3));
+  // antena
+  const th = anguloAntena(t);
+  antena.rotation.set(0, th, 0, "YXZ"); antena.rotation.x = elev;
+  feixe.material.opacity = em(tGira(), C(6)) ? .35 : 0;
+  // avião: no Doppler ele vem na direção do radar
+  const aprox = em(C(7), C(8)) ? prog(t, C(7), F(7)) : 0;
+  const PP = PP0.clone().lerp(V(-4, 9, -18), aprox);
+  alvoAv.position.copy(PP); alvoAv.rotation.y = Math.atan2(PP.x, PP.z) + Math.PI;
+  luzAv.forEach((l, i) => { l.visible = frac(t * 1.2 + i * .5) < .2; });
+  // pulso e eco (cenas 3 e 4; e a cada passada do feixe na cena 5)
+  let tp = -9;
+  if (em(P(3, "pulso") - .3, C(5))) tp = P(3, "pulso") - .3;
+  if (t >= C(4) && t < C(5)) tp = P(4, "pulso") - 1.0;
+  const ida01 = (t - tp) / 1.0, volta01 = (t - tp - 1.0) / 1.4;
+  pulsoS.forEach((s, i) => { const k = ida01 - i * .015; s.position.copy(PA).lerp(PP, clamp(k, 0, 1)); s.scale.setScalar(1.2 - i * .1); s.material.opacity = k > 0 && k < 1 ? 1 : 0; });
+  ecoS.forEach((s, i) => { const k = volta01 - i * .02; s.position.copy(PP).lerp(PA, clamp(k, 0, 1)); s.scale.setScalar(.7 - i * .08); s.material.opacity = k > 0 && k < 1 && t >= C(4) ? .9 : 0; });
+  // cena 5: o feixe passa no avião e ele acende
+  const dl = ((th - bearing) % 6.283 + 6.283) % 6.283;
+  alvoAv.children[0].material.emissiveIntensity = em(tGira(), C(6)) ? Math.exp(-dl * 3) * 2 : (ida01 > .95 && ida01 < 1.4 ? 1.5 : 0);
+  // Doppler: ida espaçada, volta apertada
+  const dir = PP.clone().sub(PA), L = dir.length(); dir.normalize();
+  const dop = em(P(7, "direcao") - .5, F(7));
+  ida.forEach((m, i) => { const k = frac(t * .5 + i / ida.length); m.position.copy(PA).addScaledVector(dir, k * L); m.lookAt(PP); m.material.opacity = dop ? .9 : 0; });
+  volta.forEach((m, i) => { const k = frac(t * .5 + i / volta.length); m.position.copy(PP).addScaledVector(dir, -k * L); m.lookAt(PA); m.material.opacity = dop && t > P(7, "volta") - .3 ? .9 : 0; });
+  // sala e tela
+  desenhaTela(t >= C(6) ? 2.2 * (t - tGira()) + bearing : th, true);
+  operador.visible = t > P(8, "operador") - .3; fone.visible = t > P(8, "fone") - .3;
+  const alarme = t > P(8, "alarme") - .2;
+  giroflex.children[0].material.emissiveIntensity = alarme ? 2 : 0; luzAlarme.intensity = alarme ? 6 + 4 * Math.sin(t * 10) : 0;
+
+  K.cartoes(t, [
+    [P(2, "lento") - .3, P(2, "metros") - .2, "SOM = LENTO", "#ff4a3a"],
+    [P(2, "metros") - .2, P(2, "aviao") - .5, "MORRE LOGO", "#ff4a3a"],
+    [P(2, "cem") - .4, F(2), "100 KM?", "#ff4a3a"],
+    [P(3, "radio") - .3, P(3, "antena") - .4, "ONDA DE RÁDIO = LUZ", "#3aff7a"],
+    [P(3, "pulso") - .3, P(3, "escutando") - .3, "PULSO", "#3aff7a"],
+    [P(3, "escutando") - .3, F(3), "ESCUTANDO...", "#ffffff"],
+    [P(4, "volta") - .3, P(4, "mede") - .3, "ECO", "#ffd23a"],
+    [P(4, "mede") - .3, P(4, "milionesimo") - .3, "TEMPO = DISTÂNCIA", "#ffd23a"],
+    [P(4, "milionesimo") - .3, F(4), "1 µs = 150 m", "#ffd23a"],
+    [P(5, "direcao") - .4, P(5, "girar") - .3, "E A DIREÇÃO?", "#ff4a3a"],
+    [P(5, "estreito") - .5, F(5), "FEIXE QUE GIRA", "#3aff7a"],
+    [P(7, "apertada") - .5, P(7, "truque") - .5, "ONDA APERTADA = VELOCIDADE", "#ff4a3a"],
+    [P(7, "truque") - .5, F(7), "PISTOLA DE RADAR", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>

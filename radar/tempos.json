@@ -1,0 +1,825 @@
+{
+ "total": 69.93,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.54,
+   "texto": "Se você gritar no escuro e esperar o eco, terá um radar.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "gritar",
+     "t": 0.704
+    },
+    {
+     "w": "no",
+     "t": 1.105
+    },
+    {
+     "w": "escuro",
+     "t": 1.188
+    },
+    {
+     "w": "e",
+     "t": 1.577
+    },
+    {
+     "w": "esperar",
+     "t": 1.6
+    },
+    {
+     "w": "o",
+     "t": 2.013
+    },
+    {
+     "w": "eco",
+     "t": 2.131
+    },
+    {
+     "w": "terá",
+     "t": 2.567
+    },
+    {
+     "w": "um",
+     "t": 2.803
+    },
+    {
+     "w": "radar",
+     "t": 2.921
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.69,
+   "fim": 10.36,
+   "texto": "Mas o som é lento. Ele morre em poucos metros. E não acha um avião a cem quilômetros.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.737
+    },
+    {
+     "w": "o",
+     "t": 3.973
+    },
+    {
+     "w": "som",
+     "t": 4.115
+    },
+    {
+     "w": "é",
+     "t": 4.362
+    },
+    {
+     "w": "lento",
+     "t": 4.433
+    },
+    {
+     "w": "Ele",
+     "t": 5.659
+    },
+    {
+     "w": "morre",
+     "t": 5.86
+    },
+    {
+     "w": "em",
+     "t": 6.178
+    },
+    {
+     "w": "poucos",
+     "t": 6.284
+    },
+    {
+     "w": "metros",
+     "t": 6.673
+    },
+    {
+     "w": "E",
+     "t": 7.994
+    },
+    {
+     "w": "não",
+     "t": 8.112
+    },
+    {
+     "w": "acha",
+     "t": 8.372
+    },
+    {
+     "w": "um",
+     "t": 8.643
+    },
+    {
+     "w": "avião",
+     "t": 8.749
+    },
+    {
+     "w": "a",
+     "t": 9.115
+    },
+    {
+     "w": "cem",
+     "t": 9.174
+    },
+    {
+     "w": "quilômetros",
+     "t": 9.433
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.51,
+   "fim": 19.49,
+   "texto": "Então, você troca o grito por ondas de rádio, que viajam na velocidade da luz. Uma antena manda um pulso curtinho e fica quieta, escutando.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.557
+    },
+    {
+     "w": "você",
+     "t": 11.324
+    },
+    {
+     "w": "troca",
+     "t": 11.595
+    },
+    {
+     "w": "o",
+     "t": 11.866
+    },
+    {
+     "w": "grito",
+     "t": 11.902
+    },
+    {
+     "w": "por",
+     "t": 12.22
+    },
+    {
+     "w": "ondas",
+     "t": 12.385
+    },
+    {
+     "w": "de",
+     "t": 12.692
+    },
+    {
+     "w": "rádio",
+     "t": 12.786
+    },
+    {
+     "w": "que",
+     "t": 13.435
+    },
+    {
+     "w": "viajam",
+     "t": 13.588
+    },
+    {
+     "w": "na",
+     "t": 14.06
+    },
+    {
+     "w": "velocidade",
+     "t": 14.166
+    },
+    {
+     "w": "da",
+     "t": 14.767
+    },
+    {
+     "w": "luz",
+     "t": 14.873
+    },
+    {
+     "w": "Uma",
+     "t": 16.064
+    },
+    {
+     "w": "antena",
+     "t": 16.241
+    },
+    {
+     "w": "manda",
+     "t": 16.595
+    },
+    {
+     "w": "um",
+     "t": 16.831
+    },
+    {
+     "w": "pulso",
+     "t": 16.937
+    },
+    {
+     "w": "curtinho",
+     "t": 17.232
+    },
+    {
+     "w": "e",
+     "t": 17.668
+    },
+    {
+     "w": "fica",
+     "t": 17.727
+    },
+    {
+     "w": "quieta",
+     "t": 17.998
+    },
+    {
+     "w": "escutando",
+     "t": 18.635
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.64,
+   "fim": 31.42,
+   "texto": "Quando o pulso bate num avião, um pedacinho volta. O radar mede quanto tempo ele levou pra ir e voltar, e calcula a distância. Cada milionésimo de segundo são cento e cinquenta metros.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 19.687
+    },
+    {
+     "w": "o",
+     "t": 19.923
+    },
+    {
+     "w": "pulso",
+     "t": 19.97
+    },
+    {
+     "w": "bate",
+     "t": 20.312
+    },
+    {
+     "w": "num",
+     "t": 20.631
+    },
+    {
+     "w": "avião",
+     "t": 20.772
+    },
+    {
+     "w": "um",
+     "t": 21.373
+    },
+    {
+     "w": "pedacinho",
+     "t": 21.491
+    },
+    {
+     "w": "volta",
+     "t": 22.034
+    },
+    {
+     "w": "O",
+     "t": 23.213
+    },
+    {
+     "w": "radar",
+     "t": 23.331
+    },
+    {
+     "w": "mede",
+     "t": 23.673
+    },
+    {
+     "w": "quanto",
+     "t": 24.027
+    },
+    {
+     "w": "tempo",
+     "t": 24.31
+    },
+    {
+     "w": "ele",
+     "t": 24.64
+    },
+    {
+     "w": "levou",
+     "t": 24.758
+    },
+    {
+     "w": "pra",
+     "t": 25.053
+    },
+    {
+     "w": "ir",
+     "t": 25.241
+    },
+    {
+     "w": "e",
+     "t": 25.407
+    },
+    {
+     "w": "voltar",
+     "t": 25.454
+    },
+    {
+     "w": "e",
+     "t": 26.161
+    },
+    {
+     "w": "calcula",
+     "t": 26.232
+    },
+    {
+     "w": "a",
+     "t": 26.68
+    },
+    {
+     "w": "distância",
+     "t": 26.727
+    },
+    {
+     "w": "Cada",
+     "t": 28.131
+    },
+    {
+     "w": "milionésimo",
+     "t": 28.378
+    },
+    {
+     "w": "de",
+     "t": 28.991
+    },
+    {
+     "w": "segundo",
+     "t": 29.086
+    },
+    {
+     "w": "são",
+     "t": 29.557
+    },
+    {
+     "w": "cento",
+     "t": 29.793
+    },
+    {
+     "w": "e",
+     "t": 30.159
+    },
+    {
+     "w": "cinquenta",
+     "t": 30.206
+    },
+    {
+     "w": "metros",
+     "t": 30.69
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.57,
+   "fim": 43.7,
+   "texto": "Mas ele só sabe a distância, não a direção. Então, você faz a antena girar, mandando o pulso num feixe estreito. Pra onde ela apontava quando o eco voltou, é lá que está o avião.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 31.617
+    },
+    {
+     "w": "ele",
+     "t": 31.829
+    },
+    {
+     "w": "só",
+     "t": 32.148
+    },
+    {
+     "w": "sabe",
+     "t": 32.313
+    },
+    {
+     "w": "a",
+     "t": 32.62
+    },
+    {
+     "w": "distância",
+     "t": 32.678
+    },
+    {
+     "w": "não",
+     "t": 33.469
+    },
+    {
+     "w": "a",
+     "t": 33.752
+    },
+    {
+     "w": "direção",
+     "t": 33.811
+    },
+    {
+     "w": "Então",
+     "t": 35.155
+    },
+    {
+     "w": "você",
+     "t": 35.921
+    },
+    {
+     "w": "faz",
+     "t": 36.181
+    },
+    {
+     "w": "a",
+     "t": 36.346
+    },
+    {
+     "w": "antena",
+     "t": 36.452
+    },
+    {
+     "w": "girar",
+     "t": 36.818
+    },
+    {
+     "w": "mandando",
+     "t": 37.431
+    },
+    {
+     "w": "o",
+     "t": 37.855
+    },
+    {
+     "w": "pulso",
+     "t": 37.914
+    },
+    {
+     "w": "num",
+     "t": 38.233
+    },
+    {
+     "w": "feixe",
+     "t": 38.41
+    },
+    {
+     "w": "estreito",
+     "t": 38.669
+    },
+    {
+     "w": "Pra",
+     "t": 39.895
+    },
+    {
+     "w": "onde",
+     "t": 40.131
+    },
+    {
+     "w": "ela",
+     "t": 40.438
+    },
+    {
+     "w": "apontava",
+     "t": 40.568
+    },
+    {
+     "w": "quando",
+     "t": 41.087
+    },
+    {
+     "w": "o",
+     "t": 41.311
+    },
+    {
+     "w": "eco",
+     "t": 41.358
+    },
+    {
+     "w": "voltou",
+     "t": 41.546
+    },
+    {
+     "w": "é",
+     "t": 42.254
+    },
+    {
+     "w": "lá",
+     "t": 42.36
+    },
+    {
+     "w": "que",
+     "t": 42.584
+    },
+    {
+     "w": "está",
+     "t": 42.69
+    },
+    {
+     "w": "o",
+     "t": 42.938
+    },
+    {
+     "w": "avião",
+     "t": 43.009
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 43.85,
+   "fim": 50.61,
+   "texto": "E aquele risco que gira na tela verde? É a antena. Cada volta acende os pontos de novo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 43.897
+    },
+    {
+     "w": "aquele",
+     "t": 44.027
+    },
+    {
+     "w": "risco",
+     "t": 44.381
+    },
+    {
+     "w": "que",
+     "t": 44.77
+    },
+    {
+     "w": "gira",
+     "t": 44.9
+    },
+    {
+     "w": "na",
+     "t": 45.206
+    },
+    {
+     "w": "tela",
+     "t": 45.348
+    },
+    {
+     "w": "verde",
+     "t": 45.619
+    },
+    {
+     "w": "É",
+     "t": 46.845
+    },
+    {
+     "w": "a",
+     "t": 47.01
+    },
+    {
+     "w": "antena",
+     "t": 47.069
+    },
+    {
+     "w": "Cada",
+     "t": 48.414
+    },
+    {
+     "w": "volta",
+     "t": 48.673
+    },
+    {
+     "w": "acende",
+     "t": 49.015
+    },
+    {
+     "w": "os",
+     "t": 49.357
+    },
+    {
+     "w": "pontos",
+     "t": 49.487
+    },
+    {
+     "w": "de",
+     "t": 49.9
+    },
+    {
+     "w": "novo",
+     "t": 50.006
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.76,
+   "fim": 62.77,
+   "texto": "Mas e a velocidade? Quando o avião vem na sua direção, a onda volta um pouquinho mais apertada. Esse aperto diz a velocidade. É o mesmo truque da pistola de radar da polícia.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 50.807
+    },
+    {
+     "w": "e",
+     "t": 51.031
+    },
+    {
+     "w": "a",
+     "t": 51.173
+    },
+    {
+     "w": "velocidade",
+     "t": 51.244
+    },
+    {
+     "w": "Quando",
+     "t": 52.824
+    },
+    {
+     "w": "o",
+     "t": 53.071
+    },
+    {
+     "w": "avião",
+     "t": 53.107
+    },
+    {
+     "w": "vem",
+     "t": 53.484
+    },
+    {
+     "w": "na",
+     "t": 53.637
+    },
+    {
+     "w": "sua",
+     "t": 53.744
+    },
+    {
+     "w": "direção",
+     "t": 53.944
+    },
+    {
+     "w": "a",
+     "t": 54.699
+    },
+    {
+     "w": "onda",
+     "t": 54.781
+    },
+    {
+     "w": "volta",
+     "t": 55.111
+    },
+    {
+     "w": "um",
+     "t": 55.418
+    },
+    {
+     "w": "pouquinho",
+     "t": 55.501
+    },
+    {
+     "w": "mais",
+     "t": 55.925
+    },
+    {
+     "w": "apertada",
+     "t": 56.137
+    },
+    {
+     "w": "Esse",
+     "t": 57.576
+    },
+    {
+     "w": "aperto",
+     "t": 57.835
+    },
+    {
+     "w": "diz",
+     "t": 58.295
+    },
+    {
+     "w": "a",
+     "t": 58.46
+    },
+    {
+     "w": "velocidade",
+     "t": 58.578
+    },
+    {
+     "w": "É",
+     "t": 60.123
+    },
+    {
+     "w": "o",
+     "t": 60.253
+    },
+    {
+     "w": "mesmo",
+     "t": 60.324
+    },
+    {
+     "w": "truque",
+     "t": 60.689
+    },
+    {
+     "w": "da",
+     "t": 60.972
+    },
+    {
+     "w": "pistola",
+     "t": 61.067
+    },
+    {
+     "w": "de",
+     "t": 61.515
+    },
+    {
+     "w": "radar",
+     "t": 61.621
+    },
+    {
+     "w": "da",
+     "t": 61.939
+    },
+    {
+     "w": "polícia",
+     "t": 62.057
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.92,
+   "fim": 69.33,
+   "texto": "Coloque uma tela, um alarme e um operador de fone. Parabéns, você construiu um radar.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 62.967
+    },
+    {
+     "w": "uma",
+     "t": 63.474
+    },
+    {
+     "w": "tela",
+     "t": 63.675
+    },
+    {
+     "w": "um",
+     "t": 64.276
+    },
+    {
+     "w": "alarme",
+     "t": 64.465
+    },
+    {
+     "w": "e",
+     "t": 64.866
+    },
+    {
+     "w": "um",
+     "t": 64.925
+    },
+    {
+     "w": "operador",
+     "t": 65.043
+    },
+    {
+     "w": "de",
+     "t": 65.573
+    },
+    {
+     "w": "fone",
+     "t": 65.691
+    },
+    {
+     "w": "Parabéns",
+     "t": 66.906
+    },
+    {
+     "w": "você",
+     "t": 67.79
+    },
+    {
+     "w": "construiu",
+     "t": 68.097
+    },
+    {
+     "w": "um",
+     "t": 68.592
+    },
+    {
+     "w": "radar",
+     "t": 68.71
+    }
+   ]
+  }
+ ]
+}
