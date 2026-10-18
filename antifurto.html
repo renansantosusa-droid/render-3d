@@ -1,0 +1,128 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("antifurto", { fundo: 0xf2ece4, seed: 8282 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texMadeira, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd } = K;
+
+// ---------- loja ----------
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: grade("#e8e2d8", "#d2cabc", 128, 12), roughness: .35 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(12, 5), mat(0xf8f4ee), 0, 2.5, -3);
+for (const x of [-2.4, 2.4]) { add(new THREE.CylinderGeometry(.02, .02, 2, 8), mat(0x999999, { metalness: .8 }), x, 1.6, -1.5).rotation.x = Math.PI / 2; for (let i = 0; i < 7; i++) add(new THREE.BoxGeometry(.5, .7, .05), mat([0xe0405a, 0x2e6fd0, 0x3ad08a, 0xf2b42a, 0x9a5ad0, 0xffffff, 0x222222][i]), x, 1.2, -2.4 + i * .3); }
+const caixaLoja = add(new THREE.BoxGeometry(1.4, 1, .6), mat(0xffffff, { map: texMadeira("#c99a62") }), 2.6, .5, 1.2);
+const padDesat = add(new THREE.BoxGeometry(.4, .03, .3), mat(0x333333, { emissive: 0x5ab8ff, emissiveIntensity: 0 }), 2.4, 1.02, 1.2);
+const imaCaixa = add(new THREE.CylinderGeometry(.1, .1, .08, 20), mat(0x2e6fd0, { metalness: .6 }), 2.95, 1.04, 1.2);
+// antenas da porta
+const antenas = [-.8, .8].map((x) => { const g = grupo(x, 0, 3); add(new THREE.BoxGeometry(.08, 1.6, .5), vidro(.5, 0xdde6ee), 0, .8, 0, g); const l = add(new THREE.BoxGeometry(.1, 1.5, .04), mat(0xcccccc, { emissive: 0xff2020, emissiveIntensity: 0 }), 0, .8, .26, g); return { g, l }; });
+const ondas = [-1, 1].flatMap((s) => [0, 1, 2].map(() => { const o = add(new THREE.TorusGeometry(.3, .012, 6, 30, Math.PI), new THREE.MeshBasicMaterial({ color: 0x5ad8ff, transparent: true, opacity: 0 }), s * .8, .9, 3); o.rotation.set(Math.PI / 2, 0, s > 0 ? Math.PI / 2 : -Math.PI / 2); o.userData.s = s; return o; }));
+const resposta = [0, 1, 2].map(() => { const o = add(new THREE.TorusGeometry(.1, .01, 6, 30), new THREE.MeshBasicMaterial({ color: 0xffd23a, transparent: true, opacity: 0 }), 0, 1.0, 3); o.rotation.y = Math.PI / 2; return o; });
+// pessoas
+const pessoa = (cor) => { const g = grupo(); const corpo = add(new THREE.CapsuleGeometry(.2, .9, 8, 16), mat(cor), 0, .7, 0, g); const cab = add(new THREE.SphereGeometry(.14, 16, 12), mat(0xe0a07a), 0, 1.42, 0, g); g.userData.cab = cab; return g; };
+const guarda = pessoa(0x222222); guarda.position.set(-1.6, 0, 2.4);
+const cliente = pessoa(0x3ad08a); const cliente2 = pessoa(0x9a5ad0); cliente2.position.set(1.0, 0, -.8);
+const sacola = add(new THREE.BoxGeometry(.3, .35, .12), mat(0xe0405a), .25, .6, 0, cliente);
+const etqCliente = add(new THREE.BoxGeometry(.06, .1, .03), mat(0x777777), .25, .65, .07, cliente);
+
+// ---------- estúdio ----------
+const SX = 40, SY = 1.5;
+add(new THREE.PlaneGeometry(8, 8), mat(0x2b3a52), SX, SY, -1.5);
+// etiqueta rígida em corte (cenas 3-5)
+const tag = grupo(SX, SY, 0);
+add(new THREE.CircleGeometry(.55, 40), mat(0x8a8f96), 0, .05, .02, tag); add(new THREE.TorusGeometry(.55, .05, 10, 48), mat(0x8a8f96), 0, .05, .04, tag);
+const bobCurva = new THREE.CatmullRomCurve3(Array.from({ length: 90 }, (_, i) => { const k = i / 89, a = Math.PI * (.1 + .8 * (k * 6 % 1)), r = .25 + .12 * k; return V(Math.cos(a) * r, Math.sin(a) * r, .11); }));
+const antena = add(new THREE.TubeGeometry(bobCurva, 300, .008, 6), mat(0xc8742e, { metalness: .8, emissive: 0xffd23a, emissiveIntensity: 0 }), 0, 0, 0, tag);
+const pino = add(new THREE.CylinderGeometry(.025, .025, .5, 16), mat(0xc0c6cc, { metalness: .9, roughness: .2 }), 0, -.05, .11, tag);
+add(new THREE.SphereGeometry(.045, 16, 10), mat(0xc0c6cc, { metalness: .9 }), 0, -.32, .11, tag);
+const cone = add(new THREE.CylinderGeometry(.05, .13, .18, 24, 1, true), vidro(.5, 0xffffff), 0, .1, .11, tag);
+const bolinhas = [-1, 1].map((s) => add(new THREE.SphereGeometry(.03, 14, 10), mat(0xffd23a, { metalness: .6 }), s * .055, .08, .11, tag));
+const mola = add(new THREE.TorusKnotGeometry(.04, .006, 60, 6, 1, 8), mat(0x999999), 0, .23, .11, tag);
+const imaG = add(new THREE.BoxGeometry(.5, .2, .3), mat(0x2e6fd0, { metalness: .4 }), 0, .9, .1, tag);
+const ampola = add(new THREE.CapsuleGeometry(.04, .14, 8, 12), vidro(.6, 0x3a5aff), .3, .18, .14, tag); ampola.rotation.z = Math.PI / 2;
+const tinta = Array.from({ length: 30 }, () => ({ s: sprite(0x2a3aff, tag), f: rnd(), a: rnd() * 6.28, r: rnd() }));
+const camisa = add(new THREE.PlaneGeometry(1.6, 1.2), mat(0xf4f4f4), 0, -.1, -.08, tag);
+const mancha = add(new THREE.CircleGeometry(.4, 24), new THREE.MeshBasicMaterial({ map: K.texMancha, color: 0x2a3aff, transparent: true, opacity: 0 }), .25, .05, -.07, tag);
+// etiqueta adesiva no livro (cena 7)
+const livro = grupo(SX, SY - .2, 0);
+add(new THREE.BoxGeometry(1.0, 1.3, .15), mat(0xb0402a), 0, 0, 0, livro);
+const adesivo = add(new THREE.PlaneGeometry(.45, .3), mat(0xf4f4f4), 0, -.3, .08, livro);
+const circ = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 60 }, (_, i) => { const k = i / 59, s = .19 - k * .14, a = k * 4; const q = Math.floor(a) % 4, f = a % 1; const pts = [[-s, -s * .6], [s, -s * .6], [s, s * .6], [-s, s * .6]]; const p0 = pts[q], p1 = pts[(q + 1) % 4]; return V(p0[0] + (p1[0] - p0[0]) * f, -.3 + p0[1] + (p1[1] - p0[1]) * f, .085); })), 200, .006, 5), mat(0xb0b6bc, { metalness: .8, emissive: 0xffd23a, emissiveIntensity: 0 }), 0, 0, 0, livro);
+const padEst = add(new THREE.BoxGeometry(1.2, .1, .6), mat(0x333333, { emissive: 0x5ab8ff, emissiveIntensity: 0 }), 0, -.95, .3, livro);
+
+// ---------- câmera ----------
+K.camera_({
+  loja: [V(2.2, 3.6, 8.2), V(0, 1.2, 0)], guarda: [V(-2.9, 2.0, 5.4), V(-1.4, 1.3, 1.6)], porta: [V(2.0, 2.0, 6.0), V(0, 1.1, 3)],
+  tag: [V(SX, SY + .25, 2.4), V(SX, SY + .4, 0)], pino: [V(SX + .05, SY + .25, 1.5), V(SX + .05, SY + .32, 0)], livro: [V(SX, SY - .25, 4.0), V(SX, SY - .05, 0)],
+  caixa: [V(3.5, 2.2, 3.6), V(2.5, 1.1, 1.2)],
+}, [
+  [0, "loja"], [P(1, "seguranca") - .3, "guarda"], [F(1), "guarda"],
+  [C(2), "guarda"], [F(2), "loja"],
+  [C(3), "loja"], [P(3, "antena") - .5, "tag"], [P(3, "saida") - .3, "tag"], [P(3, "saida"), "porta"], [F(3), "porta"],
+  [C(4), "porta"], [F(4), "porta"],
+  [C(5), "tag"], [P(5, "pino") - .3, "pino"], [F(5), "pino"],
+  [C(6), "tag"], [F(6), "tag"],
+  [C(7), "livro"], [P(7, "esquece") - .5, "livro"], [P(7, "esquece") - .45, "porta"], [F(7), "porta"],
+  [C(8), "porta"], [C(8) + 1, "loja"], [T, "loja"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // seguranças e clientes
+  guarda.userData.cab.position.x = Math.sin(t * 1.5) * .05; guarda.rotation.y = Math.sin(t * .8) * .8;
+  guarda.rotation.z = .3 * prog(t, P(2, "cansa") - .2, P(2, "cansa") + .4) * (t < C(3) ? 1 : 0);
+  // cliente: passeia, depois atravessa a porta nas cenas 4, 7 e 8
+  let cz = -.5 + Math.sin(t * .4) * .5, cx = -.4;
+  if (em(C(4), C(5))) { const k = prog(t, C(4), P(4, "passa") + .3); cz = 1 + k * 2; cx = 0; }
+  if (em(P(7, "esquece") - .5, T)) { const k = prog(t, P(7, "esquece") - .5, P(7, "apita")); cz = 1.5 + k * 1.5; cx = 0; }
+  if (em(C(2), C(3)) && t > P(2, "ve") ) { cz = -.5 + 3.5 * prog(t, P(2, "ve"), P(2, "caro")); cx = 0; }
+  cliente.position.set(cx, 0, cz); cliente.rotation.y = 0;
+  const envergonhado = t > C(8) + .5; cliente.userData.cab.material.color.set(envergonhado ? 0xff6a5a : 0xe0a07a); cliente.userData.cab.position.y = envergonhado ? 1.35 : 1.42;
+  etqCliente.visible = t > P(3, "etiqueta") - .3;
+  // estúdio: etiqueta rígida x livro
+  const noLivro = em(C(7), C(8)); tag.visible = !noLivro; livro.visible = noLivro;
+  antena.material.emissiveIntensity = em(P(3, "antena") - .3, P(3, "saida")) ? 1 + .5 * Math.sin(t * 8) : 0;
+  // portal: ondas e resposta
+  const portal = em(P(4, "sinal") - .4, C(5)) || em(P(7, "apita") - .3, T);
+  ondas.forEach((o, i) => { const k = frac(t * 1.1 + (i % 3) / 3); o.scale.setScalar(1 + k * 2); o.material.opacity = portal ? .8 * (1 - k) : 0; });
+  const responde = em(P(4, "responde") - .2, C(5)) || em(P(7, "apita") - .3, T);
+  resposta.forEach((o, i) => { const k = frac(t * 1.6 + i / 3); o.position.set(cliente.position.x + .25, 1.0, cliente.position.z); o.scale.setScalar(1 + k * 4); o.material.opacity = responde && Math.abs(cliente.position.z - 3) < 1 ? .9 * (1 - k) : 0; });
+  const alarme = em(P(4, "alarme") - .1, C(5)) || em(P(7, "apita") - .1, T);
+  antenas.forEach((a) => a.l.material.emissiveIntensity = alarme && frac(t * 3) < .5 ? 2 : 0);
+  // pino com bolinhas e ímã
+  const ima = prog(t, P(5, "ima") - .5, P(5, "ima") + .2) * (1 - prog(t, F(5) - .3, F(5)));
+  imaG.visible = em(P(5, "ima") - .6, F(5)); imaG.position.y = .9 - .45 * ima;
+  bolinhas.forEach((b, i) => b.position.set((i ? 1 : -1) * (.055 + .03 * ima), .08 + .1 * ima, .11));
+  mola.position.y = .23 + .08 * ima; mola.scale.y = 1 - .4 * ima;
+  const sai = prog(t, P(5, "caixa") - .2, F(5));
+  pino.position.y = -.05 - .5 * sai;
+  const chaveX = em(P(5, "chave") - .3, P(5, "ima") - .4);
+  // tinta
+  ampola.visible = em(C(6), C(7)) && t < P(6, "ampola") + .2;
+  const quebra = t > P(6, "ampola") + .1 && t < C(7);
+  tinta.forEach((p) => { const k = prog(t, P(6, "ampola") + .1, P(6, "mancha") + .3); p.s.position.set(.3 + Math.cos(p.a) * p.r * .35 * k, .18 + Math.sin(p.a) * p.r * .3 * k, .14); p.s.scale.setScalar(.06); p.s.material.opacity = quebra ? 1 : 0; });
+  mancha.material.opacity = em(P(6, "mancha") - .2, C(7)) ? .9 * prog(t, P(6, "mancha") - .2, P(6, "mancha") + .5) : 0;
+  camisa.visible = em(C(6), C(7));
+  // adesiva: passa no caixa e apaga
+  const passa = prog(t, P(7, "placa") - .6, P(7, "placa"));
+  livro.position.y = SY - .2 - .3 * passa;
+  padEst.material.emissiveIntensity = em(P(7, "placa") - .2, P(7, "desliga") + .4) ? 1.5 : 0;
+  circ.material.emissiveIntensity = em(P(7, "adesiva") - .2, P(7, "desliga") - .1) ? .8 + .4 * Math.sin(t * 8) : 0;
+  circ.material.color.set(t > P(7, "desliga") ? 0x555555 : 0xb0b6bc);
+  K.cartoes(t, [
+    [P(2, "caro") - .3, F(2), "CARO", "#ff4a3a"],
+    [P(3, "antena") - .3, P(3, "saida") - .3, "ANTENA", "#ffd23a"],
+    [P(4, "taca") - .4, P(4, "alarme") - .3, "RESPONDE NO MESMO TOM", "#ffd23a"],
+    [P(4, "alarme") - .2, F(4), "ALARME!", "#ff4a3a"],
+    [P(5, "bolinhas") - .3, P(5, "chave") - .3, "TRAVA DE BOLINHAS", "#ffd23a"],
+    [P(5, "chave") - .3, P(5, "ima") - .4, "SEM CHAVE", "#ffffff"],
+    [P(5, "ima") - .3, F(5), "ÍMÃ FORTE SOLTA", "#5ab8ff"],
+    [P(6, "mancha") - .3, F(6), "MANCHOU", "#5a7aff"],
+    [P(7, "desliga") - .3, P(7, "esquece") - .5, "DESLIGADA", "#5ab8ff"],
+    [P(7, "apita") - .3, F(7), "PIII PIII PIII", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>

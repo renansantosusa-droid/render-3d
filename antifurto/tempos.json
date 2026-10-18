@@ -1,0 +1,881 @@
+{
+ "total": 75.1,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.48,
+   "texto": "Se você colocar um segurança olhando cada cliente, terá uma loja sem furto.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.657
+    },
+    {
+     "w": "um",
+     "t": 1.046
+    },
+    {
+     "w": "segurança",
+     "t": 1.117
+    },
+    {
+     "w": "olhando",
+     "t": 1.659
+    },
+    {
+     "w": "cada",
+     "t": 1.966
+    },
+    {
+     "w": "cliente",
+     "t": 2.202
+    },
+    {
+     "w": "terá",
+     "t": 2.886
+    },
+    {
+     "w": "uma",
+     "t": 3.122
+    },
+    {
+     "w": "loja",
+     "t": 3.251
+    },
+    {
+     "w": "sem",
+     "t": 3.617
+    },
+    {
+     "w": "furto",
+     "t": 3.817
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.63,
+   "fim": 9.26,
+   "texto": "Mas ele não vê tudo. Ele cansa. E fica caro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.677
+    },
+    {
+     "w": "ele",
+     "t": 4.889
+    },
+    {
+     "w": "não",
+     "t": 5.172
+    },
+    {
+     "w": "vê",
+     "t": 5.361
+    },
+    {
+     "w": "tudo",
+     "t": 5.538
+    },
+    {
+     "w": "Ele",
+     "t": 6.694
+    },
+    {
+     "w": "cansa",
+     "t": 6.953
+    },
+    {
+     "w": "E",
+     "t": 8.227
+    },
+    {
+     "w": "fica",
+     "t": 8.356
+    },
+    {
+     "w": "caro",
+     "t": 8.687
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.41,
+   "fim": 18.66,
+   "texto": "Então, você esconde na roupa uma etiqueta com uma antena minúscula dentro. E, na saída, coloca duas placas, uma de cada lado da porta.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.457
+    },
+    {
+     "w": "você",
+     "t": 10.259
+    },
+    {
+     "w": "esconde",
+     "t": 10.518
+    },
+    {
+     "w": "na",
+     "t": 10.919
+    },
+    {
+     "w": "roupa",
+     "t": 11.014
+    },
+    {
+     "w": "uma",
+     "t": 11.273
+    },
+    {
+     "w": "etiqueta",
+     "t": 11.379
+    },
+    {
+     "w": "com",
+     "t": 11.875
+    },
+    {
+     "w": "uma",
+     "t": 12.028
+    },
+    {
+     "w": "antena",
+     "t": 12.122
+    },
+    {
+     "w": "minúscula",
+     "t": 12.476
+    },
+    {
+     "w": "dentro",
+     "t": 13.007
+    },
+    {
+     "w": "E",
+     "t": 14.186
+    },
+    {
+     "w": "na",
+     "t": 14.646
+    },
+    {
+     "w": "saída",
+     "t": 14.835
+    },
+    {
+     "w": "coloca",
+     "t": 15.542
+    },
+    {
+     "w": "duas",
+     "t": 15.978
+    },
+    {
+     "w": "placas",
+     "t": 16.285
+    },
+    {
+     "w": "uma",
+     "t": 17.004
+    },
+    {
+     "w": "de",
+     "t": 17.181
+    },
+    {
+     "w": "cada",
+     "t": 17.287
+    },
+    {
+     "w": "lado",
+     "t": 17.57
+    },
+    {
+     "w": "da",
+     "t": 17.889
+    },
+    {
+     "w": "porta",
+     "t": 18.007
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 18.81,
+   "fim": 32.08,
+   "texto": "As placas ficam o tempo todo mandando um sinal. Quando a etiqueta passa no meio, ela responde no mesmo tom, como uma taça que vibra quando ouve a nota certa. As placas ouvem a resposta, e o alarme dispara.",
+   "palavras": [
+    {
+     "w": "As",
+     "t": 18.857
+    },
+    {
+     "w": "placas",
+     "t": 19.081
+    },
+    {
+     "w": "ficam",
+     "t": 19.518
+    },
+    {
+     "w": "o",
+     "t": 19.836
+    },
+    {
+     "w": "tempo",
+     "t": 19.883
+    },
+    {
+     "w": "todo",
+     "t": 20.225
+    },
+    {
+     "w": "mandando",
+     "t": 20.52
+    },
+    {
+     "w": "um",
+     "t": 20.956
+    },
+    {
+     "w": "sinal",
+     "t": 21.027
+    },
+    {
+     "w": "Quando",
+     "t": 22.253
+    },
+    {
+     "w": "a",
+     "t": 22.513
+    },
+    {
+     "w": "etiqueta",
+     "t": 22.572
+    },
+    {
+     "w": "passa",
+     "t": 22.996
+    },
+    {
+     "w": "no",
+     "t": 23.279
+    },
+    {
+     "w": "meio",
+     "t": 23.385
+    },
+    {
+     "w": "ela",
+     "t": 23.916
+    },
+    {
+     "w": "responde",
+     "t": 24.117
+    },
+    {
+     "w": "no",
+     "t": 24.588
+    },
+    {
+     "w": "mesmo",
+     "t": 24.683
+    },
+    {
+     "w": "tom",
+     "t": 25.025
+    },
+    {
+     "w": "como",
+     "t": 25.591
+    },
+    {
+     "w": "uma",
+     "t": 25.815
+    },
+    {
+     "w": "taça",
+     "t": 26.015
+    },
+    {
+     "w": "que",
+     "t": 26.381
+    },
+    {
+     "w": "vibra",
+     "t": 26.499
+    },
+    {
+     "w": "quando",
+     "t": 26.829
+    },
+    {
+     "w": "ouve",
+     "t": 27.077
+    },
+    {
+     "w": "a",
+     "t": 27.336
+    },
+    {
+     "w": "nota",
+     "t": 27.395
+    },
+    {
+     "w": "certa",
+     "t": 27.69
+    },
+    {
+     "w": "As",
+     "t": 28.952
+    },
+    {
+     "w": "placas",
+     "t": 29.176
+    },
+    {
+     "w": "ouvem",
+     "t": 29.553
+    },
+    {
+     "w": "a",
+     "t": 29.895
+    },
+    {
+     "w": "resposta",
+     "t": 29.942
+    },
+    {
+     "w": "e",
+     "t": 30.744
+    },
+    {
+     "w": "o",
+     "t": 30.827
+    },
+    {
+     "w": "alarme",
+     "t": 30.897
+    },
+    {
+     "w": "dispara",
+     "t": 31.298
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.23,
+   "fim": 46.62,
+   "texto": "Mas o que impede alguém de arrancar a etiqueta? Então, você prende ela com um pino travado por dentro com bolinhas de metal. Não tem fechadura nem chave. Ela só solta com um ímã muito forte, que fica no balcão do caixa.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 32.277
+    },
+    {
+     "w": "o",
+     "t": 32.489
+    },
+    {
+     "w": "que",
+     "t": 32.619
+    },
+    {
+     "w": "impede",
+     "t": 32.725
+    },
+    {
+     "w": "alguém",
+     "t": 33.114
+    },
+    {
+     "w": "de",
+     "t": 33.386
+    },
+    {
+     "w": "arrancar",
+     "t": 33.468
+    },
+    {
+     "w": "a",
+     "t": 33.834
+    },
+    {
+     "w": "etiqueta",
+     "t": 33.916
+    },
+    {
+     "w": "Então",
+     "t": 35.284
+    },
+    {
+     "w": "você",
+     "t": 36.063
+    },
+    {
+     "w": "prende",
+     "t": 36.322
+    },
+    {
+     "w": "ela",
+     "t": 36.699
+    },
+    {
+     "w": "com",
+     "t": 36.864
+    },
+    {
+     "w": "um",
+     "t": 37.006
+    },
+    {
+     "w": "pino",
+     "t": 37.077
+    },
+    {
+     "w": "travado",
+     "t": 37.324
+    },
+    {
+     "w": "por",
+     "t": 37.808
+    },
+    {
+     "w": "dentro",
+     "t": 37.973
+    },
+    {
+     "w": "com",
+     "t": 38.303
+    },
+    {
+     "w": "bolinhas",
+     "t": 38.48
+    },
+    {
+     "w": "de",
+     "t": 38.928
+    },
+    {
+     "w": "metal",
+     "t": 39.011
+    },
+    {
+     "w": "Não",
+     "t": 40.237
+    },
+    {
+     "w": "tem",
+     "t": 40.497
+    },
+    {
+     "w": "fechadura",
+     "t": 40.638
+    },
+    {
+     "w": "nem",
+     "t": 41.204
+    },
+    {
+     "w": "chave",
+     "t": 41.416
+    },
+    {
+     "w": "Ela",
+     "t": 42.666
+    },
+    {
+     "w": "só",
+     "t": 42.938
+    },
+    {
+     "w": "solta",
+     "t": 43.079
+    },
+    {
+     "w": "com",
+     "t": 43.48
+    },
+    {
+     "w": "um",
+     "t": 43.645
+    },
+    {
+     "w": "ímã",
+     "t": 43.716
+    },
+    {
+     "w": "muito",
+     "t": 43.905
+    },
+    {
+     "w": "forte",
+     "t": 44.294
+    },
+    {
+     "w": "que",
+     "t": 44.93
+    },
+    {
+     "w": "fica",
+     "t": 45.107
+    },
+    {
+     "w": "no",
+     "t": 45.39
+    },
+    {
+     "w": "balcão",
+     "t": 45.497
+    },
+    {
+     "w": "do",
+     "t": 45.85
+    },
+    {
+     "w": "caixa",
+     "t": 45.98
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.77,
+   "fim": 54.97,
+   "texto": "E a etiqueta de tinta? Se arrancar à força, a ampola quebra e mancha a roupa. A peça perde o valor pra quem roubou.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 46.817
+    },
+    {
+     "w": "a",
+     "t": 46.947
+    },
+    {
+     "w": "etiqueta",
+     "t": 47.029
+    },
+    {
+     "w": "de",
+     "t": 47.513
+    },
+    {
+     "w": "tinta",
+     "t": 47.643
+    },
+    {
+     "w": "Se",
+     "t": 48.869
+    },
+    {
+     "w": "arrancar",
+     "t": 49.07
+    },
+    {
+     "w": "à",
+     "t": 49.506
+    },
+    {
+     "w": "força",
+     "t": 49.565
+    },
+    {
+     "w": "a",
+     "t": 50.213
+    },
+    {
+     "w": "ampola",
+     "t": 50.284
+    },
+    {
+     "w": "quebra",
+     "t": 50.72
+    },
+    {
+     "w": "e",
+     "t": 51.027
+    },
+    {
+     "w": "mancha",
+     "t": 51.074
+    },
+    {
+     "w": "a",
+     "t": 51.452
+    },
+    {
+     "w": "roupa",
+     "t": 51.487
+    },
+    {
+     "w": "A",
+     "t": 52.643
+    },
+    {
+     "w": "peça",
+     "t": 52.784
+    },
+    {
+     "w": "perde",
+     "t": 53.162
+    },
+    {
+     "w": "o",
+     "t": 53.504
+    },
+    {
+     "w": "valor",
+     "t": 53.539
+    },
+    {
+     "w": "pra",
+     "t": 53.916
+    },
+    {
+     "w": "quem",
+     "t": 54.093
+    },
+    {
+     "w": "roubou",
+     "t": 54.282
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 55.12,
+   "fim": 66.48,
+   "texto": "E a adesiva, de livro e de remédio? No caixa, ela passa por uma placa que desliga o circuito. Por isso, quando o caixa esquece, o alarme apita com você já tendo pago.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 55.167
+    },
+    {
+     "w": "a",
+     "t": 55.297
+    },
+    {
+     "w": "adesiva",
+     "t": 55.368
+    },
+    {
+     "w": "de",
+     "t": 56.17
+    },
+    {
+     "w": "livro",
+     "t": 56.323
+    },
+    {
+     "w": "e",
+     "t": 56.712
+    },
+    {
+     "w": "de",
+     "t": 56.759
+    },
+    {
+     "w": "remédio",
+     "t": 56.865
+    },
+    {
+     "w": "No",
+     "t": 58.186
+    },
+    {
+     "w": "caixa",
+     "t": 58.375
+    },
+    {
+     "w": "ela",
+     "t": 59.035
+    },
+    {
+     "w": "passa",
+     "t": 59.247
+    },
+    {
+     "w": "por",
+     "t": 59.578
+    },
+    {
+     "w": "uma",
+     "t": 59.695
+    },
+    {
+     "w": "placa",
+     "t": 59.872
+    },
+    {
+     "w": "que",
+     "t": 60.262
+    },
+    {
+     "w": "desliga",
+     "t": 60.368
+    },
+    {
+     "w": "o",
+     "t": 60.769
+    },
+    {
+     "w": "circuito",
+     "t": 60.816
+    },
+    {
+     "w": "Por",
+     "t": 62.16
+    },
+    {
+     "w": "isso",
+     "t": 62.349
+    },
+    {
+     "w": "quando",
+     "t": 62.938
+    },
+    {
+     "w": "o",
+     "t": 63.162
+    },
+    {
+     "w": "caixa",
+     "t": 63.198
+    },
+    {
+     "w": "esquece",
+     "t": 63.481
+    },
+    {
+     "w": "o",
+     "t": 64.212
+    },
+    {
+     "w": "alarme",
+     "t": 64.295
+    },
+    {
+     "w": "apita",
+     "t": 64.672
+    },
+    {
+     "w": "com",
+     "t": 65.049
+    },
+    {
+     "w": "você",
+     "t": 65.191
+    },
+    {
+     "w": "já",
+     "t": 65.45
+    },
+    {
+     "w": "tendo",
+     "t": 65.603
+    },
+    {
+     "w": "pago",
+     "t": 65.898
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 66.63,
+   "fim": 74.5,
+   "texto": "Coloque um alarme bem alto, uma luz vermelha e um cliente envergonhado. Parabéns, você construiu um sistema antifurto.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 66.677
+    },
+    {
+     "w": "um",
+     "t": 67.149
+    },
+    {
+     "w": "alarme",
+     "t": 67.267
+    },
+    {
+     "w": "bem",
+     "t": 67.609
+    },
+    {
+     "w": "alto",
+     "t": 67.845
+    },
+    {
+     "w": "uma",
+     "t": 68.434
+    },
+    {
+     "w": "luz",
+     "t": 68.599
+    },
+    {
+     "w": "vermelha",
+     "t": 68.823
+    },
+    {
+     "w": "e",
+     "t": 69.354
+    },
+    {
+     "w": "um",
+     "t": 69.448
+    },
+    {
+     "w": "cliente",
+     "t": 69.566
+    },
+    {
+     "w": "envergonhado",
+     "t": 70.014
+    },
+    {
+     "w": "Parabéns",
+     "t": 71.536
+    },
+    {
+     "w": "você",
+     "t": 72.302
+    },
+    {
+     "w": "construiu",
+     "t": 72.609
+    },
+    {
+     "w": "um",
+     "t": 73.08
+    },
+    {
+     "w": "sistema",
+     "t": 73.175
+    },
+    {
+     "w": "antifurto",
+     "t": 73.599
+    }
+   ]
+  }
+ ]
+}
