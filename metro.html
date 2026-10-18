@@ -1,0 +1,189 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("metro", { fundo: 0x9cc8ea, seed: 5151 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, grade, texRuido, rotulo, tex, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+scene.fog = new THREE.Fog(0x555a60, 200, 400);
+
+// ---------- terra em corte, rua e túnel (eixo x) ----------
+const mTerra = mat(0xffffff, { map: texRuido("#7a5a3a", 60, 6), roughness: 1 });
+add(new THREE.BoxGeometry(140, 4.8, 8), mTerra, 0, 6.8, -2);      // terra acima do túnel
+add(new THREE.BoxGeometry(140, 3, 8), mTerra, 0, -1.5, -2);       // terra abaixo
+add(new THREE.BoxGeometry(140, 9, 2), mTerra, 0, 4.4, -3.2);      // fundo
+add(new THREE.BoxGeometry(140, .2, 10), mat(0x44474c), 0, 9.3, -1); // asfalto
+for (let i = 0; i < 18; i++) add(new THREE.BoxGeometry(2.5 + rnd() * 2, 3 + rnd() * 6, 3), mat([0xd8c8a8, 0xa8b8c8, 0xc89878][i % 3]), -40 + i * 5, 12 + rnd(), -4.5);
+const onibusRua = add(new THREE.BoxGeometry(5, 1.6, 1.4), mat(0xffc020), 10, 10.2, .5);
+const mParede = mat(0xffffff, { map: grade("#b8b4ac", "#9a968e", 64, 20), roughness: .9 });
+add(new THREE.BoxGeometry(140, .3, 4.6), mParede, 0, -.15, 0);    // piso
+add(new THREE.BoxGeometry(140, .3, 4.6), mParede, 0, 4.4, 0);     // teto
+add(new THREE.BoxGeometry(140, 4.4, .2), mParede, 0, 2.2, -2.3);   // parede do fundo
+for (let i = 0; i < 28; i++) add(new THREE.BoxGeometry(.8, .06, .2), brilho(0xfff2c0), -66 + i * 5, 4.22, -1.6);
+// trilhos
+const mAco = mat(0xb8bcc4, { metalness: .8, roughness: .3 });
+for (const z of [-.72, .72]) add(new THREE.BoxGeometry(140, .14, .1), mAco, 0, .07, z);
+for (let i = 0; i < 140; i++) add(new THREE.BoxGeometry(.25, .08, 2), mat(0x6a5a4a), -70 + i, .0, 0);
+const terceiro = add(new THREE.BoxGeometry(140, .14, .14), mat(0x888888, { emissive: 0xffd23a, emissiveIntensity: 0 }), 0, .3, 1.62);
+const catenaria = add(new THREE.BoxGeometry(140, .04, .04), mat(0x222222, { emissive: 0xffd23a, emissiveIntensity: 0 }), 0, 3.95, 0);
+const energiaTrilho = fluxo(new THREE.LineCurve3(V(-20, .42, 1.62), V(2, .42, 1.62)), 18, 0xffd23a);
+
+// ---------- ônibus ----------
+const onibus = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(9, 2.6, 2.4), mat(0xffc020, { roughness: .4 }), 0, 1.8, 0, onibus);
+for (let i = 0; i < 6; i++) add(new THREE.BoxGeometry(1.1, .8, 2.42), mat(0x203040, { roughness: .1 }), -3.2 + i * 1.3, 2.3, 0, onibus);
+for (const x of [-3, 3]) for (const z of [-1.1, 1.1]) { const r = add(new THREE.CylinderGeometry(.5, .5, .3, 20), mat(0x1b1b1b), x, .5, z, onibus); r.rotation.x = Math.PI / 2; }
+add(new THREE.CylinderGeometry(.08, .08, .5, 10), mat(0x444444), -4.6, .7, .8, onibus).rotation.z = Math.PI / 2;
+const fumaca = Array.from({ length: 70 }, () => ({ s: sprite(0x555555), f: rnd(), y: rnd(), z: (rnd() - .5) * 4 }));
+
+// ---------- trem ----------
+function trem(pai = scene) {
+  const g = grupo(0, 0, 0, pai);
+  add(new THREE.BoxGeometry(18, 2.7, 2.7), mat(0xd8dce2, { metalness: .4, roughness: .35 }), 0, 1.85, 0, g);
+  add(new THREE.BoxGeometry(18.02, .3, 2.72), mat(0x1f4fbf), 0, 1.0, 0, g);
+  add(new THREE.BoxGeometry(.05, 1.2, 2.2), mat(0x203040, { roughness: .1 }), 9.01, 2.3, 0, g);
+  const portas = [];
+  for (const x of [-6, -2, 2, 6]) {
+    for (let k = 0; k < 6; k++) add(new THREE.BoxGeometry(.7, .7, 2.72), mat(0x203040, { roughness: .1 }), x + 1.3 + k * .12 - .3, 2.4, 0, g).scale.x = .0001 + (k === 0 ? 1 : 0);
+    portas.push([-1, 1].map((s) => add(new THREE.BoxGeometry(.6, 2, .06), mat(0xb0b6be, { metalness: .5 }), x + s * .3, 1.6, 1.38, g)));
+    add(new THREE.BoxGeometry(1.0, .7, 2.74), mat(0x203040, { roughness: .1 }), x + 2, 2.4, 0, g);
+  }
+  const rodas = [];
+  for (const x of [-7.5, -5.5, 5.5, 7.5]) for (const z of [-.72, .72]) { const r = add(new THREE.CylinderGeometry(.42, .42, .12, 20), mAco, x, .45, z, g); r.rotation.x = Math.PI / 2; rodas.push(r); }
+  const panto = grupo(0, 3.2, 0, g); const b1 = add(new THREE.BoxGeometry(1.2, .04, .04), mat(0x333333), 0, .3, 0, panto); b1.rotation.z = .5; const b2 = add(new THREE.BoxGeometry(1.2, .04, .04), mat(0x333333), 0, .3, 0, panto); b2.rotation.z = -.5; add(new THREE.BoxGeometry(.1, .05, 1.2), mat(0x333333), 0, .58, 0, panto);
+  return { g, portas, rodas, panto };
+}
+const T1 = trem();
+
+// ---------- detalhe: pneu x roda de aço ----------
+const det = grupo(200, 0, 0);
+add(new THREE.BoxGeometry(8, .2, .14), mAco, 0, .1, 0, det);
+add(new THREE.BoxGeometry(8, .3, 3), mat(0x6a6a6a), 0, -.15, 0, det);
+const pneu = add(new THREE.TorusGeometry(.55, .25, 16, 32), mat(0x161616, { roughness: .9 }), 0, .95, 0, det);
+const rodaAco = grupo(0, 1.1, 0, det);
+add(new THREE.CylinderGeometry(.9, .9, .16, 32), mAco, 0, 0, .05, rodaAco).rotation.x = Math.PI / 2;
+add(new THREE.CylinderGeometry(1.0, 1.0, .05, 32), mAco, 0, 0, -.06, rodaAco).rotation.x = Math.PI / 2;
+add(new THREE.BoxGeometry(.3, .3, .3), mat(0x555555), 0, 0, .15, rodaAco);
+const peso = add(new THREE.BoxGeometry(2.4, 1.3, 1.6), mat(0x1f4fbf), 0, 2.6, 0, det);
+add(new THREE.PlaneGeometry(2, .9), new THREE.MeshBasicMaterial({ map: rotulo("40 t", "#fff"), transparent: true }), 0, 2.6, .81, det);
+
+// ---------- blocos (diagrama, eixo z) ----------
+const blo = grupo(300, 0, 0);
+add(new THREE.BoxGeometry(14, .2, 50), mat(0x555a60), 0, -.1, -4, blo);
+for (const x of [-.72, .72]) add(new THREE.BoxGeometry(.1, .14, 50), mAco, x, .07, -4, blo);
+const faixas = [], luzes = [];
+for (let i = 0; i < 6; i++) {
+  const z0 = 16 - 6 * i;
+  faixas.push(add(new THREE.BoxGeometry(3, .02, 5.8), brilho(0x3aff7a), 0, .02, z0 - 3, blo));
+  add(new THREE.CylinderGeometry(.06, .06, 2.4, 8), mat(0x333333), 2, 1.2, z0, blo);
+  luzes.push(add(new THREE.SphereGeometry(.22, 14, 10), brilho(0x3aff7a), 2, 2.4, z0, blo));
+}
+const mini = (cor) => { const g = grupo(0, 0, 0, blo); add(new THREE.BoxGeometry(2.6, 2.6, 5), mat(cor, { metalness: .3, roughness: .4 }), 0, 1.5, 0, g); add(new THREE.BoxGeometry(2.62, .3, 5.02), mat(0x1f4fbf), 0, .8, 0, g); return g; };
+const tA = mini(0xd8dce2), tB = mini(0xd8dce2); tA.position.z = -11;
+
+// ---------- estação ----------
+const est = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(26, 1.1, 3.6), mat(0xffffff, { map: grade("#d8d4cc", "#b8b4ac", 64, 8) }), 0, .55, 3.8, est);
+add(new THREE.BoxGeometry(26, .08, .3), brilho(0xffd23a), 0, 1.11, 2.05, est);
+const portasPlat = [];
+for (let i = 0; i < 13; i++) { const x = -12 + i * 2; if ([-6, -2, 2, 6].some((d) => Math.abs(x - d) < .6)) continue; add(new THREE.BoxGeometry(1.4, 2.2, .05), vidro(.25, 0x9fd0f0), x, 2.2, 2.0, est); }
+for (const x of [-6, -2, 2, 6]) portasPlat.push([-1, 1].map((s) => add(new THREE.BoxGeometry(.6, 2.2, .05), vidro(.35, 0x7fd0a0), x + s * .3, 2.2, 2.02, est)));
+add(new THREE.BoxGeometry(26, .25, .2), mat(0x333333), 0, 3.4, 2.0, est);
+const final8 = grupo(0, 0, 0, est);
+const escada = grupo(9, 1.1, 3.6, final8);
+const degraus = Array.from({ length: 14 }, () => add(new THREE.BoxGeometry(.4, .2, 1.1), mat(0x777b82, { metalness: .6 }), 0, 0, 0, escada));
+for (const s of [-1, 1]) { const c = add(new THREE.BoxGeometry(6.2, .5, .08), mat(0x333333), 2.1, 1.6, s * .6, escada); c.rotation.z = .55; }
+for (let i = 0; i < 3; i++) { add(new THREE.BoxGeometry(.3, 1, .9), mat(0x9aa0a8, { metalness: .6 }), -9 + i * 1.1, 1.6, 3.6, final8); add(new THREE.BoxGeometry(.05, .05, .7), brilho(0x3aff7a), -9 + i * 1.1, 2.12, 3.6, final8); }
+const texMapa = tex(512, (g, s) => { g.fillStyle = "#fff"; g.fillRect(0, 0, s, s); [["#1f4fbf", 80], ["#2a9a4a", 200], ["#e03a3a", 320], ["#ffc020", 440]].forEach(([c, y], k) => { g.strokeStyle = c; g.lineWidth = 22; g.beginPath(); g.moveTo(30, y); g.bezierCurveTo(180, y + (k % 2 ? 120 : -120), 330, y, 480, y + (k % 2 ? -60 : 60)); g.stroke(); for (let i = 0; i < 5; i++) { g.fillStyle = "#fff"; g.beginPath(); g.arc(60 + i * 100, y + Math.sin(i + k) * 30, 12, 0, 6.3); g.fill(); g.strokeStyle = "#222"; g.lineWidth = 4; g.stroke(); } }); });
+const mapa = add(new THREE.PlaneGeometry(2.4, 1.6), new THREE.MeshBasicMaterial({ map: texMapa }), -4.2, 2.8, 4.9, final8); mapa.rotation.y = Math.PI;
+const mapaFrente = add(new THREE.PlaneGeometry(2.4, 1.6), new THREE.MeshBasicMaterial({ map: texMapa }), -4.2, 2.6, 2.2, final8);
+const regen = Array.from({ length: 22 }, () => ({ s: sprite(0xffd23a), f: rnd() }));
+
+// ---------- câmera ----------
+K.camera_({
+  corte: [V(7, 6.5, 19), V(0, 4.6, 0)], tunel: [V(10, 3.2, 14), V(-1, 2.2, -.5)], fumaca: [V(6, 2.6, 10), V(-3, 2.0, -.5)],
+  tunel3: [V(5, 2.3, 10.5), V(-2.5, 1.7, 1)], fio: [V(3, 3.0, 5.0), V(0, 3.4, -.2)],
+  roda: [V(204, 1.9, 8.5), V(200, 1.4, 0)], blocos: [V(306, 10, 28), V(300, 0, 0)],
+  plat: [V(9, 4.2, 17), V(0, 2.2, 0)], regen: [V(10, 3.2, 13), V(0, 1.6, -1)], fim: [V(15, 6.5, 21), V(7, 3.2, 2)],
+}, [
+  [0, "corte"], [F(1), "corte"],
+  [C(2), "corte"], [C(2) + 1.6, "fumaca"], [F(2), "fumaca"],
+  [C(3), "tunel"], [P(3, "terceiro") - .5, "tunel3"], [F(3), "tunel3"],
+  [C(4), "roda"], [F(4), "roda"],
+  [C(5), "blocos"], [F(5), "blocos"],
+  [C(6), "plat"], [F(6), "plat"],
+  [C(7), "regen"], [F(7), "regen"],
+  [C(8), "plat"], [P(8, "parabens"), "fim"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  onibusRua.position.x = 30 - ((t * 4) % 60);
+  // ônibus e fumaça
+  onibus.visible = t < P(3, "eletricos");
+  onibus.position.x = -12 + 2.2 * Math.min(t, C(3));
+  const sujo = em(C(2), C(3)) ? prog(t, C(2), P(2, "respira")) : 0;
+  fumaca.forEach((f) => { const k = frac(t * .3 + f.f); f.s.position.set(onibus.position.x - 5 - k * 14, .5 + f.y * 3.5, f.z * .8); f.s.scale.setScalar(1.2 + k * 2.5); f.s.material.opacity = (t < C(3) ? .35 + .6 * sujo : 0) * (t < C(2) ? .4 : 1); });
+  scene.fog.near = 200 - 196 * sujo; scene.fog.far = 400 - 388 * sujo;
+  // trem
+  let xt = 200;
+  if (em(P(3, "eletricos") - .1, C(4))) xt = -4;
+  if (em(C(6), C(7))) xt = 0;
+  if (em(C(7), C(8))) { const k = lin(t, C(7), F(7) - .4); xt = -38 * (1 - k) * (1 - k); }
+  if (t >= C(8)) xt = 0;
+  T1.g.position.x = xt; T1.g.visible = xt < 100;
+  const andando = em(C(7), F(7) - .4);
+  T1.rodas.forEach((r) => { r.rotation.y = andando ? -xt * 2.4 : 0; });
+  T1.panto.visible = em(P(3, "fio") - .3, C(4)); T1.panto.scale.y = prog(t, P(3, "fio") - .3, P(3, "fio") + .3) || .01;
+  terceiro.material.emissiveIntensity = em(P(3, "terceiro") - .3, P(3, "fio") - .3) ? 1.2 + Math.sin(t * 10) * .3 : 0;
+  catenaria.visible = em(P(3, "fio") - .3, C(4)); catenaria.material.emissiveIntensity = 1;
+  energiaTrilho.atualiza(t, em(P(3, "energia") - .2, P(3, "fio") - .3), 1.2, .3);
+  // detalhe da roda
+  det.visible = em(C(4), C(5));
+  const temPneu = t < P(4, "aco") - .3;
+  pneu.visible = temPneu; rodaAco.visible = !temPneu;
+  const amassa = prog(t, P(4, "pesado") - .3, P(4, "pesado") + .2);
+  pneu.scale.set(1 + .25 * amassa, 1 - .45 * amassa, 1); pneu.position.y = .8 - .3 * amassa;
+  peso.position.y = temPneu ? 2.6 - .5 * amassa : 2.6; peso.visible = t > P(4, "pesado") - .5;
+  rodaAco.rotation.z = -t * 2 * prog(t, P(4, "atrito") - .5, P(4, "atrito"));
+  // blocos
+  blo.visible = em(C(5), C(6));
+  const zB = 14 - 14.5 * (t < P(5, "pedacos") ? prog(t, C(5), P(5, "bater") + .3) * .55 : .55 + .45 * prog(t, P(5, "frente") - .3, P(5, "sozinho") + .2));
+  tB.position.z = t < P(5, "pedacos") ? zB : Math.max(zB, -.5 + 2.5);
+  const divide = t > P(5, "pedacos") - .3;
+  faixas.forEach((f, i) => { const z0 = 16 - 6 * i, z1 = z0 - 6; const ocup = [tA.position.z, tB.position.z].some((z) => z + 2.5 > z1 && z - 2.5 < z0); f.visible = divide; f.material.color.set(ocup ? 0xff3a3a : 0x3aff7a); f.material.opacity = 1; });
+  luzes.forEach((l, i) => { const prox = faixas[i + 1]; const vermelho = prox && prox.material.color.getHex() === 0xff3a3a; l.material.color.set(vermelho ? 0xff3a3a : 0x3aff7a); l.visible = divide; });
+  // estação e portas
+  est.visible = t >= C(6); final8.visible = t >= C(8);
+  const aberta = em(C(6), C(7)) ? Math.max(1 - prog(t, P(6, "fechar"), P(6, "fechar") + .9), prog(t, P(6, "alinhada"), P(6, "alinhada") + .9)) : t >= C(8) ? prog(t, C(8) + .3, C(8) + 1.2) : 0;
+  const abreTrem = em(C(6), C(7)) ? aberta : aberta;
+  T1.portas.forEach((par) => par.forEach((p, s) => { p.position.x = p.position.x; }));
+  T1.portas.forEach((par, i) => par.forEach((p, s) => { p.position.x = [-6, -2, 2, 6][i] + (s ? 1 : -1) * (.3 + .55 * abreTrem); }));
+  portasPlat.forEach((par, i) => par.forEach((p, s) => { p.position.x = [-6, -2, 2, 6][i] + (s ? 1 : -1) * (.3 + .55 * aberta); p.material.color.set(em(P(6, "alinhada") - .3, F(6)) ? 0x3aff7a : 0x7fd0a0); }));
+  degraus.forEach((d, i) => { const k = frac(i / 14 + t * .08); d.position.set(k * 5.6, k * 3.1, 0); });
+  // frenagem regenerativa
+  regen.forEach((r) => { const k = frac(t * 1.1 + r.f); const x0 = xt + 5.5; let p; if (k < .3) p = V(x0, .45 + k / .3 * -.1, .72 - (k / .3) * -.9); else p = V(x0 + (k - .3) / .7 * 30, .42, 1.62); r.s.position.copy(p); r.s.scale.setScalar(.22); r.s.material.opacity = em(P(7, "gerador") - .4, F(7)) ? 1 : 0; });
+  terceiro.material.emissiveIntensity = Math.max(terceiro.material.emissiveIntensity, em(P(7, "devolve") - .3, F(7)) ? 1 : 0);
+
+  K.cartoes(t, [
+    [P(2, "gas") - .3, F(2), "TÚNEL CHEIO DE GÁS", "#ff4a3a"],
+    [P(3, "eletricos") - .3, P(3, "terceiro") - .4, "MOTOR ELÉTRICO", "#ffd23a"],
+    [P(3, "terceiro") - .4, P(3, "fio") - .5, "3º TRILHO", "#ffd23a"],
+    [P(3, "fio") - .5, F(3), "OU FIO EM CIMA", "#ffd23a"],
+    [P(4, "pesado") - .3, P(4, "aco") - .3, "PNEU NÃO AGUENTA", "#ff4a3a"],
+    [P(4, "aco") - .3, P(4, "atrito") - .3, "AÇO NO AÇO", "#ffffff"],
+    [P(4, "atrito") - .3, F(4), "QUASE SEM ATRITO", "#3aff7a"],
+    [P(5, "bater") - .4, P(5, "pedacos") - .3, "PERIGO DE BATER", "#ff4a3a"],
+    [P(5, "pedacos") - .3, P(5, "ocupado") - .4, "1 TREM POR BLOCO", "#3aff7a"],
+    [P(5, "ocupado") - .4, F(5), "FREIA SOZINHO", "#ff4a3a"],
+    [P(6, "apito") - .3, P(6, "plataforma") - .4, "PI PI PI", "#ffd23a"],
+    [P(6, "alinhada") - .4, F(6), "PORTAS ALINHADAS", "#3aff7a"],
+    [P(7, "gerador") - .4, P(7, "devolve") - .2, "FREIO = GERADOR", "#ffd23a"],
+    [P(7, "devolve") - .2, F(7), "ENERGIA DE VOLTA", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>

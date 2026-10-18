@@ -1,0 +1,837 @@
+{
+ "total": 69.78,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.6,
+   "texto": "Se você colocar um ônibus embaixo da terra, terá um metrô.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "colocar",
+     "t": 0.704
+    },
+    {
+     "w": "um",
+     "t": 1.141
+    },
+    {
+     "w": "ônibus",
+     "t": 1.247
+    },
+    {
+     "w": "embaixo",
+     "t": 1.565
+    },
+    {
+     "w": "da",
+     "t": 2.037
+    },
+    {
+     "w": "terra",
+     "t": 2.167
+    },
+    {
+     "w": "terá",
+     "t": 2.685
+    },
+    {
+     "w": "um",
+     "t": 2.898
+    },
+    {
+     "w": "metrô",
+     "t": 2.992
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.75,
+   "fim": 11.05,
+   "texto": "Mas a fumaça do motor não tem pra onde ir. O túnel enche de gás. E ninguém respira lá embaixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.797
+    },
+    {
+     "w": "a",
+     "t": 3.998
+    },
+    {
+     "w": "fumaça",
+     "t": 4.139
+    },
+    {
+     "w": "do",
+     "t": 4.623
+    },
+    {
+     "w": "motor",
+     "t": 4.705
+    },
+    {
+     "w": "não",
+     "t": 5.106
+    },
+    {
+     "w": "tem",
+     "t": 5.307
+    },
+    {
+     "w": "pra",
+     "t": 5.519
+    },
+    {
+     "w": "onde",
+     "t": 5.696
+    },
+    {
+     "w": "ir.",
+     "t": 6.002
+    },
+    {
+     "w": "O",
+     "t": 6.981
+    },
+    {
+     "w": "túnel",
+     "t": 7.146
+    },
+    {
+     "w": "enche",
+     "t": 7.512
+    },
+    {
+     "w": "de",
+     "t": 7.783
+    },
+    {
+     "w": "gás",
+     "t": 7.889
+    },
+    {
+     "w": "E",
+     "t": 9.104
+    },
+    {
+     "w": "ninguém",
+     "t": 9.21
+    },
+    {
+     "w": "respira",
+     "t": 9.587
+    },
+    {
+     "w": "lá",
+     "t": 10.059
+    },
+    {
+     "w": "embaixo",
+     "t": 10.259
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.2,
+   "fim": 19.83,
+   "texto": "Então, você troca o motor a diesel por motores elétricos. A energia vem por um terceiro trilho, do lado, ou por um fio lá em cima.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.247
+    },
+    {
+     "w": "você",
+     "t": 12.014
+    },
+    {
+     "w": "troca",
+     "t": 12.285
+    },
+    {
+     "w": "o",
+     "t": 12.568
+    },
+    {
+     "w": "motor",
+     "t": 12.591
+    },
+    {
+     "w": "a",
+     "t": 12.945
+    },
+    {
+     "w": "diesel",
+     "t": 13.028
+    },
+    {
+     "w": "por",
+     "t": 13.346
+    },
+    {
+     "w": "motores",
+     "t": 13.488
+    },
+    {
+     "w": "elétricos",
+     "t": 13.877
+    },
+    {
+     "w": "A",
+     "t": 15.41
+    },
+    {
+     "w": "energia",
+     "t": 15.528
+    },
+    {
+     "w": "vem",
+     "t": 16.047
+    },
+    {
+     "w": "por",
+     "t": 16.259
+    },
+    {
+     "w": "um",
+     "t": 16.389
+    },
+    {
+     "w": "terceiro",
+     "t": 16.471
+    },
+    {
+     "w": "trilho",
+     "t": 16.872
+    },
+    {
+     "w": "do",
+     "t": 17.438
+    },
+    {
+     "w": "lado",
+     "t": 17.58
+    },
+    {
+     "w": "ou",
+     "t": 18.205
+    },
+    {
+     "w": "por",
+     "t": 18.358
+    },
+    {
+     "w": "um",
+     "t": 18.523
+    },
+    {
+     "w": "fio",
+     "t": 18.641
+    },
+    {
+     "w": "lá",
+     "t": 18.865
+    },
+    {
+     "w": "em",
+     "t": 19.077
+    },
+    {
+     "w": "cima",
+     "t": 19.195
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.98,
+   "fim": 32.02,
+   "texto": "Mas um trem desse tamanho é pesado demais pra pneu de borracha. Então, você coloca rodas de aço em trilhos de aço. Quase não tem atrito, e um trem gigante anda gastando pouca energia.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 20.027
+    },
+    {
+     "w": "um",
+     "t": 20.228
+    },
+    {
+     "w": "trem",
+     "t": 20.44
+    },
+    {
+     "w": "desse",
+     "t": 20.629
+    },
+    {
+     "w": "tamanho",
+     "t": 20.9
+    },
+    {
+     "w": "é",
+     "t": 21.265
+    },
+    {
+     "w": "pesado",
+     "t": 21.313
+    },
+    {
+     "w": "demais",
+     "t": 21.761
+    },
+    {
+     "w": "pra",
+     "t": 22.197
+    },
+    {
+     "w": "pneu",
+     "t": 22.35
+    },
+    {
+     "w": "de",
+     "t": 22.645
+    },
+    {
+     "w": "borracha",
+     "t": 22.728
+    },
+    {
+     "w": "Então",
+     "t": 24.119
+    },
+    {
+     "w": "você",
+     "t": 24.838
+    },
+    {
+     "w": "coloca",
+     "t": 25.098
+    },
+    {
+     "w": "rodas",
+     "t": 25.522
+    },
+    {
+     "w": "de",
+     "t": 25.853
+    },
+    {
+     "w": "aço",
+     "t": 25.959
+    },
+    {
+     "w": "em",
+     "t": 26.23
+    },
+    {
+     "w": "trilhos",
+     "t": 26.324
+    },
+    {
+     "w": "de",
+     "t": 26.69
+    },
+    {
+     "w": "aço",
+     "t": 26.796
+    },
+    {
+     "w": "Quase",
+     "t": 27.987
+    },
+    {
+     "w": "não",
+     "t": 28.341
+    },
+    {
+     "w": "tem",
+     "t": 28.506
+    },
+    {
+     "w": "atrito",
+     "t": 28.647
+    },
+    {
+     "w": "e",
+     "t": 29.343
+    },
+    {
+     "w": "um",
+     "t": 29.426
+    },
+    {
+     "w": "trem",
+     "t": 29.555
+    },
+    {
+     "w": "gigante",
+     "t": 29.768
+    },
+    {
+     "w": "anda",
+     "t": 30.275
+    },
+    {
+     "w": "gastando",
+     "t": 30.463
+    },
+    {
+     "w": "pouca",
+     "t": 30.923
+    },
+    {
+     "w": "energia",
+     "t": 31.242
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.17,
+   "fim": 46.5,
+   "texto": "Mas, se dois trens estiverem no mesmo trilho, um pode bater no outro. Então, você divide a linha em pedaços. Só um trem pode ficar em cada pedaço. Se o da frente está ocupado, o de trás freia sozinho.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 32.217
+    },
+    {
+     "w": "se",
+     "t": 32.889
+    },
+    {
+     "w": "dois",
+     "t": 33.054
+    },
+    {
+     "w": "trens",
+     "t": 33.349
+    },
+    {
+     "w": "estiverem",
+     "t": 33.597
+    },
+    {
+     "w": "no",
+     "t": 34.08
+    },
+    {
+     "w": "mesmo",
+     "t": 34.187
+    },
+    {
+     "w": "trilho",
+     "t": 34.517
+    },
+    {
+     "w": "um",
+     "t": 35.154
+    },
+    {
+     "w": "pode",
+     "t": 35.307
+    },
+    {
+     "w": "bater",
+     "t": 35.554
+    },
+    {
+     "w": "no",
+     "t": 35.908
+    },
+    {
+     "w": "outro",
+     "t": 36.038
+    },
+    {
+     "w": "Então",
+     "t": 37.182
+    },
+    {
+     "w": "você",
+     "t": 37.948
+    },
+    {
+     "w": "divide",
+     "t": 38.208
+    },
+    {
+     "w": "a",
+     "t": 38.597
+    },
+    {
+     "w": "linha",
+     "t": 38.644
+    },
+    {
+     "w": "em",
+     "t": 38.915
+    },
+    {
+     "w": "pedaços",
+     "t": 38.998
+    },
+    {
+     "w": "Só",
+     "t": 40.46
+    },
+    {
+     "w": "um",
+     "t": 40.708
+    },
+    {
+     "w": "trem",
+     "t": 40.873
+    },
+    {
+     "w": "pode",
+     "t": 41.12
+    },
+    {
+     "w": "ficar",
+     "t": 41.356
+    },
+    {
+     "w": "em",
+     "t": 41.639
+    },
+    {
+     "w": "cada",
+     "t": 41.745
+    },
+    {
+     "w": "pedaço",
+     "t": 41.993
+    },
+    {
+     "w": "Se",
+     "t": 43.349
+    },
+    {
+     "w": "o",
+     "t": 43.538
+    },
+    {
+     "w": "da",
+     "t": 43.585
+    },
+    {
+     "w": "frente",
+     "t": 43.703
+    },
+    {
+     "w": "está",
+     "t": 44.01
+    },
+    {
+     "w": "ocupado",
+     "t": 44.187
+    },
+    {
+     "w": "o",
+     "t": 44.918
+    },
+    {
+     "w": "de",
+     "t": 45.012
+    },
+    {
+     "w": "trás",
+     "t": 45.142
+    },
+    {
+     "w": "freia",
+     "t": 45.389
+    },
+    {
+     "w": "sozinho",
+     "t": 45.708
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.65,
+   "fim": 56.86,
+   "texto": "E aquele apito antes da porta fechar? É o aviso. E a porta da plataforma só abre quando a porta do trem está alinhada com ela, pra ninguém cair nos trilhos.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 46.697
+    },
+    {
+     "w": "aquele",
+     "t": 46.827
+    },
+    {
+     "w": "apito",
+     "t": 47.122
+    },
+    {
+     "w": "antes",
+     "t": 47.523
+    },
+    {
+     "w": "da",
+     "t": 47.829
+    },
+    {
+     "w": "porta",
+     "t": 47.959
+    },
+    {
+     "w": "fechar",
+     "t": 48.254
+    },
+    {
+     "w": "É",
+     "t": 49.48
+    },
+    {
+     "w": "o",
+     "t": 49.634
+    },
+    {
+     "w": "aviso",
+     "t": 49.728
+    },
+    {
+     "w": "E",
+     "t": 50.99
+    },
+    {
+     "w": "a",
+     "t": 51.119
+    },
+    {
+     "w": "porta",
+     "t": 51.237
+    },
+    {
+     "w": "da",
+     "t": 51.579
+    },
+    {
+     "w": "plataforma",
+     "t": 51.685
+    },
+    {
+     "w": "só",
+     "t": 52.322
+    },
+    {
+     "w": "abre",
+     "t": 52.546
+    },
+    {
+     "w": "quando",
+     "t": 52.853
+    },
+    {
+     "w": "a",
+     "t": 53.03
+    },
+    {
+     "w": "porta",
+     "t": 53.1
+    },
+    {
+     "w": "do",
+     "t": 53.419
+    },
+    {
+     "w": "trem",
+     "t": 53.537
+    },
+    {
+     "w": "está",
+     "t": 53.714
+    },
+    {
+     "w": "alinhada",
+     "t": 53.926
+    },
+    {
+     "w": "com",
+     "t": 54.35
+    },
+    {
+     "w": "ela",
+     "t": 54.563
+    },
+    {
+     "w": "pra",
+     "t": 55.046
+    },
+    {
+     "w": "ninguém",
+     "t": 55.211
+    },
+    {
+     "w": "cair",
+     "t": 55.612
+    },
+    {
+     "w": "nos",
+     "t": 55.966
+    },
+    {
+     "w": "trilhos",
+     "t": 56.155
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 57.01,
+   "fim": 62.6,
+   "texto": "E quando o trem freia, o motor vira gerador e devolve energia pra rede, pro próximo trem usar.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 57.057
+    },
+    {
+     "w": "quando",
+     "t": 57.175
+    },
+    {
+     "w": "o",
+     "t": 57.446
+    },
+    {
+     "w": "trem",
+     "t": 57.494
+    },
+    {
+     "w": "freia",
+     "t": 57.706
+    },
+    {
+     "w": "o",
+     "t": 58.378
+    },
+    {
+     "w": "motor",
+     "t": 58.437
+    },
+    {
+     "w": "vira",
+     "t": 58.85
+    },
+    {
+     "w": "gerador",
+     "t": 59.097
+    },
+    {
+     "w": "e",
+     "t": 59.545
+    },
+    {
+     "w": "devolve",
+     "t": 59.581
+    },
+    {
+     "w": "energia",
+     "t": 59.946
+    },
+    {
+     "w": "pra",
+     "t": 60.418
+    },
+    {
+     "w": "rede",
+     "t": 60.583
+    },
+    {
+     "w": "pro",
+     "t": 61.161
+    },
+    {
+     "w": "próximo",
+     "t": 61.314
+    },
+    {
+     "w": "trem",
+     "t": 61.786
+    },
+    {
+     "w": "usar",
+     "t": 62.022
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.75,
+   "fim": 69.18,
+   "texto": "Coloque escadas rolantes, catracas e um mapa colorido. Parabéns, você construiu um metrô.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 62.797
+    },
+    {
+     "w": "escadas",
+     "t": 63.257
+    },
+    {
+     "w": "rolantes",
+     "t": 63.658
+    },
+    {
+     "w": "catracas",
+     "t": 64.436
+    },
+    {
+     "w": "e",
+     "t": 65.026
+    },
+    {
+     "w": "um",
+     "t": 65.167
+    },
+    {
+     "w": "mapa",
+     "t": 65.274
+    },
+    {
+     "w": "colorido",
+     "t": 65.557
+    },
+    {
+     "w": "Parabéns",
+     "t": 66.889
+    },
+    {
+     "w": "você",
+     "t": 67.667
+    },
+    {
+     "w": "construiu",
+     "t": 67.974
+    },
+    {
+     "w": "um",
+     "t": 68.481
+    },
+    {
+     "w": "metrô",
+     "t": 68.575
+    }
+   ]
+  }
+ ]
+}
