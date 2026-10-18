@@ -1,0 +1,845 @@
+{
+ "total": 70.59,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.79,
+   "texto": "Se você colocar uma caneta num carrinho que anda de um lado pro outro, terá uma impressora.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "uma",
+     "t": 1.07
+    },
+    {
+     "w": "caneta",
+     "t": 1.211
+    },
+    {
+     "w": "num",
+     "t": 1.624
+    },
+    {
+     "w": "carrinho",
+     "t": 1.73
+    },
+    {
+     "w": "que",
+     "t": 2.155
+    },
+    {
+     "w": "anda",
+     "t": 2.308
+    },
+    {
+     "w": "de",
+     "t": 2.532
+    },
+    {
+     "w": "um",
+     "t": 2.615
+    },
+    {
+     "w": "lado",
+     "t": 2.721
+    },
+    {
+     "w": "pro",
+     "t": 2.945
+    },
+    {
+     "w": "outro",
+     "t": 3.11
+    },
+    {
+     "w": "terá",
+     "t": 3.629
+    },
+    {
+     "w": "uma",
+     "t": 3.876
+    },
+    {
+     "w": "impressora",
+     "t": 3.983
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.94,
+   "fim": 11.89,
+   "texto": "Mas a caneta risca tudo. Ela não sabe onde parar. E uma linha contínua não forma letra nenhuma.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.987
+    },
+    {
+     "w": "a",
+     "t": 5.188
+    },
+    {
+     "w": "caneta",
+     "t": 5.317
+    },
+    {
+     "w": "risca",
+     "t": 5.742
+    },
+    {
+     "w": "tudo",
+     "t": 6.143
+    },
+    {
+     "w": "Ela",
+     "t": 7.275
+    },
+    {
+     "w": "não",
+     "t": 7.499
+    },
+    {
+     "w": "sabe",
+     "t": 7.676
+    },
+    {
+     "w": "onde",
+     "t": 8.041
+    },
+    {
+     "w": "parar",
+     "t": 8.242
+    },
+    {
+     "w": "E",
+     "t": 9.35
+    },
+    {
+     "w": "uma",
+     "t": 9.468
+    },
+    {
+     "w": "linha",
+     "t": 9.622
+    },
+    {
+     "w": "contínua",
+     "t": 9.857
+    },
+    {
+     "w": "não",
+     "t": 10.365
+    },
+    {
+     "w": "forma",
+     "t": 10.518
+    },
+    {
+     "w": "letra",
+     "t": 10.895
+    },
+    {
+     "w": "nenhuma",
+     "t": 11.214
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.04,
+   "fim": 21.52,
+   "texto": "Então, você troca a caneta por uma cabeça com centenas de furinhos mais finos que um fio de cabelo. Cada furo cospe uma gotinha de tinta só quando o computador mandar.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.087
+    },
+    {
+     "w": "você",
+     "t": 12.842
+    },
+    {
+     "w": "troca",
+     "t": 13.113
+    },
+    {
+     "w": "a",
+     "t": 13.396
+    },
+    {
+     "w": "caneta",
+     "t": 13.432
+    },
+    {
+     "w": "por",
+     "t": 13.821
+    },
+    {
+     "w": "uma",
+     "t": 13.939
+    },
+    {
+     "w": "cabeça",
+     "t": 14.068
+    },
+    {
+     "w": "com",
+     "t": 14.516
+    },
+    {
+     "w": "centenas",
+     "t": 14.67
+    },
+    {
+     "w": "de",
+     "t": 15.141
+    },
+    {
+     "w": "furinhos",
+     "t": 15.248
+    },
+    {
+     "w": "mais",
+     "t": 15.625
+    },
+    {
+     "w": "finos",
+     "t": 15.884
+    },
+    {
+     "w": "que",
+     "t": 16.25
+    },
+    {
+     "w": "um",
+     "t": 16.368
+    },
+    {
+     "w": "fio",
+     "t": 16.509
+    },
+    {
+     "w": "de",
+     "t": 16.757
+    },
+    {
+     "w": "cabelo",
+     "t": 16.84
+    },
+    {
+     "w": "Cada",
+     "t": 18.054
+    },
+    {
+     "w": "furo",
+     "t": 18.325
+    },
+    {
+     "w": "cospe",
+     "t": 18.597
+    },
+    {
+     "w": "uma",
+     "t": 18.927
+    },
+    {
+     "w": "gotinha",
+     "t": 19.08
+    },
+    {
+     "w": "de",
+     "t": 19.457
+    },
+    {
+     "w": "tinta",
+     "t": 19.575
+    },
+    {
+     "w": "só",
+     "t": 19.882
+    },
+    {
+     "w": "quando",
+     "t": 20.118
+    },
+    {
+     "w": "o",
+     "t": 20.318
+    },
+    {
+     "w": "computador",
+     "t": 20.354
+    },
+    {
+     "w": "mandar",
+     "t": 20.896
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.67,
+   "fim": 35.4,
+   "texto": "E como a gota sai? Atrás de cada furo tem uma resistência minúscula. Ela esquenta em milionésimos de segundo, a tinta vira uma bolha de vapor, e a bolha empurra a gota pra fora. Milhares de vezes por segundo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 21.717
+    },
+    {
+     "w": "como",
+     "t": 21.847
+    },
+    {
+     "w": "a",
+     "t": 22.177
+    },
+    {
+     "w": "gota",
+     "t": 22.236
+    },
+    {
+     "w": "sai",
+     "t": 22.531
+    },
+    {
+     "w": "Atrás",
+     "t": 23.687
+    },
+    {
+     "w": "de",
+     "t": 24.087
+    },
+    {
+     "w": "cada",
+     "t": 24.194
+    },
+    {
+     "w": "furo",
+     "t": 24.453
+    },
+    {
+     "w": "tem",
+     "t": 24.783
+    },
+    {
+     "w": "uma",
+     "t": 24.937
+    },
+    {
+     "w": "resistência",
+     "t": 25.078
+    },
+    {
+     "w": "minúscula",
+     "t": 25.727
+    },
+    {
+     "w": "Ela",
+     "t": 27.106
+    },
+    {
+     "w": "esquenta",
+     "t": 27.295
+    },
+    {
+     "w": "em",
+     "t": 27.672
+    },
+    {
+     "w": "milionésimos",
+     "t": 27.731
+    },
+    {
+     "w": "de",
+     "t": 28.309
+    },
+    {
+     "w": "segundo",
+     "t": 28.404
+    },
+    {
+     "w": "a",
+     "t": 29.111
+    },
+    {
+     "w": "tinta",
+     "t": 29.194
+    },
+    {
+     "w": "vira",
+     "t": 29.547
+    },
+    {
+     "w": "uma",
+     "t": 29.724
+    },
+    {
+     "w": "bolha",
+     "t": 29.866
+    },
+    {
+     "w": "de",
+     "t": 30.184
+    },
+    {
+     "w": "vapor",
+     "t": 30.279
+    },
+    {
+     "w": "e",
+     "t": 30.974
+    },
+    {
+     "w": "a",
+     "t": 31.057
+    },
+    {
+     "w": "bolha",
+     "t": 31.151
+    },
+    {
+     "w": "empurra",
+     "t": 31.458
+    },
+    {
+     "w": "a",
+     "t": 31.847
+    },
+    {
+     "w": "gota",
+     "t": 31.882
+    },
+    {
+     "w": "pra",
+     "t": 32.201
+    },
+    {
+     "w": "fora",
+     "t": 32.354
+    },
+    {
+     "w": "Milhares",
+     "t": 33.521
+    },
+    {
+     "w": "de",
+     "t": 34.005
+    },
+    {
+     "w": "vezes",
+     "t": 34.111
+    },
+    {
+     "w": "por",
+     "t": 34.5
+    },
+    {
+     "w": "segundo",
+     "t": 34.654
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.55,
+   "fim": 46.61,
+   "texto": "Mas uma linha de pontos não forma a página. Então, um rolo puxa o papel um pouquinho pra frente a cada passada do carrinho. Linha por linha, os pontos viram letras e fotos.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 35.597
+    },
+    {
+     "w": "uma",
+     "t": 35.798
+    },
+    {
+     "w": "linha",
+     "t": 36.022
+    },
+    {
+     "w": "de",
+     "t": 36.246
+    },
+    {
+     "w": "pontos",
+     "t": 36.352
+    },
+    {
+     "w": "não",
+     "t": 36.788
+    },
+    {
+     "w": "forma",
+     "t": 36.953
+    },
+    {
+     "w": "a",
+     "t": 37.319
+    },
+    {
+     "w": "página",
+     "t": 37.378
+    },
+    {
+     "w": "Então",
+     "t": 38.64
+    },
+    {
+     "w": "um",
+     "t": 39.347
+    },
+    {
+     "w": "rolo",
+     "t": 39.489
+    },
+    {
+     "w": "puxa",
+     "t": 39.76
+    },
+    {
+     "w": "o",
+     "t": 40.019
+    },
+    {
+     "w": "papel",
+     "t": 40.055
+    },
+    {
+     "w": "um",
+     "t": 40.35
+    },
+    {
+     "w": "pouquinho",
+     "t": 40.467
+    },
+    {
+     "w": "pra",
+     "t": 40.916
+    },
+    {
+     "w": "frente",
+     "t": 41.069
+    },
+    {
+     "w": "a",
+     "t": 41.387
+    },
+    {
+     "w": "cada",
+     "t": 41.434
+    },
+    {
+     "w": "passada",
+     "t": 41.659
+    },
+    {
+     "w": "do",
+     "t": 42.071
+    },
+    {
+     "w": "carrinho",
+     "t": 42.189
+    },
+    {
+     "w": "Linha",
+     "t": 43.439
+    },
+    {
+     "w": "por",
+     "t": 43.817
+    },
+    {
+     "w": "linha",
+     "t": 43.993
+    },
+    {
+     "w": "os",
+     "t": 44.512
+    },
+    {
+     "w": "pontos",
+     "t": 44.689
+    },
+    {
+     "w": "viram",
+     "t": 45.102
+    },
+    {
+     "w": "letras",
+     "t": 45.385
+    },
+    {
+     "w": "e",
+     "t": 45.703
+    },
+    {
+     "w": "fotos",
+     "t": 45.833
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.76,
+   "fim": 57.25,
+   "texto": "E as cores? São só quatro tintas: ciano, magenta, amarelo e preto. Os pontinhos misturados enganam o olho, e você vê todas as cores.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 46.807
+    },
+    {
+     "w": "as",
+     "t": 46.937
+    },
+    {
+     "w": "cores",
+     "t": 47.114
+    },
+    {
+     "w": "São",
+     "t": 48.423
+    },
+    {
+     "w": "só",
+     "t": 48.741
+    },
+    {
+     "w": "quatro",
+     "t": 48.942
+    },
+    {
+     "w": "tintas",
+     "t": 49.295
+    },
+    {
+     "w": "ciano",
+     "t": 50.038
+    },
+    {
+     "w": "magenta",
+     "t": 50.722
+    },
+    {
+     "w": "amarelo",
+     "t": 51.453
+    },
+    {
+     "w": "e",
+     "t": 51.949
+    },
+    {
+     "w": "preto",
+     "t": 52.008
+    },
+    {
+     "w": "Os",
+     "t": 53.175
+    },
+    {
+     "w": "pontinhos",
+     "t": 53.376
+    },
+    {
+     "w": "misturados",
+     "t": 53.883
+    },
+    {
+     "w": "enganam",
+     "t": 54.402
+    },
+    {
+     "w": "o",
+     "t": 54.92
+    },
+    {
+     "w": "olho",
+     "t": 54.979
+    },
+    {
+     "w": "e",
+     "t": 55.498
+    },
+    {
+     "w": "você",
+     "t": 55.593
+    },
+    {
+     "w": "vê",
+     "t": 55.887
+    },
+    {
+     "w": "todas",
+     "t": 56.041
+    },
+    {
+     "w": "as",
+     "t": 56.371
+    },
+    {
+     "w": "cores",
+     "t": 56.548
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 57.4,
+   "fim": 63.84,
+   "texto": "E aquele barulhão quando você liga? É a impressora limpando os furinhos, porque a tinta seca e entope.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 57.447
+    },
+    {
+     "w": "aquele",
+     "t": 57.577
+    },
+    {
+     "w": "barulhão",
+     "t": 57.919
+    },
+    {
+     "w": "quando",
+     "t": 58.402
+    },
+    {
+     "w": "você",
+     "t": 58.626
+    },
+    {
+     "w": "liga",
+     "t": 58.921
+    },
+    {
+     "w": "É",
+     "t": 60.1
+    },
+    {
+     "w": "a",
+     "t": 60.23
+    },
+    {
+     "w": "impressora",
+     "t": 60.277
+    },
+    {
+     "w": "limpando",
+     "t": 60.773
+    },
+    {
+     "w": "os",
+     "t": 61.197
+    },
+    {
+     "w": "furinhos",
+     "t": 61.28
+    },
+    {
+     "w": "porque",
+     "t": 62.023
+    },
+    {
+     "w": "a",
+     "t": 62.27
+    },
+    {
+     "w": "tinta",
+     "t": 62.353
+    },
+    {
+     "w": "seca",
+     "t": 62.707
+    },
+    {
+     "w": "e",
+     "t": 63.037
+    },
+    {
+     "w": "entope",
+     "t": 63.084
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 63.99,
+   "fim": 69.99,
+   "texto": "Coloque uma bandeja de papel e um cartucho caro. Parabéns, você construiu uma impressora.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 64.037
+    },
+    {
+     "w": "uma",
+     "t": 64.521
+    },
+    {
+     "w": "bandeja",
+     "t": 64.65
+    },
+    {
+     "w": "de",
+     "t": 65.11
+    },
+    {
+     "w": "papel",
+     "t": 65.205
+    },
+    {
+     "w": "e",
+     "t": 65.617
+    },
+    {
+     "w": "um",
+     "t": 65.665
+    },
+    {
+     "w": "cartucho",
+     "t": 65.794
+    },
+    {
+     "w": "caro",
+     "t": 66.278
+    },
+    {
+     "w": "Parabéns",
+     "t": 67.398
+    },
+    {
+     "w": "você",
+     "t": 68.176
+    },
+    {
+     "w": "construiu",
+     "t": 68.483
+    },
+    {
+     "w": "uma",
+     "t": 69.002
+    },
+    {
+     "w": "impressora",
+     "t": 69.132
+    }
+   ]
+  }
+ ]
+}

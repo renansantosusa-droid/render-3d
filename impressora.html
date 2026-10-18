@@ -1,0 +1,183 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("impressora", { fundo: 0xdfe6ee, seed: 9191 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texMadeira, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- mesa e impressora em corte ----------
+add(new THREE.BoxGeometry(12, .3, 8), mat(0xffffff, { map: texMadeira("#b07a45", 3) }), 0, -.45, 0);
+const imp = grupo(0, 0, 0);
+const mCorpo = mat(0x3a3e46, { roughness: .5 });
+add(new THREE.BoxGeometry(3.6, .6, 2.6), mCorpo, 0, 0, -.1, imp);
+add(new THREE.BoxGeometry(3.6, 1.3, .2), mCorpo, 0, .55, -1.3, imp);
+for (const s of [-1, 1]) add(new THREE.BoxGeometry(.25, 1.3, 2.6), mCorpo, s * 1.68, .55, -.1, imp);
+add(new THREE.BoxGeometry(3.6, .05, 2.6), vidro(.12, 0xaaccff), 0, 1.22, -.1, imp);
+const trilho = add(new THREE.CylinderGeometry(.04, .04, 3.2, 10), mat(0xc8ccd2, { metalness: .8, roughness: .2 }), 0, .95, -.35, imp); trilho.rotation.z = Math.PI / 2;
+const rolo = add(new THREE.CylinderGeometry(.12, .12, 2.6, 20), mat(0x1b1b1b, { roughness: .9 }), 0, .2, -.75, imp); rolo.rotation.z = Math.PI / 2;
+const marcaRolo = add(new THREE.BoxGeometry(2.6, .03, .05), brilho(0xffd23a), 0, .2, -.75, imp);
+// carrinho
+const carro = grupo(0, .8, 0, imp);
+add(new THREE.BoxGeometry(.6, .5, .55), mat(0x2a2d33), 0, 0, -.1, carro);
+const caneta = grupo(0, -.1, .05, carro);
+add(new THREE.CylinderGeometry(.06, .06, .7, 12), mat(0x2a6cd0), 0, 0, 0, caneta); add(new THREE.ConeGeometry(.06, .15, 12), mat(0x111111), 0, -.42, 0, caneta);
+const cartuchos = grupo(0, .05, .05, carro);
+const coresC = [0x00b4e6, 0xe6008a, 0xffe000, 0x111111];
+const capas = coresC.map((c, i) => add(new THREE.BoxGeometry(.12, .42, .3), mat(c, { emissive: c, emissiveIntensity: 0 }), -.21 + i * .14, 0, 0, cartuchos));
+const placa = add(new THREE.BoxGeometry(.5, .02, .28), mat(0x777b82, { metalness: .6 }), 0, -.26, 0, cartuchos);
+const texFuros = (() => { const c = document.createElement("canvas"); c.width = 256; c.height = 128; const g = c.getContext("2d"); g.fillStyle = "#8a8e96"; g.fillRect(0, 0, 256, 128); g.fillStyle = "#111"; for (let r = 0; r < 8; r++) for (let k = 0; k < 40; k++) { g.beginPath(); g.arc(8 + k * 6.2, 12 + r * 14, 1.8, 0, 6.3); g.fill(); } const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+const furos = add(new THREE.PlaneGeometry(.5, .28), new THREE.MeshBasicMaterial({ map: texFuros }), 0, -.272, 0, cartuchos); furos.rotation.x = Math.PI / 2;
+const gotas = Array.from({ length: 30 }, () => ({ s: sprite(0x1a4a9a), x: (rnd() - .5) * .44, z: (rnd() - .5) * .22, f: rnd() }));
+// estação de limpeza (direita)
+const estacao = grupo(1.3, .32, -.1, imp);
+add(new THREE.BoxGeometry(.5, .12, .6), mat(0x222222), 0, 0, 0, estacao);
+const rodo = add(new THREE.BoxGeometry(.04, .12, .4), mat(0x2a8cff), 0, .12, 0, estacao);
+const borrifo = Array.from({ length: 14 }, () => ({ s: sprite(0x111111), x: (rnd() - .5) * .3, f: rnd() }));
+// papel (desenhado num canvas)
+const PW = 2.1, PL = 2.97;
+const cvP = document.createElement("canvas"); cvP.width = 512; cvP.height = 724; const gP = cvP.getContext("2d");
+const texP = new THREE.CanvasTexture(cvP); texP.colorSpace = THREE.SRGBColorSpace;
+const papel = add(new THREE.PlaneGeometry(PW, PL), mat(0xffffff, { map: texP, roughness: .9 }), 0, .32, 0, imp); papel.rotation.x = -Math.PI / 2;
+// conteúdo a imprimir
+const cvC = document.createElement("canvas"); cvC.width = 512; cvC.height = 724; const gC = cvC.getContext("2d");
+gC.fillStyle = "#fff"; gC.fillRect(0, 0, 512, 724);
+gC.fillStyle = "#111"; gC.font = "900 78px Nunito, Arial"; gC.textAlign = "center"; gC.fillText("PARABÉNS!", 256, 120);
+gC.fillStyle = "#ffcc00"; gC.beginPath(); gC.arc(256, 330, 95, 0, 6.3); gC.fill();
+gC.strokeStyle = "#ff8a00"; gC.lineWidth = 14; for (let i = 0; i < 12; i++) { const a = i / 12 * 6.28; gC.beginPath(); gC.moveTo(256 + Math.cos(a) * 115, 330 + Math.sin(a) * 115); gC.lineTo(256 + Math.cos(a) * 160, 330 + Math.sin(a) * 160); gC.stroke(); }
+gC.fillStyle = "#00a0e6"; gC.fillRect(40, 520, 432, 70); gC.fillStyle = "#2aa84a"; gC.fillRect(40, 590, 432, 80);
+gC.fillStyle = "#e6008a"; for (let i = 0; i < 5; i++) { gC.beginPath(); gC.arc(90 + i * 85, 585, 26, 0, 6.3); gC.fill(); }
+// ---------- detalhe: bico em corte (x = 100) ----------
+const bico = grupo(100, 0, 0);
+add(new THREE.BoxGeometry(2.6, .3, .6), mat(0x8a8e96), 0, -1.2, 0, bico).position.x = -.85;
+add(new THREE.BoxGeometry(2.6, .3, .6), mat(0x8a8e96), 0, -1.2, 0, bico).position.x = .85 + 0;
+bico.children[0].position.x = -1.55; bico.children[1].position.x = 1.55;
+add(new THREE.BoxGeometry(.3, 2.6, .6), mat(0x8a8e96), -1.1, 0, 0, bico); add(new THREE.BoxGeometry(.3, 2.6, .6), mat(0x8a8e96), 1.1, 0, 0, bico);
+add(new THREE.BoxGeometry(2.5, .3, .6), mat(0x8a8e96), 0, 1.2, 0, bico);
+add(new THREE.BoxGeometry(1.9, 2.1, .5), mat(0x1a4ab0, { transparent: true, opacity: .85 }), 0, 0, -.02, bico);
+const resist = add(new THREE.BoxGeometry(1.2, .14, .55), mat(0x552222, { emissive: 0xff3a10, emissiveIntensity: 0 }), 0, .98, 0, bico);
+const bolha = add(new THREE.SphereGeometry(1, 24, 16), mat(0xffffff, { transparent: true, opacity: .8, roughness: .1 }), 0, .7, .1, bico);
+const gota = add(new THREE.SphereGeometry(.18, 16, 12), mat(0x1a4ab0, { roughness: .2 }), 0, -1.2, .1, bico);
+add(new THREE.BoxGeometry(5, .05, 2), mat(0xffffff), 0, -3.2, 0, bico);
+// ---------- detalhe: pontinhos CMYK (x = 200) ----------
+const pontos = grupo(200, 0, 0);
+const geoP = new THREE.CircleGeometry(.05, 12);
+const inst = new THREE.InstancedMesh(geoP, new THREE.MeshBasicMaterial(), 4 * 60 * 60); pontos.add(inst);
+add(new THREE.PlaneGeometry(7, 7), brilho(0xffffff), 0, 0, -.01, pontos);
+{ const m = new THREE.Matrix4(), col = new THREE.Color(); let n = 0; const cs = [0x00b4e6, 0xe6008a, 0xffe000, 0x111111]; const off = [[0, 0], [.05, .05], [.05, 0], [0, .05]];
+  for (let i = 0; i < 60; i++) for (let j = 0; j < 60; j++) { const x = (i - 30) * .1, y = (j - 30) * .1; const u = i / 60, v = j / 60; const w = [1 - u, u * v, v * (1 - u * .5), .15 * (1 - v)]; for (let c = 0; c < 4; c++) { const s = Math.max(.05, Math.min(1, w[c])); m.makeScale(s, s, 1); m.setPosition(x + off[c][0], y + off[c][1], c * .001); inst.setMatrixAt(n, m); inst.setColorAt(n, col.set(cs[c])); n++; } } }
+// ---------- fim: bandeja e preço ----------
+const bandeja = grupo(0, .9, -1.6, imp);
+const bb = add(new THREE.BoxGeometry(2.3, .05, 1.4), mat(0x3a3e46), 0, 0, 0, bandeja); bandeja.rotation.x = -.9;
+for (let i = 0; i < 8; i++) add(new THREE.BoxGeometry(2.1, .012, 1.3), mat(0xffffff), 0, .04 + i * .014, 0, bandeja);
+const preco = add(new THREE.PlaneGeometry(.9, .45), new THREE.MeshBasicMaterial({ map: rotulo("R$ 150", "#111", { fundo: "#ffd23a" }), transparent: true }), .9, 1.75, .1, imp);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(.9, 5.6, 4.6), V(0, .3, .2)], cabeca: [V(.9, .5, 1.9), V(0, .55, 0)], baixo: [V(.5, .42, 1.9), V(0, .52, 0)],
+  bico: [V(100, -.2, 8.5), V(100, .3, 0)], rolo: [V(1.9, 1.5, 2.6), V(0, .35, -.3)], cartucho: [V(.6, 1.6, 1.6), V(0, .85, -.1)],
+  pontosPerto: [V(200, 0, 1.2), V(200, 0, 0)], pontosLonge: [V(200, 0, 9), V(200, 0, 0)],
+  estacao: [V(1.15, 1.4, 2.5), V(1.15, .5, -.1)], fim: [V(1.4, 4.3, 6.4), V(0, .7, -.3)],
+}, [
+  [0, "geral"], [F(1), "geral"],
+  [C(2), "geral"], [F(2), "geral"],
+  [C(3), "cabeca"], [P(3, "cospe") - .4, "baixo"], [F(3), "baixo"],
+  [C(4), "bico"], [F(4), "bico"],
+  [C(5), "rolo"], [P(5, "linha") - .3, "geral"], [F(5), "geral"],
+  [C(6), "cartucho"], [P(6, "pontinhos") - .3, "cartucho"], [P(6, "pontinhos") - .3, "pontosPerto"], [F(6), "pontosLonge"],
+  [C(7), "estacao"], [F(7), "estacao"],
+  [C(8), "fim"], [T, "fim"],
+]);
+
+// avanço do papel (z) e posição do carrinho (x)
+function avanco(t) {
+  if (t < C(2)) return -1.3;
+  if (t < C(3)) return -1.3 + 1.6 * lin(t, C(2), F(2));
+  if (t < C(5)) return -1.3;
+  if (t < C(6)) { const k = lin(t, P(5, "rolo") - .3, F(5)); return -1.3 + 2.7 * Math.floor(k * 18) / 18; }
+  return 1.4;
+}
+const carroX = (t) => { if (em3(t) || (t >= C(6) && t < C(7))) return 0; if (t >= C(7) && t < C(8)) return 1.3 * prog(t, C(7) + .2, C(7) + 1); return .85 * Math.sin(t * 2.4); };
+const em3 = (t) => t >= C(3) && t < C(5);
+const linhaCabeca = (zp) => (PL / 2 - (0 - zp) - 0) / PL;
+let ultimoDesenho = "";
+function desenhaPapel(t) {
+  // modo caneta: rabisco contínuo; modo impressão: revela o conteúdo até a linha sob a cabeça
+  const zp = avanco(t);
+  const rowHead = clamp((PL / 2 - zp) / PL * 724, 0, 724);
+  let chave;
+  if (t >= C(2) && t < C(3)) chave = "c" + Math.round(t * 30);
+  else if (t >= C(5)) chave = "p" + Math.round(rowHead);
+  else chave = t >= C(3) ? "branco" : "inicio";
+  if (chave === ultimoDesenho) return; ultimoDesenho = chave;
+  gP.fillStyle = "#fff"; gP.fillRect(0, 0, 512, 724);
+  if (t >= C(2) && t < C(3)) {
+    gP.strokeStyle = "#2a6cd0"; gP.lineWidth = 5; gP.beginPath();
+    const fim = Math.min(t, C(3));
+    for (let s = C(2); s <= fim; s += .02) { const x = 256 + carroX(s) / (PW / 2) * 256, y = (PL / 2 - avanco(s)) / PL * 724; s === C(2) ? gP.moveTo(x, y) : gP.lineTo(x, y); }
+    if (t < C(3)) gP.stroke(); else { gP.stroke(); }
+  }
+  if (t >= C(5)) { const r = Math.round(rowHead); if (r < 724) gP.drawImage(cvC, 0, r, 512, 724 - r, 0, r, 512, 724 - r); }
+  texP.needsUpdate = true;
+}
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const zp = avanco(t);
+  papel.position.z = zp;
+  
+  const cx = carroX(t);
+  carro.position.x = cx;
+  const temCaneta = t < P(3, "cabeca") - .2;
+  caneta.visible = temCaneta; cartuchos.visible = !temCaneta;
+  // limpar o rabisco ao trocar pela cabeça
+  desenhaPapel(t);
+  // gotas saindo dos furos
+  const cospe = em(P(3, "cospe") - .3, C(4)) || em(C(5), C(6));
+  gotas.forEach((g) => { const k = frac(t * 2.5 + g.f); g.s.position.set(cx + g.x, .53 - k * .2, .05 + g.z); g.s.scale.setScalar(.035); g.s.material.opacity = cospe ? 1 : 0; });
+  // rolo gira em passos
+  rolo.rotation.x = -zp * 8; marcaRolo.rotation.x = -zp * 8;
+  marcaRolo.visible = em(P(5, "rolo") - .5, F(5));
+  // bico em corte: resistência → bolha → gota
+  bico.visible = em(C(4), C(5));
+  const per = t > P(4, "milhares") - .3 ? .16 : 1.4;
+  const t0 = P(4, "esquenta") - .3;
+  const k = t < t0 ? 0 : frac((t - t0) / per);
+  const ativo = t >= t0 || t > P(4, "resistencia") - .3;
+  resist.material.emissiveIntensity = ativo ? (k < .35 ? 2.5 : .3) : (em(P(4, "resistencia") - .3, t0) ? 1.5 : 0);
+  const b = t < t0 ? 0 : Math.sin(clamp(k / .7, 0, 1) * Math.PI);
+  bolha.visible = b > .02 && t > P(4, "bolha") - .5; bolha.scale.set(.75 * b, .55 * b, .25);
+  gota.visible = t > P(4, "empurra") - .5 && k > .3; gota.position.y = -1.2 - clamp((k - .3) / .7, 0, 1) * 1.9;
+  // cartuchos coloridos
+  capas.forEach((c, i) => { c.material.emissiveIntensity = em(P(6, ["ciano", "magenta", "amarelo", "preto"][i]) - .2, F(6)) ? .7 : 0; });
+  // limpeza: rodo e borrifos, a impressora treme
+  const limpa = em(C(7) + .9, F(7));
+  rodo.position.z = limpa ? Math.sin(t * 10) * .15 : 0;
+  borrifo.forEach((p) => { const kk = frac(t * 3 + p.f); p.s.position.set(1.3 + p.x, .55 - kk * .2, -.1); p.s.scale.setScalar(.04); p.s.material.opacity = limpa ? 1 - kk : 0; });
+  imp.position.x = limpa ? Math.sin(t * 60) * .006 : 0;
+  // fim
+  bandeja.visible = t > P(8, "bandeja") - .3; bandeja.rotation.x = -.9;
+  preco.visible = t > P(8, "caro") - .3;
+  preco.position.x = cx + .7;
+
+  K.cartoes(t, [
+    [P(2, "risca") - .3, P(2, "linha") - .3, "RISCA TUDO", "#ff4a3a"],
+    [P(2, "linha") - .3, F(2), "LINHA CONTÍNUA ≠ LETRA", "#ff4a3a"],
+    [P(3, "centenas") - .3, P(3, "cospe") - .4, "CENTENAS DE FURINHOS", "#ffffff"],
+    [P(3, "cospe") - .4, F(3), "1 GOTINHA POR VEZ", "#2a8cff"],
+    [P(4, "resistencia") - .3, P(4, "bolha") - .3, "RESISTÊNCIA", "#ff7a3a"],
+    [P(4, "bolha") - .3, P(4, "empurra") - .3, "BOLHA DE VAPOR", "#ffffff"],
+    [P(4, "empurra") - .3, P(4, "milhares") - .3, "GOTA PRA FORA", "#2a8cff"],
+    [P(4, "milhares") - .3, F(4), "MILHARES POR SEGUNDO", "#ffd23a"],
+    [P(5, "rolo") - .3, P(5, "linha") - .3, "ROLO PUXA O PAPEL", "#ffd23a"],
+    [P(6, "quatro") - .3, P(6, "pontinhos") - .3, "C M Y K", "#ffffff"],
+    [P(6, "enganam") - .4, F(6), "ENGANA O OLHO", "#3aff7a"],
+    [P(7, "barulhao") - .3, P(7, "limpando") - .3, "BARULHÃO", "#ff4a3a"],
+    [P(7, "limpando") - .3, F(7), "LIMPANDO OS FURINHOS", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>
