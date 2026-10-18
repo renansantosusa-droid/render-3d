@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("airbag", { fundo: 0x9cc8ea, seed: 3131 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, grade, texRuido, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd } = K;
+
+// ---------- rua ----------
+add(new THREE.PlaneGeometry(80, 30), mat(0xffffff, { map: texRuido("#55595f", 40, 20), roughness: .9 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+const faixas = Array.from({ length: 14 }, (_, i) => add(new THREE.BoxGeometry(1.2, .01, .12), brilho(0xffffff), -20 + i * 3, .005, 1.6));
+for (let i = 0; i < 8; i++) add(new THREE.BoxGeometry(1 + rnd(), 3 + rnd() * 4, 1), mat(0x8aa0b8), -14 + i * 4, 2.5, -6);
+// ---------- carro em corte (frente = -x) ----------
+const carro = grupo(0, 0, 0);
+const mLat = mat(0xd0303a, { roughness: .35, side: THREE.DoubleSide });
+add(new THREE.BoxGeometry(4.2, .1, 1.7), mat(0x333333), -.4, .35, 0, carro);
+add(new THREE.BoxGeometry(4.2, .55, .05), mLat, -.4, .62, -.85, carro);
+add(new THREE.BoxGeometry(1.4, .5, 1.7), mat(0xd0303a, { transparent: true, opacity: .35, depthWrite: false }), -2.0, .82, 0, carro);
+add(new THREE.BoxGeometry(2.2, .05, 1.7), mLat, .1, 1.72, 0, carro);
+const para = add(new THREE.BoxGeometry(.05, .85, 1.6), vidro(.25, 0x9fd0f0), -1.25, 1.42, 0, carro); para.rotation.z = -.55;
+for (const x of [-1.8, .9]) { const r = add(new THREE.CylinderGeometry(.35, .35, .25, 24), mat(0x1b1b1b), x, .35, .8, carro); r.rotation.x = Math.PI / 2; }
+add(new THREE.BoxGeometry(.6, .35, 1.6), mat(0x2a2a2e), -1.15, 1.0, 0, carro); // painel
+// banco + motorista
+add(new THREE.BoxGeometry(.55, .15, .55), mat(0x222222), .3, .55, -.15, carro);
+add(new THREE.BoxGeometry(.12, .8, .55), mat(0x222222), .58, .95, -.15, carro).rotation.z = -.15;
+const mot = grupo(.32, .62, -.15, carro);
+const torso = grupo(0, 0, 0, mot);
+add(new THREE.CapsuleGeometry(.17, .42, 8, 16), mat(0x2e6fd0), 0, .35, 0, torso);
+const cabeca = add(new THREE.SphereGeometry(.13, 18, 14), mat(0xe0a07a), -.02, .8, 0, torso);
+add(new THREE.BoxGeometry(.5, .14, .3), mat(0x1f3f7a), -.25, .02, 0, mot);
+const braco = add(new THREE.CapsuleGeometry(.05, .4, 6, 10), mat(0x2e6fd0), -.25, .45, .1, torso); braco.rotation.z = 1.2;
+const cinto = add(new THREE.BoxGeometry(.04, .75, .2), mat(0x111111, { emissive: 0xffd23a, emissiveIntensity: 0 }), -.05, .35, .02, torso); cinto.rotation.z = .5;
+// volante, bolsa, pastilha
+const vol = grupo(-.62, 1.05, -.15, carro); vol.rotation.z = .45;
+const aro = add(new THREE.TorusGeometry(.19, .025, 10, 40), mat(0x1b1b1b), 0, 0, 0, vol); aro.rotation.y = Math.PI / 2;
+const cubo = add(new THREE.CylinderGeometry(.08, .09, .08, 24, 1, true), vidro(.4, 0x333333), .02, 0, 0, vol); cubo.rotation.z = Math.PI / 2;
+add(new THREE.CylinderGeometry(.03, .03, .5, 12), mat(0x333333), -.25, 0, 0, vol).rotation.z = Math.PI / 2;
+const dobrada = add(new THREE.BoxGeometry(.05, .1, .1), mat(0xf2f2f2), .03, 0, 0, vol);
+const pastilha = add(new THREE.CylinderGeometry(.025, .025, .03, 16), mat(0x666666, { emissive: 0xff5a10, emissiveIntensity: 0 }), -.01, 0, 0, vol); pastilha.rotation.z = Math.PI / 2;
+const bolsa = add(new THREE.SphereGeometry(1, 28, 20), mat(0xf6f6f6, { roughness: .9 }), .05, 0, 0, vol);
+const furos = [-1, 1].map((s) => add(new THREE.CircleGeometry(.02, 12), brilho(0x222222), .1, s * .12, -.0, vol));
+const gas = Array.from({ length: 30 }, () => ({ s: sprite(0xffffff, vol), f: rnd(), a: rnd() * 6.28 }));
+const escape = Array.from({ length: 16 }, () => ({ s: sprite(0xdddddd, vol), f: rnd(), lado: rnd() < .5 ? 1 : -1 }));
+const talco = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * 1.2, y: .7 + rnd() * .9, z: (rnd() - .5) * .8 }));
+const trav = add(new THREE.BoxGeometry(.18, .1, .32), mat(0xf4f4f4, { roughness: .9 }), -.45, 1.12, -.15, carro); trav.rotation.z = .45;
+// sensor e fio
+const sensor = add(new THREE.BoxGeometry(.1, .08, .1), mat(0x444444, { emissive: 0xffd23a, emissiveIntensity: 0 }), -2.55, .65, -.2, carro);
+const fio = new THREE.CatmullRomCurve3([V(-2.55, .65, -.2), V(-1.8, .5, -.3), V(-1.2, .8, -.3), V(-.9, 1.05, -.15), V(-.62, 1.05, -.15)]);
+add(new THREE.TubeGeometry(fio, 40, .008, 6), mat(0x222222), 0, 0, 0, carro);
+const sinal = fluxo(fio, 10, 0xffd23a, carro);
+// mais bolsas no fim
+const cortina = add(new THREE.BoxGeometry(1.4, .4, .08), mat(0xf6f6f6, { roughness: .9 }), .1, 1.45, -.8, carro);
+const joelho = add(new THREE.SphereGeometry(1, 16, 12), mat(0xf6f6f6, { roughness: .9 }), -.75, .72, -.15, carro);
+const muro = add(new THREE.BoxGeometry(.4, 1.6, 3), mat(0xffffff, { map: grade("#b8b0a0", "#8a8070", 32, 3) }), -6, .8, 0);
+const cron = add(new THREE.PlaneGeometry(.5, .25), new THREE.MeshBasicMaterial({ map: rotulo("0,03 s", "#ffd23a", { fundo: "#111", w: 512, h: 256, tam: 130 }) }), -.95, 1.62, .3, carro);
+
+// ---------- câmera ----------
+K.camera_({
+  lado: [V(-.6, 1.6, 5.4), V(-.7, 1.35, 0)], perto: [V(-.1, 1.35, 2.7), V(-.15, 1.25, -.15)], volante: [V(-.35, 1.25, 1.7), V(-.45, 1.17, -.15)],
+  sensor: [V(-2.3, 1.1, 2.3), V(-2.45, .85, -.2)], final: [V(.4, 1.6, 4.0), V(-.4, 1.3, 0)],
+}, [
+  [0, "lado"], [P(1, "travesseiro") - .2, "perto"], [F(1), "perto"],
+  [C(2), "perto"], [P(2, "batida") - .5, "lado"], [F(2), "lado"],
+  [C(3), "volante"], [F(3), "volante"],
+  [C(4), "volante"], [P(4, "sensor") - .3, "sensor"], [P(4, "pastilha") - .4, "volante"], [P(4, "piscar") + .5, "perto"], [F(4), "perto"],
+  [C(5), "perto"], [P(5, "furinhos") - .3, "volante"], [F(5), "perto"],
+  [C(6), "perto"], [F(6), "perto"],
+  [C(7), "lado"], [F(7), "perto"],
+  [C(8), "perto"], [C(8) + 1, "final"], [T, "final"],
+]);
+
+// batidas: cena 2 (travesseiro), cena 4/5 (airbag), cena 7 (sem cinto)
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const b1 = P(2, "batida") - .1, b2 = P(4, "sensor") - .4, b3 = C(7) + .8;
+  const parado = (t > b1 && t < C(3)) || (t > b2 && t < C(7)) || t > b3;
+  const vel = parado ? 0 : 8;
+  faixas.forEach((f, i) => { f.position.x = -20 + ((i * 3 + (parado ? 0 : t * vel)) % 42); });
+  muro.visible = em(b1 - 1.5, C(3)) || em(b2 - 1.2, C(5)) || em(b3 - 1.2, C(8));
+  const ultima = t < C(3) ? b1 : t < C(7) ? b2 : b3;
+  muro.position.x = -2.85 - 4 * (1 - prog(t, ultima - 1.2, ultima));
+  carro.position.x = .12 * pulse(t, ultima, .25); carro.rotation.z = -.03 * pulse(t, ultima, .3);
+  // travesseiro
+  trav.visible = em(P(1, "travesseiro") - .3, C(3));
+  if (t > b1 && t < C(3)) { const k = prog(t, b1, b1 + .3); trav.position.set(-.45 - k * .2, 1.12 + k * .3, -.15); trav.rotation.z = .45 + k * 2; }
+  else { trav.position.set(-.45, 1.12, -.15); trav.rotation.z = .45; }
+  // motorista se joga pra frente nas batidas
+  const semCinto = t > C(7) - .1 && t < C(8);
+  let lanca = pulse(t, b1, .7) * .6 + pulse(t, P(5, "encosta") - .6, 1.6) * .45 + pulse(t, b3, .8) * (semCinto ? 1.0 : .4);
+  torso.rotation.z = lanca; cabeca.rotation.z = Math.sin(t * 1.5) * .05;
+  cinto.visible = !semCinto || t > b3 + .9; cinto.material.emissiveIntensity = em(P(7, "cinto") - .3, P(7, "cinto") + 1.2) ? 1 : 0;
+  // bolsa dobrada e enchendo
+  dobrada.visible = em(P(3, "bolsa") - .5, P(4, "enche"));
+  const enche = prog(t, P(4, "enche") - .15, P(4, "enche") + .25);
+  const murcha = prog(t, P(5, "encosta") - .2, P(5, "murchando") + .6);
+  const s = enche * (1 - .55 * murcha);
+  const final = prog(t, C(8) + .3, C(8) + 1.2);
+  const sb = t < C(8) ? s : .6 + .4 * final;
+  bolsa.visible = sb > .02 && t > P(4, "enche") - .2; bolsa.scale.set(.22 * sb, .28 * sb, .3 * sb); bolsa.position.x = .05 + .2 * sb;
+  furos.forEach((f) => { f.visible = em(P(5, "furinhos") - .3, C(6)); f.position.x = .05 + .2 * sb - .2 * sb; f.position.y = Math.sign(f.position.y) * .2 * sb; f.position.x = .08; });
+  pastilha.material.emissiveIntensity = em(P(4, "pastilha") - .2, P(4, "gas") + .3) ? 2 : 0;
+  gas.forEach((g) => { const k = frac(t * 1.5 + g.f); g.s.position.set(k * .25, Math.cos(g.a) * k * .2, Math.sin(g.a) * k * .2); g.s.scale.setScalar(.04); g.s.material.opacity = em(P(4, "gas") - .3, P(4, "enche")) ? 1 - k : 0; });
+  escape.forEach((e) => { const k = frac(t * 1.2 + e.f); e.s.position.set(.1 - k * .2, e.lado * (.2 + k * .25), 0); e.s.scale.setScalar(.06 + k * .08); e.s.material.opacity = em(P(5, "encosta") - .2, F(5)) ? .8 * (1 - k) : 0; });
+  sensor.material.emissiveIntensity = em(P(4, "sensor") - .3, P(4, "pastilha")) ? 1.5 : 0;
+  sinal.atualiza(t, em(P(4, "sinal") - .4, P(4, "pastilha") + .2), 1.2, .05);
+  talco.forEach((p) => { const k = frac(t * .15 + p.f); p.s.position.set(-.3 + p.x, p.y + k * .2, p.z); p.s.scale.setScalar(.12 + k * .1); p.s.material.opacity = em(P(6, "po") - .4, F(6) + .3) ? .6 : 0; });
+  cron.visible = em(P(4, "trinta") - .3, F(4));
+  cortina.visible = t > P(8, "portas") - .2 || t > P(8, "teto") - .2; cortina.scale.y = prog(t, P(8, "teto") - .3, P(8, "teto") + .1) || .01;
+  joelho.visible = t > P(8, "joelhos") - .3; joelho.scale.set(.12, .14, .22).multiplyScalar(prog(t, P(8, "joelhos") - .3, P(8, "joelhos") + .1) || .01);
+  K.cartoes(t, [
+    [P(2, "enxerga") - .3, P(2, "batida") - .2, "NÃO ENXERGA NADA", "#ff4a3a"],
+    [P(2, "batida") - .2, F(2), "BATIDA!", "#ff4a3a"],
+    [P(3, "dobradinha") - .3, F(3), "BOLSA DOBRADA", "#ffffff"],
+    [P(4, "sensor") - .3, P(4, "pastilha") - .3, "SENSOR", "#ffd23a"],
+    [P(4, "pastilha") - .3, P(4, "trinta") - .3, "PASTILHA QUEIMA = GÁS", "#ff7a3a"],
+    [P(4, "piscar") - .4, F(4), "+ RÁPIDO QUE UM PISCAR", "#ffd23a"],
+    [P(5, "muro") - .3, P(5, "furinhos") - .3, "DURA = MURO", "#ff4a3a"],
+    [P(5, "devagar") - .5, F(5), "FREIA DEVAGAR", "#3aff7a"],
+    [P(6, "talco") - .3, F(6), "TALCO, NÃO FUMAÇA", "#ffffff"],
+    [P(7, "cinto") - .3, F(7), "SEM CINTO = PERIGO", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>

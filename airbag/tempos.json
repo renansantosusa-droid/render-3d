@@ -1,0 +1,849 @@
+{
+ "total": 75.05,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.62,
+   "texto": "Se você colocar um travesseiro no volante, terá um airbag.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.681
+    },
+    {
+     "w": "um",
+     "t": 1.082
+    },
+    {
+     "w": "travesseiro",
+     "t": 1.164
+    },
+    {
+     "w": "no",
+     "t": 1.671
+    },
+    {
+     "w": "volante",
+     "t": 1.777
+    },
+    {
+     "w": "terá",
+     "t": 2.461
+    },
+    {
+     "w": "um",
+     "t": 2.662
+    },
+    {
+     "w": "airbag",
+     "t": 2.815
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.77,
+   "fim": 11.31,
+   "texto": "Mas ele atrapalha a direção. Você não enxerga nada. E, numa batida, ele não segura ninguém.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.817
+    },
+    {
+     "w": "ele",
+     "t": 4.029
+    },
+    {
+     "w": "atrapalha",
+     "t": 4.324
+    },
+    {
+     "w": "a",
+     "t": 4.82
+    },
+    {
+     "w": "direção",
+     "t": 4.855
+    },
+    {
+     "w": "Você",
+     "t": 6.235
+    },
+    {
+     "w": "não",
+     "t": 6.541
+    },
+    {
+     "w": "enxerga",
+     "t": 6.706
+    },
+    {
+     "w": "nada",
+     "t": 7.154
+    },
+    {
+     "w": "E",
+     "t": 8.298
+    },
+    {
+     "w": "numa",
+     "t": 8.829
+    },
+    {
+     "w": "batida",
+     "t": 9.077
+    },
+    {
+     "w": "ele",
+     "t": 9.855
+    },
+    {
+     "w": "não",
+     "t": 10.02
+    },
+    {
+     "w": "segura",
+     "t": 10.22
+    },
+    {
+     "w": "ninguém",
+     "t": 10.645
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.46,
+   "fim": 19.33,
+   "texto": "Então, você esconde uma bolsa de pano dobradinha dentro do volante. Mas ela precisa encher sozinha, e muito rápido.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.507
+    },
+    {
+     "w": "você",
+     "t": 12.309
+    },
+    {
+     "w": "esconde",
+     "t": 12.569
+    },
+    {
+     "w": "uma",
+     "t": 12.946
+    },
+    {
+     "w": "bolsa",
+     "t": 13.087
+    },
+    {
+     "w": "de",
+     "t": 13.441
+    },
+    {
+     "w": "pano",
+     "t": 13.571
+    },
+    {
+     "w": "dobradinha",
+     "t": 13.83
+    },
+    {
+     "w": "dentro",
+     "t": 14.408
+    },
+    {
+     "w": "do",
+     "t": 14.774
+    },
+    {
+     "w": "volante",
+     "t": 14.892
+    },
+    {
+     "w": "Mas",
+     "t": 16.201
+    },
+    {
+     "w": "ela",
+     "t": 16.401
+    },
+    {
+     "w": "precisa",
+     "t": 16.708
+    },
+    {
+     "w": "encher",
+     "t": 17.097
+    },
+    {
+     "w": "sozinha",
+     "t": 17.403
+    },
+    {
+     "w": "e",
+     "t": 18.17
+    },
+    {
+     "w": "muito",
+     "t": 18.264
+    },
+    {
+     "w": "rápido",
+     "t": 18.653
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.48,
+   "fim": 36.35,
+   "texto": "Então, você coloca um sensor que sente a freada brusca da batida. Ele manda um sinal elétrico pra uma pastilha química. Ela queima e solta um monte de gás de uma vez. A bolsa enche em uns trinta milésimos de segundo. Mais rápido que um piscar de olhos.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 19.527
+    },
+    {
+     "w": "você",
+     "t": 20.305
+    },
+    {
+     "w": "coloca",
+     "t": 20.565
+    },
+    {
+     "w": "um",
+     "t": 20.954
+    },
+    {
+     "w": "sensor",
+     "t": 21.025
+    },
+    {
+     "w": "que",
+     "t": 21.497
+    },
+    {
+     "w": "sente",
+     "t": 21.638
+    },
+    {
+     "w": "a",
+     "t": 21.98
+    },
+    {
+     "w": "freada",
+     "t": 22.027
+    },
+    {
+     "w": "brusca",
+     "t": 22.428
+    },
+    {
+     "w": "da",
+     "t": 22.805
+    },
+    {
+     "w": "batida",
+     "t": 22.9
+    },
+    {
+     "w": "Ele",
+     "t": 24.185
+    },
+    {
+     "w": "manda",
+     "t": 24.409
+    },
+    {
+     "w": "um",
+     "t": 24.751
+    },
+    {
+     "w": "sinal",
+     "t": 24.81
+    },
+    {
+     "w": "elétrico",
+     "t": 25.14
+    },
+    {
+     "w": "pra",
+     "t": 25.636
+    },
+    {
+     "w": "uma",
+     "t": 25.765
+    },
+    {
+     "w": "pastilha",
+     "t": 25.907
+    },
+    {
+     "w": "química",
+     "t": 26.367
+    },
+    {
+     "w": "Ela",
+     "t": 27.652
+    },
+    {
+     "w": "queima",
+     "t": 27.935
+    },
+    {
+     "w": "e",
+     "t": 28.206
+    },
+    {
+     "w": "solta",
+     "t": 28.254
+    },
+    {
+     "w": "um",
+     "t": 28.572
+    },
+    {
+     "w": "monte",
+     "t": 28.666
+    },
+    {
+     "w": "de",
+     "t": 29.02
+    },
+    {
+     "w": "gás",
+     "t": 29.114
+    },
+    {
+     "w": "de",
+     "t": 29.362
+    },
+    {
+     "w": "uma",
+     "t": 29.433
+    },
+    {
+     "w": "vez",
+     "t": 29.61
+    },
+    {
+     "w": "A",
+     "t": 30.836
+    },
+    {
+     "w": "bolsa",
+     "t": 30.966
+    },
+    {
+     "w": "enche",
+     "t": 31.379
+    },
+    {
+     "w": "em",
+     "t": 31.685
+    },
+    {
+     "w": "uns",
+     "t": 31.78
+    },
+    {
+     "w": "trinta",
+     "t": 31.956
+    },
+    {
+     "w": "milésimos",
+     "t": 32.251
+    },
+    {
+     "w": "de",
+     "t": 32.794
+    },
+    {
+     "w": "segundo",
+     "t": 32.9
+    },
+    {
+     "w": "Mais",
+     "t": 34.185
+    },
+    {
+     "w": "rápido",
+     "t": 34.492
+    },
+    {
+     "w": "que",
+     "t": 34.916
+    },
+    {
+     "w": "um",
+     "t": 35.034
+    },
+    {
+     "w": "piscar",
+     "t": 35.14
+    },
+    {
+     "w": "de",
+     "t": 35.565
+    },
+    {
+     "w": "olhos",
+     "t": 35.706
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 36.5,
+   "fim": 51.28,
+   "texto": "Mas uma bolsa cheia e dura seria como bater num muro. Então, você faz uns furinhos atrás dela. Quando a sua cabeça encosta, o gás vai saindo, e a bolsa já está murchando. Ela não te segura: ela te freia devagar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 36.547
+    },
+    {
+     "w": "uma",
+     "t": 36.736
+    },
+    {
+     "w": "bolsa",
+     "t": 36.972
+    },
+    {
+     "w": "cheia",
+     "t": 37.337
+    },
+    {
+     "w": "e",
+     "t": 37.656
+    },
+    {
+     "w": "dura",
+     "t": 37.715
+    },
+    {
+     "w": "seria",
+     "t": 38.057
+    },
+    {
+     "w": "como",
+     "t": 38.387
+    },
+    {
+     "w": "bater",
+     "t": 38.611
+    },
+    {
+     "w": "num",
+     "t": 38.953
+    },
+    {
+     "w": "muro",
+     "t": 39.118
+    },
+    {
+     "w": "Então",
+     "t": 40.215
+    },
+    {
+     "w": "você",
+     "t": 40.934
+    },
+    {
+     "w": "faz",
+     "t": 41.182
+    },
+    {
+     "w": "uns",
+     "t": 41.347
+    },
+    {
+     "w": "furinhos",
+     "t": 41.594
+    },
+    {
+     "w": "atrás",
+     "t": 41.983
+    },
+    {
+     "w": "dela",
+     "t": 42.373
+    },
+    {
+     "w": "Quando",
+     "t": 43.505
+    },
+    {
+     "w": "a",
+     "t": 43.741
+    },
+    {
+     "w": "sua",
+     "t": 43.788
+    },
+    {
+     "w": "cabeça",
+     "t": 44.024
+    },
+    {
+     "w": "encosta",
+     "t": 44.436
+    },
+    {
+     "w": "o",
+     "t": 45.132
+    },
+    {
+     "w": "gás",
+     "t": 45.215
+    },
+    {
+     "w": "vai",
+     "t": 45.462
+    },
+    {
+     "w": "saindo",
+     "t": 45.639
+    },
+    {
+     "w": "e",
+     "t": 46.417
+    },
+    {
+     "w": "a",
+     "t": 46.512
+    },
+    {
+     "w": "bolsa",
+     "t": 46.606
+    },
+    {
+     "w": "já",
+     "t": 46.983
+    },
+    {
+     "w": "está",
+     "t": 47.125
+    },
+    {
+     "w": "murchando",
+     "t": 47.337
+    },
+    {
+     "w": "Ela",
+     "t": 48.693
+    },
+    {
+     "w": "não",
+     "t": 48.941
+    },
+    {
+     "w": "te",
+     "t": 49.106
+    },
+    {
+     "w": "segura",
+     "t": 49.224
+    },
+    {
+     "w": "ela",
+     "t": 49.943
+    },
+    {
+     "w": "te",
+     "t": 50.132
+    },
+    {
+     "w": "freia",
+     "t": 50.262
+    },
+    {
+     "w": "devagar",
+     "t": 50.58
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 51.43,
+   "fim": 59.06,
+   "texto": "E aquele pó branco que sai depois? Não é fumaça nem fogo. É um talco que deixa a bolsa desdobrar sem grudar.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 51.477
+    },
+    {
+     "w": "aquele",
+     "t": 51.607
+    },
+    {
+     "w": "pó",
+     "t": 51.925
+    },
+    {
+     "w": "branco",
+     "t": 52.067
+    },
+    {
+     "w": "que",
+     "t": 52.421
+    },
+    {
+     "w": "sai",
+     "t": 52.538
+    },
+    {
+     "w": "depois",
+     "t": 52.751
+    },
+    {
+     "w": "Não",
+     "t": 54.107
+    },
+    {
+     "w": "é",
+     "t": 54.378
+    },
+    {
+     "w": "fumaça",
+     "t": 54.461
+    },
+    {
+     "w": "nem",
+     "t": 54.98
+    },
+    {
+     "w": "fogo",
+     "t": 55.168
+    },
+    {
+     "w": "É",
+     "t": 56.371
+    },
+    {
+     "w": "um",
+     "t": 56.489
+    },
+    {
+     "w": "talco",
+     "t": 56.63
+    },
+    {
+     "w": "que",
+     "t": 56.984
+    },
+    {
+     "w": "deixa",
+     "t": 57.102
+    },
+    {
+     "w": "a",
+     "t": 57.35
+    },
+    {
+     "w": "bolsa",
+     "t": 57.385
+    },
+    {
+     "w": "desdobrar",
+     "t": 57.727
+    },
+    {
+     "w": "sem",
+     "t": 58.222
+    },
+    {
+     "w": "grudar",
+     "t": 58.447
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 59.21,
+   "fim": 67.71,
+   "texto": "Mas o airbag só funciona junto com o cinto. Sem ele, você chega na bolsa cedo demais, enquanto ela ainda está explodindo pra fora.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 59.257
+    },
+    {
+     "w": "o",
+     "t": 59.469
+    },
+    {
+     "w": "airbag",
+     "t": 59.623
+    },
+    {
+     "w": "só",
+     "t": 60.106
+    },
+    {
+     "w": "funciona",
+     "t": 60.283
+    },
+    {
+     "w": "junto",
+     "t": 60.814
+    },
+    {
+     "w": "com",
+     "t": 61.144
+    },
+    {
+     "w": "o",
+     "t": 61.321
+    },
+    {
+     "w": "cinto",
+     "t": 61.368
+    },
+    {
+     "w": "Sem",
+     "t": 62.583
+    },
+    {
+     "w": "ele",
+     "t": 62.972
+    },
+    {
+     "w": "você",
+     "t": 63.491
+    },
+    {
+     "w": "chega",
+     "t": 63.727
+    },
+    {
+     "w": "na",
+     "t": 64.01
+    },
+    {
+     "w": "bolsa",
+     "t": 64.127
+    },
+    {
+     "w": "cedo",
+     "t": 64.458
+    },
+    {
+     "w": "demais",
+     "t": 64.729
+    },
+    {
+     "w": "enquanto",
+     "t": 65.448
+    },
+    {
+     "w": "ela",
+     "t": 65.814
+    },
+    {
+     "w": "ainda",
+     "t": 65.944
+    },
+    {
+     "w": "está",
+     "t": 66.191
+    },
+    {
+     "w": "explodindo",
+     "t": 66.38
+    },
+    {
+     "w": "pra",
+     "t": 66.958
+    },
+    {
+     "w": "fora",
+     "t": 67.111
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 67.86,
+   "fim": 74.45,
+   "texto": "Coloque mais bolsas nas portas, no teto e nos joelhos. Parabéns, você construiu um airbag.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 67.907
+    },
+    {
+     "w": "mais",
+     "t": 68.391
+    },
+    {
+     "w": "bolsas",
+     "t": 68.603
+    },
+    {
+     "w": "nas",
+     "t": 68.98
+    },
+    {
+     "w": "portas",
+     "t": 69.181
+    },
+    {
+     "w": "no",
+     "t": 69.853
+    },
+    {
+     "w": "teto",
+     "t": 70.018
+    },
+    {
+     "w": "e",
+     "t": 70.325
+    },
+    {
+     "w": "nos",
+     "t": 70.36
+    },
+    {
+     "w": "joelhos",
+     "t": 70.501
+    },
+    {
+     "w": "Parabéns",
+     "t": 71.881
+    },
+    {
+     "w": "você",
+     "t": 72.66
+    },
+    {
+     "w": "construiu",
+     "t": 72.978
+    },
+    {
+     "w": "um",
+     "t": 73.509
+    },
+    {
+     "w": "airbag",
+     "t": 73.65
+    }
+   ]
+  }
+ ]
+}
