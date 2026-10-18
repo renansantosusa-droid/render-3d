@@ -1,0 +1,857 @@
+{
+ "total": 72.92,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.94,
+   "texto": "Se você colocar uma porta na entrada de um prédio, terá uma entrada.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.657
+    },
+    {
+     "w": "uma",
+     "t": 1.093
+    },
+    {
+     "w": "porta",
+     "t": 1.27
+    },
+    {
+     "w": "na",
+     "t": 1.624
+    },
+    {
+     "w": "entrada",
+     "t": 1.707
+    },
+    {
+     "w": "de",
+     "t": 2.072
+    },
+    {
+     "w": "um",
+     "t": 2.143
+    },
+    {
+     "w": "prédio",
+     "t": 2.249
+    },
+    {
+     "w": "terá",
+     "t": 2.874
+    },
+    {
+     "w": "uma",
+     "t": 3.133
+    },
+    {
+     "w": "entrada",
+     "t": 3.24
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.09,
+   "fim": 18.02,
+   "texto": "Mas, toda vez que ela abre, o ar-condicionado vai embora pela rua. E, num prédio alto, é pior: o prédio funciona como uma chaminé. O ar sobe por dentro e puxa o ar da rua com força pela porta de baixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.137
+    },
+    {
+     "w": "toda",
+     "t": 4.798
+    },
+    {
+     "w": "vez",
+     "t": 5.081
+    },
+    {
+     "w": "que",
+     "t": 5.375
+    },
+    {
+     "w": "ela",
+     "t": 5.47
+    },
+    {
+     "w": "abre",
+     "t": 5.611
+    },
+    {
+     "w": "o",
+     "t": 6.201
+    },
+    {
+     "w": "ar-condicionado",
+     "t": 6.283
+    },
+    {
+     "w": "vai",
+     "t": 7.05
+    },
+    {
+     "w": "embora",
+     "t": 7.203
+    },
+    {
+     "w": "pela",
+     "t": 7.616
+    },
+    {
+     "w": "rua",
+     "t": 7.816
+    },
+    {
+     "w": "E",
+     "t": 8.972
+    },
+    {
+     "w": "num",
+     "t": 9.491
+    },
+    {
+     "w": "prédio",
+     "t": 9.68
+    },
+    {
+     "w": "alto",
+     "t": 10.081
+    },
+    {
+     "w": "é",
+     "t": 10.54
+    },
+    {
+     "w": "pior",
+     "t": 10.623
+    },
+    {
+     "w": "o",
+     "t": 11.366
+    },
+    {
+     "w": "prédio",
+     "t": 11.448
+    },
+    {
+     "w": "funciona",
+     "t": 11.826
+    },
+    {
+     "w": "como",
+     "t": 12.345
+    },
+    {
+     "w": "uma",
+     "t": 12.604
+    },
+    {
+     "w": "chaminé",
+     "t": 12.769
+    },
+    {
+     "w": "O",
+     "t": 14.066
+    },
+    {
+     "w": "ar",
+     "t": 14.184
+    },
+    {
+     "w": "sobe",
+     "t": 14.314
+    },
+    {
+     "w": "por",
+     "t": 14.632
+    },
+    {
+     "w": "dentro",
+     "t": 14.798
+    },
+    {
+     "w": "e",
+     "t": 15.116
+    },
+    {
+     "w": "puxa",
+     "t": 15.175
+    },
+    {
+     "w": "o",
+     "t": 15.517
+    },
+    {
+     "w": "ar",
+     "t": 15.588
+    },
+    {
+     "w": "da",
+     "t": 15.741
+    },
+    {
+     "w": "rua",
+     "t": 15.859
+    },
+    {
+     "w": "com",
+     "t": 16.107
+    },
+    {
+     "w": "força",
+     "t": 16.283
+    },
+    {
+     "w": "pela",
+     "t": 16.684
+    },
+    {
+     "w": "porta",
+     "t": 16.92
+    },
+    {
+     "w": "de",
+     "t": 17.274
+    },
+    {
+     "w": "baixo",
+     "t": 17.368
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 18.17,
+   "fim": 26.1,
+   "texto": "Então, você coloca duas portas, uma depois da outra. Mas aí todo mundo para no meio, esperando a de trás fechar.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 18.217
+    },
+    {
+     "w": "você",
+     "t": 18.995
+    },
+    {
+     "w": "coloca",
+     "t": 19.267
+    },
+    {
+     "w": "duas",
+     "t": 19.679
+    },
+    {
+     "w": "portas",
+     "t": 20.01
+    },
+    {
+     "w": "uma",
+     "t": 20.764
+    },
+    {
+     "w": "depois",
+     "t": 20.941
+    },
+    {
+     "w": "da",
+     "t": 21.319
+    },
+    {
+     "w": "outra",
+     "t": 21.472
+    },
+    {
+     "w": "Mas",
+     "t": 22.604
+    },
+    {
+     "w": "aí",
+     "t": 22.804
+    },
+    {
+     "w": "todo",
+     "t": 23.099
+    },
+    {
+     "w": "mundo",
+     "t": 23.37
+    },
+    {
+     "w": "para",
+     "t": 23.701
+    },
+    {
+     "w": "no",
+     "t": 23.878
+    },
+    {
+     "w": "meio",
+     "t": 23.984
+    },
+    {
+     "w": "esperando",
+     "t": 24.526
+    },
+    {
+     "w": "a",
+     "t": 25.021
+    },
+    {
+     "w": "de",
+     "t": 25.08
+    },
+    {
+     "w": "trás",
+     "t": 25.222
+    },
+    {
+     "w": "fechar",
+     "t": 25.458
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.25,
+   "fim": 41.91,
+   "texto": "Então, você junta as duas num cilindro, com três ou quatro folhas girando no meio. Repare: em nenhum momento existe um caminho aberto de fora pra dentro. Sempre tem uma folha tampando. A porta está sempre fechada, mesmo com gente passando.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 26.297
+    },
+    {
+     "w": "você",
+     "t": 27.028
+    },
+    {
+     "w": "junta",
+     "t": 27.311
+    },
+    {
+     "w": "as",
+     "t": 27.642
+    },
+    {
+     "w": "duas",
+     "t": 27.759
+    },
+    {
+     "w": "num",
+     "t": 28.066
+    },
+    {
+     "w": "cilindro",
+     "t": 28.196
+    },
+    {
+     "w": "com",
+     "t": 28.974
+    },
+    {
+     "w": "três",
+     "t": 29.21
+    },
+    {
+     "w": "ou",
+     "t": 29.458
+    },
+    {
+     "w": "quatro",
+     "t": 29.634
+    },
+    {
+     "w": "folhas",
+     "t": 30
+    },
+    {
+     "w": "girando",
+     "t": 30.354
+    },
+    {
+     "w": "no",
+     "t": 30.696
+    },
+    {
+     "w": "meio",
+     "t": 30.79
+    },
+    {
+     "w": "Repare",
+     "t": 31.875
+    },
+    {
+     "w": "em",
+     "t": 32.594
+    },
+    {
+     "w": "nenhum",
+     "t": 32.689
+    },
+    {
+     "w": "momento",
+     "t": 32.936
+    },
+    {
+     "w": "existe",
+     "t": 33.349
+    },
+    {
+     "w": "um",
+     "t": 33.679
+    },
+    {
+     "w": "caminho",
+     "t": 33.75
+    },
+    {
+     "w": "aberto",
+     "t": 34.092
+    },
+    {
+     "w": "de",
+     "t": 34.517
+    },
+    {
+     "w": "fora",
+     "t": 34.623
+    },
+    {
+     "w": "pra",
+     "t": 34.906
+    },
+    {
+     "w": "dentro",
+     "t": 35.071
+    },
+    {
+     "w": "Sempre",
+     "t": 36.25
+    },
+    {
+     "w": "tem",
+     "t": 36.733
+    },
+    {
+     "w": "uma",
+     "t": 36.899
+    },
+    {
+     "w": "folha",
+     "t": 37.075
+    },
+    {
+     "w": "tampando",
+     "t": 37.394
+    },
+    {
+     "w": "A",
+     "t": 38.726
+    },
+    {
+     "w": "porta",
+     "t": 38.856
+    },
+    {
+     "w": "está",
+     "t": 39.127
+    },
+    {
+     "w": "sempre",
+     "t": 39.316
+    },
+    {
+     "w": "fechada",
+     "t": 39.682
+    },
+    {
+     "w": "mesmo",
+     "t": 40.354
+    },
+    {
+     "w": "com",
+     "t": 40.719
+    },
+    {
+     "w": "gente",
+     "t": 40.884
+    },
+    {
+     "w": "passando",
+     "t": 41.156
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 42.06,
+   "fim": 46.05,
+   "texto": "Por isso, ela deixa passar várias vezes menos ar do que uma porta comum.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 42.107
+    },
+    {
+     "w": "isso",
+     "t": 42.296
+    },
+    {
+     "w": "ela",
+     "t": 42.709
+    },
+    {
+     "w": "deixa",
+     "t": 42.897
+    },
+    {
+     "w": "passar",
+     "t": 43.169
+    },
+    {
+     "w": "várias",
+     "t": 43.522
+    },
+    {
+     "w": "vezes",
+     "t": 43.864
+    },
+    {
+     "w": "menos",
+     "t": 44.194
+    },
+    {
+     "w": "ar",
+     "t": 44.489
+    },
+    {
+     "w": "do",
+     "t": 44.678
+    },
+    {
+     "w": "que",
+     "t": 44.808
+    },
+    {
+     "w": "uma",
+     "t": 44.937
+    },
+    {
+     "w": "porta",
+     "t": 45.138
+    },
+    {
+     "w": "comum",
+     "t": 45.456
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.2,
+   "fim": 57.97,
+   "texto": "Mas, se alguém empurrar rápido demais, ela vira um liquidificador. Então, você coloca um freio que segura a velocidade. E, se alguém ficar preso, um sensor para tudo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 46.247
+    },
+    {
+     "w": "se",
+     "t": 46.931
+    },
+    {
+     "w": "alguém",
+     "t": 47.049
+    },
+    {
+     "w": "empurrar",
+     "t": 47.344
+    },
+    {
+     "w": "rápido",
+     "t": 47.721
+    },
+    {
+     "w": "demais",
+     "t": 48.075
+    },
+    {
+     "w": "ela",
+     "t": 48.771
+    },
+    {
+     "w": "vira",
+     "t": 48.995
+    },
+    {
+     "w": "um",
+     "t": 49.242
+    },
+    {
+     "w": "liquidificador",
+     "t": 49.301
+    },
+    {
+     "w": "Então",
+     "t": 50.917
+    },
+    {
+     "w": "você",
+     "t": 51.695
+    },
+    {
+     "w": "coloca",
+     "t": 51.967
+    },
+    {
+     "w": "um",
+     "t": 52.332
+    },
+    {
+     "w": "freio",
+     "t": 52.415
+    },
+    {
+     "w": "que",
+     "t": 52.733
+    },
+    {
+     "w": "segura",
+     "t": 52.851
+    },
+    {
+     "w": "a",
+     "t": 53.287
+    },
+    {
+     "w": "velocidade",
+     "t": 53.323
+    },
+    {
+     "w": "E",
+     "t": 54.832
+    },
+    {
+     "w": "se",
+     "t": 55.268
+    },
+    {
+     "w": "alguém",
+     "t": 55.41
+    },
+    {
+     "w": "ficar",
+     "t": 55.669
+    },
+    {
+     "w": "preso",
+     "t": 55.952
+    },
+    {
+     "w": "um",
+     "t": 56.601
+    },
+    {
+     "w": "sensor",
+     "t": 56.742
+    },
+    {
+     "w": "para",
+     "t": 57.191
+    },
+    {
+     "w": "tudo",
+     "t": 57.415
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 58.12,
+   "fim": 64.17,
+   "texto": "E num incêndio? As folhas dobram como as páginas de um livro e abrem passagem dos dois lados.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 58.167
+    },
+    {
+     "w": "num",
+     "t": 58.285
+    },
+    {
+     "w": "incêndio",
+     "t": 58.438
+    },
+    {
+     "w": "As",
+     "t": 59.818
+    },
+    {
+     "w": "folhas",
+     "t": 60.019
+    },
+    {
+     "w": "dobram",
+     "t": 60.384
+    },
+    {
+     "w": "como",
+     "t": 60.726
+    },
+    {
+     "w": "as",
+     "t": 60.915
+    },
+    {
+     "w": "páginas",
+     "t": 61.045
+    },
+    {
+     "w": "de",
+     "t": 61.469
+    },
+    {
+     "w": "um",
+     "t": 61.552
+    },
+    {
+     "w": "livro",
+     "t": 61.646
+    },
+    {
+     "w": "e",
+     "t": 62
+    },
+    {
+     "w": "abrem",
+     "t": 62.082
+    },
+    {
+     "w": "passagem",
+     "t": 62.389
+    },
+    {
+     "w": "dos",
+     "t": 62.931
+    },
+    {
+     "w": "dois",
+     "t": 63.144
+    },
+    {
+     "w": "lados",
+     "t": 63.415
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 64.32,
+   "fim": 72.32,
+   "texto": "Coloque um vidro bem limpo, um tapete e alguém que entra pela porta do lado. Parabéns, você construiu uma porta giratória.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 64.367
+    },
+    {
+     "w": "um",
+     "t": 64.898
+    },
+    {
+     "w": "vidro",
+     "t": 65.004
+    },
+    {
+     "w": "bem",
+     "t": 65.287
+    },
+    {
+     "w": "limpo",
+     "t": 65.535
+    },
+    {
+     "w": "um",
+     "t": 66.16
+    },
+    {
+     "w": "tapete",
+     "t": 66.325
+    },
+    {
+     "w": "e",
+     "t": 66.761
+    },
+    {
+     "w": "alguém",
+     "t": 66.796
+    },
+    {
+     "w": "que",
+     "t": 67.103
+    },
+    {
+     "w": "entra",
+     "t": 67.256
+    },
+    {
+     "w": "pela",
+     "t": 67.551
+    },
+    {
+     "w": "porta",
+     "t": 67.787
+    },
+    {
+     "w": "do",
+     "t": 68.129
+    },
+    {
+     "w": "lado",
+     "t": 68.223
+    },
+    {
+     "w": "Parabéns",
+     "t": 69.367
+    },
+    {
+     "w": "você",
+     "t": 70.181
+    },
+    {
+     "w": "construiu",
+     "t": 70.487
+    },
+    {
+     "w": "uma",
+     "t": 70.995
+    },
+    {
+     "w": "porta",
+     "t": 71.171
+    },
+    {
+     "w": "giratória",
+     "t": 71.49
+    }
+   ]
+  }
+ ]
+}
