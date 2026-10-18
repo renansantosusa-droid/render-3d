@@ -1,0 +1,909 @@
+{
+ "total": 77.14,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.29,
+   "texto": "Se você colocar asas num ônibus, terá um avião.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "asas",
+     "t": 1.105
+    },
+    {
+     "w": "num",
+     "t": 1.424
+    },
+    {
+     "w": "ônibus",
+     "t": 1.589
+    },
+    {
+     "w": "terá",
+     "t": 2.249
+    },
+    {
+     "w": "um",
+     "t": 2.497
+    },
+    {
+     "w": "avião",
+     "t": 2.65
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.44,
+   "fim": 10.16,
+   "texto": "Mas ele não sai do chão. Asa parada não levanta nada. E o ônibus é pesado demais.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.487
+    },
+    {
+     "w": "ele",
+     "t": 3.699
+    },
+    {
+     "w": "não",
+     "t": 4.018
+    },
+    {
+     "w": "sai",
+     "t": 4.207
+    },
+    {
+     "w": "do",
+     "t": 4.442
+    },
+    {
+     "w": "chão",
+     "t": 4.548
+    },
+    {
+     "w": "Asa",
+     "t": 5.692
+    },
+    {
+     "w": "parada",
+     "t": 5.987
+    },
+    {
+     "w": "não",
+     "t": 6.412
+    },
+    {
+     "w": "levanta",
+     "t": 6.577
+    },
+    {
+     "w": "nada",
+     "t": 7.001
+    },
+    {
+     "w": "E",
+     "t": 8.157
+    },
+    {
+     "w": "o",
+     "t": 8.299
+    },
+    {
+     "w": "ônibus",
+     "t": 8.393
+    },
+    {
+     "w": "é",
+     "t": 8.758
+    },
+    {
+     "w": "pesado",
+     "t": 8.876
+    },
+    {
+     "w": "demais",
+     "t": 9.383
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.31,
+   "fim": 21.19,
+   "texto": "Então, você faz ele leve, de alumínio fino, e coloca motores enormes que jogam ar pra trás com toda força. O avião corre na pista a quase trezentos quilômetros por hora.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.357
+    },
+    {
+     "w": "você",
+     "t": 11.147
+    },
+    {
+     "w": "faz",
+     "t": 11.407
+    },
+    {
+     "w": "ele",
+     "t": 11.572
+    },
+    {
+     "w": "leve",
+     "t": 11.796
+    },
+    {
+     "w": "de",
+     "t": 12.362
+    },
+    {
+     "w": "alumínio",
+     "t": 12.444
+    },
+    {
+     "w": "fino",
+     "t": 12.834
+    },
+    {
+     "w": "e",
+     "t": 13.482
+    },
+    {
+     "w": "coloca",
+     "t": 13.577
+    },
+    {
+     "w": "motores",
+     "t": 14.013
+    },
+    {
+     "w": "enormes",
+     "t": 14.355
+    },
+    {
+     "w": "que",
+     "t": 14.885
+    },
+    {
+     "w": "jogam",
+     "t": 15.003
+    },
+    {
+     "w": "ar",
+     "t": 15.428
+    },
+    {
+     "w": "pra",
+     "t": 15.558
+    },
+    {
+     "w": "trás",
+     "t": 15.746
+    },
+    {
+     "w": "com",
+     "t": 15.982
+    },
+    {
+     "w": "toda",
+     "t": 16.206
+    },
+    {
+     "w": "força",
+     "t": 16.513
+    },
+    {
+     "w": "O",
+     "t": 17.763
+    },
+    {
+     "w": "avião",
+     "t": 17.881
+    },
+    {
+     "w": "corre",
+     "t": 18.27
+    },
+    {
+     "w": "na",
+     "t": 18.541
+    },
+    {
+     "w": "pista",
+     "t": 18.659
+    },
+    {
+     "w": "a",
+     "t": 18.954
+    },
+    {
+     "w": "quase",
+     "t": 19.001
+    },
+    {
+     "w": "trezentos",
+     "t": 19.355
+    },
+    {
+     "w": "quilômetros",
+     "t": 19.909
+    },
+    {
+     "w": "por",
+     "t": 20.487
+    },
+    {
+     "w": "hora",
+     "t": 20.664
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.34,
+   "fim": 34.51,
+   "texto": "E a asa não é reta. Ela é curvada e um pouco inclinada pra cima. O ar que passa é desviado pra baixo, e, empurrando o ar pra baixo, a asa é empurrada pra cima. Essa é a sustentação.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 21.387
+    },
+    {
+     "w": "a",
+     "t": 21.505
+    },
+    {
+     "w": "asa",
+     "t": 21.599
+    },
+    {
+     "w": "não",
+     "t": 21.906
+    },
+    {
+     "w": "é",
+     "t": 22.083
+    },
+    {
+     "w": "reta",
+     "t": 22.165
+    },
+    {
+     "w": "Ela",
+     "t": 23.415
+    },
+    {
+     "w": "é",
+     "t": 23.64
+    },
+    {
+     "w": "curvada",
+     "t": 23.722
+    },
+    {
+     "w": "e",
+     "t": 24.241
+    },
+    {
+     "w": "um",
+     "t": 24.288
+    },
+    {
+     "w": "pouco",
+     "t": 24.43
+    },
+    {
+     "w": "inclinada",
+     "t": 24.701
+    },
+    {
+     "w": "pra",
+     "t": 25.243
+    },
+    {
+     "w": "cima",
+     "t": 25.397
+    },
+    {
+     "w": "O",
+     "t": 26.623
+    },
+    {
+     "w": "ar",
+     "t": 26.753
+    },
+    {
+     "w": "que",
+     "t": 26.941
+    },
+    {
+     "w": "passa",
+     "t": 27.095
+    },
+    {
+     "w": "é",
+     "t": 27.425
+    },
+    {
+     "w": "desviado",
+     "t": 27.472
+    },
+    {
+     "w": "pra",
+     "t": 28.026
+    },
+    {
+     "w": "baixo",
+     "t": 28.18
+    },
+    {
+     "w": "e",
+     "t": 28.864
+    },
+    {
+     "w": "empurrando",
+     "t": 29.17
+    },
+    {
+     "w": "o",
+     "t": 29.724
+    },
+    {
+     "w": "ar",
+     "t": 29.772
+    },
+    {
+     "w": "pra",
+     "t": 29.878
+    },
+    {
+     "w": "baixo",
+     "t": 30.043
+    },
+    {
+     "w": "a",
+     "t": 30.644
+    },
+    {
+     "w": "asa",
+     "t": 30.727
+    },
+    {
+     "w": "é",
+     "t": 31.022
+    },
+    {
+     "w": "empurrada",
+     "t": 31.045
+    },
+    {
+     "w": "pra",
+     "t": 31.588
+    },
+    {
+     "w": "cima",
+     "t": 31.729
+    },
+    {
+     "w": "Essa",
+     "t": 32.932
+    },
+    {
+     "w": "é",
+     "t": 33.286
+    },
+    {
+     "w": "a",
+     "t": 33.392
+    },
+    {
+     "w": "sustentação",
+     "t": 33.439
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.66,
+   "fim": 46.66,
+   "texto": "Mas ele precisa subir, descer e virar. Então, você coloca peças que se mexem: na cauda, pra apontar o nariz pra cima ou pra baixo, e nas pontas das asas, pra inclinar pros lados.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 34.707
+    },
+    {
+     "w": "ele",
+     "t": 34.908
+    },
+    {
+     "w": "precisa",
+     "t": 35.179
+    },
+    {
+     "w": "subir",
+     "t": 35.592
+    },
+    {
+     "w": "descer",
+     "t": 36.193
+    },
+    {
+     "w": "e",
+     "t": 36.594
+    },
+    {
+     "w": "virar",
+     "t": 36.641
+    },
+    {
+     "w": "Então",
+     "t": 37.761
+    },
+    {
+     "w": "você",
+     "t": 38.528
+    },
+    {
+     "w": "coloca",
+     "t": 38.799
+    },
+    {
+     "w": "peças",
+     "t": 39.224
+    },
+    {
+     "w": "que",
+     "t": 39.589
+    },
+    {
+     "w": "se",
+     "t": 39.695
+    },
+    {
+     "w": "mexem",
+     "t": 39.837
+    },
+    {
+     "w": "na",
+     "t": 40.462
+    },
+    {
+     "w": "cauda",
+     "t": 40.639
+    },
+    {
+     "w": "pra",
+     "t": 41.252
+    },
+    {
+     "w": "apontar",
+     "t": 41.405
+    },
+    {
+     "w": "o",
+     "t": 41.794
+    },
+    {
+     "w": "nariz",
+     "t": 41.83
+    },
+    {
+     "w": "pra",
+     "t": 42.172
+    },
+    {
+     "w": "cima",
+     "t": 42.337
+    },
+    {
+     "w": "ou",
+     "t": 42.714
+    },
+    {
+     "w": "pra",
+     "t": 42.82
+    },
+    {
+     "w": "baixo",
+     "t": 42.985
+    },
+    {
+     "w": "e",
+     "t": 43.669
+    },
+    {
+     "w": "nas",
+     "t": 43.752
+    },
+    {
+     "w": "pontas",
+     "t": 43.976
+    },
+    {
+     "w": "das",
+     "t": 44.33
+    },
+    {
+     "w": "asas",
+     "t": 44.448
+    },
+    {
+     "w": "pra",
+     "t": 45.096
+    },
+    {
+     "w": "inclinar",
+     "t": 45.226
+    },
+    {
+     "w": "pros",
+     "t": 45.745
+    },
+    {
+     "w": "lados",
+     "t": 45.945
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.81,
+   "fim": 56.69,
+   "texto": "E aquele barulho nas asas antes de pousar? São os flaps descendo. Eles deixam a asa maior e mais curva, e o avião consegue voar devagar sem cair.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 46.857
+    },
+    {
+     "w": "aquele",
+     "t": 46.987
+    },
+    {
+     "w": "barulho",
+     "t": 47.294
+    },
+    {
+     "w": "nas",
+     "t": 47.683
+    },
+    {
+     "w": "asas",
+     "t": 47.812
+    },
+    {
+     "w": "antes",
+     "t": 48.131
+    },
+    {
+     "w": "de",
+     "t": 48.52
+    },
+    {
+     "w": "pousar",
+     "t": 48.614
+    },
+    {
+     "w": "São",
+     "t": 49.841
+    },
+    {
+     "w": "os",
+     "t": 50.135
+    },
+    {
+     "w": "flaps",
+     "t": 50.242
+    },
+    {
+     "w": "descendo",
+     "t": 50.607
+    },
+    {
+     "w": "Eles",
+     "t": 51.963
+    },
+    {
+     "w": "deixam",
+     "t": 52.187
+    },
+    {
+     "w": "a",
+     "t": 52.553
+    },
+    {
+     "w": "asa",
+     "t": 52.6
+    },
+    {
+     "w": "maior",
+     "t": 52.86
+    },
+    {
+     "w": "e",
+     "t": 53.213
+    },
+    {
+     "w": "mais",
+     "t": 53.272
+    },
+    {
+     "w": "curva",
+     "t": 53.532
+    },
+    {
+     "w": "e",
+     "t": 54.204
+    },
+    {
+     "w": "o",
+     "t": 54.31
+    },
+    {
+     "w": "avião",
+     "t": 54.369
+    },
+    {
+     "w": "consegue",
+     "t": 54.723
+    },
+    {
+     "w": "voar",
+     "t": 55.183
+    },
+    {
+     "w": "devagar",
+     "t": 55.489
+    },
+    {
+     "w": "sem",
+     "t": 55.926
+    },
+    {
+     "w": "cair",
+     "t": 56.114
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 56.84,
+   "fim": 69.61,
+   "texto": "Mas lá em cima, a onze quilômetros, o ar é tão fino que ninguém respira. Então, você bombeia ar pra dentro e fecha tudo. Por isso a janela tem os cantos redondos: aguenta a pressão sem rachar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 56.887
+    },
+    {
+     "w": "lá",
+     "t": 57.182
+    },
+    {
+     "w": "em",
+     "t": 57.335
+    },
+    {
+     "w": "cima",
+     "t": 57.453
+    },
+    {
+     "w": "a",
+     "t": 58.055
+    },
+    {
+     "w": "onze",
+     "t": 58.137
+    },
+    {
+     "w": "quilômetros",
+     "t": 58.467
+    },
+    {
+     "w": "o",
+     "t": 59.316
+    },
+    {
+     "w": "ar",
+     "t": 59.411
+    },
+    {
+     "w": "é",
+     "t": 59.54
+    },
+    {
+     "w": "tão",
+     "t": 59.599
+    },
+    {
+     "w": "fino",
+     "t": 59.824
+    },
+    {
+     "w": "que",
+     "t": 60.13
+    },
+    {
+     "w": "ninguém",
+     "t": 60.236
+    },
+    {
+     "w": "respira",
+     "t": 60.59
+    },
+    {
+     "w": "Então",
+     "t": 61.911
+    },
+    {
+     "w": "você",
+     "t": 62.654
+    },
+    {
+     "w": "bombeia",
+     "t": 62.901
+    },
+    {
+     "w": "ar",
+     "t": 63.326
+    },
+    {
+     "w": "pra",
+     "t": 63.491
+    },
+    {
+     "w": "dentro",
+     "t": 63.68
+    },
+    {
+     "w": "e",
+     "t": 64.045
+    },
+    {
+     "w": "fecha",
+     "t": 64.092
+    },
+    {
+     "w": "tudo",
+     "t": 64.434
+    },
+    {
+     "w": "Por",
+     "t": 65.566
+    },
+    {
+     "w": "isso",
+     "t": 65.755
+    },
+    {
+     "w": "a",
+     "t": 66.026
+    },
+    {
+     "w": "janela",
+     "t": 66.062
+    },
+    {
+     "w": "tem",
+     "t": 66.522
+    },
+    {
+     "w": "os",
+     "t": 66.675
+    },
+    {
+     "w": "cantos",
+     "t": 66.816
+    },
+    {
+     "w": "redondos",
+     "t": 67.147
+    },
+    {
+     "w": "aguenta",
+     "t": 67.96
+    },
+    {
+     "w": "a",
+     "t": 68.373
+    },
+    {
+     "w": "pressão",
+     "t": 68.42
+    },
+    {
+     "w": "sem",
+     "t": 68.809
+    },
+    {
+     "w": "rachar",
+     "t": 68.986
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 69.76,
+   "fim": 76.54,
+   "texto": "Coloque poltronas, um carrinho de lanche e um banheiro minúsculo. Parabéns, você construiu um avião.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 69.807
+    },
+    {
+     "w": "poltronas",
+     "t": 70.291
+    },
+    {
+     "w": "um",
+     "t": 71.163
+    },
+    {
+     "w": "carrinho",
+     "t": 71.281
+    },
+    {
+     "w": "de",
+     "t": 71.706
+    },
+    {
+     "w": "lanche",
+     "t": 71.8
+    },
+    {
+     "w": "e",
+     "t": 72.272
+    },
+    {
+     "w": "um",
+     "t": 72.307
+    },
+    {
+     "w": "banheiro",
+     "t": 72.39
+    },
+    {
+     "w": "minúsculo",
+     "t": 72.755
+    },
+    {
+     "w": "Parabéns",
+     "t": 74.135
+    },
+    {
+     "w": "você",
+     "t": 74.901
+    },
+    {
+     "w": "construiu",
+     "t": 75.22
+    },
+    {
+     "w": "um",
+     "t": 75.751
+    },
+    {
+     "w": "avião",
+     "t": 75.892
+    }
+   ]
+  }
+ ]
+}

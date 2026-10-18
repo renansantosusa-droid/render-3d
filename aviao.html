@@ -1,0 +1,160 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("aviao", { fundo: 0x8cc4ef, seed: 6161 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const ceuDia = new THREE.Color(0x8cc4ef), ceuAlto = new THREE.Color(0x1a3a7a);
+
+// ---------- chão: pista e grama (o mundo se move, o avião fica na origem) ----------
+const chao = grupo(0, 0, 0);
+add(new THREE.PlaneGeometry(400, 200), mat(0xffffff, { map: texRuido("#6aa84f", 40, 40), roughness: 1 }), 0, -.01, 0, chao).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(400, 6), mat(0xffffff, { map: texRuido("#4a4d52", 30, 30), roughness: .9 }), 0, 0, 0, chao).rotation.x = -Math.PI / 2;
+const faixas = Array.from({ length: 30 }, (_, i) => { const f = add(new THREE.PlaneGeometry(3, .25), brilho(0xffffff), 0, .01, 0, chao); f.rotation.x = -Math.PI / 2; return f; });
+for (let i = 0; i < 6; i++) add(new THREE.BoxGeometry(6, 3 + rnd() * 3, 5), mat(0xc8ccd2), -30 + i * 9, 2, -16, chao);
+const torre = add(new THREE.CylinderGeometry(.8, 1, 9, 12), mat(0xe8e8e8), 12, 4.5, -12, chao);
+const nuvens = Array.from({ length: 50 }, () => ({ s: sprite(0xffffff), x: rnd() * 120, y: -10 + rnd() * 25, z: -6 - rnd() * 30, r: 2 + rnd() * 4 }));
+
+// ---------- ônibus com asas ----------
+const onibus = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(8, 2.4, 2.3), mat(0xffc020, { roughness: .4 }), 0, 1.75, 0, onibus);
+for (let i = 0; i < 5; i++) add(new THREE.BoxGeometry(1.1, .8, 2.32), mat(0x203040, { roughness: .1 }), -2.8 + i * 1.4, 2.2, 0, onibus);
+for (const x of [-2.6, 2.6]) for (const z of [-1.05, 1.05]) add(new THREE.CylinderGeometry(.45, .45, .3, 20), mat(0x1b1b1b), x, .45, z, onibus).rotation.x = Math.PI / 2;
+const asaOnibus = add(new THREE.BoxGeometry(1.6, .12, 10), mat(0xd0d4da), .3, 2.2, 0, onibus);
+
+// ---------- avião (bico = +x) ----------
+const av = grupo(0, 0, 0);
+const mFus = mat(0xf4f6f8, { roughness: .35, transparent: true });
+const fus = add(new THREE.CapsuleGeometry(.8, 8.4, 10, 24), mFus, 0, 0, 0, av); fus.rotation.z = Math.PI / 2;
+add(new THREE.BoxGeometry(9, .14, 1.62), mat(0x1f4fbf, { transparent: true }), 0, -.15, 0, av);
+for (let i = 0; i < 14; i++) for (const z of [-.79, .79]) add(new THREE.BoxGeometry(.18, .26, .02), mat(0x203040, { roughness: .1 }), -3.2 + i * .5, .25, z, av);
+add(new THREE.BoxGeometry(.6, .35, 1.2), mat(0x203040, { roughness: .1 }), 4.75, .3, 0, av);
+// asa: perfil curvo extrudado ao longo de z
+const perfil = new THREE.Shape();
+perfil.moveTo(1.1, 0); perfil.bezierCurveTo(1.1, .22, .6, .3, 0, .28); perfil.bezierCurveTo(-.6, .24, -1.0, .1, -1.15, 0); perfil.bezierCurveTo(-.6, -.04, .5, -.1, 1.1, 0);
+const geoAsa = new THREE.ExtrudeGeometry(perfil, { depth: 9.6, bevelEnabled: false, curveSegments: 20 }); geoAsa.translate(0, 0, -4.8);
+const asa = add(geoAsa, mat(0xe6e9ee, { roughness: .4 }), .3, -.45, 0, av); asa.rotation.z = .07;
+const mMovel = mat(0xffb020, { roughness: .4, emissive: 0xff8a00, emissiveIntensity: 0 });
+const ailerons = [-1, 1].map((s) => { const g = grupo(-.85, -.45, s * 4.1, av); add(new THREE.BoxGeometry(.5, .06, 1.2), mMovel, -.25, 0, 0, g); return g; });
+const flaps = [-1, 1].map((s) => { const g = grupo(-.85, -.47, s * 2.2, av); add(new THREE.BoxGeometry(.6, .07, 2.2), mat(0xd0d4da, { emissive: 0x3aff7a, emissiveIntensity: 0 }), -.3, 0, 0, g); return g; });
+const motores = [-1, 1].map((s) => { const g = grupo(.9, -1.0, s * 2.2, av); add(new THREE.CylinderGeometry(.42, .36, 1.6, 20), mat(0xb8bec8, { metalness: .5, roughness: .3 }), 0, 0, 0, g).rotation.z = Math.PI / 2; const fan = add(new THREE.CircleGeometry(.36, 20), mat(0x333333), .81, 0, 0, g); fan.rotation.y = Math.PI / 2; return g; });
+const arMotor = motores.map((m) => fluxo(new THREE.LineCurve3(V(2.5, m.position.y, m.position.z), V(-6, m.position.y, m.position.z)), 16, 0xbfe6ff, av));
+add(new THREE.BoxGeometry(1.3, 1.7, .1), mat(0x1f4fbf), -4.4, 1.2, 0, av).rotation.z = -.35;
+add(new THREE.BoxGeometry(1, .07, 3.6), mat(0xe6e9ee), -4.4, .25, 0, av);
+const profundor = grupo(-4.9, .25, 0, av); add(new THREE.BoxGeometry(.4, .06, 3.4), mMovel, -.2, 0, 0, profundor);
+const rodas = [[3, 0], [0, -1], [0, 1]].map(([x, z]) => { const g = grupo(x, -.8, z, av); add(new THREE.CylinderGeometry(.04, .04, .5, 8), mat(0x555555), 0, -.25, 0, g); add(new THREE.CylinderGeometry(.22, .22, .16, 16), mat(0x1b1b1b), 0, -.5, 0, g).rotation.x = Math.PI / 2; return g; });
+// corte da asa em close (cena 4), separado no céu
+const linhaFluxo = (curva, n, cor, pai) => { const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curva.getPoints(40)), new THREE.LineBasicMaterial({ color: cor, transparent: true, opacity: .45 })); pai.add(l); const f = fluxo(curva, n, cor, pai); return { atualiza(t, on, v, tam) { l.visible = on; f.atualiza(t, on, v, tam); } }; };
+const sec = grupo(0, 80, 0);
+const geoSec = new THREE.ExtrudeGeometry(perfil, { depth: 1.2, bevelEnabled: false, curveSegments: 24 }); geoSec.translate(0, 0, -1.2);
+const corte = add(geoSec, mat(0xe6e9ee, { roughness: .4 }), 0, 0, 0, sec); corte.scale.set(1.4, 1.4, 1); corte.rotation.z = .12;
+const linhasAr = [-1.0, -.55, -.2, .55, .95, 1.4].map((y0) => linhaFluxo(new THREE.CatmullRomCurve3([V(4.5, y0, .3), V(1.8, y0 + (y0 > 0 ? .2 : -.05), .3), V(0, y0 + (y0 > 0 ? .18 : -.15), .3), V(-1.8, y0 - .35, .3), V(-4.5, y0 - 1.3, .3)]), 12, 0x2a8cff, sec));
+const seta = (cor) => { const g = grupo(0, 0, 0, sec); add(new THREE.CylinderGeometry(.09, .09, 1, 10), brilho(cor), 0, .5, .3, g); add(new THREE.ConeGeometry(.22, .45, 14), brilho(cor), 0, 1.2, .3, g); return g; };
+const setaCima = seta(0x3aff7a); setaCima.position.set(0, .5, 0);
+const setaBaixo = seta(0x2a8cff); setaBaixo.position.set(-1.4, -.5, 0); setaBaixo.rotation.z = Math.PI;
+// cabine (aparece com a fuselagem transparente)
+const cab = grupo(0, 0, 0, av);
+add(new THREE.BoxGeometry(8, .05, 1.4), mat(0x5a6070), 0, -.35, 0, cab);
+for (let i = 0; i < 11; i++) for (const z of [-.5, -.25, .25, .5]) { add(new THREE.BoxGeometry(.2, .22, .2), mat(0x2a4a9a), -3 + i * .55, -.2, z, cab); add(new THREE.BoxGeometry(.06, .3, .2), mat(0x2a4a9a), -3.1 + i * .55, 0, z, cab); }
+const carrinho = add(new THREE.BoxGeometry(.3, .4, .25), mat(0xc8ccd2, { metalness: .6 }), 0, -.13, 0, cab);
+const wc = grupo(-3.7, 0, 0, cab); add(new THREE.BoxGeometry(.4, .7, .7), mat(0xe8e8e8), 0, 0, -.3, wc); add(new THREE.PlaneGeometry(.35, .2), new THREE.MeshBasicMaterial({ map: rotulo("WC", "#1f4fbf", { fundo: "#fff" }) }), .21, .15, -.3, wc).rotation.y = Math.PI / 2;
+const arDentro = Array.from({ length: 40 }, () => ({ s: sprite(0x7fd0ff, cab), x: (rnd() - .5) * 8, y: (rnd() - .5) * .9, z: (rnd() - .5) * 1.2, f: rnd() * 6 }));
+// janelas: quadrada racha x redonda aguenta
+const jan = grupo(0, 60, 0);
+add(new THREE.BoxGeometry(6, 3.2, .1), mat(0xf4f6f8), 0, 0, 0, jan);
+add(new THREE.BoxGeometry(1.2, 1.5, .12), mat(0x203040, { roughness: .1 }), -1.4, 0, 0, jan);
+const rachas = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([V(-.8, .75, .08), V(-.3, 1.3, .08), V(-.8, -.75, .08), V(-.2, -1.4, .08), V(-2, .75, .08), V(-2.6, 1.2, .08), V(-2, -.75, .08), V(-2.5, -1.3, .08)]), new THREE.LineBasicMaterial({ color: 0xff2a2a, linewidth: 3 })); jan.add(rachas);
+const redonda = add(new THREE.CapsuleGeometry(.5, .5, 8, 20), mat(0x203040, { roughness: .1 }), 1.4, 0, .02, jan); redonda.scale.z = .1;
+const ok = add(new THREE.PlaneGeometry(.9, .45), new THREE.MeshBasicMaterial({ map: rotulo("OK", "#3aff7a"), transparent: true }), 1.4, -1.25, .08, jan);
+const x_ = add(new THREE.PlaneGeometry(.9, .45), new THREE.MeshBasicMaterial({ map: rotulo("RACHA", "#ff3a3a"), transparent: true }), -1.4, -1.25, .08, jan);
+
+// ---------- câmera ----------
+K.camera_({
+  solo: [V(15, 5, 17), V(0, 1.6, 0)], perto: [V(10, 3.4, 12), V(0, 1.4, 0)], frente: [V(13, 3.5, 11), V(-.5, .8, 0)],
+  motor: [V(6, .4, 6.5), V(.5, -.6, 2.2)], perfil: [V(0, 80.2, 10), V(0, 80.2, 0)], cauda: [V(-10, 2.6, 6.5), V(-4.6, .6, 0)],
+  ponta: [V(1, 2.6, 10), V(-1, -.2, 3.6)], flap: [V(-6, 1.8, 7.5), V(-.9, -.4, 2.2)], cabine: [V(2.5, 1.6, 6.5), V(-.5, 0, 0)],
+  janela: [V(0, 60, 7.5), V(0, 60, 0)], alto: [V(14, 4, 12), V(-.5, .3, 0)],
+}, [
+  [0, "solo"], [F(1), "solo"],
+  [C(2), "perto"], [F(2), "perto"],
+  [C(3), "frente"], [P(3, "motores") - .3, "motor"], [P(3, "corre") - .3, "frente"], [F(3), "frente"],
+  [C(4), "perfil"], [P(4, "sustentacao") + .3, "perfil"], [P(4, "sustentacao") + .3, "frente"], [F(4), "frente"],
+  [C(5), "frente"], [P(5, "cauda") - .5, "cauda"], [P(5, "pontas") - .5, "ponta"], [F(5), "frente"],
+  [C(6), "flap"], [F(6), "flap"],
+  [C(7), "alto"], [P(7, "bombeia") - .3, "cabine"], [P(7, "janela") - .3, "cabine"], [P(7, "janela") - .3, "janela"], [F(7), "janela"],
+  [C(8), "cabine"], [P(8, "parabens"), "alto"], [T, "alto"],
+]);
+
+// altura do avião em relação ao chão e velocidade
+function vel(t) { if (t < C(3)) return 0; if (t < F(3)) return 40 * prog(t, P(3, "corre") - 1, F(3)); if (t < C(6)) return 40; if (t < C(7)) return 40 - 18 * prog(t, P(6, "devagar") - 1, F(6)); return 40; }
+function percurso(t) { let d = 0; for (let s = 0; s < t; s += .05) d += vel(s) * .05; return d; }
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const d = percurso(t);
+  const decola = em(C(4), C(6)) ? prog(t, P(4, "sustentacao") - .5, F(4) + 1.5) : 0;
+  let alt = 0;
+  if (em(C(4), C(5))) alt = 14 * decola;
+  if (em(C(5), C(6))) alt = 14 + 30 * prog(t, C(5), F(5));
+  if (em(C(6), C(7))) alt = 22 - 12 * prog(t, C(6), F(6));
+  if (t >= C(7)) alt = 200;
+  const roda = 1.52;
+  chao.position.y = -roda - alt; chao.visible = alt < 120; torre.visible = t < C(5);
+  faixas.forEach((f, i) => { f.position.x = 60 - ((i * 8 + d) % 240); });
+  nuvens.forEach((n) => { n.s.position.set(60 - ((n.x + d * .8) % 120), n.y + (t >= C(7) ? -6 : 0), n.z); n.s.scale.set(n.r * 1.8, n.r, 1); n.s.material.opacity = alt > 6 ? .9 : 0; });
+  scene.background.copy(ceuDia).lerp(ceuAlto, t >= C(7) && t < C(8) ? prog(t, C(7), P(7, "fino")) : 0);
+  // ônibus x avião
+  onibus.visible = t < C(3);
+  onibus.position.y = -roda + .0 - .25 * prog(t, P(2, "pesado") - .4, P(2, "pesado"));
+  asaOnibus.rotation.x = 0;
+  av.visible = t >= C(3);
+  rodas.forEach((r) => { r.visible = alt < 8 || em(C(6), C(7)); });
+  // atitude
+  let pitch = .14 * pulse(t, P(4, "sustentacao") - .3, 3) + .06 * (em(C(5), C(6)) ? 1 : 0);
+  pitch += .18 * pulse(t, P(5, "nariz") - .3, 1.1) - .16 * pulse(t, P(5, "baixo") - .2, 1.1);
+  const bank = .4 * pulse(t, P(5, "lados") - .6, 1.8);
+  av.rotation.set(bank, 0, pitch);
+  profundor.rotation.z = -.5 * pulse(t, P(5, "nariz") - .5, 1.1) + .5 * pulse(t, P(5, "baixo") - .4, 1.1);
+  ailerons[0].rotation.z = .5 * pulse(t, P(5, "inclinar") - .3, 2.2); ailerons[1].rotation.z = -.5 * pulse(t, P(5, "inclinar") - .3, 2.2);
+  mMovel.emissiveIntensity = em(P(5, "pecas") - .3, F(5)) ? .8 : 0;
+  // flaps
+  const fl = em(C(6), C(7)) ? prog(t, P(6, "flaps") - .3, P(6, "flaps") + .8) : 0;
+  flaps.forEach((f) => { f.position.x = -.85 - .45 * fl; f.position.y = -.47 - .12 * fl; f.rotation.z = -.55 * fl; f.children[0].material.emissiveIntensity = fl * .8; });
+  // ar dos motores e em volta da asa
+  arMotor.forEach((a) => a.atualiza(t, em(P(3, "motores") - .3, C(4)), 1.6, .25));
+  const arAsa = em(C(4), C(5));
+  linhasAr.forEach((l) => l.atualiza(t, arAsa, .5, .22));
+  setaCima.visible = em(P(4, "empurrada") - .3, C(5)); setaCima.scale.setScalar(1 + .3 * pulse(t, P(4, "empurrada") - .3, .8));
+  setaBaixo.visible = em(P(4, "desviado") - .3, C(5));
+  // cabine e pressão
+  const transp = (em(P(7, "bombeia") - .4, P(7, "janela") - .3) || t >= C(8)) ? 1 : 0;
+  mFus.opacity = 1 - .8 * transp; mFus.depthWrite = !transp; cab.visible = !!transp;
+  arDentro.forEach((a) => { a.s.position.set(a.x, a.y + Math.sin(t * 3 + a.f) * .08, a.z); a.s.scale.setScalar(.12); a.s.material.opacity = em(P(7, "bombeia") - .3, C(8)) ? .8 : 0; });
+  carrinho.position.x = t >= C(8) ? 2 - 3 * prog(t, P(8, "carrinho") - .3, P(8, "parabens")) : 2;
+  carrinho.visible = t > P(8, "carrinho") - .3; wc.visible = t > P(8, "banheiro") - .3 || t < C(8);
+  jan.visible = em(P(7, "janela") - .4, C(8));
+  const racha = prog(t, P(7, "rachar") - .3, P(7, "rachar") + .2);
+  rachas.scale.setScalar(Math.max(racha, .01)); x_.visible = racha > .5; ok.visible = t > P(7, "redondos");
+
+  K.cartoes(t, [
+    [P(2, "chao") - .3, P(2, "parada") - .3, "NÃO SAI DO CHÃO", "#ff4a3a"],
+    [P(2, "pesado") - .4, F(2), "PESADO DEMAIS", "#ff4a3a"],
+    [P(3, "aluminio") - .4, P(3, "motores") - .3, "ALUMÍNIO = LEVE", "#ffffff"],
+    [P(3, "trezentos") - .4, F(3), "~300 KM/H", "#ffd23a"],
+    [P(4, "curvada") - .3, P(4, "desviado") - .3, "ASA CURVA E INCLINADA", "#ffffff"],
+    [P(4, "desviado") - .3, P(4, "empurrada") - .3, "AR PRA BAIXO", "#2a8cff"],
+    [P(4, "empurrada") - .3, F(4), "ASA PRA CIMA", "#3aff7a"],
+    [P(5, "cauda") - .4, P(5, "pontas") - .4, "PROFUNDOR", "#ffb020"],
+    [P(5, "pontas") - .4, F(5), "AILERONS", "#ffb020"],
+    [P(6, "flaps") - .3, F(6), "FLAPS", "#3aff7a"],
+    [P(7, "onze") - .3, P(7, "bombeia") - .3, "11 KM: AR FINO", "#ffd23a"],
+    [P(7, "bombeia") - .3, P(7, "janela") - .3, "CABINE PRESSURIZADA", "#7fd0ff"],
+    [P(7, "redondos") - .3, F(7), "CANTO REDONDO AGUENTA", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>
