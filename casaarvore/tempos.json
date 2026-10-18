@@ -1,0 +1,913 @@
+{
+ "total": 74.6,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.72,
+   "texto": "Se você pregar umas tábuas entre os galhos de uma árvore, terá uma casa na árvore.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "pregar",
+     "t": 0.657
+    },
+    {
+     "w": "umas",
+     "t": 0.975
+    },
+    {
+     "w": "tábuas",
+     "t": 1.223
+    },
+    {
+     "w": "entre",
+     "t": 1.565
+    },
+    {
+     "w": "os",
+     "t": 1.836
+    },
+    {
+     "w": "galhos",
+     "t": 1.931
+    },
+    {
+     "w": "de",
+     "t": 2.284
+    },
+    {
+     "w": "uma",
+     "t": 2.379
+    },
+    {
+     "w": "árvore",
+     "t": 2.52
+    },
+    {
+     "w": "terá",
+     "t": 3.133
+    },
+    {
+     "w": "uma",
+     "t": 3.369
+    },
+    {
+     "w": "casa",
+     "t": 3.546
+    },
+    {
+     "w": "na",
+     "t": 3.865
+    },
+    {
+     "w": "árvore",
+     "t": 4.006
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.87,
+   "fim": 10.84,
+   "texto": "Mas cada prego é uma ferida. Vem o vento, a árvore balança, e as tábuas racham.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.917
+    },
+    {
+     "w": "cada",
+     "t": 5.224
+    },
+    {
+     "w": "prego",
+     "t": 5.507
+    },
+    {
+     "w": "é",
+     "t": 5.813
+    },
+    {
+     "w": "uma",
+     "t": 5.872
+    },
+    {
+     "w": "ferida",
+     "t": 6.037
+    },
+    {
+     "w": "Vem",
+     "t": 7.311
+    },
+    {
+     "w": "o",
+     "t": 7.618
+    },
+    {
+     "w": "vento",
+     "t": 7.677
+    },
+    {
+     "w": "a",
+     "t": 8.278
+    },
+    {
+     "w": "árvore",
+     "t": 8.349
+    },
+    {
+     "w": "balança",
+     "t": 8.797
+    },
+    {
+     "w": "e",
+     "t": 9.54
+    },
+    {
+     "w": "as",
+     "t": 9.634
+    },
+    {
+     "w": "tábuas",
+     "t": 9.811
+    },
+    {
+     "w": "racham",
+     "t": 10.188
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.99,
+   "fim": 24.37,
+   "texto": "E se você amarrar tudo com uma corda em volta do tronco? Pior. Logo embaixo da casca passa a seiva, que leva o alimento das folhas pras raízes. Aperte ali, e com os anos a árvore morre estrangulada.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 11.037
+    },
+    {
+     "w": "se",
+     "t": 11.155
+    },
+    {
+     "w": "você",
+     "t": 11.273
+    },
+    {
+     "w": "amarrar",
+     "t": 11.544
+    },
+    {
+     "w": "tudo",
+     "t": 11.945
+    },
+    {
+     "w": "com",
+     "t": 12.24
+    },
+    {
+     "w": "uma",
+     "t": 12.405
+    },
+    {
+     "w": "corda",
+     "t": 12.57
+    },
+    {
+     "w": "em",
+     "t": 12.889
+    },
+    {
+     "w": "volta",
+     "t": 12.959
+    },
+    {
+     "w": "do",
+     "t": 13.278
+    },
+    {
+     "w": "tronco",
+     "t": 13.407
+    },
+    {
+     "w": "Pior",
+     "t": 14.622
+    },
+    {
+     "w": "Logo",
+     "t": 15.825
+    },
+    {
+     "w": "embaixo",
+     "t": 16.132
+    },
+    {
+     "w": "da",
+     "t": 16.568
+    },
+    {
+     "w": "casca",
+     "t": 16.698
+    },
+    {
+     "w": "passa",
+     "t": 17.063
+    },
+    {
+     "w": "a",
+     "t": 17.299
+    },
+    {
+     "w": "seiva",
+     "t": 17.334
+    },
+    {
+     "w": "que",
+     "t": 17.936
+    },
+    {
+     "w": "leva",
+     "t": 18.077
+    },
+    {
+     "w": "o",
+     "t": 18.337
+    },
+    {
+     "w": "alimento",
+     "t": 18.396
+    },
+    {
+     "w": "das",
+     "t": 18.832
+    },
+    {
+     "w": "folhas",
+     "t": 19.021
+    },
+    {
+     "w": "pras",
+     "t": 19.386
+    },
+    {
+     "w": "raízes",
+     "t": 19.587
+    },
+    {
+     "w": "Aperte",
+     "t": 20.966
+    },
+    {
+     "w": "ali",
+     "t": 21.438
+    },
+    {
+     "w": "e",
+     "t": 21.933
+    },
+    {
+     "w": "com",
+     "t": 22.028
+    },
+    {
+     "w": "os",
+     "t": 22.24
+    },
+    {
+     "w": "anos",
+     "t": 22.287
+    },
+    {
+     "w": "a",
+     "t": 22.594
+    },
+    {
+     "w": "árvore",
+     "t": 22.724
+    },
+    {
+     "w": "morre",
+     "t": 23.124
+    },
+    {
+     "w": "estrangulada",
+     "t": 23.443
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 24.52,
+   "fim": 38.83,
+   "texto": "Então, em vez de cem pregos, você usa poucos parafusos bem grossos. A árvore sabe fechar uma ferida grande, mas sofre com muitas pequenas. E, com o tempo, ela cresce em volta do parafuso e abraça o metal.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 24.567
+    },
+    {
+     "w": "em",
+     "t": 25.287
+    },
+    {
+     "w": "vez",
+     "t": 25.404
+    },
+    {
+     "w": "de",
+     "t": 25.652
+    },
+    {
+     "w": "cem",
+     "t": 25.758
+    },
+    {
+     "w": "pregos",
+     "t": 25.982
+    },
+    {
+     "w": "você",
+     "t": 26.678
+    },
+    {
+     "w": "usa",
+     "t": 27.008
+    },
+    {
+     "w": "poucos",
+     "t": 27.327
+    },
+    {
+     "w": "parafusos",
+     "t": 27.692
+    },
+    {
+     "w": "bem",
+     "t": 28.305
+    },
+    {
+     "w": "grossos",
+     "t": 28.506
+    },
+    {
+     "w": "A",
+     "t": 29.85
+    },
+    {
+     "w": "árvore",
+     "t": 29.98
+    },
+    {
+     "w": "sabe",
+     "t": 30.416
+    },
+    {
+     "w": "fechar",
+     "t": 30.699
+    },
+    {
+     "w": "uma",
+     "t": 31.065
+    },
+    {
+     "w": "ferida",
+     "t": 31.218
+    },
+    {
+     "w": "grande",
+     "t": 31.56
+    },
+    {
+     "w": "mas",
+     "t": 32.244
+    },
+    {
+     "w": "sofre",
+     "t": 32.433
+    },
+    {
+     "w": "com",
+     "t": 32.787
+    },
+    {
+     "w": "muitas",
+     "t": 32.928
+    },
+    {
+     "w": "pequenas",
+     "t": 33.317
+    },
+    {
+     "w": "E",
+     "t": 34.685
+    },
+    {
+     "w": "com",
+     "t": 35.086
+    },
+    {
+     "w": "o",
+     "t": 35.275
+    },
+    {
+     "w": "tempo",
+     "t": 35.334
+    },
+    {
+     "w": "ela",
+     "t": 35.947
+    },
+    {
+     "w": "cresce",
+     "t": 36.147
+    },
+    {
+     "w": "em",
+     "t": 36.513
+    },
+    {
+     "w": "volta",
+     "t": 36.584
+    },
+    {
+     "w": "do",
+     "t": 36.926
+    },
+    {
+     "w": "parafuso",
+     "t": 37.032
+    },
+    {
+     "w": "e",
+     "t": 37.633
+    },
+    {
+     "w": "abraça",
+     "t": 37.692
+    },
+    {
+     "w": "o",
+     "t": 38.105
+    },
+    {
+     "w": "metal",
+     "t": 38.129
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 38.98,
+   "fim": 44.93,
+   "texto": "Mas o tronco engrossa todo ano. Então, você deixa uma folga entre a madeira e a casca.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.027
+    },
+    {
+     "w": "o",
+     "t": 39.239
+    },
+    {
+     "w": "tronco",
+     "t": 39.393
+    },
+    {
+     "w": "engrossa",
+     "t": 39.723
+    },
+    {
+     "w": "todo",
+     "t": 40.206
+    },
+    {
+     "w": "ano",
+     "t": 40.584
+    },
+    {
+     "w": "Então",
+     "t": 41.657
+    },
+    {
+     "w": "você",
+     "t": 42.423
+    },
+    {
+     "w": "deixa",
+     "t": 42.683
+    },
+    {
+     "w": "uma",
+     "t": 42.942
+    },
+    {
+     "w": "folga",
+     "t": 43.096
+    },
+    {
+     "w": "entre",
+     "t": 43.449
+    },
+    {
+     "w": "a",
+     "t": 43.638
+    },
+    {
+     "w": "madeira",
+     "t": 43.673
+    },
+    {
+     "w": "e",
+     "t": 44.098
+    },
+    {
+     "w": "a",
+     "t": 44.169
+    },
+    {
+     "w": "casca",
+     "t": 44.251
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 45.08,
+   "fim": 54.03,
+   "texto": "E o vento? Você não prende a casa firme nos galhos: apoia em suportes que deslizam. A árvore dança, e a casa fica parada.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 45.127
+    },
+    {
+     "w": "o",
+     "t": 45.28
+    },
+    {
+     "w": "vento",
+     "t": 45.363
+    },
+    {
+     "w": "Você",
+     "t": 46.566
+    },
+    {
+     "w": "não",
+     "t": 46.884
+    },
+    {
+     "w": "prende",
+     "t": 47.061
+    },
+    {
+     "w": "a",
+     "t": 47.368
+    },
+    {
+     "w": "casa",
+     "t": 47.427
+    },
+    {
+     "w": "firme",
+     "t": 47.745
+    },
+    {
+     "w": "nos",
+     "t": 48.04
+    },
+    {
+     "w": "galhos",
+     "t": 48.217
+    },
+    {
+     "w": "apoia",
+     "t": 48.842
+    },
+    {
+     "w": "em",
+     "t": 49.231
+    },
+    {
+     "w": "suportes",
+     "t": 49.302
+    },
+    {
+     "w": "que",
+     "t": 49.891
+    },
+    {
+     "w": "deslizam",
+     "t": 50.009
+    },
+    {
+     "w": "A",
+     "t": 51.365
+    },
+    {
+     "w": "árvore",
+     "t": 51.507
+    },
+    {
+     "w": "dança",
+     "t": 51.931
+    },
+    {
+     "w": "e",
+     "t": 52.521
+    },
+    {
+     "w": "a",
+     "t": 52.604
+    },
+    {
+     "w": "casa",
+     "t": 52.71
+    },
+    {
+     "w": "fica",
+     "t": 53.087
+    },
+    {
+     "w": "parada",
+     "t": 53.347
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 54.18,
+   "fim": 65.44,
+   "texto": "E não, a sua casa não vai subir com o tempo. A árvore cresce pela ponta dos galhos, não pelo tronco. O que você pregar a um metro do chão vai estar a um metro do chão pra sempre.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 54.227
+    },
+    {
+     "w": "não",
+     "t": 54.345
+    },
+    {
+     "w": "a",
+     "t": 54.852
+    },
+    {
+     "w": "sua",
+     "t": 54.911
+    },
+    {
+     "w": "casa",
+     "t": 55.182
+    },
+    {
+     "w": "não",
+     "t": 55.524
+    },
+    {
+     "w": "vai",
+     "t": 55.689
+    },
+    {
+     "w": "subir",
+     "t": 55.843
+    },
+    {
+     "w": "com",
+     "t": 56.173
+    },
+    {
+     "w": "o",
+     "t": 56.338
+    },
+    {
+     "w": "tempo",
+     "t": 56.409
+    },
+    {
+     "w": "A",
+     "t": 57.564
+    },
+    {
+     "w": "árvore",
+     "t": 57.694
+    },
+    {
+     "w": "cresce",
+     "t": 58.13
+    },
+    {
+     "w": "pela",
+     "t": 58.472
+    },
+    {
+     "w": "ponta",
+     "t": 58.708
+    },
+    {
+     "w": "dos",
+     "t": 59.027
+    },
+    {
+     "w": "galhos",
+     "t": 59.18
+    },
+    {
+     "w": "não",
+     "t": 59.829
+    },
+    {
+     "w": "pelo",
+     "t": 60.1
+    },
+    {
+     "w": "tronco",
+     "t": 60.336
+    },
+    {
+     "w": "O",
+     "t": 61.527
+    },
+    {
+     "w": "que",
+     "t": 61.656
+    },
+    {
+     "w": "você",
+     "t": 61.798
+    },
+    {
+     "w": "pregar",
+     "t": 62.057
+    },
+    {
+     "w": "a",
+     "t": 62.399
+    },
+    {
+     "w": "um",
+     "t": 62.447
+    },
+    {
+     "w": "metro",
+     "t": 62.553
+    },
+    {
+     "w": "do",
+     "t": 62.883
+    },
+    {
+     "w": "chão",
+     "t": 62.989
+    },
+    {
+     "w": "vai",
+     "t": 63.248
+    },
+    {
+     "w": "estar",
+     "t": 63.378
+    },
+    {
+     "w": "a",
+     "t": 63.673
+    },
+    {
+     "w": "um",
+     "t": 63.72
+    },
+    {
+     "w": "metro",
+     "t": 63.826
+    },
+    {
+     "w": "do",
+     "t": 64.156
+    },
+    {
+     "w": "chão",
+     "t": 64.251
+    },
+    {
+     "w": "pra",
+     "t": 64.546
+    },
+    {
+     "w": "sempre",
+     "t": 64.711
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 65.59,
+   "fim": 74,
+   "texto": "Coloque uma escada de corda, uma janela e uma placa de proibida a entrada de adultos. Parabéns, você construiu uma casa na árvore.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 65.637
+    },
+    {
+     "w": "uma",
+     "t": 66.144
+    },
+    {
+     "w": "escada",
+     "t": 66.25
+    },
+    {
+     "w": "de",
+     "t": 66.64
+    },
+    {
+     "w": "corda",
+     "t": 66.746
+    },
+    {
+     "w": "uma",
+     "t": 67.406
+    },
+    {
+     "w": "janela",
+     "t": 67.583
+    },
+    {
+     "w": "e",
+     "t": 68.031
+    },
+    {
+     "w": "uma",
+     "t": 68.078
+    },
+    {
+     "w": "placa",
+     "t": 68.279
+    },
+    {
+     "w": "de",
+     "t": 68.632
+    },
+    {
+     "w": "proibida",
+     "t": 68.739
+    },
+    {
+     "w": "a",
+     "t": 69.199
+    },
+    {
+     "w": "entrada",
+     "t": 69.234
+    },
+    {
+     "w": "de",
+     "t": 69.647
+    },
+    {
+     "w": "adultos",
+     "t": 69.741
+    },
+    {
+     "w": "Parabéns",
+     "t": 71.121
+    },
+    {
+     "w": "você",
+     "t": 71.911
+    },
+    {
+     "w": "construiu",
+     "t": 72.206
+    },
+    {
+     "w": "uma",
+     "t": 72.677
+    },
+    {
+     "w": "casa",
+     "t": 72.854
+    },
+    {
+     "w": "na",
+     "t": 73.161
+    },
+    {
+     "w": "árvore",
+     "t": 73.302
+    }
+   ]
+  }
+ ]
+}

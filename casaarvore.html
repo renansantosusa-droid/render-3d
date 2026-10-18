@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("casaarvore", { fundo: 0x9cd0f0, seed: 1313 });
+const { THREE, scene, add, grupo, mat, brilho, V, sprite, fluxo, tex, texMadeira, texRuido, rotulo, prog, pulse, entre, frac, C, F, P, T, rnd, sol } = K;
+sol.position.set(6, 12, 8); Object.assign(sol.shadow.camera, { left: -6, right: 6, top: 8, bottom: -2 });
+
+// ---------- quintal e árvore ----------
+add(new THREE.PlaneGeometry(60, 60), mat(0xffffff, { map: texRuido("#6aa84a", 60, 20), roughness: .9 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+for (let i = 0; i < 6; i++) add(new THREE.SphereGeometry(1.2 + rnd(), 16, 12), mat(0x4f8f3a), -12 + i * 5, .6, -14 - rnd() * 4);
+const arv = grupo(0, 0, 0);
+const mCasca = mat(0xffffff, { map: texRuido("#6b4a2e", 90, 1), roughness: .95 });
+const tronco = add(new THREE.CylinderGeometry(.28, .38, 3.2, 24), mCasca, 0, 1.6, 0, arv);
+const topo = grupo(0, 3.2, 0, arv);
+const galhos = [[.9, .5, 0], [-.8, .7, .3], [.2, .8, -.8], [-.3, .6, .9]].map(([x, y, z]) => { const g = new THREE.CatmullRomCurve3([V(0, -.6, 0), V(x * .5, y * .4 - .2, z * .5), V(x, y, z)]); return add(new THREE.TubeGeometry(g, 16, .11, 8), mCasca, 0, 0, 0, topo); });
+add(new THREE.CylinderGeometry(.16, .28, 1.2, 16), mCasca, 0, .6, 0, topo);
+const mFolha = mat(0x3f8f3a, { roughness: .8 });
+const copa = [[0, 1.6, 0, 1.3], [1, 1.2, .2, 1], [-1, 1.3, .3, 1], [.2, 1.3, -.9, 1], [-.2, 1.1, 1, .9], [.4, 2.1, .2, .9]].map(([x, y, z, r]) => add(new THREE.SphereGeometry(r, 18, 14), mFolha, x, y, z, topo));
+// seiva descendo por baixo da casca (frente do tronco)
+const seivaCurva = new THREE.CatmullRomCurve3([V(.05, 3.6, .3), V(.04, 2.6, .34), V(.02, 1.4, .37), V(0, .1, .4)]);
+const seiva = Array.from({ length: 26 }, () => ({ s: sprite(0xffd23a, arv), f: rnd() }));
+// tábuas pregadas (cenas 1-2)
+const tabuas = grupo(0, 2.55, 0, arv);
+const mTab = mat(0xffffff, { map: texMadeira("#c99a62") });
+const tabsA = [-.4, -.2, 0, .2, .4].map((z) => add(new THREE.BoxGeometry(1.8, .05, .18), mTab, 0, 0, z, tabuas));
+const pregos = [], feridas = [];
+for (const tb of tabsA) for (const x of [-.75, .75]) { pregos.push(add(new THREE.CylinderGeometry(.012, .012, .06, 6), mat(0x999999, { metalness: .8 }), x, .04, tb.position.z, tabuas)); const f = sprite(0x8a1a10, tabuas); f.position.set(x, -.03, tb.position.z); feridas.push(f); }
+const racha = add(new THREE.BoxGeometry(.02, .055, .2), brilho(0x1a1008), .1, 0, .2, tabuas);
+const vento = Array.from({ length: 20 }, () => ({ s: sprite(0xffffff), f: rnd(), y: 1 + rnd() * 4, z: (rnd() - .5) * 3 }));
+// corda no tronco
+const corda = add(new THREE.TorusGeometry(.33, .035, 10, 40), mat(0xd8c08a), 0, 2.1, 0, arv); corda.rotation.x = Math.PI / 2;
+// parafusos grossos + viga
+const viga = grupo(0, 2.25, 0, arv);
+const vigas = [-1, 1].map((s) => add(new THREE.BoxGeometry(.12, .2, 2.4), mTab, s * .36, 0, 0, viga));
+const cabecas = [-1, 1].map((s) => { const c = add(new THREE.CylinderGeometry(.08, .08, .04, 6), mat(0x9aa3ad, { metalness: .8, roughness: .3 }), s * .7, 0, 0, viga); c.rotation.z = Math.PI / 2; return c; });
+const parafusos = [-1, 1].map((s) => { const p = add(new THREE.CylinderGeometry(.04, .04, .7, 12), mat(0x9aa3ad, { metalness: .8, roughness: .3 }), s * .34, 0, 0, viga); p.rotation.z = Math.PI / 2; return p; });
+const colares = [-1, 1].map((s) => { const c = add(new THREE.TorusGeometry(.06, .03, 8, 20), mCasca, s * .3, 0, 0, viga); c.rotation.y = Math.PI / 2; return c; });
+const folga = [-1, 1].map((s) => add(new THREE.BoxGeometry(.04, .2, .3), brilho(0xffd23a), s * .32, 0, 0, viga));
+// suportes deslizantes + casa (parada)
+const casa = grupo(0, 2.38, 0);
+const piso = add(new THREE.BoxGeometry(2.4, .06, 2.4), mTab, 0, 0, 0, casa);
+const furo = add(new THREE.CylinderGeometry(.45, .45, .07, 24), mat(0x6aa84a), 0, 0, 0, casa); furo.visible = false;
+const sapatas = [-1, 1].flatMap((s) => [-.8, .8].map((z) => add(new THREE.BoxGeometry(.18, .06, .3), mat(0x555a60, { metalness: .6 }), s * .36, -.06, z, casa)));
+const paredes = grupo(0, 0, 0, casa);
+const mPar = mat(0xffffff, { map: texMadeira("#b9864e") });
+for (const [x, z, w, d] of [[0, -1.15, 2.4, .08], [-1.15, 0, .08, 2.4], [1.15, 0, .08, 2.4]]) add(new THREE.BoxGeometry(w, 1.1, d), mPar, x, .58, z, paredes);
+add(new THREE.BoxGeometry(.8, 1.1, .08), mPar, -.8, .58, 1.15, paredes); add(new THREE.BoxGeometry(.8, 1.1, .08), mPar, .8, .58, 1.15, paredes);
+const telhado = add(new THREE.ConeGeometry(1.9, .9, 4), mat(0xb0402a), 0, 1.6, 0, paredes); telhado.rotation.y = Math.PI / 4;
+const janela = add(new THREE.PlaneGeometry(.45, .4), mat(0x9fd0f0, { roughness: .1 }), 1.2, .7, 0, paredes); janela.rotation.y = Math.PI / 2;
+const placaT = add(new THREE.PlaneGeometry(.9, .3), new THREE.MeshBasicMaterial({ map: rotulo("PROIBIDA A ENTRADA DE ADULTOS", "#fff", { fundo: "#b0402a", w: 1024, h: 256, tam: 68 }) }), 0, 1.0, 1.2, paredes);
+const escada = grupo(0, 0, 1.3, casa);
+for (const x of [-.18, .18]) add(new THREE.CylinderGeometry(.012, .012, 2.4, 6), mat(0xd8c08a), x, -1.2, 0, escada);
+for (let i = 0; i < 7; i++) add(new THREE.BoxGeometry(.38, .03, .05), mTab, 0, -.2 - i * .32, 0, escada);
+// marca de 1 metro
+const marca = add(new THREE.TorusGeometry(.37, .02, 8, 40), brilho(0xff3a3a), 0, 1, 0, arv); marca.rotation.x = Math.PI / 2;
+const regua = add(new THREE.BoxGeometry(.06, 1, .02), brilho(0xffd23a), .7, .5, .4);
+const reguaTxt = add(new THREE.PlaneGeometry(.5, .25), new THREE.MeshBasicMaterial({ map: rotulo("1 m", "#ffd23a"), transparent: true }), 1.05, 1.0, .4);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(0, 3.6, 11), V(0, 3.2, 0)], galho: [V(.4, 3.1, 4.2), V(0, 2.85, 0)], tronco: [V(.2, 2.3, 2.6), V(0, 2.4, 0)],
+  seiva: [V(.4, 2.2, 3.8), V(0, 2.2, 0)], parafuso: [V(2.2, 2.2, 2.4), V(.3, 2.35, 0)], casa: [V(1.5, 3.2, 6.8), V(0, 2.9, 0)],
+  metro: [V(1.2, 2.2, 8.5), V(0, 2.4, 0)], final: [V(2.2, 3.4, 8.5), V(0, 3.0, 0)],
+}, [
+  [0, "geral"], [P(1, "tabuas") - .2, "galho"], [F(1), "galho"],
+  [C(2), "galho"], [P(2, "vento") - .3, "geral"], [P(2, "racham") - .4, "galho"], [F(2), "galho"],
+  [C(3), "seiva"], [F(3) - .5, "geral"], [F(3), "geral"],
+  [C(4) - .02, "geral"], [C(4), "parafuso"], [F(4), "parafuso"],
+  [C(5), "parafuso"], [F(5), "tronco"],
+  [C(6), "casa"], [F(6), "casa"],
+  [C(7), "metro"], [F(7), "metro"],
+  [C(8), "casa"], [C(8) + 1.5, "final"], [T, "final"],
+]);
+
+const mFolhaCor = new THREE.Color();
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // fases
+  tabuas.visible = t < C(3);
+  corda.visible = em(P(3, "corda") - .3, C(4));
+  viga.visible = casa.visible = t > C(4) - .02;
+  paredes.visible = escada.visible = t > C(8) - .02; piso.visible = t > C(6) - .02; sapatas.forEach((s) => s.visible = piso.visible);
+  pregos.forEach((p, i) => p.visible = t > P(1, "pregar") + i * .08);
+  feridas.forEach((f, i) => { f.scale.setScalar(.07); f.material.opacity = em(P(2, "ferida") - .3, C(3)) ? .9 : 0; });
+  racha.visible = t > P(2, "racham") - .1; tabsA[4].rotation.z = .12 * prog(t, P(2, "racham") - .1, P(2, "racham") + .3);
+  // vento e balanço
+  const ventando = em(P(2, "vento") - .2, F(2)) || em(P(6, "vento") - .2, F(6));
+  const forca = ventando ? 1 : .15;
+  arv.rotation.z = .035 * forca * Math.sin(t * 2.4); arv.rotation.x = .02 * forca * Math.sin(t * 1.7);
+  vento.forEach((v) => { const k = frac(t * .7 + v.f); v.s.position.set(-5 + k * 10, v.y, v.z); v.s.scale.set(.6, .04, 1); v.s.material.opacity = ventando ? .7 : 0; });
+  // corda aperta e a árvore morre
+  const aperto = prog(t, P(3, "aperte") - .2, P(3, "aperte") + .6);
+  corda.scale.set(1 - .18 * aperto, 1 - .18 * aperto, 1);
+  const morre = prog(t, P(3, "anos") - .2, F(3));
+  mFolha.color.copy(mFolhaCor.set(0x3f8f3a).lerp(new THREE.Color(0x8a6a2a), morre * (t < C(4) ? 1 : 0)));
+  const sv = em(P(3, "seiva") - .3, C(4));
+  seiva.forEach((s) => { let k = frac(t * .35 + s.f); const p = seivaCurva.getPoint(k); if (aperto > .5 && p.y < 2.2) { k = .52 + s.f * .02; } const q = seivaCurva.getPoint(aperto > .5 && p.y < 2.2 ? .5 : k); s.s.position.copy(q); s.s.scale.setScalar(.06); s.s.material.opacity = sv ? 1 : 0; });
+  // parafusos e casca abraçando
+  const entra = prog(t, P(4, "parafusos") - .3, P(4, "parafusos") + .5); parafusos.forEach((p) => p.scale.y = entra || .001); cabecas.forEach((c, i) => { c.visible = entra > .02; c.position.x = (i ? 1 : -1) * (.7 + .5 * (1 - entra)); c.scale.setScalar(1 + .4 * pulse(t, P(4, "grossos") - .2, .6)); });
+  const abraca = prog(t, P(4, "abraca") - .6, P(4, "abraca") + .6);
+  colares.forEach((c) => { c.visible = abraca > .01; c.scale.setScalar(.5 + abraca); });
+  // tronco engrossa
+  const grosso = 1 + .22 * prog(t, P(5, "engrossa") - .3, P(5, "ano") + .6);
+  tronco.scale.set(grosso, 1, grosso); marca.scale.set(grosso, grosso, 1);
+  folga.forEach((f, i) => { f.visible = em(P(5, "folga") - .3, F(5) + .3); f.material.color.setHSL(.14, 1, .5 + .2 * Math.sin(t * 8)); });
+  // suporte desliza: a viga balança, a casa não
+  sapatas.forEach((s) => s.material.color.set(em(P(6, "deslizam") - .3, F(6)) ? 0xffd23a : 0x555a60));
+  casa.position.set(0, 2.38, 0); casa.rotation.set(0, 0, 0);
+  // cresce pela ponta
+  const cresce = prog(t, P(7, "ponta") - .4, P(7, "metro", 2) + .5);
+  topo.position.y = 3.2 + .9 * cresce; topo.scale.setScalar(1 + .25 * cresce);
+  tronco.scale.y = 1 + .28 * cresce; tronco.position.y = 1.6 * tronco.scale.y;
+  marca.visible = regua.visible = reguaTxt.visible = em(P(7, "metro") - .4, F(7) + .2);
+  K.cartoes(t, [
+    [P(2, "ferida") - .2, P(2, "vento") - .2, "CADA PREGO = FERIDA", "#ff4a3a"],
+    [P(3, "seiva") - .2, P(3, "aperte") - .2, "SEIVA", "#ffd23a"],
+    [P(3, "estrangulada") - .4, F(3), "ESTRANGULADA", "#ff4a3a"],
+    [P(4, "parafusos") - .3, P(4, "abraca") - .6, "POUCOS E GROSSOS", "#7fd3ff"],
+    [P(4, "abraca") - .4, F(4), "ELA ABRAÇA O METAL", "#3aff7a"],
+    [P(5, "folga") - .3, F(5), "FOLGA", "#ffd23a"],
+    [P(6, "deslizam") - .3, F(6), "SUPORTE QUE DESLIZA", "#ffd23a"],
+    [P(7, "ponta") - .3, F(7), "CRESCE PELA PONTA", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>
