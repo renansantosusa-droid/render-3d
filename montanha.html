@@ -1,0 +1,128 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("montanha", { fundo: 0x8fc4ee, seed: 6262 });
+const { THREE, scene, camera, add, grupo, mat, vidro, brilho, V, sprite, tex, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- parque ----------
+add(new THREE.PlaneGeometry(80, 60), mat(0xffffff, { map: texRuido("#6aa84a", 40, 20), roughness: 1 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+for (let i = 0; i < 30; i++) { const x = (rnd() - .5) * 40, z = -4 - rnd() * 15; add(new THREE.ConeGeometry(.5 + rnd() * .4, 1.6 + rnd(), 8), mat(0x2f6a2a), x, .9, z); }
+// trilho
+const PTS = [[-7.5, .5, 0], [-6.2, .5, 0], [-5.2, 1.3, 0], [-4.2, 3.4, 0], [-3.6, 4.5, 0], [-3.0, 4.4, 0], [-2.2, 2.4, 0], [-1.5, .7, 0], [-.7, .45, 0], [.4, 1.6, 0], [1.2, 2.5, 0], [2.0, 1.7, 0], [2.8, .6, 0], [3.6, .45, 0],
+  [4.6, .5, .1], [5.5, 1.3, .3], [5.6, 2.6, .45], [5.0, 3.3, .55], [4.4, 2.7, .65], [4.5, 1.4, .75], [5.3, .55, .9], [6.4, .5, 1], [7.5, .5, 1], [8.6, .5, 1], [9.6, .5, 1]].map((p) => V(...p));
+const curva = new THREE.CatmullRomCurve3(PTS, false, "centripetal");
+const N = 1200, AM = curva.getSpacedPoints(N);
+const uX = (x, depois = 0) => { for (let i = Math.floor(depois * N); i <= N; i++) if (AM[i].x >= x) return i / N; return 1; };
+const uMax = (a, b) => { let m = a, ym = -1; for (let i = Math.floor(a * N); i <= b * N; i++) if (AM[i].y > ym) { ym = AM[i].y; m = i / N; } return m; };
+const uEst = uX(-6.6), uTopo = uMax(uX(-4), uX(-2.8)), uVale1 = uX(-.8), uMorro = uMax(uX(.4), uX(2)), uVale2 = uX(3.6), uLoop0 = uX(4.4, uVale2), uLoop1 = uX(6.2, uX(5.2, uX(5.4) + .02)), uFim = uX(8.4, uLoop1);
+const mTrilho = mat(0xd83a3a, { metalness: .5, roughness: .35 });
+for (const dz of [-.16, .16]) add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(PTS.map((p) => p.clone().add(V(0, 0, dz))), false, "centripetal"), 900, .04, 6), mTrilho);
+for (let i = 0; i <= N; i += 14) { const p = AM[i]; const d = add(new THREE.BoxGeometry(.05, .04, .42), mat(0x555555), p.x, p.y - .05, p.z); if (p.y > .8 && !(p.x > 4.2 && p.x < 5.8 && p.y > 1)) add(new THREE.CylinderGeometry(.03, .03, p.y - .05, 6), mat(0xeeeeee), p.x, (p.y - .05) / 2, p.z); }
+// estação
+add(new THREE.BoxGeometry(2, .3, 1.6), mat(0xc9a86a), -6.9, .15, 0); add(new THREE.BoxGeometry(2, .1, 1.8), mat(0x2e6fd0), -6.9, 1.8, 0);
+for (const x of [-7.8, -6]) for (const z of [-.8, .8]) add(new THREE.CylinderGeometry(.04, .04, 1.7, 6), mat(0xeeeeee), x, 1, z);
+// corrente da subida
+const uC0 = uX(-5.6), uC1 = uTopo - .005;
+const elos = Array.from({ length: 40 }, (_, i) => { const s = sprite(0x333333); s.userData.f = i / 40; return s; });
+// freios magnéticos
+const aletas = Array.from({ length: 10 }, (_, i) => add(new THREE.BoxGeometry(.18, .12, .02), mat(0xc87a3a, { metalness: .8, emissive: 0x3a8cff, emissiveIntensity: 0 }), 6.8 + i * .18, .62, 1));
+// ---------- carrinho ----------
+const cart = grupo();
+const corpo = add(new THREE.BoxGeometry(.7, .22, .42), mat(0xffd23a, { metalness: .3, roughness: .4 }), 0, .18, 0, cart);
+add(new THREE.BoxGeometry(.1, .3, .4), mat(0x2e6fd0), .32, .28, 0, cart);
+const gente = [-.12, .14].map((x) => { add(new THREE.SphereGeometry(.09, 12, 10), mat(0xe0a07a), x, .42, 0, cart); return add(new THREE.CapsuleGeometry(.07, .1, 6, 8), mat(0x3ad08a), x, .3, 0, cart); });
+const barra = add(new THREE.TorusGeometry(.12, .02, 6, 16, Math.PI), mat(0x222222), 0, .42, 0, cart);
+const motor = add(new THREE.BoxGeometry(.35, .28, .32), mat(0x555555, { metalness: .7 }), -.2, .45, 0, cart);
+for (const x of [-.25, .25]) for (const z of [-.16, .16]) add(new THREE.CylinderGeometry(.05, .05, .04, 12), mat(0x222222), x, .04, z, cart).rotation.x = Math.PI / 2;
+const faiscas = Array.from({ length: 12 }, () => ({ s: sprite(0xffb03a), f: rnd() }));
+const tec = sprite(0xffffff);
+const flash = sprite(0xffffff);
+// fantasma do círculo
+const circ = add(new THREE.TorusGeometry(1.15, .03, 6, 60), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }), 5.0, 1.65, .5);
+const gota = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(AM.slice(Math.floor(uLoop0 * N), Math.floor(uLoop1 * N))), 200, .07, 6), new THREE.MeshBasicMaterial({ color: 0x3aff7a, transparent: true, opacity: 0 }));
+// ---------- close das rodinhas ----------
+const RX = 100;
+const roda = grupo(RX, 1.2, 0);
+const trilhoC = add(new THREE.CylinderGeometry(.22, .22, 2.2, 24), mTrilho, 0, 0, 0, roda); trilhoC.rotation.x = Math.PI / 2;
+const chassi = add(new THREE.BoxGeometry(.8, .2, .8), mat(0xffd23a), 0, .62, 0, roda);
+add(new THREE.BoxGeometry(.12, .9, .6), mat(0x888888, { metalness: .6 }), .55, .1, 0, roda);
+const rodas = [[0, .36, 0, "cima"], [0, -.36, 0, "baixo"], [.32, 0, Math.PI / 2, "lado"]].map(([x, y, rz, nome]) => { const w = add(new THREE.CylinderGeometry(.14, .14, .12, 20), mat(0x2a2a2a, { emissive: 0x3aff7a, emissiveIntensity: 0 }), x + .14, y, 0, roda); w.rotation.set(0, 0, Math.PI / 2); if (nome === "lado") { w.rotation.set(0, 0, 0); w.position.set(.42, 0, 0); } w.userData.nome = nome; return w; });
+rodas[0].position.x = 0; rodas[1].position.x = 0;
+add(new THREE.PlaneGeometry(10, 10), mat(0x8fc4ee), RX, 1, -3);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(.5, 3.2, 16), V(.5, 2.2, 0)], loop: [V(5.6, 2.0, 7.2), V(5.0, 1.8, .5)], rodas: [V(RX + .9, 1.9, 4.2), V(RX + .1, 1.1, 0)],
+  freio: [V(8.9, 1.7, 4.8), V(8.0, .6, 1)], fim: [V(6.8, 2.6, 11), V(7.2, 1.2, 0)],
+}, [
+  [0, "geral"], [C(5), "geral"], [C(5) + .01, "rodas"], [F(5), "rodas"],
+  [C(6), "loop"], [F(6), "loop"], [C(7), "freio"], [F(7), "freio"], [C(8), "freio"], [P(8, "camera") + .5, "freio"], [T, "fim"],
+]);
+
+// posição do carrinho (u) ao longo do tempo
+function U(t) {
+  if (t < C(2)) return uTopo + (uVale1 - uTopo) * prog(t, .4, P(1, "descida") + .6);
+  if (t < C(3)) { const k = prog(t, C(2), P(2, "acaba") + .2); return uVale1 + .05 * Math.sin(k * Math.PI) * (1 - k); }
+  if (t < P(3, "solta")) return t < P(3, "corrente") ? uEst : uC0 + (uC1 - uC0) * lin(t, P(3, "corrente"), P(3, "solta")) * .999 + (uEst - uC0) * (1 - prog(t, P(3, "corrente") - .8, P(3, "corrente")));
+  if (t < C(4)) return uC1 + (uVale1 - uC1) * prog(t, P(3, "solta"), P(3, "solta") + 2.2);
+  if (t < C(5)) return uVale1 + (uVale2 - uVale1) * prog(t, C(4), P(4, "atrito"));
+  if (t < C(6)) return uVale2;
+  if (t < C(7)) return uVale2 + (uLoop1 - uVale2) * prog(t, P(6, "looping") - .6, P(6, "gota") + .6);
+  return uLoop1 + (uFim - uLoop1) * (1 - Math.pow(1 - lin(t, C(7), P(7, "encostar") + 1), 2.2));
+}
+const mx = new THREE.Matrix4(), ex = V(0, 0, 0), ey = V(0, 0, 0), ez = V(0, 0, 0);
+function coloca(u) {
+  const p = curva.getPointAt(clamp(u, 0, 1)), tg = curva.getTangentAt(clamp(u, 0, 1)).normalize();
+  ex.copy(tg); ey.set(-tg.y, tg.x, 0).normalize(); ez.crossVectors(ex, ey).normalize();
+  mx.makeBasis(ex, ey, ez); cart.quaternion.setFromRotationMatrix(mx); cart.position.copy(p).addScaledVector(ey, .02);
+  return p;
+}
+const segue = (t) => (t < C(4)) || (entre(t, C(4), C(5)));
+const camAlvo = V(0, 0, 0), camPos = V(0, 0, 0);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const u = U(t), p = coloca(u);
+  cart.visible = t < C(5) || t >= C(6);
+  if (segue(t)) { camAlvo.set(p.x + .4, p.y + .4, p.z); camPos.set(p.x + 1.8, p.y + 1.6, p.z + 6.2); camera.position.copy(camPos); camera.lookAt(camAlvo); camera.updateMatrixWorld(); }
+  // motor (cena 2)
+  motor.visible = em(P(2, "motor") - .2, C(3)); motor.scale.setScalar(1 + .3 * pulse(t, P(2, "pesado") - .2, .6));
+  corpo.scale.y = 1 - .3 * pulse(t, P(2, "pesado") - .2, .6);
+  // corrente e tec-tec
+  const sobe = em(P(3, "corrente") - .3, P(3, "solta") + .2);
+  elos.forEach((s) => { const k = frac(s.userData.f + t * .08); const q = AM[Math.floor((uC0 + (uC1 - uC0) * k) * N)]; s.position.set(q.x, q.y - .02, q.z); s.scale.setScalar(.09); s.material.opacity = sobe ? 1 : 0; });
+  tec.position.copy(p).add(V(-.3, .02, .25)); tec.scale.setScalar(.35); tec.material.opacity = em(P(3, "tec") - .2, P(3, "solta")) && frac(t * 3) < .25 ? 1 : 0;
+  // atrito
+  faiscas.forEach((f) => { const k = frac(t * 3 + f.f); f.s.position.copy(p).add(V(-.3 - k * .5, -.05 + k * .2 * (f.f - .5), .2)); f.s.scale.setScalar(.08); f.s.material.opacity = em(P(4, "atrito") - .5, F(4)) ? 1 - k : 0; });
+  // rodinhas (cena 5)
+  rodas.forEach((w) => { const on = t > P(5, w.userData.nome) - .2; w.material.emissiveIntensity = on ? .9 + .3 * Math.sin(t * 8) : 0; w.rotation.y += 0; });
+  roda.rotation.z = Math.PI * prog(t, P(5, "cabeca") - .5, P(5, "cabeca") + .6);
+  const sai = pulse(t, P(5, "tangente") - .2, 1.0); chassi.position.x = .3 * sai;
+  // looping
+  circ.material.opacity = em(P(6, "circulo") - .2, P(6, "gota") - .1) || em(P(6, "perfeito") - .2, F(6)) ? .8 : 0;
+  gota.material.opacity = em(P(6, "gota") - .2, F(6)) ? .55 : 0;
+  // freios
+  aletas.forEach((a) => a.material.emissiveIntensity = em(P(7, "imas") - .3, F(7)) ? 1 + .5 * Math.sin(t * 10) : 0);
+  barra.rotation.z = t > P(8, "barra") - .3 ? 0 : 1.2;
+  flash.position.copy(p).add(V(.5, .8, .6)); flash.scale.setScalar(1.6); flash.material.opacity = pulse(t, P(8, "camera") - .1, .35);
+  K.cartoes(t, [
+    [P(2, "acaba") - .3, P(2, "motor") - .3, "ACABOU", "#ff4a3a"],
+    [P(2, "pesado") - .3, F(2), "PESADO E CARO", "#ff4a3a"],
+    [P(3, "tec") - .3, P(3, "solta") - .3, "TRAVA ANTI-RETORNO", "#ffd23a"],
+    [P(3, "motor") - .6, F(3), "SEM MOTOR!", "#3aff7a"],
+    [P(4, "altura") - .3, P(4, "morro") - .3, "ALTURA ⇄ VELOCIDADE", "#5ad8ff"],
+    [P(4, "atrito") - .5, F(4), "ATRITO", "#ff9a3a"],
+    [P(5, "rodinhas") - .3, P(5, "cabeca") - .5, "3 RODAS", "#3aff7a"],
+    [P(5, "cabeca") - .5, F(5), "PRESO NO TRILHO", "#ffd23a"],
+    [P(6, "gota") - .3, P(6, "perfeito") - .2, "FORMATO DE GOTA", "#3aff7a"],
+    [P(6, "tranco") - .4, F(6), "CÍRCULO = TRANCO", "#ff4a3a"],
+    [P(7, "imas") - .3, P(7, "energia") - .3, "ÍMÃS SEM ENCOSTAR", "#5ad8ff"],
+    [P(7, "energia") - .3, F(7), "FUNCIONA SEM ENERGIA", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

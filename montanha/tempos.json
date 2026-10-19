@@ -1,0 +1,889 @@
+{
+ "total": 76.58,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.11,
+   "texto": "Se você colocar um carrinho num trilho de descida, terá uma montanha-russa.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "um",
+     "t": 1.046
+    },
+    {
+     "w": "carrinho",
+     "t": 1.105
+    },
+    {
+     "w": "num",
+     "t": 1.518
+    },
+    {
+     "w": "trilho",
+     "t": 1.683
+    },
+    {
+     "w": "de",
+     "t": 1.978
+    },
+    {
+     "w": "descida",
+     "t": 2.072
+    },
+    {
+     "w": "terá",
+     "t": 2.768
+    },
+    {
+     "w": "uma",
+     "t": 3.004
+    },
+    {
+     "w": "montanha-russa",
+     "t": 3.11
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.26,
+   "fim": 12.2,
+   "texto": "Mas ele desce uma vez e acaba. Pra andar mais, precisa de motor. E motor em cada carrinho é pesado e caro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.307
+    },
+    {
+     "w": "ele",
+     "t": 4.519
+    },
+    {
+     "w": "desce",
+     "t": 4.802
+    },
+    {
+     "w": "uma",
+     "t": 5.05
+    },
+    {
+     "w": "vez",
+     "t": 5.227
+    },
+    {
+     "w": "e",
+     "t": 5.463
+    },
+    {
+     "w": "acaba",
+     "t": 5.581
+    },
+    {
+     "w": "Pra",
+     "t": 6.819
+    },
+    {
+     "w": "andar",
+     "t": 6.996
+    },
+    {
+     "w": "mais",
+     "t": 7.314
+    },
+    {
+     "w": "precisa",
+     "t": 7.939
+    },
+    {
+     "w": "de",
+     "t": 8.399
+    },
+    {
+     "w": "motor",
+     "t": 8.482
+    },
+    {
+     "w": "E",
+     "t": 9.708
+    },
+    {
+     "w": "motor",
+     "t": 9.826
+    },
+    {
+     "w": "em",
+     "t": 10.203
+    },
+    {
+     "w": "cada",
+     "t": 10.31
+    },
+    {
+     "w": "carrinho",
+     "t": 10.557
+    },
+    {
+     "w": "é",
+     "t": 11.005
+    },
+    {
+     "w": "pesado",
+     "t": 11.052
+    },
+    {
+     "w": "e",
+     "t": 11.536
+    },
+    {
+     "w": "caro",
+     "t": 11.607
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.35,
+   "fim": 27.09,
+   "texto": "Então, você puxa o carrinho com uma corrente até o ponto mais alto. Aquele tec, tec, tec é uma trava que segura o carrinho se a corrente soltar. Lá em cima, ele se solta. E daí pra frente, não tem motor nenhum.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.397
+    },
+    {
+     "w": "você",
+     "t": 13.199
+    },
+    {
+     "w": "puxa",
+     "t": 13.482
+    },
+    {
+     "w": "o",
+     "t": 13.789
+    },
+    {
+     "w": "carrinho",
+     "t": 13.836
+    },
+    {
+     "w": "com",
+     "t": 14.26
+    },
+    {
+     "w": "uma",
+     "t": 14.414
+    },
+    {
+     "w": "corrente",
+     "t": 14.543
+    },
+    {
+     "w": "até",
+     "t": 14.956
+    },
+    {
+     "w": "o",
+     "t": 15.133
+    },
+    {
+     "w": "ponto",
+     "t": 15.227
+    },
+    {
+     "w": "mais",
+     "t": 15.581
+    },
+    {
+     "w": "alto",
+     "t": 15.758
+    },
+    {
+     "w": "Aquele",
+     "t": 16.925
+    },
+    {
+     "w": "tec",
+     "t": 17.326
+    },
+    {
+     "w": "tec",
+     "t": 17.869
+    },
+    {
+     "w": "tec",
+     "t": 18.423
+    },
+    {
+     "w": "é",
+     "t": 18.706
+    },
+    {
+     "w": "uma",
+     "t": 18.742
+    },
+    {
+     "w": "trava",
+     "t": 18.93
+    },
+    {
+     "w": "que",
+     "t": 19.249
+    },
+    {
+     "w": "segura",
+     "t": 19.355
+    },
+    {
+     "w": "o",
+     "t": 19.732
+    },
+    {
+     "w": "carrinho",
+     "t": 19.767
+    },
+    {
+     "w": "se",
+     "t": 20.227
+    },
+    {
+     "w": "a",
+     "t": 20.334
+    },
+    {
+     "w": "corrente",
+     "t": 20.381
+    },
+    {
+     "w": "soltar",
+     "t": 20.817
+    },
+    {
+     "w": "Lá",
+     "t": 22.032
+    },
+    {
+     "w": "em",
+     "t": 22.256
+    },
+    {
+     "w": "cima",
+     "t": 22.374
+    },
+    {
+     "w": "ele",
+     "t": 22.999
+    },
+    {
+     "w": "se",
+     "t": 23.199
+    },
+    {
+     "w": "solta",
+     "t": 23.329
+    },
+    {
+     "w": "E",
+     "t": 24.543
+    },
+    {
+     "w": "daí",
+     "t": 24.661
+    },
+    {
+     "w": "pra",
+     "t": 24.944
+    },
+    {
+     "w": "frente",
+     "t": 25.121
+    },
+    {
+     "w": "não",
+     "t": 25.723
+    },
+    {
+     "w": "tem",
+     "t": 25.97
+    },
+    {
+     "w": "motor",
+     "t": 26.088
+    },
+    {
+     "w": "nenhum",
+     "t": 26.489
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 27.24,
+   "fim": 37.09,
+   "texto": "A altura vira velocidade na descida, e a velocidade vira altura na subida. Por isso cada morro é mais baixo que o anterior: um pouco da energia se perde no atrito.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 27.287
+    },
+    {
+     "w": "altura",
+     "t": 27.382
+    },
+    {
+     "w": "vira",
+     "t": 27.782
+    },
+    {
+     "w": "velocidade",
+     "t": 27.983
+    },
+    {
+     "w": "na",
+     "t": 28.573
+    },
+    {
+     "w": "descida",
+     "t": 28.679
+    },
+    {
+     "w": "e",
+     "t": 29.492
+    },
+    {
+     "w": "a",
+     "t": 29.575
+    },
+    {
+     "w": "velocidade",
+     "t": 29.646
+    },
+    {
+     "w": "vira",
+     "t": 30.259
+    },
+    {
+     "w": "altura",
+     "t": 30.436
+    },
+    {
+     "w": "na",
+     "t": 30.79
+    },
+    {
+     "w": "subida",
+     "t": 30.896
+    },
+    {
+     "w": "Por",
+     "t": 32.146
+    },
+    {
+     "w": "isso",
+     "t": 32.334
+    },
+    {
+     "w": "cada",
+     "t": 32.641
+    },
+    {
+     "w": "morro",
+     "t": 32.877
+    },
+    {
+     "w": "é",
+     "t": 33.207
+    },
+    {
+     "w": "mais",
+     "t": 33.266
+    },
+    {
+     "w": "baixo",
+     "t": 33.502
+    },
+    {
+     "w": "que",
+     "t": 33.915
+    },
+    {
+     "w": "o",
+     "t": 34.009
+    },
+    {
+     "w": "anterior",
+     "t": 34.044
+    },
+    {
+     "w": "um",
+     "t": 34.811
+    },
+    {
+     "w": "pouco",
+     "t": 34.976
+    },
+    {
+     "w": "da",
+     "t": 35.294
+    },
+    {
+     "w": "energia",
+     "t": 35.365
+    },
+    {
+     "w": "se",
+     "t": 35.849
+    },
+    {
+     "w": "perde",
+     "t": 36.002
+    },
+    {
+     "w": "no",
+     "t": 36.332
+    },
+    {
+     "w": "atrito",
+     "t": 36.415
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 37.24,
+   "fim": 49.72,
+   "texto": "Mas, na curva, o carrinho quer sair pela tangente. Então, você inclina o trilho e coloca rodinhas por cima, por baixo e do lado. O carrinho fica preso, até de cabeça pra baixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 37.287
+    },
+    {
+     "w": "na",
+     "t": 37.889
+    },
+    {
+     "w": "curva",
+     "t": 38.089
+    },
+    {
+     "w": "o",
+     "t": 38.761
+    },
+    {
+     "w": "carrinho",
+     "t": 38.832
+    },
+    {
+     "w": "quer",
+     "t": 39.292
+    },
+    {
+     "w": "sair",
+     "t": 39.469
+    },
+    {
+     "w": "pela",
+     "t": 39.846
+    },
+    {
+     "w": "tangente",
+     "t": 40.094
+    },
+    {
+     "w": "Então",
+     "t": 41.462
+    },
+    {
+     "w": "você",
+     "t": 42.228
+    },
+    {
+     "w": "inclina",
+     "t": 42.476
+    },
+    {
+     "w": "o",
+     "t": 42.889
+    },
+    {
+     "w": "trilho",
+     "t": 42.936
+    },
+    {
+     "w": "e",
+     "t": 43.219
+    },
+    {
+     "w": "coloca",
+     "t": 43.266
+    },
+    {
+     "w": "rodinhas",
+     "t": 43.69
+    },
+    {
+     "w": "por",
+     "t": 44.139
+    },
+    {
+     "w": "cima",
+     "t": 44.304
+    },
+    {
+     "w": "por",
+     "t": 44.893
+    },
+    {
+     "w": "baixo",
+     "t": 45.058
+    },
+    {
+     "w": "e",
+     "t": 45.448
+    },
+    {
+     "w": "do",
+     "t": 45.495
+    },
+    {
+     "w": "lado",
+     "t": 45.613
+    },
+    {
+     "w": "O",
+     "t": 46.768
+    },
+    {
+     "w": "carrinho",
+     "t": 46.874
+    },
+    {
+     "w": "fica",
+     "t": 47.264
+    },
+    {
+     "w": "preso",
+     "t": 47.523
+    },
+    {
+     "w": "até",
+     "t": 48.101
+    },
+    {
+     "w": "de",
+     "t": 48.349
+    },
+    {
+     "w": "cabeça",
+     "t": 48.431
+    },
+    {
+     "w": "pra",
+     "t": 48.926
+    },
+    {
+     "w": "baixo",
+     "t": 49.068
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 49.87,
+   "fim": 59.38,
+   "texto": "E o looping não é um círculo. É uma gota, mais apertada lá em cima. Um círculo perfeito daria um tranco forte demais nas suas costas.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 49.917
+    },
+    {
+     "w": "o",
+     "t": 50.047
+    },
+    {
+     "w": "looping",
+     "t": 50.082
+    },
+    {
+     "w": "não",
+     "t": 50.613
+    },
+    {
+     "w": "é",
+     "t": 50.884
+    },
+    {
+     "w": "um",
+     "t": 50.955
+    },
+    {
+     "w": "círculo",
+     "t": 51.073
+    },
+    {
+     "w": "É",
+     "t": 52.429
+    },
+    {
+     "w": "uma",
+     "t": 52.547
+    },
+    {
+     "w": "gota",
+     "t": 52.736
+    },
+    {
+     "w": "mais",
+     "t": 53.313
+    },
+    {
+     "w": "apertada",
+     "t": 53.455
+    },
+    {
+     "w": "lá",
+     "t": 54.056
+    },
+    {
+     "w": "em",
+     "t": 54.245
+    },
+    {
+     "w": "cima",
+     "t": 54.363
+    },
+    {
+     "w": "Um",
+     "t": 55.578
+    },
+    {
+     "w": "círculo",
+     "t": 55.743
+    },
+    {
+     "w": "perfeito",
+     "t": 56.203
+    },
+    {
+     "w": "daria",
+     "t": 56.698
+    },
+    {
+     "w": "um",
+     "t": 56.922
+    },
+    {
+     "w": "tranco",
+     "t": 57.028
+    },
+    {
+     "w": "forte",
+     "t": 57.346
+    },
+    {
+     "w": "demais",
+     "t": 57.747
+    },
+    {
+     "w": "nas",
+     "t": 58.137
+    },
+    {
+     "w": "suas",
+     "t": 58.29
+    },
+    {
+     "w": "costas",
+     "t": 58.585
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 59.53,
+   "fim": 69,
+   "texto": "No fim, ele precisa parar. Então, você coloca ímãs no trilho. Eles freiam o carrinho sem encostar, e funcionam até sem energia.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 59.577
+    },
+    {
+     "w": "fim",
+     "t": 59.742
+    },
+    {
+     "w": "ele",
+     "t": 60.226
+    },
+    {
+     "w": "precisa",
+     "t": 60.355
+    },
+    {
+     "w": "parar",
+     "t": 60.792
+    },
+    {
+     "w": "Então",
+     "t": 61.924
+    },
+    {
+     "w": "você",
+     "t": 62.679
+    },
+    {
+     "w": "coloca",
+     "t": 62.938
+    },
+    {
+     "w": "ímãs",
+     "t": 63.398
+    },
+    {
+     "w": "no",
+     "t": 63.693
+    },
+    {
+     "w": "trilho",
+     "t": 63.811
+    },
+    {
+     "w": "Eles",
+     "t": 64.955
+    },
+    {
+     "w": "freiam",
+     "t": 65.226
+    },
+    {
+     "w": "o",
+     "t": 65.544
+    },
+    {
+     "w": "carrinho",
+     "t": 65.591
+    },
+    {
+     "w": "sem",
+     "t": 66.016
+    },
+    {
+     "w": "encostar",
+     "t": 66.24
+    },
+    {
+     "w": "e",
+     "t": 67.077
+    },
+    {
+     "w": "funcionam",
+     "t": 67.148
+    },
+    {
+     "w": "até",
+     "t": 67.738
+    },
+    {
+     "w": "sem",
+     "t": 67.962
+    },
+    {
+     "w": "energia",
+     "t": 68.233
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 69.15,
+   "fim": 75.98,
+   "texto": "Coloque uma barra de segurança e uma câmera no meio da descida. Parabéns, você construiu uma montanha-russa.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 69.197
+    },
+    {
+     "w": "uma",
+     "t": 69.669
+    },
+    {
+     "w": "barra",
+     "t": 69.822
+    },
+    {
+     "w": "de",
+     "t": 70.105
+    },
+    {
+     "w": "segurança",
+     "t": 70.2
+    },
+    {
+     "w": "e",
+     "t": 70.766
+    },
+    {
+     "w": "uma",
+     "t": 70.801
+    },
+    {
+     "w": "câmera",
+     "t": 70.978
+    },
+    {
+     "w": "no",
+     "t": 71.367
+    },
+    {
+     "w": "meio",
+     "t": 71.473
+    },
+    {
+     "w": "da",
+     "t": 71.744
+    },
+    {
+     "w": "descida",
+     "t": 71.827
+    },
+    {
+     "w": "Parabéns",
+     "t": 73.159
+    },
+    {
+     "w": "você",
+     "t": 73.985
+    },
+    {
+     "w": "construiu",
+     "t": 74.291
+    },
+    {
+     "w": "uma",
+     "t": 74.799
+    },
+    {
+     "w": "montanha-russa",
+     "t": 74.928
+    }
+   ]
+  }
+ ]
+}
