@@ -1,0 +1,797 @@
+{
+ "total": 74.38,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.94,
+   "texto": "Se você deixar uma pedra no sol, ela esquenta. Terá energia solar.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "deixar",
+     "t": 0.633
+    },
+    {
+     "w": "uma",
+     "t": 0.975
+    },
+    {
+     "w": "pedra",
+     "t": 1.141
+    },
+    {
+     "w": "no",
+     "t": 1.447
+    },
+    {
+     "w": "sol",
+     "t": 1.553
+    },
+    {
+     "w": "ela",
+     "t": 2.084
+    },
+    {
+     "w": "esquenta",
+     "t": 2.237
+    },
+    {
+     "w": "Terá",
+     "t": 3.546
+    },
+    {
+     "w": "energia",
+     "t": 3.817
+    },
+    {
+     "w": "solar",
+     "t": 4.325
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.09,
+   "fim": 11.45,
+   "texto": "Mas calor não liga a televisão. Não carrega o celular. E à noite a pedra esfria.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.137
+    },
+    {
+     "w": "calor",
+     "t": 5.397
+    },
+    {
+     "w": "não",
+     "t": 5.809
+    },
+    {
+     "w": "liga",
+     "t": 6.045
+    },
+    {
+     "w": "a",
+     "t": 6.328
+    },
+    {
+     "w": "televisão",
+     "t": 6.364
+    },
+    {
+     "w": "Não",
+     "t": 7.755
+    },
+    {
+     "w": "carrega",
+     "t": 8.015
+    },
+    {
+     "w": "o",
+     "t": 8.451
+    },
+    {
+     "w": "celular",
+     "t": 8.498
+    },
+    {
+     "w": "E",
+     "t": 9.795
+    },
+    {
+     "w": "à",
+     "t": 9.913
+    },
+    {
+     "w": "noite",
+     "t": 9.984
+    },
+    {
+     "w": "a",
+     "t": 10.326
+    },
+    {
+     "w": "pedra",
+     "t": 10.397
+    },
+    {
+     "w": "esfria",
+     "t": 10.739
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.6,
+   "fim": 21.45,
+   "texto": "Então, você usa silício, que vem da areia, purificado e cortado em fatias finíssimas. Quando a luz bate nele, ela empurra elétrons pra fora do lugar.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.647
+    },
+    {
+     "w": "você",
+     "t": 12.437
+    },
+    {
+     "w": "usa",
+     "t": 12.767
+    },
+    {
+     "w": "silício",
+     "t": 13.039
+    },
+    {
+     "w": "que",
+     "t": 13.734
+    },
+    {
+     "w": "vem",
+     "t": 13.9
+    },
+    {
+     "w": "da",
+     "t": 14.1
+    },
+    {
+     "w": "areia",
+     "t": 14.183
+    },
+    {
+     "w": "purificado",
+     "t": 14.713
+    },
+    {
+     "w": "e",
+     "t": 15.374
+    },
+    {
+     "w": "cortado",
+     "t": 15.409
+    },
+    {
+     "w": "em",
+     "t": 15.869
+    },
+    {
+     "w": "fatias",
+     "t": 15.94
+    },
+    {
+     "w": "finíssimas",
+     "t": 16.388
+    },
+    {
+     "w": "Quando",
+     "t": 17.909
+    },
+    {
+     "w": "a",
+     "t": 18.157
+    },
+    {
+     "w": "luz",
+     "t": 18.192
+    },
+    {
+     "w": "bate",
+     "t": 18.416
+    },
+    {
+     "w": "nele",
+     "t": 18.782
+    },
+    {
+     "w": "ela",
+     "t": 19.324
+    },
+    {
+     "w": "empurra",
+     "t": 19.466
+    },
+    {
+     "w": "elétrons",
+     "t": 19.819
+    },
+    {
+     "w": "pra",
+     "t": 20.303
+    },
+    {
+     "w": "fora",
+     "t": 20.456
+    },
+    {
+     "w": "do",
+     "t": 20.775
+    },
+    {
+     "w": "lugar",
+     "t": 20.857
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.6,
+   "fim": 35.81,
+   "texto": "Mas os elétrons soltos andam pra qualquer lado. Então, você junta duas camadas de silício diferentes. Na divisa, eles só conseguem passar pra um lado. E elétron andando num sentido só é corrente elétrica.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 21.647
+    },
+    {
+     "w": "os",
+     "t": 21.859
+    },
+    {
+     "w": "elétrons",
+     "t": 21.977
+    },
+    {
+     "w": "soltos",
+     "t": 22.532
+    },
+    {
+     "w": "andam",
+     "t": 22.85
+    },
+    {
+     "w": "pra",
+     "t": 23.227
+    },
+    {
+     "w": "qualquer",
+     "t": 23.381
+    },
+    {
+     "w": "lado",
+     "t": 23.782
+    },
+    {
+     "w": "Então",
+     "t": 24.937
+    },
+    {
+     "w": "você",
+     "t": 25.692
+    },
+    {
+     "w": "junta",
+     "t": 25.951
+    },
+    {
+     "w": "duas",
+     "t": 26.305
+    },
+    {
+     "w": "camadas",
+     "t": 26.624
+    },
+    {
+     "w": "de",
+     "t": 27.084
+    },
+    {
+     "w": "silício",
+     "t": 27.19
+    },
+    {
+     "w": "diferentes",
+     "t": 27.638
+    },
+    {
+     "w": "Na",
+     "t": 29.159
+    },
+    {
+     "w": "divisa",
+     "t": 29.348
+    },
+    {
+     "w": "eles",
+     "t": 30.032
+    },
+    {
+     "w": "só",
+     "t": 30.22
+    },
+    {
+     "w": "conseguem",
+     "t": 30.374
+    },
+    {
+     "w": "passar",
+     "t": 30.869
+    },
+    {
+     "w": "pra",
+     "t": 31.246
+    },
+    {
+     "w": "um",
+     "t": 31.423
+    },
+    {
+     "w": "lado",
+     "t": 31.541
+    },
+    {
+     "w": "E",
+     "t": 32.673
+    },
+    {
+     "w": "elétron",
+     "t": 32.779
+    },
+    {
+     "w": "andando",
+     "t": 33.251
+    },
+    {
+     "w": "num",
+     "t": 33.652
+    },
+    {
+     "w": "sentido",
+     "t": 33.793
+    },
+    {
+     "w": "só",
+     "t": 34.289
+    },
+    {
+     "w": "é",
+     "t": 34.466
+    },
+    {
+     "w": "corrente",
+     "t": 34.572
+    },
+    {
+     "w": "elétrica",
+     "t": 35.032
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.96,
+   "fim": 49.72,
+   "texto": "Mas uma célula sozinha dá pouquinha energia. Então, você liga dezenas delas, cobre com vidro e terá uma placa. E curiosidade: placa quente rende menos. Ela gosta de luz, não de calor.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 36.007
+    },
+    {
+     "w": "uma",
+     "t": 36.196
+    },
+    {
+     "w": "célula",
+     "t": 36.444
+    },
+    {
+     "w": "sozinha",
+     "t": 36.892
+    },
+    {
+     "w": "dá",
+     "t": 37.387
+    },
+    {
+     "w": "pouquinha",
+     "t": 37.481
+    },
+    {
+     "w": "energia",
+     "t": 37.918
+    },
+    {
+     "w": "Então",
+     "t": 39.285
+    },
+    {
+     "w": "você",
+     "t": 40.04
+    },
+    {
+     "w": "liga",
+     "t": 40.3
+    },
+    {
+     "w": "dezenas",
+     "t": 40.535
+    },
+    {
+     "w": "delas",
+     "t": 40.96
+    },
+    {
+     "w": "cobre",
+     "t": 41.609
+    },
+    {
+     "w": "com",
+     "t": 41.939
+    },
+    {
+     "w": "vidro",
+     "t": 42.127
+    },
+    {
+     "w": "e",
+     "t": 42.458
+    },
+    {
+     "w": "terá",
+     "t": 42.528
+    },
+    {
+     "w": "uma",
+     "t": 42.752
+    },
+    {
+     "w": "placa",
+     "t": 42.929
+    },
+    {
+     "w": "E",
+     "t": 44.132
+    },
+    {
+     "w": "curiosidade",
+     "t": 44.227
+    },
+    {
+     "w": "placa",
+     "t": 45.17
+    },
+    {
+     "w": "quente",
+     "t": 45.559
+    },
+    {
+     "w": "rende",
+     "t": 45.854
+    },
+    {
+     "w": "menos",
+     "t": 46.16
+    },
+    {
+     "w": "Ela",
+     "t": 47.41
+    },
+    {
+     "w": "gosta",
+     "t": 47.67
+    },
+    {
+     "w": "de",
+     "t": 48.035
+    },
+    {
+     "w": "luz",
+     "t": 48.153
+    },
+    {
+     "w": "não",
+     "t": 48.719
+    },
+    {
+     "w": "de",
+     "t": 49.014
+    },
+    {
+     "w": "calor.",
+     "t": 49.132
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 49.87,
+   "fim": 58.3,
+   "texto": "Mas a placa gera corrente contínua, e a casa usa alternada. Então, você coloca um inversor, que transforma uma na outra.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 49.917
+    },
+    {
+     "w": "a",
+     "t": 50.118
+    },
+    {
+     "w": "placa",
+     "t": 50.271
+    },
+    {
+     "w": "gera",
+     "t": 50.66
+    },
+    {
+     "w": "corrente",
+     "t": 50.931
+    },
+    {
+     "w": "contínua",
+     "t": 51.32
+    },
+    {
+     "w": "e",
+     "t": 52.205
+    },
+    {
+     "w": "a",
+     "t": 52.299
+    },
+    {
+     "w": "casa",
+     "t": 52.405
+    },
+    {
+     "w": "usa",
+     "t": 52.795
+    },
+    {
+     "w": "alternada",
+     "t": 53.007
+    },
+    {
+     "w": "Então",
+     "t": 54.375
+    },
+    {
+     "w": "você",
+     "t": 55.153
+    },
+    {
+     "w": "coloca",
+     "t": 55.424
+    },
+    {
+     "w": "um",
+     "t": 55.825
+    },
+    {
+     "w": "inversor",
+     "t": 55.908
+    },
+    {
+     "w": "que",
+     "t": 56.639
+    },
+    {
+     "w": "transforma",
+     "t": 56.769
+    },
+    {
+     "w": "uma",
+     "t": 57.346
+    },
+    {
+     "w": "na",
+     "t": 57.559
+    },
+    {
+     "w": "outra",
+     "t": 57.712
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 58.45,
+   "fim": 66.67,
+   "texto": "E à noite? A sobra do dia vai pra rede da rua e vira crédito na conta de luz. À noite, você usa esse crédito.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 58.497
+    },
+    {
+     "w": "à",
+     "t": 58.627
+    },
+    {
+     "w": "noite",
+     "t": 58.698
+    },
+    {
+     "w": "A",
+     "t": 59.959
+    },
+    {
+     "w": "sobra",
+     "t": 60.089
+    },
+    {
+     "w": "do",
+     "t": 60.467
+    },
+    {
+     "w": "dia",
+     "t": 60.584
+    },
+    {
+     "w": "vai",
+     "t": 60.856
+    },
+    {
+     "w": "pra",
+     "t": 60.985
+    },
+    {
+     "w": "rede",
+     "t": 61.139
+    },
+    {
+     "w": "da",
+     "t": 61.398
+    },
+    {
+     "w": "rua",
+     "t": 61.528
+    },
+    {
+     "w": "e",
+     "t": 61.787
+    },
+    {
+     "w": "vira",
+     "t": 61.882
+    },
+    {
+     "w": "crédito",
+     "t": 62.141
+    },
+    {
+     "w": "na",
+     "t": 62.542
+    },
+    {
+     "w": "conta",
+     "t": 62.695
+    },
+    {
+     "w": "de",
+     "t": 63.037
+    },
+    {
+     "w": "luz",
+     "t": 63.143
+    },
+    {
+     "w": "À",
+     "t": 64.334
+    },
+    {
+     "w": "noite",
+     "t": 64.452
+    },
+    {
+     "w": "você",
+     "t": 65.125
+    },
+    {
+     "w": "usa",
+     "t": 65.455
+    },
+    {
+     "w": "esse",
+     "t": 65.761
+    },
+    {
+     "w": "crédito",
+     "t": 65.962
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 66.82,
+   "fim": 73.78,
+   "texto": "Coloque as placas viradas pro norte, num suporte no telhado. Parabéns, você construiu uma placa solar.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 66.867
+    },
+    {
+     "w": "as",
+     "t": 67.327
+    },
+    {
+     "w": "placas",
+     "t": 67.457
+    },
+    {
+     "w": "viradas",
+     "t": 67.87
+    },
+    {
+     "w": "pro",
+     "t": 68.294
+    },
+    {
+     "w": "norte",
+     "t": 68.459
+    },
+    {
+     "w": "num",
+     "t": 69.108
+    },
+    {
+     "w": "suporte",
+     "t": 69.249
+    },
+    {
+     "w": "no",
+     "t": 69.756
+    },
+    {
+     "w": "telhado",
+     "t": 69.862
+    },
+    {
+     "w": "Parabéns",
+     "t": 71.089
+    },
+    {
+     "w": "você",
+     "t": 71.855
+    },
+    {
+     "w": "construiu",
+     "t": 72.162
+    },
+    {
+     "w": "uma",
+     "t": 72.645
+    },
+    {
+     "w": "placa",
+     "t": 72.822
+    },
+    {
+     "w": "solar",
+     "t": 73.176
+    }
+   ]
+  }
+ ]
+}

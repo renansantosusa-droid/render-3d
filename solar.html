@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("solar", { fundo: 0x8fc4ee, seed: 1717 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, tex, grade, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+const grama = mat(0xffffff, { map: texRuido("#6aa84a", 40, 12), roughness: 1 });
+const sol = sprite(0xfff2a0); sol.scale.setScalar(4);
+// ---------- set 1: pedra no sol ----------
+add(new THREE.PlaneGeometry(20, 20), grama, 0, 0, 0).rotation.x = -Math.PI / 2;
+const pedra = add(new THREE.DodecahedronGeometry(.5, 1), mat(0x8a8078, { roughness: .9, emissive: 0xff6a1a, emissiveIntensity: 0 }), 0, .4, 0); pedra.scale.set(1.3, .8, 1);
+const calor = Array.from({ length: 16 }, () => ({ s: sprite(0xff7a3a), f: rnd(), x: (rnd() - .5) * .9 }));
+const tv = grupo(-.95, 0, -.9); add(new THREE.BoxGeometry(1, .62, .06), mat(0x111111), 0, .8, 0, tv); add(new THREE.CylinderGeometry(.03, .03, .5, 8), mat(0x333333), 0, .25, 0, tv);
+const cel = add(new THREE.BoxGeometry(.25, .5, .04), mat(0x111111), .95, .3, .2); cel.rotation.x = -.3;
+const xs = [V(-.95, 1.3, -.6), V(.95, .8, .4)].map((p) => add(new THREE.PlaneGeometry(.5, .5), new THREE.MeshBasicMaterial({ map: rotulo("✕", "#ff3a3a", { w: 256, h: 256, tam: 220 }), transparent: true, opacity: 0, depthWrite: false }), p.x, p.y, p.z));
+// ---------- set 2: silício por dentro ----------
+const SX = 100;
+add(new THREE.PlaneGeometry(12, 12), mat(0x34465f), SX, 0, -2);
+const areia = add(new THREE.ConeGeometry(.9, .6, 32), mat(0xffffff, { map: texRuido("#e0c890", 50, 2) }), SX - 1.2, -.9, 0);
+const lamina = add(new THREE.BoxGeometry(1.8, .06, 1.8), mat(0x4a5ab0, { metalness: .5, roughness: .2 }), SX, 0, 0);
+const camadaN = add(new THREE.BoxGeometry(1.8, .3, 1.8), mat(0x3a5aff, { transparent: true, opacity: .6 }), SX, .18, 0);
+const camadaP = add(new THREE.BoxGeometry(1.8, .3, 1.8), mat(0xff5a7a, { transparent: true, opacity: .6 }), SX, -.14, 0);
+const divisa = add(new THREE.BoxGeometry(1.85, .02, 1.85), brilho(0xffffff), SX, .03, 0);
+const fotons = Array.from({ length: 14 }, () => ({ s: sprite(0xffe35a), x: (rnd() - .5) * 1.4, z: (rnd() - .5) * 1.4, f: rnd() }));
+const eletrons = Array.from({ length: 22 }, () => ({ s: sprite(0x5ad8ff), x: (rnd() - .5) * 1.5, z: (rnd() - .5) * 1.4, f: rnd(), a: rnd() * 6.28 }));
+const fio = new THREE.CatmullRomCurve3([V(SX + .9, .3, 0), V(SX + 1.5, .9, 0), V(SX + 1.5, 1.6, 0), V(SX, 1.9, 0), V(SX - 1.5, 1.6, 0), V(SX - 1.5, -.3, 0), V(SX - .9, -.3, 0)]);
+const fioM = add(new THREE.TubeGeometry(fio, 80, .03, 6), mat(0xc87a3a, { metalness: .7 }));
+const lampada = add(new THREE.SphereGeometry(.2, 20, 14), mat(0xffffff, { emissive: 0xffe35a, emissiveIntensity: 0 }), SX, 1.95, 0);
+const fCorr = fluxo(fio, 20, 0x5ad8ff);
+// ---------- set 3: placa (células) ----------
+const PX = 200;
+add(new THREE.PlaneGeometry(12, 12), mat(0xdfe8ef), PX, 0, -1);
+const placa = grupo(PX, 0, 0);
+const celulas = []; for (let i = 0; i < 10; i++) for (let j = 0; j < 6; j++) { const c = add(new THREE.BoxGeometry(.3, .3, .03), mat(0x1a2a6a, { metalness: .5, roughness: .25 }), -.8 + j * .32, -1.45 + i * .32, 0, placa); celulas.push(c); }
+const moldura = add(new THREE.BoxGeometry(2.0, 3.3, .06), mat(0xc0c6cc, { metalness: .8 }), 0, -.0, -.03, placa);
+const vidroP = add(new THREE.BoxGeometry(2.0, 3.3, .03), vidro(.25, 0xdff2ff), 0, 0, .1, placa);
+const termo = add(new THREE.PlaneGeometry(.6, .3), new THREE.MeshBasicMaterial({ map: rotulo("65 °C", "#ff4a3a", { fundo: "#fff", tam: 130 }), transparent: true, opacity: 0 }), PX + 1.4, 1.2, .2);
+// ---------- set 4: casa com placas ----------
+const HX = 300;
+add(new THREE.PlaneGeometry(30, 30), grama, HX, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.BoxGeometry(2.4, 1.6, 2), mat(0xf2e2b0), HX, .8, 0);
+const telhado = grupo(HX, 1.6, 0);
+for (const s of [-1, 1]) { const ag = add(new THREE.BoxGeometry(1.45, .08, 2.3), mat(0xb0503a), s * .6, .45, 0, telhado); ag.rotation.z = -s * .6; }
+const placasT = [-.5, .5].map((z) => { const p = add(new THREE.BoxGeometry(1.0, .04, .7), mat(0x1a2a6a, { metalness: .5, roughness: .2 }), -.62, .55, z * 1.0, telhado); p.rotation.z = .6; return p; });
+const inversor = add(new THREE.BoxGeometry(.4, .5, .15), mat(0xf4f4f4, { emissive: 0x3aff7a, emissiveIntensity: 0 }), HX - 1.25, .9, .6);
+const poste = add(new THREE.CylinderGeometry(.06, .06, 3.2, 8), mat(0x777777), HX + 2.6, 1.6, .6);
+const medidor = add(new THREE.PlaneGeometry(.5, .3), new THREE.MeshBasicMaterial({ map: rotulo("+ CRÉDITO", "#3aff7a", { fundo: "#101820", tam: 90 }) }), HX + .8, 1.1, 1.01);
+const caboCasa = new THREE.CatmullRomCurve3([V(HX - .6, 2.0, .5), V(HX - 1.25, 1.3, .6), V(HX - 1.25, .9, .7)]);
+const caboRede = new THREE.CatmullRomCurve3([V(HX - 1.25, .9, .7), V(HX, .5, 1.1), V(HX + 1.2, 1.1, .7), V(HX + 2.6, 3.0, .6)]);
+add(new THREE.TubeGeometry(caboCasa, 40, .025, 6), mat(0x222222)); add(new THREE.TubeGeometry(caboRede, 60, .025, 6), mat(0x222222));
+const pCC = fluxo(caboCasa, 10, 0xffd23a), pCA = fluxo(caboRede, 18, 0x3aff7a);
+const norte = add(new THREE.PlaneGeometry(.8, .8), new THREE.MeshBasicMaterial({ map: rotulo("N ↑", "#ff3a3a", { fundo: "#fff", w: 256, h: 256, tam: 120 }), transparent: true, opacity: 0 }), HX - 1.6, 2.8, .6);
+const ccLinha = add(new THREE.PlaneGeometry(.7, .35), new THREE.MeshBasicMaterial({ map: rotulo("━━━", "#ffd23a", { fundo: "#101820", tam: 120 }), transparent: true, opacity: 0 }), HX - 1.9, 1.7, .8);
+const caLinha = add(new THREE.PlaneGeometry(.7, .35), new THREE.MeshBasicMaterial({ map: rotulo("∿∿∿", "#3aff7a", { fundo: "#101820", tam: 140 }), transparent: true, opacity: 0 }), HX - .3, .5, 1.3);
+
+// ---------- câmera ----------
+K.camera_({
+  pedra: [V(0, 1.6, 7.6), V(0, .7, 0)], si: [V(SX + .3, 2.0, 6.6), V(SX, .5, 0)], siPerto: [V(SX + .3, 2.2, 4.0), V(SX, 0, 0)],
+  placa: [V(PX + .2, .1, 6.8), V(PX, 0, 0)], casa: [V(HX + .7, 2.6, 12), V(HX + .7, 1.5, 0)], telhado: [V(HX - 2.6, 3.2, 4.4), V(HX - .4, 1.8, 0)],
+}, [
+  [0, "pedra"], [F(2), "pedra"], [C(3), "si"], [P(3, "luz") - .3, "siPerto"], [F(3), "siPerto"],
+  [C(4), "siPerto"], [P(4, "corrente") - .8, "si"], [F(4), "si"],
+  [C(5), "placa"], [F(5), "placa"], [C(6), "casa"], [F(6), "casa"], [C(7), "casa"], [F(7), "casa"], [C(8), "telhado"], [T, "casa"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const noite = em(P(2, "noite") - .3, C(3)) || em(P(7, "noite", 2) - .4, C(8)) || em(C(7), P(7, "sobra") - .3);
+  scene.background.set(noite ? 0x0e1630 : 0x8fc4ee);
+  // sol acompanha a câmera (canto de cima)
+  const set = t < C(3) ? 0 : t < C(5) ? SX : t < C(6) ? PX : HX;
+  sol.position.set(set + 2.5, 6.5, -6); sol.material.opacity = noite || (t > C(3) && t < C(5)) || em(C(5), C(6)) ? 0 : 1;
+  // pedra
+  const quente = noite ? 0 : prog(t, P(1, "sol") - .2, P(1, "esquenta") + .3);
+  pedra.material.emissiveIntensity = .18 * quente;
+  calor.forEach((c) => { const k = frac(t * .6 + c.f); c.s.position.set(c.x, .7 + k * 1.1, 0); c.s.scale.setScalar(.12); c.s.material.opacity = quente > .3 && t < C(3) ? .6 * (1 - k) : 0; });
+  tv.visible = cel.visible = em(P(2, "televisao") - .4, C(3));
+  xs[0].material.opacity = em(P(2, "televisao"), C(3)) ? 1 : 0; xs[1].material.opacity = em(P(2, "celular"), C(3)) ? 1 : 0;
+  // silício
+  areia.visible = em(C(3), P(3, "fatias") + .5); areia.scale.setScalar(1 - prog(t, P(3, "purificado") - .2, P(3, "fatias") + .3) * .99);
+  const fatia = prog(t, P(3, "fatias") - .3, P(3, "fatias") + .4);
+  const duas = prog(t, P(4, "camadas") - .3, P(4, "camadas") + .4);
+  lamina.visible = t > P(3, "silicio") - .2 && duas < .5; lamina.scale.set(1, Math.max(.2, 1 - fatia * .6), 1);
+  camadaN.visible = camadaP.visible = duas > .02 && t < C(5); camadaN.position.y = .18 + .5 * (1 - duas); camadaP.position.y = -.14 - .5 * (1 - duas);
+  divisa.visible = em(P(4, "divisa") - .3, C(5)); divisa.material.color.setHSL(0, 0, .7 + .3 * Math.sin(t * 8));
+  fotons.forEach((f) => { const k = frac(t * .9 + f.f); f.s.position.set(SX + f.x, 2.6 - k * 2.5, f.z); f.s.scale.setScalar(.12); f.s.material.opacity = em(P(3, "luz") - .3, C(5)) ? 1 : 0; });
+  const umLado = t > P(4, "divisa") - .2;
+  eletrons.forEach((e) => { const k = frac(t * .5 + e.f); let x, y, z;
+    if (!umLado) { x = SX + e.x + Math.sin(t * 3 + e.a) * .25 * (t > P(4, "soltos") - .3 ? 1 : .2); y = .1 + k * .3 * (t > P(3, "empurra") - .2 ? 1 : 0); z = e.z + Math.cos(t * 2.7 + e.a) * .25; }
+    else { x = SX + e.x; y = .05 + k * .45; z = e.z; }
+    e.s.position.set(x, y, z); e.s.scale.setScalar(.08); e.s.material.opacity = em(P(3, "eletrons") - .3, C(5)) ? 1 : 0; });
+  const corrente = em(P(4, "sentido") - .3, C(5));
+  fioM.visible = lampada.visible = corrente; fCorr.atualiza(t, corrente, .4, .1); lampada.material.emissiveIntensity = corrente ? 1.6 : 0;
+  // placa: células aparecem, vidro, esquenta
+  celulas.forEach((c, i) => { const k = prog(t, P(5, "dezenas") - .4 + i * .02, P(5, "dezenas") + i * .02); c.visible = i === 0 ? t > C(5) - .1 : k > .01; c.scale.setScalar(i === 0 ? 1 : Math.max(.01, k)); c.material.emissive = c.material.emissive || new THREE.Color(); c.material.emissive.set(0xff3a1a); c.material.emissiveIntensity = em(P(5, "quente") - .3, P(5, "luz") - .3) ? .4 : 0; });
+  celulas[0].scale.setScalar(t < P(5, "dezenas") - .4 ? 2.2 : 1);
+  moldura.visible = t > P(5, "vidro") - .4; vidroP.visible = t > P(5, "vidro") - .3; vidroP.position.z = .1 + .6 * (1 - prog(t, P(5, "vidro") - .3, P(5, "vidro") + .3));
+  termo.material.opacity = em(P(5, "quente") - .3, F(5)) ? 1 : 0;
+  // casa
+  const dia = !noite;
+  const gerando = t > C(6) && dia && t < F(8) + 1;
+  inversor.material.emissiveIntensity = em(P(6, "inversor") - .3, F(6)) ? 1 : 0;
+  pCC.atualiza(t, gerando, .5, .1);
+  // dia: sobra vai pra rua (sentido normal); noite: volta da rua (sentido invertido)
+  const volta = em(P(7, "noite", 2) - .4, C(8));
+  pCA.atualiza(volta ? -t : t, (gerando && t > P(6, "inversor") - .2) || volta, .4, .1);
+  ccLinha.material.opacity = em(P(6, "continua") - .3, F(6)) ? 1 : 0; caLinha.material.opacity = em(P(6, "alternada") - .3, F(6)) ? 1 : 0;
+  medidor.visible = em(P(7, "credito") - .3, C(8));
+  medidor.material.map = medidor.material.map;
+  placasT.forEach((p) => p.visible = t > C(6));
+  norte.material.opacity = em(P(8, "norte") - .3, P(8, "parabens")) ? 1 : 0;
+  K.cartoes(t, [
+    [P(2, "televisao") - .3, P(2, "noite") - .3, "CALOR NÃO É ELETRICIDADE", "#ff4a3a"],
+    [P(2, "esfria") - .4, F(2), "ESFRIOU", "#5ad8ff"],
+    [P(3, "silicio") - .3, P(3, "fatias") - .3, "SILÍCIO (DA AREIA)", "#ffd23a"],
+    [P(3, "eletrons") - .4, F(3), "SOLTA ELÉTRONS", "#5ad8ff"],
+    [P(4, "lado") - .5, P(4, "camadas") - .3, "BAGUNÇA", "#ff4a3a"],
+    [P(4, "divisa") - .3, P(4, "corrente") - .5, "SÓ PASSA PRA UM LADO", "#ffffff"],
+    [P(4, "corrente") - .5, F(4), "CORRENTE ELÉTRICA", "#3aff7a"],
+    [P(5, "placa") - .4, P(5, "quente") - .3, "60 CÉLULAS = 1 PLACA", "#5ad8ff"],
+    [P(5, "calor") - .5, F(5), "GOSTA DE LUZ, NÃO DE CALOR", "#ffd23a"],
+    [P(6, "inversor") - .3, F(6), "INVERSOR", "#3aff7a"],
+    [P(7, "credito") - .3, P(7, "noite", 2) - .4, "SOBRA = CRÉDITO", "#3aff7a"],
+    [P(7, "noite", 2) - .4, F(7), "À NOITE USA O CRÉDITO", "#5ad8ff"],
+    [P(8, "norte") - .3, P(8, "parabens") - .3, "VIRADA PRO NORTE", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>
