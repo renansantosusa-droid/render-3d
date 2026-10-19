@@ -1,0 +1,212 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Série "O Apagão" — Episódio 1 (2D flat, estilo @historiascomkaio)
+const TEMPOS = await (await fetch("/apagao1/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const frac = (x) => x - Math.floor(x);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala, T = TEMPOS.total;
+let rs = 1; const rnd = () => { rs = (rs * 16807) % 2147483647; return rs / 2147483647; };
+
+// ---------- paleta ----------
+const COR = { fundo: "#e9e2d0", fundoNoite: "#1d2129", predio: "#d9d2c0", linha: "#b9b09a", escuro: "#2a2e36", mostarda: "#e0a83a", vermelho: "#d6453a", azul: "#4a9be0", agua: "#6ab8f0", verde: "#4fae5a", pele: "#e8b48a", cabelo: "#3a2a20", camisa: "#3f6f73", calca: "#3a5a8a", txt: "#2a2e36" };
+
+// ---------- primitivas ----------
+const rr = (x, y, w, h, r, cor) => { g.fillStyle = cor; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+const rect = (x, y, w, h, cor) => { g.fillStyle = cor; g.fillRect(x, y, w, h); };
+function txt(s, x, y, tam, cor, peso = 700, al = "center") { g.font = `${peso} ${tam}px Oswald`; g.textAlign = al; g.textBaseline = "middle"; g.fillStyle = cor; g.fillText(s, x, y); }
+function etiqueta(s, x, y, fundo, cor = "#fff", tam = 34, a = 1) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + tam * .9; const sc = .85 + .15 * Math.min(1, a * 1.5); g.translate(x, y); g.scale(sc, sc); rr(-w / 2, -tam * .75, w, tam * 1.5, 6, fundo); txt(s, 0, 2, tam, cor); g.restore(); }
+function cartao(l1, l2, x, y, a = 1, cor2 = "#2a2e36") { if (a <= 0) return; g.save(); g.globalAlpha = a; g.translate(x, y); g.font = "700 64px Oswald"; const w = Math.max(g.measureText(l2).width, 260) + 80; rr(-w / 2, -70, w, 150, 10, "#fdf8ec"); rect(-w / 2, -70, w, 34, COR.mostarda); txt(l1, 0, -53, 24, "#2a2e36"); txt(l2, 0, 22, 64, cor2); g.restore(); }
+function pessoa(x, y, s = 1, { camisa = COR.camisa, olhar = 0, braco = 0, cabelo = COR.cabelo, bone = null, cabeca = 0 } = {}) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rect(-26, -150, 20, 150, COR.calca); rect(6, -150, 20, 150, COR.calca);
+  rr(-30, -6, 30, 12, 4, "#2a2a2a"); rr(4, -6, 30, 12, 4, "#2a2a2a");
+  rr(-38, -290, 76, 150, 18, camisa);
+  g.save(); g.translate(30, -275); g.rotate(-braco); rr(-8, 0, 20, 120, 10, camisa); rr(-6, 112, 18, 22, 9, COR.pele); g.restore();
+  g.save(); g.translate(-30, -275); rr(-12, 0, 20, 120, 10, camisa); rr(-10, 112, 18, 22, 9, COR.pele); g.restore();
+  rect(-10, -312, 20, 26, COR.pele);
+  g.save(); g.translate(0, -350); g.rotate(cabeca);
+  g.fillStyle = COR.pele; g.beginPath(); g.arc(0, 0, 44, 0, 6.283); g.fill();
+  g.fillStyle = cabelo; g.beginPath(); g.arc(0, -6, 46, Math.PI * 1.05, Math.PI * 1.95); g.fill();
+  if (bone) { g.fillStyle = bone; g.beginPath(); g.arc(0, -10, 47, Math.PI, 0); g.fill(); rect(0, -14, 64, 10, bone); }
+  g.fillStyle = "#222"; g.beginPath(); g.arc(-14 + olhar * 8, 4, 5, 0, 6.283); g.arc(14 + olhar * 8, 4, 5, 0, 6.283); g.fill();
+  g.strokeStyle = "#222"; g.lineWidth = 4; g.beginPath(); g.moveTo(-22 + olhar * 8, -10); g.lineTo(-6 + olhar * 8, -7); g.moveTo(6 + olhar * 8, -7); g.lineTo(22 + olhar * 8, -10); g.stroke();
+  g.beginPath(); g.moveTo(-8, 22); g.lineTo(8, 22); g.stroke();
+  g.restore(); g.restore();
+}
+// cidade ao fundo
+const PREDIOS = Array.from({ length: 14 }, (_, i) => ({ x: -40 + i * 82 + rnd() * 30, w: 90 + rnd() * 70, h: 380 + rnd() * 620, c: ["#cfc8b4", "#bdb6a2", "#d8d0bc", "#c4bca6"][i % 4], j: Array.from({ length: 80 }, () => rnd()) }));
+function cidade(chao, luz, noite) {
+  for (const p of PREDIOS) { rect(p.x, chao - p.h, p.w, p.h, noite ? "#2c313b" : p.c);
+    for (let r = 0; r < Math.floor(p.h / 46) - 1; r++) for (let c = 0; c < Math.floor(p.w / 34); c++) { const j = p.j[(r * 7 + c) % 80]; const acesa = j < luz * .75; rect(p.x + 10 + c * 34, chao - p.h + 18 + r * 46, 20, 26, acesa ? "#f2c45a" : (noite ? "#1d2129" : "#a8a090")); } }
+  rect(0, chao, W, H - chao, noite ? "#15181e" : "#8a8574");
+}
+// prédio em corte (diagrama que volta sempre)
+const PX = 190, PW = 580, NF = 12, FH = 82, PBASE = 1660;
+const yAndar = (n) => PBASE - n * FH;
+function predio(t, { luz = 1, noite = false, nivel = 1, bomba = false, fluxoSobe = false, chuveiros = 0, destaque = true, chia = false, aguaDiego = 0 }) {
+  // caixa d'água
+  const cx = PX + PW - 150, cy = yAndar(NF) - 150;
+  rect(cx + 20, cy + 110, 12, 40, "#777"); rect(cx + 108, cy + 110, 12, 40, "#777");
+  rr(cx, cy, 140, 110, 6, noite ? "#3a4250" : "#c8d6e0");
+  rect(cx + 6, cy + 6 + 98 * (1 - nivel), 128, 98 * nivel, COR.agua);
+  txt("CAIXA D'ÁGUA", cx + 70, cy - 22, 24, noite ? "#cfd6e0" : COR.txt);
+  // andares
+  for (let n = 0; n < NF; n++) { const y = yAndar(n + 1);
+    const eh9 = n + 1 === 9 && destaque;
+    rect(PX, y, PW, FH - 4, eh9 ? COR.mostarda : (noite ? "#2c313b" : COR.predio));
+    rect(PX, y + FH - 4, PW, 4, noite ? "#1d2129" : COR.linha);
+    for (let k = 0; k < 4; k++) rect(PX + 40 + k * 130, y + 18, 76, 40, luz > (n * 4 + k) % 7 / 7 ? "#f2c45a" : (noite ? "#1d2129" : "#a8a090"));
+    txt(`${n + 1}º`, PX - 36, y + FH / 2, 26, noite ? "#aab" : COR.txt, 500);
+    if (chuveiros && (n * 5 + 3) % 4 === 0 && n !== 8) for (let d = 0; d < 6; d++) { const k = frac(t * 1.6 + d / 6); g.fillStyle = COR.agua; g.beginPath(); g.arc(PX + 130 + (d % 3) * 14, y + 10 + k * 40, 4, 0, 6.283); g.fill(); }
+    if (chia) { g.globalAlpha = .4 + .4 * Math.sin(t * 20 + n); txt("SSS", PX + 400, y + FH / 2, 22, "#9ab", 500); g.globalAlpha = 1; }
+  }
+  if (destaque) { txt("◀ DIEGO", PX + PW + 90, yAndar(9) + FH / 2, 30, COR.mostarda === "#e0a83a" && noite ? "#f2c45a" : COR.txt); }
+  // cano da bomba até a caixa
+  const canoX = PX + PW + 24;
+  rect(canoX - 7, cy + 50, 14, PBASE + 40 - cy - 50, noite ? "#4a5260" : "#9aa4ae"); rect(canoX - 7, cy + 50, cx - canoX + 7, 14, noite ? "#4a5260" : "#9aa4ae");
+  if (fluxoSobe) for (let d = 0; d < 14; d++) { const k = frac(t * .5 + d / 14); g.fillStyle = COR.azul; g.beginPath(); g.arc(canoX, PBASE + 40 - k * (PBASE + 40 - cy - 57), 6, 0, 6.283); g.fill(); }
+  // bomba
+  rr(canoX - 46, PBASE + 20, 92, 60, 8, bomba ? "#5a6a7a" : "#8a3a34"); txt("BOMBA", canoX, PBASE + 50, 22, "#fff");
+  rect(PX - 60, PBASE, PW + 200, 400, noite ? "#15181e" : "#8a8574");
+}
+// cômodos
+function banheiro(t, k160) {
+  rect(0, 0, W, H, "#e6ecef"); for (let y = 0; y < 1500; y += 60) rect(0, y, W, 2, "#cdd8de"); for (let x = 0; x < W; x += 60) rect(x, 0, 2, 1500, "#cdd8de");
+  rect(0, 1500, W, 420, "#b9b2a0");
+  // banheira
+  rr(120, 1300, 520, 200, 30, "#fafafa"); rect(140, 1320 + 160 * (1 - Math.min(1, k160 * 1.6)), 480, 160 * Math.min(1, k160 * 1.6), COR.agua);
+  rr(110, 1290, 540, 30, 14, "#f2f2f2");
+  return 1500;
+}
+function cozinha(noite) { rect(0, 0, W, H, noite ? "#262a33" : "#efe6d4"); for (let x = 0; x < W; x += 80) rect(x, 0, 2, 1500, noite ? "#2e333c" : "#e2d8c2"); rect(0, 1500, W, 420, noite ? "#1a1d23" : "#a89a80"); }
+
+// ---------- legenda (blocos de 3 palavras, palavra-chave colorida) ----------
+const CHAVE = { agua: COR.azul, erro: COR.vermelho, bomba: COR.mostarda, luz: COR.mostarda, apaga: COR.mostarda, botijao: COR.mostarda, fogo: "#ff8a3a", geladeira: COR.azul, regra: COR.vermelho, papel: COR.mostarda, sindico: COR.vermelho, lista: COR.vermelho, topo: COR.vermelho, diego: COR.mostarda, caixa: COR.azul, chiar: COR.vermelho, litros: COR.azul, comida: COR.mostarda, secado: COR.vermelho, porta: COR.vermelho };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1290) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 78px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 12; g.strokeStyle = "rgba(0,0,0,.75)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+
+const zoom = (k, fn) => { g.save(); g.translate(W / 2, 1500); g.scale(k, k); g.translate(-W / 2, -1500); fn(); g.restore(); };
+// ---------- quadro ----------
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1: a cidade apaga
+    const luz = 1 - prog(t, P(1, "acabar") - .2, P(1, "voltar") + .4);
+    rect(0, 0, W, H, luz > .5 ? "#e9d8b8" : "#c9c2b0"); cidade(1500, luz, false);
+    etiqueta("1º A FALTAR:", W / 2, 520, COR.escuro, "#fff", 40, prog(t, P(1, "primeira") - .2, P(1, "primeira") + .2));
+    if (t > P(1, "comida") - .1 && t < P(1, "agua", 1) - .2) { etiqueta("COMIDA", W / 2, 640, "#fff", COR.txt, 64, 1); g.strokeStyle = COR.vermelho; g.lineWidth = 12; g.beginPath(); g.moveTo(W / 2 - 150, 640); g.lineTo(W / 2 + 150, 640); g.stroke(); }
+    etiqueta("ÁGUA", W / 2, 660, COR.azul, "#fff", 90, prog(t, P(1, "agua") - .2, P(1, "agua") + .15));
+  } else if (t < C(3)) { // CENA 2: Diego, 9º andar, apagão
+    const apagou = t > P(2, "apaga") - .1;
+    if (t < P(2, "sao") - .2 || t > P(2, "todo") - .2) {
+      rect(0, 0, W, H, apagou ? "#cfc8b6" : COR.fundo); predio(t, { luz: apagou ? 0 : 1, bomba: !apagou, fluxoSobe: !apagou });
+      txt("TATUAPÉ · SÃO PAULO", PX + PW / 2, yAndar(NF) - 230, 30, COR.txt, 500);
+    } else { rect(0, 0, W, H, "#bdb6a4"); cidade(1500, 0, false); etiqueta("SÃO PAULO INTEIRA", W / 2, 560, COR.escuro, "#fff", 54, prog(t, P(2, "sao") - .1, P(2, "sao") + .2)); }
+    if (em(P(2, "seis") - .2, P(2, "bairro"))) cartao("APAGÃO · DIA 1", "06:40", W / 2, 330, prog(t, P(2, "seis") - .2, P(2, "seis") + .1));
+    if (em(P(2, "acha") - .2, F(2) + .1)) etiqueta("“VOLTA EM 1 HORA”", W / 2, 330, "#fff", COR.txt, 48, 1);
+    if (t > P(2, "erro") - .1) etiqueta("ERRO", W / 2, 430, COR.vermelho, "#fff", 70, prog(t, P(2, "erro") - .1, P(2, "erro") + .15));
+  } else if (t < C(4)) { // CENA 3: bomba x caixa d'água
+    rect(0, 0, W, H, COR.fundo);
+    const parou = t > P(3, "para") - .1;
+    predio(t, { luz: 0, bomba: !parou, fluxoSobe: em(P(3, "bomba") - .3, P(3, "para") - .1), nivel: .85 });
+    if (em(P(3, "rua") - .2, P(3, "caixa") - .2)) etiqueta("NÃO VEM DA RUA", W / 2, 330, COR.escuro, "#fff", 44, 1);
+    if (em(P(3, "bomba") - .2, P(3, "para") - .2)) etiqueta("BOMBA ELÉTRICA", W / 2, 330, COR.mostarda, "#fff", 48, 1);
+    if (parou) { g.strokeStyle = COR.vermelho; g.lineWidth = 14; const bx = PX + PW + 24, by = PBASE + 50; g.beginPath(); g.moveTo(bx - 50, by - 40); g.lineTo(bx + 50, by + 40); g.moveTo(bx + 50, by - 40); g.lineTo(bx - 50, by + 40); g.stroke(); }
+    if (em(P(3, "para") - .2, P(3, "trinta") - .2)) etiqueta("A BOMBA PAROU", W / 2, 330, COR.vermelho, "#fff", 48, 1);
+    if (t > P(3, "trinta") - .2) cartao("TUDO O QUE O PRÉDIO TEM", "30.000 L", W / 2, 330, prog(t, P(3, "trinta") - .2, P(3, "trinta") + .1), COR.azul);
+    if (t > P(3, "quarenta") - .2) etiqueta("48 APARTAMENTOS", W / 2, 470, COR.escuro, "#fff", 36, prog(t, P(3, "quarenta") - .2, P(3, "quarenta") + .1));
+  } else if (t < C(5)) { // CENA 4: vizinhos gastam, Diego guarda
+    if (t < P(4, "diego") - .1) {
+      rect(0, 0, W, H, COR.fundo); predio(t, { luz: 0, bomba: false, chuveiros: 1, nivel: .85 - .25 * prog(t, C(4), P(4, "diego")) });
+      etiqueta("BANHO DE 20 MIN", W / 2, 330, COR.vermelho, "#fff", 48, prog(t, P(4, "vinte") - .2, P(4, "vinte") + .1));
+    } else {
+      const k = (t - P(4, "banheira") + .2) / (P(4, "sessenta") - P(4, "banheira") + .5);
+      const chao = banheiro(t, clamp(k, 0, 1)); zoom(1.45, () => {
+      pessoa(760, chao + 10, 1.05, { olhar: -1, braco: .6 });
+      const itens = [["baldes", 680, "#4a7ab0", 110], ["panelas", 520, "#9a9a9a", 70], ["garrafas", 380, "#7ac0e0", 90]];
+      itens.forEach(([w, x, cor, h], i) => { const a = prog(t, P(4, w) - .2, P(4, w) + .1); if (a <= 0) return; const bx = 240 + i * 140, by = chao + 120; g.globalAlpha = a; rr(bx, by - h, 110, h, 10, cor); rect(bx + 8, by - h + 20, 94, h - 28, COR.agua); g.globalAlpha = 1; });
+      const litros = Math.round(160 * clamp(k, 0, 1));
+      }); cartao("ÁGUA GUARDADA", `${Math.round(160 * clamp(k, 0, 1))} L`, W / 2, 330, prog(t, P(4, "banheira") - .3, P(4, "banheira")), COR.azul);
+    }
+  } else if (t < C(6)) { // CENA 5: fogo de botijão
+    cozinha(false); zoom(1.5, () => {
+    rr(260, 1180, 420, 320, 10, "#f4f4f4"); rect(260, 1180, 420, 16, "#2a2a2a"); rr(300, 1250, 340, 200, 8, "#3a3a3a");
+    const fogo = t > P(5, "fogo") - .1;
+    for (const bx of [360, 580]) { if (fogo) for (let i = 0; i < 9; i++) { const a = i / 9 * 6.283, h = 26 + 10 * Math.sin(t * 14 + i); g.fillStyle = i % 2 ? COR.azul : "#ff9a3a"; g.beginPath(); g.ellipse(bx + Math.cos(a) * 34, 1168 - h / 2, 7, h / 2, 0, 0, 6.283); g.fill(); } rect(bx - 40, 1172, 80, 8, "#555"); }
+    // botijão
+    const bx = 790; rr(bx - 70, 1260, 140, 240, 50, "#6a7684"); rr(bx - 46, 1220, 92, 50, 14, "#6a7684"); rect(bx - 12, 1200, 24, 24, "#c8a040");
+    g.strokeStyle = "#e0b840"; g.lineWidth = 10; g.beginPath(); g.moveTo(bx, 1205); g.quadraticCurveTo(bx - 60, 1120, 680, 1300); g.stroke();
+    pessoa(300, 1500, .95, { olhar: 1 }); });
+    if (em(P(5, "botijao", 2) - .2, P(5, "treze") - .2)) etiqueta("NÃO PRECISA DE LUZ", W / 2, 330, COR.verde, "#fff", 48, 1);
+    if (t > P(5, "treze") - .2) cartao("BOTIJÃO DE 13 KG", "+1 MÊS", W / 2, 330, prog(t, P(5, "treze") - .2, P(5, "treze") + .1), COR.verde);
+  } else if (t < C(7)) { // CENA 6: geladeira + regra
+    if (t < P(6, "regra") - .2) {
+      cozinha(false); zoom(1.3, () => {
+      rr(380, 760, 320, 740, 16, "#f2f2f2"); rect(380, 1060, 320, 6, "#d0d0d0"); rect(650, 860, 14, 120, "#bbb"); rect(650, 1120, 14, 160, "#bbb");
+      const horas = 4;
+      pessoa(270, 1500, .95, { olhar: 1, braco: em(P(6, "come") - .2, P(6, "regra")) ? 1.2 : 0 }); });
+      cartao("FECHADA, SEGURA O FRIO", "4 H", W / 2, 330, prog(t, P(6, "fechada") - .2, P(6, "fechada") + .1), COR.azul);
+      if (t > P(6, "estraga") - .3) { etiqueta("1º O QUE ESTRAGA", W / 2, 520, COR.mostarda, "#fff", 44, 1); }
+
+    } else {
+      rect(0, 0, W, H, COR.escuro);
+      txt("REGRA DO APAGÃO", W / 2, 760, 44, COR.mostarda, 500);
+      const a = prog(t, P(6, "acaba") - .3, P(6, "acaba") + .1), b = prog(t, P(6, "volta") - .3, P(6, "volta") + .1);
+      g.globalAlpha = a; txt("O QUE ACABA,", W / 2, 880, 96, "#fff"); g.globalAlpha = b; txt("NÃO VOLTA.", W / 2, 1000, 96, COR.vermelho); g.globalAlpha = 1;
+    }
+  } else if (t < C(8)) { // CENA 7: no papel, pronto
+    rect(0, 0, W, H, "#ddd3bc"); predio(t, { luz: 0, nivel: .25, bomba: false });
+    cartao("ÁGUA DO DIEGO", "3 SEMANAS", W / 2, 330, prog(t, P(7, "tres") - .2, P(7, "tres") + .1), COR.verde);
+    if (t > P(7, "papel") - .2) etiqueta("NO PAPEL…", W / 2, 470, "#fdf8ec", COR.txt, 44, prog(t, P(7, "papel") - .2, P(7, "papel") + .1));
+  } else if (t < FALA + .3) { // CENA 8: noite, caixa seca, a porta
+    if (t < P(8, "alguem") - .2) {
+      rect(0, 0, W, H, COR.fundoNoite); predio(t, { luz: 0, noite: true, nivel: .25 * (1 - prog(t, P(8, "chiar"), P(8, "secado"))), chia: t > P(8, "chiar") - .2 });
+      cartao("DIA 1", "21:00", W / 2, 330, prog(t, P(8, "nove") - .2, P(8, "nove") + .1));
+      if (t > P(8, "secado") - .2) etiqueta("CAIXA: 0 L", W / 2, 470, COR.vermelho, "#fff", 48, 1);
+    } else if (t < P(8, "lista") - .1) {
+      cozinha(true); zoom(1.3, () => {
+      const bate = em(P(8, "bateu") - .1, P(8, "sindico") - .3);
+      const dx = bate ? Math.sin(t * 60) * 6 : 0;
+      rect(560 + dx, 700, 300, 800, "#5a3a24"); rect(560 + dx, 700, 300, 10, "#3a2416"); g.fillStyle = "#c8a040"; g.beginPath(); g.arc(600 + dx, 1110, 12, 0, 6.283); g.fill();
+      g.fillStyle = "rgba(255,210,120,.18)"; g.beginPath(); g.moveTo(560, 1500); g.lineTo(860, 1500); g.lineTo(980, 1700); g.lineTo(440, 1700); g.fill();
+      pessoa(330, 1500, .95, { olhar: 1, cabeca: bate ? .05 : 0 });
+      if (bate) { etiqueta("TOC", 900, 820, COR.vermelho, "#fff", 56, pulse(t, P(8, "bateu") - .1, .5) + .5); etiqueta("TOC", 900, 960, COR.vermelho, "#fff", 56, pulse(t, P(8, "bateu") + .3, .5) + .3); }
+      if (t > P(8, "sindico") - .3) { const a = prog(t, P(8, "sindico") - .3, P(8, "sindico") + .2); g.globalAlpha = a; rect(560, 700, 300, 800, "#e8c890"); pessoa(710, 1500, 1, { camisa: "#6a5a8a", cabelo: "#bbb", olhar: -1, braco: 1.0 }); g.globalAlpha = 1; } });
+      if (t > P(8, "sindico") - .3) etiqueta("O SÍNDICO", W / 2, 330, COR.escuro, "#fff", 48, prog(t, P(8, "sindico") - .3, P(8, "sindico") + .2));
+    } else { // a lista
+      rect(0, 0, W, H, COR.fundoNoite);
+      g.save(); g.translate(W / 2, 960); g.rotate(-.04);
+      rr(-300, -420, 600, 840, 8, "#fdf8ec"); txt("ÁGUA — QUEM TEM?", 0, -350, 42, COR.txt);
+      const nomes = ["DIEGO — 9º", "MARCOS — 4º", "FAMÍLIA SOUZA — 11º", "RITA — 2º"];
+      nomes.forEach((n, i) => { const y = -240 + i * 110; txt(n, -240, y, 46, i === 0 ? COR.vermelho : "#555", i === 0 ? 700 : 500, "left"); rect(-250, y + 36, 500, 2, "#ccc"); });
+      if (t > P(8, "topo") - .2) { g.strokeStyle = COR.vermelho; g.lineWidth = 8; g.beginPath(); g.ellipse(-50, -240, 250, 60, 0, 0, 6.283); g.stroke(); }
+      g.restore();
+    }
+  } else { // CARD FINAL
+    rect(0, 0, W, H, "#111");
+    const a = prog(t, FALA + .3, FALA + .8);
+    g.globalAlpha = a; txt("PARTE 2", W / 2, 860, 150, "#fff"); txt("QUEM VAI FICAR COM A ÁGUA?", W / 2, 990, 46, COR.vermelho); txt("SIGA PARA SOBREVIVER AO DIA 2", W / 2, 1070, 30, "#bbb", 500); txt("O APAGÃO · EP. 1", W / 2, 1500, 26, "#777", 500); g.globalAlpha = 1;
+  }
+  legenda(t);
+};
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
