@@ -1,0 +1,789 @@
+{
+ "total": 67.41,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.13,
+   "texto": "Se você colocar botões em cima de uma tela, terá um touchscreen.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.692
+    },
+    {
+     "w": "botões",
+     "t": 1.117
+    },
+    {
+     "w": "em",
+     "t": 1.494
+    },
+    {
+     "w": "cima",
+     "t": 1.683
+    },
+    {
+     "w": "de",
+     "t": 2.013
+    },
+    {
+     "w": "uma",
+     "t": 2.108
+    },
+    {
+     "w": "tela",
+     "t": 2.296
+    },
+    {
+     "w": "terá",
+     "t": 2.827
+    },
+    {
+     "w": "um",
+     "t": 3.051
+    },
+    {
+     "w": "touchscreen",
+     "t": 3.169
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.28,
+   "fim": 10.1,
+   "texto": "Mas os botões tampam a imagem. Quebram. E não dá pra mudar eles de lugar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.327
+    },
+    {
+     "w": "os",
+     "t": 4.528
+    },
+    {
+     "w": "botões",
+     "t": 4.705
+    },
+    {
+     "w": "tampam",
+     "t": 5.2
+    },
+    {
+     "w": "a",
+     "t": 5.589
+    },
+    {
+     "w": "imagem",
+     "t": 5.648
+    },
+    {
+     "w": "Quebram",
+     "t": 6.921
+    },
+    {
+     "w": "E",
+     "t": 8.207
+    },
+    {
+     "w": "não",
+     "t": 8.325
+    },
+    {
+     "w": "dá",
+     "t": 8.525
+    },
+    {
+     "w": "pra",
+     "t": 8.702
+    },
+    {
+     "w": "mudar",
+     "t": 8.844
+    },
+    {
+     "w": "eles",
+     "t": 9.221
+    },
+    {
+     "w": "de",
+     "t": 9.41
+    },
+    {
+     "w": "lugar",
+     "t": 9.492
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.25,
+   "fim": 20.16,
+   "texto": "Então, você cobre a tela com uma grade de fios transparentes, finos demais pra enxergar. Uns em pé, outros deitados, todos carregados de eletricidade.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.297
+    },
+    {
+     "w": "você",
+     "t": 11.052
+    },
+    {
+     "w": "cobre",
+     "t": 11.323
+    },
+    {
+     "w": "a",
+     "t": 11.642
+    },
+    {
+     "w": "tela",
+     "t": 11.712
+    },
+    {
+     "w": "com",
+     "t": 11.983
+    },
+    {
+     "w": "uma",
+     "t": 12.125
+    },
+    {
+     "w": "grade",
+     "t": 12.278
+    },
+    {
+     "w": "de",
+     "t": 12.632
+    },
+    {
+     "w": "fios",
+     "t": 12.75
+    },
+    {
+     "w": "transparentes",
+     "t": 12.986
+    },
+    {
+     "w": "finos",
+     "t": 13.953
+    },
+    {
+     "w": "demais",
+     "t": 14.271
+    },
+    {
+     "w": "pra",
+     "t": 14.672
+    },
+    {
+     "w": "enxergar",
+     "t": 14.814
+    },
+    {
+     "w": "Uns",
+     "t": 16.123
+    },
+    {
+     "w": "em",
+     "t": 16.288
+    },
+    {
+     "w": "pé",
+     "t": 16.465
+    },
+    {
+     "w": "outros",
+     "t": 17.019
+    },
+    {
+     "w": "deitados",
+     "t": 17.337
+    },
+    {
+     "w": "todos",
+     "t": 18.104
+    },
+    {
+     "w": "carregados",
+     "t": 18.481
+    },
+    {
+     "w": "de",
+     "t": 19.094
+    },
+    {
+     "w": "eletricidade",
+     "t": 19.177
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.31,
+   "fim": 31.61,
+   "texto": "Seu corpo também conduz eletricidade. Quando o dedo chega perto, ele rouba um pouquinho da carga no cruzamento dos fios. O celular vê onde a carga caiu e sabe onde você tocou.",
+   "palavras": [
+    {
+     "w": "Seu",
+     "t": 20.357
+    },
+    {
+     "w": "corpo",
+     "t": 20.676
+    },
+    {
+     "w": "também",
+     "t": 21.077
+    },
+    {
+     "w": "conduz",
+     "t": 21.419
+    },
+    {
+     "w": "eletricidade",
+     "t": 21.737
+    },
+    {
+     "w": "Quando",
+     "t": 23.4
+    },
+    {
+     "w": "o",
+     "t": 23.659
+    },
+    {
+     "w": "dedo",
+     "t": 23.694
+    },
+    {
+     "w": "chega",
+     "t": 23.966
+    },
+    {
+     "w": "perto",
+     "t": 24.249
+    },
+    {
+     "w": "ele",
+     "t": 24.838
+    },
+    {
+     "w": "rouba",
+     "t": 24.98
+    },
+    {
+     "w": "um",
+     "t": 25.227
+    },
+    {
+     "w": "pouquinho",
+     "t": 25.322
+    },
+    {
+     "w": "da",
+     "t": 25.746
+    },
+    {
+     "w": "carga",
+     "t": 25.864
+    },
+    {
+     "w": "no",
+     "t": 26.171
+    },
+    {
+     "w": "cruzamento",
+     "t": 26.289
+    },
+    {
+     "w": "dos",
+     "t": 26.843
+    },
+    {
+     "w": "fios",
+     "t": 27.055
+    },
+    {
+     "w": "O",
+     "t": 28.317
+    },
+    {
+     "w": "celular",
+     "t": 28.447
+    },
+    {
+     "w": "vê",
+     "t": 28.977
+    },
+    {
+     "w": "onde",
+     "t": 29.143
+    },
+    {
+     "w": "a",
+     "t": 29.367
+    },
+    {
+     "w": "carga",
+     "t": 29.414
+    },
+    {
+     "w": "caiu",
+     "t": 29.756
+    },
+    {
+     "w": "e",
+     "t": 30.062
+    },
+    {
+     "w": "sabe",
+     "t": 30.121
+    },
+    {
+     "w": "onde",
+     "t": 30.475
+    },
+    {
+     "w": "você",
+     "t": 30.699
+    },
+    {
+     "w": "tocou",
+     "t": 30.97
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.76,
+   "fim": 40.71,
+   "texto": "Por isso a tela não funciona de luva. O tecido não conduz. Mas funciona com uma salsicha, porque ela é cheia de água e sal.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 31.807
+    },
+    {
+     "w": "isso",
+     "t": 31.996
+    },
+    {
+     "w": "a",
+     "t": 32.255
+    },
+    {
+     "w": "tela",
+     "t": 32.338
+    },
+    {
+     "w": "não",
+     "t": 32.609
+    },
+    {
+     "w": "funciona",
+     "t": 32.81
+    },
+    {
+     "w": "de",
+     "t": 33.364
+    },
+    {
+     "w": "luva",
+     "t": 33.47
+    },
+    {
+     "w": "O",
+     "t": 34.661
+    },
+    {
+     "w": "tecido",
+     "t": 34.791
+    },
+    {
+     "w": "não",
+     "t": 35.274
+    },
+    {
+     "w": "conduz",
+     "t": 35.522
+    },
+    {
+     "w": "Mas",
+     "t": 36.854
+    },
+    {
+     "w": "funciona",
+     "t": 37.137
+    },
+    {
+     "w": "com",
+     "t": 37.727
+    },
+    {
+     "w": "uma",
+     "t": 37.869
+    },
+    {
+     "w": "salsicha",
+     "t": 37.998
+    },
+    {
+     "w": "porque",
+     "t": 38.847
+    },
+    {
+     "w": "ela",
+     "t": 39.107
+    },
+    {
+     "w": "é",
+     "t": 39.295
+    },
+    {
+     "w": "cheia",
+     "t": 39.343
+    },
+    {
+     "w": "de",
+     "t": 39.673
+    },
+    {
+     "w": "água",
+     "t": 39.802
+    },
+    {
+     "w": "e",
+     "t": 40.062
+    },
+    {
+     "w": "sal.",
+     "t": 40.121
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.86,
+   "fim": 49.4,
+   "texto": "E o celular confere a grade inteira mais de cem vezes por segundo. Por isso ele sente dois dedos de uma vez e entende quando você abre pra dar zoom.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 40.907
+    },
+    {
+     "w": "o",
+     "t": 41.025
+    },
+    {
+     "w": "celular",
+     "t": 41.072
+    },
+    {
+     "w": "confere",
+     "t": 41.532
+    },
+    {
+     "w": "a",
+     "t": 41.921
+    },
+    {
+     "w": "grade",
+     "t": 41.98
+    },
+    {
+     "w": "inteira",
+     "t": 42.299
+    },
+    {
+     "w": "mais",
+     "t": 42.641
+    },
+    {
+     "w": "de",
+     "t": 42.912
+    },
+    {
+     "w": "cem",
+     "t": 43.018
+    },
+    {
+     "w": "vezes",
+     "t": 43.348
+    },
+    {
+     "w": "por",
+     "t": 43.749
+    },
+    {
+     "w": "segundo",
+     "t": 43.914
+    },
+    {
+     "w": "Por",
+     "t": 45.2
+    },
+    {
+     "w": "isso",
+     "t": 45.388
+    },
+    {
+     "w": "ele",
+     "t": 45.66
+    },
+    {
+     "w": "sente",
+     "t": 45.801
+    },
+    {
+     "w": "dois",
+     "t": 46.119
+    },
+    {
+     "w": "dedos",
+     "t": 46.391
+    },
+    {
+     "w": "de",
+     "t": 46.709
+    },
+    {
+     "w": "uma",
+     "t": 46.78
+    },
+    {
+     "w": "vez",
+     "t": 46.957
+    },
+    {
+     "w": "e",
+     "t": 47.193
+    },
+    {
+     "w": "entende",
+     "t": 47.287
+    },
+    {
+     "w": "quando",
+     "t": 47.747
+    },
+    {
+     "w": "você",
+     "t": 47.971
+    },
+    {
+     "w": "abre",
+     "t": 48.277
+    },
+    {
+     "w": "pra",
+     "t": 48.584
+    },
+    {
+     "w": "dar",
+     "t": 48.749
+    },
+    {
+     "w": "zoom",
+     "t": 48.926
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 49.55,
+   "fim": 59.42,
+   "texto": "Mas e a tela molhada? A água também rouba carga, e a tela clica sozinha. Então, o celular aprende a ignorar manchas grandes e paradas.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 49.597
+    },
+    {
+     "w": "e",
+     "t": 49.809
+    },
+    {
+     "w": "a",
+     "t": 49.951
+    },
+    {
+     "w": "tela",
+     "t": 50.057
+    },
+    {
+     "w": "molhada",
+     "t": 50.281
+    },
+    {
+     "w": "A",
+     "t": 51.578
+    },
+    {
+     "w": "água",
+     "t": 51.72
+    },
+    {
+     "w": "também",
+     "t": 52.038
+    },
+    {
+     "w": "rouba",
+     "t": 52.38
+    },
+    {
+     "w": "carga",
+     "t": 52.675
+    },
+    {
+     "w": "e",
+     "t": 53.359
+    },
+    {
+     "w": "a",
+     "t": 53.453
+    },
+    {
+     "w": "tela",
+     "t": 53.571
+    },
+    {
+     "w": "clica",
+     "t": 53.866
+    },
+    {
+     "w": "sozinha",
+     "t": 54.173
+    },
+    {
+     "w": "Então",
+     "t": 55.564
+    },
+    {
+     "w": "o",
+     "t": 56.295
+    },
+    {
+     "w": "celular",
+     "t": 56.354
+    },
+    {
+     "w": "aprende",
+     "t": 56.791
+    },
+    {
+     "w": "a",
+     "t": 57.156
+    },
+    {
+     "w": "ignorar",
+     "t": 57.192
+    },
+    {
+     "w": "manchas",
+     "t": 57.64
+    },
+    {
+     "w": "grandes",
+     "t": 58.111
+    },
+    {
+     "w": "e",
+     "t": 58.477
+    },
+    {
+     "w": "paradas",
+     "t": 58.595
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 59.57,
+   "fim": 66.81,
+   "texto": "Coloque um vidro resistente por cima e uma vibração a cada toque. Parabéns, você construiu um touchscreen.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 59.617
+    },
+    {
+     "w": "um",
+     "t": 60.112
+    },
+    {
+     "w": "vidro",
+     "t": 60.219
+    },
+    {
+     "w": "resistente",
+     "t": 60.502
+    },
+    {
+     "w": "por",
+     "t": 61.079
+    },
+    {
+     "w": "cima",
+     "t": 61.245
+    },
+    {
+     "w": "e",
+     "t": 61.622
+    },
+    {
+     "w": "uma",
+     "t": 61.704
+    },
+    {
+     "w": "vibração",
+     "t": 61.881
+    },
+    {
+     "w": "a",
+     "t": 62.424
+    },
+    {
+     "w": "cada",
+     "t": 62.495
+    },
+    {
+     "w": "toque",
+     "t": 62.789
+    },
+    {
+     "w": "Parabéns",
+     "t": 63.992
+    },
+    {
+     "w": "você",
+     "t": 64.841
+    },
+    {
+     "w": "construiu",
+     "t": 65.171
+    },
+    {
+     "w": "um",
+     "t": 65.667
+    },
+    {
+     "w": "touchscreen",
+     "t": 65.808
+    }
+   ]
+  }
+ ]
+}

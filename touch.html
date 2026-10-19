@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("touch", { fundo: 0xe9e4f2, seed: 3131 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, tex, texRuido, texMadeira, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// mesa
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: texMadeira("#b88a5a", 6) }), 0, 0, -.4);
+// ---------- celular (de frente, deitado na "parede" da mesa) ----------
+const W = 2.2, H = 4.4;
+const cel = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(W + .2, H + .3, .25), mat(0x1a1c22, { roughness: .25, metalness: .5 }), 0, 0, -.13, cel);
+const img = tex(512, (g, s) => { const gr = g.createLinearGradient(0, 0, 0, s); gr.addColorStop(0, "#ff8a5a"); gr.addColorStop(.55, "#ffd27a"); gr.addColorStop(.56, "#3a8a5a"); gr.addColorStop(1, "#1f5a3a"); g.fillStyle = gr; g.fillRect(0, 0, s, s); g.fillStyle = "#fff6c0"; g.beginPath(); g.arc(s * .5, s * .5, s * .12, 0, 6.28); g.fill(); g.fillStyle = "#2a6a4a"; g.beginPath(); g.moveTo(0, s * .6); g.quadraticCurveTo(s * .3, s * .42, s * .6, s * .62); g.lineTo(s, s * .55); g.lineTo(s, s); g.lineTo(0, s); g.fill(); });
+img.wrapS = img.wrapT = THREE.ClampToEdgeWrapping;
+const display = add(new THREE.PlaneGeometry(W, H), new THREE.MeshBasicMaterial({ map: img }), 0, 0, .001, cel);
+// teclas físicas (cenas 1 e 2)
+const teclas = [];
+for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { const k = add(new THREE.BoxGeometry(.6, .6, .22), mat(0xd8d8d8, { roughness: .4 }), -.7 + j * .7, -.9 - i * .7 + 1.4, .12, cel); const r = add(new THREE.PlaneGeometry(.45, .45), new THREE.MeshBasicMaterial({ map: rotulo(String("123456789*0#"[i * 3 + j]), "#333", { w: 256, h: 256, tam: 180 }), transparent: true }), 0, 0, .111, k); teclas.push(k); }
+// grade de fios transparentes
+const grade = grupo(0, 0, 0, cel);
+const NL = 9, NC = 5;
+const linhas = Array.from({ length: NL }, (_, i) => add(new THREE.BoxGeometry(W, .025, .01), new THREE.MeshBasicMaterial({ color: 0x3aa0ff, transparent: true, opacity: 0 }), 0, -H / 2 + H * (i + .5) / NL, 0, grade));
+const colunas = Array.from({ length: NC }, (_, j) => add(new THREE.BoxGeometry(.025, H, .01), new THREE.MeshBasicMaterial({ color: 0xff9a3a, transparent: true, opacity: 0 }), -W / 2 + W * (j + .5) / NC, 0, .02, grade));
+const XY = (i, j) => [-W / 2 + W * (j + .5) / NC, -H / 2 + H * (i + .5) / NL];
+const cruz = Array.from({ length: NL }, (_, i) => Array.from({ length: NC }, (_, j) => { const s = sprite(0xffffff, grade); const [x, y] = XY(i, j); s.position.set(x, y, .04); return s; }));
+const cargas = Array.from({ length: 40 }, () => ({ s: sprite(0xffe35a, grade), f: rnd(), i: Math.floor(rnd() * NL) }));
+const vidroM = add(new THREE.BoxGeometry(W + .1, H + .15, .04), vidro(.18, 0xcfe8ff), 0, 0, .05, cel);
+// dedos / luva / salsicha
+function dedo(cor) { const g = grupo(0, 0, 0); const d = add(new THREE.CapsuleGeometry(.22, 1.6, 8, 16), mat(cor, { roughness: .55 }), 0, 0, 0, g); d.rotation.x = Math.PI / 2; d.position.z = 1.0; g.visible = false; return g; }
+const dedo1 = dedo(0xe8a882), dedo2 = dedo(0xe8a882), luva = dedo(0x2a3a6a), salsicha = dedo(0xb8503a);
+const roubo = Array.from({ length: 14 }, () => ({ s: sprite(0xffe35a), f: rnd() }));
+const anel = add(new THREE.RingGeometry(.22, .28, 40), new THREE.MeshBasicMaterial({ color: 0x3aff7a, transparent: true, opacity: 0 }), 0, 0, .12);
+const xVermelho = add(new THREE.PlaneGeometry(.8, .8), new THREE.MeshBasicMaterial({ map: rotulo("✕", "#ff3a3a", { w: 256, h: 256, tam: 220 }), transparent: true, opacity: 0, depthWrite: false }), 0, 0, .3);
+const varre = add(new THREE.BoxGeometry(W, .12, .01), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }), 0, 0, .12);
+// gotas d'água (cena 7)
+const gotas = Array.from({ length: 6 }, (_, i) => { const g = add(new THREE.SphereGeometry(.11 + rnd() * .06, 20, 12), vidro(.55, 0x7ac8ff), -.45 + (i % 3) * .45 + (rnd() - .5) * .1, -.73 - Math.floor(i / 3) * .49, .1); g.scale.z = .35; return g; });
+
+// ---------- câmera ----------
+K.camera_({
+  frente: [V(0, -.3, 9.4), V(0, -.2, 0)], lado: [V(3.6, -.4, 8.0), V(0, -.2, .3)], perto: [V(1.8, -1.4, 6.6), V(.3, -.3, .3)],
+  baixo: [V(2.2, -2.6, 5.4), V(.2, -.7, .3)], fim: [V(1.2, -.6, 8.2), V(0, -.3, 0)],
+}, [
+  [0, "frente"], [F(1), "frente"],
+  [C(2), "frente"], [F(2), "frente"],
+  [C(3), "frente"], [P(3, "grade"), "lado"], [F(3), "lado"],
+  [C(4), "lado"], [P(4, "dedo") - .2, "perto"], [F(4), "perto"],
+  [C(5), "baixo"], [F(5), "baixo"],
+  [C(6), "frente"], [F(6), "frente"],
+  [C(7), "perto"], [F(7), "perto"],
+  [C(8), "frente"], [T, "fim"],
+]);
+
+const TOQUE = [4, 3]; // linha, coluna do toque
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // teclas: aparecem, tampam, quebram, somem
+  const some = prog(t, C(3), C(3) + .8);
+  teclas.forEach((k, n) => { k.visible = some < 1; k.scale.setScalar(Math.max(.01, prog(t, .3 + n * .08, .6 + n * .08) * (1 - some))); k.position.z = .12 + (n === 4 ? 0 : 0); });
+  const solta = prog(t, P(2, "quebram") - .1, P(2, "quebram") + .6);
+  teclas[4].position.set(0 + solta * 1.4, -.2 - 1.2 * solta * solta, .12 + solta * 1.2); teclas[4].rotation.set(solta * 4, solta * 3, 0);
+  if (em(P(2, "lugar") - .3, C(3))) teclas.forEach((k, n) => { if (n !== 4) k.rotation.z = Math.sin(t * 10 + n) * .12; });
+  // camadas se separam (cena 3-4) e voltam
+  const abre = prog(t, P(3, "grade") - .3, P(3, "grade") + .8) * (1 - prog(t, C(5) - .5, C(5)));
+  grade.position.z = .02 + .5 * abre; vidroM.position.z = .05 + 1.0 * abre;
+  const linOn = prog(t, P(3, "pe") - .3, P(3, "pe") + .3), colOn = prog(t, P(3, "deitados") - .3, P(3, "deitados") + .3);
+  const fios = t > P(3, "grade") - .2 && t < F(7) + .3;
+  linhas.forEach((l) => l.material.opacity = fios ? .85 * colOn : 0);
+  colunas.forEach((c) => c.material.opacity = fios ? .85 * linOn : 0);
+  // cargas correndo nos fios
+  const carga = em(P(3, "eletricidade") - .3, F(7));
+  cargas.forEach((p) => { const k = frac(t * .4 + p.f); const [, y] = XY(p.i, 0); p.s.position.set(-W / 2 + W * k, y, .03); p.s.scale.setScalar(.12); p.s.material.opacity = carga ? .9 : 0; });
+  // dedo
+  const chega = prog(t, P(4, "dedo") - .4, P(4, "rouba") - .2);
+  const [tx, ty] = XY(...TOQUE);
+  const usaDedo = em(P(4, "dedo") - .5, C(5)) || em(C(8), T);
+  dedo1.visible = usaDedo; dedo1.position.set(tx, ty, grade.position.z + .15 + 1.2 * (1 - chega));
+  if (t > C(8)) { const k = pulse(t, P(8, "vibracao") - .2, .9); dedo1.position.set(tx, ty, .2 + (1 - k) * .8); }
+  // cruzamentos acesos
+  const acende = (i, j) => { if (em(P(4, "rouba") - .2, C(5)) && i === TOQUE[0] && j === TOQUE[1]) return 1; return 0; };
+  // luva x salsicha (cena 5)
+  const usaLuva = em(P(5, "luva") - .5, P(5, "salsicha") - .5), usaSal = em(P(5, "salsicha") - .5, C(6));
+  luva.visible = usaLuva; luva.position.set(tx, ty, .25 + .8 * (1 - prog(t, P(5, "luva") - .4, P(5, "luva") + .2)));
+  salsicha.visible = usaSal; salsicha.position.set(tx, ty, .25 + .8 * (1 - prog(t, P(5, "salsicha") - .4, P(5, "salsicha") + .2)));
+  xVermelho.material.opacity = em(P(5, "luva"), P(5, "salsicha") - .5) ? 1 : 0; xVermelho.position.set(tx + .5, ty + .5, .5);
+  // varredura e dois dedos (cena 6)
+  const varrendo = em(P(6, "confere") - .3, F(6));
+  varre.material.opacity = varrendo ? .7 : 0; varre.position.y = -H / 2 + H * frac(t * 3.5);
+  const doisOn = em(P(6, "dois") - .4, F(6) + .1);
+  const abreZoom = prog(t, P(6, "abre") - .1, P(6, "zoom") + .4);
+  dedo2.visible = doisOn; if (doisOn) { dedo1.visible = true; dedo1.position.set(-.25 - .6 * abreZoom, -.2 - .8 * abreZoom, .3); dedo2.position.set(.25 + .6 * abreZoom, .2 + .8 * abreZoom, .3); }
+  const zoom = 1 - .45 * abreZoom * (t < F(6) + .2 ? 1 : 0); img.repeat.set(zoom, zoom); img.offset.set((1 - zoom) / 2, (1 - zoom) / 2);
+  // gotas (cena 7)
+  const molha = em(P(7, "molhada") - .3, C(8));
+  gotas.forEach((g, n) => { g.visible = molha; g.scale.set(1, 1, .35); g.scale.multiplyScalar(prog(t, P(7, "molhada") - .2 + n * .12, P(7, "molhada") + .2 + n * .12) || .001); });
+  const ignora = t > P(7, "ignorar") - .1;
+  cruz.forEach((linha, i) => linha.forEach((s, j) => {
+    let op = acende(i, j);
+    if (usaSal && t > P(5, "salsicha") + .1 && i === TOQUE[0] && j === TOQUE[1]) op = 1;
+    if (doisOn && t > P(6, "dois") && ((i === 3 && j === 1) || (i === 5 && j === 3))) op = 1;
+    if (molha && t > P(7, "agua") && i >= 2 && i <= 3 && j >= 1 && j <= 3) op = 1;
+    s.material.color.set(molha && ignora ? 0x888888 : (molha ? 0xff4a3a : 0x3aff7a));
+    s.scale.setScalar(.55 + .15 * Math.sin(t * 10)); s.material.opacity = op * (fios ? 1 : 0);
+  }));
+  // carga indo pro dedo
+  const rouba = em(P(4, "rouba") - .1, C(5)) || (usaSal && t > P(5, "salsicha") + .1);
+  roubo.forEach((p) => { const k = frac(t * 1.2 + p.f); p.s.position.set(tx + (p.f - .5) * .15, ty + (p.f * 7 % 1 - .5) * .15, grade.position.z + .05 + k * .5); p.s.scale.setScalar(.09); p.s.material.opacity = rouba ? 1 - k : 0; });
+  anel.position.set(tx, ty, vidroM.position.z + .04); anel.material.opacity = em(P(4, "tocou") - .3, C(5)) ? .9 * (1 - frac(t * 1.5)) : 0; anel.scale.setScalar(1 + frac(t * 1.5) * 1.5);
+  // vibração no fim
+  cel.position.x = em(P(8, "vibracao") - .1, P(8, "vibracao") + .6) ? Math.sin(t * 90) * .03 : 0;
+  vidroM.material.opacity = em(P(8, "vidro") - .3, P(8, "vibracao") - .2) ? .45 : .18;
+  K.cartoes(t, [
+    [P(2, "tampam") - .3, P(2, "quebram") - .2, "TAMPAM A TELA", "#ff4a3a"],
+    [P(2, "quebram") - .2, F(2), "QUEBRAM", "#ff4a3a"],
+    [P(3, "transparentes") - .3, P(3, "eletricidade") - .3, "FIOS TRANSPARENTES", "#3aa0ff"],
+    [P(3, "eletricidade") - .3, F(3), "CARREGADOS", "#ffd23a"],
+    [P(4, "rouba") - .2, P(4, "tocou") - .3, "O DEDO ROUBA CARGA", "#ffd23a"],
+    [P(4, "tocou") - .3, F(4), "TOCOU AQUI", "#3aff7a"],
+    [P(5, "tecido") - .3, P(5, "salsicha") - .4, "TECIDO NÃO CONDUZ", "#ff4a3a"],
+    [P(5, "salsicha") - .4, F(5), "ÁGUA + SAL CONDUZ", "#3aff7a"],
+    [P(6, "cem") - .3, P(6, "dois") - .3, "+100 VEZES POR SEGUNDO", "#ffffff"],
+    [P(6, "zoom") - .4, F(6), "ZOOM", "#3aff7a"],
+    [P(7, "sozinha") - .3, P(7, "ignorar") - .3, "CLIQUE FANTASMA", "#ff4a3a"],
+    [P(7, "ignorar") - .3, F(7), "IGNORA", "#aaaaaa"],
+  ]);
+});
+</script>
+</body></html>
