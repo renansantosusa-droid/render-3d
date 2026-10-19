@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("gps", { fundo: 0x0b1530, seed: 1919 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, tex, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- espaço: Terra + estrelas ----------
+const RT = 4, EC = V(0, -RT, 0);
+const texTerra = tex(1024, (g, s) => { g.fillStyle = "#1f62c8"; g.fillRect(0, 0, s, s); for (let i = 0; i < 26; i++) { g.fillStyle = rnd() < .7 ? "#3f9a48" : "#c9b27a"; g.beginPath(); const x = rnd() * s, y = s * .15 + rnd() * s * .7; for (let k = 0; k < 9; k++) { const a = k / 9 * 6.28, r = 40 + rnd() * 90; g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r * .7); } g.fill(); } g.fillStyle = "rgba(255,255,255,.35)"; for (let i = 0; i < 30; i++) { g.beginPath(); g.ellipse(rnd() * s, rnd() * s, 30 + rnd() * 60, 8 + rnd() * 10, 0, 0, 6.28); g.fill(); } });
+const terra = add(new THREE.SphereGeometry(RT, 64, 48), mat(0xffffff, { map: texTerra, roughness: .8 }), EC.x, EC.y, EC.z);
+add(new THREE.SphereGeometry(RT * 1.03, 48, 32), new THREE.MeshBasicMaterial({ color: 0x6ab0ff, transparent: true, opacity: .12, side: THREE.BackSide }), EC.x, EC.y, EC.z);
+for (let i = 0; i < 260; i++) { const s = sprite(0xffffff); const a = rnd() * 6.28, b = rnd() * 3; s.position.set(Math.cos(a) * (30 + b * 10), -10 + rnd() * 45, -25 - rnd() * 20); s.scale.setScalar(.12 + rnd() * .18); s.material.opacity = .4 + rnd() * .6; }
+// você (pino) no topo
+const voce = grupo(0, 0, 0);
+const pino = add(new THREE.ConeGeometry(.12, .35, 20), mat(0xff3a3a, { emissive: 0xff3a3a, emissiveIntensity: .4 }), 0, .2, 0, voce); pino.rotation.x = Math.PI;
+add(new THREE.SphereGeometry(.13, 20, 14), mat(0xff3a3a, { emissive: 0xff3a3a, emissiveIntensity: .4 }), 0, .4, 0, voce);
+const alvoBrilho = sprite(0xff5a5a, voce); alvoBrilho.position.y = .05;
+const fantasma = add(new THREE.SphereGeometry(.13, 16, 12), mat(0xffd23a, { emissive: 0xffd23a, emissiveIntensity: 1, transparent: true, opacity: .8 }), 0, 0, 0);
+// satélites
+function satelite(pai = scene) { const g = grupo(0, 0, 0, pai); add(new THREE.BoxGeometry(.35, .35, .45), mat(0xd8b040, { metalness: .7, roughness: .3 }), 0, 0, 0, g); for (const s of [-1, 1]) { add(new THREE.BoxGeometry(.9, .02, .32), mat(0x1a3a8a, { metalness: .5, roughness: .3, emissive: 0x0a1a5a }), s * .7, 0, 0, g); } add(new THREE.CylinderGeometry(.02, .12, .14, 16), mat(0xdddddd), 0, -.24, 0, g); return g; }
+const SATS = [V(-1.7, 3.7, -1), V(1.8, 3.4, -.6), V(-.2, 4.3, -2.2), V(1.0, 3.0, 1.8)];
+const sats = SATS.map((p) => { const g = satelite(); g.position.copy(p); return g; });
+// ondas que saem de cada satélite e círculo de distância na Terra
+const ondas = SATS.map((p) => [0, 1, 2].map(() => add(new THREE.SphereGeometry(1, 32, 16), new THREE.MeshBasicMaterial({ color: 0x5ad8ff, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }), p.x, p.y, p.z)));
+function circulo(sat, cor) {
+  const a = sat.clone().sub(EC), S = a.length(); a.normalize(); const d = sat.length();
+  const ct = (RT * RT + S * S - d * d) / (2 * RT * S), st = Math.sqrt(1 - ct * ct);
+  const u = new THREE.Vector3(1, 0, 0).cross(a).normalize(), w = a.clone().cross(u);
+  const pts = Array.from({ length: 120 }, (_, i) => { const t = i / 120 * 6.283; return EC.clone().addScaledVector(a, RT * 1.005 * ct).addScaledVector(u, RT * 1.005 * st * Math.cos(t)).addScaledVector(w, RT * 1.005 * st * Math.sin(t)); });
+  return add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 240, .035, 6, true), new THREE.MeshBasicMaterial({ color: cor, transparent: true, opacity: 0 }));
+}
+const CORES = [0x5ad8ff, 0xffd23a, 0x3aff7a, 0xff6ad5];
+const circs = SATS.map((p, i) => circulo(p, CORES[i]));
+const sinais = SATS.map((p, i) => fluxo(new THREE.LineCurve3(p.clone(), V(0, .3, 0)), 6, CORES[i]));
+// relógios (cena 6)
+function relogio(cor) { const g = grupo(); add(new THREE.CircleGeometry(.45, 40), brilho(0xffffff), 0, 0, 0, g); add(new THREE.TorusGeometry(.45, .04, 8, 40), brilho(cor), 0, 0, .01, g); const p = grupo(0, 0, .02, g); add(new THREE.BoxGeometry(.04, .38, .01), brilho(0x222222), 0, .17, 0, p); g.userData.p = p; g.visible = false; return g; }
+const relSat = relogio(0x3aff7a), relTerra = relogio(0x5ad8ff);
+const atomo = grupo(); [0, 1, 2].forEach((i) => { const r = add(new THREE.TorusGeometry(.32, .015, 6, 40), brilho(0x5ad8ff), 0, 0, 0, atomo); r.rotation.set(i * 1.05, i * .7, 0); }); add(new THREE.SphereGeometry(.07, 12, 10), brilho(0xffd23a), 0, 0, 0, atomo);
+
+// ---------- mini set 1: rua (cenas 1 e 2a) ----------
+const RX = 100;
+add(new THREE.PlaneGeometry(14, 14), mat(0xffffff, { map: texRuido("#8a8a8a", 40, 6) }), RX, 0, 0).rotation.x = -Math.PI / 2;
+for (let i = 0; i < 5; i++) add(new THREE.BoxGeometry(1.4, 2 + rnd() * 3, 1.4), mat([0xe8c49a, 0xc9d6e0, 0xf2e2b0, 0xd8a8a0, 0xb8d0b0][i]), RX - 4 + i * 2, 1.5, -3.5);
+const pessoa = (cor, x) => { const g = grupo(RX + x, 0, 0); add(new THREE.CapsuleGeometry(.22, .8, 8, 16), mat(cor), 0, .65, 0, g); add(new THREE.SphereGeometry(.17, 16, 12), mat(0xe0a07a), 0, 1.35, 0, g); return g; };
+const eu = pessoa(0xff6a1a, -.6), outro = pessoa(0x2e6fd0, .6); eu.rotation.y = .9; outro.rotation.y = -.9;
+const balao = add(new THREE.PlaneGeometry(.7, .4), new THREE.MeshBasicMaterial({ map: rotulo("ONDE?", "#222", { fundo: "#fff" }), transparent: true }), RX - .6, 2.0, 0);
+const setas = [-1, 0, 1].map((k) => { const s = add(new THREE.PlaneGeometry(.45, .3), new THREE.MeshBasicMaterial({ map: rotulo(["←", "↑", "→"][k + 1], "#ff3a3a", { fundo: "#fff" }), transparent: true, opacity: 0 }), RX + .6 + k * .55, 2.1 + Math.abs(k) * .1, 0); return s; });
+// mini set 2: mar à noite
+const MX = 200;
+const mar = add(new THREE.PlaneGeometry(40, 40, 40, 40), mat(0x0d2a4a, { roughness: .3, metalness: .2 }), MX, 0, 0); mar.rotation.x = -Math.PI / 2;
+const barco = grupo(MX, 0, 0); add(new THREE.BoxGeometry(1.2, .3, .5), mat(0xb04030), 0, .1, 0, barco); add(new THREE.CylinderGeometry(.02, .02, 1.2, 6), mat(0x8a6a3a), 0, .8, 0, barco); add(new THREE.ConeGeometry(.4, .9, 3), mat(0xf2f2f2), .2, .9, 0, barco).rotation.z = -.1;
+const lua = sprite(0xdfe8ff); lua.position.set(MX - 3, 6, -12); lua.scale.setScalar(1.6);
+const interroga = [0, 1, 2].map((i) => { const s = add(new THREE.PlaneGeometry(.5, .5), new THREE.MeshBasicMaterial({ map: rotulo("?", "#ffd23a", { w: 256, h: 256, tam: 220 }), transparent: true, opacity: 0, depthWrite: false }), MX - .8 + i * .8, 1.8 + (i % 2) * .4, 0); return s; });
+
+// ---------- mini set 3: celular (cenas 7 e 8) ----------
+const CX = 300;
+const cel = grupo(CX, 0, 0);
+add(new THREE.BoxGeometry(1.2, 2.4, .12), mat(0x1a1c22, { roughness: .2, metalness: .5 }), 0, 0, 0, cel);
+const tela = tex(512, () => {}); const telaC = tela.image, tg = telaC.getContext("2d"); tela.wrapS = tela.wrapT = THREE.ClampToEdgeWrapping;
+const telaM = add(new THREE.PlaneGeometry(1.08, 2.25), new THREE.MeshBasicMaterial({ map: tela }), 0, 0, .065, cel);
+telaC.width = 256; telaC.height = 512;
+let ultTela = "";
+function desenhaTela(modo, k) {
+  const chave = modo + Math.round(k * 40); if (chave === ultTela) return; ultTela = chave;
+  const g = tg; g.fillStyle = "#e9efe2"; g.fillRect(0, 0, 256, 512);
+  if (modo === "aviao") { g.fillStyle = "#101820"; g.fillRect(0, 0, 256, 512); g.fillStyle = "#ffa53a"; g.font = "900 120px Nunito"; g.textAlign = "center"; g.fillText("✈", 128, 230); g.font = "900 26px Nunito"; g.fillStyle = "#fff"; g.fillText("MODO AVIÃO", 128, 300); g.fillStyle = "#3aff7a"; g.fillText("GPS: LIGADO", 128, 350); }
+  else { g.strokeStyle = "#ffffff"; g.lineWidth = 14; for (let i = 0; i < 6; i++) { g.beginPath(); g.moveTo(0, 40 + i * 90); g.lineTo(256, 70 + i * 80); g.stroke(); g.beginPath(); g.moveTo(30 + i * 45, 0); g.lineTo(10 + i * 50, 512); g.stroke(); } g.fillStyle = "#b8dca8"; g.fillRect(150, 120, 80, 90); g.strokeStyle = "#2a8cff"; g.lineWidth = 12; g.beginPath(); g.moveTo(120, 470); g.lineTo(120, 470 - 260 * Math.min(1, k * 2)); if (k > .5) g.lineTo(120 + 110 * (k - .5) * 2, 210 - 10 * (k - .5) * 2); g.stroke(); g.fillStyle = "#ff3a3a"; g.beginPath(); g.arc(120, 470 - 260 * Math.min(1, k * 2) + (k > .5 ? 0 : 0), 14, 0, 6.28); g.fill(); g.fillStyle = "#1a7a3a"; g.fillRect(0, 0, 256, 70); g.fillStyle = "#fff"; g.font = "900 30px Nunito"; g.textAlign = "center"; g.fillText("↱ VIRE À DIREITA", 128, 46); }
+  tela.needsUpdate = true;
+}
+const ondaDesce = Array.from({ length: 4 }, () => add(new THREE.TorusGeometry(.5, .02, 6, 40, Math.PI), new THREE.MeshBasicMaterial({ color: 0x5ad8ff, transparent: true, opacity: 0 }), CX, 2, 0));
+const xSobe = add(new THREE.PlaneGeometry(.6, .6), new THREE.MeshBasicMaterial({ map: rotulo("✕", "#ff3a3a", { w: 256, h: 256, tam: 200 }), transparent: true, opacity: 0 }), CX + .9, 1.9, .1);
+
+// ---------- câmera ----------
+K.camera_({
+  rua: [V(RX + .3, 1.6, 5.2), V(RX, 1.3, 0)], mar: [V(MX + 1.5, 1.6, 6.5), V(MX, 1.2, 0)],
+  terra: [V(0, 2.4, 14), V(0, 1.6, 0)], perto: [V(1.5, 2.2, 8.5), V(0, 1.2, 0)], topo: [V(0, 9, 11), V(0, .8, 0)],
+  sat: [V(SATS[1].x + 1.4, SATS[1].y + .3, SATS[1].z + 3.2), SATS[1]], rel: [V(.5, 2.0, 11), V(.5, 1.6, 0)],
+  cel: [V(CX, .9, 7.4), V(CX, 1.0, 0)], celPerto: [V(CX, 0, 3.4), V(CX, 0, 0)],
+}, [
+  [0, "rua"], [F(1), "rua"],
+  [C(2), "mar"], [P(2, "resposta") - .4, "mar"], [P(2, "resposta") - .35, "rua"], [F(2), "rua"],
+  [C(3), "perto"], [P(3, "satelite") + .3, "terra"], [F(3), "terra"],
+  [C(4), "topo"], [P(4, "quatro"), "topo"], [F(4), "terra"],
+  [C(5), "perto"], [P(5, "atomicos") - .6, "perto"], [P(5, "atomicos") - .2, "sat"], [F(5), "sat"],
+  [C(6), "rel"], [F(6), "rel"],
+  [C(7), "cel"], [F(7), "cel"],
+  [C(8), "celPerto"], [T, "cel"],
+]);
+
+const pos = (k) => { const q = V(Math.sin(k) * RT, Math.cos(k) * RT, 0); return q.add(EC); };
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // céu: dia na rua, noite no mar
+  scene.background.set(em(C(1), P(2, "resposta") - .37) && t < C(2) ? 0x9cc8ea : em(C(2), P(2, "resposta") - .37) ? 0x08101e : (t < C(3) ? 0x9cc8ea : 0x0b1530));
+  // rua: pergunta e respostas diferentes
+  balao.visible = em(P(1, "perguntar") - .3, F(1) + .1);
+  setas.forEach((s, i) => s.material.opacity = em(P(2, "resposta") - .3, F(2)) ? prog(t, P(2, "resposta") - .3 + i * .25, P(2, "resposta") + i * .25) : 0);
+  outro.rotation.y = -.9 + (em(P(2, "resposta"), F(2)) ? Math.sin(t * 6) * .5 : 0);
+  // mar
+  const pos_ = mar.geometry.attributes.position; for (let i = 0; i < pos_.count; i++) pos_.setZ(i, Math.sin(pos_.getX(i) * .8 + t * 1.5) * .08 + Math.cos(pos_.getY(i) * .6 + t) * .06); pos_.needsUpdate = true;
+  barco.rotation.z = Math.sin(t * 1.3) * .08; barco.position.y = Math.sin(t * 1.5) * .05;
+  interroga.forEach((s, i) => { s.material.opacity = em(P(2, "ninguem") - .2, P(2, "resposta")) ? prog(t, P(2, "ninguem") + i * .4, P(2, "ninguem") + .3 + i * .4) : 0; s.position.y = 1.8 + (i % 2) * .4 + Math.sin(t * 2 + i) * .08; });
+  // satélites: 1 na cena 3, 4 a partir de "quatro"
+  const nSat = t < C(3) ? 0 : t < P(4, "quatro") - .2 ? 1 : 4;
+  sats.forEach((g, i) => { g.visible = i < nSat || (t > P(4, "quatro") - .2 && t > P(4, "quatro") - .2 + i * .25); const ap = prog(t, i === 0 ? P(3, "satelite") - .4 : P(4, "quatro") - .2 + i * .25, (i === 0 ? P(3, "satelite") : P(4, "quatro") + i * .25) + .2); g.scale.setScalar(Math.max(.01, ap)); g.rotation.y = t * .3 + i; });
+  // ondas (gritando a hora) e sinal descendo
+  const gritando = em(P(3, "gritando") - .2, C(5)) || em(C(5), P(5, "atomicos") - .6);
+  ondas.forEach((os, i) => os.forEach((o, j) => { const k = frac(t * .5 + j / 3); o.scale.setScalar(.2 + k * 6); o.material.opacity = gritando && sats[i].visible && sats[i].scale.x > .9 ? .1 * (1 - k) : 0; }));
+  sinais.forEach((s, i) => s.atualiza(t, gritando && sats[i].visible && sats[i].scale.x > .9 && t > P(3, "sinal") - .3, .7, .14));
+  // círculos de distância
+  circs.forEach((c, i) => c.material.opacity = em(P(4, "circulo") - .3 + (i ? P(4, "distancias") - P(4, "circulo") + i * .3 : 0), C(5)) ? .95 : 0);
+  alvoBrilho.scale.setScalar(.6 + .4 * Math.sin(t * 6)); alvoBrilho.material.opacity = em(P(4, "lugar") - .3, C(5)) ? 1 : 0;
+  // erro de 1 milésimo: o ponto amarelo vai parar longe
+  const erro = prog(t, P(5, "milesimo"), P(5, "trezentos") + .3);
+  fantasma.visible = em(P(5, "milesimo") - .1, P(5, "atomicos") - .2); fantasma.position.copy(pos(erro * .32)).add(V(0, .15, 0));
+  // relógio atômico no satélite
+  atomo.visible = em(P(5, "atomicos") - .3, F(5)); atomo.position.copy(SATS[1]).add(V(0, .55, .2)); atomo.rotation.set(t * 2, t * 1.4, 0);
+  // relógios: lá em cima anda mais rápido
+  const rel = em(C(6), F(6) + .1);
+  relSat.visible = relTerra.visible = rel;
+  relSat.position.set(1.3, 2.6, 0); relTerra.position.set(-.4, 1.2, 1.2);
+  const corr = t > P(6, "ajustados") - .2 ? 1 : 0;
+  relTerra.userData.p.rotation.z = -(t - C(6)) * 1.2; relSat.userData.p.rotation.z = -(t - C(6)) * (1.2 + .5 * (1 - corr)) - (corr ? .5 * (P(6, "ajustados") - .2 - C(6)) : 0);
+  sats.forEach((g) => { if (rel) g.visible = g === sats[1]; });
+  // celular: só escuta, modo avião, mapa
+  const em7 = em(C(7), C(8));
+  desenhaTela(em7 ? "aviao" : "mapa", prog(t, P(8, "voz"), P(8, "direita")));
+  cel.rotation.y = em7 ? Math.sin(t * .6) * .15 : 0;
+  ondaDesce.forEach((o, i) => { const k = frac(t * .7 + i / 4); o.position.y = 3 - k * 1.6; o.rotation.x = Math.PI; o.material.opacity = em7 ? .9 * Math.sin(k * Math.PI) : 0; });
+  xSobe.material.opacity = em(P(7, "escuta") - .2, F(7)) ? 1 : 0;
+  K.cartoes(t, [
+    [P(3, "vinte") - .2, P(3, "gritando") - .2, "20.000 KM", "#5ad8ff"],
+    [P(3, "gritando") - .2, P(3, "sinal") - .2, "A HORA CERTA", "#ffd23a"],
+    [P(3, "demora") - .3, F(3), "DEMORA = DISTÂNCIA", "#3aff7a"],
+    [P(4, "lugar") - .3, F(4), "VOCÊ ESTÁ AQUI", "#ff5a5a"],
+    [P(5, "milesimo") - .2, P(5, "atomicos") - .3, "1 MILÉSIMO = 300 KM", "#ffd23a"],
+    [P(5, "atomicos") - .3, F(5), "RELÓGIO ATÔMICO", "#5ad8ff"],
+    [P(6, "rapido") - .5, P(6, "ajustados") - .3, "LÁ EM CIMA: + RÁPIDO", "#3aff7a"],
+    [P(6, "dez") - .3, F(6), "10 KM POR DIA", "#ff5a5a"],
+    [P(7, "escuta") - .3, F(7), "SÓ ESCUTA", "#5ad8ff"],
+  ]);
+});
+</script>
+</body></html>

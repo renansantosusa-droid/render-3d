@@ -1,0 +1,845 @@
+{
+ "total": 75.4,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.4,
+   "texto": "Se você quiser saber onde está, é só perguntar pra alguém. Terá um GPS.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "quiser",
+     "t": 0.657
+    },
+    {
+     "w": "saber",
+     "t": 0.964
+    },
+    {
+     "w": "onde",
+     "t": 1.282
+    },
+    {
+     "w": "está",
+     "t": 1.435
+    },
+    {
+     "w": "é",
+     "t": 1.99
+    },
+    {
+     "w": "só",
+     "t": 2.084
+    },
+    {
+     "w": "perguntar",
+     "t": 2.284
+    },
+    {
+     "w": "pra",
+     "t": 2.85
+    },
+    {
+     "w": "alguém",
+     "t": 3.004
+    },
+    {
+     "w": "Terá",
+     "t": 4.124
+    },
+    {
+     "w": "um",
+     "t": 4.384
+    },
+    {
+     "w": "GPS",
+     "t": 4.478
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.55,
+   "fim": 13.12,
+   "texto": "Mas no meio do mar não tem ninguém. À noite, não dá pra ver nada. E cada um te dá uma resposta diferente.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.597
+    },
+    {
+     "w": "no",
+     "t": 5.868
+    },
+    {
+     "w": "meio",
+     "t": 5.963
+    },
+    {
+     "w": "do",
+     "t": 6.21
+    },
+    {
+     "w": "mar",
+     "t": 6.317
+    },
+    {
+     "w": "não",
+     "t": 6.552
+    },
+    {
+     "w": "tem",
+     "t": 6.765
+    },
+    {
+     "w": "ninguém",
+     "t": 6.906
+    },
+    {
+     "w": "À",
+     "t": 8.121
+    },
+    {
+     "w": "noite",
+     "t": 8.239
+    },
+    {
+     "w": "não",
+     "t": 8.84
+    },
+    {
+     "w": "dá",
+     "t": 9.041
+    },
+    {
+     "w": "pra",
+     "t": 9.206
+    },
+    {
+     "w": "ver",
+     "t": 9.371
+    },
+    {
+     "w": "nada",
+     "t": 9.548
+    },
+    {
+     "w": "E",
+     "t": 10.703
+    },
+    {
+     "w": "cada",
+     "t": 10.845
+    },
+    {
+     "w": "um",
+     "t": 11.14
+    },
+    {
+     "w": "te",
+     "t": 11.317
+    },
+    {
+     "w": "dá",
+     "t": 11.434
+    },
+    {
+     "w": "uma",
+     "t": 11.552
+    },
+    {
+     "w": "resposta",
+     "t": 11.706
+    },
+    {
+     "w": "diferente",
+     "t": 12.284
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 13.27,
+   "fim": 25.09,
+   "texto": "Então, você coloca um satélite lá em cima, a vinte mil quilômetros, gritando a hora certa sem parar. O sinal leva um tempinho pra chegar. Pela demora, você sabe a distância.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 13.317
+    },
+    {
+     "w": "você",
+     "t": 14.119
+    },
+    {
+     "w": "coloca",
+     "t": 14.402
+    },
+    {
+     "w": "um",
+     "t": 14.827
+    },
+    {
+     "w": "satélite",
+     "t": 14.897
+    },
+    {
+     "w": "lá",
+     "t": 15.44
+    },
+    {
+     "w": "em",
+     "t": 15.593
+    },
+    {
+     "w": "cima",
+     "t": 15.699
+    },
+    {
+     "w": "a",
+     "t": 16.301
+    },
+    {
+     "w": "vinte",
+     "t": 16.395
+    },
+    {
+     "w": "mil",
+     "t": 16.702
+    },
+    {
+     "w": "quilômetros",
+     "t": 16.879
+    },
+    {
+     "w": "gritando",
+     "t": 17.716
+    },
+    {
+     "w": "a",
+     "t": 18.129
+    },
+    {
+     "w": "hora",
+     "t": 18.199
+    },
+    {
+     "w": "certa",
+     "t": 18.4
+    },
+    {
+     "w": "sem",
+     "t": 18.812
+    },
+    {
+     "w": "parar",
+     "t": 19.06
+    },
+    {
+     "w": "O",
+     "t": 20.192
+    },
+    {
+     "w": "sinal",
+     "t": 20.31
+    },
+    {
+     "w": "leva",
+     "t": 20.629
+    },
+    {
+     "w": "um",
+     "t": 20.9
+    },
+    {
+     "w": "tempinho",
+     "t": 20.97
+    },
+    {
+     "w": "pra",
+     "t": 21.43
+    },
+    {
+     "w": "chegar",
+     "t": 21.56
+    },
+    {
+     "w": "Pela",
+     "t": 22.751
+    },
+    {
+     "w": "demora",
+     "t": 22.987
+    },
+    {
+     "w": "você",
+     "t": 23.671
+    },
+    {
+     "w": "sabe",
+     "t": 23.919
+    },
+    {
+     "w": "a",
+     "t": 24.178
+    },
+    {
+     "w": "distância",
+     "t": 24.237
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.24,
+   "fim": 37.12,
+   "texto": "Mas, com um satélite só, você pode estar em qualquer ponto de um círculo enorme. Então, você usa quatro. Onde as distâncias se cruzam, só existe um lugar: o seu.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.287
+    },
+    {
+     "w": "com",
+     "t": 25.889
+    },
+    {
+     "w": "um",
+     "t": 26.03
+    },
+    {
+     "w": "satélite",
+     "t": 26.101
+    },
+    {
+     "w": "só",
+     "t": 26.679
+    },
+    {
+     "w": "você",
+     "t": 27.304
+    },
+    {
+     "w": "pode",
+     "t": 27.551
+    },
+    {
+     "w": "estar",
+     "t": 27.787
+    },
+    {
+     "w": "em",
+     "t": 28.058
+    },
+    {
+     "w": "qualquer",
+     "t": 28.141
+    },
+    {
+     "w": "ponto",
+     "t": 28.53
+    },
+    {
+     "w": "de",
+     "t": 28.896
+    },
+    {
+     "w": "um",
+     "t": 28.99
+    },
+    {
+     "w": "círculo",
+     "t": 29.096
+    },
+    {
+     "w": "enorme",
+     "t": 29.544
+    },
+    {
+     "w": "Então",
+     "t": 30.818
+    },
+    {
+     "w": "você",
+     "t": 31.632
+    },
+    {
+     "w": "usa",
+     "t": 31.962
+    },
+    {
+     "w": "quatro",
+     "t": 32.28
+    },
+    {
+     "w": "Onde",
+     "t": 33.495
+    },
+    {
+     "w": "as",
+     "t": 33.79
+    },
+    {
+     "w": "distâncias",
+     "t": 33.872
+    },
+    {
+     "w": "se",
+     "t": 34.438
+    },
+    {
+     "w": "cruzam",
+     "t": 34.556
+    },
+    {
+     "w": "só",
+     "t": 35.252
+    },
+    {
+     "w": "existe",
+     "t": 35.417
+    },
+    {
+     "w": "um",
+     "t": 35.782
+    },
+    {
+     "w": "lugar",
+     "t": 35.853
+    },
+    {
+     "w": "o",
+     "t": 36.478
+    },
+    {
+     "w": "seu",
+     "t": 36.537
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 37.27,
+   "fim": 50.28,
+   "texto": "Mas o sinal anda na velocidade da luz. Se o relógio errar um milésimo de segundo, você aparece trezentos quilômetros longe. Então, cada satélite leva relógios atômicos, que quase não erram.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 37.317
+    },
+    {
+     "w": "o",
+     "t": 37.541
+    },
+    {
+     "w": "sinal",
+     "t": 37.671
+    },
+    {
+     "w": "anda",
+     "t": 38.107
+    },
+    {
+     "w": "na",
+     "t": 38.379
+    },
+    {
+     "w": "velocidade",
+     "t": 38.485
+    },
+    {
+     "w": "da",
+     "t": 39.157
+    },
+    {
+     "w": "luz",
+     "t": 39.263
+    },
+    {
+     "w": "Se",
+     "t": 40.478
+    },
+    {
+     "w": "o",
+     "t": 40.69
+    },
+    {
+     "w": "relógio",
+     "t": 40.737
+    },
+    {
+     "w": "errar",
+     "t": 41.209
+    },
+    {
+     "w": "um",
+     "t": 41.456
+    },
+    {
+     "w": "milésimo",
+     "t": 41.515
+    },
+    {
+     "w": "de",
+     "t": 41.999
+    },
+    {
+     "w": "segundo",
+     "t": 42.093
+    },
+    {
+     "w": "você",
+     "t": 42.801
+    },
+    {
+     "w": "aparece",
+     "t": 43.107
+    },
+    {
+     "w": "trezentos",
+     "t": 43.579
+    },
+    {
+     "w": "quilômetros",
+     "t": 44.133
+    },
+    {
+     "w": "longe",
+     "t": 44.735
+    },
+    {
+     "w": "Então",
+     "t": 45.949
+    },
+    {
+     "w": "cada",
+     "t": 46.633
+    },
+    {
+     "w": "satélite",
+     "t": 46.893
+    },
+    {
+     "w": "leva",
+     "t": 47.412
+    },
+    {
+     "w": "relógios",
+     "t": 47.636
+    },
+    {
+     "w": "atômicos",
+     "t": 48.095
+    },
+    {
+     "w": "que",
+     "t": 48.945
+    },
+    {
+     "w": "quase",
+     "t": 49.11
+    },
+    {
+     "w": "não",
+     "t": 49.499
+    },
+    {
+     "w": "erram",
+     "t": 49.699
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 50.43,
+   "fim": 60.04,
+   "texto": "E tem mais: lá em cima, o tempo passa um pouquinho mais rápido. Os relógios são ajustados pra isso, senão o erro passaria de dez quilômetros por dia.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 50.477
+    },
+    {
+     "w": "tem",
+     "t": 50.583
+    },
+    {
+     "w": "mais",
+     "t": 50.76
+    },
+    {
+     "w": "lá",
+     "t": 51.338
+    },
+    {
+     "w": "em",
+     "t": 51.515
+    },
+    {
+     "w": "cima",
+     "t": 51.633
+    },
+    {
+     "w": "o",
+     "t": 52.234
+    },
+    {
+     "w": "tempo",
+     "t": 52.352
+    },
+    {
+     "w": "passa",
+     "t": 52.682
+    },
+    {
+     "w": "um",
+     "t": 52.965
+    },
+    {
+     "w": "pouquinho",
+     "t": 53.048
+    },
+    {
+     "w": "mais",
+     "t": 53.496
+    },
+    {
+     "w": "rápido",
+     "t": 53.72
+    },
+    {
+     "w": "Os",
+     "t": 54.947
+    },
+    {
+     "w": "relógios",
+     "t": 55.112
+    },
+    {
+     "w": "são",
+     "t": 55.63
+    },
+    {
+     "w": "ajustados",
+     "t": 55.772
+    },
+    {
+     "w": "pra",
+     "t": 56.373
+    },
+    {
+     "w": "isso",
+     "t": 56.597
+    },
+    {
+     "w": "senão",
+     "t": 57.187
+    },
+    {
+     "w": "o",
+     "t": 57.541
+    },
+    {
+     "w": "erro",
+     "t": 57.623
+    },
+    {
+     "w": "passaria",
+     "t": 57.836
+    },
+    {
+     "w": "de",
+     "t": 58.331
+    },
+    {
+     "w": "dez",
+     "t": 58.461
+    },
+    {
+     "w": "quilômetros",
+     "t": 58.744
+    },
+    {
+     "w": "por",
+     "t": 59.31
+    },
+    {
+     "w": "dia",
+     "t": 59.487
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 60.19,
+   "fim": 67.77,
+   "texto": "E o celular nem fala com o satélite. Ele só escuta. Por isso o GPS funciona até no modo avião.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 60.237
+    },
+    {
+     "w": "o",
+     "t": 60.367
+    },
+    {
+     "w": "celular",
+     "t": 60.426
+    },
+    {
+     "w": "nem",
+     "t": 60.98
+    },
+    {
+     "w": "fala",
+     "t": 61.204
+    },
+    {
+     "w": "com",
+     "t": 61.546
+    },
+    {
+     "w": "o",
+     "t": 61.688
+    },
+    {
+     "w": "satélite",
+     "t": 61.735
+    },
+    {
+     "w": "Ele",
+     "t": 63.209
+    },
+    {
+     "w": "só",
+     "t": 63.445
+    },
+    {
+     "w": "escuta",
+     "t": 63.622
+    },
+    {
+     "w": "Por",
+     "t": 64.942
+    },
+    {
+     "w": "isso",
+     "t": 65.143
+    },
+    {
+     "w": "o",
+     "t": 65.414
+    },
+    {
+     "w": "GPS",
+     "t": 65.449
+    },
+    {
+     "w": "funciona",
+     "t": 65.968
+    },
+    {
+     "w": "até",
+     "t": 66.511
+    },
+    {
+     "w": "no",
+     "t": 66.747
+    },
+    {
+     "w": "modo",
+     "t": 66.853
+    },
+    {
+     "w": "avião",
+     "t": 67.136
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 67.92,
+   "fim": 74.8,
+   "texto": "Coloque um mapa na tela e uma voz dizendo: vire à direita. Parabéns, você construiu um GPS.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 67.967
+    },
+    {
+     "w": "um",
+     "t": 68.451
+    },
+    {
+     "w": "mapa",
+     "t": 68.545
+    },
+    {
+     "w": "na",
+     "t": 68.852
+    },
+    {
+     "w": "tela",
+     "t": 68.993
+    },
+    {
+     "w": "e",
+     "t": 69.323
+    },
+    {
+     "w": "uma",
+     "t": 69.37
+    },
+    {
+     "w": "voz",
+     "t": 69.547
+    },
+    {
+     "w": "dizendo",
+     "t": 69.771
+    },
+    {
+     "w": "vire",
+     "t": 70.55
+    },
+    {
+     "w": "à",
+     "t": 70.774
+    },
+    {
+     "w": "direita",
+     "t": 70.833
+    },
+    {
+     "w": "Parabéns",
+     "t": 72.106
+    },
+    {
+     "w": "você",
+     "t": 72.955
+    },
+    {
+     "w": "construiu",
+     "t": 73.274
+    },
+    {
+     "w": "um",
+     "t": 73.781
+    },
+    {
+     "w": "GPS",
+     "t": 73.875
+    }
+   ]
+  }
+ ]
+}
