@@ -1,0 +1,113 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("botijao", { fundo: 0xf3e6d2, seed: 9595 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, tex, grade, texRuido, texMadeira, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- cozinha ----------
+add(new THREE.PlaneGeometry(20, 10), mat(0xffffff, { map: grade("#d9d2c6", "#bfb6a6", 64, 10), roughness: .8 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xffffff, { map: grade("#f4f1ea", "#d8d2c4", 32, 14) }), 0, 4, -1.2);
+const janela = add(new THREE.PlaneGeometry(1.2, 1), mat(0xbfe4ff, { emissive: 0x6ab8ff, emissiveIntensity: .2 }), -1.2, 2.3, -1.19);
+// fogão
+const fogao = grupo(1.0, 0, -.3);
+add(new THREE.BoxGeometry(1.1, .9, .8), mat(0xf4f4f4), 0, .45, 0, fogao); add(new THREE.BoxGeometry(1.1, .03, .8), mat(0x222222), 0, .91, 0, fogao);
+add(new THREE.BoxGeometry(.8, .5, .02), vidro(.6, 0x333333), 0, .4, .41, fogao);
+const panela = grupo(1.0 - .25, .93, -.3 + .15); add(new THREE.CylinderGeometry(.18, .16, .2, 24), mat(0xc8c8c8, { metalness: .5 }), 0, .1, 0, panela); add(new THREE.CylinderGeometry(.17, .17, .02, 24), mat(0xf8f4e8), 0, .19, 0, panela);
+const chamas = Array.from({ length: 16 }, (_, i) => ({ s: sprite(i % 3 ? 0x3a8cff : 0xffb03a), a: i / 16 * 6.28, f: rnd() }));
+// saco de gás
+const saco = add(new THREE.SphereGeometry(.6, 32, 20), new THREE.MeshPhysicalMaterial({ color: 0xf2f2f2, transparent: true, opacity: .45, roughness: .2, side: THREE.DoubleSide, depthWrite: false }), -1.2, .7, 0);
+// botijão em corte
+const bot = grupo(-1.2, 0, 0);
+const casca = add(new THREE.CapsuleGeometry(.42, .5, 12, 32), new THREE.MeshPhysicalMaterial({ color: 0x8a96a4, transparent: true, opacity: .3, metalness: .3, roughness: .3, side: THREE.DoubleSide, depthWrite: false }), 0, .72, 0, bot);
+add(new THREE.CylinderGeometry(.36, .4, .14, 32, 1, true), mat(0x6a7684, { side: THREE.DoubleSide }), 0, .07, 0, bot);
+const alca = grupo(0, 1.38, 0, bot); add(new THREE.CylinderGeometry(.22, .22, .2, 32, 1, true), mat(0x6a7684, { side: THREE.DoubleSide }), 0, 0, 0, alca);
+const liquido = add(new THREE.CylinderGeometry(.4, .4, 1, 32), new THREE.MeshPhysicalMaterial({ color: 0x9ae0ff, transparent: true, opacity: .7, roughness: .05 }), 0, .5, 0, bot);
+const valvula = add(new THREE.CylinderGeometry(.05, .05, .12, 12), mat(0xc8a040, { metalness: .8 }), 0, 1.25, 0, bot);
+const regulador = grupo(0, 1.38, 0, bot); add(new THREE.CylinderGeometry(.12, .12, .1, 24), mat(0xc0c6cc, { metalness: .8, emissive: 0x3aff7a, emissiveIntensity: 0 }), 0, 0, 0, regulador); add(new THREE.BoxGeometry(.1, .05, .2), mat(0x444444), 0, .07, 0, regulador);
+const molecGas = Array.from({ length: 70 }, () => ({ s: sprite(0xffd23a), d: V(rnd() - .5, rnd() - .5, rnd() - .5).normalize(), r: rnd(), f: rnd() }));
+const bolhas = Array.from({ length: 24 }, () => ({ s: sprite(0xffffff, bot), x: (rnd() - .5) * .6, z: (rnd() - .5) * .6, f: rnd() }));
+// mangueira
+const mangC = new THREE.CatmullRomCurve3([V(-1.2, 1.45, 0), V(-.9, 1.5, .1), V(-.5, .6, .3), V(0, .4, .2), V(.45, .45, 0)]);
+const mang = add(new THREE.TubeGeometry(mangC, 80, .035, 8), mat(0xffd23a, { transparent: true, opacity: .55, depthWrite: false }));
+const etiq = add(new THREE.PlaneGeometry(.5, .16), new THREE.MeshBasicMaterial({ map: rotulo("VAL. 2031", "#222", { fundo: "#fff", tam: 110 }), transparent: true }), -.45, .7, .5);
+const fGas = fluxo(mangC, 18, 0xffd23a);
+// vazamento + cheiro
+const vaza = Array.from({ length: 40 }, () => ({ s: sprite(0xffd23a), f: rnd(), a: rnd() * 6.28 }));
+const cheiro = Array.from({ length: 16 }, () => ({ s: sprite(0x7ad83a), f: rnd(), a: rnd() * 6.28 }));
+const xVermelho = add(new THREE.PlaneGeometry(.7, .7), new THREE.MeshBasicMaterial({ map: rotulo("✕", "#ff3a3a", { w: 256, h: 256, tam: 220 }), transparent: true, opacity: 0, depthWrite: false }), -1.2, 1.6, .6);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(-.2, 1.6, 8.6), V(-.2, .9, 0)], bot: [V(-.9, 1.2, 3.6), V(-1.2, .85, 0)], topo: [V(-.6, 2.2, 3.8), V(-1.1, 1.25, 0)],
+  chao: [V(.4, .9, 5.2), V(-.6, .4, 0)], fim: [V(.6, 1.6, 9.2), V(-.2, .9, 0)],
+}, [
+  [0, "geral"], [F(2), "geral"], [C(3), "bot"], [F(3), "bot"], [C(4), "bot"], [F(4), "bot"],
+  [C(5), "topo"], [F(5), "topo"], [C(6), "geral"], [F(6), "geral"], [C(7), "chao"], [F(7), "chao"], [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // saco: aparece, cresce, murcha, fura
+  const sacoOn = t < P(3, "cilindro") + .3;
+  let rs = prog(t, P(1, "saco") - .3, P(1, "saco") + .3);
+  rs *= 1 + 1.6 * prog(t, P(2, "espaco") - .3, P(2, "enorme") + .3);
+  rs *= 1 - .7 * prog(t, P(2, "arroz") - .5, P(2, "arroz") + .5);
+  if (t > C(2) + 0 && t > P(2, "furinho") - .3) rs = .5 + .1 * Math.sin(t * 10);
+  rs *= 1 - prog(t, P(3, "aperta") - .2, P(3, "cilindro") + .2);
+  saco.visible = sacoOn && rs > .01; saco.scale.setScalar(Math.max(.01, rs)); saco.position.y = .1 + .6 * Math.max(rs, .2);
+  // botijão
+  const botOn = t > P(3, "cilindro") - .4;
+  bot.visible = botOn; bot.scale.setScalar(Math.max(.01, prog(t, P(3, "cilindro") - .4, P(3, "cilindro") + .2)));
+  const ehLiq = prog(t, P(3, "liquido") - .4, P(3, "liquido") + .6);
+  const nivel = .72 * ehLiq;
+  liquido.visible = nivel > .02; liquido.scale.set(1, Math.max(nivel, .01) * 1.1, 1); liquido.position.y = .12 + nivel * .55;
+  // moléculas: espalhadas no saco -> apertadas no cilindro
+  const aperta = prog(t, P(3, "aperta") - .2, P(3, "liquido") + .4);
+  molecGas.forEach((m) => { const r0 = .55 * Math.max(rs, .3) * m.r, r1 = .35 * m.r; const r = r0 + (r1 - r0) * aperta; m.s.position.set(-1.2 + m.d.x * r + Math.sin(t * 7 + m.f * 9) * .02 * (1 - aperta), (aperta > .5 ? .35 : .1 + .6 * Math.max(rs, .2)) + m.d.y * r * (aperta > .5 ? .5 : 1), m.d.z * r); m.s.scale.setScalar(.06); m.s.material.opacity = (em(C(1), P(3, "liquido") + .4) && (t < P(3, "aperta") ? t > P(1, "gas") - .3 : true)) ? 1 : 0; });
+  // chacoalha
+  const chac = em(P(3, "chacoalha") - .3, F(3)) ? Math.sin(t * 9) : 0;
+  bot.rotation.z = chac * .18; liquido.rotation.z = -chac * .3;
+  // deitado (cena 7)
+  if (t > P(7, "deitado") - .4 && t < C(8)) { const k = prog(t, P(7, "deitado") - .4, P(7, "deitado") + .4); bot.rotation.z = k * Math.PI / 2; bot.position.set(-1.2 + .7 * k, .45 * k, 0); } else bot.position.set(-1.2, 0, 0);
+  xVermelho.material.opacity = em(P(7, "deitado") + .2, F(7)) ? 1 : 0;
+  // fogo e gás
+  const fogo = em(P(1, "fogao") - .2, P(2, "arroz") + .5) || em(P(4, "abre") + .3, C(5) + 50) && t < C(6) || t > C(8);
+  chamas.forEach((c) => { const k = frac(t * 3 + c.f); c.s.position.set(.75 + Math.cos(c.a) * .12, .95 + k * .1, -.15 + Math.sin(c.a) * .12); c.s.scale.setScalar(.07); c.s.material.opacity = fogo ? .9 * (1 - k) : 0; });
+  panela.visible = t > P(2, "arroz") - .8;
+  mang.visible = t > P(1, "fogao") - .3;
+  fGas.atualiza(t, fogo, .5, em(C(5), C(6)) ? (t > P(5, "regulador") ? .05 : .14) : .08);
+  bolhas.forEach((b) => { const k = frac(t * .8 + b.f); b.s.position.set(b.x * .8, .15 + k * nivel * 1.1, b.z * .8); b.s.scale.setScalar(.05); b.s.material.opacity = em(P(4, "ferve") - .4, C(6)) ? .9 : 0; });
+  valvula.material.emissive = new THREE.Color(0xffd23a); valvula.material.emissiveIntensity = em(P(4, "abre") - .3, P(4, "abre") + 1) ? 1 : 0;
+  regulador.visible = t > P(5, "regulador") - .4; regulador.children[0].material.emissiveIntensity = em(P(5, "regulador") - .3, F(5)) ? .8 + .4 * Math.sin(t * 6) : 0;
+  // vazamento (furinho, cheiro, chão)
+  const vazando = em(P(2, "furinho") - .1, C(3)) || em(P(6, "vazar") - .3, C(8));
+  const pesa = t > C(7);
+  vaza.forEach((v) => { const k = frac(t * .6 + v.f); const sx = t < C(3) ? saco.position : V(-1.2, 1.35, 0);
+    if (pesa) v.s.position.set(-1.2 + Math.cos(v.a) * (.3 + k * 1.6), .05 + .08 * (1 - k), Math.sin(v.a) * (.3 + k * 1.2)); else v.s.position.set(sx.x + Math.cos(v.a) * k * .6, sx.y + k * .3, Math.sin(v.a) * k * .6 + .1);
+    v.s.scale.setScalar(.07); v.s.material.color.set(t > P(6, "fabrica") ? 0x7ad83a : 0xffd23a); v.s.material.opacity = vazando ? (t > C(6) && t < P(6, "fabrica") ? .12 : .8) * (1 - k) : 0; });
+  cheiro.forEach((c) => { const k = frac(t * .4 + c.f); c.s.position.set(-1.2 + Math.cos(c.a) * (.5 + k), 1.3 + k * .8, Math.sin(c.a) * .5); c.s.scale.set(.25, .08, 1); c.s.material.opacity = em(P(6, "ovo") - .5, C(7)) ? .7 * (1 - k) : 0; });
+  janela.material.emissiveIntensity = em(P(7, "ventilado") - .3, F(7)) ? 1.2 : .2;
+  etiq.visible = em(P(8, "validade") - .4, T);
+  alca.children[0].material.emissive = new THREE.Color(0xffd23a); alca.children[0].material.emissiveIntensity = em(P(8, "alca") - .3, P(8, "alca") + 1) ? .8 : 0;
+  K.cartoes(t, [
+    [P(2, "espaco") - .3, P(2, "arroz") - .5, "OCUPA ESPAÇO DEMAIS", "#ff4a3a"],
+    [P(2, "furinho") - .3, F(2), "PERIGO", "#ff4a3a"],
+    [P(3, "liquido") - .3, P(3, "chacoalha") - .3, "250× MAIS GÁS", "#3aff7a"],
+    [P(3, "chacoalha") - .3, F(3), "É LÍQUIDO!", "#9ae0ff"],
+    [P(4, "ferve") - .3, P(4, "inverno") - .3, "FERVE E VIRA GÁS", "#ffd23a"],
+    [P(4, "zero") - .5, F(4), "FERVE ABAIXO DE 0 °C", "#5ad8ff"],
+    [P(5, "regulador") - .3, F(5), "REGULADOR", "#3aff7a"],
+    [P(6, "cheiro") - .3, P(6, "fabrica") - .3, "SEM CHEIRO", "#aaaaaa"],
+    [P(6, "ovo") - .5, P(6, "aviso") - .3, "CHEIRO DE OVO PODRE", "#7ad83a"],
+    [P(6, "aviso") - .3, F(6), "É UM AVISO", "#ffd23a"],
+    [P(7, "pesado") - .3, P(7, "ventilado") - .3, "MAIS PESADO QUE O AR", "#ffd23a"],
+    [P(7, "deitado") - .3, F(7), "NUNCA DEITADO", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>

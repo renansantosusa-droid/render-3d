@@ -1,0 +1,869 @@
+{
+ "total": 73.21,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.32,
+   "texto": "Se você encher um saco com gás e ligar no fogão, terá gás de cozinha.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "encher",
+     "t": 0.681
+    },
+    {
+     "w": "um",
+     "t": 0.999
+    },
+    {
+     "w": "saco",
+     "t": 1.082
+    },
+    {
+     "w": "com",
+     "t": 1.435
+    },
+    {
+     "w": "gás",
+     "t": 1.589
+    },
+    {
+     "w": "e",
+     "t": 1.789
+    },
+    {
+     "w": "ligar",
+     "t": 1.895
+    },
+    {
+     "w": "no",
+     "t": 2.214
+    },
+    {
+     "w": "fogão",
+     "t": 2.32
+    },
+    {
+     "w": "terá",
+     "t": 2.98
+    },
+    {
+     "w": "gás",
+     "t": 3.216
+    },
+    {
+     "w": "de",
+     "t": 3.44
+    },
+    {
+     "w": "cozinha",
+     "t": 3.546
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.47,
+   "fim": 12.09,
+   "texto": "Mas o gás ocupa espaço demais. Um saco enorme não dá nem pra um arroz. E qualquer furinho vira perigo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.517
+    },
+    {
+     "w": "o",
+     "t": 4.741
+    },
+    {
+     "w": "gás",
+     "t": 4.883
+    },
+    {
+     "w": "ocupa",
+     "t": 5.071
+    },
+    {
+     "w": "espaço",
+     "t": 5.461
+    },
+    {
+     "w": "demais",
+     "t": 5.897
+    },
+    {
+     "w": "Um",
+     "t": 7.218
+    },
+    {
+     "w": "saco",
+     "t": 7.395
+    },
+    {
+     "w": "enorme",
+     "t": 7.725
+    },
+    {
+     "w": "não",
+     "t": 8.149
+    },
+    {
+     "w": "dá",
+     "t": 8.314
+    },
+    {
+     "w": "nem",
+     "t": 8.468
+    },
+    {
+     "w": "pra",
+     "t": 8.704
+    },
+    {
+     "w": "um",
+     "t": 8.88
+    },
+    {
+     "w": "arroz",
+     "t": 9.01
+    },
+    {
+     "w": "E",
+     "t": 10.248
+    },
+    {
+     "w": "qualquer",
+     "t": 10.343
+    },
+    {
+     "w": "furinho",
+     "t": 10.755
+    },
+    {
+     "w": "vira",
+     "t": 11.18
+    },
+    {
+     "w": "perigo",
+     "t": 11.428
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.24,
+   "fim": 24.65,
+   "texto": "Então, você aperta o gás com força dentro de um cilindro de aço. Apertado, ele vira líquido e cabe umas duzentas e cinquenta vezes mais. Por isso o botijão chacoalha: tem líquido lá dentro.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.287
+    },
+    {
+     "w": "você",
+     "t": 13.042
+    },
+    {
+     "w": "aperta",
+     "t": 13.301
+    },
+    {
+     "w": "o",
+     "t": 13.679
+    },
+    {
+     "w": "gás",
+     "t": 13.714
+    },
+    {
+     "w": "com",
+     "t": 14.009
+    },
+    {
+     "w": "força",
+     "t": 14.186
+    },
+    {
+     "w": "dentro",
+     "t": 14.54
+    },
+    {
+     "w": "de",
+     "t": 14.893
+    },
+    {
+     "w": "um",
+     "t": 14.964
+    },
+    {
+     "w": "cilindro",
+     "t": 15.035
+    },
+    {
+     "w": "de",
+     "t": 15.495
+    },
+    {
+     "w": "aço",
+     "t": 15.613
+    },
+    {
+     "w": "Apertado",
+     "t": 16.792
+    },
+    {
+     "w": "ele",
+     "t": 17.629
+    },
+    {
+     "w": "vira",
+     "t": 17.771
+    },
+    {
+     "w": "líquido",
+     "t": 17.959
+    },
+    {
+     "w": "e",
+     "t": 18.349
+    },
+    {
+     "w": "cabe",
+     "t": 18.431
+    },
+    {
+     "w": "umas",
+     "t": 18.702
+    },
+    {
+     "w": "duzentas",
+     "t": 18.903
+    },
+    {
+     "w": "e",
+     "t": 19.351
+    },
+    {
+     "w": "cinquenta",
+     "t": 19.457
+    },
+    {
+     "w": "vezes",
+     "t": 19.905
+    },
+    {
+     "w": "mais",
+     "t": 20.271
+    },
+    {
+     "w": "Por",
+     "t": 21.521
+    },
+    {
+     "w": "isso",
+     "t": 21.698
+    },
+    {
+     "w": "o",
+     "t": 21.969
+    },
+    {
+     "w": "botijão",
+     "t": 22.004
+    },
+    {
+     "w": "chacoalha",
+     "t": 22.476
+    },
+    {
+     "w": "tem",
+     "t": 23.278
+    },
+    {
+     "w": "líquido",
+     "t": 23.443
+    },
+    {
+     "w": "lá",
+     "t": 23.82
+    },
+    {
+     "w": "dentro",
+     "t": 23.974
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 24.8,
+   "fim": 33.82,
+   "texto": "Quando você abre o fogão, a pressão cai e um pouco desse líquido ferve, virando gás de novo. Mesmo no inverno, porque ele ferve abaixo de zero.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 24.847
+    },
+    {
+     "w": "você",
+     "t": 25.142
+    },
+    {
+     "w": "abre",
+     "t": 25.449
+    },
+    {
+     "w": "o",
+     "t": 25.708
+    },
+    {
+     "w": "fogão",
+     "t": 25.743
+    },
+    {
+     "w": "a",
+     "t": 26.392
+    },
+    {
+     "w": "pressão",
+     "t": 26.463
+    },
+    {
+     "w": "cai",
+     "t": 26.864
+    },
+    {
+     "w": "e",
+     "t": 27.111
+    },
+    {
+     "w": "um",
+     "t": 27.147
+    },
+    {
+     "w": "pouco",
+     "t": 27.276
+    },
+    {
+     "w": "desse",
+     "t": 27.571
+    },
+    {
+     "w": "líquido",
+     "t": 27.819
+    },
+    {
+     "w": "ferve",
+     "t": 28.184
+    },
+    {
+     "w": "virando",
+     "t": 28.868
+    },
+    {
+     "w": "gás",
+     "t": 29.222
+    },
+    {
+     "w": "de",
+     "t": 29.47
+    },
+    {
+     "w": "novo",
+     "t": 29.576
+    },
+    {
+     "w": "Mesmo",
+     "t": 30.72
+    },
+    {
+     "w": "no",
+     "t": 31.133
+    },
+    {
+     "w": "inverno",
+     "t": 31.203
+    },
+    {
+     "w": "porque",
+     "t": 31.934
+    },
+    {
+     "w": "ele",
+     "t": 32.229
+    },
+    {
+     "w": "ferve",
+     "t": 32.371
+    },
+    {
+     "w": "abaixo",
+     "t": 32.701
+    },
+    {
+     "w": "de",
+     "t": 33.114
+    },
+    {
+     "w": "zero",
+     "t": 33.232
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.97,
+   "fim": 42.4,
+   "texto": "Mas a pressão lá dentro é forte demais pro fogão. Então, você coloca um regulador, que solta o gás devagar, na medida certa.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 34.017
+    },
+    {
+     "w": "a",
+     "t": 34.206
+    },
+    {
+     "w": "pressão",
+     "t": 34.347
+    },
+    {
+     "w": "lá",
+     "t": 34.737
+    },
+    {
+     "w": "dentro",
+     "t": 34.854
+    },
+    {
+     "w": "é",
+     "t": 35.208
+    },
+    {
+     "w": "forte",
+     "t": 35.267
+    },
+    {
+     "w": "demais",
+     "t": 35.668
+    },
+    {
+     "w": "pro",
+     "t": 36.045
+    },
+    {
+     "w": "fogão",
+     "t": 36.199
+    },
+    {
+     "w": "Então",
+     "t": 37.449
+    },
+    {
+     "w": "você",
+     "t": 38.215
+    },
+    {
+     "w": "coloca",
+     "t": 38.487
+    },
+    {
+     "w": "um",
+     "t": 38.887
+    },
+    {
+     "w": "regulador",
+     "t": 38.958
+    },
+    {
+     "w": "que",
+     "t": 39.784
+    },
+    {
+     "w": "solta",
+     "t": 39.925
+    },
+    {
+     "w": "o",
+     "t": 40.267
+    },
+    {
+     "w": "gás",
+     "t": 40.303
+    },
+    {
+     "w": "devagar",
+     "t": 40.527
+    },
+    {
+     "w": "na",
+     "t": 41.152
+    },
+    {
+     "w": "medida",
+     "t": 41.305
+    },
+    {
+     "w": "certa",
+     "t": 41.694
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.55,
+   "fim": 55.97,
+   "texto": "Mas o gás puro não tem cheiro nenhum. Se vazar, ninguém percebe. Então, a fábrica coloca de propósito um cheiro forte, de ovo podre. Aquele cheiro de gás não é o gás: é um aviso.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 42.597
+    },
+    {
+     "w": "o",
+     "t": 42.809
+    },
+    {
+     "w": "gás",
+     "t": 42.951
+    },
+    {
+     "w": "puro",
+     "t": 43.21
+    },
+    {
+     "w": "não",
+     "t": 43.541
+    },
+    {
+     "w": "tem",
+     "t": 43.741
+    },
+    {
+     "w": "cheiro",
+     "t": 43.93
+    },
+    {
+     "w": "nenhum",
+     "t": 44.248
+    },
+    {
+     "w": "Se",
+     "t": 45.427
+    },
+    {
+     "w": "vazar",
+     "t": 45.651
+    },
+    {
+     "w": "ninguém",
+     "t": 46.229
+    },
+    {
+     "w": "percebe",
+     "t": 46.725
+    },
+    {
+     "w": "Então",
+     "t": 48.128
+    },
+    {
+     "w": "a",
+     "t": 48.788
+    },
+    {
+     "w": "fábrica",
+     "t": 48.871
+    },
+    {
+     "w": "coloca",
+     "t": 49.331
+    },
+    {
+     "w": "de",
+     "t": 49.743
+    },
+    {
+     "w": "propósito",
+     "t": 49.826
+    },
+    {
+     "w": "um",
+     "t": 50.38
+    },
+    {
+     "w": "cheiro",
+     "t": 50.463
+    },
+    {
+     "w": "forte",
+     "t": 50.781
+    },
+    {
+     "w": "de",
+     "t": 51.43
+    },
+    {
+     "w": "ovo",
+     "t": 51.583
+    },
+    {
+     "w": "podre",
+     "t": 51.866
+    },
+    {
+     "w": "Aquele",
+     "t": 53.034
+    },
+    {
+     "w": "cheiro",
+     "t": 53.375
+    },
+    {
+     "w": "de",
+     "t": 53.694
+    },
+    {
+     "w": "gás",
+     "t": 53.8
+    },
+    {
+     "w": "não",
+     "t": 54.083
+    },
+    {
+     "w": "é",
+     "t": 54.248
+    },
+    {
+     "w": "o",
+     "t": 54.331
+    },
+    {
+     "w": "gás",
+     "t": 54.39
+    },
+    {
+     "w": "é",
+     "t": 55.05
+    },
+    {
+     "w": "um",
+     "t": 55.144
+    },
+    {
+     "w": "aviso",
+     "t": 55.298
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 56.12,
+   "fim": 65.41,
+   "texto": "E o gás é mais pesado que o ar. Se vazar, ele fica rente ao chão. Por isso o botijão fica num lugar ventilado, e nunca deitado.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 56.167
+    },
+    {
+     "w": "o",
+     "t": 56.297
+    },
+    {
+     "w": "gás",
+     "t": 56.356
+    },
+    {
+     "w": "é",
+     "t": 56.556
+    },
+    {
+     "w": "mais",
+     "t": 56.698
+    },
+    {
+     "w": "pesado",
+     "t": 56.993
+    },
+    {
+     "w": "que",
+     "t": 57.5
+    },
+    {
+     "w": "o",
+     "t": 57.606
+    },
+    {
+     "w": "ar.",
+     "t": 57.712
+    },
+    {
+     "w": "Se",
+     "t": 58.703
+    },
+    {
+     "w": "vazar",
+     "t": 58.927
+    },
+    {
+     "w": "ele",
+     "t": 59.622
+    },
+    {
+     "w": "fica",
+     "t": 59.776
+    },
+    {
+     "w": "rente",
+     "t": 60.07
+    },
+    {
+     "w": "ao",
+     "t": 60.412
+    },
+    {
+     "w": "chão",
+     "t": 60.53
+    },
+    {
+     "w": "Por",
+     "t": 61.674
+    },
+    {
+     "w": "isso",
+     "t": 61.863
+    },
+    {
+     "w": "o",
+     "t": 62.122
+    },
+    {
+     "w": "botijão",
+     "t": 62.158
+    },
+    {
+     "w": "fica",
+     "t": 62.665
+    },
+    {
+     "w": "num",
+     "t": 62.912
+    },
+    {
+     "w": "lugar",
+     "t": 63.042
+    },
+    {
+     "w": "ventilado",
+     "t": 63.349
+    },
+    {
+     "w": "e",
+     "t": 64.162
+    },
+    {
+     "w": "nunca",
+     "t": 64.269
+    },
+    {
+     "w": "deitado",
+     "t": 64.681
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 65.56,
+   "fim": 72.61,
+   "texto": "Coloque uma mangueira com data de validade e uma alça no topo. Parabéns, você construiu um botijão de gás.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 65.607
+    },
+    {
+     "w": "uma",
+     "t": 66.079
+    },
+    {
+     "w": "mangueira",
+     "t": 66.197
+    },
+    {
+     "w": "com",
+     "t": 66.657
+    },
+    {
+     "w": "data",
+     "t": 66.834
+    },
+    {
+     "w": "de",
+     "t": 67.14
+    },
+    {
+     "w": "validade",
+     "t": 67.223
+    },
+    {
+     "w": "e",
+     "t": 67.777
+    },
+    {
+     "w": "uma",
+     "t": 67.812
+    },
+    {
+     "w": "alça",
+     "t": 67.977
+    },
+    {
+     "w": "no",
+     "t": 68.296
+    },
+    {
+     "w": "topo",
+     "t": 68.437
+    },
+    {
+     "w": "Parabéns",
+     "t": 69.593
+    },
+    {
+     "w": "você",
+     "t": 70.419
+    },
+    {
+     "w": "construiu",
+     "t": 70.725
+    },
+    {
+     "w": "um",
+     "t": 71.22
+    },
+    {
+     "w": "botijão",
+     "t": 71.303
+    },
+    {
+     "w": "de",
+     "t": 71.822
+    },
+    {
+     "w": "gás",
+     "t": 71.928
+    }
+   ]
+  }
+ ]
+}
