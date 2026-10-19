@@ -1,0 +1,841 @@
+{
+ "total": 71.68,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 6.47,
+   "texto": "Se você quiser falar com alguém em outro continente, é só esticar um fio até lá. Terá a internet.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "quiser",
+     "t": 0.669
+    },
+    {
+     "w": "falar",
+     "t": 0.999
+    },
+    {
+     "w": "com",
+     "t": 1.306
+    },
+    {
+     "w": "alguém",
+     "t": 1.471
+    },
+    {
+     "w": "em",
+     "t": 1.73
+    },
+    {
+     "w": "outro",
+     "t": 1.825
+    },
+    {
+     "w": "continente",
+     "t": 2.049
+    },
+    {
+     "w": "é",
+     "t": 2.839
+    },
+    {
+     "w": "só",
+     "t": 2.933
+    },
+    {
+     "w": "esticar",
+     "t": 3.11
+    },
+    {
+     "w": "um",
+     "t": 3.534
+    },
+    {
+     "w": "fio",
+     "t": 3.652
+    },
+    {
+     "w": "até",
+     "t": 3.912
+    },
+    {
+     "w": "lá",
+     "t": 4.124
+    },
+    {
+     "w": "Terá",
+     "t": 5.197
+    },
+    {
+     "w": "a",
+     "t": 5.492
+    },
+    {
+     "w": "internet",
+     "t": 5.539
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 6.62,
+   "fim": 14.7,
+   "texto": "Mas no meio tem um oceano. Não dá pra pendurar fio no mar. E o satélite fica longe demais e não aguenta o mundo inteiro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 6.667
+    },
+    {
+     "w": "no",
+     "t": 6.95
+    },
+    {
+     "w": "meio",
+     "t": 7.056
+    },
+    {
+     "w": "tem",
+     "t": 7.339
+    },
+    {
+     "w": "um",
+     "t": 7.504
+    },
+    {
+     "w": "oceano",
+     "t": 7.587
+    },
+    {
+     "w": "Não",
+     "t": 8.908
+    },
+    {
+     "w": "dá",
+     "t": 9.167
+    },
+    {
+     "w": "pra",
+     "t": 9.356
+    },
+    {
+     "w": "pendurar",
+     "t": 9.509
+    },
+    {
+     "w": "fio",
+     "t": 9.945
+    },
+    {
+     "w": "no",
+     "t": 10.193
+    },
+    {
+     "w": "mar.",
+     "t": 10.287
+    },
+    {
+     "w": "E",
+     "t": 11.337
+    },
+    {
+     "w": "o",
+     "t": 11.443
+    },
+    {
+     "w": "satélite",
+     "t": 11.502
+    },
+    {
+     "w": "fica",
+     "t": 12.056
+    },
+    {
+     "w": "longe",
+     "t": 12.292
+    },
+    {
+     "w": "demais",
+     "t": 12.67
+    },
+    {
+     "w": "e",
+     "t": 13.059
+    },
+    {
+     "w": "não",
+     "t": 13.177
+    },
+    {
+     "w": "aguenta",
+     "t": 13.342
+    },
+    {
+     "w": "o",
+     "t": 13.672
+    },
+    {
+     "w": "mundo",
+     "t": 13.707
+    },
+    {
+     "w": "inteiro",
+     "t": 14.014
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.85,
+   "fim": 26.34,
+   "texto": "Então, você deita um cabo no fundo do mar. Dentro dele, fios de vidro mais finos que um fio de cabelo. A mensagem viaja como luz piscando, bilhões de vezes por segundo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 14.897
+    },
+    {
+     "w": "você",
+     "t": 15.664
+    },
+    {
+     "w": "deita",
+     "t": 15.935
+    },
+    {
+     "w": "um",
+     "t": 16.206
+    },
+    {
+     "w": "cabo",
+     "t": 16.324
+    },
+    {
+     "w": "no",
+     "t": 16.642
+    },
+    {
+     "w": "fundo",
+     "t": 16.749
+    },
+    {
+     "w": "do",
+     "t": 17.091
+    },
+    {
+     "w": "mar.",
+     "t": 17.209
+    },
+    {
+     "w": "Dentro",
+     "t": 18.258
+    },
+    {
+     "w": "dele",
+     "t": 18.635
+    },
+    {
+     "w": "fios",
+     "t": 19.166
+    },
+    {
+     "w": "de",
+     "t": 19.402
+    },
+    {
+     "w": "vidro",
+     "t": 19.496
+    },
+    {
+     "w": "mais",
+     "t": 19.744
+    },
+    {
+     "w": "finos",
+     "t": 19.968
+    },
+    {
+     "w": "que",
+     "t": 20.322
+    },
+    {
+     "w": "um",
+     "t": 20.428
+    },
+    {
+     "w": "fio",
+     "t": 20.558
+    },
+    {
+     "w": "de",
+     "t": 20.805
+    },
+    {
+     "w": "cabelo",
+     "t": 20.888
+    },
+    {
+     "w": "A",
+     "t": 22.102
+    },
+    {
+     "w": "mensagem",
+     "t": 22.209
+    },
+    {
+     "w": "viaja",
+     "t": 22.763
+    },
+    {
+     "w": "como",
+     "t": 23.187
+    },
+    {
+     "w": "luz",
+     "t": 23.423
+    },
+    {
+     "w": "piscando",
+     "t": 23.694
+    },
+    {
+     "w": "bilhões",
+     "t": 24.473
+    },
+    {
+     "w": "de",
+     "t": 24.968
+    },
+    {
+     "w": "vezes",
+     "t": 25.062
+    },
+    {
+     "w": "por",
+     "t": 25.44
+    },
+    {
+     "w": "segundo",
+     "t": 25.605
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.49,
+   "fim": 37.87,
+   "texto": "Mas a luz vai ficando fraca no caminho. Então, a cada oitenta quilômetros, você coloca um repetidor, que dá força pra luz de novo. E ele recebe energia pelo próprio cabo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 26.537
+    },
+    {
+     "w": "a",
+     "t": 26.726
+    },
+    {
+     "w": "luz",
+     "t": 26.867
+    },
+    {
+     "w": "vai",
+     "t": 27.139
+    },
+    {
+     "w": "ficando",
+     "t": 27.292
+    },
+    {
+     "w": "fraca",
+     "t": 27.646
+    },
+    {
+     "w": "no",
+     "t": 28.011
+    },
+    {
+     "w": "caminho",
+     "t": 28.117
+    },
+    {
+     "w": "Então",
+     "t": 29.356
+    },
+    {
+     "w": "a",
+     "t": 30.04
+    },
+    {
+     "w": "cada",
+     "t": 30.134
+    },
+    {
+     "w": "oitenta",
+     "t": 30.382
+    },
+    {
+     "w": "quilômetros",
+     "t": 30.759
+    },
+    {
+     "w": "você",
+     "t": 31.561
+    },
+    {
+     "w": "coloca",
+     "t": 31.867
+    },
+    {
+     "w": "um",
+     "t": 32.268
+    },
+    {
+     "w": "repetidor",
+     "t": 32.351
+    },
+    {
+     "w": "que",
+     "t": 33.153
+    },
+    {
+     "w": "dá",
+     "t": 33.282
+    },
+    {
+     "w": "força",
+     "t": 33.412
+    },
+    {
+     "w": "pra",
+     "t": 33.825
+    },
+    {
+     "w": "luz",
+     "t": 33.978
+    },
+    {
+     "w": "de",
+     "t": 34.238
+    },
+    {
+     "w": "novo",
+     "t": 34.344
+    },
+    {
+     "w": "E",
+     "t": 35.511
+    },
+    {
+     "w": "ele",
+     "t": 35.665
+    },
+    {
+     "w": "recebe",
+     "t": 35.841
+    },
+    {
+     "w": "energia",
+     "t": 36.219
+    },
+    {
+     "w": "pelo",
+     "t": 36.714
+    },
+    {
+     "w": "próprio",
+     "t": 36.938
+    },
+    {
+     "w": "cabo",
+     "t": 37.292
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 38.02,
+   "fim": 49.23,
+   "texto": "Mas âncoras e redes de pesca arrastam o cabo. Então, perto da praia, você enterra ele e cobre com camadas de aço. No mar profundo, ele fica fino como uma mangueira.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 38.067
+    },
+    {
+     "w": "âncoras",
+     "t": 38.291
+    },
+    {
+     "w": "e",
+     "t": 38.775
+    },
+    {
+     "w": "redes",
+     "t": 38.881
+    },
+    {
+     "w": "de",
+     "t": 39.199
+    },
+    {
+     "w": "pesca",
+     "t": 39.305
+    },
+    {
+     "w": "arrastam",
+     "t": 39.659
+    },
+    {
+     "w": "o",
+     "t": 40.119
+    },
+    {
+     "w": "cabo",
+     "t": 40.178
+    },
+    {
+     "w": "Então",
+     "t": 41.334
+    },
+    {
+     "w": "perto",
+     "t": 42.053
+    },
+    {
+     "w": "da",
+     "t": 42.395
+    },
+    {
+     "w": "praia",
+     "t": 42.513
+    },
+    {
+     "w": "você",
+     "t": 43.114
+    },
+    {
+     "w": "enterra",
+     "t": 43.338
+    },
+    {
+     "w": "ele",
+     "t": 43.775
+    },
+    {
+     "w": "e",
+     "t": 44.011
+    },
+    {
+     "w": "cobre",
+     "t": 44.081
+    },
+    {
+     "w": "com",
+     "t": 44.4
+    },
+    {
+     "w": "camadas",
+     "t": 44.565
+    },
+    {
+     "w": "de",
+     "t": 45.025
+    },
+    {
+     "w": "aço",
+     "t": 45.131
+    },
+    {
+     "w": "No",
+     "t": 46.298
+    },
+    {
+     "w": "mar",
+     "t": 46.452
+    },
+    {
+     "w": "profundo",
+     "t": 46.652
+    },
+    {
+     "w": "ele",
+     "t": 47.371
+    },
+    {
+     "w": "fica",
+     "t": 47.537
+    },
+    {
+     "w": "fino",
+     "t": 47.808
+    },
+    {
+     "w": "como",
+     "t": 48.103
+    },
+    {
+     "w": "uma",
+     "t": 48.327
+    },
+    {
+     "w": "mangueira",
+     "t": 48.48
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 49.38,
+   "fim": 55.09,
+   "texto": "E sim, tubarão já mordeu cabo. Mas quem mais estraga cabo é âncora de navio.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 49.427
+    },
+    {
+     "w": "sim",
+     "t": 49.557
+    },
+    {
+     "w": "tubarão",
+     "t": 50.111
+    },
+    {
+     "w": "já",
+     "t": 50.5
+    },
+    {
+     "w": "mordeu",
+     "t": 50.618
+    },
+    {
+     "w": "cabo",
+     "t": 51.043
+    },
+    {
+     "w": "Mas",
+     "t": 52.21
+    },
+    {
+     "w": "quem",
+     "t": 52.529
+    },
+    {
+     "w": "mais",
+     "t": 52.764
+    },
+    {
+     "w": "estraga",
+     "t": 52.989
+    },
+    {
+     "w": "cabo",
+     "t": 53.484
+    },
+    {
+     "w": "é",
+     "t": 53.814
+    },
+    {
+     "w": "âncora",
+     "t": 53.908
+    },
+    {
+     "w": "de",
+     "t": 54.321
+    },
+    {
+     "w": "navio",
+     "t": 54.415
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 55.24,
+   "fim": 61.1,
+   "texto": "Quando um cabo quebra, um navio especial pesca ele com um gancho, puxa pra cima e emenda ali mesmo.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 55.287
+    },
+    {
+     "w": "um",
+     "t": 55.535
+    },
+    {
+     "w": "cabo",
+     "t": 55.617
+    },
+    {
+     "w": "quebra",
+     "t": 55.9
+    },
+    {
+     "w": "um",
+     "t": 56.632
+    },
+    {
+     "w": "navio",
+     "t": 56.738
+    },
+    {
+     "w": "especial",
+     "t": 57.044
+    },
+    {
+     "w": "pesca",
+     "t": 57.516
+    },
+    {
+     "w": "ele",
+     "t": 57.834
+    },
+    {
+     "w": "com",
+     "t": 58.058
+    },
+    {
+     "w": "um",
+     "t": 58.224
+    },
+    {
+     "w": "gancho",
+     "t": 58.318
+    },
+    {
+     "w": "puxa",
+     "t": 58.966
+    },
+    {
+     "w": "pra",
+     "t": 59.285
+    },
+    {
+     "w": "cima",
+     "t": 59.438
+    },
+    {
+     "w": "e",
+     "t": 59.839
+    },
+    {
+     "w": "emenda",
+     "t": 59.898
+    },
+    {
+     "w": "ali",
+     "t": 60.264
+    },
+    {
+     "w": "mesmo",
+     "t": 60.452
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 61.25,
+   "fim": 71.08,
+   "texto": "Coloque centenas de cabos ligando os continentes. Quase toda a internet entre países passa por eles. Parabéns, você construiu a internet.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 61.297
+    },
+    {
+     "w": "centenas",
+     "t": 61.781
+    },
+    {
+     "w": "de",
+     "t": 62.288
+    },
+    {
+     "w": "cabos",
+     "t": 62.394
+    },
+    {
+     "w": "ligando",
+     "t": 62.771
+    },
+    {
+     "w": "os",
+     "t": 63.16
+    },
+    {
+     "w": "continentes",
+     "t": 63.255
+    },
+    {
+     "w": "Quase",
+     "t": 64.87
+    },
+    {
+     "w": "toda",
+     "t": 65.283
+    },
+    {
+     "w": "a",
+     "t": 65.542
+    },
+    {
+     "w": "internet",
+     "t": 65.578
+    },
+    {
+     "w": "entre",
+     "t": 66.144
+    },
+    {
+     "w": "países",
+     "t": 66.333
+    },
+    {
+     "w": "passa",
+     "t": 66.804
+    },
+    {
+     "w": "por",
+     "t": 67.099
+    },
+    {
+     "w": "eles",
+     "t": 67.252
+    },
+    {
+     "w": "Parabéns",
+     "t": 68.455
+    },
+    {
+     "w": "você",
+     "t": 69.281
+    },
+    {
+     "w": "construiu",
+     "t": 69.587
+    },
+    {
+     "w": "a",
+     "t": 70.13
+    },
+    {
+     "w": "internet",
+     "t": 70.177
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("cabo", { fundo: 0x9cc8ea, seed: 5151 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, tex, texRuido, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- oceano em corte ----------
+const fundoY = (x) => { const a = Math.abs(x); return a > 8 ? .3 : a > 6 ? -3.2 + 3.5 * ((a - 6) / 2) ** 1.5 : -3.2 + Math.sin(x * 1.3) * .12; };
+const chaoG = new THREE.PlaneGeometry(22, 6, 220, 6); chaoG.rotateX(-Math.PI / 2);
+{ const p = chaoG.attributes.position; for (let i = 0; i < p.count; i++) p.setY(i, fundoY(p.getX(i))); chaoG.computeVertexNormals(); }
+add(chaoG, mat(0xffffff, { map: texRuido("#c9a86a", 40, 8) }));
+// frente do corte (terra)
+const corte = new THREE.Shape(); corte.moveTo(-11, -5); for (let x = -11; x <= 11; x += .1) corte.lineTo(x, fundoY(x)); corte.lineTo(11, -5);
+add(new THREE.ShapeGeometry(corte), mat(0x8a6a44), 0, 0, 3);
+const agua = add(new THREE.BoxGeometry(16, 3.4, 6), vidro(.28, 0x2a7ad0), 0, -1.7, 0);
+const superficie = add(new THREE.PlaneGeometry(16, 6), new THREE.MeshPhysicalMaterial({ color: 0x5aaaf0, transparent: true, opacity: .35, side: THREE.DoubleSide, roughness: .1 }), 0, 0, 0); superficie.rotation.x = -Math.PI / 2;
+// continentes: casinhas e postes
+for (const s of [-1, 1]) { for (let i = 0; i < 3; i++) { const h = add(new THREE.BoxGeometry(.5, .5, .5), mat([0xf2e2b0, 0xe0a0a0, 0xc9d6e0][i]), s * (8.6 + i * .7), .55, -1 + i * .6); add(new THREE.ConeGeometry(.42, .35, 4), mat(0xb04030), 0, .42, 0, h).rotation.y = Math.PI / 4; } add(new THREE.CylinderGeometry(.04, .04, 1.6, 8), mat(0x6a4a2a), s * 8.2, 1.1, 0); }
+// fio pendurado (cena 1-2)
+const OX = 300;
+add(new THREE.PlaneGeometry(80, 60), mat(0x2a7ad0, { roughness: .2, metalness: .1 }), OX, 0, 0).rotation.x = -Math.PI / 2;
+for (const s of [-1, 1]) { add(new THREE.BoxGeometry(1.6, .5, 2.4), mat(0x5aa04a), OX + s * 2.2, .05, 0); for (let i = 0; i < 2; i++) { const h = add(new THREE.BoxGeometry(.35, .35, .35), mat([0xf2e2b0, 0xe0a0a0][i]), OX + s * (2.4 + i * .4), .48, -.5 + i * .7); add(new THREE.ConeGeometry(.3, .25, 4), mat(0xb04030), 0, .3, 0, h).rotation.y = Math.PI / 4; } add(new THREE.CylinderGeometry(.03, .03, 1, 8), mat(0x6a4a2a), OX + s * 1.6, .8, 0); }
+const fioPts = (caida) => Array.from({ length: 40 }, (_, i) => { const k = i / 39, x = OX - 1.6 + 3.2 * k; return V(x, 1.25 - caida * Math.sin(k * Math.PI), 0); });
+const fio = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fioPts(.3)), 80, .03, 6), mat(0x222222));
+// satélite (cena 2)
+const sat = grupo(OX, 3.6, -1.5); add(new THREE.BoxGeometry(.5, .5, .5), mat(0xd8b040, { metalness: .7 }), 0, 0, 0, sat); for (const s of [-1, 1]) add(new THREE.BoxGeometry(1.2, .03, .4), mat(0x1a3a8a), s * .85, 0, 0, sat);
+const sinalSat = fluxo(new THREE.CatmullRomCurve3([V(OX - 2.3, .6, 0), V(OX, 3.5, -1.5), V(OX + 2.3, .6, 0)]), 8, 0xffd23a);
+// cabo no fundo
+const caboCurva = new THREE.CatmullRomCurve3(Array.from({ length: 120 }, (_, i) => { const x = -9.5 + 19 * i / 119; return V(x, fundoY(x) + .08, 0); }));
+const cabo = add(new THREE.TubeGeometry(caboCurva, 600, .07, 8), mat(0x1a1a1a, { roughness: .4 }));
+cabo.geometry.setDrawRange(0, 0);
+const luz = Array.from({ length: 36 }, (_, i) => ({ s: sprite(0x9af0ff), f: i / 36 }));
+const repetidores = [-4.5, -1.5, 1.5, 4.5].map((x) => { const r = add(new THREE.CapsuleGeometry(.16, .5, 8, 16), mat(0x9aa4ae, { metalness: .7, emissive: 0x3aff7a, emissiveIntensity: 0 }), x, fundoY(x) + .1, 0); r.rotation.z = Math.PI / 2; return r; });
+const energia = fluxo(caboCurva, 26, 0xffd23a);
+// trecho perto da praia: vala + aço
+const armadura = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 30 }, (_, i) => { const x = 6 + 3.5 * i / 29; return V(x, fundoY(x) + .08, 0); })), 120, .13, 8), mat(0x7a8088, { metalness: .8, roughness: .3 }));
+const areia = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 30 }, (_, i) => { const x = 6 + 3.5 * i / 29; return V(x, fundoY(x) + .16, 0); })), 120, .2, 8, false), mat(0xc9a86a));
+// âncora + rede
+const ancora = grupo(-2, -1, .4);
+add(new THREE.CylinderGeometry(.05, .05, 1, 8), mat(0x444444, { metalness: .7 }), 0, 0, 0, ancora);
+add(new THREE.TorusGeometry(.35, .05, 8, 20, Math.PI), mat(0x444444, { metalness: .7 }), 0, -.45, 0, ancora).rotation.z = Math.PI;
+const corrente = add(new THREE.CylinderGeometry(.015, .015, 3, 6), mat(0x666666), 0, 2, 0, ancora);
+const rede = add(new THREE.PlaneGeometry(1.6, 1), new THREE.MeshBasicMaterial({ map: K.grade("rgba(0,0,0,0)", "#e8e0c0", 32, 1), transparent: true, side: THREE.DoubleSide }), 2, -2.6, .3);
+// tubarão
+const tub = grupo(-6, -2.6, .5);
+const corpoT = add(new THREE.SphereGeometry(.5, 24, 16), mat(0x7a8898), 0, 0, 0, tub); corpoT.scale.set(2.4, .7, .8);
+add(new THREE.SphereGeometry(.42, 20, 12), mat(0xe8eef2), 0, -.12, 0, tub).scale.set(2.2, .4, .7);
+add(new THREE.ConeGeometry(.22, .5, 4), mat(0x7a8898), -.1, .45, 0, tub).scale.z = .3;
+const rabo = add(new THREE.ConeGeometry(.3, .6, 4), mat(0x7a8898), -1.35, .05, 0, tub); rabo.rotation.z = Math.PI / 2; rabo.scale.z = .25;
+add(new THREE.SphereGeometry(.05, 8, 8), brilho(0x111111), .95, .1, .32, tub);
+const mordida = sprite(0xff5a3a);
+// navio + gancho
+const navio = grupo(2.2, 0, 0); add(new THREE.BoxGeometry(2.2, .5, 1), mat(0xd04a30), 0, .2, 0, navio); add(new THREE.BoxGeometry(.9, .6, .8), mat(0xf2f2f2), -.4, .7, 0, navio); add(new THREE.CylinderGeometry(.04, .04, 1.2, 6), mat(0xffd23a), .7, .9, 0, navio);
+const linhaG = add(new THREE.CylinderGeometry(.015, .015, 1, 6), mat(0xffd23a), 0, 0, 0);
+const gancho = add(new THREE.TorusGeometry(.12, .03, 6, 16, Math.PI * 1.4), mat(0xbbbbbb, { metalness: .8 }), 0, 0, 0);
+const laco = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(1.0, -3.1, 0), V(1.8, -2.0, 0), V(2.9, .4, 0), V(3.2, -2.0, 0), V(4, -3.1, 0)]), 100, .07, 8), mat(0x1a1a1a));
+const emenda = sprite(0x3aff7a);
+
+// ---------- corte do cabo (mini set) ----------
+const SX = 100;
+const corteC = grupo(SX, 0, 0); corteC.rotation.y = -.6;
+const camadas = [[.5, 0x1a1a1a, 0], [.44, 0x8a9098, .5], [.36, 0xc87a3a, 1], [.28, 0xdddddd, 1.5], [.18, 0xe8c040, 2]];
+camadas.forEach(([r, c, d]) => { const m = add(new THREE.CylinderGeometry(r, r, 1 + d, 32), mat(c, { metalness: c === 0x8a9098 || c === 0xc87a3a ? .7 : .1, roughness: .4 }), 0, 0, -1.5 + (1 + d) / 2, corteC); m.rotation.x = Math.PI / 2; });
+const fibras = Array.from({ length: 8 }, (_, i) => { const a = i / 8 * 6.28; const f = add(new THREE.CylinderGeometry(.03, .03, 3.4, 10), new THREE.MeshStandardMaterial({ color: 0x9af0ff, emissive: 0x5ad8ff, emissiveIntensity: .3 }), Math.cos(a) * .09, Math.sin(a) * .09, -1.25 + 1.5, corteC); f.rotation.x = Math.PI / 2; f.position.z = .2; return f; });
+const cabelo = add(new THREE.CylinderGeometry(.06, .06, 2.4, 10), mat(0x3a2a1a), 0, .9, 1.4, corteC); cabelo.rotation.z = Math.PI / 2;
+
+// ---------- globo (fim) ----------
+const GX = 200, R = 2.2;
+const globo = grupo(GX, 0, 0);
+add(new THREE.SphereGeometry(R, 48, 32), mat(0xffffff, { map: tex(512, (g, s) => { g.fillStyle = "#1f5ab8"; g.fillRect(0, 0, s, s); g.fillStyle = "#3f9a48"; for (let i = 0; i < 18; i++) { g.beginPath(); g.ellipse(rnd() * s, s * .2 + rnd() * s * .6, 20 + rnd() * 60, 15 + rnd() * 40, rnd() * 3, 0, 6.28); g.fill(); } }) }), 0, 0, 0, globo);
+const rotas = Array.from({ length: 26 }, () => { const a = V(rnd() - .5, rnd() - .5, rnd() - .5).normalize(), b = V(rnd() - .5, rnd() - .5, rnd() - .5).normalize(); const pts = Array.from({ length: 30 }, (_, i) => a.clone().lerp(b, i / 29).normalize().multiplyScalar(R * 1.01)); const m = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 60, .018, 5), brilho(0x5ad8ff), 0, 0, 0, globo); m.geometry.setDrawRange(0, 0); return m; });
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(OX, 3.6, 14.5), V(OX, .7, 0)], fundoG: [V(-1, -.9, 15), V(-1, -2.4, 0)], praiaE: [V(-6.5, .4, 10), V(-6.5, -.8, 0)], ceu: [V(OX, 2.6, 14), V(OX, 2.0, -.5)],
+  fundo: [V(-1, -1.6, 9), V(-1, -2.4, 0)], rep: [V(-2.5, -1.6, 7.5), V(-3, -2.8, 0)], praiaD: [V(4.6, 1.8, 7.5), V(7, -1.6, 0)],
+  tub: [V(-3.8, -2.0, 6), V(-3.6, -2.8, 0)], navio: [V(2.4, -.6, 10.5), V(2.4, -1.4, 0)],
+  corte: [V(SX + .8, .5, 9.5), V(SX, .1, 0)], globo: [V(GX, .3, 15), V(GX, 0, 0)], globo2: [V(GX + 2.5, 1.2, 13.5), V(GX, 0, 0)],
+}, [
+  [0, "geral"], [F(1), "geral"],
+  [C(2), "geral"], [P(2, "satelite") - .4, "geral"], [P(2, "satelite"), "ceu"], [F(2), "ceu"],
+  [C(3), "fundoG"], [P(3, "fundo") + .5, "fundo"], [P(3, "vidro") - .4, "fundo"], [P(3, "vidro") - .35, "corte"], [F(3), "corte"],
+  [C(4), "fundo"], [P(4, "repetidor") - .3, "rep"], [F(4), "rep"],
+  [C(5), "fundo"], [P(5, "praia") - .3, "praiaD"], [F(5), "praiaD"],
+  [C(6), "tub"], [F(6), "tub"],
+  [C(7), "navio"], [F(7), "navio"],
+  [C(8), "globo"], [T, "globo2"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // fio de cima: cai no mar
+  const cai = prog(t, P(2, "oceano") - .2, P(2, "pendurar") + .3);
+  fio.visible = t < P(2, "satelite") + .3;
+  if (cai > 0 && cai < 1.01) { fio.geometry.dispose(); fio.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fioPts(.3 + 1.4 * cai)), 80, .03, 6); }
+  fio.visible = fio.visible && t > P(1, "fio") - .2;
+  // satélite
+  sat.visible = em(P(2, "satelite") - .4, C(3)); sat.rotation.y = t * .5;
+  sinalSat.atualiza(t, em(P(2, "satelite"), C(3)), .12, .35);
+  // cabo deitando no fundo
+  const deita = prog(t, P(3, "cabo") - .2, P(3, "fundo") + 1.5);
+  cabo.geometry.setDrawRange(0, Math.floor(deita * 600) * 48);
+  // luz piscando no cabo (cena 3-5, 8) e enfraquecendo (cena 4)
+  const luzOn = t > P(3, "luz") - .3 && t < C(8);
+  const fraca = em(P(4, "fraca") - .3, P(4, "repetidor") - .2);
+  luz.forEach((p) => { const k = frac(t * .18 + p.f); p.s.position.copy(caboCurva.getPoint(k)); p.s.position.y += .04;
+    let op = frac(t * 6 + p.f * 13) < .5 ? 1 : .2; if (fraca) op *= Math.max(.05, 1 - k * 1.6); if (t > P(4, "repetidor") - .2 && t < C(5)) op *= .6 + .4 * Math.abs(Math.sin(k * 20));
+    p.s.scale.setScalar(.22); p.s.material.opacity = luzOn ? op : 0; });
+  repetidores.forEach((r, i) => { r.visible = t > P(4, "repetidor") - .3 + i * .2; r.material.emissiveIntensity = r.visible ? .6 + .6 * Math.sin(t * 5 + i) : 0; });
+  energia.atualiza(t, em(P(4, "energia") - .3, F(4)), .1, .12);
+  // praia: vala com aço
+  const enterra = prog(t, P(5, "enterra") - .3, P(5, "enterra") + .4), aco = prog(t, P(5, "aco") - .3, P(5, "aco") + .3);
+  armadura.visible = t > P(5, "aco") - .3; armadura.scale.setScalar(1); armadura.material.opacity = aco;
+  areia.visible = t > P(5, "enterra") - .3 && t < F(7) + 50; areia.scale.y = 1; areia.material.transparent = true; areia.material.opacity = enterra;
+  // âncora arrastando + rede
+  const arrasta = em(P(5, "ancoras") - .5, P(5, "praia") - .2) || em(P(6, "ancora") - .8, C(7));
+  ancora.visible = arrasta; const ka = em(C(6), C(7)) ? prog(t, P(6, "ancora") - .8, F(6)) : prog(t, P(5, "ancoras") - .5, P(5, "praia") - .2);
+  ancora.position.set(-4.5 + 4 * ka, -2.7, .2); ancora.rotation.z = .4;
+  rede.visible = em(P(5, "redes") - .4, P(5, "praia") - .2); rede.position.x = -1 + 2 * prog(t, P(5, "redes") - .4, P(5, "praia"));
+  // tubarão
+  const nada = prog(t, C(6) - .2, P(6, "cabo"));
+  tub.visible = em(C(6) - .2, F(6)); tub.position.set(-6 + 2.3 * nada, -2.6 + .1 * Math.sin(t * 3), .4); tub.rotation.y = Math.sin(t * 6) * .12; rabo.rotation.y = Math.sin(t * 9) * .4;
+  const morde = pulse(t, P(6, "cabo") - .1, .5);
+  tub.rotation.z = -.3 * morde; mordida.position.set(-2.6, -3.0, .4); mordida.scale.setScalar(.8 * morde); mordida.material.opacity = morde;
+  // navio pesca o cabo
+  navio.visible = t > C(7) - .2 && t < C(8); navio.position.y = Math.sin(t * 1.4) * .05; navio.rotation.z = Math.sin(t * 1.1) * .03;
+  const desce = prog(t, P(7, "gancho") - .5, P(7, "gancho") + .5), sobe = prog(t, P(7, "puxa") - .2, P(7, "emenda") - .2);
+  const yG = .4 - 3.3 * desce + 3.3 * sobe;
+  linhaG.visible = gancho.visible = em(P(7, "gancho") - .5, C(8)); linhaG.position.set(2.9, (.9 + yG) / 2, 0); linhaG.scale.y = Math.max(.01, .9 - yG); gancho.position.set(2.9, yG, 0);
+  laco.visible = t > P(7, "puxa") - .2 && t < C(8); laco.scale.y = Math.max(.01, sobe); laco.position.y = -3.1 * (1 - sobe);
+  const quebrado = em(P(7, "quebra") - .2, P(7, "emenda") + .2);
+  cabo.visible = !(em(P(7, "puxa") - .2, C(8)));
+  emenda.position.set(2.9, .4, .2); emenda.scale.setScalar(.8 + .3 * Math.sin(t * 9)); emenda.material.opacity = em(P(7, "emenda") - .2, C(8)) ? 1 : 0;
+  // fibras no corte
+  fibras.forEach((f, i) => f.material.emissiveIntensity = t > P(3, "luz") - .3 ? (frac(t * 4 + i * .37) < .5 ? 2.5 : .3) : .3);
+  cabelo.visible = em(P(3, "cabelo") - .4, F(3));
+  // globo com cabos
+  globo.rotation.y = t * .25;
+  rotas.forEach((r, i) => r.geometry.setDrawRange(0, Math.floor(prog(t, P(8, "centenas") - .5 + i * .08, P(8, "centenas") + .5 + i * .08) * 60) * 30));
+  K.cartoes(t, [
+    [P(2, "oceano") - .3, P(2, "satelite") - .4, "OCEANO NO MEIO", "#ff4a3a"],
+    [P(2, "longe") - .3, F(2), "LONGE DEMAIS", "#ffd23a"],
+    [P(3, "vidro") - .3, P(3, "luz") - .3, "FIBRA DE VIDRO", "#9af0ff"],
+    [P(3, "luz") - .3, F(3), "LUZ PISCANDO", "#5ad8ff"],
+    [P(4, "fraca") - .3, P(4, "oitenta") - .3, "A LUZ ENFRAQUECE", "#ff4a3a"],
+    [P(4, "oitenta") - .3, P(4, "energia") - .3, "REPETIDOR A CADA ~80 KM", "#3aff7a"],
+    [P(4, "energia") - .3, F(4), "ENERGIA PELO CABO", "#ffd23a"],
+    [P(5, "ancoras") - .3, P(5, "praia") - .3, "ÂNCORAS E REDES", "#ff4a3a"],
+    [P(5, "aco") - .3, P(5, "profundo") - .3, "ENTERRADO + AÇO", "#c9d6e0"],
+    [P(5, "mangueira") - .5, F(5), "FINO COMO MANGUEIRA", "#ffffff"],
+    [P(6, "tubarao") - .3, P(6, "ancora") - .8, "MORDIDA!", "#ff4a3a"],
+    [P(6, "ancora") - .8, F(6), "CULPADA Nº 1: ÂNCORA", "#ffd23a"],
+    [P(7, "emenda") - .3, F(7), "EMENDA A BORDO", "#3aff7a"],
+    [P(8, "quase") - .3, F(8) - 2.5, "~99% DA INTERNET ENTRE PAÍSES", "#5ad8ff"],
+  ]);
+});
+</script>
+</body></html>
