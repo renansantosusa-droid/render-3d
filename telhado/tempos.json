@@ -1,0 +1,793 @@
+{
+ "total": 67.24,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.63,
+   "texto": "Se você colocar uma tábua em cima da casa, terá um telhado.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "uma",
+     "t": 1.093
+    },
+    {
+     "w": "tábua",
+     "t": 1.27
+    },
+    {
+     "w": "em",
+     "t": 1.589
+    },
+    {
+     "w": "cima",
+     "t": 1.659
+    },
+    {
+     "w": "da",
+     "t": 1.954
+    },
+    {
+     "w": "casa",
+     "t": 2.084
+    },
+    {
+     "w": "terá",
+     "t": 2.603
+    },
+    {
+     "w": "um",
+     "t": 2.815
+    },
+    {
+     "w": "telhado",
+     "t": 2.921
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.78,
+   "fim": 9.84,
+   "texto": "Mas a chuva empoça. A madeira apodrece. E um dia, pinga na sua cama.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.827
+    },
+    {
+     "w": "a",
+     "t": 4.039
+    },
+    {
+     "w": "chuva",
+     "t": 4.193
+    },
+    {
+     "w": "empoça",
+     "t": 4.523
+    },
+    {
+     "w": "A",
+     "t": 5.808
+    },
+    {
+     "w": "madeira",
+     "t": 5.903
+    },
+    {
+     "w": "apodrece",
+     "t": 6.315
+    },
+    {
+     "w": "E",
+     "t": 7.766
+    },
+    {
+     "w": "um",
+     "t": 7.884
+    },
+    {
+     "w": "dia",
+     "t": 8.002
+    },
+    {
+     "w": "pinga",
+     "t": 8.532
+    },
+    {
+     "w": "na",
+     "t": 8.851
+    },
+    {
+     "w": "sua",
+     "t": 8.957
+    },
+    {
+     "w": "cama",
+     "t": 9.216
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.99,
+   "fim": 17.5,
+   "texto": "Então, você inclina o telhado, pra água escorrer sozinha. E troca a tábua por telhas de barro, que não apodrecem.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.037
+    },
+    {
+     "w": "você",
+     "t": 10.792
+    },
+    {
+     "w": "inclina",
+     "t": 11.016
+    },
+    {
+     "w": "o",
+     "t": 11.405
+    },
+    {
+     "w": "telhado",
+     "t": 11.452
+    },
+    {
+     "w": "pra",
+     "t": 12.148
+    },
+    {
+     "w": "água",
+     "t": 12.348
+    },
+    {
+     "w": "escorrer",
+     "t": 12.632
+    },
+    {
+     "w": "sozinha",
+     "t": 12.985
+    },
+    {
+     "w": "E",
+     "t": 14.365
+    },
+    {
+     "w": "troca",
+     "t": 14.483
+    },
+    {
+     "w": "a",
+     "t": 14.813
+    },
+    {
+     "w": "tábua",
+     "t": 14.872
+    },
+    {
+     "w": "por",
+     "t": 15.19
+    },
+    {
+     "w": "telhas",
+     "t": 15.379
+    },
+    {
+     "w": "de",
+     "t": 15.662
+    },
+    {
+     "w": "barro",
+     "t": 15.745
+    },
+    {
+     "w": "que",
+     "t": 16.264
+    },
+    {
+     "w": "não",
+     "t": 16.393
+    },
+    {
+     "w": "apodrecem",
+     "t": 16.629
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.65,
+   "fim": 28.75,
+   "texto": "Mas uma telha só não cobre tudo. Então, você encaixa uma sobre a outra, como escamas de peixe. A de cima sempre cobre a de baixo, pra água nunca achar uma fresta.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 17.697
+    },
+    {
+     "w": "uma",
+     "t": 17.886
+    },
+    {
+     "w": "telha",
+     "t": 18.133
+    },
+    {
+     "w": "só",
+     "t": 18.44
+    },
+    {
+     "w": "não",
+     "t": 18.617
+    },
+    {
+     "w": "cobre",
+     "t": 18.794
+    },
+    {
+     "w": "tudo",
+     "t": 19.136
+    },
+    {
+     "w": "Então",
+     "t": 20.244
+    },
+    {
+     "w": "você",
+     "t": 21.034
+    },
+    {
+     "w": "encaixa",
+     "t": 21.258
+    },
+    {
+     "w": "uma",
+     "t": 21.718
+    },
+    {
+     "w": "sobre",
+     "t": 21.86
+    },
+    {
+     "w": "a",
+     "t": 22.108
+    },
+    {
+     "w": "outra",
+     "t": 22.202
+    },
+    {
+     "w": "como",
+     "t": 22.756
+    },
+    {
+     "w": "escamas",
+     "t": 22.968
+    },
+    {
+     "w": "de",
+     "t": 23.393
+    },
+    {
+     "w": "peixe",
+     "t": 23.511
+    },
+    {
+     "w": "A",
+     "t": 24.725
+    },
+    {
+     "w": "de",
+     "t": 24.855
+    },
+    {
+     "w": "cima",
+     "t": 24.985
+    },
+    {
+     "w": "sempre",
+     "t": 25.28
+    },
+    {
+     "w": "cobre",
+     "t": 25.681
+    },
+    {
+     "w": "a",
+     "t": 25.987
+    },
+    {
+     "w": "de",
+     "t": 26.046
+    },
+    {
+     "w": "baixo",
+     "t": 26.164
+    },
+    {
+     "w": "pra",
+     "t": 26.789
+    },
+    {
+     "w": "água",
+     "t": 26.966
+    },
+    {
+     "w": "nunca",
+     "t": 27.273
+    },
+    {
+     "w": "achar",
+     "t": 27.65
+    },
+    {
+     "w": "uma",
+     "t": 27.898
+    },
+    {
+     "w": "fresta",
+     "t": 28.075
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.9,
+   "fim": 42.16,
+   "texto": "Mas as telhas pesam. Então, você monta um esqueleto de madeira por baixo: a tesoura, em forma de triângulo, porque o triângulo não entorta. Em cima, as ripas, onde as telhas ficam penduradas.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 28.947
+    },
+    {
+     "w": "as",
+     "t": 29.136
+    },
+    {
+     "w": "telhas",
+     "t": 29.36
+    },
+    {
+     "w": "pesam",
+     "t": 29.678
+    },
+    {
+     "w": "Então",
+     "t": 30.905
+    },
+    {
+     "w": "você",
+     "t": 31.659
+    },
+    {
+     "w": "monta",
+     "t": 31.919
+    },
+    {
+     "w": "um",
+     "t": 32.249
+    },
+    {
+     "w": "esqueleto",
+     "t": 32.32
+    },
+    {
+     "w": "de",
+     "t": 32.815
+    },
+    {
+     "w": "madeira",
+     "t": 32.898
+    },
+    {
+     "w": "por",
+     "t": 33.287
+    },
+    {
+     "w": "baixo",
+     "t": 33.428
+    },
+    {
+     "w": "a",
+     "t": 34.041
+    },
+    {
+     "w": "tesoura",
+     "t": 34.112
+    },
+    {
+     "w": "em",
+     "t": 34.808
+    },
+    {
+     "w": "forma",
+     "t": 34.914
+    },
+    {
+     "w": "de",
+     "t": 35.291
+    },
+    {
+     "w": "triângulo",
+     "t": 35.398
+    },
+    {
+     "w": "porque",
+     "t": 36.117
+    },
+    {
+     "w": "o",
+     "t": 36.424
+    },
+    {
+     "w": "triângulo",
+     "t": 36.494
+    },
+    {
+     "w": "não",
+     "t": 36.978
+    },
+    {
+     "w": "entorta",
+     "t": 37.178
+    },
+    {
+     "w": "Em",
+     "t": 38.511
+    },
+    {
+     "w": "cima",
+     "t": 38.676
+    },
+    {
+     "w": "as",
+     "t": 39.336
+    },
+    {
+     "w": "ripas",
+     "t": 39.501
+    },
+    {
+     "w": "onde",
+     "t": 40.209
+    },
+    {
+     "w": "as",
+     "t": 40.398
+    },
+    {
+     "w": "telhas",
+     "t": 40.563
+    },
+    {
+     "w": "ficam",
+     "t": 40.893
+    },
+    {
+     "w": "penduradas",
+     "t": 41.211
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.31,
+   "fim": 49.77,
+   "texto": "E a água que escorre cai bem na porta de casa. Então, você coloca uma calha na beirada, que leva a água pro cano.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 42.357
+    },
+    {
+     "w": "a",
+     "t": 42.475
+    },
+    {
+     "w": "água",
+     "t": 42.534
+    },
+    {
+     "w": "que",
+     "t": 42.841
+    },
+    {
+     "w": "escorre",
+     "t": 42.935
+    },
+    {
+     "w": "cai",
+     "t": 43.371
+    },
+    {
+     "w": "bem",
+     "t": 43.607
+    },
+    {
+     "w": "na",
+     "t": 43.831
+    },
+    {
+     "w": "porta",
+     "t": 43.985
+    },
+    {
+     "w": "de",
+     "t": 44.315
+    },
+    {
+     "w": "casa",
+     "t": 44.421
+    },
+    {
+     "w": "Então",
+     "t": 45.6
+    },
+    {
+     "w": "você",
+     "t": 46.355
+    },
+    {
+     "w": "coloca",
+     "t": 46.614
+    },
+    {
+     "w": "uma",
+     "t": 47.015
+    },
+    {
+     "w": "calha",
+     "t": 47.169
+    },
+    {
+     "w": "na",
+     "t": 47.428
+    },
+    {
+     "w": "beirada",
+     "t": 47.534
+    },
+    {
+     "w": "que",
+     "t": 48.206
+    },
+    {
+     "w": "leva",
+     "t": 48.348
+    },
+    {
+     "w": "a",
+     "t": 48.666
+    },
+    {
+     "w": "água",
+     "t": 48.725
+    },
+    {
+     "w": "pro",
+     "t": 49.032
+    },
+    {
+     "w": "cano",
+     "t": 49.185
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 49.92,
+   "fim": 59.52,
+   "texto": "Mas o sol esquenta a telha, e a casa vira um forno. Então, você coloca uma manta embaixo das telhas, que reflete o calor e ainda segura alguma goteira.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 49.967
+    },
+    {
+     "w": "o",
+     "t": 50.168
+    },
+    {
+     "w": "sol",
+     "t": 50.297
+    },
+    {
+     "w": "esquenta",
+     "t": 50.569
+    },
+    {
+     "w": "a",
+     "t": 50.946
+    },
+    {
+     "w": "telha",
+     "t": 51.005
+    },
+    {
+     "w": "e",
+     "t": 51.606
+    },
+    {
+     "w": "a",
+     "t": 51.689
+    },
+    {
+     "w": "casa",
+     "t": 51.783
+    },
+    {
+     "w": "vira",
+     "t": 52.113
+    },
+    {
+     "w": "um",
+     "t": 52.314
+    },
+    {
+     "w": "forno",
+     "t": 52.42
+    },
+    {
+     "w": "Então",
+     "t": 53.646
+    },
+    {
+     "w": "você",
+     "t": 54.425
+    },
+    {
+     "w": "coloca",
+     "t": 54.696
+    },
+    {
+     "w": "uma",
+     "t": 55.12
+    },
+    {
+     "w": "manta",
+     "t": 55.262
+    },
+    {
+     "w": "embaixo",
+     "t": 55.58
+    },
+    {
+     "w": "das",
+     "t": 55.993
+    },
+    {
+     "w": "telhas",
+     "t": 56.182
+    },
+    {
+     "w": "que",
+     "t": 56.783
+    },
+    {
+     "w": "reflete",
+     "t": 56.925
+    },
+    {
+     "w": "o",
+     "t": 57.385
+    },
+    {
+     "w": "calor",
+     "t": 57.42
+    },
+    {
+     "w": "e",
+     "t": 57.786
+    },
+    {
+     "w": "ainda",
+     "t": 57.845
+    },
+    {
+     "w": "segura",
+     "t": 58.104
+    },
+    {
+     "w": "alguma",
+     "t": 58.493
+    },
+    {
+     "w": "goteira",
+     "t": 58.812
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 59.67,
+   "fim": 66.64,
+   "texto": "Coloque a cumeeira no topo, pra fechar o encontro das duas águas. Parabéns, você construiu um telhado.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 59.717
+    },
+    {
+     "w": "a",
+     "t": 60.177
+    },
+    {
+     "w": "cumeeira",
+     "t": 60.224
+    },
+    {
+     "w": "no",
+     "t": 60.649
+    },
+    {
+     "w": "topo",
+     "t": 60.79
+    },
+    {
+     "w": "pra",
+     "t": 61.392
+    },
+    {
+     "w": "fechar",
+     "t": 61.557
+    },
+    {
+     "w": "o",
+     "t": 61.958
+    },
+    {
+     "w": "encontro",
+     "t": 62.005
+    },
+    {
+     "w": "das",
+     "t": 62.477
+    },
+    {
+     "w": "duas",
+     "t": 62.642
+    },
+    {
+     "w": "águas",
+     "t": 62.925
+    },
+    {
+     "w": "Parabéns",
+     "t": 64.269
+    },
+    {
+     "w": "você",
+     "t": 65.036
+    },
+    {
+     "w": "construiu",
+     "t": 65.33
+    },
+    {
+     "w": "um",
+     "t": 65.826
+    },
+    {
+     "w": "telhado",
+     "t": 65.944
+    }
+   ]
+  }
+ ]
+}

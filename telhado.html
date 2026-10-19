@@ -1,0 +1,139 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("telhado", { fundo: 0x9cc8ea, seed: 2828 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, tex, grade, texRuido, texMadeira, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+add(new THREE.PlaneGeometry(40, 40), mat(0xffffff, { map: texRuido("#6aa84a", 40, 16), roughness: 1 }), 0, 0, 0).rotation.x = -Math.PI / 2;
+// ---------- casa em corte (sem a parede da frente) ----------
+const YW = 1.8, LX = 1.5, LZ = 1.1;
+const mParede = mat(0xf2e2b0);
+add(new THREE.BoxGeometry(LX * 2, YW, .1), mParede, 0, YW / 2, -LZ);
+add(new THREE.BoxGeometry(.1, YW, LZ * 2), mParede, -LX, YW / 2, 0);
+add(new THREE.BoxGeometry(.1, YW, LZ * 2), mParede, LX, YW / 2, 0);
+add(new THREE.BoxGeometry(LX * 2, .05, LZ * 2), mat(0xffffff, { map: grade("#d8c8a8", "#b8a888", 64, 4) }), 0, .03, 0);
+const porta = add(new THREE.BoxGeometry(.04, 1.2, .6), mat(0x8a5a2a), LX + .06, .6, .3);
+const cama = grupo(-.6, 0, -.3); add(new THREE.BoxGeometry(1.2, .35, .8), mat(0xffffff, { map: texMadeira("#9a6a3a") }), 0, .18, 0, cama); add(new THREE.BoxGeometry(1.15, .1, .75), mat(0xe8eef8), 0, .4, 0, cama); add(new THREE.BoxGeometry(.3, .08, .5), mat(0xffffff), -.4, .48, 0, cama);
+const molhado = add(new THREE.CircleGeometry(.22, 24), new THREE.MeshBasicMaterial({ map: K.texMancha, color: 0x3a6ab0, transparent: true, opacity: 0, depthWrite: false }), -.45, .46, -.3); molhado.rotation.x = -Math.PI / 2;
+const quente = add(new THREE.BoxGeometry(LX * 2 - .2, YW - .1, LZ * 2 - .2), new THREE.MeshBasicMaterial({ color: 0xff4a1a, transparent: true, opacity: 0, depthWrite: false }), 0, YW / 2, 0);
+// ---------- telhado: duas metades que giram na cumeeira ----------
+const RUN = 1.85, ANG = .5;
+const lados = [-1, 1].map((s) => {
+  const g = grupo(0, YW + .05, 0);
+  const tabua = add(new THREE.BoxGeometry(RUN, .06, LZ * 2 + .3), mat(0xffffff, { map: texMadeira("#b08050") }), s * RUN / 2, 0, 0, g);
+  const manta = add(new THREE.BoxGeometry(RUN, .01, LZ * 2 + .2), mat(0xd8dde2, { metalness: .9, roughness: .15 }), s * RUN / 2, -.02, 0, g);
+  const ripas = Array.from({ length: 5 }, (_, i) => add(new THREE.BoxGeometry(.04, .03, LZ * 2 + .3), mat(0xc89a5a), s * (.2 + i * .38), -.05, 0, g));
+  const telhas = []; for (let r = 0; r < 6; r++) for (let c = 0; c < 8; c++) { const m = add(new THREE.CylinderGeometry(.14, .16, .38, 12, 1, true, 0, Math.PI), new THREE.MeshStandardMaterial({ color: 0xc8643a, roughness: .7, side: THREE.DoubleSide, transparent: true, opacity: 1 }), s * (RUN - .17 - r * .3), .02 + r * .012, -LZ - .1 + c * .32, g); m.rotation.set(0, 0, s * Math.PI / 2); m.rotation.x = Math.PI / 2 * 0; m.rotateY(Math.PI / 2); m.userData = { r, c }; telhas.push(m); }
+  return { s, g, tabua, manta, ripas, telhas };
+});
+const cumeeira = add(new THREE.CylinderGeometry(.16, .16, LZ * 2 + .4, 16, 1, true, 0, Math.PI), new THREE.MeshStandardMaterial({ color: 0xb0502a, side: THREE.DoubleSide }), 0, 0, 0); cumeeira.rotation.x = Math.PI / 2; cumeeira.rotation.y = Math.PI / 2;
+// tesouras (triângulos)
+const mMad = mat(0xffffff, { map: texMadeira("#a8763e") });
+const yR = YW + .05 + RUN * Math.tan(ANG);
+const tesouras = [-.8, 0, .8].map((z) => { const g = grupo(0, 0, z); const L = Math.hypot(RUN, yR - YW); add(new THREE.BoxGeometry(RUN * 2, .08, .08), mMad, 0, YW, 0, g); for (const s of [-1, 1]) { const b = add(new THREE.BoxGeometry(L, .08, .08), mMad, s * RUN / 2, (YW + yR) / 2, 0, g); b.rotation.z = -s * ANG; } add(new THREE.BoxGeometry(.07, yR - YW, .07), mMad, 0, (YW + yR) / 2, 0, g); g.visible = false; return g; });
+const triBrilho = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(-RUN, YW, .9), V(0, yR, .9), V(RUN, YW, .9), V(-RUN, YW, .9)], false, "catmullrom", 0), 60, .03, 6), brilho(0xffd23a));
+// quadrado que entorta x triângulo que não entorta (mini set)
+const QX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2b3a52), QX, 1, -1);
+const quadrado = grupo(QX - .9, 1, 0), triangulo = grupo(QX + .9, 1, 0);
+const barra = (g, a, b) => { const d = b.clone().sub(a); const m = add(new THREE.BoxGeometry(d.length(), .07, .07), mMad, (a.x + b.x) / 2, (a.y + b.y) / 2, 0, g); m.rotation.z = Math.atan2(d.y, d.x); return m; };
+function desenhaQ(k) { while (quadrado.children.length) quadrado.remove(quadrado.children[0]); const sh = .45 * k; const p = [V(-.5, -.5, 0), V(.5, -.5, 0), V(.5 + sh, .5, 0), V(-.5 + sh, .5, 0)]; for (let i = 0; i < 4; i++) barra(quadrado, p[i], p[(i + 1) % 4]); }
+const pt = [V(-.55, -.5, 0), V(.55, -.5, 0), V(0, .5, 0)]; for (let i = 0; i < 3; i++) barra(triangulo, pt[i], pt[(i + 1) % 3]);
+const peso = [quadrado, triangulo].map((g) => add(new THREE.BoxGeometry(.3, .25, .3), mat(0x555555), 0, 1.0, 0, g));
+// calha + cano
+const calha = add(new THREE.CylinderGeometry(.08, .08, LZ * 2 + .3, 12, 1, true, 0, Math.PI), mat(0xc0c6cc, { metalness: .7, side: THREE.DoubleSide }), RUN + .05, YW - .05, 0); calha.rotation.x = Math.PI / 2; calha.rotation.y = Math.PI;
+const cano = add(new THREE.CylinderGeometry(.05, .05, YW, 10), mat(0xc0c6cc, { metalness: .7 }), RUN + .05, YW / 2, -LZ);
+// chuva
+const gotas = Array.from({ length: 110 }, () => ({ s: sprite(0x5aa0ff), x: (rnd() * 2 - 1) * (RUN + .1), z: (rnd() * 2 - 1) * LZ, f: rnd() }));
+const poca = add(new THREE.CircleGeometry(.6, 30), new THREE.MeshBasicMaterial({ color: 0x5aa0ff, transparent: true, opacity: 0 }), .2, YW + .1, .1); poca.rotation.x = -Math.PI / 2;
+const pinga = Array.from({ length: 6 }, () => ({ s: sprite(0x5aa0ff), f: rnd() }));
+const sol = sprite(0xfff2a0); sol.position.set(2.5, 6.5, -3); sol.scale.setScalar(2.5);
+const raios = Array.from({ length: 20 }, () => ({ s: sprite(0xffb03a), f: rnd(), x: (rnd() - .5) * 3, z: (rnd() - .5) * 2 }));
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(.5, 3.4, 11.5), V(0, 1.7, 0)], cama: [V(.2, 2.0, 5.2), V(-.3, 1.0, 0)], telhas: [V(1.8, 4.2, 6.0), V(.6, 2.2, 0)],
+  quadro: [V(QX, 1.4, 5.2), V(QX, 1.2, 0)], estrutura: [V(.6, 2.8, 6.2), V(0, 2.1, 0)], calha: [V(4.2, 2.6, 6.0), V(1.6, 1.4, 0)],
+  fim: [V(-1.2, 3.6, 9.5), V(0, 1.8, 0)],
+}, [
+  [0, "geral"], [P(2, "pinga") - .4, "geral"], [P(2, "pinga"), "cama"], [F(2), "cama"],
+  [C(3), "geral"], [F(3), "geral"], [C(4), "telhas"], [F(4), "telhas"],
+  [C(5), "estrutura"], [P(5, "triangulo", 2) - .3, "estrutura"], [P(5, "triangulo", 2) - .25, "quadro"], [P(5, "ripas") - .35, "quadro"], [P(5, "ripas") - .3, "estrutura"], [F(5), "estrutura"],
+  [C(6), "calha"], [F(6), "calha"], [C(7), "geral"], [F(7), "geral"], [C(8), "telhas"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // inclinação
+  const inc = prog(t, P(3, "inclina") - .3, P(3, "inclina") + .8);
+  const yr = YW + .05 + RUN * Math.tan(ANG) * inc;
+  lados.forEach((L) => { L.g.position.y = yr; L.g.rotation.z = L.s * -ANG * inc * -1 * -1; L.g.rotation.z = -L.s * ANG * inc; });
+  // fix: metade direita desce pra direita
+  lados.forEach((L) => L.g.rotation.z = L.s > 0 ? -ANG * inc : ANG * inc);
+  // tábua x telhas
+  const comTelha = t > P(3, "telhas") - .3;
+  const umaSo = em(C(4), P(4, "encaixa") - .2);
+  const transp = em(P(5, "esqueleto") - .4, P(5, "penduradas") - .3) ? .12 : 1;
+  const apodrece = prog(t, P(2, "apodrece") - .3, P(2, "apodrece") + .8);
+  lados.forEach((L) => {
+    L.tabua.visible = t < P(3, "telhas") + .3; L.tabua.material.color.setRGB(1 - .45 * apodrece, 1 - .3 * apodrece, 1 - .5 * apodrece);
+    L.telhas.forEach((m) => { const { r, c } = m.userData; const ordem = r * 8 + c;
+      let vis = comTelha && prog(t, P(3, "telhas") - .3 + ordem * .02, P(3, "telhas") + ordem * .02) > .5;
+      if (umaSo) vis = L.s > 0 && r === 2 && c === 3;
+      if (em(P(4, "encaixa") - .2, C(5))) vis = prog(t, P(4, "encaixa") - .2 + (5 - r) * .3, P(4, "encaixa") + (5 - r) * .3) > .5 || L.s < 0;
+      m.visible = vis; m.material.opacity = transp; });
+    L.ripas.forEach((rp) => rp.visible = t > P(5, "ripas") - .4 && t < C(6) + 30);
+    L.manta.visible = t > P(7, "manta") - .3;
+  });
+  tesouras.forEach((g) => g.visible = t > P(5, "tesoura") - .5);
+  triBrilho.visible = em(P(5, "triangulo") - .3, P(5, "triangulo", 2) - .3); triBrilho.position.y = 0;
+  // quadro: quadrado entorta
+  desenhaQ(prog(t, P(5, "entorta") - .3, P(5, "entorta") + .5));
+  peso.forEach((p) => p.position.y = 1.4 - .4 * prog(t, P(5, "triangulo", 2), P(5, "entorta")));
+  // calha, cumeeira
+  calha.visible = t > P(6, "calha") - .4; cano.visible = t > P(6, "cano") - .4;
+  cumeeira.visible = t > P(8, "cumeeira") - .3; cumeeira.position.set(0, yr + .04 + .6 * (1 - prog(t, P(8, "cumeeira") - .3, P(8, "cumeeira") + .3)), 0);
+  // chuva
+  const chove = em(P(2, "chuva") - .3, P(2, "cama") + 1) || em(P(3, "agua") - .5, P(3, "telhas") + 1.5) || em(C(4) + 1, C(5)) || em(C(6), C(7));
+  const plano = inc < .05;
+  const naCalha = t > P(6, "calha") - .2 && t < C(7);
+  const tgA = Math.tan(ANG * inc);
+  gotas.forEach((g) => { const k = frac(t * .7 + g.f); const yTopo = yr - Math.abs(g.x) * tgA + .08; let x = g.x, y, z = g.z;
+    if (k < .5) y = 5 - (5 - yTopo) * (k / .5);
+    else if (plano) { y = yTopo; }
+    else if (k < .7) { const q = (k - .5) / .2; x = g.x + (Math.sign(g.x) * (RUN + .05) - g.x) * q; y = yr - Math.abs(x) * tgA + .08; }
+    else { x = Math.sign(g.x) * (RUN + .1); const q = (k - .7) / .3; y = yr - RUN * tgA - q * (yr - RUN * tgA); if (naCalha && g.x > 0) { x = RUN + .05; y = YW - .05; z = g.z + (-LZ - g.z) * q; } }
+    g.s.position.set(x, y, z); g.s.scale.set(.04, .12, 1); g.s.material.opacity = chove ? .85 : 0; });
+  poca.material.opacity = em(P(2, "empoca") - .3, P(3, "inclina")) ? .7 * prog(t, P(2, "empoca") - .3, P(2, "empoca") + .6) : 0;
+  pinga.forEach((p) => { const k = frac(t * 1.2 + p.f); p.s.position.set(-.45 + (p.f - .5) * .2, YW - k * (YW - .5), -.3); p.s.scale.set(.05, .1, 1); p.s.material.opacity = em(P(2, "pinga") - .3, C(3)) || em(P(7, "goteira") - .3, P(7, "goteira") + .2) ? 1 : 0; });
+  molhado.material.opacity = em(P(2, "pinga"), C(3)) ? .8 * prog(t, P(2, "pinga"), P(2, "cama") + .5) : 0;
+  // sol, forno, manta reflete
+  const soleira = em(C(7), C(8));
+  sol.material.opacity = soleira || t > C(8) ? 1 : 0;
+  quente.material.opacity = em(P(7, "forno") - .3, P(7, "manta")) ? .25 : (em(P(7, "manta"), F(7)) ? .25 * (1 - prog(t, P(7, "manta"), P(7, "reflete") + .5)) : 0);
+  raios.forEach((r) => { const k = frac(t * .8 + r.f); const sobe = t > P(7, "reflete") - .3; const yTopo = yr - Math.abs(r.x) * tgA + .1;
+    r.s.position.set(r.x, sobe ? yTopo + (k < .5 ? (1 - k * 2) * 2 : (k - .5) * 4) : 5 - k * (5 - yTopo + (t < P(7, "manta") ? 1.6 : 0)), r.z); r.s.scale.setScalar(.1); r.s.material.opacity = em(P(7, "sol") - .3, F(7)) ? .9 : 0; });
+  K.cartoes(t, [
+    [P(2, "empoca") - .3, P(2, "apodrece") - .3, "EMPOÇA", "#5aa0ff"],
+    [P(2, "apodrece") - .3, P(2, "pinga") - .3, "APODRECE", "#8a6a2a"],
+    [P(2, "pinga") - .1, F(2), "GOTEIRA!", "#ff4a3a"],
+    [P(3, "escorrer") - .3, P(3, "telhas") - .3, "A ÁGUA ESCORRE", "#5aa0ff"],
+    [P(3, "barro") - .4, F(3), "TELHA DE BARRO", "#ff9a5a"],
+    [P(4, "escamas") - .4, P(4, "cima") - .3, "COMO ESCAMAS", "#ffd23a"],
+    [P(4, "cima") - .3, F(4), "A DE CIMA COBRE A DE BAIXO", "#3aff7a"],
+    [P(5, "tesoura") - .3, P(5, "triangulo", 2) - .3, "TESOURA", "#ffd23a"],
+    [P(5, "triangulo", 2) - .25, P(5, "ripas") - .35, "△ NÃO ENTORTA", "#3aff7a"],
+    [P(5, "ripas") - .3, F(5), "RIPAS", "#c89a5a"],
+    [P(6, "calha") - .3, F(6), "CALHA", "#c0c6cc"],
+    [P(7, "forno") - .3, P(7, "manta") - .3, "VIROU FORNO", "#ff4a3a"],
+    [P(7, "reflete") - .3, F(7), "MANTA REFLETE O CALOR", "#ffffff"],
+    [P(8, "cumeeira") - .3, P(8, "parabens") - .3, "CUMEEIRA", "#ff9a5a"],
+  ]);
+});
+</script>
+</body></html>
