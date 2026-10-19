@@ -1,0 +1,191 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Série "O Apagão" — Episódio 3 (2D flat, estilo @historiascomkaio)
+const TEMPOS = await (await fetch("/apagao3/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const frac = (x) => x - Math.floor(x);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala, T = TEMPOS.total;
+let rs = 1; const rnd = () => { rs = (rs * 16807) % 2147483647; return rs / 2147483647; };
+
+// ---------- paleta ----------
+const COR = { fundo: "#e9e2d0", fundoNoite: "#1d2129", predio: "#d9d2c0", linha: "#b9b09a", escuro: "#2a2e36", mostarda: "#e0a83a", vermelho: "#d6453a", azul: "#4a9be0", agua: "#6ab8f0", verde: "#4fae5a", pele: "#e8b48a", cabelo: "#3a2a20", camisa: "#3f6f73", calca: "#3a5a8a", txt: "#2a2e36" };
+
+// ---------- primitivas ----------
+const rr = (x, y, w, h, r, cor) => { g.fillStyle = cor; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+const rect = (x, y, w, h, cor) => { g.fillStyle = cor; g.fillRect(x, y, w, h); };
+function txt(s, x, y, tam, cor, peso = 700, al = "center") { g.font = `${peso} ${tam}px Oswald`; g.textAlign = al; g.textBaseline = "middle"; g.fillStyle = cor; g.fillText(s, x, y); }
+function etiqueta(s, x, y, fundo, cor = "#fff", tam = 34, a = 1) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + tam * .9; const sc = .85 + .15 * Math.min(1, a * 1.5); g.translate(x, y); g.scale(sc, sc); rr(-w / 2, -tam * .75, w, tam * 1.5, 6, fundo); txt(s, 0, 2, tam, cor); g.restore(); }
+function cartao(l1, l2, x, y, a = 1, cor2 = "#2a2e36") { if (a <= 0) return; g.save(); g.globalAlpha = a; g.translate(x, y); g.font = "700 64px Oswald"; const w = Math.max(g.measureText(l2).width, 260) + 80; rr(-w / 2, -70, w, 150, 10, "#fdf8ec"); rect(-w / 2, -70, w, 34, COR.mostarda); txt(l1, 0, -53, 24, "#2a2e36"); txt(l2, 0, 22, 64, cor2); g.restore(); }
+function pessoa(x, y, s = 1, { camisa = COR.camisa, olhar = 0, braco = 0, cabelo = COR.cabelo, bone = null, cabeca = 0 } = {}) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rect(-26, -150, 20, 150, COR.calca); rect(6, -150, 20, 150, COR.calca);
+  rr(-30, -6, 30, 12, 4, "#2a2a2a"); rr(4, -6, 30, 12, 4, "#2a2a2a");
+  rr(-38, -290, 76, 150, 18, camisa);
+  g.save(); g.translate(30, -275); g.rotate(-braco); rr(-8, 0, 20, 120, 10, camisa); rr(-6, 112, 18, 22, 9, COR.pele); g.restore();
+  g.save(); g.translate(-30, -275); rr(-12, 0, 20, 120, 10, camisa); rr(-10, 112, 18, 22, 9, COR.pele); g.restore();
+  rect(-10, -312, 20, 26, COR.pele);
+  g.save(); g.translate(0, -350); g.rotate(cabeca);
+  g.fillStyle = COR.pele; g.beginPath(); g.arc(0, 0, 44, 0, 6.283); g.fill();
+  g.fillStyle = cabelo; g.beginPath(); g.arc(0, -6, 46, Math.PI * 1.05, Math.PI * 1.95); g.fill();
+  if (bone) { g.fillStyle = bone; g.beginPath(); g.arc(0, -10, 47, Math.PI, 0); g.fill(); rect(0, -14, 64, 10, bone); }
+  g.fillStyle = "#222"; g.beginPath(); g.arc(-14 + olhar * 8, 4, 5, 0, 6.283); g.arc(14 + olhar * 8, 4, 5, 0, 6.283); g.fill();
+  g.strokeStyle = "#222"; g.lineWidth = 4; g.beginPath(); g.moveTo(-22 + olhar * 8, -10); g.lineTo(-6 + olhar * 8, -7); g.moveTo(6 + olhar * 8, -7); g.lineTo(22 + olhar * 8, -10); g.stroke();
+  g.beginPath(); g.moveTo(-8, 22); g.lineTo(8, 22); g.stroke();
+  g.restore(); g.restore();
+}
+// cidade ao fundo
+const PREDIOS = Array.from({ length: 14 }, (_, i) => ({ x: -40 + i * 82 + rnd() * 30, w: 90 + rnd() * 70, h: 380 + rnd() * 620, c: ["#cfc8b4", "#bdb6a2", "#d8d0bc", "#c4bca6"][i % 4], j: Array.from({ length: 80 }, () => rnd()) }));
+function cidade(chao, luz, noite) {
+  for (const p of PREDIOS) { rect(p.x, chao - p.h, p.w, p.h, noite ? "#2c313b" : p.c);
+    for (let r = 0; r < Math.floor(p.h / 46) - 1; r++) for (let c = 0; c < Math.floor(p.w / 34); c++) { const j = p.j[(r * 7 + c) % 80]; const acesa = j < luz * .75; rect(p.x + 10 + c * 34, chao - p.h + 18 + r * 46, 20, 26, acesa ? "#f2c45a" : (noite ? "#1d2129" : "#a8a090")); } }
+  rect(0, chao, W, H - chao, noite ? "#15181e" : "#8a8574");
+}
+// prédio em corte (diagrama que volta sempre)
+const PX = 190, PW = 580, NF = 12, FH = 82, PBASE = 1660;
+const yAndar = (n) => PBASE - n * FH;
+function predio(t, { luz = 1, noite = false, nivel = 1, bomba = false, fluxoSobe = false, chuveiros = 0, destaque = true, chia = false, aguaDiego = 0 }) {
+  // caixa d'água
+  const cx = PX + PW - 150, cy = yAndar(NF) - 150;
+  rect(cx + 20, cy + 110, 12, 40, "#777"); rect(cx + 108, cy + 110, 12, 40, "#777");
+  rr(cx, cy, 140, 110, 6, noite ? "#3a4250" : "#c8d6e0");
+  rect(cx + 6, cy + 6 + 98 * (1 - nivel), 128, 98 * nivel, COR.agua);
+  txt("CAIXA D'ÁGUA", cx + 70, cy - 22, 24, noite ? "#cfd6e0" : COR.txt);
+  // andares
+  for (let n = 0; n < NF; n++) { const y = yAndar(n + 1);
+    const eh9 = n + 1 === 9 && destaque;
+    rect(PX, y, PW, FH - 4, eh9 ? COR.mostarda : (noite ? "#2c313b" : COR.predio));
+    rect(PX, y + FH - 4, PW, 4, noite ? "#1d2129" : COR.linha);
+    for (let k = 0; k < 4; k++) rect(PX + 40 + k * 130, y + 18, 76, 40, luz > (n * 4 + k) % 7 / 7 ? "#f2c45a" : (noite ? "#1d2129" : "#a8a090"));
+    txt(`${n + 1}º`, PX - 36, y + FH / 2, 26, noite ? "#aab" : COR.txt, 500);
+    if (chuveiros && (n * 5 + 3) % 4 === 0 && n !== 8) for (let d = 0; d < 6; d++) { const k = frac(t * 1.6 + d / 6); g.fillStyle = COR.agua; g.beginPath(); g.arc(PX + 130 + (d % 3) * 14, y + 10 + k * 40, 4, 0, 6.283); g.fill(); }
+    if (chia) { g.globalAlpha = .4 + .4 * Math.sin(t * 20 + n); txt("SSS", PX + 400, y + FH / 2, 22, "#9ab", 500); g.globalAlpha = 1; }
+  }
+  if (destaque) { txt("◀ DIEGO", PX + PW + 90, yAndar(9) + FH / 2, 30, COR.mostarda === "#e0a83a" && noite ? "#f2c45a" : COR.txt); }
+  // cano da bomba até a caixa
+  const canoX = PX + PW + 24;
+  rect(canoX - 7, cy + 50, 14, PBASE + 40 - cy - 50, noite ? "#4a5260" : "#9aa4ae"); rect(canoX - 7, cy + 50, cx - canoX + 7, 14, noite ? "#4a5260" : "#9aa4ae");
+  if (fluxoSobe) for (let d = 0; d < 14; d++) { const k = frac(t * .5 + d / 14); g.fillStyle = COR.azul; g.beginPath(); g.arc(canoX, PBASE + 40 - k * (PBASE + 40 - cy - 57), 6, 0, 6.283); g.fill(); }
+  // bomba
+  rr(canoX - 46, PBASE + 20, 92, 60, 8, bomba ? "#5a6a7a" : "#8a3a34"); txt("BOMBA", canoX, PBASE + 50, 22, "#fff");
+  rect(PX - 60, PBASE, PW + 200, 400, noite ? "#15181e" : "#8a8574");
+}
+// cômodos
+function banheiro(t, k160) {
+  rect(0, 0, W, H, "#e6ecef"); for (let y = 0; y < 1500; y += 60) rect(0, y, W, 2, "#cdd8de"); for (let x = 0; x < W; x += 60) rect(x, 0, 2, 1500, "#cdd8de");
+  rect(0, 1500, W, 420, "#b9b2a0");
+  // banheira
+  rr(120, 1300, 520, 200, 30, "#fafafa"); rect(140, 1320 + 160 * (1 - Math.min(1, k160 * 1.6)), 480, 160 * Math.min(1, k160 * 1.6), COR.agua);
+  rr(110, 1290, 540, 30, 14, "#f2f2f2");
+  return 1500;
+}
+function cozinha(noite) { rect(0, 0, W, H, noite ? "#262a33" : "#efe6d4"); for (let x = 0; x < W; x += 80) rect(x, 0, 2, 1500, noite ? "#2e333c" : "#e2d8c2"); rect(0, 1500, W, 420, noite ? "#1a1d23" : "#a89a80"); }
+
+// ---------- legenda (blocos de 3 palavras, palavra-chave colorida) ----------
+const CHAVE = { rastro: COR.mostarda, ladrao: COR.vermelho, intactos: COR.verde, molhado: COR.azul, sobe: COR.azul, valter: COR.vermelho, lurdes: COR.vermelho, febre: COR.vermelho, medo: COR.vermelho, errada: COR.vermelho, acordo: COR.verde, janela: COR.mostarda, acesa: COR.mostarda,  agua: COR.azul, erro: COR.vermelho, bomba: COR.mostarda, luz: COR.mostarda, apaga: COR.mostarda, botijao: COR.mostarda, fogo: "#ff8a3a", geladeira: COR.azul, regra: COR.vermelho, papel: COR.mostarda, sindico: COR.vermelho, lista: COR.vermelho, topo: COR.vermelho, diego: COR.mostarda, caixa: COR.azul, chiar: COR.vermelho, litros: COR.azul, comida: COR.mostarda, secado: COR.vermelho, porta: COR.vermelho };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1290) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 78px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 12; g.strokeStyle = "rgba(0,0,0,.75)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+
+// ---------- quadro ----------
+const zoom = (k, fn) => { g.save(); g.translate(W / 2, 1500); g.scale(k, k); g.translate(-W / 2, -1500); fn(); g.restore(); };
+const SINDICO = { camisa: "#6a5a8a", cabelo: "#bbb" };
+function corredor(noite = true) { rect(0, 0, W, H, noite ? "#2a2e36" : "#d8d0bc"); for (const x of [80, 420, 760]) { rr(x, 760, 240, 740, 6, noite ? "#3e3226" : "#7a5a3a"); g.fillStyle = "#c8a040"; g.beginPath(); g.arc(x + 210, 1150, 10, 0, 6.283); g.fill(); } rect(0, 1500, W, 420, noite ? "#1a1d23" : "#9a9078"); }
+function gotas(t, ini, x0, x1, y) { const k = prog(t, ini, ini + 1.5); for (let i = 0; i < 14; i++) { const f = i / 13; if (f > k) break; g.fillStyle = "rgba(106,184,240,.85)"; g.beginPath(); g.ellipse(x0 + (x1 - x0) * f, y + Math.sin(i * 2.3) * 14, 26, 9, 0, 0, 6.283); g.fill(); } }
+function check(x, y, a) { if (a <= 0) return; g.globalAlpha = a; g.fillStyle = COR.verde; g.beginPath(); g.arc(x, y, 34, 0, 6.283); g.fill(); g.strokeStyle = "#fff"; g.lineWidth = 9; g.beginPath(); g.moveTo(x - 15, y); g.lineTo(x - 3, y + 13); g.lineTo(x + 17, y - 12); g.stroke(); g.globalAlpha = 1; }
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1
+    corredor(); gotas(t, .8, 1000, 100, 1600);
+    cartao("APAGÃO · DIA 3", "06:15", W / 2, 330, prog(t, .1, .5) * (t < P(1, "procure", 2) - .3 ? 1 : 0));
+    if (t > P(1, "procure", 2) - .3) etiqueta("PROCURE O RASTRO", W / 2, 330, COR.mostarda, "#fff", 56, prog(t, P(1, "procure", 2) - .3, P(1, "rastro")));
+  } else if (t < C(3)) { // CENA 2: esconderijos intactos
+    rect(0, 0, W, H, "#e6ecef"); for (let y = 0; y < 1500; y += 60) rect(0, y, W, 2, "#cdd8de"); for (let x = 0; x < W; x += 60) rect(x, 0, 2, 1500, "#cdd8de"); rect(0, 1500, W, 420, "#b9b2a0");
+    rr(200, 1290, 160, 210, 30, "#fafafa"); rr(170, 1130, 220, 170, 10, "#f2f2f2");
+    rr(560, 1140, 300, 360, 14, "#f4f4f4"); g.fillStyle = "#3a4a5a"; g.beginPath(); g.arc(710, 1340, 100, 0, 6.283); g.fill();
+    rect(0, 290, W, 120, "#d8d2c4");
+    check(280, 1080, prog(t, P(2, "descarga") - .3, P(2, "descarga"))); check(710, 1090, prog(t, P(2, "maquina") - .3, P(2, "maquina"))); check(W / 2, 350, prog(t, P(2, "forro") - .3, P(2, "forro")));
+    etiqueta("INTACTOS", W / 2, 560, COR.verde, "#fff", 52, prog(t, P(2, "intactos") - .3, P(2, "intactos")));
+    if (t > P(2, "quem") - .3) etiqueta("QUEM ABRIU NÃO SABIA", W / 2, 680, COR.escuro, "#fff", 42, 1);
+  } else if (t < C(4)) { // CENA 3: chão molhado
+    corredor(); gotas(t, P(3, "molhado") - .8, 980, 100, 1600);
+    if (t > P(3, "quarenta") - .3) cartao("40 LITROS DE ÁGUA", "40 KG", W / 2, 330, prog(t, P(3, "quarenta") - .3, P(3, "quarenta")), COR.azul);
+    if (t > P(3, "derramar") - .4) etiqueta("NINGUÉM CARREGA SEM DERRAMAR", W / 2, 480, COR.escuro, "#fff", 38, 1);
+  } else if (t < C(5)) { // CENA 4: a trilha sobe até o 12º
+    rect(0, 0, W, H, "#cfc8b6"); predio(t, { luz: 0, nivel: 0, bomba: false });
+    const k = prog(t, P(4, "sobe") - .2, P(4, "segundo") + .3);
+    const y9 = yAndar(9) + FH / 2, y12 = yAndar(12) + FH / 2;
+    if (t > P(4, "nono") - .3) { rect(PX, yAndar(12), PW, FH - 4, t > P(4, "sindico") - .3 ? COR.vermelho : "rgba(106,184,240,.5)"); }
+    g.strokeStyle = COR.azul; g.lineWidth = 10; g.setLineDash([16, 14]); g.beginPath(); g.moveTo(PX + PW - 40, y9); g.lineTo(PX + PW - 40, y9 - (y9 - y12) * k); g.stroke(); g.setLineDash([]);
+    if (t < P(4, "sobe") - .2) { g.strokeStyle = COR.vermelho; g.lineWidth = 10; g.beginPath(); g.moveTo(PX + PW - 40, y9); g.lineTo(PX + PW - 40, y9 + 120); g.stroke(); etiqueta("✕ NÃO DESCE", W / 2, 330, COR.vermelho, "#fff", 46, prog(t, P(4, "desce") - .3, P(4, "desce"))); }
+    else etiqueta("ELA SOBE", W / 2, 330, COR.azul, "#fff", 52, 1);
+    if (t > P(4, "sindico") - .3) txt("◀ SÍNDICO", PX + PW + 100, y12, 30, COR.vermelho);
+  } else if (t < C(6)) { // CENA 5: a verdade
+    rect(0, 0, W, H, "#3a3a44"); rect(0, 1500, W, 420, "#22252c");
+    zoom(1, () => {
+      const nGal = t > P(5, "galoes") - .3 ? 6 : 0; for (let i = 0; i < nGal; i++) { const x = 740 + (i % 3) * 105, y = 1500 - (i >= 3 ? 260 : 130); rr(x, y, 90, 120, 10, "#4a7ab0"); rect(x + 6, y + 18, 78, 96, COR.agua); }
+      if (t > P(5, "sofa") - .4) { rr(60, 1280, 440, 220, 20, "#7a4a4a"); rr(60, 1200, 440, 100, 20, "#8a5a5a"); g.save(); g.translate(100, 1230); g.rotate(Math.PI / 2); pessoa(0, 0, .55, { camisa: "#c87aa0", cabelo: "#ddd" }); g.restore(); g.fillStyle = "rgba(255,90,60,.35)"; g.beginPath(); g.arc(410, 1255, 60, 0, 6.283); g.fill(); }
+      pessoa(620, 1500, 1, { ...SINDICO, olhar: -1, cabeca: -.08 });
+    });
+    etiqueta("PÁLIDO", W / 2, 330, COR.escuro, "#fff", 46, prog(t, P(5, "palido") - .3, P(5, "palido")) * (t < P(5, "galoes") - .3 ? 1 : 0));
+    if (em(P(5, "galoes") - .3, P(5, "lurdes") - .3)) etiqueta("A ÁGUA DO SALÃO", W / 2, 330, COR.azul, "#fff", 48, 1);
+    if (t > P(5, "lurdes") - .3) cartao("DONA LURDES", "FEBRE HÁ 2 DIAS", W / 2, 330, prog(t, P(5, "lurdes") - .3, P(5, "lurdes")), COR.vermelho);
+  } else if (t < C(7)) { // CENA 6: regra 3
+    if (t < P(6, "regra") - .2) {
+      rect(0, 0, W, H, "#3a3a44"); rect(0, 1500, W, 420, "#22252c");
+      zoom(1.3, () => pessoa(W / 2, 1500, 1, { ...SINDICO, olhar: 0, cabeca: .12 }));
+      etiqueta("NÃO FOI PRA VENDER", W / 2, 330, COR.escuro, "#fff", 44, prog(t, P(6, "vender") - .4, P(6, "vender")) * (t < P(6, "medo") - .3 ? 1 : 0));
+      if (t > P(6, "medo") - .3) etiqueta("FOI MEDO", W / 2, 330, COR.vermelho, "#fff", 62, 1);
+    } else {
+      rect(0, 0, W, H, COR.escuro); txt("REGRA Nº 3 DO APAGÃO", W / 2, 760, 44, COR.mostarda, 500);
+      const a = prog(t, P(6, "medo", 2) - .4, P(6, "medo", 2)), b = prog(t, P(6, "errada") - .5, P(6, "errada"));
+      g.globalAlpha = a; txt("O MEDO FAZ GENTE BOA", W / 2, 880, 80, "#fff"); g.globalAlpha = b; txt("FAZER COISA ERRADA.", W / 2, 990, 80, COR.vermelho); g.globalAlpha = 1;
+    }
+  } else if (t < C(8)) { // CENA 7: o acordo
+    rect(0, 0, W, H, "#efe2c8"); for (let x = 0; x < W; x += 120) rect(x, 0, 3, 1500, "#e2d2b2"); rect(0, 1500, W, 420, "#b8a684");
+    rr(170, 1360, 740, 30, 6, "#8a6a44"); rect(200, 1390, 20, 110, "#6a4a2a"); rect(860, 1390, 20, 110, "#6a4a2a");
+    const n = Math.round(10 * prog(t, P(7, "volta") - .3, P(7, "salao") + .5)); for (let i = 0; i < n; i++) { const x = 210 + (i % 5) * 136, y = 1360 - (i >= 5 ? 220 : 110); rr(x, y, 100, 110, 10, "#4a7ab0"); rect(x + 8, y + 20, 84, 82, COR.agua); }
+    zoom(1.05, () => { pessoa(120, 1500, .9, { olhar: 1, braco: em(P(7, "acordo") - .3, P(7, "acordo") + 1.2) ? 1.2 : 0 }); pessoa(960, 1500, .9, { ...SINDICO, olhar: -1, braco: em(P(7, "acordo") - .3, P(7, "acordo") + 1.2) ? 1.2 : 0 }); });
+    etiqueta("O ACORDO", W / 2, 330, COR.escuro, "#fff", 50, prog(t, P(7, "acordo") - .3, P(7, "acordo")) * (t < P(7, "lurdes") - .3 ? 1 : 0));
+    if (em(P(7, "lurdes") - .3, P(7, "papel") - .3)) cartao("TODO DIA, A 1ª PARTE", "DONA LURDES", W / 2, 330, 1, COR.verde);
+    if (t > P(7, "papel") - .3) etiqueta("NO PAPEL…", W / 2, 330, "#fdf8ec", COR.txt, 44, 1);
+  } else if (t < FALA + .3) { // CENA 8: uma janela acesa
+    rect(0, 0, W, H, "#0e1118");
+    for (let i = 0; i < 60; i++) { const x = (i * 97) % W, y = (i * 53) % 500; g.fillStyle = "rgba(255,255,255,.5)"; g.fillRect(x, y, 3, 3); }
+    cidade(1500, 0, true);
+    const ac = prog(t, P(8, "janela") - .3, P(8, "acesa") + .2);
+    const p = PREDIOS[9]; const jx = p.x + 10 + 34, jy = 1500 - p.h + 18 + 2 * 46;
+    if (ac > 0) { g.fillStyle = `rgba(255,214,120,${.35 * ac})`; g.beginPath(); g.arc(jx + 10, jy + 13, 90 + 10 * Math.sin(t * 3), 0, 6.283); g.fill(); rect(jx, jy, 20, 26, "#ffd878"); }
+    
+    if (t > P(8, "luz") - .4) etiqueta("ALGUÉM AINDA TEM LUZ", W / 2, 330, COR.mostarda, "#111", 52, prog(t, P(8, "luz") - .4, P(8, "luz")));
+    else if (t > P(8, "noite") - .3) cartao("DIA 3", "23:40", W / 2, 330, 1);
+  } else { // CARD FINAL: tem parte 4?
+    rect(0, 0, W, H, "#111");
+    const a = prog(t, FALA + .3, FALA + .8);
+    g.globalAlpha = a; txt("PARTE 4?", W / 2, 780, 150, "#fff");
+    txt("TEM CONTINUAÇÃO?", W / 2, 920, 52, COR.mostarda); txt("DEPENDE DE VOCÊ.", W / 2, 990, 52, COR.mostarda);
+    txt("COMENTA \"PARTE 4\" 👇", W / 2, 1110, 44, "#fff");
+    txt("O APAGÃO · EP. 3", W / 2, 1500, 26, "#777", 500); g.globalAlpha = 1;
+  }
+  legenda(t);
+};
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
