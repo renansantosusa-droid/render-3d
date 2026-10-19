@@ -1,0 +1,841 @@
+{
+ "total": 67.74,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.95,
+   "texto": "Se você esquentar uma panela de água no fogo e jogar em você, terá um banho quente.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "esquentar",
+     "t": 0.669
+    },
+    {
+     "w": "uma",
+     "t": 1.117
+    },
+    {
+     "w": "panela",
+     "t": 1.282
+    },
+    {
+     "w": "de",
+     "t": 1.636
+    },
+    {
+     "w": "água",
+     "t": 1.789
+    },
+    {
+     "w": "no",
+     "t": 2.049
+    },
+    {
+     "w": "fogo",
+     "t": 2.167
+    },
+    {
+     "w": "e",
+     "t": 2.508
+    },
+    {
+     "w": "jogar",
+     "t": 2.556
+    },
+    {
+     "w": "em",
+     "t": 2.886
+    },
+    {
+     "w": "você",
+     "t": 2.957
+    },
+    {
+     "w": "terá",
+     "t": 3.593
+    },
+    {
+     "w": "um",
+     "t": 3.794
+    },
+    {
+     "w": "banho",
+     "t": 3.947
+    },
+    {
+     "w": "quente",
+     "t": 4.277
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.1,
+   "fim": 12.01,
+   "texto": "Mas demora pra esquentar. A água acaba no meio do banho. E você queima a mão carregando a panela.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.147
+    },
+    {
+     "w": "demora",
+     "t": 5.418
+    },
+    {
+     "w": "pra",
+     "t": 5.878
+    },
+    {
+     "w": "esquentar",
+     "t": 6.032
+    },
+    {
+     "w": "A",
+     "t": 7.4
+    },
+    {
+     "w": "água",
+     "t": 7.541
+    },
+    {
+     "w": "acaba",
+     "t": 7.848
+    },
+    {
+     "w": "no",
+     "t": 8.178
+    },
+    {
+     "w": "meio",
+     "t": 8.272
+    },
+    {
+     "w": "do",
+     "t": 8.508
+    },
+    {
+     "w": "banho",
+     "t": 8.614
+    },
+    {
+     "w": "E",
+     "t": 9.77
+    },
+    {
+     "w": "você",
+     "t": 9.888
+    },
+    {
+     "w": "queima",
+     "t": 10.171
+    },
+    {
+     "w": "a",
+     "t": 10.477
+    },
+    {
+     "w": "mão",
+     "t": 10.513
+    },
+    {
+     "w": "carregando",
+     "t": 10.749
+    },
+    {
+     "w": "a",
+     "t": 11.244
+    },
+    {
+     "w": "panela",
+     "t": 11.303
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.16,
+   "fim": 20.17,
+   "texto": "Então, você passa a água por um cano de cobre enrolado em cima de uma chama de gás. Ela esquenta enquanto passa, e nunca acaba.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.207
+    },
+    {
+     "w": "você",
+     "t": 12.962
+    },
+    {
+     "w": "passa",
+     "t": 13.21
+    },
+    {
+     "w": "a",
+     "t": 13.504
+    },
+    {
+     "w": "água",
+     "t": 13.54
+    },
+    {
+     "w": "por",
+     "t": 13.858
+    },
+    {
+     "w": "um",
+     "t": 14
+    },
+    {
+     "w": "cano",
+     "t": 14.094
+    },
+    {
+     "w": "de",
+     "t": 14.377
+    },
+    {
+     "w": "cobre",
+     "t": 14.507
+    },
+    {
+     "w": "enrolado",
+     "t": 14.802
+    },
+    {
+     "w": "em",
+     "t": 15.285
+    },
+    {
+     "w": "cima",
+     "t": 15.391
+    },
+    {
+     "w": "de",
+     "t": 15.698
+    },
+    {
+     "w": "uma",
+     "t": 15.792
+    },
+    {
+     "w": "chama",
+     "t": 15.945
+    },
+    {
+     "w": "de",
+     "t": 16.276
+    },
+    {
+     "w": "gás",
+     "t": 16.382
+    },
+    {
+     "w": "Ela",
+     "t": 17.596
+    },
+    {
+     "w": "esquenta",
+     "t": 17.797
+    },
+    {
+     "w": "enquanto",
+     "t": 18.174
+    },
+    {
+     "w": "passa",
+     "t": 18.516
+    },
+    {
+     "w": "e",
+     "t": 19.082
+    },
+    {
+     "w": "nunca",
+     "t": 19.177
+    },
+    {
+     "w": "acaba",
+     "t": 19.518
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.32,
+   "fim": 34.61,
+   "texto": "Mas o fogo aceso o dia inteiro gasta gás à toa. Então, você coloca uma peça que sente a água correndo. Quando você abre o chuveiro, ela abre o gás e uma faísca acende a chama. Fechou o chuveiro, o fogo apaga.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 20.367
+    },
+    {
+     "w": "o",
+     "t": 20.556
+    },
+    {
+     "w": "fogo",
+     "t": 20.686
+    },
+    {
+     "w": "aceso",
+     "t": 20.98
+    },
+    {
+     "w": "o",
+     "t": 21.381
+    },
+    {
+     "w": "dia",
+     "t": 21.428
+    },
+    {
+     "w": "inteiro",
+     "t": 21.57
+    },
+    {
+     "w": "gasta",
+     "t": 21.9
+    },
+    {
+     "w": "gás",
+     "t": 22.266
+    },
+    {
+     "w": "à",
+     "t": 22.419
+    },
+    {
+     "w": "toa",
+     "t": 22.561
+    },
+    {
+     "w": "Então",
+     "t": 23.716
+    },
+    {
+     "w": "você",
+     "t": 24.483
+    },
+    {
+     "w": "coloca",
+     "t": 24.73
+    },
+    {
+     "w": "uma",
+     "t": 25.108
+    },
+    {
+     "w": "peça",
+     "t": 25.261
+    },
+    {
+     "w": "que",
+     "t": 25.627
+    },
+    {
+     "w": "sente",
+     "t": 25.745
+    },
+    {
+     "w": "a",
+     "t": 26.063
+    },
+    {
+     "w": "água",
+     "t": 26.11
+    },
+    {
+     "w": "correndo",
+     "t": 26.393
+    },
+    {
+     "w": "Quando",
+     "t": 27.678
+    },
+    {
+     "w": "você",
+     "t": 27.938
+    },
+    {
+     "w": "abre",
+     "t": 28.221
+    },
+    {
+     "w": "o",
+     "t": 28.48
+    },
+    {
+     "w": "chuveiro",
+     "t": 28.504
+    },
+    {
+     "w": "ela",
+     "t": 29.223
+    },
+    {
+     "w": "abre",
+     "t": 29.412
+    },
+    {
+     "w": "o",
+     "t": 29.671
+    },
+    {
+     "w": "gás",
+     "t": 29.719
+    },
+    {
+     "w": "e",
+     "t": 29.966
+    },
+    {
+     "w": "uma",
+     "t": 30.084
+    },
+    {
+     "w": "faísca",
+     "t": 30.249
+    },
+    {
+     "w": "acende",
+     "t": 30.697
+    },
+    {
+     "w": "a",
+     "t": 31.075
+    },
+    {
+     "w": "chama",
+     "t": 31.122
+    },
+    {
+     "w": "Fechou",
+     "t": 32.348
+    },
+    {
+     "w": "o",
+     "t": 32.785
+    },
+    {
+     "w": "chuveiro",
+     "t": 32.832
+    },
+    {
+     "w": "o",
+     "t": 33.528
+    },
+    {
+     "w": "fogo",
+     "t": 33.598
+    },
+    {
+     "w": "apaga",
+     "t": 33.928
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.76,
+   "fim": 40.34,
+   "texto": "Por isso, com o chuveiro bem fraquinho, ele às vezes nem acende: não passa água suficiente.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 34.807
+    },
+    {
+     "w": "isso",
+     "t": 34.984
+    },
+    {
+     "w": "com",
+     "t": 35.515
+    },
+    {
+     "w": "o",
+     "t": 35.656
+    },
+    {
+     "w": "chuveiro",
+     "t": 35.703
+    },
+    {
+     "w": "bem",
+     "t": 36.14
+    },
+    {
+     "w": "fraquinho",
+     "t": 36.293
+    },
+    {
+     "w": "ele",
+     "t": 36.989
+    },
+    {
+     "w": "às",
+     "t": 37.118
+    },
+    {
+     "w": "vezes",
+     "t": 37.284
+    },
+    {
+     "w": "nem",
+     "t": 37.649
+    },
+    {
+     "w": "acende",
+     "t": 37.838
+    },
+    {
+     "w": "não",
+     "t": 38.616
+    },
+    {
+     "w": "passa",
+     "t": 38.828
+    },
+    {
+     "w": "água",
+     "t": 39.147
+    },
+    {
+     "w": "suficiente",
+     "t": 39.394
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.49,
+   "fim": 54.62,
+   "texto": "Mas a chama solta um gás invisível e sem cheiro, o monóxido de carbono. Num banheiro fechado, ele pode matar. Então, o aquecedor fica fora do banheiro, num lugar ventilado, com uma chaminé que joga a fumaça pra fora.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 40.537
+    },
+    {
+     "w": "a",
+     "t": 40.726
+    },
+    {
+     "w": "chama",
+     "t": 40.856
+    },
+    {
+     "w": "solta",
+     "t": 41.174
+    },
+    {
+     "w": "um",
+     "t": 41.469
+    },
+    {
+     "w": "gás",
+     "t": 41.551
+    },
+    {
+     "w": "invisível",
+     "t": 41.705
+    },
+    {
+     "w": "e",
+     "t": 42.353
+    },
+    {
+     "w": "sem",
+     "t": 42.4
+    },
+    {
+     "w": "cheiro",
+     "t": 42.577
+    },
+    {
+     "w": "o",
+     "t": 43.273
+    },
+    {
+     "w": "monóxido",
+     "t": 43.332
+    },
+    {
+     "w": "de",
+     "t": 43.922
+    },
+    {
+     "w": "carbono",
+     "t": 44.016
+    },
+    {
+     "w": "Num",
+     "t": 45.348
+    },
+    {
+     "w": "banheiro",
+     "t": 45.525
+    },
+    {
+     "w": "fechado",
+     "t": 45.891
+    },
+    {
+     "w": "ele",
+     "t": 46.634
+    },
+    {
+     "w": "pode",
+     "t": 46.799
+    },
+    {
+     "w": "matar",
+     "t": 47.07
+    },
+    {
+     "w": "Então",
+     "t": 48.261
+    },
+    {
+     "w": "o",
+     "t": 49.016
+    },
+    {
+     "w": "aquecedor",
+     "t": 49.087
+    },
+    {
+     "w": "fica",
+     "t": 49.629
+    },
+    {
+     "w": "fora",
+     "t": 49.9
+    },
+    {
+     "w": "do",
+     "t": 50.183
+    },
+    {
+     "w": "banheiro",
+     "t": 50.266
+    },
+    {
+     "w": "num",
+     "t": 50.938
+    },
+    {
+     "w": "lugar",
+     "t": 51.068
+    },
+    {
+     "w": "ventilado",
+     "t": 51.363
+    },
+    {
+     "w": "com",
+     "t": 52.235
+    },
+    {
+     "w": "uma",
+     "t": 52.365
+    },
+    {
+     "w": "chaminé",
+     "t": 52.483
+    },
+    {
+     "w": "que",
+     "t": 52.919
+    },
+    {
+     "w": "joga",
+     "t": 53.037
+    },
+    {
+     "w": "a",
+     "t": 53.356
+    },
+    {
+     "w": "fumaça",
+     "t": 53.403
+    },
+    {
+     "w": "pra",
+     "t": 53.874
+    },
+    {
+     "w": "fora",
+     "t": 54.016
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 54.77,
+   "fim": 60.21,
+   "texto": "E se a chama apagar com o gás aberto? Um sensor percebe e corta o gás na hora.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 54.817
+    },
+    {
+     "w": "se",
+     "t": 54.947
+    },
+    {
+     "w": "a",
+     "t": 55.124
+    },
+    {
+     "w": "chama",
+     "t": 55.218
+    },
+    {
+     "w": "apagar",
+     "t": 55.572
+    },
+    {
+     "w": "com",
+     "t": 55.937
+    },
+    {
+     "w": "o",
+     "t": 56.126
+    },
+    {
+     "w": "gás",
+     "t": 56.161
+    },
+    {
+     "w": "aberto",
+     "t": 56.315
+    },
+    {
+     "w": "Um",
+     "t": 57.659
+    },
+    {
+     "w": "sensor",
+     "t": 57.812
+    },
+    {
+     "w": "percebe",
+     "t": 58.32
+    },
+    {
+     "w": "e",
+     "t": 58.886
+    },
+    {
+     "w": "corta",
+     "t": 58.945
+    },
+    {
+     "w": "o",
+     "t": 59.286
+    },
+    {
+     "w": "gás",
+     "t": 59.322
+    },
+    {
+     "w": "na",
+     "t": 59.593
+    },
+    {
+     "w": "hora",
+     "t": 59.711
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 60.36,
+   "fim": 67.14,
+   "texto": "Coloque um botão pra escolher a temperatura e uma tela. Parabéns, você construiu um aquecedor a gás.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 60.407
+    },
+    {
+     "w": "um",
+     "t": 60.914
+    },
+    {
+     "w": "botão",
+     "t": 60.997
+    },
+    {
+     "w": "pra",
+     "t": 61.374
+    },
+    {
+     "w": "escolher",
+     "t": 61.492
+    },
+    {
+     "w": "a",
+     "t": 61.893
+    },
+    {
+     "w": "temperatura",
+     "t": 61.952
+    },
+    {
+     "w": "e",
+     "t": 62.624
+    },
+    {
+     "w": "uma",
+     "t": 62.742
+    },
+    {
+     "w": "tela",
+     "t": 62.954
+    },
+    {
+     "w": "Parabéns",
+     "t": 64.145
+    },
+    {
+     "w": "você",
+     "t": 64.971
+    },
+    {
+     "w": "construiu",
+     "t": 65.277
+    },
+    {
+     "w": "um",
+     "t": 65.796
+    },
+    {
+     "w": "aquecedor",
+     "t": 65.914
+    },
+    {
+     "w": "a",
+     "t": 66.398
+    },
+    {
+     "w": "gás",
+     "t": 66.48
+    }
+   ]
+  }
+ ]
+}

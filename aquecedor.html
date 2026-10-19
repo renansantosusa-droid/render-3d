@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("aquecedor", { fundo: 0xe6eef2, seed: 8484 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, fluxo, tex, grade, texRuido, texMadeira, rotulo, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- área de serviço + banheiro ----------
+add(new THREE.PlaneGeometry(14, 8), mat(0xffffff, { map: grade("#d8d2c6", "#bfb6a6", 64, 8) }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(14, 6), mat(0xffffff, { map: grade("#f4f1ea", "#d8d2c4", 32, 10) }), 0, 3, -.5);
+const parede = add(new THREE.BoxGeometry(.12, 3.4, 2.4), mat(0xe8dcc4), 1.35, 1.7, .7);
+add(new THREE.PlaneGeometry(2.6, 6), mat(0xffffff, { map: grade("#e6f2f8", "#bcd4e0", 32, 6) }), 2.7, 3, -.48);
+const pessoa = grupo(2.5, 0, .4); add(new THREE.CapsuleGeometry(.22, .9, 8, 16), mat(0xe0a07a), 0, .72, 0, pessoa); add(new THREE.SphereGeometry(.17, 16, 12), mat(0xe0a07a), 0, 1.45, 0, pessoa);
+const fumacaB = Array.from({ length: 30 }, () => ({ s: sprite(0x777777), f: rnd(), x: rnd() * 2 - 1 }));
+// ---------- aquecedor em corte ----------
+const aq = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(1.1, 1.7, .05), mat(0xf4f4f4), 0, 1.9, -.45, aq);
+for (const x of [-.55, .55]) add(new THREE.BoxGeometry(.04, 1.7, .5), mat(0xf4f4f4), x, 1.9, -.2, aq);
+add(new THREE.BoxGeometry(1.1, .04, .5), mat(0xdddddd), 0, 2.75, -.2, aq); add(new THREE.BoxGeometry(1.1, .04, .5), mat(0xdddddd), 0, 1.05, -.2, aq);
+const frente = add(new THREE.BoxGeometry(1.1, 1.7, .03), vidro(.12, 0xffffff), 0, 1.9, .05, aq);
+const tela = add(new THREE.PlaneGeometry(.4, .2), new THREE.MeshBasicMaterial({ map: rotulo("38°", "#3aff7a", { fundo: "#101820", tam: 170 }) }), 0, 1.35, .07, aq);
+const botao = add(new THREE.CylinderGeometry(.08, .08, .05, 20), mat(0x333333), .3, 1.35, .08, aq); botao.rotation.x = Math.PI / 2;
+// queimador e chamas
+add(new THREE.BoxGeometry(.8, .06, .3), mat(0x555555, { metalness: .6 }), 0, 1.18, -.2, aq);
+const chamas = Array.from({ length: 30 }, (_, i) => ({ s: sprite(i % 2 ? 0x3a8cff : 0xff9a2a), x: -.36 + (i % 10) * .08, z: -.28 + Math.floor(i / 10) * .08, f: rnd() }));
+const faisca = sprite(0xffffff);
+// serpentina de cobre
+const serpPts = [V(-.35, 1.0, -.2)]; for (let r = 0; r < 6; r++) { const y = 1.4 + r * .17, a = r % 2 ? .38 : -.38; serpPts.push(V(-a, y, -.2), V(a, y, -.2)); } serpPts.push(V(.38, 2.85, -.2));
+const serpC = new THREE.CatmullRomCurve3(serpPts, false, "catmullrom", .1);
+const serp = add(new THREE.TubeGeometry(serpC, 300, .035, 8), mat(0xe08a4a, { metalness: .5, roughness: .3, emissive: 0xff3a1a, emissiveIntensity: 0, transparent: true, opacity: .5, depthWrite: false }));
+// canos: água fria entra, quente vai pro chuveiro, gás
+const linha = (pts) => { const c = new THREE.CurvePath(); for (let i = 0; i < pts.length - 1; i++) c.add(new THREE.LineCurve3(pts[i], pts[i + 1])); return c; };
+const fria = linha([V(-2.6, .6, -.2), V(-.35, .6, -.2), V(-.35, 1.0, -.2)]);
+const quente = linha([V(.38, 2.85, -.2), V(.38, 3.1, -.2), V(2.5, 3.1, -.2), V(2.5, 2.5, -.2)]);
+add(new THREE.TubeGeometry(fria, 60, .05, 8), vidro(.35, 0x9ad0ff)); add(new THREE.TubeGeometry(quente, 80, .05, 8), vidro(.35, 0xffb0a0));
+add(new THREE.CylinderGeometry(.2, .12, .1, 20), mat(0xdddddd, { metalness: .8 }), 2.5, 2.45, -.2);
+const gasC = linha([V(-2.6, .35, .05), V(-.1, .35, .05), V(-.1, 1.15, -.1)]);
+add(new THREE.TubeGeometry(gasC, 60, .035, 8), vidro(.35, 0xffe08a));
+const fFria = fluxo(fria, 14, 0x3a8cff), fSerp = fluxo(serpC, 40, 0x3a8cff), fQuente = fluxo(quente, 20, 0xff4a3a), fGas = fluxo(gasC, 16, 0xffd23a);
+const banho = Array.from({ length: 40 }, () => ({ s: sprite(0xff9a8a), f: rnd(), a: rnd() * 6.28, r: rnd() }));
+// diafragma (sente a água) e válvula do gás
+const diaf = add(new THREE.CylinderGeometry(.12, .12, .03, 20), mat(0x3a8cff, { emissive: 0x3aff7a, emissiveIntensity: 0 }), -.35, .78, -.2); diaf.rotation.z = Math.PI / 2;
+const valv = add(new THREE.BoxGeometry(.14, .14, .14), mat(0xffd23a, { emissive: 0xffd23a, emissiveIntensity: 0 }), -.1, .5, .05);
+const sensor = add(new THREE.CylinderGeometry(.02, .02, .25, 8), mat(0xaaaaaa, { emissive: 0x3aff7a, emissiveIntensity: 0 }), .3, 1.3, -.2);
+// chaminé
+const chamine = add(new THREE.CylinderGeometry(.13, .13, 1.6, 20), mat(0xbbbbbb, { metalness: .7 }), -.2, 3.55, -.2);
+const fumaca = Array.from({ length: 24 }, () => ({ s: sprite(0x888888), f: rnd() }));
+const co = Array.from({ length: 30 }, () => ({ s: sprite(0x4a4a4a), f: rnd(), x: rnd() - .5 }));
+
+// ---------- mini set: panela no fogo ----------
+const MX = 100;
+add(new THREE.PlaneGeometry(10, 8), mat(0xffffff, { map: grade("#d8d2c6", "#bfb6a6", 64, 6) }), MX, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(10, 6), mat(0xffffff, { map: grade("#f4f1ea", "#d8d2c4", 32, 8) }), MX, 3, -.6);
+add(new THREE.BoxGeometry(1.2, .9, .8), mat(0xeeeeee), MX - .8, .45, 0);
+const panela = grupo(MX - .8, .95, 0); add(new THREE.CylinderGeometry(.3, .26, .35, 24, 1, true), mat(0xc8c8c8, { metalness: .4, roughness: .3, side: THREE.DoubleSide }), 0, .18, 0, panela); const aguaP = add(new THREE.CylinderGeometry(.28, .26, .25, 24), mat(0x6ab8ff, { transparent: true, opacity: .8 }), 0, .14, 0, panela);
+const fogoP = Array.from({ length: 10 }, () => ({ s: sprite(0x3a8cff), f: rnd(), x: (rnd() - .5) * .4 }));
+const homem = grupo(MX + .5, 0, 0); add(new THREE.CapsuleGeometry(.22, .9, 8, 16), mat(0xe0a07a), 0, .72, 0, homem); add(new THREE.SphereGeometry(.17, 16, 12), mat(0xe0a07a), 0, 1.45, 0, homem);
+const mao = add(new THREE.SphereGeometry(.08, 12, 10), mat(0xe0a07a, { emissive: 0xff2a1a, emissiveIntensity: 0 }), -.3, 1.2, .15, homem);
+const derrama = Array.from({ length: 30 }, () => ({ s: sprite(0x6ab8ff), f: rnd(), x: (rnd() - .5) * .3 }));
+const vapor = Array.from({ length: 10 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .3 }));
+
+// ---------- câmera ----------
+K.camera_({
+  panela: [V(MX, 1.4, 5.2), V(MX - .1, 1.0, 0)], geral: [V(1.1, 2.0, 9.5), V(1.0, 1.9, 0)], aq: [V(.2, 1.9, 4.6), V(0, 1.8, 0)],
+  baixo: [V(-.6, 1.0, 4.0), V(-.3, .9, 0)], alto: [V(.6, 2.6, 10.5), V(.8, 2.4, 0)], tela: [V(.1, 1.5, 3.0), V(0, 1.6, 0)],
+}, [
+  [0, "panela"], [F(2), "panela"], [C(3), "aq"], [F(3), "aq"],
+  [C(4), "aq"], [P(4, "peca") - .3, "baixo"], [P(4, "chuveiro") - .2, "geral"], [F(4), "geral"],
+  [C(5), "aq"], [F(5), "aq"], [C(6), "geral"], [P(6, "fora") - .3, "alto"], [F(6), "alto"],
+  [C(7), "aq"], [F(7), "aq"], [C(8), "tela"], [T, "geral"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // panela
+  const vira = prog(t, P(1, "jogar") - .3, P(1, "jogar") + .5) * (t < C(2) ? 1 : 0);
+  panela.position.set(MX - .8 + .9 * vira, .95 + .7 * vira, 0); panela.rotation.z = -1.9 * vira;
+  aguaP.visible = !em(P(2, "acaba") - .1, F(2) + 1);
+  fogoP.forEach((p) => { const k = frac(t * 2 + p.f); p.s.position.set(MX - .8 + p.x, .92 + k * .15, 0); p.s.scale.setScalar(.12 * (1 - k)); p.s.material.opacity = vira < .1 && t < F(2) ? .9 : 0; });
+  derrama.forEach((p) => { const k = frac(t * 1.5 + p.f); p.s.position.set(MX + .3 + p.x, 1.9 - k * 1.6, .1); p.s.scale.setScalar(.08); p.s.material.opacity = vira > .9 && t < C(2) ? 1 : 0; });
+  vapor.forEach((p) => { const k = frac(t * .6 + p.f); p.s.position.set(MX - .8 + p.x, 1.2 + k, 0); p.s.scale.setScalar(.3); p.s.material.opacity = em(P(2, "demora") - .3, P(2, "acaba")) ? .5 * (1 - k) : 0; });
+  mao.material.emissiveIntensity = em(P(2, "queima") - .2, F(2) + .5) ? 1.5 : 0;
+  // estado do aquecedor
+  const temAgua = (t > P(3, "passa") - .5 && t < C(4)) || em(P(4, "abre") - .1, P(4, "fechou")) || em(P(5, "fraquinho") - .3, C(6)) || t > C(6) && t < C(7) || t > C(8);
+  const fraca = em(C(5), C(6));
+  let chama = (t > P(3, "chama") - .2 && t < P(4, "toa") + .5);
+  chama = chama || em(P(4, "faisca") + .1, P(4, "fechou") + .2) || em(C(6), C(7)) || em(C(7), P(7, "apagar")) || t > C(8);
+  const gas = chama || em(P(4, "gas", 2) - .2, P(4, "faisca") + .1) || em(P(7, "apagar"), P(7, "corta"));
+  chamas.forEach((c) => { const k = frac(t * 3 + c.f); c.s.position.set(c.x, 1.24 + k * .16, c.z); c.s.scale.setScalar(.1 * (1 - k * .5)); c.s.material.opacity = chama ? .9 * (1 - k) : 0; });
+  faisca.position.set(-.3, 1.25, -.1); faisca.scale.setScalar(.35); faisca.material.opacity = pulse(t, P(4, "faisca") - .1, .3) + (em(P(5, "acende") - .3, P(5, "agua")) && frac(t * 3) < .2 ? .7 : 0);
+  serp.material.emissiveIntensity = chama ? .25 + .1 * Math.sin(t * 5) : 0;
+  fFria.atualiza(t, temAgua, .4, fraca ? .05 : .1);
+  fSerp.atualiza(t, temAgua, .2, fraca ? .05 : .1);
+  fSerp.ps.forEach((p) => p.s.material.color.setHSL(chama ? .62 - .62 * frac(t * .2 + p.f) : .6, 1, .55));
+  fQuente.atualiza(t, temAgua && chama, .4, .1);
+  banho.forEach((e) => { const k = frac(t * 1.4 + e.f); e.s.position.set(2.5 + Math.cos(e.a) * e.r * .35 * k, 2.4 - k * 1.6, -.2 + Math.sin(e.a) * e.r * .35 * k); e.s.scale.setScalar(.06); e.s.material.color.set(chama ? 0xff9a8a : 0x8ac8ff); e.s.material.opacity = temAgua && !fraca ? .9 : (fraca && e.f < .2 ? .9 : 0); });
+  fGas.atualiza(t, gas, .4, .08);
+  diaf.material.emissiveIntensity = em(P(4, "peca") - .2, P(4, "fechou") + .3) && temAgua ? 1.5 : (em(P(4, "sente") - .2, P(4, "abre")) ? .8 : 0);
+  diaf.position.x = -.35 + (temAgua && !fraca && t > P(4, "abre") - .1 && t < C(5) ? .05 : 0);
+  valv.material.emissiveIntensity = gas && em(C(4), C(5)) ? 1 : 0;
+  // CO e chaminé
+  const fumo = em(C(6), C(7)) || t > C(8);
+  const comChamine = t > P(6, "chamine") - .3;
+  chamine.visible = comChamine;
+  fumaca.forEach((p) => { const k = frac(t * .5 + p.f); p.s.position.set(-.2 + (p.f - .5) * .1, 2.8 + k * 2, -.2); p.s.scale.setScalar(.25 + k * .3); p.s.material.opacity = fumo && comChamine ? .5 * (1 - k) : 0; });
+  co.forEach((p) => { const k = frac(t * .3 + p.f); p.s.position.set(.1 + p.x * 2.8 + k * .8, 2.8 + k * .5 - Math.abs(p.x), .3); p.s.scale.setScalar(.45); p.s.material.opacity = em(P(6, "invisivel") - .3, P(6, "fora") - .3) ? .5 : 0; });
+  pessoa.visible = em(C(6), P(6, "fora") + 1) || t > C(8); pessoa.rotation.z = em(P(6, "matar") - .3, P(6, "fora") - .3) ? -.15 : 0;
+  // sensor de chama
+  sensor.material.emissiveIntensity = em(P(7, "sensor") - .3, F(7)) ? 1.5 : 0;
+  frente.material.opacity = t > C(8) ? .9 : .12; frente.material.color.set(t > C(8) ? 0xf4f4f4 : 0xffffff);
+  tela.visible = botao.visible = t > P(8, "botao") - .3; botao.rotation.y = t > P(8, "temperatura") ? (t - P(8, "temperatura")) * 1.5 : 0;
+  K.cartoes(t, [
+    [P(2, "demora") - .3, P(2, "acaba") - .3, "DEMORA", "#ff4a3a"],
+    [P(2, "acaba") - .3, P(2, "queima") - .3, "ACABOU", "#ff4a3a"],
+    [P(2, "queima") - .3, F(2), "AI!", "#ff4a3a"],
+    [P(3, "cobre") - .3, P(3, "passa") - .3, "SERPENTINA DE COBRE", "#ff9a3a"],
+    [P(3, "passa") - .3, F(3), "ESQUENTA PASSANDO", "#ff4a3a"],
+    [P(4, "toa") - .5, P(4, "peca") - .3, "GASTA GÁS À TOA", "#ff4a3a"],
+    [P(4, "sente") - .3, P(4, "faisca") - .3, "SENSOR DE ÁGUA", "#3a8cff"],
+    [P(4, "faisca") - .3, P(4, "fechou") - .3, "FAÍSCA → CHAMA", "#ffd23a"],
+    [P(4, "fechou") - .3, F(4), "FECHOU = APAGA", "#ffffff"],
+    [P(5, "acende") - .4, F(5), "POUCA ÁGUA = NÃO ACENDE", "#ff4a3a"],
+    [P(6, "monoxido") - .3, P(6, "fora") - .3, "MONÓXIDO DE CARBONO", "#ff4a3a"],
+    [P(6, "fora") - .3, P(6, "chamine") - .3, "FORA DO BANHEIRO", "#3aff7a"],
+    [P(6, "chamine") - .3, F(6), "CHAMINÉ", "#ffffff"],
+    [P(7, "sensor") - .3, F(7), "CORTA O GÁS", "#3aff7a"],
+  ]);
+});
+</script>
+</body></html>
