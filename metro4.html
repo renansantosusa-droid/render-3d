@@ -1,0 +1,231 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Série "Apocalipse no Metrô" — Episódio 4 (2D flat, estilo @historiascomkaio)
+const TEMPOS = await (await fetch("/metro4/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const frac = (x) => x - Math.floor(x);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala, T = TEMPOS.total;
+let rs = 1; const rnd = () => { rs = (rs * 16807) % 2147483647; return rs / 2147483647; };
+
+// ---------- paleta ----------
+const COR = { fundo: "#e9e2d0", fundoNoite: "#1d2129", predio: "#d9d2c0", linha: "#b9b09a", escuro: "#2a2e36", mostarda: "#e0a83a", vermelho: "#d6453a", azul: "#4a9be0", agua: "#6ab8f0", verde: "#4fae5a", pele: "#e8b48a", cabelo: "#3a2a20", camisa: "#3f6f73", calca: "#3a5a8a", txt: "#2a2e36" };
+
+// ---------- primitivas ----------
+const rr = (x, y, w, h, r, cor) => { g.fillStyle = cor; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+const rect = (x, y, w, h, cor) => { g.fillStyle = cor; g.fillRect(x, y, w, h); };
+function txt(s, x, y, tam, cor, peso = 700, al = "center") { g.font = `${peso} ${tam}px Oswald`; g.textAlign = al; g.textBaseline = "middle"; g.fillStyle = cor; g.fillText(s, x, y); }
+function etiqueta(s, x, y, fundo, cor = "#fff", tam = 34, a = 1) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + tam * .9; const sc = .85 + .15 * Math.min(1, a * 1.5); g.translate(x, y); g.scale(sc, sc); rr(-w / 2, -tam * .75, w, tam * 1.5, 6, fundo); txt(s, 0, 2, tam, cor); g.restore(); }
+function cartao(l1, l2, x, y, a = 1, cor2 = "#2a2e36") { if (a <= 0) return; g.save(); g.globalAlpha = a; g.translate(x, y); g.font = "700 64px Oswald"; const w = Math.max(g.measureText(l2).width, 260) + 80; rr(-w / 2, -70, w, 150, 10, "#fdf8ec"); rect(-w / 2, -70, w, 34, COR.mostarda); txt(l1, 0, -53, 24, "#2a2e36"); txt(l2, 0, 22, 64, cor2); g.restore(); }
+function pessoa(x, y, s = 1, { camisa = COR.camisa, olhar = 0, braco = 0, cabelo = COR.cabelo, bone = null, cabeca = 0 } = {}) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rect(-26, -150, 20, 150, COR.calca); rect(6, -150, 20, 150, COR.calca);
+  rr(-30, -6, 30, 12, 4, "#2a2a2a"); rr(4, -6, 30, 12, 4, "#2a2a2a");
+  rr(-38, -290, 76, 150, 18, camisa);
+  g.save(); g.translate(30, -275); g.rotate(-braco); rr(-8, 0, 20, 120, 10, camisa); rr(-6, 112, 18, 22, 9, COR.pele); g.restore();
+  g.save(); g.translate(-30, -275); rr(-12, 0, 20, 120, 10, camisa); rr(-10, 112, 18, 22, 9, COR.pele); g.restore();
+  rect(-10, -312, 20, 26, COR.pele);
+  g.save(); g.translate(0, -350); g.rotate(cabeca);
+  g.fillStyle = COR.pele; g.beginPath(); g.arc(0, 0, 44, 0, 6.283); g.fill();
+  g.fillStyle = cabelo; g.beginPath(); g.arc(0, -6, 46, Math.PI * 1.05, Math.PI * 1.95); g.fill();
+  if (bone) { g.fillStyle = bone; g.beginPath(); g.arc(0, -10, 47, Math.PI, 0); g.fill(); rect(0, -14, 64, 10, bone); }
+  g.fillStyle = "#222"; g.beginPath(); g.arc(-14 + olhar * 8, 4, 5, 0, 6.283); g.arc(14 + olhar * 8, 4, 5, 0, 6.283); g.fill();
+  g.strokeStyle = "#222"; g.lineWidth = 4; g.beginPath(); g.moveTo(-22 + olhar * 8, -10); g.lineTo(-6 + olhar * 8, -7); g.moveTo(6 + olhar * 8, -7); g.lineTo(22 + olhar * 8, -10); g.stroke();
+  g.beginPath(); g.moveTo(-8, 22); g.lineTo(8, 22); g.stroke();
+  g.restore(); g.restore();
+}
+// ---------- legenda (blocos de 3 palavras, palavra-chave colorida) ----------
+const CHAVE = { alavanca: COR.vermelho, cadeado: COR.mostarda, dobradica: COR.vermelho, ferrugem: COR.vermelho, velho: COR.mostarda, estoura: COR.mostarda, dia: COR.mostarda, onibus: COR.mostarda, silencio: COR.vermelho, tossir: COR.vermelho, padaria: COR.mostarda, socorro: COR.vermelho,  verdade: COR.mostarda, silencio: COR.vermelho, mordido: COR.vermelho, marcos: COR.mostarda, mordida: COR.vermelho, ultimo: COR.vermelho, olhos: "#9aff6a", verdes: "#9aff6a", dezenas: COR.vermelho, escada: COR.verde, degraus: COR.verde, corrente: COR.vermelho, serve: COR.vermelho, correndo: COR.vermelho,  corra: COR.vermelho, barulho: COR.vermelho, lanterna: COR.mostarda, vivo: COR.vermelho, jorge: "#ff9a3a", trancada: COR.vermelho, luz: COR.mostarda, chao: COR.mostarda, terno: COR.vermelho, vermelho: COR.vermelho, tossir: COR.vermelho, ecoou: COR.vermelho,  metro: COR.mostarda, estacao: COR.vermelho, desca: COR.vermelho, freia: COR.vermelho, tunel: COR.mostarda, piscam: COR.mostarda, celular: COR.azul, atacando: COR.vermelho, regra: COR.vermelho, vazio: COR.verde, armadilha: COR.vermelho, energia: COR.mostarda, matar: COR.vermelho, rose: COR.verde, mordido: COR.vermelho, saida: COR.verde, escuro: COR.mostarda, lanterna: COR.mostarda, papel: COR.mostarda, passos: COR.vermelho, trem: COR.vermelho };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1290) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 78px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 12; g.strokeStyle = "rgba(0,0,0,.75)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+
+// ---------- cenários do metrô ----------
+const zoom = (k, fn, cy = 1500) => { g.save(); g.translate(W / 2, cy); g.scale(k, k); g.translate(-W / 2, -cy); fn(); g.restore(); };
+const PASS = Array.from({ length: 7 }, (_, i) => ({ x: 40 + i * 166 + (rnd() - .5) * 30, c: ["#7a5a8a", "#3f6f73", "#8a4a3a", "#4a5a7a", "#6a7a4a", "#a0784a", "#5a4a6a", "#3a5a6a", "#8a6a6a"][i], s: 1.25 + rnd() * .15, cab: ["#2a2018", "#111", "#5a3a20", "#bbb", "#2a2018"][i % 5] }));
+function vagao(t, { luz = 1, anda = 0, gente = true, eu = true } = {}) {
+  rect(0, 0, W, H, "#3e434c");
+  // janelas com o túnel passando
+  for (let i = 0; i < 3; i++) { const x = 70 + i * 340; rr(x, 520, 260, 300, 18, "#0d0f13"); if (anda) for (let k = 0; k < 3; k++) { const lx = x + ((k * 140 - t * 900 * anda) % 400 + 400) % 400 - 70; if (lx > x && lx < x + 250) rect(lx, 640, 40, 8, "#f2c45a"); } rr(x, 520, 260, 300, 18, "rgba(255,255,255,.04)"); }
+  rect(0, 860, W, 30, "#6a707a"); // faixa
+  for (const x of [180, 540, 900]) rect(x - 9, 300, 18, 1200, "#e0b840"); // barras amarelas
+  rect(0, 300, W, 20, "#e0b840");
+  rect(0, 1500, W, 420, "#2a2d33"); for (let x = 0; x < W; x += 90) rect(x, 1500, 4, 420, "#24272c");
+  if (gente) PASS.forEach((p, i) => { if (eu && i === 3) return; pessoa(p.x, 1560, p.s, { camisa: p.c, cabelo: p.cab, olhar: i < 3 ? 1 : -1 }); });
+  if (eu) { g.save(); g.translate(W / 2, 1620); g.scale(1.75, 1.75); g.translate(-W / 2, -1500); pessoa(W / 2, 1500, .95, { camisa: "#2e4a6a", olhar: 0 });
+    rr(W / 2 - 46, 1500 - 270 * .95, 92, 120, 14, "#c0503a"); // mochila na frente
+    g.strokeStyle = "#111"; g.lineWidth = 8; g.beginPath(); g.arc(W / 2, 1500 - 350 * .95, 50, Math.PI * 1.1, Math.PI * 1.9); g.stroke(); rr(W / 2 - 56, 1500 - 355 * .95, 14, 26, 4, "#111"); rr(W / 2 + 42, 1500 - 355 * .95, 14, 26, 4, "#111"); g.restore(); }
+  if (luz < 1) { g.fillStyle = `rgba(0,0,0,${1 - luz})`; g.fillRect(0, 0, W, H); }
+}
+function tunel(t, { trilhoAlerta = 0, andando = 0, lanterna = 0, passos = 0 } = {}) {
+  rect(0, 0, W, H, "#15171c");
+  g.fillStyle = "#24272e"; g.beginPath(); g.moveTo(80, 1700); g.lineTo(80, 700); g.quadraticCurveTo(W / 2, 260, W - 80, 700); g.lineTo(W - 80, 1700); g.fill();
+  // perspectiva dos trilhos
+  const vx = W / 2, vy = 900;
+  g.fillStyle = "#1a1c21"; g.beginPath(); g.moveTo(vx - 30, vy); g.lineTo(vx + 30, vy); g.lineTo(W - 140, 1700); g.lineTo(140, 1700); g.fill();
+  for (let k = 0; k < 12; k++) { const f = Math.pow(k / 11, 2); const y = vy + (1700 - vy) * f, hw = 30 + (W / 2 - 160) * f; rect(vx - hw, y, hw * 2, 6 + 14 * f, "#3a2e24"); }
+  const trilho = (a, cor, w) => { g.strokeStyle = cor; g.lineWidth = w; g.beginPath(); g.moveTo(vx + a * 30, vy); g.lineTo(vx + a * (W / 2 - 220), 1700); g.stroke(); };
+  trilho(-.55, "#8a8f98", 10); trilho(.55, "#8a8f98", 10);
+  const brilho = trilhoAlerta ? .6 + .4 * Math.sin(t * 14) : .15;
+  g.save(); g.shadowColor = "#ffd23a"; g.shadowBlur = 40 * trilhoAlerta; trilho(1.05, `rgba(255,210,58,${brilho})`, 16); g.restore();
+  // passarela lateral
+  g.fillStyle = "#30343c"; g.beginPath(); g.moveTo(80, 1100); g.lineTo(vx - 60, vy - 10); g.lineTo(vx - 50, vy + 10); g.lineTo(80, 1250); g.fill();
+  if (lanterna) { g.fillStyle = `rgba(255,240,190,${.18 * lanterna})`; g.beginPath(); g.moveTo(260, 1150); g.lineTo(vx - 40, vy - 60); g.lineTo(vx + 80, vy + 40); g.fill(); }
+  if (andando) for (let i = 0; i < 4; i++) { const k = frac(t * .05 + i * .1); pessoa(160 + i * 70 + k * 40, 1180 - i * 18, .32 - i * .03, { camisa: ["#2e4a6a", "#f2f2f2", "#7a5a8a", "#8a4a3a"][i], olhar: 1 }); }
+  if (passos) for (let i = 0; i < 4; i++) { const a = clamp(passos * 4 - i, 0, 1); g.globalAlpha = a * (.6 + .4 * Math.sin(t * 8 + i)); txt("👣", vx + (i % 2 ? 30 : -30), vy + 80 + i * 70, 40 + i * 10, "#ddd"); g.globalAlpha = 1; }
+}
+function plataforma(t) {
+  rect(0, 0, W, H, "#5a5e66"); rect(0, 300, W, 120, "#c8c2b2"); txt("ESTAÇÃO", W / 2, 360, 54, "#2a2e36");
+  rect(0, 1300, W, 620, "#8a8577"); rect(0, 1290, W, 20, "#e0b840");
+  for (let i = 0; i < 14; i++) { const x = 40 + i * 76 + Math.sin(i * 3.1) * 20, s = .45 + (i % 3) * .06; const z = i % 3 !== 1; g.save(); g.translate(Math.sin(t * 3 + i) * 6, 0); pessoa(x, 1300 - (i % 2) * 30, s, { camisa: z ? "#4a5a4a" : "#6a5a8a", olhar: i % 2 ? 1 : -1, braco: z ? 1.3 : 0 }); g.restore(); if (z) { g.fillStyle = "rgba(120,200,90,.55)"; g.beginPath(); g.arc(x, 1300 - (i % 2) * 30 - 350 * s, 44 * s, 0, 6.283); g.fill(); } }
+}
+function celular(t) {
+  rect(0, 0, W, H, "#1c1f25");
+  g.save(); g.translate(W / 2, 960); g.rotate(-.03);
+  rr(-300, -560, 600, 1120, 60, "#0b0c0f"); rr(-270, -520, 540, 1040, 36, "#111");
+  // vídeo dentro do celular: plataforma
+  g.save(); g.beginPath(); g.roundRect(-270, -420, 540, 560, 10); g.clip(); g.translate(-540 * .5, -420); g.scale(.5, .5); g.translate(0, -420); plataforma(t); g.restore();
+  rr(-250, -400, 110, 40, 8, COR.vermelho); txt("AO VIVO", -195, -380, 24, "#fff");
+  for (let i = 0; i < 3; i++) { rr(-250, 180 + i * 110, 500, 90, 14, "#24272e"); rr(-235, 195 + i * 110, 60, 60, 30, "#555"); rect(-160, 205 + i * 110, 340, 14, "#555"); rect(-160, 235 + i * 110, 220, 12, "#444"); }
+  g.restore();
+}
+function mapa(t) {
+  rect(0, 0, W, H, "#1d2129");
+  const y = 900, x0 = 140, x1 = 940;
+  rect(x0, y - 6, x1 - x0, 12, "#8a8f98");
+  rr(x0 - 20, y - 50, 200, 100, 16, "#c8ccd2"); rect(x0, y - 30, 160, 40, "#7aa0c8"); txt("VOCÊ", x0 + 80, y + 90, 32, "#ddd");
+  const k = prog(t, P(7, "quinhentos") - .5, P(7, "quinhentos") + .8);
+  g.strokeStyle = COR.vermelho; g.lineWidth = 8; g.setLineDash([20, 14]); g.beginPath(); g.moveTo(x0 + 190, y - 70); g.lineTo(x0 + 190 + (x1 - x0 - 230) * k, y - 70); g.stroke(); g.setLineDash([]);
+  rr(x1 - 70, y - 220, 140, 80, 10, COR.verde); txt("SAÍDA", x1, y - 180, 40, "#fff");
+  for (let i = 0; i < 5; i++) rect(x1 - 30, y - 140 + i * 24, 60, 8, "#555");
+  if (t > P(7, "quinhentos") - .3) etiqueta("500 M", (x0 + x1) / 2 + 60, y - 140, COR.escuro, "#fff", 54, 1);
+  if (t > P(7, "escuro") - .3) { g.fillStyle = `rgba(0,0,0,${.75 * prog(t, P(7, "escuro") - .3, P(7, "escuro") + .3)})`; g.fillRect(0, 0, W, H); }
+  if (t > P(7, "lanterna") - .3) { const a = prog(t, P(7, "lanterna") - .3, P(7, "lanterna")); g.fillStyle = `rgba(255,240,190,${.5 * a})`; g.beginPath(); g.moveTo(x0 + 180, y); g.lineTo(x0 + 600, y - 160); g.lineTo(x0 + 600, y + 160); g.fill(); }
+}
+function porta(t, abre) {
+  rect(0, 0, W, H, "#3e434c"); rect(0, 1500, W, 420, "#2a2d33");
+  rect(240, 420, 600, 1080, "#0b0c0f");
+  if (abre > .1) { const k = abre; tunel(t, { passos: 1 }); g.save(); g.globalCompositeOperation = "destination-in"; rect(240, 420, 600, 1080, "#000"); g.restore(); rect(0, 0, 240, H, "#3e434c"); rect(840, 0, 240, H, "#3e434c"); rect(0, 0, W, 420, "#3e434c"); rect(0, 1500, W, 420, "#2a2d33"); }
+  const d = 300 * abre;
+  rr(240 - d, 420, 300, 1080, 8, "#9aa2ac"); rr(540 + d, 420, 300, 1080, 8, "#9aa2ac");
+  rr(270 - d, 520, 240, 380, 14, "#1a1c21"); rr(570 + d, 520, 240, 380, 14, "#1a1c21");
+}
+const circ = (x, y, r, c) => { g.fillStyle = c; g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill(); };
+// HUD estilo câmera de segurança
+function hud(t) {
+  if (t > FALA + .3) return;
+  const fases = [[0, "07:41", "ESCADA · SAÍDA"], [C(5), "08:00", "SAÍDA · RUA"], [C(7), "08:00", "ESCADA"], [C(8), "08:01", "RUA"]];
+  let f = fases[0]; for (const x of fases) if (t >= x[0]) f = x;
+  g.fillStyle = frac(t) < .5 ? COR.vermelho : "rgba(214,69,58,.3)"; g.beginPath(); g.arc(70, 92, 9, 0, 6.283); g.fill();
+  txt("DIA 1", 90, 92, 26, "#fff", 500, "left");
+  g.save(); g.shadowColor = "rgba(0,0,0,.8)"; g.shadowBlur = 8; txt(f[1], 60, 150, 72, "#fff", 700, "left"); txt(f[2], 62, 205, 28, "#ddd", 500, "left"); g.restore();
+}
+function regra(n, s, a) { if (a <= 0) return; g.save(); g.globalAlpha = Math.min(1, a * 1.4); g.translate(W / 2, 470); g.rotate(-.04); g.scale(.8 + .2 * a, .8 + .2 * a); rr(-90, -95, 180, 40, 6, COR.vermelho); txt(`REGRA #${n}`, 0, -75, 26, "#fff"); g.font = "700 64px Oswald"; const w = g.measureText(s).width + 60; rr(-w / 2, -50, w, 96, 8, "#fdf8ec"); txt(s, 0, 0, 64, COR.txt); g.restore(); }
+function operador(x, y, s, o = {}) { pessoa(x, y, s, { camisa: "#e07a2a", cabelo: "#888", olhar: o.olhar ?? 0, braco: o.braco ?? 0 }); g.save(); g.translate(x, y); g.scale(s, s); rect(-38, -290, 76, 16, "#f2e040"); rect(-38, -220, 76, 16, "#f2e040"); rr(24, -170, 26, 50, 6, "#222"); rect(34, -190, 4, 22, "#222"); g.strokeStyle = "#c8a040"; g.lineWidth = 4; g.beginPath(); g.moveTo(-14, -300); g.lineTo(0, -250); g.lineTo(14, -300); g.stroke(); circ(0, -246, 9, "#c8a040"); g.restore(); }
+function mapa2(t) {
+  rect(0, 0, W, H, "#1d2129");
+  const y = 900, x0 = 120, x1 = 960, xm = 480;
+  rect(x0, y - 6, x1 - x0, 12, "#8a8f98");
+  rr(x0 - 20, y - 50, 160, 100, 16, "#c8ccd2"); rect(x0, y - 30, 120, 40, "#7aa0c8"); txt("VOCÊS", x0 + 60, y + 90, 32, "#ddd");
+  rr(xm - 70, y - 220, 140, 80, 10, "#555"); txt("SAÍDA", xm, y - 180, 40, "#999"); txt("500 M", xm, y + 90, 30, "#aaa");
+  if (t > P(4, "trancada") - .3) { g.strokeStyle = COR.vermelho; g.lineWidth = 16; g.beginPath(); g.moveTo(xm - 80, y - 240); g.lineTo(xm + 80, y - 120); g.moveTo(xm + 80, y - 240); g.lineTo(xm - 80, y - 120); g.stroke(); etiqueta("TRANCADA", xm, y - 300, COR.vermelho, "#fff", 40, 1); }
+  if (t > P(4, "proxima") - .3) { const k = prog(t, P(4, "proxima") - .3, P(4, "duzentos") + .3); g.strokeStyle = COR.mostarda; g.lineWidth = 8; g.setLineDash([20, 14]); g.beginPath(); g.moveTo(x0 + 150, y - 70); g.lineTo(x0 + 150 + (x1 - x0 - 190) * k, y - 70); g.stroke(); g.setLineDash([]); rr(x1 - 70, y - 220, 140, 80, 10, COR.verde); txt("SAÍDA", x1, y - 180, 40, "#fff"); txt("1,2 KM", x1, y + 90, 34, COR.mostarda); }
+}
+function terno(t, k) { // close do homem do terno com o braço enrolado
+  rect(0, 0, W, H, "#15171c"); g.fillStyle = "rgba(255,240,190,.12)"; g.beginPath(); g.moveTo(W / 2, 1900); g.lineTo(0, 400); g.lineTo(W, 400); g.fill();
+  g.save(); g.translate(W / 2, 1500 + 330 * 2.3 - 400); g.scale(2.3, 2.3); pessoa(0, 0, 1, { camisa: "#2a2d36", cabelo: "#3a2a20", olhar: -.6 }); g.restore();
+  g.save(); g.translate(W / 2 + 120, 1250); g.rotate(-.3); rr(-90, -60, 300, 140, 50, "#4a4038"); g.fillStyle = `rgba(170,20,20,${.25 + .6 * k})`; g.beginPath(); g.ellipse(60, 10, 40 + 70 * k, 30 + 30 * k, 0, 0, 6.283); g.fill(); g.restore();
+}
+// ---------- quadro ----------
+function olhos(t, n, perto, vx = W / 2, vy = 900) { for (let i = 0; i < n; i++) { const a = (i * 2.399) % 6.283, r = (i * 37 % 120) * (1 + perto * 3); const x = vx + Math.cos(a) * r * 1.6 + Math.sin(t * 2 + i) * 6 * (1 + perto), y = vy + Math.sin(a) * r * .5 + perto * 300 * ((i % 3) / 3); const s = 4 + perto * 10; circ(x - s * 1.4, y, s, "#9aff6a"); circ(x + s * 1.4, y, s, "#9aff6a"); } }
+function escada(t, porta = 0) {
+  rect(0, 0, W, H, "#15171c");
+  for (let i = 0; i < 14; i++) { const y = 1700 - i * 90, x0 = 180 + i * 18, x1 = 900 - i * 18; rect(x0, y, x1 - x0, 20, "#5a5e66"); rect(x0, y + 20, x1 - x0, 70, "#2a2d33"); }
+  rect(170, 380, 14, 1340, "#8a8f98"); rect(896, 380, 14, 1340, "#8a8f98");
+  rr(380, 200, 320, 240, 6, "#4a5058"); rr(360, 170, 360, 40, 6, "#2e8a4a"); txt("SAÍDA", 540, 192, 30, "#fff");
+  if (porta) { g.strokeStyle = "#9aa0a8"; g.lineWidth = 12; for (let i = 0; i < 8; i++) { g.beginPath(); g.ellipse(400 + i * 40, 330 + (i % 2) * 8, 22, 12, 0, 0, 6.283); g.stroke(); } rr(500, 340, 80, 70, 10, "#c8a040"); g.strokeStyle = "#c8a040"; g.lineWidth = 10; g.beginPath(); g.arc(540, 340, 26, Math.PI, 0); g.stroke(); }
+  g.fillStyle = "rgba(255,240,190,.13)"; g.beginPath(); g.moveTo(540, 1900); g.lineTo(380, 300); g.lineTo(700, 300); g.fill();
+}
+function ruaDia(t, porta = 1) {
+  g.fillStyle = "#cfe0ee"; g.fillRect(0, 0, W, 1100); for (let i = 0; i < 6; i++) { const bx = i * 190 - 30, bh = 360 + (i * 97 % 260); rr(bx, 1100 - bh, 170, bh, 6, ["#b8b0a0", "#a8b4c0", "#c8b890", "#b89890", "#a0b098", "#b8a8b8"][i]); for (let r = 0; r < bh / 90 - 1; r++) for (let c = 0; c < 2; c++) rr(bx + 25 + c * 70, 1100 - bh + 30 + r * 90, 48, 56, 4, "#4a5a6a"); }
+  rect(0, 1100, W, 820, "#4a4d54"); for (let x = 20; x < W; x += 180) rect(x, 1360, 100, 12, "#e8e8e8");
+  // ônibus atravessado
+  rr(120, 1180, 560, 220, 20, "#d0a020"); for (let i = 0; i < 5; i++) rr(150 + i * 100, 1210, 80, 70, 6, "#2a3a4a"); circ(220, 1400, 40, "#111"); circ(580, 1400, 40, "#111");
+  // carro com porta aberta
+  rr(720, 1300, 300, 110, 30, "#8a2a2a"); rr(760, 1250, 180, 70, 16, "#7a2020"); g.save(); g.translate(800, 1310); g.rotate(.6); rr(0, -60, 90, 110, 6, "#7a2020"); g.restore(); circ(780, 1410, 30, "#111"); circ(960, 1410, 30, "#111");
+  // padaria com porta abaixada
+  rr(640, 680, 360, 420, 6, "#e8d8b8"); rr(640, 640, 360, 60, 6, "#c0502a"); txt("PADARIA", 820, 672, 36, "#fff"); rr(670, 760, 300, 340, 4, "#9aa0a8"); for (let i = 0; i < 12; i++) rect(670, 770 + i * 28, 300, 4, "#7a8088");
+  if (porta > 1) { const on = frac(t * 1.6) < .5; if (on) { const gr = g.createRadialGradient(820, 790, 0, 820, 790, 120); gr.addColorStop(0, "rgba(255,240,160,.95)"); gr.addColorStop(1, "rgba(255,240,160,0)"); g.fillStyle = gr; g.fillRect(700, 670, 240, 240); } }
+}
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1
+    escada(t, 1); etiqueta("SEM SAÍDA? CRIE UMA", W / 2, 620, COR.mostarda, "#111", 50, prog(t, P(1, "cria") - .3, P(1, "cria")));
+  } else if (t < C(3)) { // CENA 2: alavanca
+    escada(t, 1); operador(W / 2, 1600, 1.4, { olhar: 0, braco: 1.6 });
+    g.save(); g.translate(W / 2 + 70, 1050); g.rotate(-.7); rr(-10, -170, 20, 260, 8, "#d6453a"); rr(-30, -190, 60, 30, 8, "#d6453a"); g.restore();
+    etiqueta("ALAVANCA DE EMERGÊNCIA", W / 2, 620, COR.vermelho, "#fff", 46, prog(t, P(2, "alavanca") - .3, P(2, "alavanca")));
+  } else if (t < C(4)) { // CENA 3: cadeado x dobradiça
+    rect(0, 0, W, H, "#4a5058");
+    g.strokeStyle = "#9aa0a8"; g.lineWidth = 34; for (let i = 0; i < 6; i++) { g.beginPath(); g.ellipse(170 + i * 150, 760, 80, 44, 0, 0, 6.283); g.stroke(); }
+    rr(430, 800, 220, 200, 24, "#c8a040"); g.strokeStyle = "#c8a040"; g.lineWidth = 34; g.beginPath(); g.arc(540, 800, 80, Math.PI, 0); g.stroke(); txt("NOVO", 540, 900, 50, "#fff");
+    rr(80, 1150, 220, 300, 10, "#7a4a2a"); for (let i = 0; i < 30; i++) circ(100 + (i * 37) % 180, 1170 + (i * 53) % 260, 6 + (i % 4), "#a0602a"); txt("40 ANOS", 190, 1490, 40, "#ffb060");
+    const forca = Math.sin(t * 14) * 6 * (t > P(3, "forca") - .3 ? 1 : 0); g.translate(forca, 0);
+    if (t > P(3, "dobradica") - .3) etiqueta("A DOBRADIÇA ENFERRUJADA", W / 2, 470, COR.vermelho, "#fff", 46, 1); else if (t > P(3, "cadeado") - .3) etiqueta("O CADEADO É NOVO", W / 2, 470, COR.escuro, "#fff", 46, 1);
+  } else if (t < C(5)) { // CENA 4: regra 5
+    rect(0, 0, W, H, "#4a5058"); rr(80, 1150, 220, 300, 10, "#7a4a2a"); for (let i = 0; i < 30; i++) circ(100 + (i * 37) % 180, 1170 + (i * 53) % 260, 6 + (i % 4), "#a0602a");
+    regra(5, "ATAQUE O PONTO MAIS VELHO", prog(t, P(4, "regra") - .2, P(4, "regra") + .2));
+  } else if (t < C(6)) { // CENA 5: a porta abre, luz do dia
+    const ab = prog(t, P(5, "estoura") - .2, P(5, "abre") + .3);
+    escada(t, 1 - ab);
+    const gr = g.createRadialGradient(540, 300, 0, 540, 300, 900 * ab + 1); gr.addColorStop(0, `rgba(255,250,230,${.95 * ab})`); gr.addColorStop(1, "rgba(255,250,230,0)"); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    if (t > P(5, "estoura") - .3 && t < P(5, "estoura") + .3) etiqueta("CRAAACK!", W / 2, 620, COR.mostarda, "#111", 70, 1);
+    if (t > P(5, "oito") - .3) etiqueta("08:00 · LUZ DO DIA ☀", W / 2, 620, "#fdf8ec", COR.txt, 50, 1);
+  } else if (t < C(7)) { // CENA 6: a rua
+    ruaDia(t, 1);
+    if (t > P(6, "silencio") - .3) etiqueta("E SILÊNCIO…", W / 2, 470, COR.escuro, "#fff", 54, 1); else etiqueta("A RUA NÃO ESTÁ VAZIA", W / 2, 470, COR.vermelho, "#fff", 48, prog(t, P(6, "vazia") - .3, P(6, "vazia")));
+  } else if (t < C(8)) { // CENA 7: o Marcos sobe
+    escada(t, 0); tinta2(.35);
+    const k = prog(t, P(7, "sobe") - .3, P(7, "dona") + .5);
+    g.save(); g.translate(W / 2, 1900 - 500 * k); g.scale(1.2 - .4 * k, 1.2 - .4 * k); pessoa(0, 0, 1, { camisa: "#2a2d36", cabelo: "#3a2a20", olhar: 0 }); g.fillStyle = "rgba(170,20,20,.8)"; g.beginPath(); g.ellipse(50, -230, 40, 24, 0, 0, 6.283); g.fill(); g.restore();
+    if (t > P(7, "tossir") - .3 && t < P(7, "dona") - .2) etiqueta("SEM TOSSIR…", W / 2, 620, COR.vermelho, "#fff", 56, 1);
+    if (t > P(7, "bate") - .2) { tinta2(prog(t, P(7, "bate") - .2, P(7, "bate") + .1)); etiqueta("BLAM!", W / 2, 900, COR.vermelho, "#fff", 80, 1); }
+  } else if (t < FALA + .3) { // CENA 8: a padaria
+    ruaDia(t, t > P(8, "lanterna") - .3 ? 2 : 1);
+    if (t < P(8, "so") - .2) etiqueta("NO PAPEL… LIVRES", W / 2, 470, "#fdf8ec", COR.txt, 48, prog(t, P(8, "livres") - .3, P(8, "livres")));
+    else if (t > P(8, "socorro") - .4) etiqueta("3 PISCADAS = SOCORRO", W / 2, 470, COR.vermelho, "#fff", 52, 1);
+    else if (t > P(8, "padaria") - .3) etiqueta("A PADARIA DE PORTA ABAIXADA", W / 2, 470, COR.escuro, "#fff", 44, 1);
+  } else { // CARD FINAL
+    rect(0, 0, W, H, "#0e1014");
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("O QUE VOCÊ FAZ?", W / 2, 720, 96, "#fff");
+    rr(120, 830, 400, 110, 55, COR.vermelho); txt("ATRAVESSA A RUA", 320, 887, 38, "#fff");
+    rr(560, 830, 400, 110, 55, COR.verde); txt("SEGUE O SEU JORGE", 760, 887, 36, "#fff");
+    txt("COMENTA 👇", W / 2, 1040, 44, COR.mostarda); txt("AMANHÃ: DIA 1 · 08:01", W / 2, 1110, 32, "#aaa", 500);
+    txt("APOCALIPSE NO METRÔ · EP. 4", W / 2, 1500, 26, "#666", 500);
+    g.globalAlpha = 1;
+  }
+  hud(t);
+  legenda(t);
+};
+function tinta2(a) { g.fillStyle = `rgba(0,0,0,${a})`; g.fillRect(0, 0, W, H); }
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
