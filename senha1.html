@@ -1,0 +1,165 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@500;600;700;800&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Série "A Senha" — Episódio 1: Os Sinais (2D detalhado, biblioteca cena2d.js)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/senha1/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa, celular, telaBloqueio, telaNotificacao, hud, adesivo, balao } = K;
+const ease = K.ease, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const CARLA = { sexo: "f", cabelo: "#4a2a1a", roupa: "#8a3a4a", calca: "#3a3a4a", pele: "#e3a77f" };
+const RAFA = { sexo: "m", cabelo: "#1a1410", roupa: "#3a5a8a", calca: "#2e3a52", pele: "#d39a72" };
+const piscar = (t, f = 0) => ((t + f) % 3.7) < .12 ? .1 : 1;
+const CHAO = 1460;
+
+// ---------- legenda (blocos de 3 palavras) ----------
+const CHAVE = { senha: "#e0a83a", observe: "#e0a83a", perfeita: "#4fae5a", sinal: "#d6453a", banco: "#e0a83a", reparar: "#d6453a", celular: "#e0a83a", mesa: "#d6453a", banheiro: "#6ab8f0", minutos: "#d6453a", terca: "#e0a83a", chuteira: "#d6453a", limpa: "#d6453a", papel: "#e0a83a", acreditou: "#e0a83a", pia: "#e0a83a", desconfia: "#d6453a", ju: "#d6453a", amiga: "#d6453a", madrinha: "#d6453a", carla: "#f2b8c6", rafael: "#9ac8f0" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 80px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 13; g.strokeStyle = "rgba(0,0,0,.8)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+const HUDS = () => [[0, 1, "22:14", "SALA"], [C(4), 3, "20:05", "JANTAR"], [C(5), 3, "22:40", "CORREDOR"], [C(6), 5, "19:30", "QUARTO"], [C(7), 6, "23:10", "QUARTO"], [C(8), 7, "23:47", "COZINHA"]];
+
+// ---------- cenas ----------
+function cenaSala(t, k, { carla = {}, rafa = {}, cam = {} } = {}) {
+  g.save(); camera(k, { z0: 1, z1: 1.07, ...cam });
+  K.sala(CHAO, t);
+  K.rackTv(330, CHAO + 40, 1, t);
+  K.sofa(150, CHAO + 330, 780, "#6a5a7a");
+  pessoa(410, CHAO + 300, 1.05, { ...CARLA, sentado: true, olhar: .6, piscar: piscar(t), ...carla });
+  pessoa(660, CHAO + 300, 1.1, { ...RAFA, sentado: true, olhar: -.2, piscar: piscar(t, 1.3), braco: .9, celular: true, ...rafa });
+  g.restore(); vinheta(.5);
+}
+function telaSenha(t, ini) { // digita 6 números e dá erro
+  const dig = Math.min(6, Math.floor(lin(t, ini, ini + 1.0) * 6.99)); const err = t > ini + 1.1 ? clamp((t - ini - 1.1) / .6, 0, 1) : 0;
+  celular(W / 2, 980, 1.05, (x, y, w, h) => telaBloqueio(x, y, w, h, err > 0 ? 6 : dig, err));
+}
+function cenaJantar(t, k) {
+  g.save(); camera(k, { z0: 1, z1: 1.1, cy: 1100 });
+  K.parede(0, CHAO, "#d4c2a8", "#c2ae92"); K.quadro(380, 300, 320, 220, K.fotoFamilia, "#2a2018"); K.planta(980, CHAO, 1.1);
+  K.pisoMadeira(CHAO, "#8a5e3c"); K.rodape(CHAO);
+  K.cadeira(250, CHAO + 60); K.cadeira(830, CHAO + 60);
+  pessoa(300, CHAO + 40, 1.08, { ...CARLA, sentado: true, olhar: .9, expr: "desconfiada", piscar: piscar(t) });
+  pessoa(780, CHAO + 40, 1.1, { ...RAFA, sentado: true, olhar: -.3, piscar: piscar(t, 1.1) });
+  K.mesaJantar(120, CHAO + 200, 840, t);
+  // celular virado pra mesa
+  rr(690, CHAO - 168, 90, 46, 10, "#1a1b20"); rr(694, CHAO - 164, 82, 4, 2, "#444");
+  if (t > P(4, "virada") - .3) { g.strokeStyle = "#d6453a"; g.lineWidth = 8; g.beginPath(); g.ellipse(735, CHAO - 146, 90 + 6 * Math.sin(t * 6), 50, 0, 0, 6.283); g.stroke(); }
+  K.pendente(540, 380, 1);
+  g.restore(); tinta("#0a1030", .12); vinheta(.55);
+}
+function cenaCorredor(t, k) {
+  g.save(); camera(k, { z0: 1, z1: 1.08, x1: 30 });
+  K.corredorBanheiro(CHAO, t, 1);
+  pessoa(170, CHAO + 60, 1.15, { ...CARLA, olhar: 1, expr: "desconfiada", braco2: .2, piscar: piscar(t) });
+  g.restore(); tinta("#0a1030", .2); vinheta(.6);
+  // ícone do celular no banho
+  if (t > P(5, "celular") - .4) { const a = prog(t, P(5, "celular") - .4, P(5, "celular")); g.globalAlpha = a; rr(800, 760, 160, 160, 40, "rgba(255,255,255,.95)"); txt("🚿📱", 880, 842, 64, "#000", 500, "center", "Nunito"); g.globalAlpha = 1; }
+  if (t > P(5, "vinte") - .3) { const min = Math.round(20 * lin(t, P(5, "vinte") - .3, P(5, "minutos") + .5)); K.rr(W / 2 - 150, 600, 300, 110, 14, "#fdf8ec"); txt(`${min} MIN`, W / 2, 656, 72, "#d6453a"); }
+}
+function cenaQuarto(t, k, noite = 0, carla = {}) {
+  g.save(); camera(k, { z0: 1, z1: 1.06 });
+  K.quarto(CHAO, t, noite);
+  pessoa(noite ? 220 : 440, noite ? CHAO - 90 : CHAO + 60, 1.12, { ...CARLA, sentado: !!noite, piscar: piscar(t), ...carla });
+  g.restore(); if (noite) tinta("#0a1030", .25); vinheta(.55);
+}
+function cenaCozinha(t, k, acende) {
+  g.save(); camera(k, { z0: 1, z1: 1.12, cx: 760, cy: CHAO - 500 });
+  K.cozinha(CHAO, 1, t);
+  // celular na pia
+  rr(820, CHAO - 500, 100, 46, 10, "#1a1b20");
+  if (acende > 0) { rr(826, CHAO - 496, 88, 38, 6, `rgba(150,190,255,${acende})`); glow(870, CHAO - 480, 300, "rgba(150,190,255,A)", .55 * acende); }
+  pessoa(330, CHAO + 70, 1.12, { ...CARLA, olhar: 1, expr: acende > .5 ? "desconfiada" : "neutro", piscar: piscar(t) });
+  g.restore(); vinheta(.65);
+}
+function fotoBatizado(t, a) {
+  g.save(); g.globalAlpha = a; g.translate(W / 2, 930); g.rotate(-.05);
+  rr(-330, -400, 660, 760, 10, "#fdfbf6"); g.fillStyle = "rgba(0,0,0,.25)"; g.fillRect(-320, 360, 650, 14);
+  g.save(); g.beginPath(); g.rect(-300, -370, 600, 600); g.clip(); g.fillStyle = "#c9d8e8"; g.fillRect(-300, -370, 600, 600);
+  rr(-300, 80, 600, 160, 0, "#b8a890");
+  pessoa(-120, 230, .9, { sexo: "f", cabelo: "#c89a4a", roupa: "#2a8a7a", calca: "#2a3a4a", expr: "sorriso" });
+  pessoa(120, 230, .9, { ...CARLA, expr: "sorriso" });
+  rr(-70, -60, 80, 60, 30, "#fff"); circ(-30, -66, 22, "#f2c49a"); // bebê no colo
+  g.restore();
+  txt("Batizado do Theo 💙 — madrinha Ju", 0, 300, 38, "#3a3a3a", 600, "center", "Nunito");
+  g.restore();
+}
+
+// ---------- quadro ----------
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1: a senha
+    cenaSala(t, 0); tinta("#000", .6);
+    telaSenha(t, P(1, "trocar") - .3);
+    if (t > P(1, "observe") - .3) adesivo("REGRA", "NÃO PERGUNTE. OBSERVE.", prog(t, P(1, "observe") - .3, P(1, "observe")), 300);
+  } else if (t < C(3)) { // CENA 2: o casal, a rotina, a senha
+    if (t < P(2, "dois") - .2) cenaSala(t, lin(t, C(2), P(2, "dois")), { carla: { expr: "sorriso", cabeca: .06 }, rafa: { expr: "sorriso" } });
+    else if (t < P(2, "ate") - .2) {
+      cenaSala(t, 1, { cam: { z0: 1.07, z1: 1.07 } });
+      const k = prog(t, P(2, "dois") - .2, P(2, "dois") + .6); g.save(); g.globalAlpha = k; rect(0, 0, W, H, "rgba(0,0,0,.55)"); g.translate(W / 2, 760); g.scale(2.4, 2.4); g.translate(-770, -470); K.quadro(620, 360, 300, 220, K.fotoFamilia, "#2a2018"); g.restore();
+      const tags = [["filhos", "2 FILHOS"], ["financiado", "APÊ FINANCIADO"], ["perfeita", "ROTINA PERFEITA"]];
+      tags.forEach(([w, s], i) => K.balao(W / 2, 1050 + i * 0, s, 0));
+      let ult = null; for (const [w, s] of tags) if (t > P(2, w) - .2) ult = s; if (ult) adesivo("7 ANOS DE CASADOS", ult, 1, 1080, "#e0a83a");
+    } else { cenaSala(t, 1); tinta("#000", .6); telaSenha(t, P(2, "pediu") - .5); }
+    if (em(P(2, "casados") - .3, P(2, "dois") - .2)) adesivo("CARLA + RAFAEL", "CASADOS HÁ 7 ANOS", 1, 300, "#e0a83a");
+  } else if (t < C(4)) { // CENA 3: sinal 1
+    const sorri = t > P(3, "sorriu") - .2, repara = t > P(3, "reparar") - .3;
+    const k = lin(t, C(3), F(3));
+    cenaSala(t, k, { carla: { expr: repara ? "desconfiada" : sorri ? "sorriso" : "neutro", olhar: 1 }, rafa: { expr: em(P(3, "disse") - .2, P(3, "sorriu")) ? "sorriso" : "neutro" }, cam: repara ? { z0: 1.07, z1: 2.1, cx: 410, cy: 1400, x1: 130, y1: -450 } : {} });
+    if (em(P(3, "disse") - .2, P(3, "sorriu") - .1)) balao(700, 760, "“Foi o banco que pediu.” 🙂", 1);
+    adesivo("SINAL #1", "SENHA NOVA", prog(t, P(3, "sinal") - .2, P(3, "sinal") + .2), 300);
+  } else if (t < C(5)) { // CENA 4: celular virado
+    cenaJantar(t, lin(t, C(4), F(4)));
+    adesivo("SINAL #2", "CELULAR VIRADO PRA MESA", prog(t, P(4, "sinal") - .2, P(4, "sinal") + .2), 300);
+  } else if (t < C(6)) { // CENA 5: banho com o celular
+    cenaCorredor(t, lin(t, C(5), F(5)));
+    adesivo("SINAL #3", "BANHO COM O CELULAR", prog(t, P(5, "sinal") - .2, P(5, "sinal") + .2), 300);
+  } else if (t < C(7)) { // CENA 6: futebol de terça
+    const zoomChut = t > P(6, "chuteira") - .3;
+    cenaQuarto(t, zoomChut ? prog(t, P(6, "chuteira") - .3, P(6, "chuteira") + .6) : 0, 0, { olhar: 1, expr: zoomChut ? "desconfiada" : "neutro" });
+    if (zoomChut) { g.save(); rect(0, 0, W, H, `rgba(0,0,0,${.5 * prog(t, P(6, "chuteira") - .3, P(6, "chuteira") + .3)})`); g.translate(W / 2, 860); const z = 1 + 1.4 * prog(t, P(6, "chuteira") - .3, P(6, "chuteira") + .5); g.scale(z, z); g.translate(-760, -(CHAO - 640)); g.beginPath(); g.rect(560, CHAO - 760, 400, 250); g.clip(); K.quarto(CHAO, t, 0); g.restore(); if (t > P(6, "limpa") - .3) K.rr(W / 2 - 170, 1060, 340, 100, 14, "#fdf8ec"), txt("✨ LIMPINHA", W / 2, 1110, 60, "#d6453a"); }
+    if (em(P(6, "terca") - .3, P(6, "chuteira") - .3)) { rr(W / 2 - 170, 560, 340, 200, 18, "#fdf8ec"); rr(W / 2 - 170, 560, 340, 60, 18, "#d6453a"); txt("TERÇA", W / 2, 592, 40, "#fff"); txt("⚽ FUTEBOL", W / 2, 690, 54, "#1d2129"); }
+    adesivo("SINAL #4", "FUTEBOL DE TERÇA", prog(t, P(6, "sinal") - .2, P(6, "sinal") + .2), 300);
+  } else if (t < C(8)) { // CENA 7: no papel
+    cenaQuarto(t, lin(t, C(7), F(7)), 1, { expr: t > P(7, "acreditou") - .3 ? "triste" : "neutro", olhar: .4, cabeca: .08 });
+    if (t > P(7, "papel") - .2) adesivo("", "NO PAPEL… SÓ MANIAS", prog(t, P(7, "papel") - .2, P(7, "papel") + .1), 300, "transparent");
+  } else if (t < FALA + .3) { // CENA 8: a mensagem
+    const acende = prog(t, P(8, "acendeu") - .2, P(8, "acendeu") + .2);
+    if (t < P(8, "mensagem") - .2) cenaCozinha(t, lin(t, C(8), P(8, "mensagem")), acende);
+    else if (t < P(8, "amiga") - .2) { cenaCozinha(t, 1, 1); tinta("#000", .55); const k = prog(t, P(8, "mensagem") - .2, P(8, "mensagem") + .3); celular(W / 2, 1000, .85 + .2 * k, (x, y, w, h) => telaNotificacao(x, y, w, h, t > P(8, "ju") - .2 ? "Ju 💛" : "• • •", "Ela desconfia?", lin(t, P(8, "mensagem") - .1, P(8, "desconfia") + .2))); if (t > P(8, "ju") - .2) { g.strokeStyle = "#d6453a"; g.lineWidth = 8; g.beginPath(); g.ellipse(W / 2 - 40, 640, 140, 44, 0, 0, 6.283); g.stroke(); } }
+    else if (t < P(8, "madrinha") - .2) { cenaCozinha(t, 1, 1); tinta("#000", .55); fotoBatizado(t, prog(t, P(8, "amiga") - .2, P(8, "amiga") + .2)); adesivo("JU", "A MELHOR AMIGA", 1, 300); }
+    else { // close da Carla em choque
+      g.save(); g.fillStyle = "#14161c"; g.fillRect(0, 0, W, H); glow(W / 2, 760, 700, "rgba(150,190,255,A)", .35);
+      g.translate(W / 2, 1900); g.scale(2.9, 2.9); g.translate(-W / 2, -1500); pessoa(W / 2, 1500, 1, { ...CARLA, expr: "choque", olhar: 0 }); g.restore(); vinheta(.7);
+      adesivo("JU", "MADRINHA DO FILHO DELES", prog(t, P(8, "madrinha") - .2, P(8, "madrinha") + .1), 300);
+    }
+  } else { // CARD FINAL: dilema
+    rect(0, 0, W, H, "#0e0f14"); glow(W / 2, 700, 600, "rgba(214,69,58,A)", .2);
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("O QUE A CARLA FAZ?", W / 2, 700, 92, "#fff");
+    rr(110, 820, 410, 116, 58, "#d6453a"); txt("CONFRONTA AGORA", 315, 880, 42, "#fff");
+    rr(560, 820, 410, 116, 58, "#4fae5a"); txt("INVESTIGA CALADA", 765, 880, 42, "#fff");
+    txt("COMENTA 👇", W / 2, 1040, 46, "#e0a83a"); txt("A MAIORIA DECIDE O EP. 2", W / 2, 1110, 34, "#bbb", 500);
+    txt("A SENHA · EP. 1", W / 2, 1500, 26, "#666", 500); g.globalAlpha = 1;
+  }
+  if (t < FALA + .3) { let h = HUDS()[0]; for (const x of HUDS()) if (t >= x[0]) h = x; hud(t, h[1], h[2], h[3]); }
+  legenda(t);
+};
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.load("700 40px Nunito"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
