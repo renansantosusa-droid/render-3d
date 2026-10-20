@@ -1,0 +1,154 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,700;0,900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// "Avenida Brasília" (paródia) — Capítulo 2: A Cicatriz (2D detalhado, cena2d.js)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/avenida2/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa, adesivo, balao } = K;
+const prog = (t, a, b) => K.ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const piscar = (t, f = 0) => ((t + f) % 3.9) < .12 ? .1 : 1;
+const CAMILA = { sexo: "f", cabelo: "#f0c860", roupa: "#c0304a", calca: "#2a2a3a", pele: "#f0c0a0" };
+const MEX = { sexo: "m", cabelo: "#5a3a20", roupa: "#2a2a2a", calca: "#1a1a22", pele: "#e0aa86" };
+const GENI = { sexo: "m", cabelo: "#9a9a9a", roupa: "#6a8a5a", calca: "#4a4a3a", pele: "#d9a07a", bigode: true };
+const TINA = { sexo: "f", cabelo: "#1a1410", roupa: "#e0a83a", calca: "#3a5a8a", pele: "#c88a5a" };
+const CICLONE = { sexo: "m", cabelo: "#1a1410", roupa: "#c0302a", calca: "#f2f2f2", pele: "#a86a44" };
+const LUCINHA = { sexo: "f", cabelo: "#bbb", roupa: "#6a5a8a", calca: "#4a3a5a", pele: "#a86a4a" };
+const NICO = { sexo: "m", cabelo: "#2a1a10", roupa: "#4a7a5a", calca: "#3a3a3a", pele: "#b87a50" };
+const LINA = { sexo: "f", cabelo: "#1a1410", roupa: "#f4f4f4", calca: "#2a2a2a", pele: "#c88a5a" };
+const CHAO = 1460;
+
+// ---------- legenda ----------
+const CHAVE = { salgado: "#d6453a", feijoada: "#c8905a", fotos: "#e0a83a", vinganca: "#d6453a", vila: "#d6453a", garagem: "#e0a83a", jorjao: "#6ab8f0", cicatriz: "#d6453a", aipim: "#c8a070", coracao: "#e04a6a", conhece: "#d6453a",  desconfie: "#e0a83a", dinheiro: "#4fae5a", camila: "#f0c860", mex: "#e07a7a", genivaldo: "#9ac8f0", conta: "#d6453a", atropelado: "#d6453a", ciclone: "#ff6a5a", pisca: "#e0a83a", aterro: "#c8a070", lixao: "#c8a070", lixo: "#c8a070", tina: "#ffd27a", lina: "#ffd27a", regra: "#d6453a", rico: "#4fae5a", culpado: "#d6453a", bobo: "#e0a83a", mansao: "#f0c860", rainha: "#f0c860", cozinheira: "#ffd27a", querida: "#d6453a", alguem: "#d6453a" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 80px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 13; g.strokeStyle = "rgba(0,0,0,.8)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+function marca(t) { if (t > FALA + .3) return; g.save(); g.shadowColor = "rgba(0,0,0,.8)"; g.shadowBlur = 10; txt("Avenida Brasília", 60, 110, 46, "#fff", "italic 700", "left", "Playfair Display"); txt("CAPÍTULO 2 · PARÓDIA", 62, 160, 24, "#f0c860", 500, "left"); g.restore(); }
+function cifrao(t, x, y) { for (let i = 0; i < 6; i++) { const k = (t * .6 + i / 6) % 1; g.globalAlpha = 1 - k; txt("$", x + Math.sin(i * 2.1) * 120, y - k * 260, 54 + i * 4, "#4fae5a"); } g.globalAlpha = 1; }
+// busto em close
+function motorista(cx, cy, o) { g.save(); g.beginPath(); g.rect(cx - 90, cy - 70, 190, 90); g.clip(); circ(cx + 60, cy - 10, 30, o.pele); g.fillStyle = o.cabelo; g.beginPath(); g.arc(cx + 60, cy - 18, 31, Math.PI, 0); g.fill(); g.restore(); }
+function close(o, s, cy = 1500, x = W / 2) { g.save(); g.translate(x, cy + 330 * s - 400); g.scale(s, s); pessoa(0, 0, 1, o); g.restore(); }
+function etiquetaNome(nome, sub, x, y, a, cor = "#d6453a") { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = "700 44px Oswald"; const w = Math.max(g.measureText(nome).width, 160) + 50; rr(x - w / 2, y - 40, w, 80, 10, "#fdf8ec"); rr(x - w / 2, y - 64, w, 30, 8, cor); txt(sub, x, y - 49, 20, "#fff"); txt(nome, x, y + 2, 44, "#1d2129"); g.restore(); }
+
+const JORJAO = { sexo: "m", cabelo: "#4a2a14", roupa: "#2a6a9a", calca: "#2a2a3a", pele: "#e0aa86" };
+const AIPIM = { sexo: "m", cabelo: "#4a2a14", roupa: "#8a7a5a", calca: "#5a4a3a", pele: "#e0aa86" };
+const MEXV = { ...MEX, cabelo: "#7a6a5a" };
+function quartinho(t) { K.parede(0, CHAO, "#a8a090", "#8a8274"); K.pisoMadeira(CHAO, "#6a4a30", 1); K.rodape(CHAO, "#c8c0b0"); rr(560, CHAO - 260, 480, 200, 20, "#7a6a8a"); rr(560, CHAO - 300, 160, 70, 24, "#efe8de"); rect(120, 300, 2, 260, "#333"); circ(121, 580, 30, "#ffe8a0"); glow(121, 600, 520, "rgba(255,220,150,A)", .45); tinta("#0a1030", .35); }
+function foto(x, y, rot, s, desenha) { g.save(); g.translate(x, y); g.rotate(rot); g.scale(s, s); rr(-170, -200, 340, 400, 6, "#fbf6ea"); g.save(); g.beginPath(); g.rect(-150, -180, 300, 300); g.clip(); g.fillStyle = "#c8d8c0"; g.fillRect(-150, -180, 300, 300); desenha(); g.restore(); g.restore(); }
+function garagem(t) { rect(0, 0, W, H, "#2a2c32"); for (let x = 0; x < W; x += 140) rect(x, 0, 4, CHAO, "#24262b"); rect(0, CHAO, W, H - CHAO, "#3a3c42"); rect(0, CHAO + 200, W, 8, "#e0c040"); K.carro(300, CHAO + 300, "#1a1a1a", 1.2); circ(W / 2, 120, 26, "#ffe8a0"); glow(W / 2, 160, 500, "rgba(255,230,170,A)", .35); }
+function braco(t) { rect(0, 0, W, H, "#efe2c8"); g.save(); g.translate(W / 2, 900); g.rotate(-.25); rr(-520, -90, 1040, 180, 90, JORJAO.pele); rr(-560, -110, 240, 220, 60, JORJAO.roupa); g.strokeStyle = "#a85a4a"; g.lineWidth = 9; g.beginPath(); g.moveTo(60, -30); g.lineTo(100, 10); g.lineTo(140, -25); g.lineTo(180, 15); g.lineTo(220, -20); g.stroke(); g.restore(); vinheta(.5); }
+
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H); g.filter = "none";
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1: sorria e mude de assunto
+    K.cozinha(CHAO, 0, t); tinta("#000", .2);
+    close({ ...LINA, expr: "sorriso", olhar: .3, piscar: piscar(t) }, 2.4, 1450);
+    g.fillStyle = "#8ac8f0"; g.beginPath(); g.ellipse(W / 2 + 120, 700 + (t % 1) * 30, 14, 22, 0, 0, 6.283); g.fill();
+    vinheta(.55);
+    if (t > P(1, "sorria") - .3) adesivo("REGRA", "SORRIA E MUDE DE ASSUNTO", prog(t, P(1, "sorria") - .3, P(1, "sorria")), 330);
+  } else if (t < C(3)) { // CENA 2: tá salgado, querida
+    if (t < P(2, "encara") - .2) { K.cozinha(CHAO, 0, t); pessoa(320, CHAO + 90, 1.12, { ...LINA, expr: "sorriso", olhar: 1, piscar: piscar(t) }); pessoa(760, CHAO + 90, 1.12, { ...CAMILA, roupa: "#1a1a1a", expr: "desconfiada", olhar: -1, piscar: piscar(t, 1) }); vinheta(.45); balao(W / 2, 520, "“Devo ter uma cara comum, dona Camila.” 😅", 1); }
+    else { g.save(); const zz = 1 + .15 * prog(t, P(2, "encara") - .2, F(2)); g.translate(W / 2, 900); g.scale(zz, zz); g.translate(-W / 2, -900); g.fillStyle = "#e6d6b8"; g.fillRect(0, 0, W, H); K.glow(W / 2, 600, 700, "rgba(255,240,200,A)", .5); close({ ...CAMILA, roupa: "#1a1a1a", expr: t > P(2, "solta") - .2 ? "sorriso" : "desconfiada", olhar: -.5, braco: em(P(2, "prova") - .2, P(2, "solta")) ? 2.7 : 0, piscar: piscar(t) }, 2.5, 1500); g.restore(); vinheta(.55);
+      if (t > P(2, "solta") - .2) { balao(W / 2, 360, "“Tá salgado, querida.”", 1); if (t > P(2, "igual") - .3) balao(W / 2, 500, "“Igual a sua vida.” 💅", 1); } }
+  } else if (t < C(4)) { // CENA 3: o Ciclone ama a comida
+    g.save(); camera(lin(t, C(3), F(3)), { z0: 1, z1: 1.05 });
+    K.mansao(CHAO, t);
+    pessoa(540, CHAO + 40, 1.15, { ...CICLONE, roupa: "#1a1a2a", sentado: true, expr: "sorriso", lagrima: em(P(3, "chora") - .3, P(3, "semana")) ? t * 1.3 : 0, olhar: -.5, piscar: piscar(t) });
+    K.mesaJantar(140, CHAO + 220, 800, t);
+    K.elip(540, CHAO - 150, 70, 22, "#3a2010");
+    if (t > P(3, "patroa") - .4) pessoa(920, CHAO + 160, 1.1, { ...CAMILA, roupa: "#1a1a1a", expr: "bravo", olhar: -1 });
+    g.restore(); vinheta(.4);
+    if (em(P(3, "melhor") - .3, P(3, "em") - .1)) balao(W / 2, 600, "“Melhor comida da minha vida!” 😭", 1);
+    if (em(P(3, "semana") - .3, P(3, "menos") - .3)) { adesivo("1 SEMANA DEPOIS", "CONQUISTOU A CASA ❤️", 1, 330, "#e0a83a"); for (let i = 0; i < 8; i++) { const k = (t * .5 + i / 8) % 1; g.globalAlpha = 1 - k; txt("❤", 150 + i * 110, 1300 - k * 500, 50, "#e04a6a", 700, "center", "Nunito"); g.globalAlpha = 1; } }
+    if (t > P(3, "menos") - .3) adesivo("", "MENOS A PATROA 😒", 1, 330, "transparent");
+  } else if (t < C(5)) { // CENA 4: a caixa de fotos
+    if (t < P(4, "dentro") - .2) { quartinho(t); pessoa(330, CHAO + 60, 1.1, { ...LINA, sentado: true, expr: "neutro", olhar: 1, piscar: piscar(t) }); rr(470, CHAO - 120, 180, 110, 10, "#8a5a3a"); rr(460, CHAO - 140, 200, 30, 8, "#6a4a2a"); vinheta(.6); adesivo("NOITE", "O QUARTINHO DOS FUNDOS", prog(t, P(4, "quartinho") - .3, P(4, "quartinho")), 330, "#2a2a3a"); }
+    else { rect(0, 0, W, H, "#4a3a2a"); for (let i = 0; i < 30; i++) rect(0, i * 70, W, 3, "rgba(0,0,0,.15)");
+      g.filter = "sepia(0.55)";
+      foto(380, 900, -.12, 1.2, () => { pessoa(-60, 120, .7, { ...CAMILA, expr: "sorriso" }); pessoa(60, 120, .75, { ...MEX, expr: "sorriso", olhar: -1 }); txt("❤", 0, -120, 60, "#e04a6a", 700, "center", "Nunito"); });
+      foto(720, 1060, .1, 1.05, () => { pessoa(-50, 120, .7, { ...CAMILA, expr: "sorriso", piscaD: 1 }); pessoa(50, 120, .75, { ...MEX, expr: "sorriso" }); });
+      g.filter = "none"; vinheta(.5);
+      adesivo("20 ANOS ATRÁS", "CAMILA + MEX 📸", prog(t, P(4, "fotos") - .3, P(4, "fotos")), 330);
+      if (t > P(4, "enquanto") - .3) adesivo("", "COM O PAI DELA VIVO 😡", 1, 480, "transparent"); }
+  } else if (t < C(6)) { // CENA 5: regra 2
+    K.cozinha(CHAO, 1, t);
+    pessoa(W / 2, CHAO + 120, 1.25, { ...LINA, expr: "bravo", olhar: 0, piscar: piscar(t) });
+    vinheta(.6);
+    adesivo("REGRA #2", "VINGANÇA SE SERVE…", prog(t, P(5, "regra") - .3, P(5, "regra")), 330);
+    if (t > P(5, "cozinha") - .3) adesivo("", "…NA COZINHA DA VILÃ 🍳", prog(t, P(5, "cozinha") - .3, P(5, "cozinha")), 480, "transparent");
+  } else if (t < C(7)) { // CENA 6: o Mex e a garagem
+    if (t < P(6, "encontrando") - .3) {
+      K.mansao(CHAO, t);
+      pessoa(420, CHAO + 140, 1.15, { ...MEXV, expr: "sorriso", olhar: 1, piscar: piscar(t) });
+      pessoa(660, CHAO + 140, 1.08, { sexo: "f", cabelo: "#6a3a2a", roupa: "#3a8a7a", calca: "#2a3a3a", pele: "#d39a72", expr: "sorriso", olhar: -1 });
+      vinheta(.4);
+      etiquetaNome("MEX", "CASOU COM A IRMÃ DO CICLONE", W / 2, 330, prog(t, P(6, "mex") - .3, P(6, "mex")), "#2a2a2a");
+    } else {
+      garagem(t);
+      pessoa(560, CHAO + 160, 1.1, { ...CAMILA, roupa: "#1a1a1a", expr: "sorriso", olhar: 1, piscar: piscar(t) });
+      pessoa(700, CHAO + 160, 1.15, { ...MEXV, expr: "sorriso", olhar: -1, braco2: 1.6 });
+      for (let i = 0; i < 4; i++) { const k = (t * .6 + i / 4) % 1; g.globalAlpha = 1 - k; txt("❤", 630 + (i - 1.5) * 40, 900 - k * 200, 44, "#e04a6a", 700, "center", "Nunito"); g.globalAlpha = 1; }
+      rect(960, 0, 120, H, "#1a1b20"); pessoa(1030, CHAO + 160, 1.1, { ...LINA, expr: "choque", olhar: -1 }); rect(1000, 0, 80, H, "rgba(26,27,32,.6)");
+      vinheta(.6);
+      adesivo("GARAGEM", "TODA QUINTA-FEIRA 👀", prog(t, P(6, "garagem") - .3, P(6, "garagem")), 330, "#2a2a3a");
+    }
+  } else if (t < C(8)) { // CENA 7: Jorjão = Aipim
+    if (t < P(7, "cicatriz") - .3) {
+      K.cozinha(CHAO, 0, t);
+      const entra = prog(t, P(7, "entra") - .3, P(7, "jorjao") + .3);
+      pessoa(320, CHAO + 90, 1.12, { ...LINA, expr: "neutro", olhar: 1, piscar: piscar(t) });
+      pessoa(1200 - 440 * entra, CHAO + 90, 1.2, { ...JORJAO, expr: "sorriso", olhar: -1, piscar: piscar(t, 1) });
+      vinheta(.45);
+      etiquetaNome("JORJÃO", "O FILHO DA CAMILA", W / 2, 330, prog(t, P(7, "jorjao") - .3, P(7, "jorjao")), "#2a6a9a");
+    } else if (t < P(7, "aquele") - .2) { braco(t); adesivo("", "A CICATRIZ…", 1, 330, "transparent"); }
+    else { // flashback em sépia: Tina e Aipim no Aterro
+      g.filter = "sepia(0.8) contrast(1.05)"; K.aterro(CHAO, t);
+      pessoa(400, CHAO + 150, .75, { ...TINA, expr: "sorriso", olhar: 1 }); pessoa(640, CHAO + 150, .78, { ...AIPIM, expr: "sorriso", olhar: -1, braco2: .9 });
+      rr(490, CHAO - 120, 60, 36, 14, "#d8a868"); g.filter = "none";
+      g.fillStyle = "rgba(0,0,0,.35)"; g.fillRect(0, 0, W, 140); g.fillRect(0, H - 140, W, 140); vinheta(.6);
+      etiquetaNome("AIPIM", "O MENINO DO ATERRO 🍞", W / 2, 330, prog(t, P(7, "aipim") - .3, P(7, "aipim")), "#8a6a3a");
+    }
+  } else if (t < FALA + .3) { // CENA 8: o coração
+    const freeze = t > P(8, "conhece") - .1;
+    g.save();
+    const z = 1 + .12 * prog(t, C(8), FALA);
+    g.translate(W / 2, 900); g.scale(z, z); g.translate(-W / 2, -900);
+    K.cozinha(CHAO, 0, t); tinta("#000", .15);
+    close({ ...LINA, expr: freeze ? "choque" : "neutro", olhar: 1, piscar: freeze ? 1 : piscar(t) }, 1.9, 1520, 330);
+    close({ ...JORJAO, expr: "sorriso", olhar: -1, cabeca: -.08, piscar: freeze ? 1 : piscar(t, 1.3) }, 2.0, 1520, 760);
+    g.restore(); if (freeze) { g.save(); g.globalCompositeOperation = "saturation"; g.fillStyle = "rgba(128,128,128,.8)"; g.fillRect(0, 0, W, H); g.restore(); } vinheta(freeze ? .8 : .55);
+    if (em(P(8, "papel") - .3, P(8, "coracao") - .2)) adesivo("", "NO PAPEL… ELA TINHA TUDO", 1, 330, "transparent");
+    if (t > P(8, "coracao") - .3 && t < P(8, "a", 2) - .3) { const p = 1 + .15 * Math.abs(Math.sin(t * 6)); txt("❤", W / 2, 520, 120 * p, "#e04a6a", 700, "center", "Nunito"); }
+    if (t > P(8, "pergunta") - .2) balao(760, 360, "“A gente já se conhece?”", 1);
+    if (freeze) { g.fillStyle = `rgba(214,48,74,${.18 * prog(t, P(8, "conhece"), P(8, "conhece") + .4)})`; g.fillRect(0, 0, W, H); }
+  } else { // CARD FINAL
+    rect(0, 0, W, H, "#0e0a0c"); K.glow(W / 2, 700, 600, "rgba(240,200,96,A)", .18);
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("CAPÍTULO 3", W / 2, 600, 110, "#fff");
+    txt("A Lina conta pro Jorjão", W / 2, 730, 58, "#f0c860", "italic 700", "center", "Playfair Display"); txt("quem ela é?", W / 2, 805, 58, "#f0c860", "italic 700", "center", "Playfair Display");
+    rr(110, 900, 410, 116, 58, "#d6453a"); txt("CONTA TUDO", 315, 960, 46, "#fff");
+    rr(560, 900, 410, 116, 58, "#4fae5a"); txt("ESCONDE", 765, 960, 46, "#fff");
+    txt("COMENTA 👇 A MAIORIA DECIDE", W / 2, 1110, 40, "#e0a83a");
+    txt("AVENIDA BRASÍLIA · PARÓDIA · CAP. 2", W / 2, 1500, 26, "#666", 500); g.globalAlpha = 1;
+  }
+  marca(t);
+  legenda(t);
+};
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.load("italic 700 40px 'Playfair Display'"); await document.fonts.load("700 40px Nunito"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
