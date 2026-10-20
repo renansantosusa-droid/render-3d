@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// "Os Detetives do Recreio" — Episódio 3: O Apito Sumido (infantil, 2D detalhado)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/detetives3/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, elip, txt, glow, vinheta, tinta, camera, pessoa, adesivo, balao } = K;
+const prog = (t, a, b) => K.ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const piscar = (t, f = 0) => ((t + f) % 3.3) < .12 ? .1 : 1;
+const LEO = { sexo: "m", cabelo: "#2a1a10", roupa: "#3a7ac0", calca: "#2e3a52", pele: "#c88a5a", bone: "#e0782a" };
+const BIA = { sexo: "f", cabelo: "#3a2414", roupa: "#9a4ad0", calca: "#2e3a52", pele: "#e3a77f", oculos: true, tranca: true };
+const MEL = { sexo: "f", cabelo: "#8a4a2a", roupa: "#e04a8a", calca: "#3a4a8a", pele: "#f0c0a0", chiquinhas: true };
+const DAVI = { sexo: "m", cabelo: "#1a1410", roupa: "#4ab04a", calca: "#2e3a52", pele: "#a86a44" };
+const RAFA = { sexo: "m", cabelo: "#c89a4a", roupa: "#e0c040", calca: "#3a3a5a", pele: "#f0c0a0" };
+const CHAO = 1200;
+const KID = .78;
+
+// ---------- legenda ----------
+const CHAVE = { rastro: "#ffb030", barulho: "#ffb030", apito: "#5ab0ff", queimada: "#ff6a5a", azul: "#5ab0ff", giz: "#5ab0ff", piiii: "#fff", coco: "#c8905a", ze: "#7ab0f0", porteiro: "#7ab0f0", enfermaria: "#6ad06a", branco: "#ffb030", sera: "#ffb030",  pistas: "#ffb030", pista: "#ffb030", bolo: "#a0603a", chocolate: "#a0603a", davi: "#6ad06a", bia: "#c08af0", leo: "#ff9a40", mel: "#ff7ab0", migalhas: "#ffb030", janela: "#6ab8f0", pelinho: "#c8905a", bicho: "#ff6a5a", pegadas: "#ffb030", rafinha: "#ffd84a", arvore: "#6ad06a", mastigando: "#ff6a5a", vazia: "#ff6a5a", detetives: "#ffb030", recreio: "#ffb030" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  let fs = 78; g.font = "900 78px Nunito"; const ps = b.ws.map((w) => w.toUpperCase()); let tot = ps.reduce((a, w) => a + g.measureText(w + " ").width, 0); if (tot > W - 80) { fs = Math.floor(78 * (W - 80) / tot); g.font = `900 ${fs}px Nunito`; } const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.strokeStyle = "#2a1a40"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+function marca(t) { if (t > FALA + .3) return; g.save(); g.shadowColor = "rgba(0,0,0,.6)"; g.shadowBlur = 8; txt("🔍 Os Detetives do Recreio", 50, 110, 40, "#fff", 900, "left", "Nunito"); txt("EPISÓDIO 3", 104, 158, 26, "#ffb030", 800, "left", "Nunito"); g.restore(); }
+function pista(n, s, a) { if (a <= 0) return; g.save(); g.globalAlpha = Math.min(1, a * 1.4); g.translate(W / 2, 360); g.rotate(-.04); g.scale(.82 + .18 * a, .82 + .18 * a); g.shadowColor = "rgba(0,0,0,.35)"; g.shadowBlur = 18; g.font = "900 64px Nunito"; const w = g.measureText(s).width + 80; rr(-w / 2, -52, w, 104, 22, "#fffaf0"); g.shadowColor = "transparent"; rr(-120, -100, 240, 50, 16, "#ff9a30"); txt(`🔎 PISTA #${n}`, 0, -75, 30, "#fff", 900, "center", "Nunito"); txt(s, 0, 4, 64, "#2a1a40", 900, "center", "Nunito"); g.restore(); }
+function nome(s, sub, x, y, cor, a) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = "900 46px Nunito"; const w = Math.max(g.measureText(s).width, g.measureText(sub).width * .6) + 60; rr(x - w / 2, y - 44, w, 88, 24, cor); txt(s, x, y - 8, 46, "#fff", 900, "center", "Nunito"); txt(sub, x, y + 26, 22, "#fff", 800, "center", "Nunito"); g.restore(); }
+function bolo(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); elip(0, 10, 120, 24, "#e8e8e8"); rr(-100, -80, 200, 90, 16, "#6a3a1a"); rr(-100, -96, 200, 34, 16, "#4a2410"); for (let i = 0; i < 6; i++) elip(-80 + i * 32, -66, 10, 16, "#4a2410"); for (let i = 0; i < 8; i++) circ(-80 + i * 23, -98, 6, ["#e04a4a", "#ffd84a", "#4ab0e0", "#e04a8a"][i % 4]); g.restore(); }
+function vasilha(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-110, -70, 220, 80, 16, "rgba(200,230,255,.6)"); g.strokeStyle = "#8ab0d0"; g.lineWidth = 6; g.strokeRect(-110, -70, 220, 80); for (let i = 0; i < 10; i++) circ(-80 + (i * 37) % 160, -10 - (i * 13) % 30, 5, "#4a2410"); g.restore(); }
+function lupa(x, y, s, a = -.6) { g.save(); g.translate(x, y); g.rotate(a); g.scale(s, s); rr(-12, 40, 24, 120, 10, "#8a4a2a"); g.strokeStyle = "#ffb030"; g.lineWidth = 16; g.beginPath(); g.arc(0, 0, 60, 0, 6.283); g.stroke(); g.fillStyle = "rgba(200,235,255,.35)"; g.fill(); g.restore(); }
+function close(o, s, cy, x = W / 2) { g.save(); g.translate(x, cy + 330 * s - 400); g.scale(s, s); pessoa(0, 0, 1, o); g.restore(); }
+
+const PROF = { sexo: "f", cabelo: "#5a3a2a", roupa: "#e07a5a", calca: "#3a3a5a", pele: "#d39a72" };
+const ZE = { sexo: "m", cabelo: "#f2f2f2", roupa: "#2a4a7a", calca: "#2a2a3a", pele: "#c88a5a", bigode: true };
+function patio(t, caixa = true) {
+  g.fillStyle = "#9ad0f0"; g.fillRect(0, 0, W, H); circ(900, 220, 70, "#fff2b0");
+  rect(0, 820, W, 360, "#e8d8b8"); for (let x = 0; x < W; x += 120) rect(x, 820, 4, 360, "#d8c8a8"); rect(0, 820, W, 20, "#c8b898");
+  K.arvore(160, 1180, 1.0, t);
+  if (caixa) { rect(760, 700, 16, 480, "#7a7a7a"); rect(920, 700, 16, 480, "#7a7a7a"); rect(760, 900, 176, 10, "#7a7a7a"); rr(720, 520, 260, 200, 20, "#4a8ae0"); rr(710, 500, 280, 40, 14, "#3a7ad0"); }
+  rect(0, 1180, W, 740, "#c8a878"); g.strokeStyle = "#fff"; g.lineWidth = 8; g.strokeRect(80, 1240, 920, 560); g.beginPath(); g.moveTo(80, 1520); g.lineTo(1000, 1520); g.stroke();
+}
+function ondas(x, y, s, t) { for (let i = 0; i < 3; i++) { const k = (t * 1.5 + i / 3) % 1; g.strokeStyle = `rgba(255,255,255,${1 - k})`; g.lineWidth = 8; g.beginPath(); g.arc(x, y, 40 + k * 160 * s, -.6, .6); g.stroke(); } }
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H); g.filter = "none";
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1
+    patio(t); ondas(700, 620, 1, t); vinheta(.3);
+    pista("", "UM RASTRO QUE FAZ BARULHO", prog(t, P(1, "barulho") - .4, P(1, "barulho")));
+  } else if (t < C(3)) { // CENA 2: sem apito, sem queimada
+    K.salaDeAula(CHAO, t);
+    pessoa(780, CHAO + 300, 1.1, { ...PROF, expr: "triste", olhar: -1, braco: 2.6 });
+    pessoa(300, CHAO + 360, KID * 1.6, { ...DAVI, expr: "triste", olhar: 1 }); pessoa(520, CHAO + 380, KID * 1.4, { ...MEL, expr: "triste", olhar: 1 });
+    vinheta(.3);
+    if (t > P(2, "sandra") - .3 && t < P(2, "e") - .2) nome("PROFESSORA SANDRA", "PERDEU O APITO 📯", W / 2, 380, "#e07a5a", 1);
+    if (t > P(2, "queimada") - .4) nome("SEM APITO = SEM QUEIMADA 😭", "", W / 2, 380, "#e04a4a", 1);
+  } else if (t < C(4)) { // CENA 3: giz azul
+    if (t < P(3, "sala") - .3) { g.fillStyle = "#2f5a44"; g.fillRect(0, 0, W, H); g.save(); g.font = "900 700px Nunito"; g.fillStyle = "#5ab0ff"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("?", W / 2, 900); g.restore(); lupa(760, 1200, 2.4, -.5); }
+    else { K.salaDeAula(CHAO, t); pessoa(W / 2, CHAO + 380, KID * 1.9, { ...LEO, expr: "choque", olhar: 0, braco: .8 }); rr(W / 2 + 110, CHAO - 80, 50, 14, 6, "#5ab0ff"); }
+    vinheta(.3);
+    pista(1, "GIZ AZUL", prog(t, P(3, "pista") - .2, P(3, "pista") + .2));
+    if (t > P(3, "leo") - .3) nome("SÓ O LÉO USA GIZ AZUL 😳", "", W / 2, 560, "#e0782a", 1);
+  } else if (t < C(5)) { // CENA 4: apito fininho
+    patio(t); close({ ...MEL, expr: "desconfiada", olhar: 1 }, 1.8, 1540, 300); ondas(700, 620, 1.4, t);
+    if (t > P(4, "piiii") - .3) txt("PIIIII!", 760, 420, 90, "#fff", 900, "center", "Nunito");
+    vinheta(.3);
+    pista(2, "UM APITO FININHO", prog(t, P(4, "pista") - .2, P(4, "pista") + .2));
+  } else if (t < C(6)) { // CENA 5: bala de coco
+    if (t < P(5, "todo") - .3) { K.pisoAzulejo(0, "#d8d0bc", "#c4bca6"); g.save(); g.translate(W / 2, 1000); g.rotate(.2); rr(-160, -60, 320, 120, 20, "#fff6e0"); for (let s = -1; s <= 1; s += 2) { g.fillStyle = "#fff6e0"; g.beginPath(); g.moveTo(s * 160, -40); g.lineTo(s * 230, -80); g.lineTo(s * 230, 80); g.lineTo(s * 160, 40); g.fill(); } txt("COCO 🥥", 0, 6, 54, "#a0603a", 900, "center", "Nunito"); g.restore(); lupa(760, 1100, 2.6, -.5); }
+    else { patio(t, false); rr(620, 900, 380, 360, 10, "#8a6a44"); txt("PORTARIA", 810, 960, 40, "#fff", 900, "center", "Nunito"); close({ ...ZE, expr: "sorriso", olhar: -1 }, 1.7, 1500, 810); }
+    vinheta(.3);
+    pista(3, "BALA DE COCO", prog(t, P(5, "pista") - .2, P(5, "pista") + .2));
+    if (t > P(5, "ze") - .3) nome("SEU ZÉ, O PORTEIRO", "AMA BALA DE COCO 🥥", W / 2, 560, "#2a4a7a", 1);
+  } else if (t < C(7)) { // CENA 6: Léo na enfermaria
+    g.fillStyle = "#e8f4f2"; g.fillRect(0, 0, W, H); for (let y = 0; y < 1300; y += 60) rect(0, y, W, 2, "#d0e4e0"); rect(0, 1300, W, 620, "#c8d8d4");
+    rr(140, 1000, 800, 160, 20, "#f4f4f4"); rr(140, 980, 800, 40, 12, "#fff"); txt("➕", 540, 500, 160, "#e04a4a", 900, "center", "Nunito");
+    pessoa(540, 1420, KID * 1.9, { ...LEO, expr: "triste", olhar: 0 }); rr(500, 1300, 50, 30, 8, "#f2c49a"); rect(510, 1310, 30, 10, "#fff");
+    vinheta(.3);
+    if (t < P(6, "mas") - .2) nome("NO PAPEL… FOI O LÉO?", "", W / 2, 360, "#2a1a40", 1);
+    else nome("O LÉO ESTAVA NA ENFERMARIA 🩹", "INOCENTE!", W / 2, 360, "#4ab04a", 1);
+  } else if (t < C(8)) { // CENA 7: seguindo o som
+    patio(t); ondas(840, 640, 1.6, t);
+    const k = prog(t, C(7), F(7));
+    pessoa(180 + 260 * k, 1500, KID * 1.6, { ...BIA, expr: "desconfiada", olhar: 1 }); pessoa(320 + 260 * k, 1520, KID * 1.6, { ...LEO, expr: "desconfiada", olhar: 1 }); pessoa(440 + 260 * k, 1540, KID * 1.4, { ...MEL, expr: "desconfiada", olhar: 1 });
+    if (t > P(7, "pertinho") - .4) txt("PIIIII!", 840, 420, 110, "#fff", 900, "center", "Nunito");
+    vinheta(.3);
+  } else if (t < FALA + .3) { // CENA 8: atrás da caixa d'água
+    g.save(); const z = 1 + 1.2 * prog(t, C(8), P(8, "cabelo") + .5); g.translate(W / 2, 800); g.scale(z, z); g.translate(-Math.min(850, 1080 - 540 / z), -760); patio(t);
+    // alguém atrás da caixa, só o cabelo branco e a mão com o apito aparecem
+    circ(1000, 640, 40, "#f2f2f2"); circ(985, 650, 30, "#c88a5a"); rr(990, 690, 40, 18, 8, "#c0c6cc");
+    g.restore(); vinheta(.5);
+    if (t > P(8, "branco") - .3) nome("CABELO BRANCO… 👀", "QUEM SERÁ?", W / 2, 380, "#2a1a40", prog(t, P(8, "branco") - .3, P(8, "branco")));
+  } else { // CARD FINAL
+    g.fillStyle = "#2a1a40"; g.fillRect(0, 0, W, H); glow(W / 2, 700, 600, "rgba(255,176,48,A)", .25);
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("QUEM PEGOU", W / 2, 620, 100, "#fff", 900, "center", "Nunito"); txt("O APITO? 📯", W / 2, 730, 100, "#ffb030", 900, "center", "Nunito");
+    rr(110, 850, 410, 120, 60, "#2a4a7a"); txt("O SEU ZÉ", 315, 912, 50, "#fff", 900, "center", "Nunito");
+    rr(560, 850, 410, 120, 60, "#e04a8a"); txt("OUTRA PESSOA", 765, 912, 46, "#fff", 900, "center", "Nunito");
+    txt("COMENTA SEU PALPITE 👇", W / 2, 1070, 46, "#fff", 800, "center", "Nunito"); txt("O próximo episódio revela!", W / 2, 1140, 38, "#ffb030", 700, "center", "Nunito");
+    txt("OS DETETIVES DO RECREIO · EP. 3", W / 2, 1500, 26, "#8a7aa0", 700, "center", "Nunito"); g.globalAlpha = 1;
+  }
+  marca(t);
+  legenda(t);
+};
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("800 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
