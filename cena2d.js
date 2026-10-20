@@ -126,7 +126,7 @@ export function kit2d(g, W = 1080, H = 1920) {
   // ---------- personagem ----------
   function shade(hex, p) { const n = parseInt(hex.slice(1), 16); let r = n >> 16, gg = n >> 8 & 255, b = n & 255; const f = (c) => clamp(Math.round(c + p * 2.55), 0, 255); return `rgb(${f(r)},${f(gg)},${f(b)})`; }
   function pessoa(x, y, s = 1, o = {}) {
-    const { sexo = "m", pele = "#e3a77f", cabelo = "#2a1c14", roupa = "#3a5a8a", calca = "#2e3a52", expr = "neutro", olhar = 0, braco = 0, braco2 = 0, sentado = false, cabeca = 0, celular = false, piscar = 1, piscaD = 0, bigode = false, mao = null } = o;
+    const { sexo = "m", pele = "#e3a77f", cabelo = "#2a1c14", roupa = "#3a5a8a", calca = "#2e3a52", expr = "neutro", olhar = 0, braco = 0, braco2 = 0, sentado = false, cabeca = 0, celular = false, piscar = 1, piscaD = 0, bigode = false, mao = null, bone = null, oculos = false, chiquinhas = false, tranca = false } = o;
     g.save(); g.translate(x, y); g.scale(s, s);
     const pernaH = sentado ? 90 : 170, base = -pernaH;
     sombraChao(0, 4, 70);
@@ -137,6 +137,8 @@ export function kit2d(g, W = 1080, H = 1920) {
     // cabelo de trás (longo)
     const hy = base - 250;
     if (sexo === "f") { g.fillStyle = shade(cabelo, -8); g.beginPath(); g.moveTo(-58, hy - 10); g.quadraticCurveTo(-78, hy + 110, -54, hy + 150); g.lineTo(54, hy + 150); g.quadraticCurveTo(78, hy + 110, 58, hy - 10); g.fill(); }
+    if (chiquinhas) { for (const sx of [-1, 1]) { g.fillStyle = cabelo; g.beginPath(); g.ellipse(sx * 70, hy + 10, 24, 46, sx * .5, 0, 6.283); g.fill(); circ(sx * 56, hy - 20, 9, "#e04a8a"); } }
+    if (tranca) { g.fillStyle = cabelo; for (let i = 0; i < 5; i++) circ(40 - i * 2, hy + 50 + i * 26, 16 - i, cabelo); circ(32, hy + 180, 8, "#4a8ae0"); }
     // tronco
     g.fillStyle = roupa; g.beginPath(); g.moveTo(-58, base - 170); g.quadraticCurveTo(-62, base - 182, -40, base - 186); g.lineTo(40, base - 186); g.quadraticCurveTo(62, base - 182, 58, base - 170); g.lineTo(sexo === "f" ? 40 : 46, base + 2); g.lineTo(sexo === "f" ? -40 : -46, base + 2); g.closePath(); g.fill();
     g.fillStyle = "rgba(0,0,0,.12)"; g.beginPath(); g.moveTo(14, base - 186); g.lineTo(40, base - 186); g.quadraticCurveTo(62, base - 182, 58, base - 170); g.lineTo(46, base + 2); g.lineTo(18, base + 2); g.fill();
@@ -157,6 +159,7 @@ export function kit2d(g, W = 1080, H = 1920) {
     if (sexo === "f") { g.moveTo(-54, 10); g.quadraticCurveTo(-60, -66, 0, -66); g.quadraticCurveTo(60, -66, 54, 10); g.quadraticCurveTo(40, -40, 6, -42); g.quadraticCurveTo(-30, -20, -54, 10); }
     else { g.moveTo(-52, -6); g.quadraticCurveTo(-54, -66, 0, -64); g.quadraticCurveTo(54, -66, 52, -6); g.quadraticCurveTo(46, -34, 20, -38); g.quadraticCurveTo(-20, -30, -44, -26); g.closePath(); }
     g.fill();
+    if (bone) { g.fillStyle = bone; g.beginPath(); g.arc(0, -30, 54, Math.PI * 1.02, Math.PI * 1.98); g.fill(); g.beginPath(); g.ellipse(34, -34, 46, 11, -.1, 0, 6.283); g.fill(); circ(0, -84, 6, shade(bone, -20)); }
     // rosto
     const ox = olhar * 9;
     const sobr = { neutro: [0, 0], desconfiada: [.25, -.25], sorriso: [-.1, .1], choque: [-.35, .35], triste: [-.3, .3], bravo: [.35, -.35] }[expr] || [0, 0];
@@ -164,6 +167,7 @@ export function kit2d(g, W = 1080, H = 1920) {
     g.beginPath(); g.moveTo(-30 + ox, -18 + sobr[0] * -20); g.lineTo(-10 + ox, -20 + sobr[1] * -20); g.moveTo(10 + ox, -20 + sobr[1] * -20); g.lineTo(30 + ox, -18 + sobr[0] * -20); g.stroke();
     const ab = (expr === "desconfiada" ? .45 : expr === "choque" ? 1.25 : 1) * piscar;
     for (const ex of [-20, 20]) { if (ex > 0 && piscaD > .5) { g.strokeStyle = "#2a1c14"; g.lineWidth = 4; g.beginPath(); g.arc(ex, -2, 10, .15 * Math.PI, .85 * Math.PI); g.stroke(); continue; } elip(ex + ox * .3, 0, 11, 9 * ab + .5, "#fff"); circ(ex + ox, 0 + (1 - ab) * 2, 5.5 * Math.min(1, ab + .3), "#2a1c14"); if (expr === "desconfiada") rect(ex - 13, -11, 26, 8, pele); }
+    if (oculos) { g.strokeStyle = "#2a2a3a"; g.lineWidth = 5; g.beginPath(); g.arc(-20, 0, 17, 0, 6.283); g.moveTo(37, 0); g.arc(20, 0, 17, 0, 6.283); g.moveTo(-3, 0); g.lineTo(3, 0); g.stroke(); }
     g.strokeStyle = shade(pele, -22); g.lineWidth = 3; g.beginPath(); g.moveTo(2, 4); g.quadraticCurveTo(8, 18, 0, 20); g.stroke();
     if (bigode) { g.fillStyle = shade(cabelo, -5); g.beginPath(); g.ellipse(-10, 24, 16, 6, .2, 0, 6.283); g.ellipse(10, 24, 16, 6, -.2, 0, 6.283); g.fill(); }
     if (o.lagrima) { g.fillStyle = "#8ac8f0"; g.beginPath(); g.ellipse(-22, 22 + (o.lagrima % 1) * 20, 5, 8, 0, 0, 6.283); g.fill(); }
@@ -200,5 +204,30 @@ export function kit2d(g, W = 1080, H = 1920) {
     for (let i = 0; i < 9; i++) { const lx = W / 2 + Math.cos(i / 9 * 6.28) * 120, ly = 60 + Math.sin(i / 9 * 6.28) * 30; g.strokeStyle = "#c8a040"; g.lineWidth = 3; g.beginPath(); g.moveTo(W / 2, 0); g.lineTo(lx, ly); g.stroke(); circ(lx, ly + 20, 10, "#fff8d8"); } glow(W / 2, 80, 300, "rgba(255,240,200,A)", .4);
     rect(0, y, W, H - y, "#efe8de"); for (let i = 0; i < 8; i++) { const yy = y + Math.pow(i / 8, 1.5) * (H - y); rect(0, yy, W, 3, "#d8cfc0"); } g.fillStyle = "rgba(255,255,255,.35)"; g.beginPath(); g.ellipse(W / 2, y + 200, 360, 60, 0, 0, 6.283); g.fill();
     rr(80, y - 30, 920, 30, 8, "#d8c8a8"); }
-  return { carro, rua, caixao, velorio, aterro, mansao, clamp, ease, rnd, rr, rect, circ, elip, txt, glow, vinheta, tinta, camera, parede, rodape, pisoMadeira, pisoAzulejo, tapete, janelaNoite, quadro, fotoFamilia, planta, luminaria, sofa, rackTv, mesaJantar, pendente, cadeira, cozinha, corredorBanheiro, quarto, sala, pessoa, shade, celular, telaBloqueio, telaNotificacao, hud, adesivo, balao };
+
+  // ---------- escola ----------
+  function salaDeAula(y, t, { janelaX = 760 } = {}) {
+    parede(0, y, "#f2e6c8", "#e6d6b0"); rect(0, y - 420, W, 420, "#b8d8c0"); rect(0, y - 424, W, 8, "#8ab89a");
+    rr(70, 250, 560, 330, 10, "#8a6a44"); rr(86, 266, 528, 298, 6, "#2f5a44"); g.font = "italic 600 44px Nunito"; g.fillStyle = "rgba(255,255,255,.85)"; g.textAlign = "left"; g.fillText("2 + 3 = 5", 130, 340); g.fillText("Bom dia, turma! ☀", 130, 420); rect(120, 560, 460, 12, "#6a4a2a");
+    for (let i = 0; i < 6; i++) { rr(80 + i * 90, 185, 70, 54, 6, ["#e04a4a", "#e0a83a", "#4ab04a", "#4a8ae0", "#a04ae0", "#e04a8a"][i]); txt("ABCDEF"[i], 115 + i * 90, 213, 36, "#fff", 800, "center", "Nunito"); }
+    // janela com árvore
+    rr(janelaX - 16, 230, 320, 420, 8, "#f4f1ea"); g.fillStyle = lin(0, 246, 0, 650, [[0, "#8ac8f0"], [1, "#cfe8f6"]]); g.fillRect(janelaX, 246, 288, 388);
+    g.save(); g.beginPath(); g.rect(janelaX, 246, 288, 388); g.clip(); arvore(janelaX + 150, 900, 1.1, t); g.restore();
+    rect(janelaX + 140, 246, 8, 388, "#f4f1ea"); rect(janelaX, 436, 288, 8, "#f4f1ea");
+    // carteiras
+    for (let r = 0; r < 2; r++) for (let c = 0; c < 3; c++) { const x = 90 + c * 330 + r * 30, yy = y + 120 + r * 200; rr(x, yy - 140, 230, 26, 6, "#d8a868"); rect(x + 20, yy - 114, 12, 114, "#6a6a6a"); rect(x + 198, yy - 114, 12, 114, "#6a6a6a"); }
+    pisoAzulejo(y, "#d8d0bc", "#c4bca6");
+  }
+  function arvore(x, y, s = 1, t = 0) { g.save(); g.translate(x, y); g.scale(s, s); rr(-26, -520, 52, 520, 14, "#7a5a3a"); g.strokeStyle = "#7a5a3a"; g.lineWidth = 22; g.beginPath(); g.moveTo(0, -360); g.lineTo(-120, -440); g.moveTo(0, -420); g.lineTo(110, -500); g.stroke(); for (const [cx, cy, r, c] of [[-130, -520, 120, "#4f9a4a"], [110, -580, 130, "#5aaa52"], [0, -660, 150, "#4a9046"], [-60, -760, 110, "#5aaa52"], [90, -760, 100, "#4f9a4a"]]) circ(cx, cy + Math.sin(t + cx) * 3, r, c); g.restore(); }
+  function sagui(x, y, s = 1, t = 0, { comendo = true } = {}) { g.save(); g.translate(x, y); g.scale(s, s);
+    g.strokeStyle = "#6a5a4a"; g.lineWidth = 9; g.beginPath(); g.moveTo(10, 30); for (let i = 1; i < 10; i++) g.lineTo(10 + i * 9, 30 + Math.sin(i * .8 + t * 2) * 10 + i * 6); g.stroke();
+    for (let i = 0; i < 6; i++) { g.strokeStyle = i % 2 ? "#d8d0c0" : "#6a5a4a"; g.lineWidth = 10; g.beginPath(); g.moveTo(16 + i * 12, 34 + i * 7); g.lineTo(22 + i * 12, 38 + i * 7); g.stroke(); }
+    elip(0, 20, 34, 40, "#7a6a58"); elip(0, -30, 30, 28, "#8a7a66");
+    for (const sx of [-1, 1]) { elip(sx * 30, -36, 16, 20, "#f4f0e6"); }
+    elip(0, -24, 18, 16, "#e8c8a8"); circ(-8, -32, 6, "#111"); circ(8, -32, 6, "#111"); circ(-6, -34, 2, "#fff"); circ(10, -34, 2, "#fff");
+    const m = comendo ? Math.abs(Math.sin(t * 9)) : 0; elip(0, -16, 6, 2 + 3 * m, "#5a2a1a");
+    rr(-24, -8, 30, 18, 6, "#5a2e1a"); rr(-22, -8, 26, 6, 3, "#f2e8d8");
+    g.restore(); }
+  function mochila(x, y, cor = "#3a7ac0", aberta = false) { rr(x - 70, y - 180, 140, 180, 28, cor); rr(x - 54, y - 90, 108, 70, 18, shade(cor, -12)); rect(x - 50, y - 150, 100, 6, "#e8e8e8"); if (aberta) { g.fillStyle = shade(cor, -30); g.beginPath(); g.ellipse(x, y - 180, 60, 18, 0, 0, 6.283); g.fill(); } }
+  return { salaDeAula, arvore, sagui, mochila, carro, rua, caixao, velorio, aterro, mansao, clamp, ease, rnd, rr, rect, circ, elip, txt, glow, vinheta, tinta, camera, parede, rodape, pisoMadeira, pisoAzulejo, tapete, janelaNoite, quadro, fotoFamilia, planta, luminaria, sofa, rackTv, mesaJantar, pendente, cadeira, cozinha, corredorBanheiro, quarto, sala, pessoa, shade, celular, telaBloqueio, telaNotificacao, hud, adesivo, balao };
 }

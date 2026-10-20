@@ -1,0 +1,138 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// "Os Detetives do Recreio" — Episódio 1: O Bolo Sumido (infantil, 2D detalhado)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/detetives1/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, elip, txt, glow, vinheta, tinta, camera, pessoa, adesivo, balao } = K;
+const prog = (t, a, b) => K.ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const piscar = (t, f = 0) => ((t + f) % 3.3) < .12 ? .1 : 1;
+const LEO = { sexo: "m", cabelo: "#2a1a10", roupa: "#3a7ac0", calca: "#2e3a52", pele: "#c88a5a", bone: "#e0782a" };
+const BIA = { sexo: "f", cabelo: "#3a2414", roupa: "#9a4ad0", calca: "#2e3a52", pele: "#e3a77f", oculos: true, tranca: true };
+const MEL = { sexo: "f", cabelo: "#8a4a2a", roupa: "#e04a8a", calca: "#3a4a8a", pele: "#f0c0a0", chiquinhas: true };
+const DAVI = { sexo: "m", cabelo: "#1a1410", roupa: "#4ab04a", calca: "#2e3a52", pele: "#a86a44" };
+const RAFA = { sexo: "m", cabelo: "#c89a4a", roupa: "#e0c040", calca: "#3a3a5a", pele: "#f0c0a0" };
+const CHAO = 1200;
+const KID = .78;
+
+// ---------- legenda ----------
+const CHAVE = { pistas: "#ffb030", pista: "#ffb030", bolo: "#a0603a", chocolate: "#a0603a", davi: "#6ad06a", bia: "#c08af0", leo: "#ff9a40", mel: "#ff7ab0", migalhas: "#ffb030", janela: "#6ab8f0", pelinho: "#c8905a", bicho: "#ff6a5a", pegadas: "#ffb030", rafinha: "#ffd84a", arvore: "#6ad06a", mastigando: "#ff6a5a", vazia: "#ff6a5a", detetives: "#ffb030", recreio: "#ffb030" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  let fs = 78; g.font = "900 78px Nunito"; const ps = b.ws.map((w) => w.toUpperCase()); let tot = ps.reduce((a, w) => a + g.measureText(w + " ").width, 0); if (tot > W - 80) { fs = Math.floor(78 * (W - 80) / tot); g.font = `900 ${fs}px Nunito`; } const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.strokeStyle = "#2a1a40"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+function marca(t) { if (t > FALA + .3) return; g.save(); g.shadowColor = "rgba(0,0,0,.6)"; g.shadowBlur = 8; txt("🔍 Os Detetives do Recreio", 50, 110, 40, "#fff", 900, "left", "Nunito"); txt("EPISÓDIO 1", 104, 158, 26, "#ffb030", 800, "left", "Nunito"); g.restore(); }
+function pista(n, s, a) { if (a <= 0) return; g.save(); g.globalAlpha = Math.min(1, a * 1.4); g.translate(W / 2, 360); g.rotate(-.04); g.scale(.82 + .18 * a, .82 + .18 * a); g.shadowColor = "rgba(0,0,0,.35)"; g.shadowBlur = 18; g.font = "900 64px Nunito"; const w = g.measureText(s).width + 80; rr(-w / 2, -52, w, 104, 22, "#fffaf0"); g.shadowColor = "transparent"; rr(-120, -100, 240, 50, 16, "#ff9a30"); txt(`🔎 PISTA #${n}`, 0, -75, 30, "#fff", 900, "center", "Nunito"); txt(s, 0, 4, 64, "#2a1a40", 900, "center", "Nunito"); g.restore(); }
+function nome(s, sub, x, y, cor, a) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = "900 46px Nunito"; const w = Math.max(g.measureText(s).width, g.measureText(sub).width * .6) + 60; rr(x - w / 2, y - 44, w, 88, 24, cor); txt(s, x, y - 8, 46, "#fff", 900, "center", "Nunito"); txt(sub, x, y + 26, 22, "#fff", 800, "center", "Nunito"); g.restore(); }
+function bolo(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); elip(0, 10, 120, 24, "#e8e8e8"); rr(-100, -80, 200, 90, 16, "#6a3a1a"); rr(-100, -96, 200, 34, 16, "#4a2410"); for (let i = 0; i < 6; i++) elip(-80 + i * 32, -66, 10, 16, "#4a2410"); for (let i = 0; i < 8; i++) circ(-80 + i * 23, -98, 6, ["#e04a4a", "#ffd84a", "#4ab0e0", "#e04a8a"][i % 4]); g.restore(); }
+function vasilha(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-110, -70, 220, 80, 16, "rgba(200,230,255,.6)"); g.strokeStyle = "#8ab0d0"; g.lineWidth = 6; g.strokeRect(-110, -70, 220, 80); for (let i = 0; i < 10; i++) circ(-80 + (i * 37) % 160, -10 - (i * 13) % 30, 5, "#4a2410"); g.restore(); }
+function lupa(x, y, s, a = -.6) { g.save(); g.translate(x, y); g.rotate(a); g.scale(s, s); rr(-12, 40, 24, 120, 10, "#8a4a2a"); g.strokeStyle = "#ffb030"; g.lineWidth = 16; g.beginPath(); g.arc(0, 0, 60, 0, 6.283); g.stroke(); g.fillStyle = "rgba(200,235,255,.35)"; g.fill(); g.restore(); }
+function close(o, s, cy, x = W / 2) { g.save(); g.translate(x, cy + 330 * s - 400); g.scale(s, s); pessoa(0, 0, 1, o); g.restore(); }
+
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H); g.filter = "none";
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1
+    K.salaDeAula(CHAO, t);
+    pessoa(W / 2, CHAO + 360, KID * 1.8, { ...DAVI, expr: "choque", piscar: piscar(t), braco: .4 });
+    vasilha(W / 2, CHAO + 330 - 170 * 1.1, 1);
+    lupa(820, 900, 1.6 + .1 * Math.sin(t * 3));
+    vinheta(.3);
+    if (t > P(1, "procure") - .3) pista("", "PROCURE AS PISTAS!", prog(t, P(1, "procure") - .3, P(1, "procure")));
+  } else if (t < C(3)) { // CENA 2: o bolo da vó
+    const fora = em(P(2, "educacao") - .3, P(2, "voltou") - .2);
+    g.save(); camera(lin(t, C(2), F(2)), { z0: 1, z1: 1.05 });
+    K.salaDeAula(CHAO, t);
+    K.mochila(300, CHAO + 300, "#e04a4a", t > P(2, "voltou") - .2);
+    if (!fora) pessoa(t > P(2, "voltou") - .2 ? 560 : 600, CHAO + 330, KID * 1.7, { ...DAVI, expr: t > P(2, "vazia") - .4 ? "triste" : "sorriso", olhar: -1, piscar: piscar(t), braco: t < P(2, "deixou") ? 1.4 : 0, lagrima: t > P(2, "vazia") - .2 ? t * 1.2 : 0 });
+    else { const k = prog(t, P(2, "educacao") - .3, P(2, "fisica") + .3); pessoa(600 + 600 * k, CHAO + 330, KID * 1.7, { ...DAVI, expr: "sorriso", olhar: 1, braco: Math.sin(t * 12) * .5, braco2: -Math.sin(t * 12) * .5 }); }
+    if (t < P(2, "deixou") + .2) bolo(690, CHAO - 50 + 30, 1.2 * prog(t, P(2, "bolo") - .4, P(2, "bolo")));
+    g.restore(); vinheta(.3);
+    if (t < P(2, "o") + .6) K.rr(W / 2 - 200, 300, 400, 100, 22, "#fffaf0"), txt("SEGUNDA-FEIRA ☀", W / 2, 350, 46, "#2a1a40", 900, "center", "Nunito");
+    else if (em(P(2, "bolo") - .3, P(2, "deixou") - .2)) nome("BOLO DA VÓ 🍫", "O LANCHE MAIS ESPERADO", W / 2, 360, "#a0603a", 1);
+    if (t > P(2, "voltou") - .2) { g.save(); g.fillStyle = "rgba(0,0,0,.35)"; g.fillRect(0, 0, W, H); g.restore(); vasilha(W / 2, 760, 2.4 * prog(t, P(2, "voltou") - .2, P(2, "vasilha"))); if (t > P(2, "vazia") - .3) nome("VAZIA! 😱", "SÓ SOBROU MIGALHA", W / 2, 360, "#e04a4a", 1); }
+  } else if (t < C(4)) { // CENA 3: os detetives
+    K.salaDeAula(CHAO, t); tinta("#fff", .15);
+    if (t < P(3, "bia") - .2) { const a = prog(t, P(3, "detetives") - .4, P(3, "detetives") + .1); g.save(); g.globalAlpha = a; g.translate(W / 2, 700); g.scale(.8 + .2 * a, .8 + .2 * a); rr(-430, -140, 860, 280, 40, "#ffb030"); rr(-414, -124, 828, 248, 32, "#fffaf0"); txt("OS DETETIVES", 0, -36, 92, "#2a1a40", 900, "center", "Nunito"); txt("DO RECREIO", 0, 60, 76, "#ff7a30", 900, "center", "Nunito"); lupa(380, -150, .9); g.restore(); }
+    const kids = [[BIA, 260, "bia", "BIA", "REPARA EM TUDO", "#9a4ad0"], [LEO, 540, "leo", "LÉO", "NUNCA DESISTE", "#e0782a"], [MEL, 820, "mel", "MEL", "VÊ O QUE NINGUÉM VÊ", "#e04a8a"]];
+    kids.forEach(([o, x, w, n, sub, cor]) => { const a = prog(t, P(3, w) - .3, P(3, w) + .1); if (a <= 0) return; const s = (w === "mel" ? KID * .9 : KID) * 1.6; pessoa(x, CHAO + 360 + (1 - a) * 300, s, { ...o, expr: "sorriso", olhar: 0, piscar: piscar(t, x) }); nome(n, sub, x, 690, cor, a); });
+  } else if (t < C(5)) { // CENA 4: migalhas até a janela
+    K.salaDeAula(CHAO, t, { janelaX: 760 }); K.mochila(220, CHAO + 330, "#e04a4a", true);
+    const k = prog(t, P(4, "migalhas") - .2, P(4, "janela") + .2);
+    for (let i = 0; i < 22; i++) { const f = i / 21; if (f > k) break; const x = 240 + f * 640, y = CHAO + 300 - f * f * 640 + Math.sin(i * 1.7) * 14; circ(x, y, 9 - f * 3, "#4a2410"); }
+    pessoa(560, CHAO + 380, KID * 1.7, { ...BIA, expr: "desconfiada", olhar: 1, piscar: piscar(t) });
+    vinheta(.3);
+    pista(1, "MIGALHAS", prog(t, P(4, "pista") - .2, P(4, "pista") + .2));
+    if (t > P(4, "segundo") - .3) nome("2º ANDAR ⬆", "COMO SUBIU AQUI?", 900, 760, "#4a8ae0", prog(t, P(4, "segundo") - .3, P(4, "segundo")));
+  } else if (t < C(6)) { // CENA 5: o pelinho no zíper
+    rect(0, 0, W, H, "#e04a4a"); for (let i = 0; i < 30; i++) rect(0, i * 70, W, 4, "rgba(0,0,0,.08)");
+    rect(W / 2 - 40, 0, 80, H, "#c03a3a"); for (let i = 0; i < 40; i++) rr(W / 2 - 36 + (i % 2) * 36, i * 50, 36, 30, 6, "#c8ccd2");
+    rr(W / 2 - 60, 820, 120, 160, 20, "#9aa0a8"); rr(W / 2 - 24, 960, 48, 120, 18, "#9aa0a8");
+    g.strokeStyle = "#8a5a2a"; g.lineWidth = 5; for (let i = 0; i < 9; i++) { g.beginPath(); g.moveTo(W / 2 - 30 + i * 6, 860); g.bezierCurveTo(W / 2 + 40, 820 - i * 8, W / 2 + 120, 900 + i * 6, W / 2 + 200, 840 + i * 10); g.stroke(); }
+    lupa(W / 2 + 120, 870, 3.2, -.4);
+    close({ ...BIA, expr: "desconfiada", olhar: 1 }, 1.4, 1500, 200);
+    vinheta(.35);
+    pista(2, "UM PELINHO", prog(t, P(5, "pista") - .2, P(5, "pista") + .2));
+    if (t > P(5, "bicho") - .3) nome("PELO DE BICHO! 🐾", "MARROM E MACIO", W / 2, 560, "#8a5a2a", prog(t, P(5, "bicho") - .3, P(5, "bicho")));
+  } else if (t < C(7)) { // CENA 6: pegadinhas
+    K.pisoAzulejo(0, "#d8d0bc", "#c4bca6");
+    const k = prog(t, P(6, "pegadas") - .3, P(6, "compridos") + .3);
+    for (let i = 0; i < 6; i++) { if (i / 5 > k) break; const x = 300 + i * 110 + (i % 2) * 40, y = 1300 - i * 150; g.save(); g.translate(x, y); g.rotate(-.5); elip(0, 0, 26, 32, "#4a2410"); for (let d = 0; d < 5; d++) { g.save(); g.rotate(-.9 + d * .45); rr(-5, -78, 10, 48, 5, "#4a2410"); circ(0, -80, 8, "#4a2410"); g.restore(); } g.restore(); }
+    close({ ...MEL, expr: "choque", olhar: .5, braco: .9 }, 1.5, 1900, 820);
+    vinheta(.3);
+    pista(3, "PEGADINHAS", prog(t, P(6, "pista") - .2, P(6, "pista") + .2));
+    if (t > P(6, "compridos") - .3) nome("DEDINHOS COMPRIDOS", "SUJOS DE CHOCOLATE 🍫", W / 2, 560, "#a0603a", 1);
+  } else if (t < C(8)) { // CENA 7: o suspeito
+    g.save(); camera(lin(t, C(7), F(7)), { z0: 1, z1: 1.06 });
+    K.salaDeAula(CHAO, t);
+    rr(820, CHAO - 700, 230, 700, 6, "#8a6a44"); rr(840, CHAO - 680, 190, 680, 4, "#a07a50"); circ(860, CHAO - 340, 10, "#c8a040");
+    pessoa(900, CHAO + 330, KID * 1.7, { ...RAFA, expr: t > P(7, "porta") - .5 ? "choque" : "sorriso", olhar: -1, piscar: piscar(t) });
+    pessoa(200, CHAO + 360, KID * 1.7, { ...BIA, expr: "desconfiada", olhar: 1 });
+    pessoa(420, CHAO + 360, KID * 1.7, { ...DAVI, expr: "bravo", olhar: 1 });
+    pessoa(610, CHAO + 400, KID * 1.5, { ...MEL, expr: "desconfiada", olhar: 1 });
+    g.restore(); vinheta(.3);
+    if (t > P(7, "rafinha") - .3) nome("SUSPEITO: RAFINHA?", "VIVE PEDINDO LANCHE 🤔", W / 2, 360, "#e0a020", prog(t, P(7, "rafinha") - .3, P(7, "rafinha")));
+    else if (t > P(7, "papel") - .3) nome("NO PAPEL…", "TODO MUNDO ACHAVA QUE…", W / 2, 360, "#2a1a40", 1);
+  } else if (t < FALA + .3) { // CENA 8: algo na árvore
+    if (t < P(8, "arvore") - .2) { K.salaDeAula(CHAO, t); pessoa(560, CHAO + 380, KID * 1.8, { ...LEO, expr: "desconfiada", olhar: 1, piscar: piscar(t) }); vinheta(.3); }
+    else {
+      const z = 1 + 1.6 * prog(t, P(8, "arvore") - .2, P(8, "galho") + .3);
+      g.save(); g.translate(W / 2, 800); g.scale(z, z); g.translate(-Math.min(904, 1080 - 540 / z), -Math.max(520, 800 / z));
+      K.salaDeAula(CHAO, t, { janelaX: 760 }); g.restore();
+      // a coisinha no galho, em sombra, com olhos brilhando e migalhas caindo
+      const a = prog(t, P(8, "galho") - .2, P(8, "alguma") + .2);
+      g.save(); g.globalAlpha = a; g.filter = "brightness(0.15)"; K.sagui(560, 820, 2.6, t, { comendo: t > P(8, "mastigando") - .4 }); g.filter = "none";
+      circ(560 - 21, 820 - 83, 11, "#ffe85a"); circ(560 + 21, 820 - 83, 11, "#ffe85a");
+      for (let i = 0; i < 5; i++) { const k = (t * .8 + i / 5) % 1; circ(560 + (i - 2) * 12, 830 + k * 400, 6, "#4a2410"); }
+      g.restore(); vinheta(.5);
+      if (t > P(8, "mastigando") - .3) txt("NHAC NHAC 😋", W / 2, 1150, 70, "#fff", 900, "center", "Nunito");
+    }
+  } else { // CARD FINAL
+    g.fillStyle = "#2a1a40"; g.fillRect(0, 0, W, H); glow(W / 2, 700, 600, "rgba(255,176,48,A)", .25);
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("QUEM PEGOU", W / 2, 620, 100, "#fff", 900, "center", "Nunito"); txt("O BOLO? 🍫", W / 2, 730, 100, "#ffb030", 900, "center", "Nunito");
+    rr(110, 850, 410, 120, 60, "#e0a020"); txt("O RAFINHA", 315, 912, 50, "#fff", 900, "center", "Nunito");
+    rr(560, 850, 410, 120, 60, "#4ab04a"); txt("UM BICHINHO", 765, 912, 50, "#fff", 900, "center", "Nunito");
+    txt("COMENTA SEU PALPITE 👇", W / 2, 1070, 46, "#fff", 800, "center", "Nunito"); txt("O próximo episódio revela!", W / 2, 1140, 38, "#ffb030", 700, "center", "Nunito");
+    txt("OS DETETIVES DO RECREIO · EP. 1", W / 2, 1500, 26, "#8a7aa0", 700, "center", "Nunito"); g.globalAlpha = 1;
+  }
+  marca(t);
+  legenda(t);
+};
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("800 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
