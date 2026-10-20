@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// "Os Detetives do Recreio" — Episódio 4: O Biscoito (infantil, 2D detalhado)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/detetives4/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, elip, txt, glow, vinheta, tinta, camera, pessoa, adesivo, balao } = K;
+const prog = (t, a, b) => K.ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const piscar = (t, f = 0) => ((t + f) % 3.3) < .12 ? .1 : 1;
+const LEO = { sexo: "m", cabelo: "#2a1a10", roupa: "#3a7ac0", calca: "#2e3a52", pele: "#c88a5a", bone: "#e0782a" };
+const BIA = { sexo: "f", cabelo: "#3a2414", roupa: "#9a4ad0", calca: "#2e3a52", pele: "#e3a77f", oculos: true, tranca: true };
+const MEL = { sexo: "f", cabelo: "#8a4a2a", roupa: "#e04a8a", calca: "#3a4a8a", pele: "#f0c0a0", chiquinhas: true };
+const DAVI = { sexo: "m", cabelo: "#1a1410", roupa: "#4ab04a", calca: "#2e3a52", pele: "#a86a44" };
+const RAFA = { sexo: "m", cabelo: "#c89a4a", roupa: "#e0c040", calca: "#3a3a5a", pele: "#f0c0a0" };
+const CHAO = 1200;
+const KID = .78;
+
+// ---------- legenda ----------
+const CHAVE = { simples: "#ffb030", certa: "#6ad06a", biscoito: "#e0a060", cachorrinho: "#e0a060", adotado: "#6ad06a", petisco: "#ffb030", emprestado: "#ffb030", avisa: "#6ad06a", juiz: "#e0a060", merendeira: "#ff7ab0", chorando: "#ff6a5a", caderno: "#c8905a", receitas: "#c8905a",  rastro: "#ffb030", barulho: "#ffb030", apito: "#5ab0ff", queimada: "#ff6a5a", azul: "#5ab0ff", giz: "#5ab0ff", piiii: "#fff", coco: "#c8905a", ze: "#7ab0f0", porteiro: "#7ab0f0", enfermaria: "#6ad06a", branco: "#ffb030", sera: "#ffb030",  pistas: "#ffb030", pista: "#ffb030", bolo: "#a0603a", chocolate: "#a0603a", davi: "#6ad06a", bia: "#c08af0", leo: "#ff9a40", mel: "#ff7ab0", migalhas: "#ffb030", janela: "#6ab8f0", pelinho: "#c8905a", bicho: "#ff6a5a", pegadas: "#ffb030", rafinha: "#ffd84a", arvore: "#6ad06a", mastigando: "#ff6a5a", vazia: "#ff6a5a", detetives: "#ffb030", recreio: "#ffb030" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  let fs = 78; g.font = "900 78px Nunito"; const ps = b.ws.map((w) => w.toUpperCase()); let tot = ps.reduce((a, w) => a + g.measureText(w + " ").width, 0); if (tot > W - 80) { fs = Math.floor(78 * (W - 80) / tot); g.font = `900 ${fs}px Nunito`; } const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.strokeStyle = "#2a1a40"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+function marca(t) { if (t > FALA + .3) return; g.save(); g.shadowColor = "rgba(0,0,0,.6)"; g.shadowBlur = 8; txt("🔍 Os Detetives do Recreio", 50, 110, 40, "#fff", 900, "left", "Nunito"); txt("EPISÓDIO 4", 104, 158, 26, "#ffb030", 800, "left", "Nunito"); g.restore(); }
+function pista(n, s, a) { if (a <= 0) return; g.save(); g.globalAlpha = Math.min(1, a * 1.4); g.translate(W / 2, 360); g.rotate(-.04); g.scale(.82 + .18 * a, .82 + .18 * a); g.shadowColor = "rgba(0,0,0,.35)"; g.shadowBlur = 18; g.font = "900 64px Nunito"; const w = g.measureText(s).width + 80; rr(-w / 2, -52, w, 104, 22, "#fffaf0"); g.shadowColor = "transparent"; rr(-120, -100, 240, 50, 16, "#ff9a30"); txt(`🔎 PISTA #${n}`, 0, -75, 30, "#fff", 900, "center", "Nunito"); txt(s, 0, 4, 64, "#2a1a40", 900, "center", "Nunito"); g.restore(); }
+function nome(s, sub, x, y, cor, a) { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = "900 46px Nunito"; const w = Math.max(g.measureText(s).width, g.measureText(sub).width * .6) + 60; rr(x - w / 2, y - 44, w, 88, 24, cor); txt(s, x, y - 8, 46, "#fff", 900, "center", "Nunito"); txt(sub, x, y + 26, 22, "#fff", 800, "center", "Nunito"); g.restore(); }
+function bolo(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); elip(0, 10, 120, 24, "#e8e8e8"); rr(-100, -80, 200, 90, 16, "#6a3a1a"); rr(-100, -96, 200, 34, 16, "#4a2410"); for (let i = 0; i < 6; i++) elip(-80 + i * 32, -66, 10, 16, "#4a2410"); for (let i = 0; i < 8; i++) circ(-80 + i * 23, -98, 6, ["#e04a4a", "#ffd84a", "#4ab0e0", "#e04a8a"][i % 4]); g.restore(); }
+function vasilha(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-110, -70, 220, 80, 16, "rgba(200,230,255,.6)"); g.strokeStyle = "#8ab0d0"; g.lineWidth = 6; g.strokeRect(-110, -70, 220, 80); for (let i = 0; i < 10; i++) circ(-80 + (i * 37) % 160, -10 - (i * 13) % 30, 5, "#4a2410"); g.restore(); }
+function lupa(x, y, s, a = -.6) { g.save(); g.translate(x, y); g.rotate(a); g.scale(s, s); rr(-12, 40, 24, 120, 10, "#8a4a2a"); g.strokeStyle = "#ffb030"; g.lineWidth = 16; g.beginPath(); g.arc(0, 0, 60, 0, 6.283); g.stroke(); g.fillStyle = "rgba(200,235,255,.35)"; g.fill(); g.restore(); }
+function close(o, s, cy, x = W / 2) { g.save(); g.translate(x, cy + 330 * s - 400); g.scale(s, s); pessoa(0, 0, 1, o); g.restore(); }
+
+const PROF = { sexo: "f", cabelo: "#5a3a2a", roupa: "#e07a5a", calca: "#3a3a5a", pele: "#d39a72" };
+const ZE = { sexo: "m", cabelo: "#f2f2f2", roupa: "#2a4a7a", calca: "#2a2a3a", pele: "#c88a5a", bigode: true };
+function patio(t, caixa = true) {
+  g.fillStyle = "#9ad0f0"; g.fillRect(0, 0, W, H); circ(900, 220, 70, "#fff2b0");
+  rect(0, 820, W, 360, "#e8d8b8"); for (let x = 0; x < W; x += 120) rect(x, 820, 4, 360, "#d8c8a8"); rect(0, 820, W, 20, "#c8b898");
+  K.arvore(160, 1180, 1.0, t);
+  if (caixa) { rect(760, 700, 16, 480, "#7a7a7a"); rect(920, 700, 16, 480, "#7a7a7a"); rect(760, 900, 176, 10, "#7a7a7a"); rr(720, 520, 260, 200, 20, "#4a8ae0"); rr(710, 500, 280, 40, 14, "#3a7ad0"); }
+  rect(0, 1180, W, 740, "#c8a878"); g.strokeStyle = "#fff"; g.lineWidth = 8; g.strokeRect(80, 1240, 920, 560); g.beginPath(); g.moveTo(80, 1520); g.lineTo(1000, 1520); g.stroke();
+}
+function ondas(x, y, s, t) { for (let i = 0; i < 3; i++) { const k = (t * 1.5 + i / 3) % 1; g.strokeStyle = `rgba(255,255,255,${1 - k})`; g.lineWidth = 8; g.beginPath(); g.arc(x, y, 40 + k * 160 * s, -.6, .6); g.stroke(); } }
+const MERENDEIRA = { sexo: "f", cabelo: "#2a1a10", roupa: "#f4f4f4", calca: "#3a3a4a", pele: "#a86a44" };
+function cachorro(x, y, s, t, { corre = 0, rabo = 1 } = {}) { g.save(); g.translate(x, y); g.scale(s, s);
+  const b = corre ? Math.sin(t * 20) * 6 : 0; K.elip(0, 4, 90, 14, "rgba(0,0,0,.2)");
+  g.strokeStyle = "#c88a4a"; g.lineWidth = 16; g.lineCap = "round"; g.beginPath(); g.moveTo(-70, -80); g.lineTo(-110, -130 + Math.sin(t * 14 * rabo) * 15); g.stroke();
+  for (const [lx, d] of [[-50, 1], [-25, -1], [35, 1], [60, -1]]) rr(lx - 9, -60, 18, 60 + (corre ? Math.sin(t * 20 + d) * 8 : 0), 8, "#b87a3a");
+  K.elip(0, -80 + b, 85, 45, "#c88a4a"); K.elip(70, -140 + b, 45, 40, "#c88a4a"); K.elip(100, -130 + b, 26, 18, "#e0b080"); circ(118, -136 + b, 8, "#2a1a10");
+  K.elip(48, -170 + b, 14, 28, "#9a6a3a", -.4); circ(78, -150 + b, 6, "#111"); K.elip(10, -70 + b, 30, 22, "#f2e2c8");
+  g.restore(); }
+function osso(x, y, s) { g.save(); g.translate(x, y); g.scale(s, s); rr(-30, -8, 60, 16, 8, "#f4ecd8"); for (const sx of [-1, 1]) { circ(sx * 32, -8, 11, "#f4ecd8"); circ(sx * 32, 8, 11, "#f4ecd8"); } g.restore(); }
+function cozinhaEscola(t) { K.cozinha(CHAO, 0, t); rr(80, CHAO - 520, 920, 60, 8, "#c0c6cc"); for (let i = 0; i < 3; i++) { rr(140 + i * 300, CHAO - 640, 200, 130, 18, "#9aa0a8"); K.elip(240 + i * 300, CHAO - 640, 100, 22, "#7a8088"); } }
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H); g.filter = "none";
+  const em = (a, b) => t >= a && t < b;
+  if (t < C(2)) { // CENA 1
+    patio(t); ondas(840, 640, 1.2, t); vinheta(.3);
+    pista("", "A RESPOSTA MAIS SIMPLES", prog(t, P(1, "simples") - .4, P(1, "simples")));
+  } else if (t < C(3)) { // CENA 2: o Seu Zé e um cachorrinho
+    patio(t, false);
+    pessoa(360, 1560, 1.35, { ...ZE, expr: "sorriso", olhar: 1, braco: 2.4 }); rr(400, 1560 - 395 * 1.35 + 10, 40, 16, 6, "#c0c6cc");
+    if (t > P(2, "cachorrinho") - .3) cachorro(720, 1580, 1.2, t);
+    vinheta(.3);
+    nome("O SEU ZÉ! 👴", "COM O APITO", W / 2, 380, "#2a4a7a", prog(t, P(2, "ze") - .3, P(2, "ze")));
+  } else if (t < C(4)) { // CENA 3: Biscoito
+    patio(t, false); cachorro(W / 2, 1600, 2.2, t); vinheta(.3);
+    nome("BISCOITO 🐶", t > P(3, "adotado") - .3 ? "VAI SER ADOTADO! 🏠" : "APARECEU NA ESCOLA", W / 2, 380, "#c88a4a", prog(t, P(3, "biscoito") - .3, P(3, "biscoito")));
+  } else if (t < C(5)) { // CENA 4: treino com o apito
+    patio(t, false);
+    pessoa(260, 1560, 1.25, { ...ZE, expr: "sorriso", olhar: 1, braco: 2.4 });
+    const ida = (t > P(4, "piiii") - .2) ? prog(t, P(4, "piiii") - .2, P(4, "corre") + .4) : 0;
+    cachorro(900 - 420 * ida, 1600, 1.2, t, { corre: ida > 0 && ida < 1 ? 1 : 0 });
+    if (t > P(4, "petisco") - .4) osso(480, 1500, 1.4);
+    if (em(P(4, "piiii") - .2, P(4, "piiii") + .6) || em(P(4, "piiii", 2) - .2, P(4, "piiii", 2) + .6)) txt("PIIIII!", 420, 900, 96, "#fff", 900, "center", "Nunito");
+    vinheta(.3);
+    nome("TREINO DO BISCOITO", "PIIII = VEM AQUI! 🦴", W / 2, 380, "#e0a020", prog(t, P(4, "treinar") - .3, P(4, "treinar")));
+  } else if (t < C(6)) { // CENA 5: o ponto de interrogação
+    K.salaDeAula(CHAO, t); g.save(); g.font = "900 260px Nunito"; g.fillStyle = "#5ab0ff"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("?", 350, 420); g.restore();
+    pessoa(760, CHAO + 300, 1.15, { ...ZE, expr: "sorriso", olhar: -1, piscaD: (t % 1.5) < .5 ? 1 : 0 });
+    vinheta(.3);
+    nome("FOI ELE TAMBÉM! 😄", "PRA TESTAR OS DETETIVES", W / 2, 640, "#5ab0ff", prog(t, P(5, "foi") - .3, P(5, "foi")));
+  } else if (t < C(7)) { // CENA 6: regra
+    g.fillStyle = "#2a1a40"; g.fillRect(0, 0, W, H); glow(W / 2, 800, 600, "rgba(255,176,48,A)", .25); lupa(W / 2, 640, 2.2, -.5);
+    txt("REGRA DOS DETETIVES", W / 2, 880, 40, "#ffb030", 800, "center", "Nunito");
+    const a = prog(t, P(6, "quem") - .4, P(6, "quem")); g.globalAlpha = a; txt("QUEM PEGA EMPRESTADO", W / 2, 1000, 70, "#fff", 900, "center", "Nunito"); txt("AVISA ANTES!", W / 2, 1100, 96, "#ffb030", 900, "center", "Nunito"); g.globalAlpha = 1;
+  } else if (t < C(8)) { // CENA 7: queimada com o Biscoito de juiz
+    patio(t, false);
+    const bx = 540 + Math.sin(t * 3) * 280, by = 1300 - Math.abs(Math.sin(t * 3)) * 300; circ(bx, by, 34, "#e04a4a");
+    pessoa(200, 1500, KID * 1.5, { ...LEO, expr: "sorriso", olhar: 1, braco: 2 }); pessoa(380, 1820, KID * 1.5, { ...BIA, expr: "sorriso", olhar: 1 }); pessoa(720, 1500, KID * 1.5, { ...DAVI, expr: "sorriso", olhar: -1, braco: 2 }); pessoa(880, 1820, KID * 1.3, { ...MEL, expr: "sorriso", olhar: -1 });
+    cachorro(540, 1660, .9, t); rr(560, 1660 - 190 * .9, 30, 12, 4, "#c0c6cc");
+    vinheta(.3);
+    nome("QUEIMADA EXTRA! 🏐", "BISCOITO DE JUIZ 🐶", W / 2, 380, "#4ab04a", prog(t, P(7, "queimada") - .3, P(7, "queimada")));
+  } else if (t < FALA + .3) { // CENA 8: a merendeira chorando
+    cozinhaEscola(t);
+    pessoa(700, CHAO + 90, 1.2, { ...MERENDEIRA, expr: "triste", olhar: -1, lagrima: t * 1.2 }); rr(670, CHAO - 470 * 1.2 + 80, 60, 30, 10, "#f4f4f4");
+    pessoa(280, CHAO + 160, KID * 1.6, { ...MEL, expr: "desconfiada", olhar: 1 });
+    vinheta(.35);
+    if (t > P(8, "chorando") - .3) nome("A MERENDEIRA CHOROU 😢", "", W / 2, 380, "#e04a8a", 1);
+    if (t > P(8, "caderno") - .3) nome("O CADERNO DE RECEITAS", "DA VÓ DELA SUMIU 📒", W / 2, 500, "#a0603a", 1);
+  } else { // CARD FINAL
+    g.fillStyle = "#2a1a40"; g.fillRect(0, 0, W, H); glow(W / 2, 700, 600, "rgba(255,176,48,A)", .25);
+    const a = prog(t, FALA + .3, FALA + .8); g.globalAlpha = a;
+    txt("PRÓXIMO MISTÉRIO:", W / 2, 620, 64, "#fff", 900, "center", "Nunito"); txt("O CADERNO DE RECEITAS 📒", W / 2, 730, 58, "#ffb030", 900, "center", "Nunito");
+    txt("Quem você acha que pegou?", W / 2, 880, 50, "#fff", 800, "center", "Nunito"); txt("COMENTA SEU PALPITE 👇", W / 2, 980, 46, "#ffb030", 900, "center", "Nunito");
+    txt("OS DETETIVES DO RECREIO · EP. 4", W / 2, 1500, 26, "#8a7aa0", 700, "center", "Nunito"); g.globalAlpha = 1;
+  }
+  marca(t);
+  legenda(t);
+};
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("800 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
