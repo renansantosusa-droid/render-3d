@@ -1,0 +1,156 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("liquidificador", { fundo: 0xf3e6d0, seed: 3131 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- cozinha ----------
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: grade("#e8e0d2", "#cfc4b0", 64, 12) }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(12, 6), mat(0xffffff, { map: grade("#ffffff", "#d6dde4", 42, 10) }), 0, 3, -1.2);
+add(new THREE.BoxGeometry(5, .9, 1.6), mat(0xffffff, { map: texMadeira("#b88654", 2) }), 0, .45, -.3);
+add(new THREE.BoxGeometry(5.1, .06, 1.7), mat(0x3a3f48, { roughness: .3 }), 0, .93, -.3);
+const banana = grupo(-.9, .96, -.4); add(new THREE.TorusGeometry(.18, .045, 8, 20, 2.2), mat(0xffd84a), 0, .05, 0, banana).rotation.x = Math.PI / 2;
+const morango = [[.8, -.5], [.95, -.35], [.7, -.3]].map(([x, z]) => add(new THREE.SphereGeometry(.06, 12, 10), mat(0xe03a3a), x, 1.0, z));
+
+// ---------- liquidificador ----------
+const Y0 = .96;              // tampo da bancada
+const BH = .36;              // altura da base
+const mBase = new THREE.MeshStandardMaterial({ color: 0xe9ecef, roughness: .35, transparent: true, opacity: 1 });
+const base = add(new THREE.BoxGeometry(.5, BH, .46), mBase, 0, Y0 + BH / 2, 0);
+const motorG = grupo(0, Y0, 0);
+const mBob = mat(0xc87a3a, { metalness: .6, roughness: .35, emissive: 0xff2a00, emissiveIntensity: 0 });
+add(new THREE.CylinderGeometry(.12, .12, .16, 24), mat(0x7a828c, { metalness: .7 }), 0, .2, 0, motorG);
+const bobinas = [0, 1].map((i) => add(new THREE.TorusGeometry(.105, .03, 10, 24), mBob, 0, .15 + i * .1, 0, motorG));
+bobinas.forEach((b) => b.rotation.x = Math.PI / 2);
+const eixo = add(new THREE.CylinderGeometry(.012, .012, .34, 10), mat(0xd0d4d8, { metalness: .9, roughness: .2 }), 0, .2, 0, motorG);
+const ventoinha = grupo(0, .07, 0, motorG);
+for (let i = 0; i < 7; i++) { const p = add(new THREE.BoxGeometry(.11, .012, .035), mat(0x2a2f38), .065, 0, 0, grupo(0, 0, 0, ventoinha)); p.parent.rotation.y = i / 7 * Math.PI * 2; p.rotation.x = .5; }
+// acoplamento da base (macho)
+const acopB = grupo(0, Y0 + BH + .015, 0);
+add(new THREE.CylinderGeometry(.05, .05, .03, 16), mat(0x2a2f38), 0, 0, 0, acopB);
+const dentesB = []; for (let i = 0; i < 6; i++) { const g = grupo(0, 0, 0, acopB); g.rotation.y = i / 6 * Math.PI * 2; dentesB.push(add(new THREE.BoxGeometry(.03, .04, .022), mat(0x2a2f38), .055, .005, 0, g)); }
+
+// copo (grupo que sobe na hora de separar)
+const copo = grupo(0, Y0 + BH + .03, 0);
+const H = .78, R = .2;
+const redondo = add(new THREE.CylinderGeometry(R, R * .82, H, 40, 1, true), vidro(.18, 0xdfeeff), 0, H / 2 + .04, 0, copo);
+const quadrado = add(new THREE.CylinderGeometry(R * 1.12, R * .92, H, 4, 1, true), vidro(.2, 0xdfeeff), 0, H / 2 + .04, 0, copo); quadrado.rotation.y = Math.PI / 4;
+const arestas = new THREE.LineSegments(new THREE.EdgesGeometry(quadrado.geometry), new THREE.LineBasicMaterial({ color: 0x9fb4c8 })); arestas.position.copy(quadrado.position); arestas.rotation.y = Math.PI / 4; copo.add(arestas);
+const fundoCopo = add(new THREE.CylinderGeometry(R * .9, R * .9, .07, 24), mat(0x3a3f48), 0, .0, 0, copo);
+const acopC = grupo(0, -.02, 0, copo);
+const dentesC = []; for (let i = 0; i < 6; i++) { const g = grupo(0, 0, 0, acopC); g.rotation.y = (i + .5) / 6 * Math.PI * 2; dentesC.push(add(new THREE.BoxGeometry(.028, .035, .02), mat(0x55606c), .055, -.01, 0, g)); }
+const mLiq = new THREE.MeshStandardMaterial({ color: 0xbfe0ff, transparent: true, opacity: .3, depthWrite: false, roughness: .2 });
+const liqR = add(new THREE.CylinderGeometry(R * .96, R * .8, .42, 40), mLiq, 0, .26, 0, copo);
+const liqQ = add(new THREE.CylinderGeometry(R * 1.04, R * .88, .42, 4), mLiq, 0, .26, 0, copo); liqQ.rotation.y = Math.PI / 4;
+// lâmina: 4 braços, as pontas entortam (2 pra cima, 2 pra baixo)
+const lamina = grupo(0, .085, 0, copo);
+const mLam = mat(0xdfe4ea, { metalness: .95, roughness: .15 });
+add(new THREE.CylinderGeometry(.018, .018, .05, 12), mLam, 0, -.02, 0, lamina);
+const pontas = [];
+for (let i = 0; i < 4; i++) { const g = grupo(0, 0, 0, lamina); g.rotation.y = i / 4 * Math.PI * 2; add(new THREE.BoxGeometry(.07, .006, .03), mLam, .035, 0, 0, g); const pg = grupo(.07, 0, 0, g); add(new THREE.BoxGeometry(.065, .006, .026), mLam, .032, 0, 0, pg); pontas.push({ pg, s: i % 2 ? 1 : -1 }); }
+const borrao = add(new THREE.CircleGeometry(.14, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }), 0, .088, 0, copo); borrao.rotation.x = -Math.PI / 2;
+// pedaços de fruta
+const cores = [0xe03a3a, 0xffd84a, 0x7ac74f, 0xff8a2a];
+const pedacos = Array.from({ length: 34 }, (_, i) => ({ m: add(new THREE.BoxGeometry(.045, .045, .045), mat(cores[i % 4], { roughness: .5 }), 0, 0, 0, copo), a: rnd() * 6.28, r: rnd(), h: rnd(), f: rnd() }));
+const giro = Array.from({ length: 60 }, () => ({ s: sprite(0xffffff, copo), a: rnd() * 6.28, f: rnd() }));
+// tampa + botões
+const tampa = grupo(0, H + .04, 0, copo);
+add(new THREE.BoxGeometry(R * 2.3, .05, R * 2.3), mat(0x2a2f38), 0, .02, 0, tampa).rotation.y = 0;
+const medidor = add(new THREE.CylinderGeometry(.05, .045, .08, 16), vidro(.5, 0xdfeeff), 0, .07, 0, tampa);
+const botoes = [-.12, 0, .12].map((x, i) => add(new THREE.CylinderGeometry(.03, .03, .02, 16), mat([0x3aaa5a, 0xffb03a, 0xe03a3a][i]), x, Y0 + .14, .235));
+botoes.forEach((b) => b.rotation.x = Math.PI / 2);
+const botao = add(new THREE.CylinderGeometry(.05, .05, .03, 20), mat(0x55606c, { metalness: .5 }), 0, Y0 + .26, .235); botao.rotation.x = Math.PI / 2;
+// ar da ventoinha (entra frio por baixo, sai quente pelos lados)
+const arEntra = [-1, 1].map((s) => K.fluxo(new THREE.CatmullRomCurve3([V(s * .5, Y0 + .02, .1), V(s * .15, Y0 + .03, .05), V(0, Y0 + .07, 0)]), 14, 0x5aa0ff));
+const arSai = [-1, 1].map((s) => K.fluxo(new THREE.CatmullRomCurve3([V(0, Y0 + .08, 0), V(s * .2, Y0 + .14, 0), V(s * .7, Y0 + .3, .1)]), 14, 0xff5a2a));
+const faisca = sprite(0xffd23a); faisca.position.set(.07, Y0 + BH + .03, .05);
+
+// ---------- câmera ----------
+K.camera_({
+  geral: [V(1.0, 1.95, 3.4), V(0, 1.5, 0)],
+  copo: [V(.55, 1.95, 1.75), V(0, 1.6, 0)],
+  lamina: [V(.3, 1.78, .95), V(0, 1.42, 0)],
+  cima: [V(.04, 3.0, .45), V(0, 1.45, 0)],
+  separa: [V(.75, 1.75, 1.5), V(0, 1.45, 0)],
+  acop: [V(.32, 1.62, .55), V(0, 1.38, 0)],
+  motor: [V(.55, 1.45, 1.35), V(0, 1.18, 0)],
+  fim: [V(-.9, 1.95, 2.9), V(0, 1.55, 0)],
+}, [
+  [0, "geral"], [C(2), "copo"], [F(2), "copo"],
+  [P(3, "motor") - .3, "copo"], [P(3, "entorta") - .4, "lamina"], [F(3), "lamina"],
+  [C(4), "copo"], [P(4, "cantos") - .3, "copo"], [P(4, "cantos") - .29, "cima"], [P(4, "redemoinho") - .4, "cima"], [P(4, "redemoinho"), "copo"], [F(4), "copo"],
+  [C(5), "separa"], [P(5, "acoplamento") - .3, "acop"], [F(5), "acop"],
+  [C(6), "motor"], [F(6), "motor"], [C(7), "copo"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // fases
+  const devagar = em(P(1, "girando") - .3, P(3, "motor"));
+  const rapido = em(P(3, "motor"), C(5)) || t > P(5, "gastou") + .6;
+  const separado = prog(t, C(5) + .2, P(5, "separa") + .5) * (1 - prog(t, F(5) - .3, C(6) + .3));
+  copo.position.y = Y0 + BH + .03 + .32 * separado;
+  // lâmina
+  const aLam = devagar ? t * 1.5 : rapido ? t * 31 : 0;
+  lamina.rotation.y = aLam; borrao.material.opacity = rapido ? .28 : 0;
+  const ent = prog(t, P(3, "entorta") - .2, P(3, "entorta") + .6);
+  pontas.forEach((p) => p.pg.rotation.z = p.s * .7 * ent);
+  // motor gira (no "gastou" o motor gira e a faca não)
+  const motorOn = rapido || em(P(5, "motor") - .2, P(5, "gastou") + .6);
+  const aMot = motorOn ? t * 31 : 0;
+  acopB.rotation.y = aMot; ventoinha.rotation.y = aMot; eixo.rotation.y = aMot;
+  acopC.rotation.y = rapido ? aMot : 0;
+  const gasto = em(P(5, "motor") - .2, C(6)) ? 1 : 0;
+  dentesC.forEach((d) => d.scale.set(1 - .55 * gasto, 1 - .5 * gasto, 1));
+  // copo redondo -> quadrado
+  const comCanto = t > P(4, "cantos") - .2;
+  redondo.visible = liqR.visible = !comCanto; quadrado.visible = liqQ.visible = arestas.visible = comCanto;
+  // base transparente pra ver o motor
+  const verMotor = em(P(3, "motor") - .3, P(3, "minuto") + .4) || em(C(6), F(6));
+  mBase.opacity = verMotor ? .2 : 1; mBase.depthWrite = !verMotor;
+  motorG.visible = verMotor;
+  mBob.emissiveIntensity = em(P(6, "esquenta") - .2, F(6)) ? .25 + .2 * Math.sin(t * 8) : 0;
+  // líquido: água -> suco
+  const suco = prog(t, P(4, "redemoinho"), P(4, "baixo") + 1.5);
+  mLiq.color.setRGB(.75 + .25 * suco, .88 - .35 * suco, 1 - .85 * suco); mLiq.opacity = .3 + .5 * suco;
+  // pedaços
+  const tC = P(4, "cantos");
+  pedacos.forEach((p) => {
+    let x, y, z, s = 1;
+    if (t < P(3, "motor")) { const a = p.a + (devagar ? t * .6 : 0); const r = .03 + p.r * .13; x = Math.cos(a) * r + (devagar ? Math.sin(t * 2.2 + p.a) * .035 : 0); z = Math.sin(a) * r; y = .13 + p.h * .1; }
+    else if (t < tC) { const a = p.a + t * 9; const r = .16 + p.r * .02; x = Math.cos(a) * r; z = Math.sin(a) * r; y = .2 + p.h * .45 * prog(t, P(3, "motor"), P(3, "motor") + 1.2); }
+    else { const k = frac(t * .45 + p.h); const a = p.a + t * 9; const r = .17 * (1 - k) + .02; x = Math.cos(a) * r; z = Math.sin(a) * r; y = .62 - k * .5; s = 1 - .75 * prog(t, tC, tC + 6); }
+    p.m.position.set(x, y, z); p.m.rotation.set(t * 3 + p.a, t * 2 + p.f, 0); p.m.scale.setScalar(s);
+    p.m.visible = t < P(4, "baixo") + 4;
+  });
+  // redemoinho (espiral de bolhas)
+  giro.forEach((g) => { const k = frac(t * .5 + g.f); const a = g.a + t * 9; const r = .17 * (1 - k) + .015; g.s.position.set(Math.cos(a) * r, .6 - k * .48, Math.sin(a) * r); g.s.scale.setScalar(.025); g.s.material.opacity = t > tC && t < C(5) ? .9 : 0; });
+  // ar da ventoinha
+  const ventila = em(P(6, "ventoinha") - .2, F(6));
+  arEntra.forEach((f) => f.atualiza(t, ventila, .7, .05)); arSai.forEach((f) => f.atualiza(t, ventila && t > P(6, "quente") - 1.5, .7, .06));
+  faisca.material.opacity = em(P(5, "gira") - .1, P(5, "gastou") + .6) ? .9 * pulse(frac(t * 3), 0, 1) : 0; faisca.scale.setScalar(.06);
+  // tampa e botões
+  tampa.visible = t > P(7, "tampa") - .3; tampa.position.y = H + .04 + .3 * (1 - prog(t, P(7, "tampa") - .3, P(7, "tampa") + .3));
+  medidor.visible = t > P(7, "medidor") - .3;
+  [...botoes, botao].forEach((b) => b.visible = t > P(7, "botoes") - .3);
+  K.cartoes(t, [
+    [P(2, "devagar") - .3, P(2, "rola") - .3, "DEVAGAR DEMAIS", "#ff9a5a"],
+    [P(2, "suco") - .4, F(2), "NADA VIRA SUCO", "#ff4a3a"],
+    [P(3, "milhares") - .3, P(3, "entorta") - .4, "20 MIL GIROS POR MINUTO", "#3aff7a"],
+    [P(3, "cima") - .3, F(3), "PONTAS EM ALTURAS DIFERENTES", "#ffd23a"],
+    [P(4, "gruda") - .3, P(4, "cantos") - .3, "LONGE DA LÂMINA", "#ff4a3a"],
+    [P(4, "cantos") - .2, P(4, "redemoinho") - .4, "COPO COM CANTOS", "#ffd23a"],
+    [P(4, "redemoinho") - .3, F(4), "REDEMOINHO", "#5aa0ff"],
+    [P(5, "acoplamento") - .3, P(5, "motor") - .3, "ACOPLAMENTO", "#ffd23a"],
+    [P(5, "motor") - .3, F(5), "GASTOU!", "#ff4a3a"],
+    [P(6, "ventoinha") - .3, P(6, "quente") - .3, "VENTOINHA", "#5aa0ff"],
+    [P(6, "quente") - .3, F(6), "VENTO QUENTE", "#ff5a2a"],
+  ]);
+});
+</script>
+</body></html>
