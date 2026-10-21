@@ -1,0 +1,797 @@
+{
+ "total": 65.7,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.89,
+   "texto": "Se você colocar um alto-falante dentro da orelha, terá um fone.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.681
+    },
+    {
+     "w": "um",
+     "t": 1.093
+    },
+    {
+     "w": "alto-falante",
+     "t": 1.247
+    },
+    {
+     "w": "dentro",
+     "t": 1.966
+    },
+    {
+     "w": "da",
+     "t": 2.249
+    },
+    {
+     "w": "orelha",
+     "t": 2.355
+    },
+    {
+     "w": "terá",
+     "t": 2.933
+    },
+    {
+     "w": "um",
+     "t": 3.133
+    },
+    {
+     "w": "fone",
+     "t": 3.24
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.04,
+   "fim": 10.82,
+   "texto": "Mas ele tampa o ouvido. Você não escuta o carro chegando. E depois de horas, a orelha dói.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.087
+    },
+    {
+     "w": "ele",
+     "t": 4.288
+    },
+    {
+     "w": "tampa",
+     "t": 4.618
+    },
+    {
+     "w": "o",
+     "t": 4.924
+    },
+    {
+     "w": "ouvido",
+     "t": 4.948
+    },
+    {
+     "w": "Você",
+     "t": 6.174
+    },
+    {
+     "w": "não",
+     "t": 6.505
+    },
+    {
+     "w": "escuta",
+     "t": 6.658
+    },
+    {
+     "w": "o",
+     "t": 7.059
+    },
+    {
+     "w": "carro",
+     "t": 7.106
+    },
+    {
+     "w": "chegando",
+     "t": 7.377
+    },
+    {
+     "w": "E",
+     "t": 8.71
+    },
+    {
+     "w": "depois",
+     "t": 8.816
+    },
+    {
+     "w": "de",
+     "t": 9.217
+    },
+    {
+     "w": "horas",
+     "t": 9.335
+    },
+    {
+     "w": "a",
+     "t": 9.842
+    },
+    {
+     "w": "orelha",
+     "t": 9.936
+    },
+    {
+     "w": "dói",
+     "t": 10.29
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.97,
+   "fim": 16.57,
+   "texto": "Então, você tira o fone de dentro da orelha e apoia ele na frente dela, encostado no osso.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.017
+    },
+    {
+     "w": "você",
+     "t": 11.795
+    },
+    {
+     "w": "tira",
+     "t": 12.055
+    },
+    {
+     "w": "o",
+     "t": 12.267
+    },
+    {
+     "w": "fone",
+     "t": 12.303
+    },
+    {
+     "w": "de",
+     "t": 12.621
+    },
+    {
+     "w": "dentro",
+     "t": 12.751
+    },
+    {
+     "w": "da",
+     "t": 13.057
+    },
+    {
+     "w": "orelha",
+     "t": 13.152
+    },
+    {
+     "w": "e",
+     "t": 13.529
+    },
+    {
+     "w": "apoia",
+     "t": 13.588
+    },
+    {
+     "w": "ele",
+     "t": 14.012
+    },
+    {
+     "w": "na",
+     "t": 14.213
+    },
+    {
+     "w": "frente",
+     "t": 14.354
+    },
+    {
+     "w": "dela",
+     "t": 14.708
+    },
+    {
+     "w": "encostado",
+     "t": 15.31
+    },
+    {
+     "w": "no",
+     "t": 15.876
+    },
+    {
+     "w": "osso",
+     "t": 15.994
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 16.72,
+   "fim": 25.33,
+   "texto": "Em vez de mexer o ar, ele vibra. Um ímã e uma bobina sacodem uma plaquinha milhares de vezes por segundo, e essa vibração passa pro osso.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 16.767
+    },
+    {
+     "w": "vez",
+     "t": 16.956
+    },
+    {
+     "w": "de",
+     "t": 17.227
+    },
+    {
+     "w": "mexer",
+     "t": 17.31
+    },
+    {
+     "w": "o",
+     "t": 17.675
+    },
+    {
+     "w": "ar",
+     "t": 17.758
+    },
+    {
+     "w": "ele",
+     "t": 18.182
+    },
+    {
+     "w": "vibra",
+     "t": 18.359
+    },
+    {
+     "w": "Um",
+     "t": 19.562
+    },
+    {
+     "w": "ímã",
+     "t": 19.774
+    },
+    {
+     "w": "e",
+     "t": 20.01
+    },
+    {
+     "w": "uma",
+     "t": 20.093
+    },
+    {
+     "w": "bobina",
+     "t": 20.222
+    },
+    {
+     "w": "sacodem",
+     "t": 20.635
+    },
+    {
+     "w": "uma",
+     "t": 21.13
+    },
+    {
+     "w": "plaquinha",
+     "t": 21.295
+    },
+    {
+     "w": "milhares",
+     "t": 21.72
+    },
+    {
+     "w": "de",
+     "t": 22.156
+    },
+    {
+     "w": "vezes",
+     "t": 22.251
+    },
+    {
+     "w": "por",
+     "t": 22.604
+    },
+    {
+     "w": "segundo",
+     "t": 22.746
+    },
+    {
+     "w": "e",
+     "t": 23.489
+    },
+    {
+     "w": "essa",
+     "t": 23.571
+    },
+    {
+     "w": "vibração",
+     "t": 23.831
+    },
+    {
+     "w": "passa",
+     "t": 24.326
+    },
+    {
+     "w": "pro",
+     "t": 24.609
+    },
+    {
+     "w": "osso",
+     "t": 24.751
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 25.48,
+   "fim": 36.48,
+   "texto": "O osso leva a vibração direto pra cóclea, um caracolzinho cheio de líquido lá dentro do ouvido. É ela que transforma vibração em som pro cérebro. O tímpano fica de fora.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 25.527
+    },
+    {
+     "w": "osso",
+     "t": 25.645
+    },
+    {
+     "w": "leva",
+     "t": 25.963
+    },
+    {
+     "w": "a",
+     "t": 26.235
+    },
+    {
+     "w": "vibração",
+     "t": 26.27
+    },
+    {
+     "w": "direto",
+     "t": 26.777
+    },
+    {
+     "w": "pra",
+     "t": 27.131
+    },
+    {
+     "w": "cóclea",
+     "t": 27.308
+    },
+    {
+     "w": "um",
+     "t": 28.039
+    },
+    {
+     "w": "caracolzinho",
+     "t": 28.157
+    },
+    {
+     "w": "cheio",
+     "t": 28.853
+    },
+    {
+     "w": "de",
+     "t": 29.159
+    },
+    {
+     "w": "líquido",
+     "t": 29.254
+    },
+    {
+     "w": "lá",
+     "t": 29.631
+    },
+    {
+     "w": "dentro",
+     "t": 29.772
+    },
+    {
+     "w": "do",
+     "t": 30.15
+    },
+    {
+     "w": "ouvido",
+     "t": 30.232
+    },
+    {
+     "w": "É",
+     "t": 31.471
+    },
+    {
+     "w": "ela",
+     "t": 31.6
+    },
+    {
+     "w": "que",
+     "t": 31.86
+    },
+    {
+     "w": "transforma",
+     "t": 31.989
+    },
+    {
+     "w": "vibração",
+     "t": 32.555
+    },
+    {
+     "w": "em",
+     "t": 33.074
+    },
+    {
+     "w": "som",
+     "t": 33.157
+    },
+    {
+     "w": "pro",
+     "t": 33.393
+    },
+    {
+     "w": "cérebro",
+     "t": 33.558
+    },
+    {
+     "w": "O",
+     "t": 34.902
+    },
+    {
+     "w": "tímpano",
+     "t": 35.032
+    },
+    {
+     "w": "fica",
+     "t": 35.504
+    },
+    {
+     "w": "de",
+     "t": 35.751
+    },
+    {
+     "w": "fora",
+     "t": 35.869
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 36.63,
+   "fim": 46.4,
+   "texto": "É por isso que a sua voz gravada parece estranha. Quando você fala, você também se escuta pelos ossos da cabeça. Na gravação, só pelo ar.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 36.677
+    },
+    {
+     "w": "por",
+     "t": 36.795
+    },
+    {
+     "w": "isso",
+     "t": 37.007
+    },
+    {
+     "w": "que",
+     "t": 37.314
+    },
+    {
+     "w": "a",
+     "t": 37.385
+    },
+    {
+     "w": "sua",
+     "t": 37.432
+    },
+    {
+     "w": "voz",
+     "t": 37.68
+    },
+    {
+     "w": "gravada",
+     "t": 37.927
+    },
+    {
+     "w": "parece",
+     "t": 38.411
+    },
+    {
+     "w": "estranha",
+     "t": 38.788
+    },
+    {
+     "w": "Quando",
+     "t": 40.062
+    },
+    {
+     "w": "você",
+     "t": 40.321
+    },
+    {
+     "w": "fala",
+     "t": 40.58
+    },
+    {
+     "w": "você",
+     "t": 41.217
+    },
+    {
+     "w": "também",
+     "t": 41.488
+    },
+    {
+     "w": "se",
+     "t": 41.901
+    },
+    {
+     "w": "escuta",
+     "t": 42.019
+    },
+    {
+     "w": "pelos",
+     "t": 42.432
+    },
+    {
+     "w": "ossos",
+     "t": 42.668
+    },
+    {
+     "w": "da",
+     "t": 43.069
+    },
+    {
+     "w": "cabeça",
+     "t": 43.187
+    },
+    {
+     "w": "Na",
+     "t": 44.519
+    },
+    {
+     "w": "gravação",
+     "t": 44.696
+    },
+    {
+     "w": "só",
+     "t": 45.498
+    },
+    {
+     "w": "pelo",
+     "t": 45.722
+    },
+    {
+     "w": "ar.",
+     "t": 45.97
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 46.55,
+   "fim": 58.23,
+   "texto": "Mas parte da vibração escapa pro ar, e quem está do lado escuta baixinho. Então, você usa uma haste de titânio que aperta o fone contra a cabeça, pra vibração ir pro osso, e não pro ar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 46.597
+    },
+    {
+     "w": "parte",
+     "t": 46.939
+    },
+    {
+     "w": "da",
+     "t": 47.305
+    },
+    {
+     "w": "vibração",
+     "t": 47.411
+    },
+    {
+     "w": "escapa",
+     "t": 47.894
+    },
+    {
+     "w": "pro",
+     "t": 48.248
+    },
+    {
+     "w": "ar",
+     "t": 48.413
+    },
+    {
+     "w": "e",
+     "t": 48.944
+    },
+    {
+     "w": "quem",
+     "t": 49.015
+    },
+    {
+     "w": "está",
+     "t": 49.191
+    },
+    {
+     "w": "do",
+     "t": 49.427
+    },
+    {
+     "w": "lado",
+     "t": 49.557
+    },
+    {
+     "w": "escuta",
+     "t": 49.864
+    },
+    {
+     "w": "baixinho",
+     "t": 50.253
+    },
+    {
+     "w": "Então",
+     "t": 51.597
+    },
+    {
+     "w": "você",
+     "t": 52.364
+    },
+    {
+     "w": "usa",
+     "t": 52.694
+    },
+    {
+     "w": "uma",
+     "t": 52.953
+    },
+    {
+     "w": "haste",
+     "t": 53.071
+    },
+    {
+     "w": "de",
+     "t": 53.342
+    },
+    {
+     "w": "titânio",
+     "t": 53.437
+    },
+    {
+     "w": "que",
+     "t": 53.85
+    },
+    {
+     "w": "aperta",
+     "t": 53.944
+    },
+    {
+     "w": "o",
+     "t": 54.298
+    },
+    {
+     "w": "fone",
+     "t": 54.333
+    },
+    {
+     "w": "contra",
+     "t": 54.675
+    },
+    {
+     "w": "a",
+     "t": 54.982
+    },
+    {
+     "w": "cabeça",
+     "t": 55.017
+    },
+    {
+     "w": "pra",
+     "t": 55.736
+    },
+    {
+     "w": "vibração",
+     "t": 55.901
+    },
+    {
+     "w": "ir",
+     "t": 56.397
+    },
+    {
+     "w": "pro",
+     "t": 56.491
+    },
+    {
+     "w": "osso",
+     "t": 56.691
+    },
+    {
+     "w": "e",
+     "t": 57.222
+    },
+    {
+     "w": "não",
+     "t": 57.328
+    },
+    {
+     "w": "pro",
+     "t": 57.6
+    },
+    {
+     "w": "ar.",
+     "t": 57.788
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 58.38,
+   "fim": 65.1,
+   "texto": "Coloque bateria, bluetooth e um microfone. Parabéns, você construiu um fone de condução óssea.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 58.427
+    },
+    {
+     "w": "bateria",
+     "t": 58.899
+    },
+    {
+     "w": "bluetooth",
+     "t": 59.595
+    },
+    {
+     "w": "e",
+     "t": 60.22
+    },
+    {
+     "w": "um",
+     "t": 60.279
+    },
+    {
+     "w": "microfone",
+     "t": 60.385
+    },
+    {
+     "w": "Parabéns",
+     "t": 61.847
+    },
+    {
+     "w": "você",
+     "t": 62.613
+    },
+    {
+     "w": "construiu",
+     "t": 62.92
+    },
+    {
+     "w": "um",
+     "t": 63.415
+    },
+    {
+     "w": "fone",
+     "t": 63.545
+    },
+    {
+     "w": "de",
+     "t": 63.875
+    },
+    {
+     "w": "condução",
+     "t": 63.97
+    },
+    {
+     "w": "óssea",
+     "t": 64.5
+    }
+   ]
+  }
+ ]
+}
