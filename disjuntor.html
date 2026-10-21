@@ -1,0 +1,145 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("disjuntor", { fundo: 0x2b3442, seed: 9191 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- parede em corte com o fio descendo e 3 tomadas ----------
+add(new THREE.BoxGeometry(7, 4, .2), mat(0xffffff, { map: texRuido("#e8dcc4", 25, 6) }), 0, 1.6, -.25);
+add(new THREE.BoxGeometry(3, .1, 1.5), mat(0xffffff, { map: texMadeira("#9a6a3a", 3) }), 0, -.05, .4);
+const rotulo = (txt, cor, x, y, z = .05, w = .5) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 90 }), transparent: true })); s.position.set(x, y, z); s.scale.set(w, w / 2, 1); scene.add(s); return s; };
+const fioPts = [V(-.3, 2.8, -.1), V(-.3, 2.2, -.1), V(-.3, 1.6, -.1), V(-.3, 1.1, -.1), V(-.3, .45, -.1)];
+const fioCurva = new THREE.CatmullRomCurve3(fioPts);
+const mCapa = new THREE.MeshStandardMaterial({ color: 0x3a6ac8, roughness: .5, emissive: 0xff2a00, emissiveIntensity: 0 });
+const capa = add(new THREE.TubeGeometry(fioCurva, 60, .035, 12), mCapa);
+const mCobre = mat(0xc87a3a, { metalness: .8, roughness: .3, emissive: 0xff3a00, emissiveIntensity: 0 });
+const cobre = add(new THREE.TubeGeometry(fioCurva, 60, .014, 8), mCobre);
+rotulo("RUA", "#ffd23a", -.3, 2.95, .05, .4);
+const aparelhos = [["CHUVEIRO", 1.6, 0x5aa0ff], ["FORNO", 1.1, 0xff9a5a], ["FERRO", .6, 0xffffff]].map(([nome, y, cor]) => {
+  const g = grupo(0, y, -.1);
+  add(new THREE.TubeGeometry(new THREE.LineCurve3(V(-.3, 0, 0), V(.12, 0, 0)), 4, .012, 6), mCobre, 0, 0, 0, g);
+  add(new THREE.BoxGeometry(.14, .2, .04), mat(0xf4f4f4), .2, 0, .02, g);
+  add(new THREE.BoxGeometry(.03, .06, .01), brilho(0x2a2f38), .2, 0, .045, g);
+  const ap = grupo(.55, 0, .1, g); add(new THREE.BoxGeometry(.32, .26, .2), mat(cor === 0xffffff ? 0xc8ccd2 : cor), 0, 0, 0, ap);
+  const r = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(nome, "#ffffff", { tam: 80 }), transparent: true })); r.position.set(.55, .24, .2); r.scale.set(.42, .21, 1); g.add(r);
+  ap.visible = false; r.visible = false; return { g, ap, r };
+});
+const corrente = K.fluxo(fioCurva, 26, 0xffe23a);
+const fogo = Array.from({ length: 30 }, () => ({ s: sprite(0xff6a1a), y: .5 + rnd() * 1.5, f: rnd() }));
+// fusível e disjuntor no topo do fio
+const fusivel = grupo(-.3, 2.3, -.05);
+add(new THREE.CylinderGeometry(.06, .06, .25, 20, 1, true), vidro(.35), 0, 0, 0, fusivel);
+[-.13, .13].forEach((y) => add(new THREE.CylinderGeometry(.065, .065, .04, 20), mat(0xc0c6cc, { metalness: .8 }), 0, y, 0, fusivel));
+const fiozinho = [0, 1].map((i) => add(new THREE.CylinderGeometry(.004, .004, .11, 6), brilho(0xffb03a), 0, i ? .057 : -.057, 0, fusivel));
+const disj = grupo(-.3, 2.3, -.02);
+add(new THREE.BoxGeometry(.18, .3, .14), mat(0xf4f4f4, { roughness: .4 }), 0, 0, 0, disj);
+const alav = grupo(0, 0, .07, disj); add(new THREE.BoxGeometry(.05, .1, .05), mat(0x2a2f38), 0, .05, 0, alav);
+fusivel.visible = disj.visible = false;
+
+// ---------- mini set: o disjuntor por dentro ----------
+const QX = 100, QY = 1.3;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1c232e), QX, 1, -1);
+const caixa = add(new THREE.BoxGeometry(1.0, 1.5, .5), new THREE.MeshStandardMaterial({ color: 0xf4f4f4, transparent: true, opacity: .14, depthWrite: false }), QX, QY, -.2);
+const alavG = grupo(QX, QY + .75, .0); add(new THREE.BoxGeometry(.12, .4, .12), mat(0xe03a3a), 0, .2, 0, alavG);
+const trava = grupo(QX + .15, QY + .42, .0); add(new THREE.BoxGeometry(.3, .05, .06), mat(0xffd23a, { metalness: .5 }), -.12, 0, 0, trava); add(new THREE.BoxGeometry(.05, .12, .06), mat(0xffd23a, { metalness: .5 }), -.25, -.05, 0, trava);
+const contatoFixo = add(new THREE.BoxGeometry(.12, .05, .08), mat(0xd8b048, { metalness: .9 }), QX - .25, QY - .55, 0);
+const contatoMovel = add(new THREE.BoxGeometry(.12, .05, .08), mat(0xd8b048, { metalness: .9 }), QX - .25, QY - .49, 0);
+const bracoMovel = add(new THREE.BoxGeometry(.04, .9, .04), mat(0x9aa0a8), QX - .25, QY - .02, 0);
+const bimetal = grupo(QX + .25, QY - .6, 0);
+const lamA = add(new THREE.BoxGeometry(.04, .7, .08), mat(0xc87a3a, { metalness: .7, emissive: 0xff3a00, emissiveIntensity: 0 }), -.02, .35, 0, bimetal);
+const lamB = add(new THREE.BoxGeometry(.04, .7, .08), mat(0xb8bec6, { metalness: .8, emissive: 0xff3a00, emissiveIntensity: 0 }), .02, .35, 0, bimetal);
+const bobina = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 80 }, (_, i) => V(Math.cos(i * .5) * .1, i * .006, Math.sin(i * .5) * .1))), 240, .014, 6), mat(0xc87a3a, { metalness: .7, emissive: 0x3a8aff, emissiveIntensity: 0 }), QX + .02, QY - .2, 0);
+const embolo = add(new THREE.CylinderGeometry(.05, .05, .5, 16), mat(0x6a7078, { metalness: .8 }), QX + .02, QY + .0, 0);
+bobina.visible = embolo.visible = false;
+const faisca = Array.from({ length: 20 }, () => ({ s: sprite(0xffe23a), f: rnd(), a: rnd() * 6.28 }));
+const campo = Array.from({ length: 4 }, (_, i) => { const m = add(new THREE.TorusGeometry(.18 + i * .07, .008, 6, 40), new THREE.MeshBasicMaterial({ color: 0x5aa0ff, transparent: true, opacity: 0 }), QX + .02, QY + .02, 0); m.rotation.x = PI / 2; return m; });
+const cmini = K.fluxo(new THREE.CatmullRomCurve3([V(QX - .45, QY - .7, .05), V(QX - .25, QY - .58, .05), V(QX - .25, QY + .3, .05), V(QX + .25, QY + .1, .05), V(QX + .25, QY - .6, .05), V(QX + .45, QY - .7, .05)]), 24, 0xffe23a);
+
+// ---------- mini set: o quadro ----------
+const RX = 200, RY = 1.3;
+add(new THREE.PlaneGeometry(10, 10), mat(0xe8dcc4), RX, 1, -.6);
+add(new THREE.BoxGeometry(1.25, 1.2, .1), mat(0x9aa0a8, { metalness: .5 }), RX, RY, -.5);
+const quadro = [["10", "LUZ", .009], ["16", "TOMADAS", .012], ["20", "COZINHA", .014], ["25", "FORNO", .017], ["32", "AR", .02], ["40", "CHUVEIRO", .026]].map(([n, nome, r], i) => {
+  const x = RX - .5 + i * .2; const g = grupo(x, RY + .15, -.4);
+  add(new THREE.BoxGeometry(.16, .3, .14), mat(0xf4f4f4), 0, 0, 0, g); add(new THREE.BoxGeometry(.04, .08, .05), mat(0x2a2f38), 0, .04, .08, g);
+  const num = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(n, i === 5 ? "#ff4a3a" : "#2a2f38", { tam: 150 }), transparent: true })); num.position.set(0, -.08, .09); num.scale.set(.16, .08, 1); g.add(num);
+  const et = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(nome, "#2a2f38", { fundo: "#ffffff", tam: 70 }), transparent: true })); et.position.set(0, .22, .09); et.scale.set(.19, .095, 1); g.add(et); et.visible = false;
+  const fio = add(new THREE.CylinderGeometry(r, r, .5, 10), mat(0xc87a3a, { metalness: .8 }), x, RY - .3, -.38);
+  return { g, et, fio };
+});
+
+K.camera_({
+  geral: [V(.25, 1.6, 5.4), V(.2, 1.5, 0)],
+  fio: [V(.15, 1.4, 3.6), V(.05, 1.3, 0)],
+  topo: [V(.0, 2.3, 2.0), V(-.3, 2.2, 0)],
+  dentro: [V(QX + .25, QY + .3, 4.6), V(QX, QY + .2, 0)],
+  bob: [V(QX + .35, QY + .2, 3.2), V(QX, QY + .05, 0)],
+  quadro: [V(RX + .1, RY + .1, 4.0), V(RX, RY + .05, 0)],
+  fim: [V(RX - .6, RY + .2, 3.8), V(RX, RY + .05, 0)],
+}, [
+  [0, "geral"], [P(2, "esquenta") - .3, "geral"], [P(2, "esquenta"), "fio"], [F(2), "fio"], [C(3), "topo"], [F(4), "topo"],
+  [C(5), "dentro"], [F(5), "dentro"], [C(6), "dentro"], [P(6, "bobina") - .3, "dentro"], [P(6, "bobina") + .5, "bob"], [F(6), "bob"],
+  [C(7), "quadro"], [F(7), "quadro"], [C(8), "quadro"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // cenas 1-2: liga tudo, esquenta, pega fogo
+  aparelhos.forEach((a, i) => { const tl = [P(2, "chuveiro"), P(2, "forno"), P(2, "ferro")][i]; a.ap.visible = a.r.visible = t > tl - .2 && t < C(3) + 999; });
+  const calor = prog(t, P(2, "esquenta") - .3, P(2, "derrete") + .3) * (t < C(3) ? 1 : 0);
+  mCobre.emissiveIntensity = calor * (.6 + .2 * Math.sin(t * 9)); mCapa.emissiveIntensity = calor * .5;
+  const derr = prog(t, P(2, "derrete") - .2, P(2, "fogo")) * (t < C(3) ? 1 : 0);
+  capa.scale.set(1 - .5 * derr, 1, 1 - .5 * derr); capa.position.x = -.3 * .5 * derr * -1 * 0; mCapa.color.setRGB(.23 - .15 * derr, .42 - .35 * derr, .78 - .7 * derr);
+  capa.position.set(-.3 * (-.5 * derr) * -1 * 0, 0, 0);
+  fogo.forEach((f) => { const k = frac(t * 1.2 + f.f); f.s.position.set(-.3 + Math.sin(f.f * 30) * .06, f.y + k * .2, -.05); f.s.scale.setScalar(.07 * (1 - k) + .02); f.s.material.opacity = em(P(2, "fogo") - .2, C(3)) ? .9 * (1 - k) : 0; });
+  // fusível queima / disjuntor
+  const temFus = em(P(3, "fusivel") - .3, C(4) + .2);
+  fusivel.visible = temFus;
+  const queimou = t > P(3, "derrete") - .1;
+  fiozinho.forEach((f, i) => { f.scale.y = queimou ? .35 : 1; f.position.y = queimou ? (i ? .1 : -.1) : (i ? .057 : -.057); f.material.color.setHex(queimou ? 0x3a2a1a : 0xffb03a); });
+  disj.visible = t > P(4, "interruptor") - .3 && t < C(5) + 99;
+  alav.rotation.x = em(P(4, "desliga") - .1, P(4, "religa")) ? PI * .8 : 0;
+  const fluindo = (t < P(2, "fogo")) || (temFus && !queimou) || (t > P(4, "religa") + .1 && t < C(5));
+  corrente.atualiza(t, fluindo, .5, .05);
+  // mini set: bimetal
+  const esq = prog(t, P(5, "esquenta") - .3, P(5, "entorta") + .3) * (t < C(6) ? 1 : 0);
+  lamA.material.emissiveIntensity = lamB.material.emissiveIntensity = esq * .6;
+  bimetal.rotation.z = .35 * prog(t, P(5, "entorta") - .3, P(5, "entorta") + .4) * (t < C(6) ? 1 : 0);
+  const solta5 = em(P(5, "trava") - .2, C(6));
+  const solta6 = t > P(6, "puxa") + .3 && t < C(7);
+  trava.rotation.z = (solta5 || solta6) ? .5 : 0;
+  const caiu = (t > P(5, "cai") - .2 && t < C(6) + .5) || solta6;
+  alavG.rotation.z = caiu ? -1.1 : 0;
+  contatoMovel.position.y = QY - .49 + (caiu ? .22 : 0); bracoMovel.position.y = QY - .02 + (caiu ? .22 : 0);
+  cmini.atualiza(t, em(C(5), P(5, "cai") - .2) || em(C(6) + .5, P(6, "puxa") + .3), .6, .05);
+  // bobina
+  bobina.visible = embolo.visible = t > P(6, "bobina") - .3 && t < C(7);
+  bobina.material.emissiveIntensity = em(P(6, "gigante") - .2, P(6, "segundo") + .5) ? 1.2 : 0;
+  embolo.position.y = QY + (t > P(6, "puxa") ? .2 : 0);
+  campo.forEach((m, i) => m.material.opacity = em(P(6, "ima") - .3, F(6)) ? .6 * pulse(frac(t * 2 + i * .25), 0, 1) : 0);
+  faisca.forEach((f) => { const k = frac(t * 2 + f.f); f.s.position.set(QX - .25 + Math.cos(f.a) * k * .3, QY - .52 + Math.sin(f.a) * k * .3, .1); f.s.scale.setScalar(.05); f.s.material.opacity = em(P(6, "curtocircuito") - .2, P(6, "explode") + .8) ? 1 - k : 0; });
+  // quadro
+  quadro.forEach((q, i) => { q.fio.visible = true; q.et.visible = t > P(8, "etiqueta") - .3; q.g.scale.setScalar(i === 5 && em(P(7, "chuveiro") - .2, F(7)) ? 1.12 : 1); });
+  K.cartoes(t, [
+    [P(2, "esquenta") - .1, P(2, "derrete") - .2, "O FIO ESQUENTA", "#ff6a1a"],
+    [P(2, "fogo") - .2, F(2), "FOGO NA PAREDE!", "#ff4a1a"],
+    [P(3, "fusivel") - .2, P(3, "queimou") - .3, "FUSÍVEL", "#ffd23a"],
+    [P(3, "queimou") - .3, F(3), "QUEIMOU: TROCA", "#ff4a3a"],
+    [P(4, "disjuntor") - .4, F(4), "DISJUNTOR", "#3aff7a"],
+    [P(5, "metais") - .3, P(5, "esquenta") - .3, "LÂMINA BIMETÁLICA", "#ffd23a"],
+    [P(5, "clac") - .2, F(5), "CLAC!", "#ffffff"],
+    [P(6, "curtocircuito") - .3, P(6, "bobina") - .3, "CURTO-CIRCUITO", "#ff4a3a"],
+    [P(6, "ima") - .3, P(6, "milesimos") - .3, "VIRA ÍMÃ", "#5aa0ff"],
+    [P(6, "milesimos") - .3, F(6), "EM MILÉSIMOS DE SEGUNDO", "#3aff7a"],
+    [P(7, "tamanho") - .3, P(7, "chuveiro") - .3, "DO TAMANHO DO FIO", "#ffd23a"],
+    [P(7, "chuveiro") - .3, F(7), "FIO GROSSO = NÚMERO MAIOR", "#ff9a5a"],
+  ]);
+});
+</script>
+</body></html>

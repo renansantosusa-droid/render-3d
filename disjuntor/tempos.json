@@ -1,0 +1,781 @@
+{
+ "total": 69.11,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.36,
+   "texto": "Se você ligar os fios da rua direto nas tomadas, terá energia em casa.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "ligar",
+     "t": 0.681
+    },
+    {
+     "w": "os",
+     "t": 0.975
+    },
+    {
+     "w": "fios",
+     "t": 1.093
+    },
+    {
+     "w": "da",
+     "t": 1.341
+    },
+    {
+     "w": "rua",
+     "t": 1.459
+    },
+    {
+     "w": "direto",
+     "t": 1.671
+    },
+    {
+     "w": "nas",
+     "t": 2.084
+    },
+    {
+     "w": "tomadas",
+     "t": 2.273
+    },
+    {
+     "w": "terá",
+     "t": 2.98
+    },
+    {
+     "w": "energia",
+     "t": 3.204
+    },
+    {
+     "w": "em",
+     "t": 3.688
+    },
+    {
+     "w": "casa",
+     "t": 3.77
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.51,
+   "fim": 13.92,
+   "texto": "Mas você liga o chuveiro, o forno e o ferro juntos. O fio esquenta. A capa derrete. E pega fogo dentro da parede.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.557
+    },
+    {
+     "w": "você",
+     "t": 4.805
+    },
+    {
+     "w": "liga",
+     "t": 5.064
+    },
+    {
+     "w": "o",
+     "t": 5.288
+    },
+    {
+     "w": "chuveiro",
+     "t": 5.324
+    },
+    {
+     "w": "o",
+     "t": 6.09
+    },
+    {
+     "w": "forno",
+     "t": 6.173
+    },
+    {
+     "w": "e",
+     "t": 6.585
+    },
+    {
+     "w": "o",
+     "t": 6.656
+    },
+    {
+     "w": "ferro",
+     "t": 6.703
+    },
+    {
+     "w": "juntos",
+     "t": 7.069
+    },
+    {
+     "w": "O",
+     "t": 8.378
+    },
+    {
+     "w": "fio",
+     "t": 8.508
+    },
+    {
+     "w": "esquenta",
+     "t": 8.791
+    },
+    {
+     "w": "A",
+     "t": 10.1
+    },
+    {
+     "w": "capa",
+     "t": 10.241
+    },
+    {
+     "w": "derrete",
+     "t": 10.571
+    },
+    {
+     "w": "E",
+     "t": 11.916
+    },
+    {
+     "w": "pega",
+     "t": 12.057
+    },
+    {
+     "w": "fogo",
+     "t": 12.423
+    },
+    {
+     "w": "dentro",
+     "t": 12.729
+    },
+    {
+     "w": "da",
+     "t": 13.095
+    },
+    {
+     "w": "parede",
+     "t": 13.201
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.07,
+   "fim": 21.77,
+   "texto": "Então, você coloca um fusível: um fio fininho que derrete antes do fio da parede. Mas queimou, tem que trocar.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 14.117
+    },
+    {
+     "w": "você",
+     "t": 14.907
+    },
+    {
+     "w": "coloca",
+     "t": 15.19
+    },
+    {
+     "w": "um",
+     "t": 15.627
+    },
+    {
+     "w": "fusível",
+     "t": 15.709
+    },
+    {
+     "w": "um",
+     "t": 16.511
+    },
+    {
+     "w": "fio",
+     "t": 16.664
+    },
+    {
+     "w": "fininho",
+     "t": 16.865
+    },
+    {
+     "w": "que",
+     "t": 17.301
+    },
+    {
+     "w": "derrete",
+     "t": 17.395
+    },
+    {
+     "w": "antes",
+     "t": 17.867
+    },
+    {
+     "w": "do",
+     "t": 18.138
+    },
+    {
+     "w": "fio",
+     "t": 18.28
+    },
+    {
+     "w": "da",
+     "t": 18.504
+    },
+    {
+     "w": "parede",
+     "t": 18.61
+    },
+    {
+     "w": "Mas",
+     "t": 19.848
+    },
+    {
+     "w": "queimou",
+     "t": 20.131
+    },
+    {
+     "w": "tem",
+     "t": 20.874
+    },
+    {
+     "w": "que",
+     "t": 21.039
+    },
+    {
+     "w": "trocar",
+     "t": 21.134
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.92,
+   "fim": 27.8,
+   "texto": "Então, você inventa um interruptor que desliga sozinho, e você só religa: o disjuntor.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 21.967
+    },
+    {
+     "w": "você",
+     "t": 22.769
+    },
+    {
+     "w": "inventa",
+     "t": 23.017
+    },
+    {
+     "w": "um",
+     "t": 23.488
+    },
+    {
+     "w": "interruptor",
+     "t": 23.571
+    },
+    {
+     "w": "que",
+     "t": 24.184
+    },
+    {
+     "w": "desliga",
+     "t": 24.302
+    },
+    {
+     "w": "sozinho",
+     "t": 24.715
+    },
+    {
+     "w": "e",
+     "t": 25.576
+    },
+    {
+     "w": "você",
+     "t": 25.67
+    },
+    {
+     "w": "só",
+     "t": 25.953
+    },
+    {
+     "w": "religa",
+     "t": 26.118
+    },
+    {
+     "w": "o",
+     "t": 26.849
+    },
+    {
+     "w": "disjuntor",
+     "t": 26.932
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 27.95,
+   "fim": 39.52,
+   "texto": "Dentro dele tem uma lâmina feita de dois metais grudados. Com corrente demais por muito tempo, ela esquenta, entorta e solta a trava. Clac. A alavanca cai.",
+   "palavras": [
+    {
+     "w": "Dentro",
+     "t": 27.997
+    },
+    {
+     "w": "dele",
+     "t": 28.375
+    },
+    {
+     "w": "tem",
+     "t": 28.634
+    },
+    {
+     "w": "uma",
+     "t": 28.764
+    },
+    {
+     "w": "lâmina",
+     "t": 28.905
+    },
+    {
+     "w": "feita",
+     "t": 29.33
+    },
+    {
+     "w": "de",
+     "t": 29.648
+    },
+    {
+     "w": "dois",
+     "t": 29.766
+    },
+    {
+     "w": "metais",
+     "t": 30.096
+    },
+    {
+     "w": "grudados",
+     "t": 30.521
+    },
+    {
+     "w": "Com",
+     "t": 31.971
+    },
+    {
+     "w": "corrente",
+     "t": 32.16
+    },
+    {
+     "w": "demais",
+     "t": 32.584
+    },
+    {
+     "w": "por",
+     "t": 32.962
+    },
+    {
+     "w": "muito",
+     "t": 33.115
+    },
+    {
+     "w": "tempo",
+     "t": 33.469
+    },
+    {
+     "w": "ela",
+     "t": 34.141
+    },
+    {
+     "w": "esquenta",
+     "t": 34.271
+    },
+    {
+     "w": "entorta",
+     "t": 34.931
+    },
+    {
+     "w": "e",
+     "t": 35.415
+    },
+    {
+     "w": "solta",
+     "t": 35.462
+    },
+    {
+     "w": "a",
+     "t": 35.768
+    },
+    {
+     "w": "trava",
+     "t": 35.816
+    },
+    {
+     "w": "Clac",
+     "t": 37.007
+    },
+    {
+     "w": "A",
+     "t": 38.245
+    },
+    {
+     "w": "alavanca",
+     "t": 38.398
+    },
+    {
+     "w": "cai",
+     "t": 38.976
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 39.67,
+   "fim": 52.62,
+   "texto": "Mas num curto-circuito, a corrente explode de uma vez, e não dá tempo de esquentar. Então, você enrola uma bobina no caminho. Corrente gigante vira um ímã forte, que puxa a trava em milésimos de segundo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.717
+    },
+    {
+     "w": "num",
+     "t": 40.024
+    },
+    {
+     "w": "curto-circuito",
+     "t": 40.154
+    },
+    {
+     "w": "a",
+     "t": 41.168
+    },
+    {
+     "w": "corrente",
+     "t": 41.25
+    },
+    {
+     "w": "explode",
+     "t": 41.616
+    },
+    {
+     "w": "de",
+     "t": 42.017
+    },
+    {
+     "w": "uma",
+     "t": 42.087
+    },
+    {
+     "w": "vez",
+     "t": 42.276
+    },
+    {
+     "w": "e",
+     "t": 42.878
+    },
+    {
+     "w": "não",
+     "t": 42.96
+    },
+    {
+     "w": "dá",
+     "t": 43.161
+    },
+    {
+     "w": "tempo",
+     "t": 43.29
+    },
+    {
+     "w": "de",
+     "t": 43.668
+    },
+    {
+     "w": "esquentar",
+     "t": 43.738
+    },
+    {
+     "w": "Então",
+     "t": 45.024
+    },
+    {
+     "w": "você",
+     "t": 45.779
+    },
+    {
+     "w": "enrola",
+     "t": 46.026
+    },
+    {
+     "w": "uma",
+     "t": 46.451
+    },
+    {
+     "w": "bobina",
+     "t": 46.569
+    },
+    {
+     "w": "no",
+     "t": 46.97
+    },
+    {
+     "w": "caminho",
+     "t": 47.064
+    },
+    {
+     "w": "Corrente",
+     "t": 48.337
+    },
+    {
+     "w": "gigante",
+     "t": 48.774
+    },
+    {
+     "w": "vira",
+     "t": 49.304
+    },
+    {
+     "w": "um",
+     "t": 49.517
+    },
+    {
+     "w": "ímã",
+     "t": 49.623
+    },
+    {
+     "w": "forte",
+     "t": 49.812
+    },
+    {
+     "w": "que",
+     "t": 50.425
+    },
+    {
+     "w": "puxa",
+     "t": 50.578
+    },
+    {
+     "w": "a",
+     "t": 50.896
+    },
+    {
+     "w": "trava",
+     "t": 50.944
+    },
+    {
+     "w": "em",
+     "t": 51.238
+    },
+    {
+     "w": "milésimos",
+     "t": 51.297
+    },
+    {
+     "w": "de",
+     "t": 51.816
+    },
+    {
+     "w": "segundo",
+     "t": 51.922
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 52.77,
+   "fim": 61.98,
+   "texto": "E cada circuito ganha o seu disjuntor, do tamanho do fio. Por isso o do chuveiro tem número maior: o fio dele é mais grosso e aguenta mais corrente.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 52.817
+    },
+    {
+     "w": "cada",
+     "t": 52.947
+    },
+    {
+     "w": "circuito",
+     "t": 53.254
+    },
+    {
+     "w": "ganha",
+     "t": 53.725
+    },
+    {
+     "w": "o",
+     "t": 54.008
+    },
+    {
+     "w": "seu",
+     "t": 54.055
+    },
+    {
+     "w": "disjuntor",
+     "t": 54.256
+    },
+    {
+     "w": "do",
+     "t": 55.105
+    },
+    {
+     "w": "tamanho",
+     "t": 55.258
+    },
+    {
+     "w": "do",
+     "t": 55.683
+    },
+    {
+     "w": "fio",
+     "t": 55.801
+    },
+    {
+     "w": "Por",
+     "t": 56.933
+    },
+    {
+     "w": "isso",
+     "t": 57.133
+    },
+    {
+     "w": "o",
+     "t": 57.416
+    },
+    {
+     "w": "do",
+     "t": 57.452
+    },
+    {
+     "w": "chuveiro",
+     "t": 57.546
+    },
+    {
+     "w": "tem",
+     "t": 58.029
+    },
+    {
+     "w": "número",
+     "t": 58.195
+    },
+    {
+     "w": "maior",
+     "t": 58.466
+    },
+    {
+     "w": "o",
+     "t": 59.256
+    },
+    {
+     "w": "fio",
+     "t": 59.315
+    },
+    {
+     "w": "dele",
+     "t": 59.562
+    },
+    {
+     "w": "é",
+     "t": 59.798
+    },
+    {
+     "w": "mais",
+     "t": 59.857
+    },
+    {
+     "w": "grosso",
+     "t": 60.117
+    },
+    {
+     "w": "e",
+     "t": 60.506
+    },
+    {
+     "w": "aguenta",
+     "t": 60.565
+    },
+    {
+     "w": "mais",
+     "t": 60.966
+    },
+    {
+     "w": "corrente",
+     "t": 61.213
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.13,
+   "fim": 68.51,
+   "texto": "Coloque todos num quadro, com uma etiqueta em cada um. Parabéns, você construiu um disjuntor.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 62.177
+    },
+    {
+     "w": "todos",
+     "t": 62.708
+    },
+    {
+     "w": "num",
+     "t": 63.062
+    },
+    {
+     "w": "quadro",
+     "t": 63.215
+    },
+    {
+     "w": "com",
+     "t": 63.887
+    },
+    {
+     "w": "uma",
+     "t": 64.017
+    },
+    {
+     "w": "etiqueta",
+     "t": 64.111
+    },
+    {
+     "w": "em",
+     "t": 64.524
+    },
+    {
+     "w": "cada",
+     "t": 64.618
+    },
+    {
+     "w": "um",
+     "t": 64.901
+    },
+    {
+     "w": "Parabéns",
+     "t": 65.927
+    },
+    {
+     "w": "você",
+     "t": 66.694
+    },
+    {
+     "w": "construiu",
+     "t": 67
+    },
+    {
+     "w": "um",
+     "t": 67.507
+    },
+    {
+     "w": "disjuntor",
+     "t": 67.661
+    }
+   ]
+  }
+ ]
+}
