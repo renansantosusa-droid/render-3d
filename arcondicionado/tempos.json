@@ -1,0 +1,833 @@
+{
+ "total": 70.13,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.78,
+   "texto": "Se você colocar um ventilador na frente de um balde de gelo, terá um ar-condicionado.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "um",
+     "t": 1.07
+    },
+    {
+     "w": "ventilador",
+     "t": 1.141
+    },
+    {
+     "w": "na",
+     "t": 1.718
+    },
+    {
+     "w": "frente",
+     "t": 1.86
+    },
+    {
+     "w": "de",
+     "t": 2.202
+    },
+    {
+     "w": "um",
+     "t": 2.273
+    },
+    {
+     "w": "balde",
+     "t": 2.379
+    },
+    {
+     "w": "de",
+     "t": 2.697
+    },
+    {
+     "w": "gelo",
+     "t": 2.78
+    },
+    {
+     "w": "terá",
+     "t": 3.358
+    },
+    {
+     "w": "um",
+     "t": 3.57
+    },
+    {
+     "w": "ar-condicionado",
+     "t": 3.711
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.93,
+   "fim": 10.05,
+   "texto": "Mas o gelo derrete. Molha o chão. E em uma hora acabou.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.977
+    },
+    {
+     "w": "o",
+     "t": 5.225
+    },
+    {
+     "w": "gelo",
+     "t": 5.366
+    },
+    {
+     "w": "derrete",
+     "t": 5.697
+    },
+    {
+     "w": "Molha",
+     "t": 7.041
+    },
+    {
+     "w": "o",
+     "t": 7.43
+    },
+    {
+     "w": "chão",
+     "t": 7.477
+    },
+    {
+     "w": "E",
+     "t": 8.668
+    },
+    {
+     "w": "em",
+     "t": 8.786
+    },
+    {
+     "w": "uma",
+     "t": 8.904
+    },
+    {
+     "w": "hora",
+     "t": 9.116
+    },
+    {
+     "w": "acabou",
+     "t": 9.364
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.2,
+   "fim": 19.44,
+   "texto": "Então, você troca o gelo por um fluido especial, que gela quando se espalha. Ele passa por uma serpentina dentro da sala e vai roubando o calor do ar.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.247
+    },
+    {
+     "w": "você",
+     "t": 11.037
+    },
+    {
+     "w": "troca",
+     "t": 11.285
+    },
+    {
+     "w": "o",
+     "t": 11.58
+    },
+    {
+     "w": "gelo",
+     "t": 11.615
+    },
+    {
+     "w": "por",
+     "t": 11.957
+    },
+    {
+     "w": "um",
+     "t": 12.075
+    },
+    {
+     "w": "fluido",
+     "t": 12.169
+    },
+    {
+     "w": "especial",
+     "t": 12.488
+    },
+    {
+     "w": "que",
+     "t": 13.266
+    },
+    {
+     "w": "gela",
+     "t": 13.408
+    },
+    {
+     "w": "quando",
+     "t": 13.773
+    },
+    {
+     "w": "se",
+     "t": 14.044
+    },
+    {
+     "w": "espalha",
+     "t": 14.15
+    },
+    {
+     "w": "Ele",
+     "t": 15.4
+    },
+    {
+     "w": "passa",
+     "t": 15.613
+    },
+    {
+     "w": "por",
+     "t": 15.955
+    },
+    {
+     "w": "uma",
+     "t": 16.084
+    },
+    {
+     "w": "serpentina",
+     "t": 16.238
+    },
+    {
+     "w": "dentro",
+     "t": 16.886
+    },
+    {
+     "w": "da",
+     "t": 17.181
+    },
+    {
+     "w": "sala",
+     "t": 17.287
+    },
+    {
+     "w": "e",
+     "t": 17.735
+    },
+    {
+     "w": "vai",
+     "t": 17.818
+    },
+    {
+     "w": "roubando",
+     "t": 17.983
+    },
+    {
+     "w": "o",
+     "t": 18.455
+    },
+    {
+     "w": "calor",
+     "t": 18.49
+    },
+    {
+     "w": "do",
+     "t": 18.867
+    },
+    {
+     "w": "ar.",
+     "t": 19.021
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.59,
+   "fim": 29.79,
+   "texto": "Mas agora o fluido está cheio de calor. Então, você leva ele pra fora por um cano e aperta ele num compressor. Apertado, ele fica mais quente que a rua.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 19.637
+    },
+    {
+     "w": "agora",
+     "t": 19.838
+    },
+    {
+     "w": "o",
+     "t": 20.239
+    },
+    {
+     "w": "fluido",
+     "t": 20.274
+    },
+    {
+     "w": "está",
+     "t": 20.663
+    },
+    {
+     "w": "cheio",
+     "t": 20.875
+    },
+    {
+     "w": "de",
+     "t": 21.206
+    },
+    {
+     "w": "calor.",
+     "t": 21.288
+    },
+    {
+     "w": "Então",
+     "t": 22.467
+    },
+    {
+     "w": "você",
+     "t": 23.269
+    },
+    {
+     "w": "leva",
+     "t": 23.493
+    },
+    {
+     "w": "ele",
+     "t": 23.729
+    },
+    {
+     "w": "pra",
+     "t": 23.882
+    },
+    {
+     "w": "fora",
+     "t": 24.024
+    },
+    {
+     "w": "por",
+     "t": 24.307
+    },
+    {
+     "w": "um",
+     "t": 24.437
+    },
+    {
+     "w": "cano",
+     "t": 24.531
+    },
+    {
+     "w": "e",
+     "t": 24.897
+    },
+    {
+     "w": "aperta",
+     "t": 24.956
+    },
+    {
+     "w": "ele",
+     "t": 25.38
+    },
+    {
+     "w": "num",
+     "t": 25.533
+    },
+    {
+     "w": "compressor",
+     "t": 25.687
+    },
+    {
+     "w": "Apertado",
+     "t": 27.066
+    },
+    {
+     "w": "ele",
+     "t": 27.986
+    },
+    {
+     "w": "fica",
+     "t": 28.163
+    },
+    {
+     "w": "mais",
+     "t": 28.423
+    },
+    {
+     "w": "quente",
+     "t": 28.706
+    },
+    {
+     "w": "que",
+     "t": 29.012
+    },
+    {
+     "w": "a",
+     "t": 29.118
+    },
+    {
+     "w": "rua",
+     "t": 29.201
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 29.94,
+   "fim": 41.23,
+   "texto": "Aí, um ventilador lá fora joga esse calor pra rua. Por isso a caixa de fora sopra ar quente. O ar-condicionado não fabrica frio: ele carrega o calor de dentro pra fora.",
+   "palavras": [
+    {
+     "w": "Aí",
+     "t": 29.987
+    },
+    {
+     "w": "um",
+     "t": 30.589
+    },
+    {
+     "w": "ventilador",
+     "t": 30.742
+    },
+    {
+     "w": "lá",
+     "t": 31.39
+    },
+    {
+     "w": "fora",
+     "t": 31.497
+    },
+    {
+     "w": "joga",
+     "t": 31.815
+    },
+    {
+     "w": "esse",
+     "t": 32.145
+    },
+    {
+     "w": "calor",
+     "t": 32.322
+    },
+    {
+     "w": "pra",
+     "t": 32.652
+    },
+    {
+     "w": "rua",
+     "t": 32.829
+    },
+    {
+     "w": "Por",
+     "t": 33.973
+    },
+    {
+     "w": "isso",
+     "t": 34.162
+    },
+    {
+     "w": "a",
+     "t": 34.409
+    },
+    {
+     "w": "caixa",
+     "t": 34.468
+    },
+    {
+     "w": "de",
+     "t": 34.81
+    },
+    {
+     "w": "fora",
+     "t": 34.928
+    },
+    {
+     "w": "sopra",
+     "t": 35.211
+    },
+    {
+     "w": "ar",
+     "t": 35.589
+    },
+    {
+     "w": "quente",
+     "t": 35.695
+    },
+    {
+     "w": "O",
+     "t": 36.909
+    },
+    {
+     "w": "ar-condicionado",
+     "t": 37.039
+    },
+    {
+     "w": "não",
+     "t": 37.829
+    },
+    {
+     "w": "fabrica",
+     "t": 38.018
+    },
+    {
+     "w": "frio",
+     "t": 38.454
+    },
+    {
+     "w": "ele",
+     "t": 39.044
+    },
+    {
+     "w": "carrega",
+     "t": 39.185
+    },
+    {
+     "w": "o",
+     "t": 39.586
+    },
+    {
+     "w": "calor",
+     "t": 39.633
+    },
+    {
+     "w": "de",
+     "t": 39.999
+    },
+    {
+     "w": "dentro",
+     "t": 40.117
+    },
+    {
+     "w": "pra",
+     "t": 40.459
+    },
+    {
+     "w": "fora",
+     "t": 40.612
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 41.38,
+   "fim": 52.22,
+   "texto": "Mas o fluido precisa voltar gelado. Então, ele passa por um caninho bem fininho. Do outro lado, ele se espalha de repente e gela, pronto pra começar de novo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 41.427
+    },
+    {
+     "w": "o",
+     "t": 41.651
+    },
+    {
+     "w": "fluido",
+     "t": 41.793
+    },
+    {
+     "w": "precisa",
+     "t": 42.205
+    },
+    {
+     "w": "voltar",
+     "t": 42.63
+    },
+    {
+     "w": "gelado",
+     "t": 42.996
+    },
+    {
+     "w": "Então",
+     "t": 44.257
+    },
+    {
+     "w": "ele",
+     "t": 45
+    },
+    {
+     "w": "passa",
+     "t": 45.154
+    },
+    {
+     "w": "por",
+     "t": 45.472
+    },
+    {
+     "w": "um",
+     "t": 45.602
+    },
+    {
+     "w": "caninho",
+     "t": 45.684
+    },
+    {
+     "w": "bem",
+     "t": 46.038
+    },
+    {
+     "w": "fininho",
+     "t": 46.25
+    },
+    {
+     "w": "Do",
+     "t": 47.559
+    },
+    {
+     "w": "outro",
+     "t": 47.772
+    },
+    {
+     "w": "lado",
+     "t": 48.078
+    },
+    {
+     "w": "ele",
+     "t": 48.621
+    },
+    {
+     "w": "se",
+     "t": 48.786
+    },
+    {
+     "w": "espalha",
+     "t": 48.88
+    },
+    {
+     "w": "de",
+     "t": 49.257
+    },
+    {
+     "w": "repente",
+     "t": 49.352
+    },
+    {
+     "w": "e",
+     "t": 49.812
+    },
+    {
+     "w": "gela",
+     "t": 49.847
+    },
+    {
+     "w": "pronto",
+     "t": 50.496
+    },
+    {
+     "w": "pra",
+     "t": 50.885
+    },
+    {
+     "w": "começar",
+     "t": 51.05
+    },
+    {
+     "w": "de",
+     "t": 51.545
+    },
+    {
+     "w": "novo",
+     "t": 51.651
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 52.37,
+   "fim": 63.19,
+   "texto": "E a água que pinga? É a umidade da sala. O ar encosta na serpentina gelada e vira gotinha, igual no copo de refrigerante. Por isso ele seca o ar.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 52.417
+    },
+    {
+     "w": "a",
+     "t": 52.547
+    },
+    {
+     "w": "água",
+     "t": 52.653
+    },
+    {
+     "w": "que",
+     "t": 52.971
+    },
+    {
+     "w": "pinga",
+     "t": 53.125
+    },
+    {
+     "w": "É",
+     "t": 54.351
+    },
+    {
+     "w": "a",
+     "t": 54.493
+    },
+    {
+     "w": "umidade",
+     "t": 54.563
+    },
+    {
+     "w": "da",
+     "t": 55.035
+    },
+    {
+     "w": "sala",
+     "t": 55.153
+    },
+    {
+     "w": "O",
+     "t": 56.368
+    },
+    {
+     "w": "ar",
+     "t": 56.497
+    },
+    {
+     "w": "encosta",
+     "t": 56.615
+    },
+    {
+     "w": "na",
+     "t": 57.099
+    },
+    {
+     "w": "serpentina",
+     "t": 57.205
+    },
+    {
+     "w": "gelada",
+     "t": 57.806
+    },
+    {
+     "w": "e",
+     "t": 58.254
+    },
+    {
+     "w": "vira",
+     "t": 58.337
+    },
+    {
+     "w": "gotinha",
+     "t": 58.585
+    },
+    {
+     "w": "igual",
+     "t": 59.269
+    },
+    {
+     "w": "no",
+     "t": 59.599
+    },
+    {
+     "w": "copo",
+     "t": 59.729
+    },
+    {
+     "w": "de",
+     "t": 60.07
+    },
+    {
+     "w": "refrigerante",
+     "t": 60.153
+    },
+    {
+     "w": "Por",
+     "t": 61.745
+    },
+    {
+     "w": "isso",
+     "t": 61.934
+    },
+    {
+     "w": "ele",
+     "t": 62.217
+    },
+    {
+     "w": "seca",
+     "t": 62.358
+    },
+    {
+     "w": "o",
+     "t": 62.688
+    },
+    {
+     "w": "ar.",
+     "t": 62.759
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 63.34,
+   "fim": 69.53,
+   "texto": "Coloque um filtro de poeira e um controle remoto. Parabéns, você construiu um ar-condicionado.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 63.387
+    },
+    {
+     "w": "um",
+     "t": 63.871
+    },
+    {
+     "w": "filtro",
+     "t": 63.977
+    },
+    {
+     "w": "de",
+     "t": 64.331
+    },
+    {
+     "w": "poeira",
+     "t": 64.425
+    },
+    {
+     "w": "e",
+     "t": 64.849
+    },
+    {
+     "w": "um",
+     "t": 64.932
+    },
+    {
+     "w": "controle",
+     "t": 65.05
+    },
+    {
+     "w": "remoto",
+     "t": 65.474
+    },
+    {
+     "w": "Parabéns",
+     "t": 66.76
+    },
+    {
+     "w": "você",
+     "t": 67.538
+    },
+    {
+     "w": "construiu",
+     "t": 67.821
+    },
+    {
+     "w": "um",
+     "t": 68.316
+    },
+    {
+     "w": "ar-condicionado",
+     "t": 68.47
+    }
+   ]
+  }
+ ]
+}

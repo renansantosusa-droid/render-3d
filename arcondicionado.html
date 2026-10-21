@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("arcondicionado", { fundo: 0x9cc8ea, seed: 7171 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- sala em corte + lado de fora ----------
+add(new THREE.PlaneGeometry(40, 40), mat(0xffffff, { map: texRuido("#6aa84a", 40, 16), roughness: 1 }), 0, -.01, 0).rotation.x = -Math.PI / 2;
+add(new THREE.BoxGeometry(2.2, .04, 1.6), mat(0xffffff, { map: texMadeira("#b88654", 3) }), -.2, .02, -.2);
+add(new THREE.BoxGeometry(2.2, 2.6, .08), mat(0xf2e6c8), -.2, 1.3, -1.0);
+add(new THREE.BoxGeometry(.1, 2.6, 1.6), mat(0xe8dcbc), .9, 1.3, -.2);
+add(new THREE.BoxGeometry(.08, 2.6, 1.6), mat(0xf2e6c8), -1.3, 1.3, -.2);
+const quente = add(new THREE.BoxGeometry(2.1, 2.5, 1.5), new THREE.MeshBasicMaterial({ color: 0xff5a2a, transparent: true, opacity: 0, depthWrite: false }), -.2, 1.27, -.2);
+const frio = add(new THREE.BoxGeometry(2.1, 2.5, 1.5), new THREE.MeshBasicMaterial({ color: 0x5aa0ff, transparent: true, opacity: 0, depthWrite: false }), -.2, 1.27, -.2);
+const sofa = grupo(-.5, 0, -.6); add(new THREE.BoxGeometry(1, .35, .45), mat(0x5a6a8a), 0, .2, 0, sofa); add(new THREE.BoxGeometry(1, .35, .12), mat(0x5a6a8a), 0, .5, -.17, sofa);
+// balde de gelo + ventilador (cenas 1-2)
+const balde = grupo(-.1, .04, .05);
+add(new THREE.CylinderGeometry(.16, .13, .28, 24, 1, true), mat(0x3a7ac8, { side: THREE.DoubleSide }), 0, .14, 0, balde);
+const gelos = Array.from({ length: 9 }, (_, i) => add(new THREE.BoxGeometry(.08, .08, .08), vidro(.75, 0xe8f6ff), (i % 3 - 1) * .08, .22 + Math.floor(i / 3) * .05, ((i * 7) % 3 - 1) * .07, balde));
+const ventilador = grupo(-.1, .62, -.28);
+add(new THREE.CylinderGeometry(.02, .02, .6, 10), mat(0x2a2f38), 0, -.3, 0, ventilador);
+add(new THREE.TorusGeometry(.2, .01, 6, 32), mat(0x2a2f38), 0, .05, 0, ventilador);
+const helice = grupo(0, .05, 0, ventilador); for (let i = 0; i < 3; i++) { const g = grupo(0, 0, 0, helice); g.rotation.z = i / 3 * Math.PI * 2; add(new THREE.BoxGeometry(.07, .17, .01), mat(0x5aa0ff), 0, .09, 0, g); }
+const poca = add(new THREE.CircleGeometry(.4, 30), new THREE.MeshBasicMaterial({ color: 0x5aa0ff, transparent: true, opacity: 0 }), -.1, .045, .1); poca.rotation.x = -Math.PI / 2;
+const brisa = Array.from({ length: 24 }, () => ({ s: sprite(0x9ad0ff), f: rnd(), x: (rnd() - .5) * .3, y: (rnd() - .5) * .3 }));
+
+// ---------- o circuito do fluido ----------
+const ZC = -.88;
+const pts = [];
+for (let i = 0; i <= 8; i++) pts.push(V(-.35 + i * .1, 2.12 + (i % 2 ? .08 : -.08), ZC));   // serpentina de dentro (evaporadora)
+pts.push(V(.6, 2.0, ZC), V(.95, 1.95, ZC), V(1.15, 1.6, ZC), V(1.2, .7, ZC), V(1.35, .38, ZC));        // sai pela parede e desce
+pts.push(V(1.45, .3, ZC));                                                                                // compressor (t ~ .5)
+for (let i = 0; i <= 6; i++) pts.push(V(1.6 + i * .07, i % 2 ? .65 : .2, ZC - .02));                   // serpentina de fora (condensadora)
+pts.push(V(2.1, .3, ZC + .05), V(2.12, .5, ZC + .08), V(2.08, .7, ZC + .05));                            // caninho fino
+pts.push(V(1.9, 1.0, ZC + .06), V(1.25, 1.8, ZC + .06), V(.9, 2.25, ZC + .06), V(.4, 2.3, ZC + .06), V(-.4, 2.3, ZC + .06), V(-.45, 2.1, ZC));
+const curva = new THREE.CatmullRomCurve3(pts, false, "centripetal");
+const cano = add(new THREE.TubeGeometry(curva, 400, .014, 6), mat(0xc87a3a, { metalness: .7, roughness: .3 }));
+const kPt = (p) => { let best = 0, d = 1e9; for (let i = 0; i <= 400; i++) { const q = curva.getPoint(i / 400); const e = q.distanceTo(p); if (e < d) { d = e; best = i / 400; } } return best; };
+const kSai = kPt(V(.6, 2.0, ZC)), kComp = kPt(V(1.45, .3, ZC)), kCond = kPt(V(2.0, .65, ZC - .02)), kCap = kPt(V(2.12, .5, ZC + .08)), kVolta = kPt(V(1.9, 1.0, ZC + .06));
+const corDe = (k) => k < kSai ? new THREE.Color(0x5aa0ff).lerp(new THREE.Color(0xc86aff), k / kSai) : k < kComp ? new THREE.Color(0xff9a3a) : k < kCond ? new THREE.Color(0xff3a1a) : k < kCap ? new THREE.Color(0xff9a3a) : new THREE.Color(0x3a8aff);
+const fluido = Array.from({ length: 90 }, () => ({ s: sprite(0xffffff), f: rnd() })); fluido.forEach((p) => { p.s.material.depthTest = false; p.s.renderOrder = 5; });
+const capBrilho = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(2.1, .3, ZC + .05), V(2.12, .5, ZC + .08), V(2.08, .7, ZC + .05)]), 30, .03, 8), new THREE.MeshBasicMaterial({ color: 0xffd23a, transparent: true, opacity: .5, depthWrite: false }));
+// unidade de dentro
+const mInt = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .3, transparent: true, opacity: .3, depthWrite: false });
+const evap = add(new THREE.BoxGeometry(1.05, .34, .24), mInt, .05, 2.12, -.84);
+const filtroAr = add(new THREE.BoxGeometry(.9, .02, .2), new THREE.MeshStandardMaterial({ color: 0x8a96a8, transparent: true, opacity: .9 }), .05, 2.3, -.84);
+const aleta = add(new THREE.BoxGeometry(1, .03, .08), mat(0xe8ecf0), .05, 1.96, -.72);
+// unidade de fora
+const mExt = new THREE.MeshStandardMaterial({ color: 0xe6e8ea, roughness: .4, transparent: true, opacity: .3, depthWrite: false });
+add(new THREE.BoxGeometry(1.0, .7, .36), mExt, 1.75, .4, ZC + .02);
+add(new THREE.BoxGeometry(.9, .06, .3), mat(0x6a7078), 1.75, .02, ZC + .02);
+const comp = add(new THREE.CylinderGeometry(.09, .09, .26, 20), mat(0x2a2f38, { roughness: .4 }), 1.45, .2, ZC);
+const helExt = grupo(1.85, .42, ZC + .21); for (let i = 0; i < 3; i++) { const g = grupo(0, 0, 0, helExt); g.rotation.z = i / 3 * Math.PI * 2; add(new THREE.BoxGeometry(.1, .24, .01), mat(0x3a3f48), 0, .12, 0, g); }
+add(new THREE.TorusGeometry(.27, .012, 6, 32), mat(0x3a3f48), 1.85, .42, ZC + .21);
+// ar: sala quente entra, sai frio; lá fora sai quente
+const arEntra = Array.from({ length: 30 }, () => ({ s: sprite(0xff6a3a), f: rnd(), x: -.9 + rnd() * 1.6, z: -.6 + rnd() * .8 }));
+const arSai = Array.from({ length: 30 }, () => ({ s: sprite(0x5aa0ff), f: rnd(), x: -.4 + rnd() * .9 }));
+const arFora = Array.from({ length: 30 }, () => ({ s: sprite(0xff4a1a), f: rnd(), x: (rnd() - .5) * .4, y: (rnd() - .5) * .4 }));
+const gotinhas = Array.from({ length: 16 }, () => ({ s: sprite(0xffffff), x: -.35 + rnd() * .8, f: rnd() }));
+const pinga = Array.from({ length: 8 }, () => ({ s: sprite(0x5aa0ff), f: rnd() }));
+const dreno = add(new THREE.CylinderGeometry(.012, .012, 1.9, 8), mat(0xf0f0f0), 1.0, 1.1, -.6);
+const controle = grupo(-.5, .42, -.45); add(new THREE.BoxGeometry(.06, .02, .16), mat(0xf4f4f4), 0, 0, 0, controle); add(new THREE.BoxGeometry(.04, .005, .04), brilho(0x5aa0ff), 0, .012, -.04, controle);
+
+K.camera_({
+  sala: [V(-.1, 1.0, 3.2), V(-.1, .55, 0)],
+  geral: [V(1.7, 1.7, 7.6), V(.55, 1.15, -.6)],
+  evap: [V(.05, 2.0, 1.6), V(.05, 2.05, -.84)],
+  fora: [V(1.15, 1.05, 1.1), V(1.65, .35, ZC)],
+  cap: [V(2.75, .8, .25), V(2.1, .5, ZC)],
+  fim: [V(-.4, 1.5, 7.4), V(.55, 1.1, -.6)],
+}, [
+  [0, "sala"], [F(2), "sala"], [C(3), "geral"], [P(3, "serpentina") - .4, "geral"], [P(3, "serpentina"), "evap"], [F(3), "evap"],
+  [C(4), "geral"], [P(4, "compressor") - .5, "geral"], [P(4, "compressor"), "fora"], [F(5), "fora"],
+  [C(6), "cap"], [F(6), "cap"], [C(7), "evap"], [P(7, "pinga") + 2.5, "evap"], [P(7, "refrigerante") - 1, "geral"], [F(7), "geral"], [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const fase1 = t < C(3);
+  balde.visible = ventilador.visible = fase1; helice.rotation.z = -t * 14;
+  const derrete = prog(t, P(2, "derrete") - .3, P(2, "acabou"));
+  gelos.forEach((g, i) => g.scale.setScalar(Math.max(.01, 1 - derrete * (1 + i * .05))));
+  poca.material.opacity = fase1 ? .65 * prog(t, P(2, "molha") - .3, P(2, "molha") + .6) : 0;
+  brisa.forEach((b) => { const k = frac(t * .9 + b.f); b.s.position.set(-.1 + b.x * (1 + k), .67 + b.y * (1 + k), -.25 + k * 1.6); b.s.scale.setScalar(.03); b.s.material.opacity = fase1 && derrete < .9 ? .8 * (1 - k) : 0; });
+  quente.material.opacity = em(C(3), P(3, "roubando")) ? .12 : 0;
+  frio.material.opacity = t > P(3, "roubando") && t < C(4) ? .1 * prog(t, P(3, "roubando"), F(3)) : (t > C(8) ? .08 : 0);
+  const liga = t > P(3, "troca") - .3;
+  cano.visible = liga; evap.visible = aleta.visible = liga;
+  const flui = liga && !em(C(6), P(6, "fininho") - .5) ;
+  fluido.forEach((p) => { const k = frac(t * .07 + p.f); p.s.position.copy(curva.getPoint(k)); const c = corDe(k); p.s.material.color.copy(c); const nk = k > kCond && k < kCap + .01 ? .03 : .06; p.s.scale.setScalar(nk); p.s.material.opacity = liga ? .95 : 0; });
+  capBrilho.visible = em(P(6, "caninho") - .3, F(6));
+  comp.position.x = 1.45 + (em(P(4, "compressor") - .2, F(5)) ? Math.sin(t * 70) * .006 : 0);
+  helExt.rotation.z = t > P(5, "ventilador") - .3 ? t * 15 : 0;
+  arEntra.forEach((a) => { const k = frac(t * .35 + a.f); const x = a.x + (.05 - a.x) * k, y = .4 + 1.6 * k, z = a.z + (-.84 - a.z) * k; a.s.position.set(x, y, z); a.s.scale.setScalar(.04); a.s.material.opacity = em(P(3, "serpentina") - .3, F(3)) || em(C(7), F(7)) ? .8 * Math.sin(k * Math.PI) : 0; });
+  arSai.forEach((a) => { const k = frac(t * .45 + a.f); a.s.position.set(a.x, 1.95 - k * 1.2, -.7 + k * 1.1); a.s.scale.setScalar(.04); a.s.material.opacity = (em(P(3, "roubando") - .3, F(3)) || t > C(8)) ? .8 * (1 - k) : 0; });
+  arFora.forEach((a) => { const k = frac(t * .7 + a.f); a.s.position.set(1.85 + a.x * (1 + k), .42 + a.y * (1 + k), ZC + .25 + k * 1.2); a.s.scale.setScalar(.05); a.s.material.opacity = t > P(5, "ventilador") - .3 && t < C(6) ? .85 * (1 - k) : 0; });
+  gotinhas.forEach((g) => { g.s.position.set(g.x, 2.04 + Math.sin(g.f * 30) * .06, -.76); g.s.scale.setScalar(.018 * prog(t, P(7, "gotinha") - .5, P(7, "gotinha") + .5)); g.s.material.opacity = em(P(7, "gotinha") - .5, F(7)) ? 1 : 0; });
+  pinga.forEach((p) => { const k = frac(t * 1.2 + p.f); p.s.position.set(1.03, 2.0 - k * 1.95, -.6); p.s.scale.set(.02, .04, 1); p.s.material.opacity = em(P(7, "pinga") - .3, F(7)) ? .95 : 0; });
+  dreno.visible = t > P(7, "pinga") - .3;
+  filtroAr.visible = t > P(8, "filtro") - .3; controle.visible = t > P(8, "controle") - .3;
+  K.cartoes(t, [
+    [P(2, "derrete") - .3, P(2, "molha") - .3, "DERRETE", "#5aa0ff"],
+    [P(2, "hora") - .5, F(2), "ACABOU EM 1 HORA", "#ff4a3a"],
+    [P(3, "fluido") - .3, P(3, "serpentina") - .4, "FLUIDO QUE GELA", "#5aa0ff"],
+    [P(3, "serpentina") - .2, P(3, "roubando") - .3, "SERPENTINA", "#c87a3a"],
+    [P(3, "roubando") - .3, F(3), "ROUBA O CALOR DO AR", "#5aa0ff"],
+    [P(4, "compressor") - .3, P(4, "apertado") - .3, "COMPRESSOR", "#ff4a1a"],
+    [P(4, "apertado") - .3, F(4), "MAIS QUENTE QUE A RUA", "#ff4a1a"],
+    [P(5, "ventilador") - .3, P(5, "fabrica") - .3, "AR QUENTE PRA RUA", "#ff6a3a"],
+    [P(5, "fabrica") - .3, F(5), "NÃO FABRICA FRIO", "#ffffff"],
+    [P(6, "caninho") - .3, F(6), "CANINHO FININHO", "#ffd23a"],
+    [P(7, "umidade") - .3, P(7, "refrigerante") - 1, "UMIDADE DA SALA", "#5aa0ff"],
+    [P(7, "seca") - .3, F(7), "POR ISSO SECA O AR", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>
