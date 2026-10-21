@@ -1,0 +1,809 @@
+{
+ "total": 72.8,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.56,
+   "texto": "Se você colocar um aspirador em cima de rodinhas, terá um robô aspirador.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "colocar",
+     "t": 0.704
+    },
+    {
+     "w": "um",
+     "t": 1.105
+    },
+    {
+     "w": "aspirador",
+     "t": 1.223
+    },
+    {
+     "w": "em",
+     "t": 1.742
+    },
+    {
+     "w": "cima",
+     "t": 1.848
+    },
+    {
+     "w": "de",
+     "t": 2.155
+    },
+    {
+     "w": "rodinhas",
+     "t": 2.249
+    },
+    {
+     "w": "terá",
+     "t": 3.039
+    },
+    {
+     "w": "um",
+     "t": 3.251
+    },
+    {
+     "w": "robô",
+     "t": 3.346
+    },
+    {
+     "w": "aspirador",
+     "t": 3.7
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.71,
+   "fim": 10.51,
+   "texto": "Mas ele bate na parede. Fica preso no pé da cadeira. E cai da escada.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.757
+    },
+    {
+     "w": "ele",
+     "t": 4.969
+    },
+    {
+     "w": "bate",
+     "t": 5.229
+    },
+    {
+     "w": "na",
+     "t": 5.583
+    },
+    {
+     "w": "parede",
+     "t": 5.689
+    },
+    {
+     "w": "Fica",
+     "t": 6.951
+    },
+    {
+     "w": "preso",
+     "t": 7.281
+    },
+    {
+     "w": "no",
+     "t": 7.635
+    },
+    {
+     "w": "pé",
+     "t": 7.741
+    },
+    {
+     "w": "da",
+     "t": 7.906
+    },
+    {
+     "w": "cadeira",
+     "t": 8.024
+    },
+    {
+     "w": "E",
+     "t": 9.285
+    },
+    {
+     "w": "cai",
+     "t": 9.427
+    },
+    {
+     "w": "da",
+     "t": 9.675
+    },
+    {
+     "w": "escada",
+     "t": 9.781
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.66,
+   "fim": 18.12,
+   "texto": "Então, você coloca um para-choque na frente, com um botão atrás. Bateu, apertou, ele vira e segue.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.707
+    },
+    {
+     "w": "você",
+     "t": 11.521
+    },
+    {
+     "w": "coloca",
+     "t": 11.792
+    },
+    {
+     "w": "um",
+     "t": 12.193
+    },
+    {
+     "w": "para-choque",
+     "t": 12.276
+    },
+    {
+     "w": "na",
+     "t": 12.806
+    },
+    {
+     "w": "frente",
+     "t": 12.912
+    },
+    {
+     "w": "com",
+     "t": 13.585
+    },
+    {
+     "w": "um",
+     "t": 13.738
+    },
+    {
+     "w": "botão",
+     "t": 13.832
+    },
+    {
+     "w": "atrás",
+     "t": 14.257
+    },
+    {
+     "w": "Bateu",
+     "t": 15.542
+    },
+    {
+     "w": "apertou",
+     "t": 16.226
+    },
+    {
+     "w": "ele",
+     "t": 16.934
+    },
+    {
+     "w": "vira",
+     "t": 17.146
+    },
+    {
+     "w": "e",
+     "t": 17.405
+    },
+    {
+     "w": "segue",
+     "t": 17.452
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 18.27,
+   "fim": 29.7,
+   "texto": "Mas e a escada? Então, você coloca sensores embaixo dele, que mandam luz infravermelha pro chão. Se a luz não volta, o chão acabou. E ele dá ré.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 18.317
+    },
+    {
+     "w": "e",
+     "t": 18.529
+    },
+    {
+     "w": "a",
+     "t": 18.683
+    },
+    {
+     "w": "escada",
+     "t": 18.742
+    },
+    {
+     "w": "Então",
+     "t": 20.039
+    },
+    {
+     "w": "você",
+     "t": 20.864
+    },
+    {
+     "w": "coloca",
+     "t": 21.136
+    },
+    {
+     "w": "sensores",
+     "t": 21.56
+    },
+    {
+     "w": "embaixo",
+     "t": 22.02
+    },
+    {
+     "w": "dele",
+     "t": 22.539
+    },
+    {
+     "w": "que",
+     "t": 23.022
+    },
+    {
+     "w": "mandam",
+     "t": 23.164
+    },
+    {
+     "w": "luz",
+     "t": 23.553
+    },
+    {
+     "w": "infravermelha",
+     "t": 23.695
+    },
+    {
+     "w": "pro",
+     "t": 24.402
+    },
+    {
+     "w": "chão",
+     "t": 24.555
+    },
+    {
+     "w": "Se",
+     "t": 25.711
+    },
+    {
+     "w": "a",
+     "t": 25.912
+    },
+    {
+     "w": "luz",
+     "t": 25.982
+    },
+    {
+     "w": "não",
+     "t": 26.242
+    },
+    {
+     "w": "volta",
+     "t": 26.43
+    },
+    {
+     "w": "o",
+     "t": 27.091
+    },
+    {
+     "w": "chão",
+     "t": 27.162
+    },
+    {
+     "w": "acabou",
+     "t": 27.456
+    },
+    {
+     "w": "E",
+     "t": 28.695
+    },
+    {
+     "w": "ele",
+     "t": 28.836
+    },
+    {
+     "w": "dá",
+     "t": 29.025
+    },
+    {
+     "w": "ré",
+     "t": 29.166
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 29.85,
+   "fim": 44.5,
+   "texto": "Mas andando ao acaso, ele passa dez vezes no mesmo lugar e esquece a sala. Então, você coloca um laser girando em cima do robô. É aquela torrinha redonda. Ela mede a distância até as paredes e desenha o mapa da casa.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 29.897
+    },
+    {
+     "w": "andando",
+     "t": 30.086
+    },
+    {
+     "w": "ao",
+     "t": 30.499
+    },
+    {
+     "w": "acaso",
+     "t": 30.628
+    },
+    {
+     "w": "ele",
+     "t": 31.265
+    },
+    {
+     "w": "passa",
+     "t": 31.43
+    },
+    {
+     "w": "dez",
+     "t": 31.76
+    },
+    {
+     "w": "vezes",
+     "t": 32.02
+    },
+    {
+     "w": "no",
+     "t": 32.362
+    },
+    {
+     "w": "mesmo",
+     "t": 32.456
+    },
+    {
+     "w": "lugar",
+     "t": 32.775
+    },
+    {
+     "w": "e",
+     "t": 33.152
+    },
+    {
+     "w": "esquece",
+     "t": 33.187
+    },
+    {
+     "w": "a",
+     "t": 33.553
+    },
+    {
+     "w": "sala",
+     "t": 33.6
+    },
+    {
+     "w": "Então",
+     "t": 34.815
+    },
+    {
+     "w": "você",
+     "t": 35.581
+    },
+    {
+     "w": "coloca",
+     "t": 35.864
+    },
+    {
+     "w": "um",
+     "t": 36.277
+    },
+    {
+     "w": "laser",
+     "t": 36.383
+    },
+    {
+     "w": "girando",
+     "t": 36.701
+    },
+    {
+     "w": "em",
+     "t": 37.091
+    },
+    {
+     "w": "cima",
+     "t": 37.197
+    },
+    {
+     "w": "do",
+     "t": 37.539
+    },
+    {
+     "w": "robô",
+     "t": 37.645
+    },
+    {
+     "w": "É",
+     "t": 38.836
+    },
+    {
+     "w": "aquela",
+     "t": 38.977
+    },
+    {
+     "w": "torrinha",
+     "t": 39.355
+    },
+    {
+     "w": "redonda",
+     "t": 39.779
+    },
+    {
+     "w": "Ela",
+     "t": 41.112
+    },
+    {
+     "w": "mede",
+     "t": 41.359
+    },
+    {
+     "w": "a",
+     "t": 41.631
+    },
+    {
+     "w": "distância",
+     "t": 41.666
+    },
+    {
+     "w": "até",
+     "t": 42.173
+    },
+    {
+     "w": "as",
+     "t": 42.362
+    },
+    {
+     "w": "paredes",
+     "t": 42.48
+    },
+    {
+     "w": "e",
+     "t": 42.892
+    },
+    {
+     "w": "desenha",
+     "t": 42.999
+    },
+    {
+     "w": "o",
+     "t": 43.388
+    },
+    {
+     "w": "mapa",
+     "t": 43.435
+    },
+    {
+     "w": "da",
+     "t": 43.765
+    },
+    {
+     "w": "casa",
+     "t": 43.883
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 44.65,
+   "fim": 56.75,
+   "texto": "Mas a sujeira se esconde nos cantos. Então, você coloca uma escovinha lateral girando, que joga a sujeira pro meio. Ali, a escova principal e o motor sugam tudo pra um compartimento.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 44.697
+    },
+    {
+     "w": "a",
+     "t": 44.921
+    },
+    {
+     "w": "sujeira",
+     "t": 45.051
+    },
+    {
+     "w": "se",
+     "t": 45.523
+    },
+    {
+     "w": "esconde",
+     "t": 45.641
+    },
+    {
+     "w": "nos",
+     "t": 46.042
+    },
+    {
+     "w": "cantos",
+     "t": 46.218
+    },
+    {
+     "w": "Então",
+     "t": 47.527
+    },
+    {
+     "w": "você",
+     "t": 48.259
+    },
+    {
+     "w": "coloca",
+     "t": 48.518
+    },
+    {
+     "w": "uma",
+     "t": 48.931
+    },
+    {
+     "w": "escovinha",
+     "t": 49.013
+    },
+    {
+     "w": "lateral",
+     "t": 49.461
+    },
+    {
+     "w": "girando",
+     "t": 49.874
+    },
+    {
+     "w": "que",
+     "t": 50.546
+    },
+    {
+     "w": "joga",
+     "t": 50.688
+    },
+    {
+     "w": "a",
+     "t": 51.03
+    },
+    {
+     "w": "sujeira",
+     "t": 51.065
+    },
+    {
+     "w": "pro",
+     "t": 51.49
+    },
+    {
+     "w": "meio",
+     "t": 51.619
+    },
+    {
+     "w": "Ali",
+     "t": 52.763
+    },
+    {
+     "w": "a",
+     "t": 53.341
+    },
+    {
+     "w": "escova",
+     "t": 53.435
+    },
+    {
+     "w": "principal",
+     "t": 53.86
+    },
+    {
+     "w": "e",
+     "t": 54.426
+    },
+    {
+     "w": "o",
+     "t": 54.485
+    },
+    {
+     "w": "motor",
+     "t": 54.52
+    },
+    {
+     "w": "sugam",
+     "t": 54.898
+    },
+    {
+     "w": "tudo",
+     "t": 55.24
+    },
+    {
+     "w": "pra",
+     "t": 55.534
+    },
+    {
+     "w": "um",
+     "t": 55.676
+    },
+    {
+     "w": "compartimento",
+     "t": 55.759
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 56.9,
+   "fim": 65.57,
+   "texto": "Mas a bateria acaba. Então, ele volta sozinho pra base, guiado por um sinal invisível, e encosta nos contatos de metal pra carregar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 56.947
+    },
+    {
+     "w": "a",
+     "t": 57.148
+    },
+    {
+     "w": "bateria",
+     "t": 57.277
+    },
+    {
+     "w": "acaba",
+     "t": 57.702
+    },
+    {
+     "w": "Então",
+     "t": 58.881
+    },
+    {
+     "w": "ele",
+     "t": 59.624
+    },
+    {
+     "w": "volta",
+     "t": 59.777
+    },
+    {
+     "w": "sozinho",
+     "t": 60.119
+    },
+    {
+     "w": "pra",
+     "t": 60.591
+    },
+    {
+     "w": "base",
+     "t": 60.744
+    },
+    {
+     "w": "guiado",
+     "t": 61.275
+    },
+    {
+     "w": "por",
+     "t": 61.735
+    },
+    {
+     "w": "um",
+     "t": 61.876
+    },
+    {
+     "w": "sinal",
+     "t": 61.947
+    },
+    {
+     "w": "invisível",
+     "t": 62.23
+    },
+    {
+     "w": "e",
+     "t": 63.032
+    },
+    {
+     "w": "encosta",
+     "t": 63.103
+    },
+    {
+     "w": "nos",
+     "t": 63.598
+    },
+    {
+     "w": "contatos",
+     "t": 63.74
+    },
+    {
+     "w": "de",
+     "t": 64.317
+    },
+    {
+     "w": "metal",
+     "t": 64.412
+    },
+    {
+     "w": "pra",
+     "t": 64.754
+    },
+    {
+     "w": "carregar",
+     "t": 64.884
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 65.72,
+   "fim": 72.2,
+   "texto": "Coloque um aplicativo e um filtro pra poeira fina. Parabéns, você construiu um robô aspirador.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 65.767
+    },
+    {
+     "w": "um",
+     "t": 66.251
+    },
+    {
+     "w": "aplicativo",
+     "t": 66.345
+    },
+    {
+     "w": "e",
+     "t": 66.994
+    },
+    {
+     "w": "um",
+     "t": 67.041
+    },
+    {
+     "w": "filtro",
+     "t": 67.159
+    },
+    {
+     "w": "pra",
+     "t": 67.536
+    },
+    {
+     "w": "poeira",
+     "t": 67.678
+    },
+    {
+     "w": "fina",
+     "t": 68.055
+    },
+    {
+     "w": "Parabéns",
+     "t": 69.246
+    },
+    {
+     "w": "você",
+     "t": 70.06
+    },
+    {
+     "w": "construiu",
+     "t": 70.354
+    },
+    {
+     "w": "um",
+     "t": 70.861
+    },
+    {
+     "w": "robô",
+     "t": 70.979
+    },
+    {
+     "w": "aspirador",
+     "t": 71.321
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("aspirador", { fundo: 0x2b3442, seed: 8181 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd, ease } = K;
+const PI = Math.PI;
+
+// ---------- cômodo: piso, paredes, cadeira, escada (na frente) ----------
+add(new THREE.BoxGeometry(2.2, .1, 3.1), mat(0xffffff, { map: texMadeira("#c8945a", 3) }), 0, -.05, -.05);
+add(new THREE.BoxGeometry(2.4, .5, .08), mat(0xf2e6c8), 0, .25, -1.64);
+add(new THREE.BoxGeometry(.08, .5, 3.1), mat(0xf2e6c8), -1.14, .25, -.05);
+add(new THREE.BoxGeometry(.08, .5, 3.1), mat(0xf2e6c8), 1.14, .25, -.05);
+for (let i = 0; i < 4; i++) add(new THREE.BoxGeometry(2.2, .1, .3), mat(0xffffff, { map: texMadeira("#b07a48", 2) }), 0, -.15 - i * .1, 1.65 + i * .3);
+const cadeira = grupo(.5, 0, -.5);
+[[-.14, -.14], [.14, -.14], [-.14, .14], [.14, .14]].forEach(([x, z]) => add(new THREE.CylinderGeometry(.015, .015, .45, 8), mat(0x2a2f38), x, .225, z, cadeira));
+add(new THREE.BoxGeometry(.34, .03, .34), mat(0x8a5a32), 0, .45, 0, cadeira);
+const sujeira = Array.from({ length: 40 }, () => { const s = sprite(0x5a4030); s.userData = { x: -.9 + rnd() * 1.8, z: -1.4 + rnd() * 2.6 }; return s; });
+const sujCanto = Array.from({ length: 18 }, () => ({ s: sprite(0x5a4030), x: .95 + rnd() * .1, z: -.4 + rnd() * .9 }));
+// base de carregar
+const base = grupo(-.6, 0, -1.56);
+add(new THREE.BoxGeometry(.3, .14, .08), mat(0x2a2f38), 0, .07, 0, base);
+const contatos = [-.06, .06].map((x) => add(new THREE.BoxGeometry(.03, .01, .06), mat(0xd8b048, { metalness: .9, emissive: 0xffc83a, emissiveIntensity: 0 }), x, .006, .07, base));
+const sinal = Array.from({ length: 5 }, (_, i) => { const m = add(new THREE.RingGeometry(.1, .115, 32, 1, -PI, PI), new THREE.MeshBasicMaterial({ color: 0xff5a8a, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }), 0, .02, .05, base); m.rotation.x = -PI / 2; m.castShadow = m.receiveShadow = false; m.userData.f = i / 5; return m; });
+
+// ---------- robô (frente = +x local) ----------
+const robo = grupo(0, 0, 0);
+const corpo = grupo(0, 0, 0, robo);
+add(new THREE.CylinderGeometry(.14, .14, .065, 40), mat(0xf2f4f6, { roughness: .3 }), 0, .045, 0, corpo);
+add(new THREE.CylinderGeometry(.12, .12, .01, 40), mat(0x2a2f38, { roughness: .2 }), 0, .08, 0, corpo);
+const mPara = mat(0x55606c, { emissive: 0xffd23a, emissiveIntensity: 0 });
+const parachoque = add(new THREE.CylinderGeometry(.146, .146, .05, 40, 1, true, 0, PI), new THREE.MeshStandardMaterial({ color: 0x55606c, side: THREE.DoubleSide, emissive: 0xffd23a, emissiveIntensity: 0 }), 0, .04, 0, corpo); parachoque.visible = false;
+const torre = grupo(0, .095, -.02, corpo); add(new THREE.CylinderGeometry(.035, .035, .03, 24), mat(0x3a3f48), 0, 0, 0, torre); add(new THREE.BoxGeometry(.03, .012, .012), brilho(0x3aff7a), .03, 0, 0, torre); torre.visible = false;
+const escovinha = grupo(.1, .008, .08, corpo); for (let i = 0; i < 3; i++) { const g = grupo(0, 0, 0, escovinha); g.rotation.y = i / 3 * PI * 2; add(new THREE.BoxGeometry(.08, .004, .006), mat(0x3a6ac8), .04, 0, 0, g); } escovinha.visible = false;
+const sensores = [[.11, .06], [.11, -.06]].map(([x, z]) => add(new THREE.CylinderGeometry(.009, .009, 1, 6), new THREE.MeshBasicMaterial({ color: 0xff2a4a, transparent: true, opacity: .9 }), x, 0, z, corpo));
+const botao = add(new THREE.BoxGeometry(.012, .02, .03), brilho(0xff3a3a), .125, .04, 0, corpo); botao.visible = false;
+const laser = new THREE.Line(new THREE.BufferGeometry().setFromPoints([V(0, 0, 0), V(1, 0, 0)]), new THREE.LineBasicMaterial({ color: 0x3aff7a })); scene.add(laser);
+const mapaPts = []; for (let i = 0; i < 90; i++) { const s = sprite(0x3aff7a); s.userData.a = i / 90 * PI * 2; mapaPts.push(s); }
+// rastros
+function linha(pts, cor) { const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: cor })); l.position.y = .012; scene.add(l); l.userData.n = pts.length; return l; }
+const acasoPts = []; { let x = -.2, z = .5, a = 1.1; for (let i = 0; i < 26; i++) { acasoPts.push(V(x, 0, z)); const d = .4 + rnd() * .9; x += Math.cos(a) * d; z += Math.sin(a) * d; if (x > .9 || x < -.9) { x = clamp(x, -.9, .9); a = PI - a + (rnd() - .5); } if (z > 1.2 || z < -1.4) { z = clamp(z, -1.4, 1.2); a = -a + (rnd() - .5); } } }
+const acasoCurva = new THREE.CatmullRomCurve3(acasoPts, false, "catmullrom", .1);
+const acaso = linha(acasoCurva.getPoints(300), 0xff5a5a);
+const faixasPts = []; for (let i = 0; i <= 12; i++) { const x = -.9 + i * .15; faixasPts.push(V(x, 0, i % 2 ? 1.2 : -1.4), V(x, 0, i % 2 ? -1.4 : 1.2)); }
+const faixas = linha(faixasPts, 0x3aff7a);
+const faixasCurva = new THREE.CurvePath(); for (let i = 0; i < faixasPts.length - 1; i++) faixasCurva.add(new THREE.LineCurve3(faixasPts[i], faixasPts[i + 1]));
+
+// ---------- movimento: [t, x, z, ângulo] ----------
+const keys = [
+  [0, 0, .4, PI / 2], [C(2) - .1, 0, -.15, PI / 2],
+  [P(2, "parede") - .7, -.5, -.9, PI / 2], [P(2, "parede") + .1, -.5, -1.44, PI / 2], [P(2, "preso") - .6, -.5, -1.44, PI / 2],
+  [P(2, "preso") - .55, .5, -.2, PI / 2], [P(2, "cadeira") + .1, .5, -.5, PI / 2], [P(2, "escada") - .7, .5, -.5, PI / 2],
+  [P(2, "escada") - .65, 0, .9, -PI / 2], [P(2, "escada") + .2, 0, 1.45, -PI / 2], [C(3) - .1, 0, 1.45, -PI / 2],
+  [C(3), 0, -.9, PI / 2], [P(3, "bateu"), 0, -1.43, PI / 2], [P(3, "vira"), 0, -1.43, PI / 2], [P(3, "vira") + .6, 0, -1.43, -.6], [F(3), .6, -1.0, -.6],
+  [C(4), 0, .6, -PI / 2], [P(4, "volta") + .2, 0, 1.3, -PI / 2], [P(4, "re"), 0, 1.3, -PI / 2], [F(4), 0, .8, -PI / 2],
+];
+const keys2 = [
+  [C(6), .75, .7, PI / 2.6], [F(6), .9, -.6, PI / 2],
+  [C(7), .3, .2, PI / 2], [P(7, "base") + .3, -.6, -1.0, PI / 2 + .7], [P(7, "metal") + .2, -.6, -1.4, PI / 2], [T, -.6, -1.4, PI / 2],
+];
+function pose(lista, t) { let i = 0; while (i < lista.length - 2 && t >= lista[i + 1][0]) i++; const [ta, xa, za, aa] = lista[i], [tb, xb, zb, ab] = lista[i + 1]; const k = tb > ta ? ease(clamp((t - ta) / (tb - ta), 0, 1)) : 1; return [xa + (xb - xa) * k, za + (zb - za) * k, aa + (ab - aa) * k]; }
+
+K.camera_({
+  cima: [V(0, 5.6, 2.5), V(0, 0, -.2)],
+  parede: [V(-.1, 1.0, -.2), V(-.5, .05, -1.45)],
+  cadeira: [V(.75, .9, .5), V(.5, .05, -.5)],
+  escada: [V(.9, .55, 1.6), V(0, -.05, 1.4)],
+  bate: [V(.35, .7, -.6), V(0, .05, -1.43)],
+  baixo: [V(.75, .3, 1.75), V(0, .0, 1.3)],
+  escova: [V(.35, 1.0, .85), V(.85, 0, -.1)],
+  fim: [V(-.3, 3.3, 1.6), V(-.2, 0, -.6)],
+}, [
+  [0, "cima"], [C(2) - .1, "cima"], [P(2, "parede") - .7, "parede"], [P(2, "preso") - .6, "parede"], [P(2, "preso") - .55, "cadeira"], [P(2, "escada") - .7, "cadeira"], [P(2, "escada") - .65, "escada"], [C(3) - .1, "escada"],
+  [C(3), "bate"], [P(3, "vira"), "bate"], [P(3, "vira") + .3, "cima"], [F(3), "cima"], [C(4), "cima"], [P(4, "sensores") - .3, "cima"], [P(4, "sensores") + .2, "baixo"], [F(4), "baixo"],
+  [C(5), "cima"], [F(5), "cima"], [C(6), "escova"], [F(6), "escova"], [C(7), "cima"], [T, "fim"],
+]);
+
+const pr = new THREE.Vector3();
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // posição do robô
+  let x, z, a, y = 0, tilt = 0;
+  const tAcaso = P(5, "acaso") - .5, tLaser = P(5, "laser") - .3, tMapa = P(5, "mapa");
+  if (t < C(5)) [x, z, a] = pose(keys, t);
+  else if (t < tLaser) { const k = lin(t, C(5) + .3, tLaser); const p = acasoCurva.getPoint(k), q = acasoCurva.getPoint(Math.min(1, k + .01)); x = p.x; z = p.z; a = Math.atan2(-(q.z - p.z), q.x - p.x); }
+  else if (t < P(5, "mapa") - .3) { x = 0; z = .2; a = PI / 2; }
+  else if (t < C(6)) { const k = lin(t, P(5, "mapa") - .3, C(6)); const p = faixasCurva.getPoint(k), q = faixasCurva.getPoint(Math.min(1, k + .005)); x = p.x; z = p.z; a = Math.atan2(-(q.z - p.z), q.x - p.x); }
+  else [x, z, a] = pose(keys2, t);
+  if (em(P(2, "parede") + .1, P(2, "parede") + .5) || em(P(3, "bateu"), P(3, "bateu") + .3)) x += Math.sin(t * 60) * .006;
+  if (em(P(2, "cadeira") + .1, P(2, "escada") - .7)) a += Math.sin(t * 9) * .25;
+  if (em(P(2, "escada") + .1, C(3))) { const k = prog(t, P(2, "escada") + .1, P(2, "escada") + .6); y = -.35 * k; tilt = .5 * k; z += .2 * k; }
+  robo.position.set(x, y, z); robo.rotation.set(0, a, 0); corpo.rotation.z = -tilt;
+  // peças que vão aparecendo
+  const temPara = t > P(3, "parachoque") - .3;
+  parachoque.visible = temPara; parachoque.rotation.y = -PI / 2;
+  parachoque.material.emissiveIntensity = em(P(3, "parachoque") - .3, F(3)) ? .5 : 0;
+  botao.visible = em(P(3, "botao") - .3, F(3));
+  botao.position.x = .125 - (em(P(3, "bateu"), P(3, "bateu") + .4) ? .012 : 0);
+  torre.visible = t > P(5, "laser") - .3; torre.rotation.y = t * 8;
+  escovinha.visible = t > P(6, "escovinha") - .3; escovinha.rotation.y = -t * 12;
+  const sensVis = em(P(4, "sensores") - .3, F(4));
+  const naBorda = z > 1.25 && t < F(4);
+  sensores.forEach((s) => { s.visible = sensVis; const L = naBorda ? .6 : .045; s.scale.y = L; s.position.y = .02 - L / 2; s.material.color.setHex(naBorda ? 0xff2a4a : 0xff8a9a); });
+  // laser e mapa
+  const laserOn = em(tLaser, C(6));
+  laser.visible = laserOn;
+  torre.getWorldPosition(pr);
+  const dist = (ang) => { const dx = Math.cos(ang), dz = -Math.sin(ang); let d = 9; if (dx > 0) d = Math.min(d, (1.1 - pr.x) / dx); if (dx < 0) d = Math.min(d, (-1.1 - pr.x) / dx); if (dz < 0) d = Math.min(d, (-1.6 - pr.z) / dz); if (dz > 0) d = Math.min(d, (1.4 - pr.z) / dz); return d; };
+  const ang = (t - tLaser) * 6;
+  if (laserOn) { const d = dist(ang); laser.geometry.setFromPoints([pr.clone(), V(pr.x + Math.cos(ang) * d, pr.y, pr.z - Math.sin(ang) * d)]); }
+  mapaPts.forEach((s) => { const vis = t > tLaser && (t - tLaser) * 6 > s.userData.a && t < F(5) + 99 && t < C(6); s.material.opacity = vis ? 1 : 0; if (t > tLaser && t < tLaser + .1 + 99) { const p0 = V(0, .1, .2); const dx = Math.cos(s.userData.a), dz = -Math.sin(s.userData.a); let d = 9; if (dx > 0) d = Math.min(d, (1.1) / dx); if (dx < 0) d = Math.min(d, (-1.1) / dx); if (dz < 0) d = Math.min(d, (-1.6 - .2) / dz); if (dz > 0) d = Math.min(d, (1.4 - .2) / dz); s.position.set(dx * d, .1, .2 + dz * d); s.scale.setScalar(.09); } });
+  const kA = lin(t, C(5) + .3, tLaser);
+  acaso.visible = em(C(5), tMapa); acaso.geometry.setDrawRange(0, Math.floor(300 * kA));
+  faixas.visible = em(tMapa - .3, C(6)); faixas.geometry.setDrawRange(0, Math.max(2, Math.floor(faixasPts.length * lin(t, tMapa - .3, C(6))) + 1));
+  // sujeira
+  sujeira.forEach((s) => { const { x: sx, z: sz } = s.userData; const perto = Math.hypot(sx - x, sz - z) < .16 && t > C(5); if (perto) s.userData.limpo = true; if (t < C(5)) s.userData.limpo = false; s.position.set(sx, .015, sz); s.scale.setScalar(.03); s.material.opacity = s.userData.limpo ? 0 : 1; });
+  sujCanto.forEach((p) => { const varre = em(P(6, "joga") - .3, F(6)) && Math.abs(p.z - z) < .25; if (varre) p.x -= .004; if (t < C(6)) p.x = .95 + (p.z * 13 % .1); const sob = Math.hypot(p.x - x, p.z - z) < .1; p.s.position.set(p.x, .015, p.z); p.s.scale.setScalar(.03); p.s.material.opacity = t > C(6) - 1 && !sob && p.x > x - .2 ? 1 : (t > C(6) - 1 && !sob ? 1 : 0); });
+  // volta pra base
+  sinal.forEach((r) => { const k = frac(t * .6 + r.userData.f); r.scale.setScalar(1 + k * 8); r.material.opacity = em(P(7, "sinal") - .3, F(7)) ? .7 * (1 - k) : 0; });
+  contatos.forEach((c) => c.material.emissiveIntensity = t > P(7, "metal") + .2 ? .8 + .3 * Math.sin(t * 6) : 0);
+  K.cartoes(t, [
+    [P(2, "parede") - .2, P(2, "preso") - .6, "BATEU", "#ff4a3a"],
+    [P(2, "preso") - .55, P(2, "escada") - .7, "PRESO", "#ff9a5a"],
+    [P(2, "escada") - .3, F(2), "CAIU!", "#ff4a3a"],
+    [P(3, "parachoque") - .3, P(3, "bateu") - .2, "PARA-CHOQUE + BOTÃO", "#ffd23a"],
+    [P(3, "bateu") - .2, F(3), "BATEU, VIROU", "#3aff7a"],
+    [P(4, "infravermelha") - .3, P(4, "volta") + .1, "LUZ INFRAVERMELHA", "#ff8a9a"],
+    [P(4, "volta") + .1, F(4), "O CHÃO ACABOU: RÉ!", "#ff4a3a"],
+    [P(5, "acaso") - .3, P(5, "laser") - .3, "AO ACASO", "#ff5a5a"],
+    [P(5, "laser") - .3, P(5, "mapa") - .5, "LASER GIRANDO", "#3aff7a"],
+    [P(5, "mapa") - .5, F(5), "MAPA DA CASA", "#3aff7a"],
+    [P(6, "escovinha") - .3, P(6, "principal") - .3, "ESCOVINHA LATERAL", "#5aa0ff"],
+    [P(6, "principal") - .3, F(6), "SUGA PRO COMPARTIMENTO", "#ffffff"],
+    [P(7, "bateria") - .3, P(7, "sinal") - .3, "BATERIA 5%", "#ff4a3a"],
+    [P(7, "sinal") - .3, F(7), "SINAL INVISÍVEL", "#ff5a8a"],
+  ]);
+});
+</script>
+</body></html>
