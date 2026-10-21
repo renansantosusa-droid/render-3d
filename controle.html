@@ -1,0 +1,140 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("controle", { fundo: 0x2b3442, seed: 1212 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- sala: TV no rack, sofá, janela, abajur ----------
+add(new THREE.BoxGeometry(4, .1, 5), mat(0xffffff, { map: texMadeira("#b88654", 4) }), 0, -.05, 0);
+add(new THREE.BoxGeometry(4, 2.6, .1), mat(0xe8dcc4), 0, 1.3, -1.6);
+add(new THREE.BoxGeometry(.1, 2.6, 5), mat(0xd8ccb4), -2, 1.3, 0);
+const janela = add(new THREE.PlaneGeometry(.9, 1.0), new THREE.MeshBasicMaterial({ color: 0xbfe4ff }), -1.94, 1.5, -.4); janela.rotation.y = PI / 2;
+add(new THREE.BoxGeometry(1.4, .45, .45), mat(0xffffff, { map: texMadeira("#6a4a2a", 2) }), 0, .225, -1.3);
+const tvG = grupo(0, .45, -1.15);    // pivô na beirada da frente do rack
+const tv = grupo(0, 0, -.15, tvG);
+add(new THREE.BoxGeometry(1.2, .7, .05), mat(0x1a1a1a, { roughness: .3 }), 0, .42, 0, tv);
+add(new THREE.BoxGeometry(.3, .04, .15), mat(0x1a1a1a), 0, .02, 0, tv);
+const telaCv = document.createElement("canvas"); telaCv.width = 512; telaCv.height = 300; const telaG = telaCv.getContext("2d"); const telaTex = new THREE.CanvasTexture(telaCv); telaTex.colorSpace = THREE.SRGBColorSpace;
+const tela = add(new THREE.PlaneGeometry(1.12, .63), new THREE.MeshBasicMaterial({ map: telaTex }), 0, .42, .027, tv);
+let telaUlt = "";
+function mostra(txt, fundo) { const k = txt + fundo; if (k === telaUlt) return; telaUlt = k; telaG.fillStyle = fundo; telaG.fillRect(0, 0, 512, 300); if (txt) { telaG.fillStyle = "#fff"; telaG.font = "900 80px Nunito"; telaG.textAlign = "center"; telaG.textBaseline = "middle"; telaG.fillText(txt, 256, 150); } telaTex.needsUpdate = true; }
+const sensorTV = add(new THREE.BoxGeometry(.06, .03, .01), new THREE.MeshStandardMaterial({ color: 0x3a1a2a, emissive: 0xff3a6a, emissiveIntensity: 0 }), .5, .1, .03, tv);
+const sofa = grupo(0, 0, 1.4);
+add(new THREE.BoxGeometry(1.6, .4, .7), mat(0x5a6a8a), 0, .2, 0, sofa); add(new THREE.BoxGeometry(1.6, .45, .15), mat(0x5a6a8a), 0, .6, .3, sofa);
+[-1, 1].forEach((s) => add(new THREE.BoxGeometry(.15, .25, .7), mat(0x4a5a7a), s * .8, .5, 0, sofa));
+const abajur = grupo(1.5, 0, -1.2); add(new THREE.CylinderGeometry(.02, .02, 1.2, 8), mat(0x2a2f38), 0, .6, 0, abajur); add(new THREE.CylinderGeometry(.12, .2, .25, 20, 1, true), mat(0xfff0c0, { side: THREE.DoubleSide, emissive: 0xffd080, emissiveIntensity: .4 }), 0, 1.25, 0, abajur);
+// controle (na mão, em cima do braço do sofá), frente apontando pra TV (-z)
+const ctrl = grupo(.62, .72, 1.25);
+add(new THREE.BoxGeometry(.07, .03, .26), mat(0x2a2f38, { roughness: .4 }), 0, 0, 0, ctrl);
+const botoes = []; for (let i = 0; i < 9; i++) botoes.push(add(new THREE.CylinderGeometry(.009, .009, .01, 10), mat(i === 4 ? 0xe03a3a : 0x8a96a8), (i % 3 - 1) * .02, .018, -.06 + Math.floor(i / 3) * .04, ctrl));
+const led = add(new THREE.SphereGeometry(.012, 12, 8), new THREE.MeshStandardMaterial({ color: 0x555555, emissive: 0xffffff, emissiveIntensity: 0 }), 0, 0, -.135, ctrl);
+// fio (cenas 1-2)
+const fioCurva = new THREE.CatmullRomCurve3([V(.3, .47, -1.25), V(.4, .02, -1.0), V(.5, .02, .2), V(.6, .02, .9), V(.62, .72, 1.12)]);
+let fio = add(new THREE.TubeGeometry(fioCurva, 60, .012, 6), mat(0x1a1a1a));
+const pe = grupo(.4, 0, .1); add(new THREE.BoxGeometry(.12, .07, .28), mat(0x3a3f48), 0, .035, 0, pe); pe.visible = false;
+// luz do controle até a TV
+const feixe = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), f: rnd() }));
+const ruido = Array.from({ length: 50 }, () => ({ s: sprite(0xffe08a), x: -1.9 + rnd() * 3.6, y: .3 + rnd() * 1.8, z: -1.2 + rnd() * 2.2, f: rnd() }));
+// ---------- mini set: o sinal (barrinhas) ----------
+const QX = 100, QY = 1.3;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1c232e), QX, 1, -1);
+const eixo = add(new THREE.BoxGeometry(2.4, .01, .01), brilho(0x55606c), QX, QY - .2, 0);
+const barras = Array.from({ length: 80 }, () => add(new THREE.BoxGeometry(1, .4, .02), brilho(0xff3a6a), 0, 0, 0));
+const rotVol = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("VOLUME +", "#ffffff", { tam: 90 }), transparent: true })); rotVol.position.set(QX - .5, QY + .45, 0); rotVol.scale.set(.8, .4, 1); scene.add(rotVol);
+const rotCan = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("CANAL +", "#ffffff", { tam: 90 }), transparent: true })); rotCan.position.set(QX - .5, QY - .85, 0); rotCan.scale.set(.8, .4, 1); scene.add(rotCan);
+const barras2 = Array.from({ length: 80 }, () => add(new THREE.BoxGeometry(1, .4, .02), brilho(0x5aa0ff), 0, 0, 0));
+const codVol = [3, 1, 1, 3, 1, 1, 1, 3, 3, 1, 1, 3], codCan = [1, 3, 3, 1, 1, 3, 1, 1, 3, 3, 1, 1];
+// ---------- mini set: celular filmando o controle ----------
+const RX = 200, RY = 1.3;
+add(new THREE.PlaneGeometry(10, 10), mat(0xe8dcc4), RX, 1, -1);
+const cel = grupo(RX, RY, 0); add(new THREE.BoxGeometry(.5, .95, .04), mat(0x1a1a1a, { roughness: .3 }), 0, 0, 0, cel);
+add(new THREE.PlaneGeometry(.46, .88), new THREE.MeshBasicMaterial({ color: 0x3a3a40 }), 0, 0, .021, cel);
+add(new THREE.BoxGeometry(.1, .5, .01), brilho(0x22262c), 0, -.08, .023, cel);
+const pontoTela = add(new THREE.CircleGeometry(.045, 24), new THREE.MeshBasicMaterial({ color: 0xd8a0ff, transparent: true, opacity: 0 }), 0, .17, .03, cel);
+const halo = sprite(0xb060ff, cel); halo.position.set(0, .17, .035);
+const ctrl2 = grupo(RX + .55, RY - .55, .4); add(new THREE.BoxGeometry(.12, .5, .05), mat(0x2a2f38), 0, 0, 0, ctrl2); ctrl2.rotation.set(0, -.4, .25);
+const dedo = add(new THREE.CapsuleGeometry(.035, .12, 6, 12), mat(0xe0b090), RX + .62, RY - .5, .5); dedo.rotation.z = .9;
+// pilhas e borracha (final)
+const pilhas = [-.015, .015].map((x) => { const m = add(new THREE.CylinderGeometry(.012, .012, .09, 12), mat(0xd4a020, { metalness: .6 }), x, -.008, .07, ctrl); m.rotation.x = PI / 2; m.visible = false; return m; });
+const borracha = add(new THREE.BoxGeometry(.065, .006, .2), mat(0x8a3a3a), 0, .012, 0, ctrl); borracha.visible = false;
+
+K.camera_({
+  sala: [V(1.1, 1.7, 3.4), V(.1, .7, -.4)],
+  fio: [V(1.4, .9, 1.4), V(.4, .15, -.1)],
+  tv: [V(1.0, 1.1, .6), V(.2, .65, -1.3)],
+  mao: [V(1.0, 1.0, 1.75), V(.55, .75, 1.1)],
+  sinal: [V(QX, QY - .2, 3.3), V(QX, QY - .2, 0)],
+  cel: [V(RX + .35, RY - .15, 3.6), V(RX + .28, RY - .15, 0)],
+  fim: [V(.9, 1.0, 2.0), V(.5, .72, 1.1)],
+}, [
+  [0, "sala"], [P(2, "atravessa") - .3, "sala"], [P(2, "atravessa"), "fio"], [P(2, "cai") - .5, "fio"], [P(2, "cai") - .45, "tv"], [F(2), "tv"],
+  [C(3), "sala"], [F(3), "sala"], [C(4), "sala"], [P(4, "rapido") - .3, "sala"], [P(4, "rapido") - .25, "sinal"], [F(5), "sinal"],
+  [C(6), "cel"], [F(6), "cel"], [C(7), "mao"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // fio, pé que tropeça, TV caindo
+  const comFio = t < C(3);
+  fio.visible = comFio;
+  pe.visible = em(P(2, "alguem") - .3, P(2, "cai") + .5); pe.position.x = .4 - .4 * prog(t, P(2, "alguem") - .3, P(2, "tropeca") + .2) + .4;
+  const cai = prog(t, P(2, "cai") - .1, P(2, "cai") + .7);
+  tvG.rotation.x = (t < C(3) ? cai : 0) * 1.45;
+  tvG.position.y = .45 - (t < C(3) ? Math.max(0, cai - .6) * .3 : 0);
+  // tela da TV
+  const press = (a) => em(a - .1, a + .4);
+  let tx = "", fundo = "#0a0a10";
+  if (t < C(2)) { tx = "CANAL 5"; fundo = "#1a4a8a"; }
+  else if (t > C(3) && t < P(4, "rapido") - .3) { tx = t > P(3, "piscada") - .1 ? "LIGADA!" : ""; fundo = t > P(3, "piscada") - .1 ? "#1a6a3a" : "#0a0a10"; if (em(P(4, "lampada") - .3, P(4, "infravermelho") - .3)) { tx = "???"; fundo = "#6a3a1a"; } }
+  else if (t > C(7)) { tx = "VOL 12"; fundo = "#1a4a8a"; }
+  mostra(tx, fundo);
+  // luz do controle
+  const visivel = t > C(3) && t < P(4, "infravermelho") - .3;
+  const infra = t > P(4, "infravermelho") - .3 && t < C(6);
+  const pisca = (visivel && pulse(frac(t * 2), 0, .5) > 0) || (infra && frac(t * 6) < .5) || (t > C(7) && frac(t * 4) < .3);
+  led.material.emissiveIntensity = visivel && pisca ? 2 : 0;
+  const pT = V(.5, .55, -1.27);
+  feixe.forEach((b) => { const k = frac(t * .9 + b.f); b.s.position.lerpVectors(V(.62, .72, 1.11), pT, k); b.s.scale.setScalar(infra ? .05 : .04); const on = (visivel && pisca) || (infra && frac(t * 6 - k * 3) < .5); b.s.material.color.setHex(infra ? 0x8a1a4a : 0xffffff); b.s.material.opacity = on && t > C(3) && t < C(6) ? (infra ? .55 : .9) : 0; });
+  sensorTV.material.emissiveIntensity = (visivel || infra) && pisca ? 1.2 : 0;
+  ruido.forEach((r) => { r.s.position.set(r.x, r.y + Math.sin(t * 2 + r.f * 9) * .05, r.z); r.s.scale.setScalar(.08); r.s.material.opacity = em(P(4, "lampada") - .3, P(4, "infravermelho") - .3) ? .5 * pulse(frac(t * 1.5 + r.f), 0, 1) : 0; });
+  janela.material.color.setHex(em(P(4, "sol") - .3, P(4, "infravermelho")) ? 0xfff6c0 : 0xbfe4ff);
+  // mini set: barrinhas
+  const codigo = t > C(5);
+  const desenha = (lista, cod, y, cor, vis) => { let x = QX - 1.2 - frac(t * .25) * 0; let i = 0; lista.forEach((b) => b.visible = false); if (!vis) return; if (!cod) { for (let n = 0; n < 40; n++) { const b = lista[n]; const xx = QX - 1.15 + n * .06 - frac(t * 2) * .06; b.visible = true; b.scale.set(.03, 1, 1); b.position.set(xx, y, 0); } return; } let xx = QX - 1.15; for (const w of cod) { for (let n = 0; n < w * 3; n++) { const b = lista[i++]; b.visible = true; b.scale.set(.02, 1, 1); b.position.set(xx + n * .035, y, 0); } xx += w * 3 * .035 + .1; } };
+  desenha(barras, codigo ? codVol : null, QY + .0, 0xff3a6a, t > P(4, "rapido") - .3 && t < C(6));
+  desenha(barras2, codCan, QY - 1.3 + .0, 0x5aa0ff, t > P(5, "canal") - .3 && t < C(6));
+  rotVol.visible = em(P(5, "volume") - .3, C(6)); rotCan.visible = em(P(5, "canal") - .3, C(6));
+  barras2.forEach((b) => b.position.y = QY - .6);
+  rotCan.position.y = QY - .25; rotVol.position.y = QY + .45;
+  // celular
+  const aperta = t > P(6, "aperte") - .1 && t < C(7);
+  dedo.position.y = RY - .5 - (aperta ? .02 : 0);
+  pontoTela.material.opacity = aperta && frac(t * 5) < .6 ? 1 : 0; halo.scale.setScalar(.25); halo.material.opacity = pontoTela.material.opacity * .8;
+  // final
+  pilhas.forEach((p) => p.visible = t > P(7, "pilhas") - .3);
+  borracha.visible = em(P(7, "borracha") - .3, P(7, "parabens"));
+  ctrl.position.y = .72 + (em(P(7, "pilhas") - .3, P(7, "parabens")) ? .12 : 0);
+  ctrl.rotation.z = em(P(7, "pilhas") - .3, P(7, "parabens")) ? PI : 0;
+  K.cartoes(t, [
+    [P(2, "atravessa") - .3, P(2, "tropeca") - .3, "FIO NO MEIO DA SALA", "#ffd23a"],
+    [P(2, "cai") - .45, F(2), "CRASH!", "#ff4a3a"],
+    [P(3, "luz") - .3, P(3, "sensor") - .3, "LUZ NO LUGAR DO FIO", "#ffffff"],
+    [P(3, "sensor") - .3, F(3), "SENSOR NA TV", "#ff3a6a"],
+    [P(4, "lampada") - .3, P(4, "infravermelho") - .3, "LUZ DEMAIS NA SALA", "#ffe08a"],
+    [P(4, "infravermelho") - .3, P(4, "rapido") - .3, "INFRAVERMELHO", "#ff3a6a"],
+    [P(4, "trinta") - .3, F(4), "38 MIL PISCADAS POR SEGUNDO", "#ff3a6a"],
+    [P(5, "longas") - .3, P(5, "volume") - .3, "LONGA E CURTA, IGUAL MORSE", "#ffd23a"],
+    [P(6, "camera") - .3, P(6, "enxerga") - .3, "CÂMERA DA FRENTE", "#ffffff"],
+    [P(6, "enxerga") - .3, F(6), "A CÂMERA VÊ!", "#d8a0ff"],
+    [P(7, "pilhas") - .3, P(7, "borracha") - .3, "PILHAS", "#d4a020"],
+    [P(7, "borracha") - .3, P(7, "parabens") - .2, "BORRACHA DOS BOTÕES", "#ff8a8a"],
+  ]);
+});
+</script>
+</body></html>

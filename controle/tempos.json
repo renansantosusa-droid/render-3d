@@ -1,0 +1,737 @@
+{
+ "total": 63.52,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.69,
+   "texto": "Se você puxar um fio comprido da TV até o sofá, terá um controle remoto.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "puxar",
+     "t": 0.681
+    },
+    {
+     "w": "um",
+     "t": 1.058
+    },
+    {
+     "w": "fio",
+     "t": 1.164
+    },
+    {
+     "w": "comprido",
+     "t": 1.388
+    },
+    {
+     "w": "da",
+     "t": 1.848
+    },
+    {
+     "w": "TV",
+     "t": 1.966
+    },
+    {
+     "w": "até",
+     "t": 2.284
+    },
+    {
+     "w": "o",
+     "t": 2.508
+    },
+    {
+     "w": "sofá",
+     "t": 2.567
+    },
+    {
+     "w": "terá",
+     "t": 3.228
+    },
+    {
+     "w": "um",
+     "t": 3.428
+    },
+    {
+     "w": "controle",
+     "t": 3.523
+    },
+    {
+     "w": "remoto",
+     "t": 3.983
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.84,
+   "fim": 10.13,
+   "texto": "Mas o fio atravessa a sala. Alguém tropeça. E a TV cai.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.887
+    },
+    {
+     "w": "o",
+     "t": 5.111
+    },
+    {
+     "w": "fio",
+     "t": 5.265
+    },
+    {
+     "w": "atravessa",
+     "t": 5.524
+    },
+    {
+     "w": "a",
+     "t": 5.996
+    },
+    {
+     "w": "sala",
+     "t": 6.031
+    },
+    {
+     "w": "Alguém",
+     "t": 7.222
+    },
+    {
+     "w": "tropeça",
+     "t": 7.623
+    },
+    {
+     "w": "E",
+     "t": 9.015
+    },
+    {
+     "w": "a",
+     "t": 9.144
+    },
+    {
+     "w": "TV",
+     "t": 9.239
+    },
+    {
+     "w": "cai",
+     "t": 9.569
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.28,
+   "fim": 17.75,
+   "texto": "Então, você troca o fio por luz. Uma lampadinha na ponta do controle pisca, e um sensor na TV vê a piscada.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.327
+    },
+    {
+     "w": "você",
+     "t": 11.047
+    },
+    {
+     "w": "troca",
+     "t": 11.33
+    },
+    {
+     "w": "o",
+     "t": 11.636
+    },
+    {
+     "w": "fio",
+     "t": 11.683
+    },
+    {
+     "w": "por",
+     "t": 11.931
+    },
+    {
+     "w": "luz",
+     "t": 12.12
+    },
+    {
+     "w": "Uma",
+     "t": 13.311
+    },
+    {
+     "w": "lampadinha",
+     "t": 13.511
+    },
+    {
+     "w": "na",
+     "t": 14.077
+    },
+    {
+     "w": "ponta",
+     "t": 14.219
+    },
+    {
+     "w": "do",
+     "t": 14.561
+    },
+    {
+     "w": "controle",
+     "t": 14.655
+    },
+    {
+     "w": "pisca",
+     "t": 15.08
+    },
+    {
+     "w": "e",
+     "t": 15.693
+    },
+    {
+     "w": "um",
+     "t": 15.764
+    },
+    {
+     "w": "sensor",
+     "t": 15.858
+    },
+    {
+     "w": "na",
+     "t": 16.33
+    },
+    {
+     "w": "TV",
+     "t": 16.447
+    },
+    {
+     "w": "vê",
+     "t": 16.766
+    },
+    {
+     "w": "a",
+     "t": 16.919
+    },
+    {
+     "w": "piscada",
+     "t": 17.002
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.9,
+   "fim": 34.47,
+   "texto": "Mas a sala tem lâmpada e tem sol, e a TV ia se confundir. Então, você usa uma luz que o olho não enxerga: o infravermelho. E faz ela piscar muito rápido, umas trinta e oito mil vezes por segundo. A TV só presta atenção nesse ritmo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 17.947
+    },
+    {
+     "w": "a",
+     "t": 18.148
+    },
+    {
+     "w": "sala",
+     "t": 18.301
+    },
+    {
+     "w": "tem",
+     "t": 18.619
+    },
+    {
+     "w": "lâmpada",
+     "t": 18.773
+    },
+    {
+     "w": "e",
+     "t": 19.185
+    },
+    {
+     "w": "tem",
+     "t": 19.256
+    },
+    {
+     "w": "sol",
+     "t": 19.421
+    },
+    {
+     "w": "e",
+     "t": 20.034
+    },
+    {
+     "w": "a",
+     "t": 20.129
+    },
+    {
+     "w": "TV",
+     "t": 20.223
+    },
+    {
+     "w": "ia",
+     "t": 20.518
+    },
+    {
+     "w": "se",
+     "t": 20.742
+    },
+    {
+     "w": "confundir",
+     "t": 20.86
+    },
+    {
+     "w": "Então",
+     "t": 22.24
+    },
+    {
+     "w": "você",
+     "t": 23.006
+    },
+    {
+     "w": "usa",
+     "t": 23.336
+    },
+    {
+     "w": "uma",
+     "t": 23.608
+    },
+    {
+     "w": "luz",
+     "t": 23.725
+    },
+    {
+     "w": "que",
+     "t": 24.044
+    },
+    {
+     "w": "o",
+     "t": 24.15
+    },
+    {
+     "w": "olho",
+     "t": 24.268
+    },
+    {
+     "w": "não",
+     "t": 24.539
+    },
+    {
+     "w": "enxerga",
+     "t": 24.716
+    },
+    {
+     "w": "o",
+     "t": 25.553
+    },
+    {
+     "w": "infravermelho",
+     "t": 25.648
+    },
+    {
+     "w": "E",
+     "t": 27.228
+    },
+    {
+     "w": "faz",
+     "t": 27.346
+    },
+    {
+     "w": "ela",
+     "t": 27.546
+    },
+    {
+     "w": "piscar",
+     "t": 27.817
+    },
+    {
+     "w": "muito",
+     "t": 28.148
+    },
+    {
+     "w": "rápido",
+     "t": 28.525
+    },
+    {
+     "w": "umas",
+     "t": 29.15
+    },
+    {
+     "w": "trinta",
+     "t": 29.421
+    },
+    {
+     "w": "e",
+     "t": 29.692
+    },
+    {
+     "w": "oito",
+     "t": 29.728
+    },
+    {
+     "w": "mil",
+     "t": 29.952
+    },
+    {
+     "w": "vezes",
+     "t": 30.164
+    },
+    {
+     "w": "por",
+     "t": 30.553
+    },
+    {
+     "w": "segundo",
+     "t": 30.695
+    },
+    {
+     "w": "A",
+     "t": 31.945
+    },
+    {
+     "w": "TV",
+     "t": 32.075
+    },
+    {
+     "w": "só",
+     "t": 32.405
+    },
+    {
+     "w": "presta",
+     "t": 32.593
+    },
+    {
+     "w": "atenção",
+     "t": 32.947
+    },
+    {
+     "w": "nesse",
+     "t": 33.454
+    },
+    {
+     "w": "ritmo",
+     "t": 33.761
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.62,
+   "fim": 46.72,
+   "texto": "Mas cada botão precisa dizer uma coisa diferente. Então, cada um vira um código: uma sequência de piscadas longas e curtas, como um código Morse. Volume é um, canal é outro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 34.667
+    },
+    {
+     "w": "cada",
+     "t": 34.962
+    },
+    {
+     "w": "botão",
+     "t": 35.221
+    },
+    {
+     "w": "precisa",
+     "t": 35.552
+    },
+    {
+     "w": "dizer",
+     "t": 35.953
+    },
+    {
+     "w": "uma",
+     "t": 36.236
+    },
+    {
+     "w": "coisa",
+     "t": 36.401
+    },
+    {
+     "w": "diferente",
+     "t": 36.731
+    },
+    {
+     "w": "Então",
+     "t": 38.134
+    },
+    {
+     "w": "cada",
+     "t": 38.783
+    },
+    {
+     "w": "um",
+     "t": 39.042
+    },
+    {
+     "w": "vira",
+     "t": 39.254
+    },
+    {
+     "w": "um",
+     "t": 39.467
+    },
+    {
+     "w": "código",
+     "t": 39.549
+    },
+    {
+     "w": "uma",
+     "t": 40.221
+    },
+    {
+     "w": "sequência",
+     "t": 40.398
+    },
+    {
+     "w": "de",
+     "t": 40.882
+    },
+    {
+     "w": "piscadas",
+     "t": 40.976
+    },
+    {
+     "w": "longas",
+     "t": 41.483
+    },
+    {
+     "w": "e",
+     "t": 41.849
+    },
+    {
+     "w": "curtas",
+     "t": 41.979
+    },
+    {
+     "w": "como",
+     "t": 42.698
+    },
+    {
+     "w": "um",
+     "t": 42.91
+    },
+    {
+     "w": "código",
+     "t": 43.016
+    },
+    {
+     "w": "Morse",
+     "t": 43.417
+    },
+    {
+     "w": "Volume",
+     "t": 44.655
+    },
+    {
+     "w": "é",
+     "t": 45.104
+    },
+    {
+     "w": "um",
+     "t": 45.151
+    },
+    {
+     "w": "canal",
+     "t": 45.622
+    },
+    {
+     "w": "é",
+     "t": 46.012
+    },
+    {
+     "w": "outro",
+     "t": 46.129
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 46.87,
+   "fim": 56.26,
+   "texto": "Quer ver essa luz? Aponte o controle pra câmera da frente do celular e aperte um botão. A câmera enxerga o infravermelho que o seu olho não vê.",
+   "palavras": [
+    {
+     "w": "Quer",
+     "t": 46.917
+    },
+    {
+     "w": "ver",
+     "t": 47.165
+    },
+    {
+     "w": "essa",
+     "t": 47.401
+    },
+    {
+     "w": "luz",
+     "t": 47.625
+    },
+    {
+     "w": "Aponte",
+     "t": 48.863
+    },
+    {
+     "w": "o",
+     "t": 49.346
+    },
+    {
+     "w": "controle",
+     "t": 49.382
+    },
+    {
+     "w": "pra",
+     "t": 49.83
+    },
+    {
+     "w": "câmera",
+     "t": 50.007
+    },
+    {
+     "w": "da",
+     "t": 50.361
+    },
+    {
+     "w": "frente",
+     "t": 50.479
+    },
+    {
+     "w": "do",
+     "t": 50.82
+    },
+    {
+     "w": "celular",
+     "t": 50.915
+    },
+    {
+     "w": "e",
+     "t": 51.445
+    },
+    {
+     "w": "aperte",
+     "t": 51.528
+    },
+    {
+     "w": "um",
+     "t": 52
+    },
+    {
+     "w": "botão",
+     "t": 52.082
+    },
+    {
+     "w": "A",
+     "t": 53.344
+    },
+    {
+     "w": "câmera",
+     "t": 53.486
+    },
+    {
+     "w": "enxerga",
+     "t": 53.839
+    },
+    {
+     "w": "o",
+     "t": 54.205
+    },
+    {
+     "w": "infravermelho",
+     "t": 54.24
+    },
+    {
+     "w": "que",
+     "t": 54.924
+    },
+    {
+     "w": "o",
+     "t": 55.019
+    },
+    {
+     "w": "seu",
+     "t": 55.066
+    },
+    {
+     "w": "olho",
+     "t": 55.361
+    },
+    {
+     "w": "não",
+     "t": 55.573
+    },
+    {
+     "w": "vê",
+     "t": 55.785
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 56.41,
+   "fim": 62.92,
+   "texto": "Coloque pilhas e uma borracha embaixo dos botões. Parabéns, você construiu um controle remoto.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 56.457
+    },
+    {
+     "w": "pilhas",
+     "t": 56.952
+    },
+    {
+     "w": "e",
+     "t": 57.306
+    },
+    {
+     "w": "uma",
+     "t": 57.424
+    },
+    {
+     "w": "borracha",
+     "t": 57.566
+    },
+    {
+     "w": "embaixo",
+     "t": 58.049
+    },
+    {
+     "w": "dos",
+     "t": 58.509
+    },
+    {
+     "w": "botões",
+     "t": 58.662
+    },
+    {
+     "w": "Parabéns",
+     "t": 60.089
+    },
+    {
+     "w": "você",
+     "t": 60.844
+    },
+    {
+     "w": "construiu",
+     "t": 61.151
+    },
+    {
+     "w": "um",
+     "t": 61.658
+    },
+    {
+     "w": "controle",
+     "t": 61.776
+    },
+    {
+     "w": "remoto",
+     "t": 62.212
+    }
+   ]
+  }
+ ]
+}
