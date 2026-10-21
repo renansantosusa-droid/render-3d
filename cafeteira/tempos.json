@@ -1,0 +1,861 @@
+{
+ "total": 71.3,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.42,
+   "texto": "Se você jogar água quente no pó de café, terá um café.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "jogar",
+     "t": 0.645
+    },
+    {
+     "w": "água",
+     "t": 0.964
+    },
+    {
+     "w": "quente",
+     "t": 1.235
+    },
+    {
+     "w": "no",
+     "t": 1.506
+    },
+    {
+     "w": "pó",
+     "t": 1.612
+    },
+    {
+     "w": "de",
+     "t": 1.766
+    },
+    {
+     "w": "café",
+     "t": 1.872
+    },
+    {
+     "w": "terá",
+     "t": 2.473
+    },
+    {
+     "w": "um",
+     "t": 2.685
+    },
+    {
+     "w": "café",
+     "t": 2.78
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.57,
+   "fim": 8.54,
+   "texto": "Mas demora. Suja a pia. E cada dia sai de um jeito.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.617
+    },
+    {
+     "w": "demora",
+     "t": 3.888
+    },
+    {
+     "w": "Suja",
+     "t": 5.174
+    },
+    {
+     "w": "a",
+     "t": 5.587
+    },
+    {
+     "w": "pia",
+     "t": 5.634
+    },
+    {
+     "w": "E",
+     "t": 6.789
+    },
+    {
+     "w": "cada",
+     "t": 6.919
+    },
+    {
+     "w": "dia",
+     "t": 7.19
+    },
+    {
+     "w": "sai",
+     "t": 7.438
+    },
+    {
+     "w": "de",
+     "t": 7.733
+    },
+    {
+     "w": "um",
+     "t": 7.827
+    },
+    {
+     "w": "jeito",
+     "t": 7.921
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 8.69,
+   "fim": 16.19,
+   "texto": "Então, você fecha a dose certa de café, moído e prensado, numa cápsula de alumínio sem ar, pra ele não perder o aroma.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 8.737
+    },
+    {
+     "w": "você",
+     "t": 9.492
+    },
+    {
+     "w": "fecha",
+     "t": 9.751
+    },
+    {
+     "w": "a",
+     "t": 10.07
+    },
+    {
+     "w": "dose",
+     "t": 10.117
+    },
+    {
+     "w": "certa",
+     "t": 10.447
+    },
+    {
+     "w": "de",
+     "t": 10.801
+    },
+    {
+     "w": "café",
+     "t": 10.895
+    },
+    {
+     "w": "moído",
+     "t": 11.567
+    },
+    {
+     "w": "e",
+     "t": 11.98
+    },
+    {
+     "w": "prensado",
+     "t": 12.027
+    },
+    {
+     "w": "numa",
+     "t": 12.841
+    },
+    {
+     "w": "cápsula",
+     "t": 13.089
+    },
+    {
+     "w": "de",
+     "t": 13.56
+    },
+    {
+     "w": "alumínio",
+     "t": 13.631
+    },
+    {
+     "w": "sem",
+     "t": 14.02
+    },
+    {
+     "w": "ar",
+     "t": 14.244
+    },
+    {
+     "w": "pra",
+     "t": 14.586
+    },
+    {
+     "w": "ele",
+     "t": 14.775
+    },
+    {
+     "w": "não",
+     "t": 14.928
+    },
+    {
+     "w": "perder",
+     "t": 15.117
+    },
+    {
+     "w": "o",
+     "t": 15.494
+    },
+    {
+     "w": "aroma",
+     "t": 15.577
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 16.34,
+   "fim": 31.7,
+   "texto": "Mas água escorrendo devagar não tira o melhor do café. Então, você coloca uma bomba que empurra a água com força, umas nove vezes a pressão do ar à sua volta. É a pressão do expresso. E é essa bomba que faz aquele barulho alto.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 16.387
+    },
+    {
+     "w": "água",
+     "t": 16.588
+    },
+    {
+     "w": "escorrendo",
+     "t": 16.906
+    },
+    {
+     "w": "devagar",
+     "t": 17.378
+    },
+    {
+     "w": "não",
+     "t": 17.838
+    },
+    {
+     "w": "tira",
+     "t": 18.015
+    },
+    {
+     "w": "o",
+     "t": 18.25
+    },
+    {
+     "w": "melhor",
+     "t": 18.286
+    },
+    {
+     "w": "do",
+     "t": 18.604
+    },
+    {
+     "w": "café",
+     "t": 18.71
+    },
+    {
+     "w": "Então",
+     "t": 19.925
+    },
+    {
+     "w": "você",
+     "t": 20.715
+    },
+    {
+     "w": "coloca",
+     "t": 20.986
+    },
+    {
+     "w": "uma",
+     "t": 21.423
+    },
+    {
+     "w": "bomba",
+     "t": 21.576
+    },
+    {
+     "w": "que",
+     "t": 21.989
+    },
+    {
+     "w": "empurra",
+     "t": 22.107
+    },
+    {
+     "w": "a",
+     "t": 22.543
+    },
+    {
+     "w": "água",
+     "t": 22.59
+    },
+    {
+     "w": "com",
+     "t": 22.885
+    },
+    {
+     "w": "força",
+     "t": 23.073
+    },
+    {
+     "w": "umas",
+     "t": 23.769
+    },
+    {
+     "w": "nove",
+     "t": 24.064
+    },
+    {
+     "w": "vezes",
+     "t": 24.382
+    },
+    {
+     "w": "a",
+     "t": 24.713
+    },
+    {
+     "w": "pressão",
+     "t": 24.842
+    },
+    {
+     "w": "do",
+     "t": 25.22
+    },
+    {
+     "w": "ar",
+     "t": 25.349
+    },
+    {
+     "w": "à",
+     "t": 25.503
+    },
+    {
+     "w": "sua",
+     "t": 25.55
+    },
+    {
+     "w": "volta",
+     "t": 25.833
+    },
+    {
+     "w": "É",
+     "t": 26.989
+    },
+    {
+     "w": "a",
+     "t": 27.177
+    },
+    {
+     "w": "pressão",
+     "t": 27.248
+    },
+    {
+     "w": "do",
+     "t": 27.637
+    },
+    {
+     "w": "expresso",
+     "t": 27.767
+    },
+    {
+     "w": "E",
+     "t": 29.111
+    },
+    {
+     "w": "é",
+     "t": 29.229
+    },
+    {
+     "w": "essa",
+     "t": 29.335
+    },
+    {
+     "w": "bomba",
+     "t": 29.607
+    },
+    {
+     "w": "que",
+     "t": 29.996
+    },
+    {
+     "w": "faz",
+     "t": 30.125
+    },
+    {
+     "w": "aquele",
+     "t": 30.302
+    },
+    {
+     "w": "barulho",
+     "t": 30.668
+    },
+    {
+     "w": "alto",
+     "t": 31.116
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.85,
+   "fim": 41.62,
+   "texto": "Mas a água precisa chegar quente na hora. Então, você coloca um bloco de metal com uma resistência, que esquenta a água enquanto ela passa, em poucos segundos.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 31.897
+    },
+    {
+     "w": "a",
+     "t": 32.109
+    },
+    {
+     "w": "água",
+     "t": 32.251
+    },
+    {
+     "w": "precisa",
+     "t": 32.546
+    },
+    {
+     "w": "chegar",
+     "t": 32.947
+    },
+    {
+     "w": "quente",
+     "t": 33.289
+    },
+    {
+     "w": "na",
+     "t": 33.607
+    },
+    {
+     "w": "hora",
+     "t": 33.749
+    },
+    {
+     "w": "Então",
+     "t": 34.834
+    },
+    {
+     "w": "você",
+     "t": 35.624
+    },
+    {
+     "w": "coloca",
+     "t": 35.883
+    },
+    {
+     "w": "um",
+     "t": 36.272
+    },
+    {
+     "w": "bloco",
+     "t": 36.343
+    },
+    {
+     "w": "de",
+     "t": 36.685
+    },
+    {
+     "w": "metal",
+     "t": 36.767
+    },
+    {
+     "w": "com",
+     "t": 37.145
+    },
+    {
+     "w": "uma",
+     "t": 37.286
+    },
+    {
+     "w": "resistência",
+     "t": 37.404
+    },
+    {
+     "w": "que",
+     "t": 38.336
+    },
+    {
+     "w": "esquenta",
+     "t": 38.442
+    },
+    {
+     "w": "a",
+     "t": 38.855
+    },
+    {
+     "w": "água",
+     "t": 38.902
+    },
+    {
+     "w": "enquanto",
+     "t": 39.173
+    },
+    {
+     "w": "ela",
+     "t": 39.468
+    },
+    {
+     "w": "passa",
+     "t": 39.657
+    },
+    {
+     "w": "em",
+     "t": 40.27
+    },
+    {
+     "w": "poucos",
+     "t": 40.423
+    },
+    {
+     "w": "segundos",
+     "t": 40.812
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 41.77,
+   "fim": 54.7,
+   "texto": "Mas a cápsula é fechada. Então, quando você baixa a alavanca, agulhas furam a cápsula por trás. E a pressão empurra o alumínio da frente contra uma grade com relevo, até ele rasgar em vários furinhos.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 41.817
+    },
+    {
+     "w": "a",
+     "t": 42.018
+    },
+    {
+     "w": "cápsula",
+     "t": 42.183
+    },
+    {
+     "w": "é",
+     "t": 42.666
+    },
+    {
+     "w": "fechada",
+     "t": 42.737
+    },
+    {
+     "w": "Então",
+     "t": 44.117
+    },
+    {
+     "w": "quando",
+     "t": 44.86
+    },
+    {
+     "w": "você",
+     "t": 45.084
+    },
+    {
+     "w": "baixa",
+     "t": 45.355
+    },
+    {
+     "w": "a",
+     "t": 45.697
+    },
+    {
+     "w": "alavanca",
+     "t": 45.72
+    },
+    {
+     "w": "agulhas",
+     "t": 46.452
+    },
+    {
+     "w": "furam",
+     "t": 46.9
+    },
+    {
+     "w": "a",
+     "t": 47.183
+    },
+    {
+     "w": "cápsula",
+     "t": 47.242
+    },
+    {
+     "w": "por",
+     "t": 47.702
+    },
+    {
+     "w": "trás",
+     "t": 47.879
+    },
+    {
+     "w": "E",
+     "t": 49.117
+    },
+    {
+     "w": "a",
+     "t": 49.235
+    },
+    {
+     "w": "pressão",
+     "t": 49.317
+    },
+    {
+     "w": "empurra",
+     "t": 49.706
+    },
+    {
+     "w": "o",
+     "t": 50.084
+    },
+    {
+     "w": "alumínio",
+     "t": 50.131
+    },
+    {
+     "w": "da",
+     "t": 50.508
+    },
+    {
+     "w": "frente",
+     "t": 50.626
+    },
+    {
+     "w": "contra",
+     "t": 50.992
+    },
+    {
+     "w": "uma",
+     "t": 51.298
+    },
+    {
+     "w": "grade",
+     "t": 51.44
+    },
+    {
+     "w": "com",
+     "t": 51.805
+    },
+    {
+     "w": "relevo",
+     "t": 51.947
+    },
+    {
+     "w": "até",
+     "t": 52.713
+    },
+    {
+     "w": "ele",
+     "t": 52.937
+    },
+    {
+     "w": "rasgar",
+     "t": 53.055
+    },
+    {
+     "w": "em",
+     "t": 53.421
+    },
+    {
+     "w": "vários",
+     "t": 53.527
+    },
+    {
+     "w": "furinhos",
+     "t": 53.881
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 54.85,
+   "fim": 62.78,
+   "texto": "O café sai espremido por esses furinhos. O gás e o óleo do café viram bolhinhas: é a crema, aquela espuma clarinha por cima.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 54.897
+    },
+    {
+     "w": "café",
+     "t": 55.015
+    },
+    {
+     "w": "sai",
+     "t": 55.369
+    },
+    {
+     "w": "espremido",
+     "t": 55.628
+    },
+    {
+     "w": "por",
+     "t": 56.183
+    },
+    {
+     "w": "esses",
+     "t": 56.324
+    },
+    {
+     "w": "furinhos",
+     "t": 56.584
+    },
+    {
+     "w": "O",
+     "t": 57.975
+    },
+    {
+     "w": "gás",
+     "t": 58.105
+    },
+    {
+     "w": "e",
+     "t": 58.364
+    },
+    {
+     "w": "o",
+     "t": 58.506
+    },
+    {
+     "w": "óleo",
+     "t": 58.6
+    },
+    {
+     "w": "do",
+     "t": 58.871
+    },
+    {
+     "w": "café",
+     "t": 58.977
+    },
+    {
+     "w": "viram",
+     "t": 59.319
+    },
+    {
+     "w": "bolhinhas",
+     "t": 59.508
+    },
+    {
+     "w": "é",
+     "t": 60.275
+    },
+    {
+     "w": "a",
+     "t": 60.369
+    },
+    {
+     "w": "crema",
+     "t": 60.44
+    },
+    {
+     "w": "aquela",
+     "t": 61.006
+    },
+    {
+     "w": "espuma",
+     "t": 61.265
+    },
+    {
+     "w": "clarinha",
+     "t": 61.572
+    },
+    {
+     "w": "por",
+     "t": 61.996
+    },
+    {
+     "w": "cima",
+     "t": 62.15
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.93,
+   "fim": 70.7,
+   "texto": "Coloque um reservatório de água e uma gaveta pras cápsulas usadas. Parabéns, você construiu uma cafeteira de cápsula.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 62.977
+    },
+    {
+     "w": "um",
+     "t": 63.472
+    },
+    {
+     "w": "reservatório",
+     "t": 63.567
+    },
+    {
+     "w": "de",
+     "t": 64.227
+    },
+    {
+     "w": "água",
+     "t": 64.369
+    },
+    {
+     "w": "e",
+     "t": 64.77
+    },
+    {
+     "w": "uma",
+     "t": 64.852
+    },
+    {
+     "w": "gaveta",
+     "t": 64.994
+    },
+    {
+     "w": "pras",
+     "t": 65.43
+    },
+    {
+     "w": "cápsulas",
+     "t": 65.678
+    },
+    {
+     "w": "usadas",
+     "t": 66.161
+    },
+    {
+     "w": "Parabéns",
+     "t": 67.6
+    },
+    {
+     "w": "você",
+     "t": 68.402
+    },
+    {
+     "w": "construiu",
+     "t": 68.697
+    },
+    {
+     "w": "uma",
+     "t": 69.204
+    },
+    {
+     "w": "cafeteira",
+     "t": 69.333
+    },
+    {
+     "w": "de",
+     "t": 69.864
+    },
+    {
+     "w": "cápsula",
+     "t": 69.97
+    }
+   ]
+  }
+ ]
+}

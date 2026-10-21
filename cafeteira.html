@@ -1,0 +1,157 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("cafeteira", { fundo: 0xefe2cc, seed: 4242 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+// ---------- cozinha ----------
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: grade("#e8e0d2", "#cfc4b0", 64, 12) }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(12, 6), mat(0xffffff, { map: grade("#f6f1ea", "#d8cfc2", 42, 10) }), 0, 3, -1.2);
+add(new THREE.BoxGeometry(5, .9, 1.6), mat(0xffffff, { map: texMadeira("#7a5232", 2) }), 0, .45, -.3);
+add(new THREE.BoxGeometry(5.1, .06, 1.7), mat(0xf2f2f2, { roughness: .25 }), 0, .93, -.3);
+const Y0 = .96;
+// ---------- café "na mão" (cenas 1-2) ----------
+const xm = -1.0, zm = .2;
+const xicaraM = add(new THREE.CylinderGeometry(.06, .05, .09, 24, 1, true), mat(0xffffff, { side: THREE.DoubleSide }), xm, Y0 + .045, zm);
+const cafeM = add(new THREE.CylinderGeometry(.056, .05, .01, 24), mat(0x4a2a14), xm, Y0 + .01, zm);
+const coador = add(new THREE.CylinderGeometry(.08, .02, .12, 24, 1, true), mat(0xf4e8c8, { side: THREE.DoubleSide, roughness: .9 }), xm, Y0 + .17, zm);
+add(new THREE.CylinderGeometry(.05, .015, .05, 20), mat(0x3a2210), xm, Y0 + .145, zm);
+const jato = Array.from({ length: 18 }, () => ({ s: sprite(0x9ad0ff), f: rnd() }));
+const pingos = Array.from({ length: 8 }, () => ({ s: sprite(0x5a3018), f: rnd() }));
+const manchas = Array.from({ length: 7 }, (_, i) => { const m = add(new THREE.CircleGeometry(.03 + rnd() * .04, 18), new THREE.MeshBasicMaterial({ color: 0x5a3018, transparent: true, opacity: 0 }), xm - .25 + rnd() * .5, Y0 + .002, zm - .1 + rnd() * .25); m.rotation.x = -Math.PI / 2; return m; });
+const xicaras3 = [0x2a1408, 0x8a5a30, 0xc8a070].map((c, i) => { const g = grupo(xm - .22 + i * .22, Y0, zm + .05); add(new THREE.CylinderGeometry(.05, .042, .075, 20, 1, true), mat(0xffffff, { side: THREE.DoubleSide }), 0, .037, 0, g); add(new THREE.CylinderGeometry(.047, .047, .005, 20), mat(c), 0, .06, 0, g); g.visible = false; return g; });
+
+// ---------- máquina ----------
+const mCorpo = new THREE.MeshStandardMaterial({ color: 0x24272c, roughness: .35, transparent: true, opacity: 1 });
+const corpo = add(new THREE.BoxGeometry(.26, .42, .36), mCorpo, 0, Y0 + .25, -.04);
+const cabeca = add(new THREE.BoxGeometry(.26, .1, .14), mCorpo, 0, Y0 + .41, .19);
+const bandeja = add(new THREE.BoxGeometry(.24, .03, .16), mat(0x9aa0a8, { metalness: .8, roughness: .3 }), 0, Y0 + .015, .2);
+const bico = add(new THREE.CylinderGeometry(.014, .01, .03, 12), mat(0x9aa0a8, { metalness: .8 }), 0, Y0 + .345, .2);
+const alavancaG = grupo(0, Y0 + .465, .13);
+add(new THREE.BoxGeometry(.2, .02, .16), mat(0xc0c6cc, { metalness: .8, roughness: .25 }), 0, 0, .07, alavancaG);
+const tanque = add(new THREE.BoxGeometry(.2, .36, .1), vidro(.25, 0xbfe0ff), 0, Y0 + .2, -.3);
+const aguaT = add(new THREE.BoxGeometry(.18, .26, .08), new THREE.MeshStandardMaterial({ color: 0x5aa0ff, transparent: true, opacity: .35, depthWrite: false }), 0, Y0 + .15, -.3);
+tanque.visible = aguaT.visible = false;
+const gaveta = add(new THREE.BoxGeometry(.2, .07, .12), mat(0x3a3f48), 0, Y0 + .08, .09); gaveta.visible = false;
+const usadas = [0, 1, 2].map((i) => { const m = add(new THREE.CylinderGeometry(.018, .03, .03, 16), mat([0xc83a3a, 0x3a6ac8, 0xd4a020][i], { metalness: .7, roughness: .3 }), -.05 + i * .05, Y0 + .13, .09 + (i % 2) * .02); m.visible = false; return m; });
+// por dentro: bomba e bloco aquecedor
+const dentro = grupo(0, 0, 0);
+const bomba = grupo(0, Y0 + .12, -.08, dentro);
+add(new THREE.CylinderGeometry(.035, .035, .12, 16), mat(0x3a6ac8, { metalness: .4 }), 0, 0, 0, bomba).rotation.z = Math.PI / 2;
+add(new THREE.TorusGeometry(.036, .008, 6, 16), mat(0xc87a3a, { metalness: .6 }), -.03, 0, 0, bomba).rotation.y = Math.PI / 2;
+add(new THREE.TorusGeometry(.036, .008, 6, 16), mat(0xc87a3a, { metalness: .6 }), .03, 0, 0, bomba).rotation.y = Math.PI / 2;
+const bloco = add(new THREE.BoxGeometry(.12, .07, .09), mat(0xb8bec6, { metalness: .8, roughness: .3 }), 0, Y0 + .27, -.02, dentro);
+const mRes = mat(0x552211, { emissive: 0xff3a10, emissiveIntensity: 0 });
+const resist = add(new THREE.TorusGeometry(.05, .007, 6, 24), mRes, 0, Y0 + .27, .028, dentro);
+const caminho = new THREE.CatmullRomCurve3([V(0, Y0 + .05, -.26), V(0, Y0 + .06, -.16), V(-.06, Y0 + .12, -.08), V(.06, Y0 + .12, -.08), V(.03, Y0 + .2, -.05), V(0, Y0 + .27, -.02), V(0, Y0 + .36, .08), V(0, Y0 + .4, .17)]);
+add(new THREE.TubeGeometry(caminho, 80, .006, 6), mat(0xd8dde2, { metalness: .5 }), 0, 0, 0, dentro);
+const aguaFria = K.fluxo(new THREE.CatmullRomCurve3(caminho.getPoints(40).slice(0, 26)), 20, 0x5aa0ff);
+const aguaQuente = K.fluxo(new THREE.CatmullRomCurve3(caminho.getPoints(40).slice(25)), 14, 0xff5a2a);
+// xícara da máquina
+const xic = grupo(0, Y0 + .03, .2);
+add(new THREE.CylinderGeometry(.045, .038, .07, 24, 1, true), mat(0xffffff, { side: THREE.DoubleSide }), 0, .035, 0, xic);
+add(new THREE.CylinderGeometry(.038, .038, .004, 24), mat(0xffffff), 0, .002, 0, xic);
+const cafeX = add(new THREE.CylinderGeometry(.042, .037, 1, 24), mat(0x3a1e0c), 0, .01, 0, xic);
+const crema = add(new THREE.CylinderGeometry(.043, .043, .008, 24), mat(0xc8904a, { roughness: .8 }), 0, .02, 0, xic);
+const filete = add(new THREE.CylinderGeometry(.004, .004, .25, 8), mat(0x4a2610), 0, Y0 + .21, .2);
+const bolhas = Array.from({ length: 30 }, () => ({ s: sprite(0xf0d0a0, xic), a: rnd() * 6.28, r: rnd() * .035, f: rnd() }));
+
+// ---------- mini set: a cápsula por dentro ----------
+const QX = 100, QY = 1.3;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1c232e), QX, 1, -1.2);
+const cap = grupo(QX, QY, 0);
+const mAl = new THREE.MeshStandardMaterial({ color: 0xc8343a, metalness: .75, roughness: .3, side: THREE.DoubleSide });
+add(new THREE.CylinderGeometry(.16, .3, .36, 40, 1, true, Math.PI / 2, Math.PI), mAl, 0, 0, 0, cap);
+add(new THREE.CircleGeometry(.16, 40, 0, Math.PI), mAl, 0, .18, 0, cap).rotation.x = -Math.PI / 2;
+add(new THREE.CylinderGeometry(.38, .38, .02, 40, 1, false, Math.PI / 2, Math.PI), mAl, 0, -.18, 0, cap);
+const po = add(new THREE.CylinderGeometry(.15, .285, .34, 40, 1, false, Math.PI / 2, Math.PI), mat(0xffffff, { map: texRuido("#6a3a18", 60, 2), roughness: 1, side: THREE.DoubleSide }), 0, 0, -.005, cap);
+const foil = add(new THREE.SphereGeometry(.29, 40, 12, 0, Math.PI * 2, Math.PI / 2, .35), mat(0xd8d8de, { metalness: .9, roughness: .25, side: THREE.DoubleSide }), 0, -.19, 0, cap);
+foil.scale.y = .02;
+const furos = Array.from({ length: 22 }, () => { const a = rnd() * 6.28, r = rnd() * .22; const m = add(new THREE.CircleGeometry(.018, 10), brilho(0x111111), Math.cos(a) * r, -.205, Math.sin(a) * r, cap); m.rotation.x = Math.PI / 2; m.visible = false; return m; });
+const grade3 = grupo(QX, QY - .32, 0);
+add(new THREE.CylinderGeometry(.34, .34, .03, 40), mat(0x6a7078, { metalness: .8 }), 0, -.02, 0, grade3);
+for (let i = -3; i <= 3; i++) for (let j = -3; j <= 3; j++) { if (i * i + j * j > 10) continue; const p = add(new THREE.ConeGeometry(.035, .05, 4), mat(0x8a9098, { metalness: .8 }), i * .075, .02, j * .075, grade3); p.rotation.y = Math.PI / 4; }
+const agulhas = grupo(QX, QY + .5, 0);
+[-.07, 0, .07].forEach((x) => { const a = add(new THREE.ConeGeometry(.012, .2, 8), mat(0xe0e4e8, { metalness: .95, roughness: .1 }), x, 0, 0, agulhas); a.rotation.x = Math.PI; });
+const jatoCap = Array.from({ length: 16 }, () => ({ s: sprite(0xff6a3a), f: rnd(), x: (rnd() - .5) * .16 }));
+const gotasCap = Array.from({ length: 24 }, () => ({ s: sprite(0x6a3a18), f: rnd(), x: (rnd() - .5) * .4, z: (rnd() - .5) * .4 }));
+const semAr = K.sprite(0xffffff);
+
+// ---------- câmera ----------
+K.camera_({
+  mao: [V(-.6, 1.4, 1.25), V(xm, 1.08, zm)],
+  tres: [V(-.95, 1.35, 1.15), V(xm, 1.03, zm)],
+  capsula: [V(QX + .5, QY + .35, 2.6), V(QX, QY - .05, 0)],
+  geral: [V(.75, 1.45, 1.65), V(0, 1.2, 0)],
+  dentro: [V(.6, 1.32, 1.1), V(0, 1.15, -.06)],
+  alav: [V(.45, 1.62, .95), V(0, 1.36, .1)],
+  xic: [V(.3, 1.25, .75), V(0, 1.05, .2)],
+  fim: [V(-.7, 1.5, 1.6), V(0, 1.2, 0)],
+}, [
+  [0, "mao"], [P(2, "jeito") - .5, "mao"], [P(2, "jeito") - .45, "tres"], [F(2), "tres"],
+  [C(3), "capsula"], [F(3), "capsula"],
+  [C(4), "geral"], [P(4, "bomba") - .3, "geral"], [P(4, "bomba") + .3, "dentro"], [F(5), "dentro"],
+  [C(6), "alav"], [P(6, "agulhas") - .3, "alav"], [P(6, "agulhas") - .25, "capsula"], [F(6), "capsula"],
+  [C(7), "capsula"], [P(7, "crema") - .5, "capsula"], [P(7, "crema") - .45, "xic"], [F(7), "xic"],
+  [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // cena 1-2: café no coador
+  jato.forEach((j) => { const k = frac(t * 1.3 + j.f); j.s.position.set(xm + (j.f - .5) * .015, Y0 + .55 - k * .32, zm); j.s.scale.set(.02, .04, 1); j.s.material.opacity = t < P(2, "jeito") - .5 ? .9 : 0; });
+  pingos.forEach((p) => { const k = frac(t * 1.5 + p.f); p.s.position.set(xm, Y0 + .12 - k * .1, zm); p.s.scale.setScalar(.012); p.s.material.opacity = t < P(2, "jeito") - .5 ? .9 : 0; });
+  cafeM.scale.y = 1 + 5 * lin(t, 0, P(2, "demora")); cafeM.position.y = Y0 + .005 + .025 * lin(t, 0, P(2, "demora"));
+  const sujo = prog(t, P(2, "suja") - .2, P(2, "pia") + .3);
+  manchas.forEach((m, i) => m.material.opacity = sujo * (i / 7 < sujo ? .85 : 0));
+  const tres = em(P(2, "jeito") - .45, C(3));
+  xicaras3.forEach((g) => g.visible = tres); xicaraM.visible = coador.visible = cafeM.visible = !tres;
+  // máquina: corpo transparente pra ver por dentro
+  const verDentro = em(P(4, "bomba") + .3, F(5));
+  mCorpo.opacity = verDentro ? .18 : 1; mCorpo.depthWrite = !verDentro; dentro.visible = verDentro;
+  const bombaOn = em(P(4, "bomba"), F(5)) || em(P(6, "pressao"), F(7));
+  bomba.position.x = bombaOn && em(P(4, "barulho") - .3, F(4)) ? Math.sin(t * 90) * .006 : 0;
+  aguaFria.atualiza(t, verDentro, .9, .02); aguaQuente.atualiza(t, verDentro && t > P(5, "resistencia") - .2, .9, .022);
+  mRes.emissiveIntensity = em(P(5, "resistencia") - .2, F(5)) ? 1 + .4 * Math.sin(t * 10) : 0;
+  // alavanca
+  alavancaG.rotation.x = -.9 * (1 - prog(t, P(6, "alavanca") - .2, P(6, "alavanca") + .4)) * (t > C(6) - 1 ? 1 : 0) + (t < C(6) - 1 ? 0 : 0);
+  // cápsula por dentro
+  const desce = prog(t, P(6, "furam") - .3, P(6, "furam") + .2);
+  agulhas.position.y = QY + .5 - .26 * desce;
+  const empurra = prog(t, P(6, "empurra") - .2, P(6, "rasgar"));
+  foil.scale.y = .02 + .3 * empurra; foil.position.y = -.19 - .04 * empurra;
+  const rasgou = t > P(6, "rasgar") + .1;
+  furos.forEach((f, i) => f.visible = rasgou && i / furos.length < prog(t, P(6, "rasgar"), P(6, "furinhos") + .3));
+  jatoCap.forEach((j) => { const k = frac(t * 1.4 + j.f); j.s.position.set(QX + j.x, QY + .25 - k * .35, .05); j.s.scale.setScalar(.035); j.s.material.opacity = em(P(6, "pressao") - .2, F(7)) ? .9 : 0; });
+  gotasCap.forEach((g) => { const k = frac(t * 1.2 + g.f); g.s.position.set(QX + g.x, QY - .36 - k * .6, g.z + .2); g.s.scale.set(.025, .05, 1); g.s.material.opacity = rasgou && t < F(7) ? .95 : 0; });
+  // xícara enchendo + crema
+  const enche = prog(t, C(7), P(7, "crema"));
+  filete.visible = em(C(7), P(7, "crema") + .5);
+  cafeX.scale.y = .002 + .055 * enche; cafeX.position.y = .004 + .0275 * enche;
+  crema.visible = t > P(7, "bolhinhas") - .3; crema.position.y = .006 + .055 * enche;
+  bolhas.forEach((b) => { const a = b.a + t * .3; b.s.position.set(Math.cos(a) * b.r, .063 + Math.sin(t * 3 + b.f * 9) * .002, Math.sin(a) * b.r); b.s.scale.setScalar(.008 + b.f * .006); b.s.material.opacity = em(P(7, "bolhinhas") - .3, F(7)) ? .9 : 0; });
+  // acabamentos
+  tanque.visible = aguaT.visible = t > C(4);
+  gaveta.visible = t > P(8, "gaveta") - .3; usadas.forEach((u) => u.visible = gaveta.visible && false);
+  K.cartoes(t, [
+    [P(2, "demora") - .3, P(2, "suja") - .3, "DEMORA", "#ff9a5a"],
+    [P(2, "suja") - .3, P(2, "jeito") - .5, "SUJA TUDO", "#ff4a3a"],
+    [P(2, "jeito") - .45, F(2), "CADA DIA UM CAFÉ", "#ffd23a"],
+    [P(3, "dose") - .3, P(3, "aluminio") - .3, "DOSE CERTA", "#ffd23a"],
+    [P(3, "aluminio") - .3, F(3), "SEM AR = AROMA PRESO", "#3aff7a"],
+    [P(4, "nove") - .3, P(4, "barulho") - .5, "9x A PRESSÃO DO AR", "#5aa0ff"],
+    [P(4, "barulho") - .5, F(4), "BRRRRR", "#ffffff"],
+    [P(5, "resistencia") - .3, F(5), "ESQUENTA NA PASSAGEM", "#ff5a2a"],
+    [P(6, "agulhas") - .25, P(6, "empurra") - .3, "AGULHAS", "#e0e4e8"],
+    [P(6, "grade") - .3, P(6, "rasgar") - .2, "GRADE COM RELEVO", "#ffd23a"],
+    [P(6, "rasgar") - .2, F(6), "RASGA EM FURINHOS", "#ff9a5a"],
+    [P(7, "crema") - .45, F(7), "CREMA", "#e8b878"],
+  ]);
+});
+</script>
+</body></html>
