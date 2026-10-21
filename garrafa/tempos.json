@@ -1,0 +1,805 @@
+{
+ "total": 66.45,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.13,
+   "texto": "Se você colocar café quente numa garrafa, terá uma garrafa de café.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "colocar",
+     "t": 0.681
+    },
+    {
+     "w": "café",
+     "t": 1.129
+    },
+    {
+     "w": "quente",
+     "t": 1.424
+    },
+    {
+     "w": "numa",
+     "t": 1.695
+    },
+    {
+     "w": "garrafa",
+     "t": 1.86
+    },
+    {
+     "w": "terá",
+     "t": 2.556
+    },
+    {
+     "w": "uma",
+     "t": 2.78
+    },
+    {
+     "w": "garrafa",
+     "t": 2.933
+    },
+    {
+     "w": "de",
+     "t": 3.393
+    },
+    {
+     "w": "café",
+     "t": 3.487
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.28,
+   "fim": 10.44,
+   "texto": "Mas em meia hora ele esfria. O calor foge pela parede. E foge pela tampa.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.327
+    },
+    {
+     "w": "em",
+     "t": 4.528
+    },
+    {
+     "w": "meia",
+     "t": 4.681
+    },
+    {
+     "w": "hora",
+     "t": 4.976
+    },
+    {
+     "w": "ele",
+     "t": 5.247
+    },
+    {
+     "w": "esfria",
+     "t": 5.365
+    },
+    {
+     "w": "O",
+     "t": 6.639
+    },
+    {
+     "w": "calor",
+     "t": 6.756
+    },
+    {
+     "w": "foge",
+     "t": 7.134
+    },
+    {
+     "w": "pela",
+     "t": 7.523
+    },
+    {
+     "w": "parede",
+     "t": 7.747
+    },
+    {
+     "w": "E",
+     "t": 9.021
+    },
+    {
+     "w": "foge",
+     "t": 9.15
+    },
+    {
+     "w": "pela",
+     "t": 9.563
+    },
+    {
+     "w": "tampa",
+     "t": 9.811
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.59,
+   "fim": 16.94,
+   "texto": "O calor escapa de três jeitos: encostando nas coisas, pelo ar que circula, e como uma luz invisível.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 10.637
+    },
+    {
+     "w": "calor",
+     "t": 10.743
+    },
+    {
+     "w": "escapa",
+     "t": 11.085
+    },
+    {
+     "w": "de",
+     "t": 11.474
+    },
+    {
+     "w": "três",
+     "t": 11.592
+    },
+    {
+     "w": "jeitos",
+     "t": 11.899
+    },
+    {
+     "w": "encostando",
+     "t": 12.607
+    },
+    {
+     "w": "nas",
+     "t": 13.149
+    },
+    {
+     "w": "coisas",
+     "t": 13.349
+    },
+    {
+     "w": "pelo",
+     "t": 14.057
+    },
+    {
+     "w": "ar",
+     "t": 14.293
+    },
+    {
+     "w": "que",
+     "t": 14.446
+    },
+    {
+     "w": "circula",
+     "t": 14.564
+    },
+    {
+     "w": "e",
+     "t": 15.319
+    },
+    {
+     "w": "como",
+     "t": 15.413
+    },
+    {
+     "w": "uma",
+     "t": 15.673
+    },
+    {
+     "w": "luz",
+     "t": 15.838
+    },
+    {
+     "w": "invisível",
+     "t": 16.05
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.09,
+   "fim": 28.2,
+   "texto": "Então, você faz duas paredes, uma dentro da outra. E tira todo o ar do meio: o vácuo. Sem ar, não tem nada pra levar o calor de uma parede pra outra.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 17.137
+    },
+    {
+     "w": "você",
+     "t": 17.904
+    },
+    {
+     "w": "faz",
+     "t": 18.163
+    },
+    {
+     "w": "duas",
+     "t": 18.423
+    },
+    {
+     "w": "paredes",
+     "t": 18.729
+    },
+    {
+     "w": "uma",
+     "t": 19.578
+    },
+    {
+     "w": "dentro",
+     "t": 19.79
+    },
+    {
+     "w": "da",
+     "t": 20.156
+    },
+    {
+     "w": "outra",
+     "t": 20.286
+    },
+    {
+     "w": "E",
+     "t": 21.418
+    },
+    {
+     "w": "tira",
+     "t": 21.548
+    },
+    {
+     "w": "todo",
+     "t": 21.866
+    },
+    {
+     "w": "o",
+     "t": 22.161
+    },
+    {
+     "w": "ar",
+     "t": 22.22
+    },
+    {
+     "w": "do",
+     "t": 22.42
+    },
+    {
+     "w": "meio",
+     "t": 22.55
+    },
+    {
+     "w": "o",
+     "t": 23.21
+    },
+    {
+     "w": "vácuo",
+     "t": 23.305
+    },
+    {
+     "w": "Sem",
+     "t": 24.507
+    },
+    {
+     "w": "ar",
+     "t": 24.861
+    },
+    {
+     "w": "não",
+     "t": 25.191
+    },
+    {
+     "w": "tem",
+     "t": 25.451
+    },
+    {
+     "w": "nada",
+     "t": 25.616
+    },
+    {
+     "w": "pra",
+     "t": 25.923
+    },
+    {
+     "w": "levar",
+     "t": 26.04
+    },
+    {
+     "w": "o",
+     "t": 26.359
+    },
+    {
+     "w": "calor",
+     "t": 26.406
+    },
+    {
+     "w": "de",
+     "t": 26.76
+    },
+    {
+     "w": "uma",
+     "t": 26.854
+    },
+    {
+     "w": "parede",
+     "t": 27.007
+    },
+    {
+     "w": "pra",
+     "t": 27.408
+    },
+    {
+     "w": "outra",
+     "t": 27.621
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.35,
+   "fim": 39.7,
+   "texto": "Mas o calor ainda escapa como luz infravermelha, que atravessa o vácuo. É assim que o calor do Sol chega até aqui. Então, você espelha as paredes, e a luz volta pro café.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 28.397
+    },
+    {
+     "w": "o",
+     "t": 28.609
+    },
+    {
+     "w": "calor",
+     "t": 28.739
+    },
+    {
+     "w": "ainda",
+     "t": 29.081
+    },
+    {
+     "w": "escapa",
+     "t": 29.27
+    },
+    {
+     "w": "como",
+     "t": 29.683
+    },
+    {
+     "w": "luz",
+     "t": 29.93
+    },
+    {
+     "w": "infravermelha",
+     "t": 30.107
+    },
+    {
+     "w": "que",
+     "t": 31.074
+    },
+    {
+     "w": "atravessa",
+     "t": 31.18
+    },
+    {
+     "w": "o",
+     "t": 31.699
+    },
+    {
+     "w": "vácuo",
+     "t": 31.734
+    },
+    {
+     "w": "É",
+     "t": 32.925
+    },
+    {
+     "w": "assim",
+     "t": 33.091
+    },
+    {
+     "w": "que",
+     "t": 33.433
+    },
+    {
+     "w": "o",
+     "t": 33.503
+    },
+    {
+     "w": "calor",
+     "t": 33.55
+    },
+    {
+     "w": "do",
+     "t": 33.928
+    },
+    {
+     "w": "Sol",
+     "t": 34.046
+    },
+    {
+     "w": "chega",
+     "t": 34.341
+    },
+    {
+     "w": "até",
+     "t": 34.612
+    },
+    {
+     "w": "aqui",
+     "t": 34.812
+    },
+    {
+     "w": "Então",
+     "t": 35.921
+    },
+    {
+     "w": "você",
+     "t": 36.664
+    },
+    {
+     "w": "espelha",
+     "t": 36.911
+    },
+    {
+     "w": "as",
+     "t": 37.265
+    },
+    {
+     "w": "paredes",
+     "t": 37.371
+    },
+    {
+     "w": "e",
+     "t": 38.15
+    },
+    {
+     "w": "a",
+     "t": 38.22
+    },
+    {
+     "w": "luz",
+     "t": 38.303
+    },
+    {
+     "w": "volta",
+     "t": 38.562
+    },
+    {
+     "w": "pro",
+     "t": 38.881
+    },
+    {
+     "w": "café",
+     "t": 39.046
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 39.85,
+   "fim": 50.35,
+   "texto": "Mas as duas paredes precisam se encostar em algum lugar: no gargalo. Então, você faz o gargalo estreito e uma tampa grossa, por onde sai o pouquinho de calor que sobra.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.897
+    },
+    {
+     "w": "as",
+     "t": 40.109
+    },
+    {
+     "w": "duas",
+     "t": 40.31
+    },
+    {
+     "w": "paredes",
+     "t": 40.605
+    },
+    {
+     "w": "precisam",
+     "t": 41.053
+    },
+    {
+     "w": "se",
+     "t": 41.525
+    },
+    {
+     "w": "encostar",
+     "t": 41.631
+    },
+    {
+     "w": "em",
+     "t": 42.091
+    },
+    {
+     "w": "algum",
+     "t": 42.185
+    },
+    {
+     "w": "lugar",
+     "t": 42.468
+    },
+    {
+     "w": "no",
+     "t": 43.093
+    },
+    {
+     "w": "gargalo",
+     "t": 43.223
+    },
+    {
+     "w": "Então",
+     "t": 44.579
+    },
+    {
+     "w": "você",
+     "t": 45.322
+    },
+    {
+     "w": "faz",
+     "t": 45.569
+    },
+    {
+     "w": "o",
+     "t": 45.758
+    },
+    {
+     "w": "gargalo",
+     "t": 45.876
+    },
+    {
+     "w": "estreito",
+     "t": 46.336
+    },
+    {
+     "w": "e",
+     "t": 46.784
+    },
+    {
+     "w": "uma",
+     "t": 46.831
+    },
+    {
+     "w": "tampa",
+     "t": 47.008
+    },
+    {
+     "w": "grossa",
+     "t": 47.326
+    },
+    {
+     "w": "por",
+     "t": 47.987
+    },
+    {
+     "w": "onde",
+     "t": 48.152
+    },
+    {
+     "w": "sai",
+     "t": 48.4
+    },
+    {
+     "w": "o",
+     "t": 48.659
+    },
+    {
+     "w": "pouquinho",
+     "t": 48.73
+    },
+    {
+     "w": "de",
+     "t": 49.166
+    },
+    {
+     "w": "calor",
+     "t": 49.249
+    },
+    {
+     "w": "que",
+     "t": 49.579
+    },
+    {
+     "w": "sobra",
+     "t": 49.709
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.5,
+   "fim": 59.09,
+   "texto": "E ela não sabe o que é quente ou frio. Funciona nos dois sentidos. Com água gelada, é o calor de fora que não consegue entrar.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 50.547
+    },
+    {
+     "w": "ela",
+     "t": 50.618
+    },
+    {
+     "w": "não",
+     "t": 50.842
+    },
+    {
+     "w": "sabe",
+     "t": 50.995
+    },
+    {
+     "w": "o",
+     "t": 51.337
+    },
+    {
+     "w": "que",
+     "t": 51.396
+    },
+    {
+     "w": "é",
+     "t": 51.502
+    },
+    {
+     "w": "quente",
+     "t": 51.573
+    },
+    {
+     "w": "ou",
+     "t": 51.892
+    },
+    {
+     "w": "frio",
+     "t": 51.974
+    },
+    {
+     "w": "Funciona",
+     "t": 53.13
+    },
+    {
+     "w": "nos",
+     "t": 53.755
+    },
+    {
+     "w": "dois",
+     "t": 53.932
+    },
+    {
+     "w": "sentidos",
+     "t": 54.238
+    },
+    {
+     "w": "Com",
+     "t": 55.712
+    },
+    {
+     "w": "água",
+     "t": 55.948
+    },
+    {
+     "w": "gelada",
+     "t": 56.16
+    },
+    {
+     "w": "é",
+     "t": 56.785
+    },
+    {
+     "w": "o",
+     "t": 56.892
+    },
+    {
+     "w": "calor",
+     "t": 56.95
+    },
+    {
+     "w": "de",
+     "t": 57.328
+    },
+    {
+     "w": "fora",
+     "t": 57.458
+    },
+    {
+     "w": "que",
+     "t": 57.788
+    },
+    {
+     "w": "não",
+     "t": 57.894
+    },
+    {
+     "w": "consegue",
+     "t": 58.035
+    },
+    {
+     "w": "entrar",
+     "t": 58.507
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 59.24,
+   "fim": 65.85,
+   "texto": "Coloque uma capa por fora e uma tampa que vira copo. Parabéns, você construiu uma garrafa térmica.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 59.287
+    },
+    {
+     "w": "uma",
+     "t": 59.771
+    },
+    {
+     "w": "capa",
+     "t": 59.948
+    },
+    {
+     "w": "por",
+     "t": 60.266
+    },
+    {
+     "w": "fora",
+     "t": 60.431
+    },
+    {
+     "w": "e",
+     "t": 60.761
+    },
+    {
+     "w": "uma",
+     "t": 60.808
+    },
+    {
+     "w": "tampa",
+     "t": 61.009
+    },
+    {
+     "w": "que",
+     "t": 61.374
+    },
+    {
+     "w": "vira",
+     "t": 61.516
+    },
+    {
+     "w": "copo",
+     "t": 61.775
+    },
+    {
+     "w": "Parabéns",
+     "t": 62.931
+    },
+    {
+     "w": "você",
+     "t": 63.721
+    },
+    {
+     "w": "construiu",
+     "t": 64.04
+    },
+    {
+     "w": "uma",
+     "t": 64.523
+    },
+    {
+     "w": "garrafa",
+     "t": 64.665
+    },
+    {
+     "w": "térmica",
+     "t": 65.101
+    }
+   ]
+  }
+ ]
+}

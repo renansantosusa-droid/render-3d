@@ -1,0 +1,101 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("garrafa", { fundo: 0xeadfcf, seed: 6161 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: grade("#e8e0d2", "#cfc4b0", 64, 12) }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(12, 6), mat(0xffffff, { map: grade("#f8f2e8", "#ddd2c0", 42, 10) }), 0, 3, -1.2);
+add(new THREE.BoxGeometry(5, .9, 1.6), mat(0xffffff, { map: texMadeira("#9a6a3a", 2) }), 0, .45, -.3);
+add(new THREE.BoxGeometry(5.1, .06, 1.7), mat(0x3a3f48, { roughness: .3 }), 0, .93, -.3);
+const Y0 = .96;
+const G = grupo(0, Y0, 0);
+const meia = (pts, m) => add(new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), 48, Math.PI / 2, Math.PI), m, 0, 0, 0, G);
+// parede de fora (sempre) e de dentro (aparece no "duas paredes")
+const mFora = new THREE.MeshStandardMaterial({ color: 0xb8c0c8, metalness: .6, roughness: .35, side: THREE.DoubleSide });
+const fora = meia([[0, 0], [.1, 0], [.105, .02], [.105, .4], [.06, .46], [.05, .5], [.05, .53]], mFora);
+const mDentro = new THREE.MeshStandardMaterial({ color: 0xd8dde2, metalness: .3, roughness: .4, side: THREE.DoubleSide });
+const dentroW = meia([[0, .03], [.066, .03], [.072, .05], [.072, .37], [.04, .44], [.04, .52], [.05, .53]], mDentro);
+const anel = add(new THREE.TorusGeometry(.05, .006, 8, 40), brilho(0xffd23a), 0, .53, 0, G); anel.rotation.x = Math.PI / 2;
+// café (meio cilindro)
+const mCafe = new THREE.MeshStandardMaterial({ color: 0x5a2a10, roughness: .3, side: THREE.DoubleSide, emissive: 0xff3a00, emissiveIntensity: .06 });
+const cafe = add(new THREE.CylinderGeometry(1, 1, 1, 40, 1, false, Math.PI / 2, Math.PI), mCafe, 0, 0, 0, G);
+const gelos = Array.from({ length: 6 }, (_, i) => add(new THREE.BoxGeometry(.035, .035, .035), vidro(.7, 0xe8f6ff), (rnd() - .5) * .1, .3 + rnd() * .05, -.02 - rnd() * .05, G));
+// tampa grossa, capa, tampa-copo
+const tampa = grupo(0, .53, 0, G); add(new THREE.CylinderGeometry(.044, .044, .06, 24), mat(0x2a2f38), 0, .0, 0, tampa);
+const capa = meia([[.112, .0], [.112, .41], [.07, .47]], new THREE.MeshStandardMaterial({ color: 0xc83a3a, roughness: .45, side: THREE.DoubleSide }));
+const copo = grupo(0, .56, 0, G); add(new THREE.CylinderGeometry(.08, .065, .09, 32, 1, false, Math.PI / 2, Math.PI), new THREE.MeshStandardMaterial({ color: 0xc83a3a, roughness: .45, side: THREE.DoubleSide }), 0, .02, 0, copo);
+// ar no meio das paredes (sai no vácuo)
+const arGap = Array.from({ length: 40 }, () => ({ s: sprite(0x8a96a8, G), a: Math.PI / 2 + rnd() * Math.PI, h: .05 + rnd() * .33, f: rnd() }));
+// calor: encostando (atravessa a parede), pelo ar (sobe em volta), luz (raios saindo)
+const cond = Array.from({ length: 24 }, () => ({ s: sprite(0xff4a1a, G), a: Math.PI / 2 + rnd() * Math.PI, h: .05 + rnd() * .33, f: rnd() }));
+const conv = Array.from({ length: 30 }, () => ({ s: sprite(0xff8a3a, G), a: Math.PI / 2 + rnd() * Math.PI, f: rnd() }));
+const rad = Array.from({ length: 36 }, (_, i) => ({ s: sprite(0xffd23a, G), a: Math.PI / 2 + (i % 12) / 12 * Math.PI, h: .08 + Math.floor(i / 12) * .12, f: (i % 5) / 5 }));
+const topo = Array.from({ length: 12 }, () => ({ s: sprite(0xff6a2a, G), f: rnd(), x: (rnd() - .5) * .06 }));
+const friode = Array.from({ length: 24 }, () => ({ s: sprite(0xff6a2a, G), a: Math.PI / 2 + rnd() * Math.PI, h: .05 + rnd() * .35, f: rnd() }));
+const termo = K.visor();
+
+K.camera_({
+  geral: [V(.4, 1.42, 1.3), V(0, 1.22, 0)],
+  perto: [V(.22, 1.3, .9), V(0, 1.22, 0)],
+  gargalo: [V(.2, 1.6, .65), V(0, 1.44, 0)],
+  fim: [V(-.45, 1.45, 1.25), V(0, 1.24, 0)],
+}, [
+  [0, "geral"], [C(3), "geral"], [F(3), "geral"], [C(4), "perto"], [F(5), "perto"], [C(6), "gargalo"], [F(6), "gargalo"], [C(7), "geral"], [F(7), "geral"], [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const duas = t > P(4, "paredes") - .3;
+  dentroW.visible = duas;
+  const espelho = prog(t, P(5, "espelha") - .2, P(5, "espelha") + .4);
+  mDentro.metalness = .3 + .3 * espelho; mDentro.roughness = .4 - .35 * espelho; mDentro.color.setRGB(.85 + .15 * espelho, .87 + .13 * espelho, .89 + .11 * espelho);
+  mFora.metalness = .6; mFora.roughness = .35;
+  anel.visible = em(P(6, "gargalo") - .3, F(6));
+  // café / água gelada
+  const gelado = t > C(7) + .2;
+  const r = duas ? .07 : .1, h = duas ? .33 : .36;
+  cafe.scale.set(r, h, r); cafe.position.y = (duas ? .035 : .005) + h / 2;
+  mCafe.color.setHex(gelado ? 0x5aa8ff : 0x5a2a10); mCafe.transparent = gelado; mCafe.opacity = gelado ? .55 : 1;
+  const esfria = !duas ? prog(t, P(2, "esfria") - .3, P(2, "tampa") + .5) : 0;
+  mCafe.emissiveIntensity = gelado ? 0 : .07 * (1 - esfria);
+  gelos.forEach((g) => g.visible = gelado);
+  // ar entre as paredes sendo puxado
+  const suga = prog(t, P(4, "tira") - .2, P(4, "vacuo") + .3);
+  arGap.forEach((p) => { const a = p.a + Math.sin(t * 3 + p.f * 9) * .1; const rr = .089; const y = p.h * (1 - suga) + .015 * suga; p.s.position.set(Math.sin(a) * rr * (1 - suga * .2), y + Math.sin(t * 5 + p.f * 7) * .005, Math.cos(a) * rr); p.s.scale.setScalar(.01); p.s.material.opacity = duas && suga < .98 ? .9 : 0; });
+  // calor saindo
+  const sem1 = !duas;
+  cond.forEach((p) => { const k = frac(t * .6 + p.f); const bloq = duas && t > P(4, "vacuo"); const rr = bloq ? .06 + .01 * Math.sin(k * Math.PI) : .06 + k * .12; p.s.position.set(Math.sin(p.a) * rr, p.h, Math.cos(p.a) * rr); p.s.scale.setScalar(.013); p.s.material.opacity = (em(P(2, "parede") - .3, P(2, "tampa")) || em(P(3, "encostando") - .3, P(3, "circula") - .3) || em(P(4, "vacuo"), F(4))) ? .9 * (1 - k * .5) : 0; });
+  conv.forEach((p) => { const k = frac(t * .4 + p.f); const rr = .13 + .04 * Math.sin(k * Math.PI); p.s.position.set(Math.sin(p.a) * rr, .02 + k * .55, Math.cos(p.a) * rr); p.s.scale.setScalar(.018); p.s.material.opacity = em(P(3, "ar") - .3, P(3, "luz") - .3) ? .8 * Math.sin(k * Math.PI) : 0; });
+  const bate = espelho > .5;
+  rad.forEach((p) => { const k = frac(t * .8 + p.f); let rr; if (bate) rr = .05 + .035 * (k < .5 ? k * 2 : 2 - k * 2); else rr = .05 + k * .25; p.s.position.set(Math.sin(p.a) * rr, p.h, Math.cos(p.a) * rr); p.s.scale.setScalar(.012); p.s.material.opacity = em(P(3, "luz") - .3, F(3)) || em(P(5, "infravermelha") - .3, F(5)) ? .95 : 0; });
+  topo.forEach((p) => { const k = frac(t * .5 + p.f); p.s.position.set(p.x, .5 + k * .2, 0); p.s.scale.setScalar(.014); p.s.material.opacity = em(P(2, "tampa") - .3, F(2)) ? .9 * (1 - k) : em(P(6, "sobra") - .5, F(6)) && t > P(6, "tampa") ? .5 * (1 - k) * (p.f < .3 ? 1 : 0) : 0; });
+  friode.forEach((p) => { const k = frac(t * .6 + p.f); const rr = .22 - .1 * (k < .5 ? k * 2 : 2 - k * 2); p.s.position.set(Math.sin(p.a) * rr, p.h, Math.cos(p.a) * rr); p.s.scale.setScalar(.013); p.s.material.opacity = em(P(7, "calor") - .3, F(7)) ? .9 : 0; });
+  tampa.visible = t > C(2) - 10 && (t < P(6, "tampa") - .3 ? false : true); tampa.position.y = .53 + .15 * (1 - prog(t, P(6, "tampa") - .3, P(6, "tampa") + .3));
+  if (t < C(6)) tampa.visible = false;
+  capa.visible = t > P(8, "capa") - .3; copo.visible = t > P(8, "copo") - .3; copo.position.y = .56 + .2 * (1 - prog(t, P(8, "copo") - .3, P(8, "copo") + .3));
+  // termômetro
+  const temp = gelado ? 4 : duas ? 88 - (t > P(6, "sobra") ? 2 : 0) : Math.round(90 - 50 * esfria);
+  termo.visible = em(P(2, "esfria") - .3, P(2, "foge") - .3);
+  if (termo.visible) { termo.set(`${temp}°C`, "#ff9a5a"); K.naTela(termo, .62, .4); }
+  K.cartoes(t, [
+    [P(2, "foge") - .3, F(2), "O CALOR FOGE", "#ff4a1a"],
+    [P(3, "encostando") - .3, P(3, "circula") - .3, "1. ENCOSTANDO", "#ff4a1a"],
+    [P(3, "circula") - .3, P(3, "luz") - .3, "2. PELO AR", "#ff8a3a"],
+    [P(3, "luz") - .3, F(3), "3. LUZ INVISÍVEL", "#ffd23a"],
+    [P(4, "duas") - .3, P(4, "vacuo") - .3, "DUAS PAREDES", "#ffffff"],
+    [P(4, "vacuo") - .3, F(4), "VÁCUO", "#5aa0ff"],
+    [P(5, "infravermelha") - .3, P(5, "espelha") - .3, "INFRAVERMELHO", "#ffd23a"],
+    [P(5, "espelha") - .3, F(5), "ESPELHO: A LUZ VOLTA", "#ffffff"],
+    [P(6, "gargalo") - .3, P(6, "tampa") - .3, "SÓ SE ENCOSTAM AQUI", "#ffd23a"],
+    [P(6, "tampa") - .3, F(6), "TAMPA GROSSA", "#ffffff"],
+    [P(7, "gelada") - .3, F(7), "O CALOR NÃO ENTRA", "#5aa0ff"],
+  ]);
+});
+</script>
+</body></html>
