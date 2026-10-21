@@ -1,0 +1,124 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("filtro", { fundo: 0xf0e4cc, seed: 5151 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, grade, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: grade("#e8e0d2", "#cfc4b0", 64, 12) }), 0, 0, 0).rotation.x = -Math.PI / 2;
+add(new THREE.PlaneGeometry(12, 6), mat(0xffffff, { map: grade("#fbf6ee", "#e0d6c6", 42, 10) }), 0, 3, -1.2);
+add(new THREE.BoxGeometry(5, .9, 1.6), mat(0xffffff, { map: texMadeira("#8a5a32", 2) }), 0, .45, -.3);
+add(new THREE.BoxGeometry(5.1, .06, 1.7), mat(0xe8e2d8, { roughness: .4 }), 0, .93, -.3);
+const Y0 = .96;
+// ---------- potes de barro em corte (só a metade de trás) ----------
+const barro = new THREE.MeshStandardMaterial({ color: 0xffffff, map: texRuido("#b8643a", 50, 3), roughness: .95, side: THREE.DoubleSide });
+const meia = (rT, rB, h, y, pai = scene) => add(new THREE.CylinderGeometry(rT, rB, h, 48, 1, true, Math.PI / 2, Math.PI), barro, 0, y, 0, pai);
+const meiaTampa = (r, y, pai = scene) => { const m = add(new THREE.CircleGeometry(r, 48, 0, Math.PI), barro, 0, y, 0, pai); m.rotation.x = -Math.PI / 2; return m; };
+const borda = (r, y, pai = scene) => { const m = add(new THREE.TorusGeometry(r, .012, 8, 48, Math.PI), barro, 0, y, 0, pai); m.rotation.x = Math.PI / 2; m.rotation.z = Math.PI; return m; };
+const baixo = grupo(0, Y0, 0);
+meia(.25, .21, .36, .18, baixo); meiaTampa(.21, .005, baixo); borda(.25, .36, baixo);
+const cima = grupo(0, Y0 + .37, 0);
+meia(.24, .22, .32, .16, cima); meiaTampa(.22, .005, cima); borda(.24, .32, cima);
+const mAgua = (c = 0x6ab0ff, o = .35) => new THREE.MeshStandardMaterial({ color: c, transparent: true, opacity: o, depthWrite: false, side: THREE.DoubleSide, roughness: .1 });
+const aguaCima = add(new THREE.CylinderGeometry(.225, .215, 1, 48, 1, false, Math.PI / 2, Math.PI), mAgua(0x9a8a5a, .45), 0, 0, 0, cima);
+const aguaBaixo = add(new THREE.CylinderGeometry(.235, .205, 1, 48, 1, false, Math.PI / 2, Math.PI), mAgua(), 0, 0, 0, baixo);
+// vela de cerâmica (cortada ao meio) + carvão por dentro
+const velaG = grupo(0, .01, 0, cima);
+const mVela = new THREE.MeshStandardMaterial({ color: 0xf6f2ea, roughness: .95, side: THREE.DoubleSide });
+add(new THREE.CylinderGeometry(.05, .05, .17, 32, 1, true, Math.PI / 2, Math.PI), mVela, 0, .1, 0, velaG);
+add(new THREE.SphereGeometry(.05, 32, 12, Math.PI / 2, Math.PI, 0, Math.PI / 2), mVela, 0, .185, 0, velaG);
+const carvao = []; for (let i = 0; i < 70; i++) { const a = Math.PI / 2 + rnd() * Math.PI, r = rnd() * .036; carvao.push(add(new THREE.DodecahedronGeometry(.004 + rnd() * .004), mat(0x1a1a1a, { roughness: 1 }), Math.sin(a) * r, .03 + rnd() * .17, Math.cos(a) * r, velaG)); }
+const saida = add(new THREE.CylinderGeometry(.012, .012, .07, 10), mat(0xf6f2ea), 0, -.03, 0, cima);
+const prata = Array.from({ length: 24 }, () => { const s = sprite(0xffffff, velaG); const a = Math.PI / 2 + rnd() * Math.PI; s.position.set(Math.sin(a) * .052, .03 + rnd() * .17, Math.cos(a) * .052); s.userData.f = rnd(); return s; });
+// sujeira: terra, ferrugem, bichinhos
+const suj = Array.from({ length: 60 }, (_, i) => { const tipo = i < 25 ? 0 : i < 45 ? 1 : 2; const s = sprite([0x6a4a2a, 0xc8642a, 0x3ac85a][tipo]); return { s, tipo, a: Math.PI / 2 + rnd() * Math.PI, r: .06 + rnd() * .14, h: rnd(), f: rnd() }; });
+const cloro = Array.from({ length: 16 }, () => ({ s: sprite(0xd0ff6a), a: Math.PI / 2 + rnd() * Math.PI, r: rnd() * .03, h: rnd(), f: rnd() }));
+const pingo = Array.from({ length: 5 }, () => ({ s: sprite(0x5aa0ff), f: rnd() }));
+const entra = Array.from({ length: 30 }, () => ({ s: sprite(0x5aa0ff), a: Math.PI / 2 + rnd() * Math.PI, h: rnd(), f: rnd() }));
+// evaporação na parede de baixo
+const vapor = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), a: rnd() * 6.28, h: rnd(), f: rnd() }));
+const calor = Array.from({ length: 16 }, () => ({ s: sprite(0xff5a2a), a: Math.PI / 2 + rnd() * Math.PI, h: rnd(), f: rnd() }));
+// torneira e tampa
+const torneira = grupo(.0, Y0 + .07, .24); add(new THREE.CylinderGeometry(.018, .018, .08, 12), mat(0xc0c6cc, { metalness: .8 }), 0, 0, .03, torneira).rotation.x = Math.PI / 2; add(new THREE.CylinderGeometry(.014, .01, .04, 12), mat(0xc0c6cc, { metalness: .8 }), 0, -.02, .07, torneira); add(new THREE.BoxGeometry(.06, .012, .015), mat(0x3a6ac8), 0, .025, .05, torneira);
+const tampa = grupo(0, Y0 + .7, 0); add(new THREE.CylinderGeometry(.25, .25, .025, 48), barro, 0, 0, 0, tampa); add(new THREE.SphereGeometry(.04, 16, 10), barro, 0, .03, 0, tampa);
+
+// ---------- mini set: a parede da vela vista de pertinho ----------
+const QX = 100, QY = 1.2;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1c232e), QX, 1, -1.5);
+const parede = add(new THREE.BoxGeometry(.18, 1.3, .8), new THREE.MeshStandardMaterial({ color: 0xf2ebe0, roughness: 1, transparent: true, opacity: .92 }), QX, QY, -.2);
+for (let i = 0; i < 9; i++) { const m = add(new THREE.CylinderGeometry(.018, .018, .19, 10), brilho(0x8a7a6a), QX, QY - .55 + i * .14, .2); m.rotation.z = Math.PI / 2; }
+const passa = Array.from({ length: 30 }, (_, i) => ({ s: sprite(0x3a8aff), lin: i % 9, f: rnd() }));
+const presa = Array.from({ length: 14 }, (_, i) => ({ s: sprite(i % 2 ? 0x6a4a2a : 0x3ac85a), y: QY - .55 + rnd() * 1.1, f: rnd() }));
+const lbl = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, .3); s.scale.set(.5, .25, 1); scene.add(s); return s; };
+lbl("SUJA", "#ff9a5a", QX - .45, QY + .78); lbl("LIMPA", "#5aa0ff", QX + .45, QY + .78);
+
+// ---------- câmera ----------
+K.camera_({
+  pote: [V(.45, 1.35, 1.25), V(0, 1.12, 0)],
+  geral: [V(.55, 1.6, 1.85), V(0, 1.32, 0)],
+  vela: [V(.28, 1.6, .75), V(0, 1.47, 0)],
+  poros: [V(QX + .35, QY + .1, 2.4), V(QX, QY + .05, 0)],
+  baixo: [V(.5, 1.25, 1.15), V(0, 1.15, 0)],
+  fim: [V(-.6, 1.65, 1.9), V(0, 1.36, 0)],
+}, [
+  [0, "pote"], [F(2), "pote"], [C(3), "geral"], [P(3, "ceramica", 2) - .5, "geral"], [P(3, "ceramica", 2) - .45, "poros"], [P(3, "marrom") - .5, "poros"], [P(3, "marrom") - .45, "vela"], [F(3), "vela"],
+  [C(4), "vela"], [F(5), "vela"], [C(6), "geral"], [F(6), "geral"], [C(7), "baixo"], [F(7), "baixo"], [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const doisPotes = t > P(3, "cima") - .4;
+  cima.visible = doisPotes;
+  // níveis de água
+  const nC = .26 - .1 * lin(t, C(6), T);
+  aguaCima.scale.y = nC; aguaCima.position.y = .01 + nC / 2;
+  const nB = doisPotes ? .06 + .2 * prog(t, C(6), F(6) + 3) : .28;
+  aguaBaixo.scale.y = nB; aguaBaixo.position.y = .01 + nB / 2;
+  aguaBaixo.material.color.setHex(doisPotes ? 0x6ab0ff : 0x6ab0ff); if (!doisPotes) aguaBaixo.material.color.lerp(new THREE.Color(0x9a8a5a), prog(t, P(2, "terra") - .3, P(2, "bichinhos"))); aguaBaixo.material.opacity = doisPotes ? .35 : .45;
+  aguaBaixo.material.color.lerp(new THREE.Color(0x3a7aff), prog(t, P(7, "rouba") - .3, F(7)));
+  // sujeira: no pote único (cenas 1-2), depois no pote de cima, grudando na vela
+  const morre = prog(t, P(5, "prata") - .2, P(5, "multiplicarem") + .5);
+  suj.forEach((p) => {
+    const vis = (p.tipo === 0 && t > P(2, "terra") - .3) || (p.tipo === 1 && t > P(2, "ferrugem") - .3) || (p.tipo === 2 && t > P(2, "bichinhos") - .3);
+    let x, y, z; const a = p.a + Math.sin(t * .8 + p.f * 9) * .2;
+    if (!doisPotes) { x = Math.sin(a) * p.r; z = Math.cos(a) * p.r; y = Y0 + .03 + p.h * .24; }
+    else { const g = prog(t, P(3, "atravessar"), P(3, "fora") + .5); const r = p.r * (1 - g) + .056 * g; x = Math.sin(a) * r; z = Math.cos(a) * r; y = Y0 + .39 + p.h * (.22 - .04 * g); }
+    if (p.tipo === 2) { x += Math.sin(t * 6 + p.f * 20) * .006; }
+    p.s.position.set(x, y, z); p.s.scale.setScalar(p.tipo === 2 ? .018 : .014);
+    p.s.material.opacity = vis && !(doisPotes && t > C(6)) ? (p.tipo === 2 ? 1 - morre : 1) : 0;
+  });
+  mVela.color.setRGB(.96 - .25 * prog(t, P(3, "marrom") - .3, P(3, "marrom") + .5), .95 - .32 * prog(t, P(3, "marrom") - .3, P(3, "marrom") + .5), .92 - .4 * prog(t, P(3, "marrom") - .3, P(3, "marrom") + .5));
+  if (t > P(3, "esponja")) mVela.color.setRGB(.96, .95, .92);
+  carvao.forEach((c) => c.visible = t > P(4, "carvao") - .3);
+  cloro.forEach((c) => { const g = prog(t, P(4, "poros") - .3, P(4, "cloro", 2)); const r = .1 * (1 - g) + c.r * g; c.s.position.set(Math.sin(c.a) * r, Y0 + .4 + c.h * .16, Math.cos(c.a) * r); c.s.scale.setScalar(.012); c.s.material.opacity = em(P(4, "cloro") - .3, F(4)) ? 1 : 0; });
+  prata.forEach((s) => { s.scale.setScalar(.02 * pulse(frac(t * 1.5 + s.userData.f), 0, 1)); s.material.opacity = em(P(5, "prata") - .2, F(5)) ? 1 : 0; });
+  entra.forEach((e) => { const k = frac(t * .5 + e.f); const r = k < .5 ? .12 - .07 * (k / .5) : .02; const y = k < .5 ? Y0 + .4 + e.h * .14 : Y0 + .4 + e.h * .14 * (1 - (k - .5) * 2) - .02 * (k - .5) * 2; e.s.position.set(Math.sin(e.a) * r, y, Math.cos(e.a) * r); e.s.scale.setScalar(.012); e.s.material.opacity = em(P(3, "atravessar") - .2, P(3, "ceramica", 2) - .5) || em(C(6), F(6)) ? .9 : 0; });
+  pingo.forEach((p) => { const k = frac(t * 1.1 + p.f); p.s.position.set(0, Y0 + .33 - k * (.33 - nB), 0); p.s.scale.set(.012, .02, 1); p.s.material.opacity = doisPotes && t > P(3, "passa") ? .95 : 0; });
+  // mini set dos poros
+  passa.forEach((p) => { const k = frac(t * .45 + p.f); const y = QY - .55 + p.lin * .14; p.s.position.set(QX - .6 + k * 1.2, y, .2); p.s.scale.setScalar(.04); p.s.material.opacity = Math.min(1, Math.sin(k * Math.PI) * 4); });
+  presa.forEach((p) => { const k = Math.min(1, frac(t * .3 + p.f) * 2); p.s.position.set(QX - .6 + .5 * k, p.y, .3); p.s.scale.setScalar(.09); p.s.material.opacity = 1; });
+  // evaporação
+  vapor.forEach((v) => { const k = frac(t * .35 + v.f); const r = .25 + k * .25; v.s.position.set(Math.cos(v.a) * r, Y0 + .05 + v.h * .3 + k * .15, Math.sin(v.a) * r); v.s.scale.setScalar(.04 + k * .05); v.s.material.opacity = em(P(7, "evapora") - .3, F(7)) ? .55 * (1 - k) : 0; });
+  calor.forEach((c) => { const k = frac(t * .5 + c.f); const r = .05 + k * .2; c.s.position.set(Math.sin(c.a) * r, Y0 + .08 + c.h * .2, Math.cos(c.a) * r); c.s.scale.setScalar(.02); c.s.material.opacity = em(P(7, "calor") - .3, F(7)) ? .9 * (1 - k) : 0; });
+  torneira.visible = t > P(8, "torneirinha") - .3;
+  tampa.visible = t > P(8, "tampa") - .3; tampa.position.y = Y0 + .7 + .25 * (1 - prog(t, P(8, "tampa") - .3, P(8, "tampa") + .3));
+  K.cartoes(t, [
+    [P(2, "terra") - .3, P(2, "ferrugem") - .3, "TERRA", "#c8a070"],
+    [P(2, "ferrugem") - .3, P(2, "bichinhos") - .3, "FERRUGEM", "#ff8a3a"],
+    [P(2, "bichinhos") - .3, F(2), "MICRÓBIOS", "#3aff7a"],
+    [P(3, "vela") - .3, P(3, "ceramica", 2) - .5, "VELA DE CERÂMICA", "#ffffff"],
+    [P(3, "agua", 2) - .3, P(3, "marrom") - .5, "A SUJEIRA FICA DE FORA", "#ffd23a"],
+    [P(3, "lava") - .3, F(3), "SÓ ÁGUA E ESPONJA", "#5aa0ff"],
+    [P(4, "carvao") - .3, F(4), "CARVÃO ATIVADO", "#d0ff6a"],
+    [P(5, "prata") - .3, F(5), "PRATA NA CERÂMICA", "#e0e4ea"],
+    [P(6, "gravidade") - .3, F(6), "GRAVIDADE", "#5aa0ff"],
+    [P(7, "evapora") - .3, P(7, "rouba") - .3, "EVAPORA POR FORA", "#ffffff"],
+    [P(7, "rouba") - .3, F(7), "E A ÁGUA ESFRIA", "#5aa0ff"],
+  ]);
+});
+</script>
+</body></html>

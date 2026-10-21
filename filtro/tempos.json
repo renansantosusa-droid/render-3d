@@ -1,0 +1,825 @@
+{
+ "total": 68.93,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.25,
+   "texto": "Se você guardar água num pote, terá água pra beber.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "guardar",
+     "t": 0.669
+    },
+    {
+     "w": "água",
+     "t": 1.046
+    },
+    {
+     "w": "num",
+     "t": 1.282
+    },
+    {
+     "w": "pote",
+     "t": 1.459
+    },
+    {
+     "w": "terá",
+     "t": 2.037
+    },
+    {
+     "w": "água",
+     "t": 2.308
+    },
+    {
+     "w": "pra",
+     "t": 2.579
+    },
+    {
+     "w": "beber",
+     "t": 2.685
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.4,
+   "fim": 9.33,
+   "texto": "Mas vem terra. Vem ferrugem do cano. E bichinhos que você não enxerga.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.447
+    },
+    {
+     "w": "vem",
+     "t": 3.777
+    },
+    {
+     "w": "terra",
+     "t": 3.99
+    },
+    {
+     "w": "Vem",
+     "t": 5.181
+    },
+    {
+     "w": "ferrugem",
+     "t": 5.428
+    },
+    {
+     "w": "do",
+     "t": 5.994
+    },
+    {
+     "w": "cano",
+     "t": 6.136
+    },
+    {
+     "w": "E",
+     "t": 7.315
+    },
+    {
+     "w": "bichinhos",
+     "t": 7.421
+    },
+    {
+     "w": "que",
+     "t": 7.987
+    },
+    {
+     "w": "você",
+     "t": 8.105
+    },
+    {
+     "w": "não",
+     "t": 8.376
+    },
+    {
+     "w": "enxerga",
+     "t": 8.553
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.48,
+   "fim": 24.65,
+   "texto": "Então, você coloca a água num pote em cima e faz ela atravessar uma vela de cerâmica. A cerâmica é cheia de furinhos minúsculos: a água passa, a sujeira fica do lado de fora. Por isso a vela fica marrom, e você lava só com água e esponja.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.527
+    },
+    {
+     "w": "você",
+     "t": 10.27
+    },
+    {
+     "w": "coloca",
+     "t": 10.53
+    },
+    {
+     "w": "a",
+     "t": 10.954
+    },
+    {
+     "w": "água",
+     "t": 10.989
+    },
+    {
+     "w": "num",
+     "t": 11.237
+    },
+    {
+     "w": "pote",
+     "t": 11.414
+    },
+    {
+     "w": "em",
+     "t": 11.721
+    },
+    {
+     "w": "cima",
+     "t": 11.78
+    },
+    {
+     "w": "e",
+     "t": 12.086
+    },
+    {
+     "w": "faz",
+     "t": 12.133
+    },
+    {
+     "w": "ela",
+     "t": 12.322
+    },
+    {
+     "w": "atravessar",
+     "t": 12.546
+    },
+    {
+     "w": "uma",
+     "t": 13.03
+    },
+    {
+     "w": "vela",
+     "t": 13.195
+    },
+    {
+     "w": "de",
+     "t": 13.478
+    },
+    {
+     "w": "cerâmica",
+     "t": 13.584
+    },
+    {
+     "w": "A",
+     "t": 14.928
+    },
+    {
+     "w": "cerâmica",
+     "t": 15.046
+    },
+    {
+     "w": "é",
+     "t": 15.553
+    },
+    {
+     "w": "cheia",
+     "t": 15.6
+    },
+    {
+     "w": "de",
+     "t": 15.907
+    },
+    {
+     "w": "furinhos",
+     "t": 16.013
+    },
+    {
+     "w": "minúsculos",
+     "t": 16.438
+    },
+    {
+     "w": "a",
+     "t": 17.31
+    },
+    {
+     "w": "água",
+     "t": 17.416
+    },
+    {
+     "w": "passa",
+     "t": 17.758
+    },
+    {
+     "w": "a",
+     "t": 18.383
+    },
+    {
+     "w": "sujeira",
+     "t": 18.442
+    },
+    {
+     "w": "fica",
+     "t": 18.902
+    },
+    {
+     "w": "do",
+     "t": 19.162
+    },
+    {
+     "w": "lado",
+     "t": 19.256
+    },
+    {
+     "w": "de",
+     "t": 19.586
+    },
+    {
+     "w": "fora",
+     "t": 19.704
+    },
+    {
+     "w": "Por",
+     "t": 20.872
+    },
+    {
+     "w": "isso",
+     "t": 21.06
+    },
+    {
+     "w": "a",
+     "t": 21.32
+    },
+    {
+     "w": "vela",
+     "t": 21.379
+    },
+    {
+     "w": "fica",
+     "t": 21.662
+    },
+    {
+     "w": "marrom",
+     "t": 21.886
+    },
+    {
+     "w": "e",
+     "t": 22.581
+    },
+    {
+     "w": "você",
+     "t": 22.664
+    },
+    {
+     "w": "lava",
+     "t": 22.912
+    },
+    {
+     "w": "só",
+     "t": 23.159
+    },
+    {
+     "w": "com",
+     "t": 23.372
+    },
+    {
+     "w": "água",
+     "t": 23.584
+    },
+    {
+     "w": "e",
+     "t": 23.855
+    },
+    {
+     "w": "esponja",
+     "t": 23.902
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 24.8,
+   "fim": 33.32,
+   "texto": "Mas o cloro da água deixa gosto e cheiro. Então, você enche o miolo da vela com carvão ativado, cheio de poros que seguram o cloro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 24.847
+    },
+    {
+     "w": "o",
+     "t": 25.048
+    },
+    {
+     "w": "cloro",
+     "t": 25.201
+    },
+    {
+     "w": "da",
+     "t": 25.543
+    },
+    {
+     "w": "água",
+     "t": 25.637
+    },
+    {
+     "w": "deixa",
+     "t": 25.944
+    },
+    {
+     "w": "gosto",
+     "t": 26.262
+    },
+    {
+     "w": "e",
+     "t": 26.64
+    },
+    {
+     "w": "cheiro",
+     "t": 26.687
+    },
+    {
+     "w": "Então",
+     "t": 27.901
+    },
+    {
+     "w": "você",
+     "t": 28.692
+    },
+    {
+     "w": "enche",
+     "t": 28.998
+    },
+    {
+     "w": "o",
+     "t": 29.281
+    },
+    {
+     "w": "miolo",
+     "t": 29.317
+    },
+    {
+     "w": "da",
+     "t": 29.67
+    },
+    {
+     "w": "vela",
+     "t": 29.788
+    },
+    {
+     "w": "com",
+     "t": 30.071
+    },
+    {
+     "w": "carvão",
+     "t": 30.225
+    },
+    {
+     "w": "ativado",
+     "t": 30.614
+    },
+    {
+     "w": "cheio",
+     "t": 31.427
+    },
+    {
+     "w": "de",
+     "t": 31.687
+    },
+    {
+     "w": "poros",
+     "t": 31.805
+    },
+    {
+     "w": "que",
+     "t": 32.159
+    },
+    {
+     "w": "seguram",
+     "t": 32.253
+    },
+    {
+     "w": "o",
+     "t": 32.654
+    },
+    {
+     "w": "cloro",
+     "t": 32.713
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.47,
+   "fim": 41.56,
+   "texto": "Mas alguns micróbios ficam vivos na vela úmida. Então, você mistura prata na cerâmica, que impede eles de se multiplicarem.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 33.517
+    },
+    {
+     "w": "alguns",
+     "t": 33.706
+    },
+    {
+     "w": "micróbios",
+     "t": 34.107
+    },
+    {
+     "w": "ficam",
+     "t": 34.661
+    },
+    {
+     "w": "vivos",
+     "t": 34.979
+    },
+    {
+     "w": "na",
+     "t": 35.333
+    },
+    {
+     "w": "vela",
+     "t": 35.475
+    },
+    {
+     "w": "úmida",
+     "t": 35.746
+    },
+    {
+     "w": "Então",
+     "t": 36.925
+    },
+    {
+     "w": "você",
+     "t": 37.68
+    },
+    {
+     "w": "mistura",
+     "t": 37.951
+    },
+    {
+     "w": "prata",
+     "t": 38.34
+    },
+    {
+     "w": "na",
+     "t": 38.659
+    },
+    {
+     "w": "cerâmica",
+     "t": 38.765
+    },
+    {
+     "w": "que",
+     "t": 39.508
+    },
+    {
+     "w": "impede",
+     "t": 39.637
+    },
+    {
+     "w": "eles",
+     "t": 40.168
+    },
+    {
+     "w": "de",
+     "t": 40.357
+    },
+    {
+     "w": "se",
+     "t": 40.463
+    },
+    {
+     "w": "multiplicarem",
+     "t": 40.581
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 41.71,
+   "fim": 51.85,
+   "texto": "Mas filtra devagar, gota por gota. Então, você deixa a gravidade trabalhar: o pote de cima pinga no de baixo o dia inteiro, e a água limpa fica guardada.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 41.757
+    },
+    {
+     "w": "filtra",
+     "t": 42.064
+    },
+    {
+     "w": "devagar",
+     "t": 42.406
+    },
+    {
+     "w": "gota",
+     "t": 43.066
+    },
+    {
+     "w": "por",
+     "t": 43.408
+    },
+    {
+     "w": "gota",
+     "t": 43.561
+    },
+    {
+     "w": "Então",
+     "t": 44.764
+    },
+    {
+     "w": "você",
+     "t": 45.543
+    },
+    {
+     "w": "deixa",
+     "t": 45.814
+    },
+    {
+     "w": "a",
+     "t": 46.097
+    },
+    {
+     "w": "gravidade",
+     "t": 46.12
+    },
+    {
+     "w": "trabalhar",
+     "t": 46.639
+    },
+    {
+     "w": "o",
+     "t": 47.465
+    },
+    {
+     "w": "pote",
+     "t": 47.571
+    },
+    {
+     "w": "de",
+     "t": 47.889
+    },
+    {
+     "w": "cima",
+     "t": 48.007
+    },
+    {
+     "w": "pinga",
+     "t": 48.267
+    },
+    {
+     "w": "no",
+     "t": 48.561
+    },
+    {
+     "w": "de",
+     "t": 48.668
+    },
+    {
+     "w": "baixo",
+     "t": 48.762
+    },
+    {
+     "w": "o",
+     "t": 49.127
+    },
+    {
+     "w": "dia",
+     "t": 49.175
+    },
+    {
+     "w": "inteiro",
+     "t": 49.328
+    },
+    {
+     "w": "e",
+     "t": 50
+    },
+    {
+     "w": "a",
+     "t": 50.094
+    },
+    {
+     "w": "água",
+     "t": 50.177
+    },
+    {
+     "w": "limpa",
+     "t": 50.46
+    },
+    {
+     "w": "fica",
+     "t": 50.802
+    },
+    {
+     "w": "guardada",
+     "t": 51.05
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 52,
+   "fim": 62.51,
+   "texto": "E por que ela sai fresquinha? O barro é poroso. Um pouco de água atravessa a parede e evapora por fora. E a evaporação rouba calor da água lá dentro.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 52.047
+    },
+    {
+     "w": "por",
+     "t": 52.189
+    },
+    {
+     "w": "que",
+     "t": 52.377
+    },
+    {
+     "w": "ela",
+     "t": 52.519
+    },
+    {
+     "w": "sai",
+     "t": 52.731
+    },
+    {
+     "w": "fresquinha",
+     "t": 52.92
+    },
+    {
+     "w": "O",
+     "t": 54.3
+    },
+    {
+     "w": "barro",
+     "t": 54.441
+    },
+    {
+     "w": "é",
+     "t": 54.783
+    },
+    {
+     "w": "poroso",
+     "t": 54.842
+    },
+    {
+     "w": "Um",
+     "t": 56.127
+    },
+    {
+     "w": "pouco",
+     "t": 56.328
+    },
+    {
+     "w": "de",
+     "t": 56.693
+    },
+    {
+     "w": "água",
+     "t": 56.823
+    },
+    {
+     "w": "atravessa",
+     "t": 57.047
+    },
+    {
+     "w": "a",
+     "t": 57.472
+    },
+    {
+     "w": "parede",
+     "t": 57.507
+    },
+    {
+     "w": "e",
+     "t": 57.92
+    },
+    {
+     "w": "evapora",
+     "t": 57.955
+    },
+    {
+     "w": "por",
+     "t": 58.415
+    },
+    {
+     "w": "fora",
+     "t": 58.568
+    },
+    {
+     "w": "E",
+     "t": 59.736
+    },
+    {
+     "w": "a",
+     "t": 59.854
+    },
+    {
+     "w": "evaporação",
+     "t": 59.913
+    },
+    {
+     "w": "rouba",
+     "t": 60.632
+    },
+    {
+     "w": "calor",
+     "t": 60.939
+    },
+    {
+     "w": "da",
+     "t": 61.304
+    },
+    {
+     "w": "água",
+     "t": 61.41
+    },
+    {
+     "w": "lá",
+     "t": 61.682
+    },
+    {
+     "w": "dentro",
+     "t": 61.835
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.66,
+   "fim": 68.33,
+   "texto": "Coloque uma torneirinha e uma tampa. Parabéns, você construiu um filtro de barro.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 62.707
+    },
+    {
+     "w": "uma",
+     "t": 63.238
+    },
+    {
+     "w": "torneirinha",
+     "t": 63.415
+    },
+    {
+     "w": "e",
+     "t": 64.004
+    },
+    {
+     "w": "uma",
+     "t": 64.087
+    },
+    {
+     "w": "tampa",
+     "t": 64.299
+    },
+    {
+     "w": "Parabéns",
+     "t": 65.514
+    },
+    {
+     "w": "você",
+     "t": 66.304
+    },
+    {
+     "w": "construiu",
+     "t": 66.599
+    },
+    {
+     "w": "um",
+     "t": 67.106
+    },
+    {
+     "w": "filtro",
+     "t": 67.235
+    },
+    {
+     "w": "de",
+     "t": 67.613
+    },
+    {
+     "w": "barro",
+     "t": 67.695
+    }
+   ]
+  }
+ ]
+}
