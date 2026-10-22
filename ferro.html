@@ -1,0 +1,107 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("ferro", { fundo: 0xdfe6ee, seed: 5151 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- tábua + roupa ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#9a6c45", 5) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.BoxGeometry(2.4, .06, 1), mat(0x4a7ac8, { map: texRuido("#4a7ac8", 25, 4) }), 0, .03, 0);
+const cRoupa = document.createElement("canvas"); cRoupa.width = 512; cRoupa.height = 256; const gR = cRoupa.getContext("2d"); const texR = new THREE.CanvasTexture(cRoupa); texR.colorSpace = THREE.SRGBColorSpace;
+let ultR = -1; function pintaRoupa(amassa, amarela, queima) { const key = [amassa, amarela, queima].map((v) => v.toFixed(2)).join(); if (key === ultR) return; ultR = key; gR.fillStyle = "#f4f4f4"; gR.fillRect(0, 0, 512, 256); for (let i = 0; i < 14; i++) { gR.strokeStyle = `rgba(0,0,0,${.12 * amassa})`; gR.lineWidth = 6; gR.beginPath(); gR.moveTo(i * 40, 0); gR.bezierCurveTo(i * 40 + 30, 80, i * 40 - 30, 170, i * 40 + 10, 256); gR.stroke(); } const gr = gR.createRadialGradient(256, 128, 10, 256, 128, 160); gr.addColorStop(0, `rgba(210,160,40,${.7 * amarela})`); gr.addColorStop(1, "rgba(210,160,40,0)"); gR.fillStyle = gr; gR.fillRect(0, 0, 512, 256); if (queima > 0) { gR.fillStyle = `rgba(40,20,10,${queima})`; gR.beginPath(); gR.moveTo(170, 60); gR.lineTo(340, 60); gR.lineTo(256, 210); gR.fill(); } texR.needsUpdate = true; }
+const roupa = add(new THREE.PlaneGeometry(1.6, .8), new THREE.MeshStandardMaterial({ map: texR, roughness: .9 }), 0, .062, 0); roupa.rotation.x = -PI / 2;
+const fumaca = Array.from({ length: 14 }, () => ({ s: sprite(0x3a3a3a), f: rnd(), x: (rnd() - .5) * .3 }));
+
+// ---------- ferro ----------
+const ferro = grupo(0, .07, 0);
+const sh = new THREE.Shape(); sh.moveTo(-.38, 0); sh.lineTo(.3, 0); sh.quadraticCurveTo(.46, 0, .5, .02); sh.lineTo(.3, .12); sh.lineTo(-.38, .12); sh.lineTo(-.38, 0);
+const solaGeo = new THREE.ExtrudeGeometry(sh, { depth: .36, bevelEnabled: false }); solaGeo.translate(0, 0, -.18);
+const solaM = mat(0xc0c6cc, { metalness: .45, roughness: .25 }); solaM.emissive = new THREE.Color(0xff3a10); solaM.emissiveIntensity = 0;
+const sola = add(new THREE.BoxGeometry(.86, .03, .34), solaM, .04, .015, 0, ferro);
+const corpoM = vidro(.35, 0x5a8ad8); const corpo = add(solaGeo, corpoM, 0, .03, 0, ferro); corpo.scale.set(1, 1.6, 1);
+const alca = add(new THREE.TorusGeometry(.2, .035, 10, 30, PI), mat(0x2a5aa8), -.05, .25, 0, ferro);
+const tanque = add(new THREE.BoxGeometry(.3, .12, .26), new THREE.MeshStandardMaterial({ color: 0x8ac8f0, transparent: true, opacity: 0 }), .12, .1, 0, ferro);
+const luz = add(new THREE.SphereGeometry(.025, 12, 8), new THREE.MeshBasicMaterial({ color: 0x4a2a10 }), -.25, .22, .12, ferro);
+const cabo = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(-.38, .1, 0), V(-.6, .15, .05), V(-.9, .05, .2), V(-1.3, .0, .3)]), 30, .015, 6), mat(0x2a2a2a), 0, 0, 0, ferro);
+const giro = add(new THREE.CylinderGeometry(.04, .04, .06, 16), mat(0x5a5a5a), -.4, .1, 0, ferro); giro.rotation.z = PI / 2;
+const lamPeq = add(new THREE.BoxGeometry(.18, .012, .05), mat(0xc87a3a), -.08, .07, 0, ferro); lamPeq.visible = false;
+const vapor = Array.from({ length: 22 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .7, z: (rnd() - .5) * .25 }));
+const gotas = Array.from({ length: 6 }, () => ({ s: sprite(0x5aa0ff), f: rnd(), x: .05 + rnd() * .15 }));
+
+// ---------- mini set: lâmina bimetálica ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -.8); { const pl = new THREE.PointLight(0xffffff, 3, 6); pl.position.set(BX + 1, 1.5, 2); scene.add(pl); }
+add(new THREE.BoxGeometry(.2, .5, .2), mat(0x5a5e66), BX - .75, .5, 0);
+const lam = grupo(BX - .65, .62, 0); const lamA = add(new THREE.BoxGeometry(1.0, .04, .2), mat(0xd08040, { metalness: .4 }), .5, .02, 0, lam); const lamB = add(new THREE.BoxGeometry(1.0, .04, .2), mat(0xa8aeb6, { metalness: .4 }), .5, -.02, 0, lam);
+const contatoL = add(new THREE.SphereGeometry(.04, 12, 8), mat(0xe0c040, { metalness: .5 }), 1.0, -.06, 0, lam);
+const contatoF = add(new THREE.SphereGeometry(.04, 12, 8), mat(0xe0c040, { metalness: .5 }), BX + .35, .52, 0);
+const suporte = add(new THREE.BoxGeometry(.08, .4, .08), mat(0x5a5e66), BX + .35, .3, 0);
+const dial = add(new THREE.CylinderGeometry(.16, .16, .08, 24), mat(0x2a5aa8), BX + .35, 1.15, 0); const marca = add(new THREE.BoxGeometry(.03, .09, .1), mat(0xffd23a), BX + .35, 1.15, .14);
+const parafuso = add(new THREE.CylinderGeometry(.025, .025, .5, 10), mat(0xc0c6cc, { metalness: .4 }), BX + .35, .85, 0);
+const faisca = Array.from({ length: 12 }, () => ({ s: sprite(0xffe06a), f: rnd(), a: rnd() * PI * 2 }));
+const lbl = (txt, cor, x, y, z = .3) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lCobre = lbl("COBRE", "#ffb070", BX - .1, .86), lAco = lbl("AÇO", "#c0c6cc", BX - .1, .36);
+const lSeda = lbl("SEDA", "#ffffff", BX - .1, 1.25), lAlg = lbl("ALGODÃO", "#ffffff", BX + .8, 1.25);
+
+K.camera_({
+  geral: [V(1.7, 1.6, 3.7), V(0, .15, 0)],
+  roupa: [V(.6, 1.9, 2.3), V(0, .05, 0)],
+  lamina: [V(BX + .1, .75, 3.6), V(BX - .05, .62, 0)],
+  dial: [V(BX + .3, 1.0, 3.4), V(BX + .1, .8, 0)],
+  vapor: [V(1.2, .65, 2.6), V(0, .15, 0)],
+  fim: [V(-1.8, 1.4, 3.3), V(0, .2, 0)],
+}, [
+  [0, "geral"], [C(2), "roupa"], [F(2), "roupa"], [C(3), "lamina"], [F(4), "lamina"], [C(5), "dial"], [F(5), "dial"], [C(6), "geral"], [P(6, "tanquinho") - .3, "vapor"], [F(6), "vapor"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // ferro passando pra lá e pra cá
+  ferro.position.x = t < C(3) || t > C(6) ? Math.sin(t * 1.6) * .35 : 0;
+  // cena 2: amarela e queima
+  const amassa = t < P(2, "alisa") - .3 ? 1 : (t < C(6) ? 0 : (em(C(6), P(6, "tanquinho")) ? .8 : 0));
+  const amarela = t > P(2, "amarela") - .3 && t < C(3) ? prog(t, P(2, "amarela") - .3, P(2, "amarela") + .5) : 0;
+  const queima = t > P(2, "queima") - .3 && t < C(3) ? prog(t, P(2, "queima") - .3, P(2, "queima") + .5) : 0;
+  pintaRoupa(amassa, amarela, queima);
+  fumaca.forEach((f) => { const k = frac(t * .4 + f.f); f.s.position.set(ferro.position.x + f.x, .2 + k * .8, 0); f.s.scale.setScalar(.12 + k * .2); f.s.material.opacity = queima > .2 ? .6 * (1 - k) : 0; });
+  solaM.emissiveIntensity = t < C(3) ? .2 + .6 * lin(t, 0, F(2)) : .3;
+  // lâmina: esquenta -> entorta -> abre o contato; esfria -> volta (ciclo)
+  const ciclo = em(P(4, "entorta") - .4, F(4)) ? (Math.sin((t - P(4, "entorta")) * 2.2) > -.2 ? 1 : 0) : 0;
+  const curva = em(P(3, "estica") - .3, F(3)) ? .15 * prog(t, P(3, "estica") - .3, F(3)) : ciclo * .2;
+  lam.rotation.z = curva; lamA.material.emissive = new THREE.Color(0xff4a1a); lamA.material.emissiveIntensity = curva * 2;
+  const fechado = curva < .05;
+  faisca.forEach((f) => { const k = frac(t * 2 + f.f); f.s.position.set(BX + .35 + Math.cos(f.a) * k * .2, .52 + Math.sin(f.a) * k * .2, .05); f.s.scale.setScalar(.04); f.s.material.opacity = em(P(4, "abre") - .2, P(4, "abre") + .3) ? 1 - k : 0; });
+  lCobre.visible = lAco.visible = em(P(3, "metais") - .3, F(3));
+  // dial: seda (cedo) x algodão (tarde)
+  const ang = em(C(5), F(5)) ? (t < P(5, "algodao") - .3 ? -.8 : .9) : 0; dial.rotation.y = ang; marca.position.set(BX + .35 + Math.sin(ang) * .14, 1.15, Math.cos(ang) * .14);
+  contatoF.position.y = .52 + (em(C(5), F(5)) ? (t < P(5, "algodao") - .3 ? .06 : -.06) : 0); parafuso.position.y = .85 + (contatoF.position.y - .52);
+  lSeda.visible = em(P(5, "seda") - .3, F(5)); lAlg.visible = em(P(5, "algodao") - .3, F(5));
+  // vapor
+  const vap = t > P(6, "pinga") - .3 && t < C(7) || t > C(7);
+  tanque.material.opacity = t > P(6, "tanquinho") - .3 ? .55 : 0; corpo.visible = true;
+  gotas.forEach((g) => { const k = frac(t * 1.2 + g.f); g.s.position.set(g.x, .1 - k * .07, 0); g.s.scale.setScalar(.03); g.s.material.opacity = em(P(6, "pinga") - .3, F(6)) ? 1 - k : 0; });
+  vapor.forEach((v) => { const k = frac(t * .7 + v.f); v.s.position.set(ferro.position.x + v.x, .06 + k * .5, v.z + .22 * Math.sign(v.z)); v.s.scale.setScalar(.06 + k * .1); v.s.material.opacity = vap ? .55 * (1 - k) : 0; });
+  luz.material.color.set(t > P(7, "luzinha") - .3 && Math.sin(t * 2) > -.3 ? 0xffa02a : 0x4a2a10);
+  giro.rotation.x = t > P(7, "cabo") - .3 ? t * 2 : 0;
+  K.cartoes(t, [
+    [P(1, "ferro") - .3, F(1), "FERRO DE PASSAR", "#ffffff"],
+    [P(2, "alisa") - .3, P(2, "amarela") - .3, "ALISA", "#7ad07a"],
+    [P(2, "amarela") - .3, P(2, "queima") - .3, "AMARELA", "#ffd23a"],
+    [P(2, "queima") - .3, F(2), "QUEIMA!", "#ff4a3a"],
+    [P(3, "metais") - .4, F(3), "DOIS METAIS GRUDADOS", "#ffb070"],
+    [P(4, "entorta") - .3, P(4, "esfriou") - .3, "ENTORTA → DESLIGA", "#ff4a3a"],
+    [P(4, "esfriou") - .3, P(4, "clique") - .4, "ESFRIOU → LIGA", "#5aa0ff"],
+    [P(4, "clique") - .4, F(4), "É O CLIQUE!", "#ffffff"],
+    [P(5, "seda") - .3, P(5, "algodao") - .3, "SEDA: DESLIGA CEDO", "#ffffff"],
+    [P(5, "algodao") - .3, F(5), "ALGODÃO: MAIS TARDE", "#ffffff"],
+    [P(6, "tanquinho") - .3, F(6), "ÁGUA → VAPOR", "#8ac8f0"],
+  ]);
+});
+</script>
+</body></html>

@@ -1,0 +1,617 @@
+{
+ "total": 54.02,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.8,
+   "texto": "Se você esquentar uma placa de metal, terá um ferro de passar.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "esquentar",
+     "t": 0.669
+    },
+    {
+     "w": "uma",
+     "t": 1.117
+    },
+    {
+     "w": "placa",
+     "t": 1.306
+    },
+    {
+     "w": "de",
+     "t": 1.659
+    },
+    {
+     "w": "metal",
+     "t": 1.742
+    },
+    {
+     "w": "terá",
+     "t": 2.343
+    },
+    {
+     "w": "um",
+     "t": 2.544
+    },
+    {
+     "w": "ferro",
+     "t": 2.674
+    },
+    {
+     "w": "de",
+     "t": 3.039
+    },
+    {
+     "w": "passar",
+     "t": 3.133
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.95,
+   "fim": 11.53,
+   "texto": "Mas ela esquenta sem parar. Primeiro a roupa alisa. Depois amarela. E no fim, queima.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.997
+    },
+    {
+     "w": "ela",
+     "t": 4.209
+    },
+    {
+     "w": "esquenta",
+     "t": 4.528
+    },
+    {
+     "w": "sem",
+     "t": 4.929
+    },
+    {
+     "w": "parar",
+     "t": 5.153
+    },
+    {
+     "w": "Primeiro",
+     "t": 6.273
+    },
+    {
+     "w": "a",
+     "t": 6.721
+    },
+    {
+     "w": "roupa",
+     "t": 6.78
+    },
+    {
+     "w": "alisa",
+     "t": 7.063
+    },
+    {
+     "w": "Depois",
+     "t": 8.278
+    },
+    {
+     "w": "amarela",
+     "t": 8.691
+    },
+    {
+     "w": "E",
+     "t": 10.117
+    },
+    {
+     "w": "no",
+     "t": 10.224
+    },
+    {
+     "w": "fim",
+     "t": 10.341
+    },
+    {
+     "w": "queima",
+     "t": 10.86
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.68,
+   "fim": 18.97,
+   "texto": "Então, você coloca uma lâmina feita de dois metais grudados. Um deles estica mais que o outro quando esquenta.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.727
+    },
+    {
+     "w": "você",
+     "t": 12.47
+    },
+    {
+     "w": "coloca",
+     "t": 12.718
+    },
+    {
+     "w": "uma",
+     "t": 13.107
+    },
+    {
+     "w": "lâmina",
+     "t": 13.237
+    },
+    {
+     "w": "feita",
+     "t": 13.661
+    },
+    {
+     "w": "de",
+     "t": 13.98
+    },
+    {
+     "w": "dois",
+     "t": 14.109
+    },
+    {
+     "w": "metais",
+     "t": 14.439
+    },
+    {
+     "w": "grudados",
+     "t": 14.876
+    },
+    {
+     "w": "Um",
+     "t": 16.279
+    },
+    {
+     "w": "deles",
+     "t": 16.468
+    },
+    {
+     "w": "estica",
+     "t": 16.774
+    },
+    {
+     "w": "mais",
+     "t": 17.211
+    },
+    {
+     "w": "que",
+     "t": 17.517
+    },
+    {
+     "w": "o",
+     "t": 17.612
+    },
+    {
+     "w": "outro",
+     "t": 17.73
+    },
+    {
+     "w": "quando",
+     "t": 18.048
+    },
+    {
+     "w": "esquenta",
+     "t": 18.248
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.12,
+   "fim": 29.24,
+   "texto": "Quando a placa chega na temperatura, a lâmina entorta, abre o contato e corta a energia. Esfriou, ela volta e liga de novo. É o clique que você escuta.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 19.167
+    },
+    {
+     "w": "a",
+     "t": 19.427
+    },
+    {
+     "w": "placa",
+     "t": 19.497
+    },
+    {
+     "w": "chega",
+     "t": 19.816
+    },
+    {
+     "w": "na",
+     "t": 20.099
+    },
+    {
+     "w": "temperatura",
+     "t": 20.217
+    },
+    {
+     "w": "a",
+     "t": 21.03
+    },
+    {
+     "w": "lâmina",
+     "t": 21.101
+    },
+    {
+     "w": "entorta",
+     "t": 21.431
+    },
+    {
+     "w": "abre",
+     "t": 22.151
+    },
+    {
+     "w": "o",
+     "t": 22.351
+    },
+    {
+     "w": "contato",
+     "t": 22.387
+    },
+    {
+     "w": "e",
+     "t": 22.905
+    },
+    {
+     "w": "corta",
+     "t": 22.964
+    },
+    {
+     "w": "a",
+     "t": 23.283
+    },
+    {
+     "w": "energia",
+     "t": 23.33
+    },
+    {
+     "w": "Esfriou",
+     "t": 24.71
+    },
+    {
+     "w": "ela",
+     "t": 25.464
+    },
+    {
+     "w": "volta",
+     "t": 25.688
+    },
+    {
+     "w": "e",
+     "t": 25.995
+    },
+    {
+     "w": "liga",
+     "t": 26.03
+    },
+    {
+     "w": "de",
+     "t": 26.266
+    },
+    {
+     "w": "novo",
+     "t": 26.372
+    },
+    {
+     "w": "É",
+     "t": 27.528
+    },
+    {
+     "w": "o",
+     "t": 27.67
+    },
+    {
+     "w": "clique",
+     "t": 27.752
+    },
+    {
+     "w": "que",
+     "t": 28.106
+    },
+    {
+     "w": "você",
+     "t": 28.2
+    },
+    {
+     "w": "escuta",
+     "t": 28.495
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 29.39,
+   "fim": 37.39,
+   "texto": "O botão de temperatura só aproxima ou afasta o contato. Seda desliga cedo. Algodão, bem mais tarde.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 29.437
+    },
+    {
+     "w": "botão",
+     "t": 29.567
+    },
+    {
+     "w": "de",
+     "t": 29.921
+    },
+    {
+     "w": "temperatura",
+     "t": 30.027
+    },
+    {
+     "w": "só",
+     "t": 30.664
+    },
+    {
+     "w": "aproxima",
+     "t": 30.876
+    },
+    {
+     "w": "ou",
+     "t": 31.43
+    },
+    {
+     "w": "afasta",
+     "t": 31.56
+    },
+    {
+     "w": "o",
+     "t": 31.984
+    },
+    {
+     "w": "contato",
+     "t": 32.02
+    },
+    {
+     "w": "Seda",
+     "t": 33.34
+    },
+    {
+     "w": "desliga",
+     "t": 33.73
+    },
+    {
+     "w": "cedo",
+     "t": 34.213
+    },
+    {
+     "w": "Algodão",
+     "t": 35.416
+    },
+    {
+     "w": "bem",
+     "t": 36.218
+    },
+    {
+     "w": "mais",
+     "t": 36.43
+    },
+    {
+     "w": "tarde",
+     "t": 36.701
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 37.54,
+   "fim": 46.1,
+   "texto": "Mas tem amassado que só calor não tira. Então, você coloca um tanquinho de água que pinga na placa quente e sai como vapor pelos furinhos.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 37.587
+    },
+    {
+     "w": "tem",
+     "t": 37.906
+    },
+    {
+     "w": "amassado",
+     "t": 38.059
+    },
+    {
+     "w": "que",
+     "t": 38.613
+    },
+    {
+     "w": "só",
+     "t": 38.731
+    },
+    {
+     "w": "calor",
+     "t": 38.931
+    },
+    {
+     "w": "não",
+     "t": 39.321
+    },
+    {
+     "w": "tira",
+     "t": 39.533
+    },
+    {
+     "w": "Então",
+     "t": 40.7
+    },
+    {
+     "w": "você",
+     "t": 41.455
+    },
+    {
+     "w": "coloca",
+     "t": 41.715
+    },
+    {
+     "w": "um",
+     "t": 42.139
+    },
+    {
+     "w": "tanquinho",
+     "t": 42.233
+    },
+    {
+     "w": "de",
+     "t": 42.67
+    },
+    {
+     "w": "água",
+     "t": 42.776
+    },
+    {
+     "w": "que",
+     "t": 43.047
+    },
+    {
+     "w": "pinga",
+     "t": 43.165
+    },
+    {
+     "w": "na",
+     "t": 43.436
+    },
+    {
+     "w": "placa",
+     "t": 43.566
+    },
+    {
+     "w": "quente",
+     "t": 43.884
+    },
+    {
+     "w": "e",
+     "t": 44.156
+    },
+    {
+     "w": "sai",
+     "t": 44.191
+    },
+    {
+     "w": "como",
+     "t": 44.427
+    },
+    {
+     "w": "vapor",
+     "t": 44.651
+    },
+    {
+     "w": "pelos",
+     "t": 45.04
+    },
+    {
+     "w": "furinhos",
+     "t": 45.311
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 46.25,
+   "fim": 53.42,
+   "texto": "Coloque uma luzinha que acende junto com o calor e um cabo que gira. Parabéns, você construiu um ferro de passar.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 46.297
+    },
+    {
+     "w": "uma",
+     "t": 46.804
+    },
+    {
+     "w": "luzinha",
+     "t": 46.934
+    },
+    {
+     "w": "que",
+     "t": 47.37
+    },
+    {
+     "w": "acende",
+     "t": 47.465
+    },
+    {
+     "w": "junto",
+     "t": 47.842
+    },
+    {
+     "w": "com",
+     "t": 48.172
+    },
+    {
+     "w": "o",
+     "t": 48.314
+    },
+    {
+     "w": "calor",
+     "t": 48.361
+    },
+    {
+     "w": "e",
+     "t": 48.726
+    },
+    {
+     "w": "um",
+     "t": 48.785
+    },
+    {
+     "w": "cabo",
+     "t": 48.915
+    },
+    {
+     "w": "que",
+     "t": 49.233
+    },
+    {
+     "w": "gira",
+     "t": 49.34
+    },
+    {
+     "w": "Parabéns",
+     "t": 50.531
+    },
+    {
+     "w": "você",
+     "t": 51.356
+    },
+    {
+     "w": "construiu",
+     "t": 51.663
+    },
+    {
+     "w": "um",
+     "t": 52.146
+    },
+    {
+     "w": "ferro",
+     "t": 52.276
+    },
+    {
+     "w": "de",
+     "t": 52.665
+    },
+    {
+     "w": "passar",
+     "t": 52.759
+    }
+   ]
+  }
+ ]
+}
