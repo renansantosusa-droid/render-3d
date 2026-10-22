@@ -1,0 +1,613 @@
+{
+ "total": 52.28,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 6.25,
+   "texto": "Se você passar eletricidade por um fio bem fino, ele brilha. Essa é a lâmpada incandescente.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "passar",
+     "t": 0.669
+    },
+    {
+     "w": "eletricidade",
+     "t": 0.975
+    },
+    {
+     "w": "por",
+     "t": 1.707
+    },
+    {
+     "w": "um",
+     "t": 1.848
+    },
+    {
+     "w": "fio",
+     "t": 1.954
+    },
+    {
+     "w": "bem",
+     "t": 2.143
+    },
+    {
+     "w": "fino",
+     "t": 2.367
+    },
+    {
+     "w": "ele",
+     "t": 2.921
+    },
+    {
+     "w": "brilha",
+     "t": 3.098
+    },
+    {
+     "w": "Essa",
+     "t": 4.313
+    },
+    {
+     "w": "é",
+     "t": 4.631
+    },
+    {
+     "w": "a",
+     "t": 4.725
+    },
+    {
+     "w": "lâmpada",
+     "t": 4.761
+    },
+    {
+     "w": "incandescente",
+     "t": 5.197
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 6.4,
+   "fim": 13.45,
+   "texto": "Mas quase toda a energia vira calor, não luz. Ela esquenta a mão. E queima rápido.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 6.447
+    },
+    {
+     "w": "quase",
+     "t": 6.754
+    },
+    {
+     "w": "toda",
+     "t": 7.178
+    },
+    {
+     "w": "a",
+     "t": 7.473
+    },
+    {
+     "w": "energia",
+     "t": 7.532
+    },
+    {
+     "w": "vira",
+     "t": 8.004
+    },
+    {
+     "w": "calor",
+     "t": 8.216
+    },
+    {
+     "w": "não",
+     "t": 8.853
+    },
+    {
+     "w": "luz",
+     "t": 9.207
+    },
+    {
+     "w": "Ela",
+     "t": 10.398
+    },
+    {
+     "w": "esquenta",
+     "t": 10.634
+    },
+    {
+     "w": "a",
+     "t": 11.105
+    },
+    {
+     "w": "mão",
+     "t": 11.141
+    },
+    {
+     "w": "E",
+     "t": 12.225
+    },
+    {
+     "w": "queima",
+     "t": 12.367
+    },
+    {
+     "w": "rápido",
+     "t": 12.709
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 13.6,
+   "fim": 19.32,
+   "texto": "Então, você troca o fio por um chip minúsculo, feito de duas camadas de materiais diferentes.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 13.647
+    },
+    {
+     "w": "você",
+     "t": 14.414
+    },
+    {
+     "w": "troca",
+     "t": 14.685
+    },
+    {
+     "w": "o",
+     "t": 14.98
+    },
+    {
+     "w": "fio",
+     "t": 15.015
+    },
+    {
+     "w": "por",
+     "t": 15.263
+    },
+    {
+     "w": "um",
+     "t": 15.392
+    },
+    {
+     "w": "chip",
+     "t": 15.487
+    },
+    {
+     "w": "minúsculo",
+     "t": 15.758
+    },
+    {
+     "w": "feito",
+     "t": 16.536
+    },
+    {
+     "w": "de",
+     "t": 16.808
+    },
+    {
+     "w": "duas",
+     "t": 16.925
+    },
+    {
+     "w": "camadas",
+     "t": 17.267
+    },
+    {
+     "w": "de",
+     "t": 17.739
+    },
+    {
+     "w": "materiais",
+     "t": 17.822
+    },
+    {
+     "w": "diferentes",
+     "t": 18.364
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.47,
+   "fim": 28.09,
+   "texto": "Quando a eletricidade atravessa a junção entre elas, os elétrons pulam de um lado pro outro e soltam a energia em forma de luz. Quase sem calor.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 19.517
+    },
+    {
+     "w": "a",
+     "t": 19.753
+    },
+    {
+     "w": "eletricidade",
+     "t": 19.788
+    },
+    {
+     "w": "atravessa",
+     "t": 20.425
+    },
+    {
+     "w": "a",
+     "t": 20.873
+    },
+    {
+     "w": "junção",
+     "t": 20.909
+    },
+    {
+     "w": "entre",
+     "t": 21.345
+    },
+    {
+     "w": "elas",
+     "t": 21.534
+    },
+    {
+     "w": "os",
+     "t": 22.206
+    },
+    {
+     "w": "elétrons",
+     "t": 22.265
+    },
+    {
+     "w": "pulam",
+     "t": 22.795
+    },
+    {
+     "w": "de",
+     "t": 23.102
+    },
+    {
+     "w": "um",
+     "t": 23.196
+    },
+    {
+     "w": "lado",
+     "t": 23.314
+    },
+    {
+     "w": "pro",
+     "t": 23.586
+    },
+    {
+     "w": "outro",
+     "t": 23.751
+    },
+    {
+     "w": "e",
+     "t": 24.069
+    },
+    {
+     "w": "soltam",
+     "t": 24.116
+    },
+    {
+     "w": "a",
+     "t": 24.553
+    },
+    {
+     "w": "energia",
+     "t": 24.588
+    },
+    {
+     "w": "em",
+     "t": 25.083
+    },
+    {
+     "w": "forma",
+     "t": 25.154
+    },
+    {
+     "w": "de",
+     "t": 25.531
+    },
+    {
+     "w": "luz",
+     "t": 25.649
+    },
+    {
+     "w": "Quase",
+     "t": 26.84
+    },
+    {
+     "w": "sem",
+     "t": 27.253
+    },
+    {
+     "w": "calor.",
+     "t": 27.454
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.24,
+   "fim": 38.01,
+   "texto": "Mas o chip só brilha azul. Então, você cobre ele com um pó amarelo, que transforma parte do azul em amarelo. Azul mais amarelo dá branco.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 28.287
+    },
+    {
+     "w": "o",
+     "t": 28.499
+    },
+    {
+     "w": "chip",
+     "t": 28.617
+    },
+    {
+     "w": "só",
+     "t": 28.948
+    },
+    {
+     "w": "brilha",
+     "t": 29.16
+    },
+    {
+     "w": "azul",
+     "t": 29.466
+    },
+    {
+     "w": "Então",
+     "t": 30.61
+    },
+    {
+     "w": "você",
+     "t": 31.4
+    },
+    {
+     "w": "cobre",
+     "t": 31.66
+    },
+    {
+     "w": "ele",
+     "t": 32.002
+    },
+    {
+     "w": "com",
+     "t": 32.202
+    },
+    {
+     "w": "um",
+     "t": 32.367
+    },
+    {
+     "w": "pó",
+     "t": 32.462
+    },
+    {
+     "w": "amarelo",
+     "t": 32.615
+    },
+    {
+     "w": "que",
+     "t": 33.264
+    },
+    {
+     "w": "transforma",
+     "t": 33.405
+    },
+    {
+     "w": "parte",
+     "t": 33.995
+    },
+    {
+     "w": "do",
+     "t": 34.313
+    },
+    {
+     "w": "azul",
+     "t": 34.431
+    },
+    {
+     "w": "em",
+     "t": 34.749
+    },
+    {
+     "w": "amarelo",
+     "t": 34.832
+    },
+    {
+     "w": "Azul",
+     "t": 36.141
+    },
+    {
+     "w": "mais",
+     "t": 36.53
+    },
+    {
+     "w": "amarelo",
+     "t": 36.731
+    },
+    {
+     "w": "dá",
+     "t": 37.249
+    },
+    {
+     "w": "branco",
+     "t": 37.356
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 38.16,
+   "fim": 45.45,
+   "texto": "E a parte de baixo esquenta por quê? Ali fica um circuito que transforma a energia da tomada na energia certa pro chip.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 38.207
+    },
+    {
+     "w": "a",
+     "t": 38.325
+    },
+    {
+     "w": "parte",
+     "t": 38.431
+    },
+    {
+     "w": "de",
+     "t": 38.773
+    },
+    {
+     "w": "baixo",
+     "t": 38.879
+    },
+    {
+     "w": "esquenta",
+     "t": 39.198
+    },
+    {
+     "w": "por",
+     "t": 39.61
+    },
+    {
+     "w": "quê",
+     "t": 39.787
+    },
+    {
+     "w": "Ali",
+     "t": 40.837
+    },
+    {
+     "w": "fica",
+     "t": 41.144
+    },
+    {
+     "w": "um",
+     "t": 41.415
+    },
+    {
+     "w": "circuito",
+     "t": 41.485
+    },
+    {
+     "w": "que",
+     "t": 41.993
+    },
+    {
+     "w": "transforma",
+     "t": 42.11
+    },
+    {
+     "w": "a",
+     "t": 42.653
+    },
+    {
+     "w": "energia",
+     "t": 42.688
+    },
+    {
+     "w": "da",
+     "t": 43.172
+    },
+    {
+     "w": "tomada",
+     "t": 43.278
+    },
+    {
+     "w": "na",
+     "t": 43.726
+    },
+    {
+     "w": "energia",
+     "t": 43.809
+    },
+    {
+     "w": "certa",
+     "t": 44.28
+    },
+    {
+     "w": "pro",
+     "t": 44.681
+    },
+    {
+     "w": "chip",
+     "t": 44.823
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 45.6,
+   "fim": 51.68,
+   "texto": "Coloque uma cúpula leitosa e uma rosca. Parabéns, você construiu uma lâmpada de LED.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 45.647
+    },
+    {
+     "w": "uma",
+     "t": 46.154
+    },
+    {
+     "w": "cúpula",
+     "t": 46.319
+    },
+    {
+     "w": "leitosa",
+     "t": 46.685
+    },
+    {
+     "w": "e",
+     "t": 47.227
+    },
+    {
+     "w": "uma",
+     "t": 47.31
+    },
+    {
+     "w": "rosca",
+     "t": 47.499
+    },
+    {
+     "w": "Parabéns",
+     "t": 48.737
+    },
+    {
+     "w": "você",
+     "t": 49.527
+    },
+    {
+     "w": "construiu",
+     "t": 49.822
+    },
+    {
+     "w": "uma",
+     "t": 50.329
+    },
+    {
+     "w": "lâmpada",
+     "t": 50.47
+    },
+    {
+     "w": "de",
+     "t": 50.918
+    },
+    {
+     "w": "LED",
+     "t": 51.036
+    }
+   ]
+  }
+ ]
+}
