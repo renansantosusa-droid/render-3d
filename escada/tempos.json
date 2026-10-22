@@ -1,0 +1,777 @@
+{
+ "total": 62.87,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.34,
+   "texto": "Se você colocar degraus em cima de uma esteira, terá uma escada que anda.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.669
+    },
+    {
+     "w": "degraus",
+     "t": 1.093
+    },
+    {
+     "w": "em",
+     "t": 1.447
+    },
+    {
+     "w": "cima",
+     "t": 1.612
+    },
+    {
+     "w": "de",
+     "t": 1.919
+    },
+    {
+     "w": "uma",
+     "t": 2.013
+    },
+    {
+     "w": "esteira",
+     "t": 2.131
+    },
+    {
+     "w": "terá",
+     "t": 2.815
+    },
+    {
+     "w": "uma",
+     "t": 3.063
+    },
+    {
+     "w": "escada",
+     "t": 3.157
+    },
+    {
+     "w": "que",
+     "t": 3.605
+    },
+    {
+     "w": "anda",
+     "t": 3.77
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.49,
+   "fim": 11.2,
+   "texto": "Mas na subida os degraus viram uma rampa. O pé escorrega. E ninguém consegue ficar em pé.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.537
+    },
+    {
+     "w": "na",
+     "t": 4.808
+    },
+    {
+     "w": "subida",
+     "t": 4.915
+    },
+    {
+     "w": "os",
+     "t": 5.292
+    },
+    {
+     "w": "degraus",
+     "t": 5.374
+    },
+    {
+     "w": "viram",
+     "t": 5.846
+    },
+    {
+     "w": "uma",
+     "t": 6.129
+    },
+    {
+     "w": "rampa",
+     "t": 6.282
+    },
+    {
+     "w": "O",
+     "t": 7.497
+    },
+    {
+     "w": "pé",
+     "t": 7.65
+    },
+    {
+     "w": "escorrega",
+     "t": 7.874
+    },
+    {
+     "w": "E",
+     "t": 9.313
+    },
+    {
+     "w": "ninguém",
+     "t": 9.419
+    },
+    {
+     "w": "consegue",
+     "t": 9.797
+    },
+    {
+     "w": "ficar",
+     "t": 10.28
+    },
+    {
+     "w": "em",
+     "t": 10.587
+    },
+    {
+     "w": "pé",
+     "t": 10.705
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.35,
+   "fim": 22.4,
+   "texto": "Então, cada degrau ganha rodinhas e corre em dois trilhos. Um segura a frente, o outro segura o fundo. Na subida eles se afastam, e o degrau continua retinho.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.397
+    },
+    {
+     "w": "cada",
+     "t": 12.105
+    },
+    {
+     "w": "degrau",
+     "t": 12.352
+    },
+    {
+     "w": "ganha",
+     "t": 12.683
+    },
+    {
+     "w": "rodinhas",
+     "t": 12.93
+    },
+    {
+     "w": "e",
+     "t": 13.39
+    },
+    {
+     "w": "corre",
+     "t": 13.532
+    },
+    {
+     "w": "em",
+     "t": 13.803
+    },
+    {
+     "w": "dois",
+     "t": 13.909
+    },
+    {
+     "w": "trilhos",
+     "t": 14.216
+    },
+    {
+     "w": "Um",
+     "t": 15.489
+    },
+    {
+     "w": "segura",
+     "t": 15.654
+    },
+    {
+     "w": "a",
+     "t": 16.114
+    },
+    {
+     "w": "frente",
+     "t": 16.15
+    },
+    {
+     "w": "o",
+     "t": 16.822
+    },
+    {
+     "w": "outro",
+     "t": 16.904
+    },
+    {
+     "w": "segura",
+     "t": 17.234
+    },
+    {
+     "w": "o",
+     "t": 17.635
+    },
+    {
+     "w": "fundo",
+     "t": 17.671
+    },
+    {
+     "w": "Na",
+     "t": 18.862
+    },
+    {
+     "w": "subida",
+     "t": 19.039
+    },
+    {
+     "w": "eles",
+     "t": 19.499
+    },
+    {
+     "w": "se",
+     "t": 19.77
+    },
+    {
+     "w": "afastam",
+     "t": 19.852
+    },
+    {
+     "w": "e",
+     "t": 20.642
+    },
+    {
+     "w": "o",
+     "t": 20.737
+    },
+    {
+     "w": "degrau",
+     "t": 20.796
+    },
+    {
+     "w": "continua",
+     "t": 21.15
+    },
+    {
+     "w": "retinho",
+     "t": 21.633
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.55,
+   "fim": 30.21,
+   "texto": "Lá em cima, os trilhos se juntam de novo, e os degraus ficam planos, como um chão. Por isso eles parecem sumir.",
+   "palavras": [
+    {
+     "w": "Lá",
+     "t": 22.597
+    },
+    {
+     "w": "em",
+     "t": 22.833
+    },
+    {
+     "w": "cima",
+     "t": 22.951
+    },
+    {
+     "w": "os",
+     "t": 23.552
+    },
+    {
+     "w": "trilhos",
+     "t": 23.706
+    },
+    {
+     "w": "se",
+     "t": 24.083
+    },
+    {
+     "w": "juntam",
+     "t": 24.201
+    },
+    {
+     "w": "de",
+     "t": 24.578
+    },
+    {
+     "w": "novo",
+     "t": 24.696
+    },
+    {
+     "w": "e",
+     "t": 25.38
+    },
+    {
+     "w": "os",
+     "t": 25.463
+    },
+    {
+     "w": "degraus",
+     "t": 25.569
+    },
+    {
+     "w": "ficam",
+     "t": 26.017
+    },
+    {
+     "w": "planos",
+     "t": 26.347
+    },
+    {
+     "w": "como",
+     "t": 27.067
+    },
+    {
+     "w": "um",
+     "t": 27.291
+    },
+    {
+     "w": "chão",
+     "t": 27.385
+    },
+    {
+     "w": "Por",
+     "t": 28.529
+    },
+    {
+     "w": "isso",
+     "t": 28.729
+    },
+    {
+     "w": "eles",
+     "t": 29.012
+    },
+    {
+     "w": "parecem",
+     "t": 29.177
+    },
+    {
+     "w": "sumir",
+     "t": 29.602
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 30.36,
+   "fim": 39.14,
+   "texto": "Mas eles não somem. Eles viram de cabeça pra baixo e voltam por baixo da escada, numa corrente sem fim, puxada por um motor lá no alto.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 30.407
+    },
+    {
+     "w": "eles",
+     "t": 30.619
+    },
+    {
+     "w": "não",
+     "t": 30.973
+    },
+    {
+     "w": "somem",
+     "t": 31.197
+    },
+    {
+     "w": "Eles",
+     "t": 32.435
+    },
+    {
+     "w": "viram",
+     "t": 32.707
+    },
+    {
+     "w": "de",
+     "t": 32.954
+    },
+    {
+     "w": "cabeça",
+     "t": 33.037
+    },
+    {
+     "w": "pra",
+     "t": 33.532
+    },
+    {
+     "w": "baixo",
+     "t": 33.662
+    },
+    {
+     "w": "e",
+     "t": 34.086
+    },
+    {
+     "w": "voltam",
+     "t": 34.157
+    },
+    {
+     "w": "por",
+     "t": 34.535
+    },
+    {
+     "w": "baixo",
+     "t": 34.676
+    },
+    {
+     "w": "da",
+     "t": 35.006
+    },
+    {
+     "w": "escada",
+     "t": 35.089
+    },
+    {
+     "w": "numa",
+     "t": 35.785
+    },
+    {
+     "w": "corrente",
+     "t": 35.985
+    },
+    {
+     "w": "sem",
+     "t": 36.398
+    },
+    {
+     "w": "fim",
+     "t": 36.598
+    },
+    {
+     "w": "puxada",
+     "t": 37.164
+    },
+    {
+     "w": "por",
+     "t": 37.636
+    },
+    {
+     "w": "um",
+     "t": 37.777
+    },
+    {
+     "w": "motor",
+     "t": 37.848
+    },
+    {
+     "w": "lá",
+     "t": 38.273
+    },
+    {
+     "w": "no",
+     "t": 38.438
+    },
+    {
+     "w": "alto",
+     "t": 38.579
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 39.29,
+   "fim": 48.5,
+   "texto": "Mas o vão entre o degrau e a parede prende cadarço. Então, você coloca escovas nas laterais e um pente de dentinhos no fim, que empurra o pé pra fora.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.337
+    },
+    {
+     "w": "o",
+     "t": 39.549
+    },
+    {
+     "w": "vão",
+     "t": 39.703
+    },
+    {
+     "w": "entre",
+     "t": 39.939
+    },
+    {
+     "w": "o",
+     "t": 40.104
+    },
+    {
+     "w": "degrau",
+     "t": 40.151
+    },
+    {
+     "w": "e",
+     "t": 40.575
+    },
+    {
+     "w": "a",
+     "t": 40.646
+    },
+    {
+     "w": "parede",
+     "t": 40.729
+    },
+    {
+     "w": "prende",
+     "t": 41.118
+    },
+    {
+     "w": "cadarço",
+     "t": 41.413
+    },
+    {
+     "w": "Então",
+     "t": 42.757
+    },
+    {
+     "w": "você",
+     "t": 43.547
+    },
+    {
+     "w": "coloca",
+     "t": 43.83
+    },
+    {
+     "w": "escovas",
+     "t": 44.219
+    },
+    {
+     "w": "nas",
+     "t": 44.644
+    },
+    {
+     "w": "laterais",
+     "t": 44.797
+    },
+    {
+     "w": "e",
+     "t": 45.269
+    },
+    {
+     "w": "um",
+     "t": 45.387
+    },
+    {
+     "w": "pente",
+     "t": 45.493
+    },
+    {
+     "w": "de",
+     "t": 45.764
+    },
+    {
+     "w": "dentinhos",
+     "t": 45.858
+    },
+    {
+     "w": "no",
+     "t": 46.377
+    },
+    {
+     "w": "fim",
+     "t": 46.472
+    },
+    {
+     "w": "que",
+     "t": 46.967
+    },
+    {
+     "w": "empurra",
+     "t": 47.049
+    },
+    {
+     "w": "o",
+     "t": 47.486
+    },
+    {
+     "w": "pé",
+     "t": 47.545
+    },
+    {
+     "w": "pra",
+     "t": 47.733
+    },
+    {
+     "w": "fora",
+     "t": 47.91
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.65,
+   "fim": 53.89,
+   "texto": "E o corrimão é uma correia de borracha que gira junto com os degraus, puxada pelo mesmo motor.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 48.697
+    },
+    {
+     "w": "o",
+     "t": 48.827
+    },
+    {
+     "w": "corrimão",
+     "t": 48.886
+    },
+    {
+     "w": "é",
+     "t": 49.44
+    },
+    {
+     "w": "uma",
+     "t": 49.523
+    },
+    {
+     "w": "correia",
+     "t": 49.676
+    },
+    {
+     "w": "de",
+     "t": 50.089
+    },
+    {
+     "w": "borracha",
+     "t": 50.183
+    },
+    {
+     "w": "que",
+     "t": 50.69
+    },
+    {
+     "w": "gira",
+     "t": 50.796
+    },
+    {
+     "w": "junto",
+     "t": 51.032
+    },
+    {
+     "w": "com",
+     "t": 51.315
+    },
+    {
+     "w": "os",
+     "t": 51.445
+    },
+    {
+     "w": "degraus",
+     "t": 51.527
+    },
+    {
+     "w": "puxada",
+     "t": 52.259
+    },
+    {
+     "w": "pelo",
+     "t": 52.707
+    },
+    {
+     "w": "mesmo",
+     "t": 52.919
+    },
+    {
+     "w": "motor",
+     "t": 53.225
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 54.04,
+   "fim": 62.27,
+   "texto": "Coloque faixas amarelas, um botão de parada e uma placa de segure o corrimão. Parabéns, você construiu uma escada rolante.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 54.087
+    },
+    {
+     "w": "faixas",
+     "t": 54.618
+    },
+    {
+     "w": "amarelas",
+     "t": 54.936
+    },
+    {
+     "w": "um",
+     "t": 55.868
+    },
+    {
+     "w": "botão",
+     "t": 55.986
+    },
+    {
+     "w": "de",
+     "t": 56.328
+    },
+    {
+     "w": "parada",
+     "t": 56.434
+    },
+    {
+     "w": "e",
+     "t": 56.917
+    },
+    {
+     "w": "uma",
+     "t": 56.976
+    },
+    {
+     "w": "placa",
+     "t": 57.177
+    },
+    {
+     "w": "de",
+     "t": 57.542
+    },
+    {
+     "w": "segure",
+     "t": 57.637
+    },
+    {
+     "w": "o",
+     "t": 58.061
+    },
+    {
+     "w": "corrimão",
+     "t": 58.108
+    },
+    {
+     "w": "Parabéns",
+     "t": 59.417
+    },
+    {
+     "w": "você",
+     "t": 60.219
+    },
+    {
+     "w": "construiu",
+     "t": 60.526
+    },
+    {
+     "w": "uma",
+     "t": 61.033
+    },
+    {
+     "w": "escada",
+     "t": 61.139
+    },
+    {
+     "w": "rolante",
+     "t": 61.505
+    }
+   ]
+  }
+ ]
+}

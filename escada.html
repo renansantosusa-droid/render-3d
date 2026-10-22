@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("escada", { fundo: 0xbfd4e6, seed: 3131 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI, ANG = PI / 6, COS = Math.cos(ANG), SIN = Math.sin(ANG);
+
+// ---------- shopping ----------
+add(new THREE.PlaneGeometry(40, 40), mat(0xffffff, { map: texRuido("#d8d2c8", 20, 12), roughness: .5 }), 0, -.02, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xe6ecf2), 0, 3, -2);
+
+// caminho de cima: patamar de baixo, subida, patamar de cima
+const L0 = .6, LI = 3.2 / COS, Lt = L0 * 2 + LI, H = 3.2 * Math.tan(ANG);
+function topo(s) { if (s < L0) return [-2.2 + s, 0]; if (s < L0 + LI) { const d = s - L0; return [-1.6 + d * COS, d * SIN]; } return [1.6 + (s - L0 - LI), H]; }
+add(new THREE.BoxGeometry(8, .1, 4), mat(0xe8e2d8), 7.0, H - .04, 0); // piso de cima
+const inclina = (s) => s > L0 && s < L0 + LI;
+// degraus
+const N = 34, LL = Lt * 2;
+const pisoM = mat(0x8a9098, { roughness: .4, metalness: .3 }), amarelo = mat(0xffd23a), rodaM = mat(0x2a2a2a);
+const degraus = Array.from({ length: N }, (_, i) => {
+  const g = grupo();
+  const tread = add(new THREE.BoxGeometry(.26, .035, .8), i === 0 ? mat(0xffb02a, { roughness: .4 }) : pisoM, 0, 0, 0, g);
+  for (let k = 0; k < 6; k++) add(new THREE.BoxGeometry(.26, .012, .02), mat(0x5a6068), 0, .022, -.3 + k * .12, g);
+  add(new THREE.BoxGeometry(.03, .16, .8), mat(0x6a7078), -.13, -.08, 0, g);
+  const faixa = add(new THREE.BoxGeometry(.03, .04, .8), amarelo, .12, .004, 0, g);
+  const rodas = [[.1, -.1], [-.12, -.17]].map(([x, y]) => [-.42, .42].map((z) => { const r = add(new THREE.CylinderGeometry(.04, .04, .03, 14), rodaM, x, y, z, g); r.rotation.x = PI / 2; return r; })).flat();
+  return { g, faixa, rodas };
+});
+// trilhos (frente e fundo), dos dois lados
+const trilho = (dx, dy, cor) => { const pts = []; for (let s = 0; s <= Lt; s += .05) { const [x, y] = topo(s); pts.push(V(x + dx, y + dy, 0)); } const cur = new THREE.CatmullRomCurve3(pts); return [-.46, .46].map((z) => { const m = add(new THREE.TubeGeometry(cur, 200, .018, 6), mat(cor), 0, 0, z); return m; }); };
+const trilhos = [...trilho(.1, -.14, 0xff4a3a), ...trilho(-.12, -.21, 0x3a8aff)];
+// corrente (volta inteira)
+const ptsC = []; for (let s = 0; s <= Lt; s += .05) { const [x, y] = topo(s); ptsC.push(V(x, y - .14, .3)); } for (let s = Lt; s >= 0; s -= .05) { const [x, y] = topo(s); ptsC.push(V(x, y - .75, .3)); }
+const correnteC = new THREE.CatmullRomCurve3(ptsC, true);
+const corrente = add(new THREE.TubeGeometry(correnteC, 400, .012, 6, true), mat(0x4a4e56), 0, 0, 0);
+const elos = K.fluxo(correnteC, 60, 0xffd23a);
+// motor lá em cima
+const motor = grupo(2.35, H - .55, .3); add(new THREE.BoxGeometry(.4, .3, .3), mat(0x3a6ac8), 0, 0, 0, motor); const engr = add(new THREE.CylinderGeometry(.22, .22, .05, 20), mat(0x9aa0a8, { metalness: .4 }), -.1, .1, .05, motor); engr.rotation.x = PI / 2;
+// laterais: vidro, saia com escovas, corrimão
+const lat = [-.47, .47].map((z) => { const sh = new THREE.Shape(); sh.moveTo(-2.4, -.9); sh.lineTo(-2.4, .1); sh.lineTo(-1.6, .1); sh.lineTo(1.6, H + .1); sh.lineTo(2.4, H + .1); sh.lineTo(2.4, H - .9); sh.lineTo(1.6, H - .9); sh.lineTo(-1.6, -.9); const m = add(new THREE.ShapeGeometry(sh), vidro(.18, 0x9ab8d8), 0, 0, z); return m; });
+const ptsR = []; for (let s = -.3; s <= Lt + .3; s += .05) { const [x, y] = topo(clamp(s, 0, Lt)); ptsR.push(V(x + (s < 0 ? s : s > Lt ? s - Lt : 0), y + .95, .5)); }
+const corrimaoC = new THREE.CatmullRomCurve3(ptsR);
+const corrimao = add(new THREE.TubeGeometry(corrimaoC, 200, .035, 10), mat(0x1a1a1a, { roughness: .5 }), 0, 0, 0);
+const corrimaoF = K.fluxo(corrimaoC, 20, 0xffffff);
+const vidroB = (() => { const sh = new THREE.Shape(); sh.moveTo(-2.4, .05); sh.lineTo(-1.6, .05); sh.lineTo(1.6, H + .05); sh.lineTo(2.5, H + .05); sh.lineTo(2.5, H + .92); sh.lineTo(1.6, H + .92); sh.lineTo(-1.6, .92); sh.lineTo(-2.4, .92); const m = add(new THREE.ShapeGeometry(sh), vidro(.12, 0xcfe0f0), 0, 0, .5); return m; })();
+const escovas = []; for (let s = .2; s < Lt - .2; s += .07) { const [x, y] = topo(s); const e = add(new THREE.BoxGeometry(.05, .05, .08), mat(0x2a2a2a), x, y + .06, .4); escovas.push(e); }
+// patamares (pente)
+const placaCima = add(new THREE.BoxGeometry(.8, .04, .84), mat(0xb8bec6, { metalness: .4 }), 2.6, H + .03, 0);
+const placaBaixo = add(new THREE.BoxGeometry(.8, .04, .84), mat(0xb8bec6, { metalness: .4 }), -2.6, .03, 0);
+const pente = []; for (let k = 0; k < 14; k++) pente.push(add(new THREE.BoxGeometry(.12, .02, .025), mat(0xffd23a), 2.16, H + .03, -.36 + k * .055));
+const botao = add(new THREE.CylinderGeometry(.06, .06, .03, 20), brilho(0xe0302a), -2.3, .9, .52); botao.rotation.x = PI / 2;
+const placa = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("SEGURE O CORRIMÃO", "#ffffff", { fundo: "#2a6ac8", tam: 40 }), transparent: true })); placa.position.set(-1.9, 1.7, .6); placa.scale.set(.6, .3, 1); scene.add(placa);
+// pessoa
+const pele = mat(0xe8b48a);
+const pessoa = grupo(); const corpo = add(new THREE.CapsuleGeometry(.11, .45, 6, 14), mat(0x3a6ac8), 0, .5, 0, pessoa); add(new THREE.SphereGeometry(.1, 20, 14), pele, 0, .92, 0, pessoa); [-.06, .06].forEach((z) => add(new THREE.CapsuleGeometry(.04, .25, 4, 8), mat(0x2a2e36), 0, .16, z, pessoa));
+const sapato = add(new THREE.BoxGeometry(.14, .05, .07), mat(0xffffff), .02, .02, .3, pessoa);
+const cadarco = add(new THREE.BoxGeometry(.18, .006, .01), mat(0xff3a3a), .14, .005, .36, pessoa);
+
+K.camera_({
+  geral: [V(-6.2, 1.0, 2.4), V(.3, 1.0, 0)],
+  rampa: [V(-4.8, 1.4, 2.8), V(-.5, .7, 0)],
+  lado: [V(0, 1.2, 4.4), V(0, .75, 0)],
+  topo: [V(1.1, H + 1.3, 2.8), V(2.2, H - .1, 0)],
+  baixo: [V(.3, .5, 5.4), V(.3, .35, 0)],
+  motor: [V(1.9, H + .4, 3.2), V(2.3, H - .5, 0)],
+  pente: [V(1.55, H + .8, 1.6), V(2.15, H, .1)],
+  corr: [V(-4.8, 2.3, 3.4), V(0, 1.5, .4)],
+  fim: [V(-6.8, 1.5, 3.8), V(.2, 1.0, 0)],
+}, [
+  [0, "geral"], [C(2), "rampa"], [F(2), "rampa"], [C(3), "lado"], [F(3), "lado"], [C(4), "topo"], [F(4), "topo"],
+  [C(5), "baixo"], [P(5, "motor") - .6, "motor"], [F(5), "motor"], [C(6), "pente"], [F(6), "pente"], [C(7), "corr"], [F(7), "corr"], [C(8), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const rampa = t < C(3) ? 1 : 1 - prog(t, P(3, "retinho") - 1.2, P(3, "retinho"));
+  const vel = .055;
+  const rodasOn = t > P(3, "rodinhas") - .3;
+  degraus.forEach((d, i) => {
+    const s = frac(t * vel + i / N) * LL;
+    let x, y, rz = 0;
+    if (s < Lt) { [x, y] = topo(s); if (inclina(s)) rz = ANG * rampa; }
+    else { [x, y] = topo(Lt - (s - Lt)); y -= .62; rz = PI + (inclina(Lt - (s - Lt)) ? -ANG * rampa : 0); }
+    d.g.position.set(x, y, 0); d.g.rotation.z = rz;
+    d.rodas.forEach((r) => r.visible = rodasOn && !em(C(6), F(6))); d.faixa.visible = t > P(8, "faixas") - .3;
+  });
+  degraus[0].g.children[0].material.emissive?.set(em(C(5), F(5)) ? 0x7a4a00 : 0x000000);
+  trilhos.forEach((m) => m.visible = rodasOn && t < C(6));
+  corrente.visible = em(P(5, "corrente") - .4, F(5)); elos.atualiza(t, em(P(5, "corrente") - .4, F(5)), vel * LL / correnteC.getLength(), .03);
+  engr.rotation.y = t * 2; motor.visible = em(P(5, "motor") - .6, F(5));
+  escovas.forEach((e) => e.visible = t > P(6, "escovas") - .3); pente.forEach((p) => p.visible = t > P(6, "pente") - .3);
+  corrimao.visible = t > C(2); corrimaoF.atualiza(t, em(C(7), F(7)), vel * LL / corrimaoC.getLength(), .04);
+  botao.visible = t > P(8, "botao") - .3; placa.visible = t > P(8, "placa") - .3;
+  // pessoa: escorrega (cena 2), anda no degrau 5 (cenas 4 e 8), sapato no pente (cena 6)
+  pessoa.visible = em(C(2), F(2)) || em(C(4), F(4)) || em(C(6), F(6)) || t > C(8);
+  sapato.visible = cadarco.visible = em(C(6), F(6));
+  if (em(C(2), F(2))) { const k = lin(t, P(2, "escorrega") - .3, F(2)); const s = L0 + LI * (.5 - .35 * k); const [x, y] = topo(s); pessoa.position.set(x, y + .02, 0); pessoa.rotation.set(0, 0, ANG + (t > P(2, "ninguem") - .3 ? .9 * prog(t, P(2, "ninguem") - .3, P(2, "ninguem") + .4) : 0)); }
+  else if (em(C(6), F(6))) { const k = prog(t, P(6, "pente") - .3, P(6, "fora")); pessoa.position.set(1.95 + .35 * k, H + .03, 0); pessoa.rotation.set(0, 0, 0); corpo.parent.children.forEach((c) => c.visible = c === sapato || c === cadarco); }
+  else { pessoa.children.forEach((c) => c.visible = c !== sapato && c !== cadarco); const t0 = t > C(8) ? C(8) : C(4), alvo = t > C(8) ? L0 + .1 : L0 + LI * .55; const idx = ((Math.round(N * frac(alvo / LL - t0 * vel)) % N) + N) % N; const d = degraus[idx]; pessoa.position.set(d.g.position.x, d.g.position.y + .02, -.05); pessoa.rotation.set(0, 0, 0); }
+  if (!em(C(6), F(6))) pessoa.children.forEach((c) => { if (c !== sapato && c !== cadarco) c.visible = true; });
+  K.cartoes(t, [
+    [P(1, "esteira") - .3, F(1), "DEGRAUS NUMA ESTEIRA", "#ffffff"],
+    [P(2, "rampa") - .3, P(2, "escorrega") - .3, "VIRA RAMPA", "#ff6a5a"],
+    [P(2, "escorrega") - .3, F(2), "O PÉ ESCORREGA", "#ff4a3a"],
+    [P(3, "trilhos") - .4, P(3, "subida") - .3, "2 TRILHOS", "#ffd23a"],
+    [P(3, "subida") - .3, F(3), "O DEGRAU FICA RETO", "#7ad07a"],
+    [P(4, "planos") - .4, F(4), "VIRAM CHÃO", "#ffffff"],
+    [P(5, "cabeca") - .4, P(5, "corrente") - .4, "VOLTAM DE CABEÇA PRA BAIXO", "#ffb02a"],
+    [P(5, "corrente") - .4, P(5, "motor") - .6, "CORRENTE SEM FIM", "#ffd23a"],
+    [P(5, "motor") - .6, F(5), "MOTOR LÁ NO ALTO", "#5aa0ff"],
+    [P(6, "cadarco") - .4, P(6, "escovas") - .3, "PRENDE CADARÇO!", "#ff4a3a"],
+    [P(6, "escovas") - .3, P(6, "pente") - .3, "ESCOVAS", "#ffffff"],
+    [P(6, "pente") - .3, F(6), "PENTE: EMPURRA O PÉ", "#ffd23a"],
+    [P(7, "correia") - .4, F(7), "CORREIA DE BORRACHA", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>
