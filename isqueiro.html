@@ -1,0 +1,137 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("isqueiro", { fundo: 0x2a2f3a, seed: 2121 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- mesa ----------
+add(new THREE.PlaneGeometry(30, 30), mat(0xffffff, { map: texMadeira("#8a5a34", 6), roughness: .8 }), 0, 0, 0).rotation.x = -PI / 2;
+// chama genérica
+function chama(pai, x, y, z, s = 1) {
+  const g = grupo(x, y, z, pai);
+  const fora = add(new THREE.ConeGeometry(.045, .2, 20), new THREE.MeshBasicMaterial({ color: 0xffa02a, transparent: true, opacity: .9, depthWrite: false }), 0, .1, 0, g);
+  const dentro = add(new THREE.ConeGeometry(.02, .07, 16), new THREE.MeshBasicMaterial({ color: 0x3a8aff, transparent: true, opacity: .9 }), 0, .035, 0, g);
+  const luz = sprite(0xffb04a, g); luz.position.set(0, .1, 0); luz.scale.setScalar(.5);
+  const pl = new THREE.PointLight(0xffa040, 0, 2); pl.position.set(0, .12, 0); g.add(pl);
+  g.scale.setScalar(s);
+  return { g, set(on, t, k = 1) { g.visible = on > 0; const f = 1 + .12 * Math.sin(t * 23) + .08 * Math.sin(t * 37); fora.scale.set(1, f, 1); g.scale.setScalar(s * k * on); luz.material.opacity = .55 * on; pl.intensity = 1.5 * on * k; } };
+}
+
+// ---------- pote de álcool (lado) ----------
+const AX = -2;
+const pote = grupo(AX, 0, 0);
+add(new THREE.CylinderGeometry(.16, .16, .3, 32, 1, true), vidro(.25, 0xddeeff), 0, .15, 0, pote);
+const alcool = add(new THREE.CylinderGeometry(.15, .15, .2, 32), new THREE.MeshStandardMaterial({ color: 0x9ad0ff, transparent: true, opacity: .45 }), 0, .1, 0, pote);
+add(new THREE.CylinderGeometry(.012, .012, .2, 10), mat(0xf4f0e0), 0, .3, 0, pote);
+const chamaA = chama(pote, 0, .4, 0, 1.3);
+const poca = add(new THREE.CircleGeometry(.3, 32), new THREE.MeshStandardMaterial({ color: 0x9ad0ff, transparent: true, opacity: 0, roughness: .05 }), AX + .35, .005, .1); poca.rotation.x = -PI / 2;
+const vapA = Array.from({ length: 14 }, () => ({ s: sprite(0xcfe8ff), f: rnd(), x: (rnd() - .5) * .2 }));
+const fosforo = grupo(AX + .35, .02, .2); add(new THREE.BoxGeometry(.012, .012, .4), mat(0xe8d0a0), 0, 0, 0, fosforo); add(new THREE.SphereGeometry(.018, 12, 8), mat(0xc0302a), 0, 0, .2, fosforo); fosforo.rotation.y = .6;
+
+// ---------- isqueiro ----------
+const isq = grupo(0, 0, 0);
+const corpoM = vidro(.35, 0xff4a5a); corpoM.depthWrite = false;
+const corpo = add(new THREE.BoxGeometry(.26, .62, .12), corpoM, 0, .31, 0, isq);
+const liq = grupo(0, .05, 0, isq);
+const liquido = add(new THREE.BoxGeometry(.22, .38, .09), new THREE.MeshStandardMaterial({ color: 0xa8d8ff, transparent: true, opacity: .6, roughness: .05 }), 0, .19, 0, liq);
+const tubo = add(new THREE.CylinderGeometry(.008, .008, .5, 8), mat(0xdddddd, { transparent: true, opacity: .8 }), -.06, .38, 0, isq);
+// topo: válvula, roda, pedra, botão, mola
+const bico = add(new THREE.CylinderGeometry(.014, .02, .07, 14), mat(0xb8bec6, { metalness: .45, roughness: .2 }), -.06, .66, 0, isq);
+const regul = add(new THREE.CylinderGeometry(.03, .03, .015, 20), mat(0x6a6e76, { metalness: .45 }), -.06, .63, 0, isq);
+const dente = add(new THREE.BoxGeometry(.008, .016, .008), mat(0xffd23a), -.06 + .03, .63, 0, isq);
+const roda = add(new THREE.CylinderGeometry(.04, .04, .05, 24), mat(0x9aa0a8, { metalness: .45, roughness: .35 }), .06, .7, 0, isq); roda.rotation.x = PI / 2;
+for (let i = 0; i < 16; i++) { const d = add(new THREE.BoxGeometry(.004, .004, .05), mat(0xb8bec6, { metalness: .3 }), Math.cos(i / 16 * PI * 2) * .041, 0, Math.sin(i / 16 * PI * 2) * .041, roda); }
+const pedra = add(new THREE.CylinderGeometry(.012, .012, .05, 10), mat(0x3a3a3a), .06, .645, 0, isq);
+const botao = add(new THREE.BoxGeometry(.11, .03, .1), mat(0xe8e8e8, { roughness: .4 }), -.03, .64, 0, isq);
+const mola = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 50 }, (_, i) => V(-.06 + Math.cos(i * .7) * .022, .57 + i * .0012, Math.sin(i * .7) * .022))), 120, .003, 6), mat(0xc0c6cc, { metalness: .45 }), 0, 0, 0, isq);
+const capa = add(new THREE.BoxGeometry(.28, .16, .13), mat(0xc0c6cc, { metalness: .45, roughness: .25, transparent: true, opacity: .0 }), 0, .7, 0, isq);
+const chamaI = chama(isq, -.06, .7, 0, .7);
+const gas = Array.from({ length: 20 }, () => ({ s: sprite(0xffffff, isq), f: rnd(), x: (rnd() - .5) * .03 }));
+const bolhas = Array.from({ length: 16 }, () => ({ s: sprite(0xffffff, isq), f: rnd(), x: (rnd() - .5) * .18 }));
+
+// ---------- mini set: roda raspando a pedra ----------
+const RX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x3a4250), RX, 0, -.8); { const pl = new THREE.PointLight(0xffffff, 3, 6); pl.position.set(RX + 1, 1, 2); scene.add(pl); }
+const rodaG = add(new THREE.CylinderGeometry(.3, .3, .26, 48), mat(0xc8ccd2, { metalness: .3, roughness: .35 }), RX, .2, 0); rodaG.rotation.x = PI / 2;
+for (let i = 0; i < 40; i++) add(new THREE.BoxGeometry(.03, .03, .26), mat(0x8a8e96, { metalness: .3 }), Math.cos(i / 40 * PI * 2) * .305, 0, Math.sin(i / 40 * PI * 2) * .305, rodaG);
+const pedraG = add(new THREE.CylinderGeometry(.08, .08, .4, 20), mat(0x3a3a3a, { roughness: .9 }), RX, -.3, 0);
+const lbl = (txt, cor, x, y, z = .2) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lAco = lbl("AÇO", "#c0c6cc", RX - .45, .55), lPedra = lbl("FERRO + CÉRIO", "#ffb04a", RX + .3, -.6);
+const faiscas = Array.from({ length: 40 }, () => ({ s: sprite(0xffd23a), f: rnd(), a: rnd() * .9 - .2, v: .6 + rnd() * .6 }));
+
+K.camera_({
+  pote: [V(AX + .6, .75, 1.8), V(AX + .1, .45, 0)],
+  poteL: [V(AX + .9, .8, 2.3), V(AX + .2, .4, 0)],
+  isq: [V(1.0, .8, 2.6), V(0, .4, 0)],
+  isqP: [V(.45, .7, 2.3), V(0, .4, 0)],
+  topo: [V(.45, 1.0, 1.35), V(0, .66, 0)],
+  roda: [V(RX + .9, .5, 3.6), V(RX + .3, .05, 0)],
+  fim: [V(-1.0, .85, 2.4), V(0, .42, 0)],
+}, [
+  [0, "pote"], [F(1), "pote"], [C(2), "poteL"], [F(2), "poteL"], [C(3), "isq"], [P(3, "butano") - .5, "isqP"], [F(3), "isqP"], [C(4), "isqP"], [P(4, "valvula") - .3, "topo"], [F(4), "topo"],
+  [C(5), "roda"], [F(5), "roda"], [C(6), "topo"], [F(6), "topo"], [C(7), "isq"], [P(7, "soltou") - .3, "topo"], [F(7), "topo"], [C(8), "isq"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // pote
+  const naPote = t < C(3);
+  pote.visible = naPote; fosforo.visible = em(P(2, "fosforo") - .3, C(3)); poca.visible = naPote;
+  pote.rotation.z = em(P(2, "derrama") - .3, P(2, "fosforo") - .3) ? -.5 * prog(t, P(2, "derrama") - .3, P(2, "derrama") + .3) : 0;
+  poca.material.opacity = t > P(2, "derrama") - .1 ? .5 * prog(t, P(2, "derrama"), P(2, "derrama") + .6) : 0;
+  alcool.scale.y = t > P(2, "evapora") - .3 ? 1 - .5 * prog(t, P(2, "evapora") - .3, P(2, "derrama")) : 1; alcool.position.y = .1 * alcool.scale.y;
+  chamaA.set(t < C(2) ? prog(t, P(1, "fogo") - .2, P(1, "fogo") + .2) : 0, t, 1);
+  vapA.forEach((v) => { const k = frac(t * .5 + v.f); v.s.position.set(AX + v.x, .3 + k * .7, 0); v.s.scale.setScalar(.12); v.s.material.opacity = em(P(2, "evapora") - .3, P(2, "derrama")) ? .5 * Math.sin(k * PI) : 0; });
+  // isqueiro
+  isq.visible = !naPote && t < C(5) || t >= C(6);
+  liquido.scale.y = t < P(3, "liquido") - .3 ? 0.02 : prog(t, P(3, "liquido") - .3, P(3, "liquido") + .6); liquido.position.y = .19 * liquido.scale.y;
+  liq.rotation.z = em(C(4), F(4)) ? Math.sin(t * 3) * .1 : 0;
+  bico.visible = t > P(3, "butano") - .5; tubo.visible = bico.visible;
+  const final = t >= C(8);
+  roda.visible = pedra.visible = t > C(5) - .1; botao.visible = t > P(7, "botao") - .3; mola.visible = em(P(7, "mola") - .4, F(7)) || final; regul.visible = dente.visible = t > P(6, "regulador") - .3;
+  capa.material.opacity = final ? .95 * prog(t, P(8, "capa") - .2, P(8, "capa") + .3) : 0; capa.visible = final;
+  if (final && t > P(8, "colorido") - .3) corpoM.color.setHSL(frac(t * .15), .7, .55); else corpoM.color.set(0xff4a5a);
+  // gás saindo
+  const abre = em(P(4, "valvula") - .1, F(4));
+  gas.forEach((g) => { const k = frac(t * 1.2 + g.f); g.s.position.set(-.06 + g.x * (1 + k * 3), .7 + k * .3, 0); g.s.scale.setScalar(.03 + k * .05); g.s.material.opacity = abre ? .5 * (1 - k) : 0; });
+  bolhas.forEach((b) => { const k = frac(t * .6 + b.f); b.s.position.set(b.x, .06 + k * .3, .05); b.s.scale.setScalar(.018); b.s.material.opacity = abre ? .7 * Math.sin(k * PI) : 0; });
+  // regulador: chama grande -> pequena
+  const tamReg = em(C(6), F(6)) ? (t < P(6, "controla") - .2 ? 1.5 : 1.5 - .7 * prog(t, P(6, "controla") - .2, P(6, "controla") + .6)) : 1;
+  regul.rotation.y = em(C(6), F(6)) ? prog(t, P(6, "controla") - .2, P(6, "controla") + .6) * 3 : 0; dente.position.x = -.06 + Math.cos(regul.rotation.y) * .03; dente.position.z = -Math.sin(regul.rotation.y) * .03;
+  // botão: aperta em C(7)+.5 .. soltou
+  const apertado = em(P(7, "gira") - .4, P(7, "soltou") - .1) || final;
+  botao.position.y = .64 - (apertado ? .015 : 0);
+  roda.rotation.y = em(P(7, "gira") - .4, P(7, "gira") + .4) ? (t - P(7, "gira")) * -12 : roda.rotation.y;
+  let on = 0;
+  if (em(C(6), F(6))) on = 1; else if (em(P(7, "gira") - .1, P(7, "apaga") - .1)) on = 1; else if (final) on = 1;
+  if (em(P(7, "soltou") - .1, P(7, "apaga") - .1)) on = 1 - prog(t, P(7, "soltou") - .1, P(7, "apaga") - .1);
+  chamaI.set(on, t, tamReg);
+  // mini set: faíscas
+  const raspa = em(P(5, "rodinha") - .3, F(5));
+  rodaG.rotation.y = raspa ? -t * 6 : 0;
+  pedraG.position.y = -.3 + (raspa ? Math.sin(t * 50) * .004 : 0);
+  faiscas.forEach((f) => { const k = frac(t * f.v + f.f); const ang = f.a; f.s.position.set(RX + .02 + Math.cos(ang) * k * 1.1, -.1 + Math.sin(ang) * k * .9 - k * k * .4, .14); f.s.scale.setScalar(.1 * (1 - k * .6)); f.s.material.color.setHSL(.12 - k * .1, 1, .6); f.s.material.opacity = em(P(5, "raspa") - .3, F(5)) ? (1 - k) : 0; });
+  lAco.visible = em(P(5, "aco") - .3, F(5)); lPedra.visible = em(P(5, "cerio") - .4, F(5));
+  K.cartoes(t, [
+    [P(1, "chama") - .3, F(1), "CHAMA PORTÁTIL 🔥", "#ffb04a"],
+    [P(2, "evapora") - .3, P(2, "derrama") - .3, "EVAPORA", "#9ad0ff"],
+    [P(2, "derrama") - .3, P(2, "fosforo") - .4, "DERRAMA NO BOLSO", "#ff6a5a"],
+    [P(2, "fosforo") - .4, F(2), "PRECISA DE FÓSFORO", "#ff6a5a"],
+    [P(3, "liquido") - .3, P(3, "butano") - .3, "GÁS APERTADO = LÍQUIDO", "#9ad0ff"],
+    [P(3, "butano") - .3, F(3), "BUTANO", "#9ad0ff"],
+    [P(4, "valvula") - .3, F(4), "PRESSÃO CAI → VIRA GÁS", "#ffffff"],
+    [P(5, "faisca") - .3, P(5, "rodinha") - .3, "FALTA A FAÍSCA", "#ffd23a"],
+    [P(5, "quente") - .5, F(5), "PEGA FOGO NO AR", "#ffb04a"],
+    [P(6, "regulador") - .3, F(6), "REGULADOR", "#ffd23a"],
+    [P(7, "botao") - .3, P(7, "soltou") - .3, "FAÍSCA + GÁS DE UMA VEZ", "#ffffff"],
+    [P(7, "mola") - .4, F(7), "A MOLA FECHA O GÁS", "#c0c6cc"],
+  ]);
+});
+</script>
+</body></html>

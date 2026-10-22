@@ -1,0 +1,717 @@
+{
+ "total": 57.41,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.61,
+   "texto": "Se você colocar fogo num pavio molhado de álcool, terá uma chama portátil.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.681
+    },
+    {
+     "w": "fogo",
+     "t": 1.093
+    },
+    {
+     "w": "num",
+     "t": 1.435
+    },
+    {
+     "w": "pavio",
+     "t": 1.577
+    },
+    {
+     "w": "molhado",
+     "t": 1.895
+    },
+    {
+     "w": "de",
+     "t": 2.332
+    },
+    {
+     "w": "álcool",
+     "t": 2.473
+    },
+    {
+     "w": "terá",
+     "t": 3.016
+    },
+    {
+     "w": "uma",
+     "t": 3.263
+    },
+    {
+     "w": "chama",
+     "t": 3.405
+    },
+    {
+     "w": "portátil",
+     "t": 3.758
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.76,
+   "fim": 11.83,
+   "texto": "Mas o álcool evapora. Derrama no bolso. E pra acender, você ainda precisa de um fósforo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.807
+    },
+    {
+     "w": "o",
+     "t": 5.031
+    },
+    {
+     "w": "álcool",
+     "t": 5.208
+    },
+    {
+     "w": "evapora",
+     "t": 5.597
+    },
+    {
+     "w": "Derrama",
+     "t": 6.93
+    },
+    {
+     "w": "no",
+     "t": 7.425
+    },
+    {
+     "w": "bolso",
+     "t": 7.555
+    },
+    {
+     "w": "E",
+     "t": 8.793
+    },
+    {
+     "w": "pra",
+     "t": 8.923
+    },
+    {
+     "w": "acender",
+     "t": 9.1
+    },
+    {
+     "w": "você",
+     "t": 9.819
+    },
+    {
+     "w": "ainda",
+     "t": 10.114
+    },
+    {
+     "w": "precisa",
+     "t": 10.42
+    },
+    {
+     "w": "de",
+     "t": 10.833
+    },
+    {
+     "w": "um",
+     "t": 10.927
+    },
+    {
+     "w": "fósforo",
+     "t": 11.034
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.98,
+   "fim": 19.65,
+   "texto": "Então, você troca o álcool por um gás que, apertado dentro de um tubinho de plástico, vira líquido. Esse é o butano.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.027
+    },
+    {
+     "w": "você",
+     "t": 12.805
+    },
+    {
+     "w": "troca",
+     "t": 13.077
+    },
+    {
+     "w": "o",
+     "t": 13.383
+    },
+    {
+     "w": "álcool",
+     "t": 13.454
+    },
+    {
+     "w": "por",
+     "t": 13.796
+    },
+    {
+     "w": "um",
+     "t": 13.938
+    },
+    {
+     "w": "gás",
+     "t": 14.02
+    },
+    {
+     "w": "que",
+     "t": 14.28
+    },
+    {
+     "w": "apertado",
+     "t": 14.751
+    },
+    {
+     "w": "dentro",
+     "t": 15.317
+    },
+    {
+     "w": "de",
+     "t": 15.636
+    },
+    {
+     "w": "um",
+     "t": 15.73
+    },
+    {
+     "w": "tubinho",
+     "t": 15.824
+    },
+    {
+     "w": "de",
+     "t": 16.143
+    },
+    {
+     "w": "plástico",
+     "t": 16.249
+    },
+    {
+     "w": "vira",
+     "t": 16.992
+    },
+    {
+     "w": "líquido",
+     "t": 17.216
+    },
+    {
+     "w": "Esse",
+     "t": 18.454
+    },
+    {
+     "w": "é",
+     "t": 18.784
+    },
+    {
+     "w": "o",
+     "t": 18.843
+    },
+    {
+     "w": "butano",
+     "t": 18.902
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 19.8,
+   "fim": 27.4,
+   "texto": "É por isso que dá pra ver o líquido balançando dentro do isqueiro. Quando a válvula abre, a pressão cai e ele volta a ser gás na hora.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 19.847
+    },
+    {
+     "w": "por",
+     "t": 19.977
+    },
+    {
+     "w": "isso",
+     "t": 20.177
+    },
+    {
+     "w": "que",
+     "t": 20.496
+    },
+    {
+     "w": "dá",
+     "t": 20.602
+    },
+    {
+     "w": "pra",
+     "t": 20.72
+    },
+    {
+     "w": "ver",
+     "t": 20.909
+    },
+    {
+     "w": "o",
+     "t": 21.074
+    },
+    {
+     "w": "líquido",
+     "t": 21.109
+    },
+    {
+     "w": "balançando",
+     "t": 21.451
+    },
+    {
+     "w": "dentro",
+     "t": 22.1
+    },
+    {
+     "w": "do",
+     "t": 22.465
+    },
+    {
+     "w": "isqueiro",
+     "t": 22.595
+    },
+    {
+     "w": "Quando",
+     "t": 23.833
+    },
+    {
+     "w": "a",
+     "t": 24.069
+    },
+    {
+     "w": "válvula",
+     "t": 24.14
+    },
+    {
+     "w": "abre",
+     "t": 24.541
+    },
+    {
+     "w": "a",
+     "t": 24.977
+    },
+    {
+     "w": "pressão",
+     "t": 25.059
+    },
+    {
+     "w": "cai",
+     "t": 25.484
+    },
+    {
+     "w": "e",
+     "t": 25.72
+    },
+    {
+     "w": "ele",
+     "t": 25.767
+    },
+    {
+     "w": "volta",
+     "t": 25.932
+    },
+    {
+     "w": "a",
+     "t": 26.262
+    },
+    {
+     "w": "ser",
+     "t": 26.298
+    },
+    {
+     "w": "gás",
+     "t": 26.51
+    },
+    {
+     "w": "na",
+     "t": 26.734
+    },
+    {
+     "w": "hora",
+     "t": 26.875
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 27.55,
+   "fim": 37.46,
+   "texto": "Mas ainda falta a faísca. Então, você coloca uma rodinha de aço raspando numa pedrinha de ferro e cério. A raspa sai tão quente que pega fogo no ar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 27.597
+    },
+    {
+     "w": "ainda",
+     "t": 27.798
+    },
+    {
+     "w": "falta",
+     "t": 28.21
+    },
+    {
+     "w": "a",
+     "t": 28.517
+    },
+    {
+     "w": "faísca",
+     "t": 28.564
+    },
+    {
+     "w": "Então",
+     "t": 29.861
+    },
+    {
+     "w": "você",
+     "t": 30.64
+    },
+    {
+     "w": "coloca",
+     "t": 30.899
+    },
+    {
+     "w": "uma",
+     "t": 31.312
+    },
+    {
+     "w": "rodinha",
+     "t": 31.43
+    },
+    {
+     "w": "de",
+     "t": 31.819
+    },
+    {
+     "w": "aço",
+     "t": 31.925
+    },
+    {
+     "w": "raspando",
+     "t": 32.149
+    },
+    {
+     "w": "numa",
+     "t": 32.574
+    },
+    {
+     "w": "pedrinha",
+     "t": 32.786
+    },
+    {
+     "w": "de",
+     "t": 33.234
+    },
+    {
+     "w": "ferro",
+     "t": 33.34
+    },
+    {
+     "w": "e",
+     "t": 33.694
+    },
+    {
+     "w": "cério",
+     "t": 33.776
+    },
+    {
+     "w": "A",
+     "t": 34.967
+    },
+    {
+     "w": "raspa",
+     "t": 35.097
+    },
+    {
+     "w": "sai",
+     "t": 35.498
+    },
+    {
+     "w": "tão",
+     "t": 35.746
+    },
+    {
+     "w": "quente",
+     "t": 35.934
+    },
+    {
+     "w": "que",
+     "t": 36.229
+    },
+    {
+     "w": "pega",
+     "t": 36.335
+    },
+    {
+     "w": "fogo",
+     "t": 36.642
+    },
+    {
+     "w": "no",
+     "t": 36.937
+    },
+    {
+     "w": "ar.",
+     "t": 37.067
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 37.61,
+   "fim": 42.61,
+   "texto": "Pra chama não sair enorme, você coloca um regulador, que controla quanto gás passa.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 37.657
+    },
+    {
+     "w": "chama",
+     "t": 37.822
+    },
+    {
+     "w": "não",
+     "t": 38.152
+    },
+    {
+     "w": "sair",
+     "t": 38.306
+    },
+    {
+     "w": "enorme",
+     "t": 38.601
+    },
+    {
+     "w": "você",
+     "t": 39.273
+    },
+    {
+     "w": "coloca",
+     "t": 39.544
+    },
+    {
+     "w": "um",
+     "t": 39.945
+    },
+    {
+     "w": "regulador",
+     "t": 40.016
+    },
+    {
+     "w": "que",
+     "t": 40.829
+    },
+    {
+     "w": "controla",
+     "t": 40.959
+    },
+    {
+     "w": "quanto",
+     "t": 41.502
+    },
+    {
+     "w": "gás",
+     "t": 41.773
+    },
+    {
+     "w": "passa",
+     "t": 41.997
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 42.76,
+   "fim": 50.84,
+   "texto": "E um botão que, de uma vez só, gira a faísca e abre o gás. Soltou, a mola fecha a válvula e a chama apaga sozinha.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 42.807
+    },
+    {
+     "w": "um",
+     "t": 42.913
+    },
+    {
+     "w": "botão",
+     "t": 42.996
+    },
+    {
+     "w": "que",
+     "t": 43.444
+    },
+    {
+     "w": "de",
+     "t": 43.845
+    },
+    {
+     "w": "uma",
+     "t": 43.927
+    },
+    {
+     "w": "vez",
+     "t": 44.104
+    },
+    {
+     "w": "só",
+     "t": 44.399
+    },
+    {
+     "w": "gira",
+     "t": 44.918
+    },
+    {
+     "w": "a",
+     "t": 45.142
+    },
+    {
+     "w": "faísca",
+     "t": 45.189
+    },
+    {
+     "w": "e",
+     "t": 45.696
+    },
+    {
+     "w": "abre",
+     "t": 45.826
+    },
+    {
+     "w": "o",
+     "t": 46.074
+    },
+    {
+     "w": "gás",
+     "t": 46.121
+    },
+    {
+     "w": "Soltou",
+     "t": 47.335
+    },
+    {
+     "w": "a",
+     "t": 48.067
+    },
+    {
+     "w": "mola",
+     "t": 48.149
+    },
+    {
+     "w": "fecha",
+     "t": 48.444
+    },
+    {
+     "w": "a",
+     "t": 48.762
+    },
+    {
+     "w": "válvula",
+     "t": 48.798
+    },
+    {
+     "w": "e",
+     "t": 49.222
+    },
+    {
+     "w": "a",
+     "t": 49.293
+    },
+    {
+     "w": "chama",
+     "t": 49.376
+    },
+    {
+     "w": "apaga",
+     "t": 49.682
+    },
+    {
+     "w": "sozinha",
+     "t": 50.012
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 50.99,
+   "fim": 56.81,
+   "texto": "Coloque uma capa de metal e um corpo colorido. Parabéns, você construiu um isqueiro.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 51.037
+    },
+    {
+     "w": "uma",
+     "t": 51.544
+    },
+    {
+     "w": "capa",
+     "t": 51.721
+    },
+    {
+     "w": "de",
+     "t": 52.051
+    },
+    {
+     "w": "metal",
+     "t": 52.157
+    },
+    {
+     "w": "e",
+     "t": 52.594
+    },
+    {
+     "w": "um",
+     "t": 52.629
+    },
+    {
+     "w": "corpo",
+     "t": 52.759
+    },
+    {
+     "w": "colorido",
+     "t": 53.101
+    },
+    {
+     "w": "Parabéns",
+     "t": 54.433
+    },
+    {
+     "w": "você",
+     "t": 55.212
+    },
+    {
+     "w": "construiu",
+     "t": 55.506
+    },
+    {
+     "w": "um",
+     "t": 56.014
+    },
+    {
+     "w": "isqueiro",
+     "t": 56.167
+    }
+   ]
+  }
+ ]
+}
