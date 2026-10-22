@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("cadeira", { fundo: 0xdfe6ee, seed: 7171 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b08a5a", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(10, 6), mat(0xe8ecf0), 0, 2.5, -1.5);
+// cadeira
+const cad = grupo(0, 0, 0);
+const topo = grupo(0, .5, 0, cad);
+const assento = add(new THREE.BoxGeometry(.55, .08, .52), mat(0x2a3a5a), 0, 0, 0, topo);
+const espuma = add(new THREE.BoxGeometry(.53, .06, .5), mat(0x3a5a8a, { roughness: .9 }), 0, .07, 0, topo); espuma.visible = false;
+const encosto = add(new THREE.BoxGeometry(.52, .6, .07), mat(0x2a3a5a), 0, .42, -.25, topo); encosto.visible = false;
+const bracos = [-1, 1].map((s) => add(new THREE.BoxGeometry(.05, .2, .35), mat(0x1a1a1a), s * .3, .14, 0, topo)); bracos.forEach((b) => b.visible = false);
+const alav = add(new THREE.BoxGeometry(.18, .02, .03), mat(0x1a1a1a), .3, -.07, .12, topo);
+const pes4 = [[-.22, -.22], [.22, -.22], [-.22, .22], [.22, .22]].map(([x, z]) => add(new THREE.CylinderGeometry(.025, .025, .46, 10), mat(0x5a3a24), x, .23, z, cad));
+// cilindro de gás
+const tuboExt = add(new THREE.CylinderGeometry(.045, .045, .3, 24, 1, true), vidro(.35, 0x9aa0a8), 0, .2, 0, cad);
+const haste = add(new THREE.CylinderGeometry(.02, .02, .3, 12), mat(0xc0c6cc, { metalness: .4 }), 0, .35, 0, cad);
+const pistao = add(new THREE.CylinderGeometry(.042, .042, .03, 24), mat(0xd6453a), 0, .25, 0, cad);
+const valvula = add(new THREE.SphereGeometry(.02, 12, 8), new THREE.MeshBasicMaterial({ color: 0x3a3a3a }), .05, .34, 0, cad);
+const gasP = Array.from({ length: 24 }, () => ({ s: sprite(0x7ad0ff, cad), f: rnd(), a: rnd() * PI * 2, r: rnd() }));
+// base estrela
+const estrela = grupo(0, 0, 0, cad); for (let i = 0; i < 5; i++) { const a = i / 5 * PI * 2; const b = add(new THREE.BoxGeometry(.32, .03, .05), mat(0x1a1a1a), Math.cos(a) * .16, .06, Math.sin(a) * .16, estrela); b.rotation.y = -a; const r = add(new THREE.SphereGeometry(.035, 12, 8), mat(0x2a2a2a), Math.cos(a) * .32, .035, Math.sin(a) * .32, estrela); }
+// bonecos (cena 2)
+const boneco = (alt, cor, x) => { const g2 = grupo(x, 0, .7); add(new THREE.CapsuleGeometry(.08 * alt, .4 * alt, 6, 12), mat(cor), 0, .5 * alt, 0, g2); add(new THREE.SphereGeometry(.08 * alt, 16, 12), mat(0xe8b48a), 0, .95 * alt, 0, g2); return g2; };
+const baixo = boneco(.8, 0xd6453a, -.6), alto = boneco(1.25, 0x4fae5a, .6);
+const lbl = (txt, cor, x, y, z) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.3, .15, 1); scene.add(s); return s; };
+const lGas = lbl("GÁS", "#2a6ac8", .2, .15, .1), lPist = lbl("PISTÃO", "#d6453a", -.2, .3, .1);
+
+K.camera_({
+  geral: [V(1.8, 1.5, 3.5), V(0, .45, 0)],
+  cil: [V(.6, .55, 1.7), V(0, .32, 0)],
+  base: [V(1.1, 1.3, 1.8), V(0, .15, 0)],
+  fim: [V(-1.8, 1.5, 3.2), V(0, .55, 0)],
+}, [
+  [0, "geral"], [F(2), "geral"], [C(3), "cil"], [F(5), "cil"], [C(6), "base"], [F(6), "base"], [C(7), "geral"], [T, "fim"],
+]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const nova = t >= C(3);
+  pes4.forEach((p) => p.visible = !nova); tuboExt.visible = haste.visible = pistao.visible = valvula.visible = nova; estrela.visible = t > P(6, "rodinhas") - .3;
+  baixo.visible = alto.visible = em(C(2), F(2)); alav.visible = nova;
+  // altura: sobe/desce
+  let h = .5;
+  if (em(C(4), F(5))) { if (t < P(4, "sobe")) h = .5; else if (t < P(4, "sentado") - .2) h = .5 + .12 * prog(t, P(4, "sobe") - .3, P(4, "sobe") + .8); else if (t < P(4, "desce") + .9) h = .62 - .17 * prog(t, P(4, "sentado") - .2, P(4, "desce") + .8); else h = .45; }
+  if (t > F(5)) h = .5;
+  topo.position.y = h; haste.position.y = h - .15; pistao.position.y = h - .3 + .05;
+  const aberta = em(P(4, "alavanca") - .3, P(5, "soltou") - .1);
+  valvula.material.color.set(aberta ? 0x4fae5a : 0xd6453a); alav.rotation.z = aberta ? .3 : 0;
+  gasP.forEach((g2) => { const y = .07 + g2.r * (pistao.position.y - .09); g2.s.position.set(Math.cos(g2.a + t * (aberta ? 2 : .3)) * .03, y, Math.sin(g2.a + t * (aberta ? 2 : .3)) * .03); g2.s.scale.setScalar(.015); g2.s.material.opacity = nova && t < C(6) ? .9 : 0; });
+  lGas.visible = lPist.visible = em(P(3, "cilindro") - .3, F(5));
+  const fim = t > C(7) - .1; encosto.visible = fim && t > P(7, "encosto") - .3; bracos.forEach((b) => b.visible = fim && t > P(7, "bracos") - .3); espuma.visible = fim && t > P(7, "espuma") - .3;
+  cad.rotation.y = em(C(6), F(6)) ? (t - C(6)) * .6 : fim ? (t - C(7)) * .4 : 0;
+  K.cartoes(t, [
+    [P(1, "assento") - .3, F(1), "UMA CADEIRA", "#ffffff"],
+    [P(2, "baixo") - .3, P(2, "alto") - .3, "BAIXO: PÉ NO AR", "#ff6a5a"],
+    [P(2, "alto") - .3, F(2), "ALTO: JOELHO NO QUEIXO", "#7ad07a"],
+    [P(3, "cilindro") - .3, F(3), "CILINDRO DE GÁS", "#5aa0ff"],
+    [P(4, "alavanca") - .3, P(4, "sobe") - .3, "ALAVANCA = VÁLVULA", "#ffffff"],
+    [P(4, "sobe") - .3, P(4, "sentado") - .3, "SEM PESO: SOBE ⬆", "#7ad07a"],
+    [P(4, "sentado") - .3, F(4), "SENTADO: DESCE ⬇", "#ff6a5a"],
+    [P(5, "soltou") - .3, F(5), "VÁLVULA FECHA: TRAVA", "#ffd23a"],
+    [P(6, "cinco") - .3, F(6), "5 RODINHAS = NÃO TOMBA", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>

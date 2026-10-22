@@ -1,0 +1,569 @@
+{
+ "total": 47.61,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.04,
+   "texto": "Se você colocar um assento em cima de quatro pés, terá uma cadeira.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.398
+    },
+    {
+     "w": "colocar",
+     "t": 0.645
+    },
+    {
+     "w": "um",
+     "t": 1.034
+    },
+    {
+     "w": "assento",
+     "t": 1.141
+    },
+    {
+     "w": "em",
+     "t": 1.518
+    },
+    {
+     "w": "cima",
+     "t": 1.6
+    },
+    {
+     "w": "de",
+     "t": 1.883
+    },
+    {
+     "w": "quatro",
+     "t": 2.001
+    },
+    {
+     "w": "pés",
+     "t": 2.402
+    },
+    {
+     "w": "terá",
+     "t": 2.957
+    },
+    {
+     "w": "uma",
+     "t": 3.204
+    },
+    {
+     "w": "cadeira",
+     "t": 3.346
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.19,
+   "fim": 11.66,
+   "texto": "Mas ela tem uma altura só. Quem é baixo fica com o pé no ar. Quem é alto, com o joelho no queixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.237
+    },
+    {
+     "w": "ela",
+     "t": 4.449
+    },
+    {
+     "w": "tem",
+     "t": 4.839
+    },
+    {
+     "w": "uma",
+     "t": 5.015
+    },
+    {
+     "w": "altura",
+     "t": 5.145
+    },
+    {
+     "w": "só",
+     "t": 5.511
+    },
+    {
+     "w": "Quem",
+     "t": 6.596
+    },
+    {
+     "w": "é",
+     "t": 6.843
+    },
+    {
+     "w": "baixo",
+     "t": 6.926
+    },
+    {
+     "w": "fica",
+     "t": 7.362
+    },
+    {
+     "w": "com",
+     "t": 7.645
+    },
+    {
+     "w": "o",
+     "t": 7.834
+    },
+    {
+     "w": "pé",
+     "t": 7.893
+    },
+    {
+     "w": "no",
+     "t": 8.082
+    },
+    {
+     "w": "ar.",
+     "t": 8.235
+    },
+    {
+     "w": "Quem",
+     "t": 9.225
+    },
+    {
+     "w": "é",
+     "t": 9.497
+    },
+    {
+     "w": "alto",
+     "t": 9.603
+    },
+    {
+     "w": "com",
+     "t": 10.24
+    },
+    {
+     "w": "o",
+     "t": 10.428
+    },
+    {
+     "w": "joelho",
+     "t": 10.475
+    },
+    {
+     "w": "no",
+     "t": 10.876
+    },
+    {
+     "w": "queixo",
+     "t": 11.006
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.81,
+   "fim": 17.45,
+   "texto": "Então, você coloca embaixo do assento um cilindro cheio de gás comprimido, com um pistão dentro.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.857
+    },
+    {
+     "w": "você",
+     "t": 12.671
+    },
+    {
+     "w": "coloca",
+     "t": 12.954
+    },
+    {
+     "w": "embaixo",
+     "t": 13.343
+    },
+    {
+     "w": "do",
+     "t": 13.768
+    },
+    {
+     "w": "assento",
+     "t": 13.897
+    },
+    {
+     "w": "um",
+     "t": 14.286
+    },
+    {
+     "w": "cilindro",
+     "t": 14.345
+    },
+    {
+     "w": "cheio",
+     "t": 14.77
+    },
+    {
+     "w": "de",
+     "t": 15.077
+    },
+    {
+     "w": "gás",
+     "t": 15.171
+    },
+    {
+     "w": "comprimido",
+     "t": 15.407
+    },
+    {
+     "w": "com",
+     "t": 16.232
+    },
+    {
+     "w": "um",
+     "t": 16.362
+    },
+    {
+     "w": "pistão",
+     "t": 16.456
+    },
+    {
+     "w": "dentro",
+     "t": 16.81
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.6,
+   "fim": 27.38,
+   "texto": "A alavanca só abre uma válvula. Sem peso, o gás empurra o pistão e a cadeira sobe. Sentado, o seu peso vence o gás e ela desce.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 17.647
+    },
+    {
+     "w": "alavanca",
+     "t": 17.777
+    },
+    {
+     "w": "só",
+     "t": 18.343
+    },
+    {
+     "w": "abre",
+     "t": 18.567
+    },
+    {
+     "w": "uma",
+     "t": 18.791
+    },
+    {
+     "w": "válvula",
+     "t": 18.992
+    },
+    {
+     "w": "Sem",
+     "t": 20.289
+    },
+    {
+     "w": "peso",
+     "t": 20.631
+    },
+    {
+     "w": "o",
+     "t": 21.291
+    },
+    {
+     "w": "gás",
+     "t": 21.362
+    },
+    {
+     "w": "empurra",
+     "t": 21.527
+    },
+    {
+     "w": "o",
+     "t": 21.999
+    },
+    {
+     "w": "pistão",
+     "t": 22.046
+    },
+    {
+     "w": "e",
+     "t": 22.459
+    },
+    {
+     "w": "a",
+     "t": 22.517
+    },
+    {
+     "w": "cadeira",
+     "t": 22.588
+    },
+    {
+     "w": "sobe",
+     "t": 22.942
+    },
+    {
+     "w": "Sentado",
+     "t": 24.168
+    },
+    {
+     "w": "o",
+     "t": 25.076
+    },
+    {
+     "w": "seu",
+     "t": 25.159
+    },
+    {
+     "w": "peso",
+     "t": 25.383
+    },
+    {
+     "w": "vence",
+     "t": 25.713
+    },
+    {
+     "w": "o",
+     "t": 26.067
+    },
+    {
+     "w": "gás",
+     "t": 26.114
+    },
+    {
+     "w": "e",
+     "t": 26.35
+    },
+    {
+     "w": "ela",
+     "t": 26.515
+    },
+    {
+     "w": "desce",
+     "t": 26.716
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 27.53,
+   "fim": 33.41,
+   "texto": "Soltou a alavanca, a válvula fecha e o gás fica preso. A cadeira trava naquela altura.",
+   "palavras": [
+    {
+     "w": "Soltou",
+     "t": 27.577
+    },
+    {
+     "w": "a",
+     "t": 28.049
+    },
+    {
+     "w": "alavanca",
+     "t": 28.084
+    },
+    {
+     "w": "a",
+     "t": 28.745
+    },
+    {
+     "w": "válvula",
+     "t": 28.851
+    },
+    {
+     "w": "fecha",
+     "t": 29.287
+    },
+    {
+     "w": "e",
+     "t": 29.759
+    },
+    {
+     "w": "o",
+     "t": 29.818
+    },
+    {
+     "w": "gás",
+     "t": 29.865
+    },
+    {
+     "w": "fica",
+     "t": 30.113
+    },
+    {
+     "w": "preso",
+     "t": 30.372
+    },
+    {
+     "w": "A",
+     "t": 31.539
+    },
+    {
+     "w": "cadeira",
+     "t": 31.646
+    },
+    {
+     "w": "trava",
+     "t": 32.058
+    },
+    {
+     "w": "naquela",
+     "t": 32.4
+    },
+    {
+     "w": "altura",
+     "t": 32.707
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 33.56,
+   "fim": 40.32,
+   "texto": "Pra andar, você troca os quatro pés por cinco rodinhas em estrela. Com cinco, ela quase não tomba.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 33.607
+    },
+    {
+     "w": "andar",
+     "t": 33.784
+    },
+    {
+     "w": "você",
+     "t": 34.374
+    },
+    {
+     "w": "troca",
+     "t": 34.68
+    },
+    {
+     "w": "os",
+     "t": 34.987
+    },
+    {
+     "w": "quatro",
+     "t": 35.093
+    },
+    {
+     "w": "pés",
+     "t": 35.47
+    },
+    {
+     "w": "por",
+     "t": 35.742
+    },
+    {
+     "w": "cinco",
+     "t": 35.907
+    },
+    {
+     "w": "rodinhas",
+     "t": 36.213
+    },
+    {
+     "w": "em",
+     "t": 36.661
+    },
+    {
+     "w": "estrela",
+     "t": 36.838
+    },
+    {
+     "w": "Com",
+     "t": 38.135
+    },
+    {
+     "w": "cinco",
+     "t": 38.336
+    },
+    {
+     "w": "ela",
+     "t": 38.926
+    },
+    {
+     "w": "quase",
+     "t": 39.138
+    },
+    {
+     "w": "não",
+     "t": 39.48
+    },
+    {
+     "w": "tomba",
+     "t": 39.68
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 40.47,
+   "fim": 47.01,
+   "texto": "Coloque encosto, braços e uma espuma macia. Parabéns, você construiu uma cadeira de escritório.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 40.517
+    },
+    {
+     "w": "encosto",
+     "t": 40.977
+    },
+    {
+     "w": "braços",
+     "t": 41.649
+    },
+    {
+     "w": "e",
+     "t": 42.086
+    },
+    {
+     "w": "uma",
+     "t": 42.215
+    },
+    {
+     "w": "espuma",
+     "t": 42.345
+    },
+    {
+     "w": "macia",
+     "t": 42.663
+    },
+    {
+     "w": "Parabéns",
+     "t": 43.984
+    },
+    {
+     "w": "você",
+     "t": 44.774
+    },
+    {
+     "w": "construiu",
+     "t": 45.069
+    },
+    {
+     "w": "uma",
+     "t": 45.553
+    },
+    {
+     "w": "cadeira",
+     "t": 45.694
+    },
+    {
+     "w": "de",
+     "t": 46.107
+    },
+    {
+     "w": "escritório",
+     "t": 46.189
+    }
+   ]
+  }
+ ]
+}
