@@ -1,0 +1,509 @@
+{
+ "total": 43.27,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.88,
+   "texto": "Se você costurar botões numa jaqueta, terá como fechar ela.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.421
+    },
+    {
+     "w": "costurar",
+     "t": 0.692
+    },
+    {
+     "w": "botões",
+     "t": 1.141
+    },
+    {
+     "w": "numa",
+     "t": 1.624
+    },
+    {
+     "w": "jaqueta",
+     "t": 1.801
+    },
+    {
+     "w": "terá",
+     "t": 2.473
+    },
+    {
+     "w": "como",
+     "t": 2.721
+    },
+    {
+     "w": "fechar",
+     "t": 2.968
+    },
+    {
+     "w": "ela",
+     "t": 3.369
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.03,
+   "fim": 10.31,
+   "texto": "Mas são muitos botões. Leva tempo. E no frio, os dedos não ajudam.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.077
+    },
+    {
+     "w": "são",
+     "t": 4.348
+    },
+    {
+     "w": "muitos",
+     "t": 4.525
+    },
+    {
+     "w": "botões",
+     "t": 4.962
+    },
+    {
+     "w": "Leva",
+     "t": 6.4
+    },
+    {
+     "w": "tempo",
+     "t": 6.778
+    },
+    {
+     "w": "E",
+     "t": 7.969
+    },
+    {
+     "w": "no",
+     "t": 8.075
+    },
+    {
+     "w": "frio",
+     "t": 8.193
+    },
+    {
+     "w": "os",
+     "t": 8.841
+    },
+    {
+     "w": "dedos",
+     "t": 8.995
+    },
+    {
+     "w": "não",
+     "t": 9.396
+    },
+    {
+     "w": "ajudam",
+     "t": 9.596
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.46,
+   "fim": 18.34,
+   "texto": "Então, você coloca duas fileiras de dentinhos, uma de cada lado. Cada dente tem um gancho em cima e um buraco embaixo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 10.507
+    },
+    {
+     "w": "você",
+     "t": 11.297
+    },
+    {
+     "w": "coloca",
+     "t": 11.557
+    },
+    {
+     "w": "duas",
+     "t": 11.958
+    },
+    {
+     "w": "fileiras",
+     "t": 12.276
+    },
+    {
+     "w": "de",
+     "t": 12.665
+    },
+    {
+     "w": "dentinhos",
+     "t": 12.748
+    },
+    {
+     "w": "uma",
+     "t": 13.656
+    },
+    {
+     "w": "de",
+     "t": 13.856
+    },
+    {
+     "w": "cada",
+     "t": 13.962
+    },
+    {
+     "w": "lado",
+     "t": 14.222
+    },
+    {
+     "w": "Cada",
+     "t": 15.377
+    },
+    {
+     "w": "dente",
+     "t": 15.66
+    },
+    {
+     "w": "tem",
+     "t": 15.955
+    },
+    {
+     "w": "um",
+     "t": 16.097
+    },
+    {
+     "w": "gancho",
+     "t": 16.215
+    },
+    {
+     "w": "em",
+     "t": 16.58
+    },
+    {
+     "w": "cima",
+     "t": 16.686
+    },
+    {
+     "w": "e",
+     "t": 17.052
+    },
+    {
+     "w": "um",
+     "t": 17.111
+    },
+    {
+     "w": "buraco",
+     "t": 17.217
+    },
+    {
+     "w": "embaixo",
+     "t": 17.606
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 18.49,
+   "fim": 25.37,
+   "texto": "Mas apertar dente por dente seria pior que o botão. Então, você coloca um cursor em forma de Y.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 18.537
+    },
+    {
+     "w": "apertar",
+     "t": 18.726
+    },
+    {
+     "w": "dente",
+     "t": 19.327
+    },
+    {
+     "w": "por",
+     "t": 19.622
+    },
+    {
+     "w": "dente",
+     "t": 19.775
+    },
+    {
+     "w": "seria",
+     "t": 20.07
+    },
+    {
+     "w": "pior",
+     "t": 20.365
+    },
+    {
+     "w": "que",
+     "t": 20.695
+    },
+    {
+     "w": "o",
+     "t": 20.801
+    },
+    {
+     "w": "botão",
+     "t": 20.849
+    },
+    {
+     "w": "Então",
+     "t": 22.099
+    },
+    {
+     "w": "você",
+     "t": 22.865
+    },
+    {
+     "w": "coloca",
+     "t": 23.136
+    },
+    {
+     "w": "um",
+     "t": 23.561
+    },
+    {
+     "w": "cursor",
+     "t": 23.643
+    },
+    {
+     "w": "em",
+     "t": 24.032
+    },
+    {
+     "w": "forma",
+     "t": 24.115
+    },
+    {
+     "w": "de",
+     "t": 24.504
+    },
+    {
+     "w": "Y",
+     "t": 24.681
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 25.52,
+   "fim": 33.42,
+   "texto": "Ele junta as duas fileiras no ângulo certinho, e o gancho de cada dente entra no buraco do vizinho. Clique, clique, clique.",
+   "palavras": [
+    {
+     "w": "Ele",
+     "t": 25.567
+    },
+    {
+     "w": "junta",
+     "t": 25.791
+    },
+    {
+     "w": "as",
+     "t": 26.157
+    },
+    {
+     "w": "duas",
+     "t": 26.251
+    },
+    {
+     "w": "fileiras",
+     "t": 26.558
+    },
+    {
+     "w": "no",
+     "t": 26.982
+    },
+    {
+     "w": "ângulo",
+     "t": 27.1
+    },
+    {
+     "w": "certinho",
+     "t": 27.395
+    },
+    {
+     "w": "e",
+     "t": 28.209
+    },
+    {
+     "w": "o",
+     "t": 28.327
+    },
+    {
+     "w": "gancho",
+     "t": 28.386
+    },
+    {
+     "w": "de",
+     "t": 28.716
+    },
+    {
+     "w": "cada",
+     "t": 28.834
+    },
+    {
+     "w": "dente",
+     "t": 29.105
+    },
+    {
+     "w": "entra",
+     "t": 29.412
+    },
+    {
+     "w": "no",
+     "t": 29.636
+    },
+    {
+     "w": "buraco",
+     "t": 29.73
+    },
+    {
+     "w": "do",
+     "t": 30.131
+    },
+    {
+     "w": "vizinho",
+     "t": 30.249
+    },
+    {
+     "w": "Clique",
+     "t": 31.511
+    },
+    {
+     "w": "clique",
+     "t": 32.112
+    },
+    {
+     "w": "clique",
+     "t": 32.725
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 33.57,
+   "fim": 37.35,
+   "texto": "Na volta, uma cunha no meio do cursor separa os dentes de novo.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 33.617
+    },
+    {
+     "w": "volta",
+     "t": 33.841
+    },
+    {
+     "w": "uma",
+     "t": 34.513
+    },
+    {
+     "w": "cunha",
+     "t": 34.726
+    },
+    {
+     "w": "no",
+     "t": 35.009
+    },
+    {
+     "w": "meio",
+     "t": 35.115
+    },
+    {
+     "w": "do",
+     "t": 35.362
+    },
+    {
+     "w": "cursor",
+     "t": 35.504
+    },
+    {
+     "w": "separa",
+     "t": 35.881
+    },
+    {
+     "w": "os",
+     "t": 36.2
+    },
+    {
+     "w": "dentes",
+     "t": 36.294
+    },
+    {
+     "w": "de",
+     "t": 36.66
+    },
+    {
+     "w": "novo",
+     "t": 36.754
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 37.5,
+   "fim": 42.67,
+   "texto": "Coloque um puxador e uma trava no fim. Parabéns, você construiu um zíper.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 37.547
+    },
+    {
+     "w": "um",
+     "t": 38.031
+    },
+    {
+     "w": "puxador",
+     "t": 38.113
+    },
+    {
+     "w": "e",
+     "t": 38.62
+    },
+    {
+     "w": "uma",
+     "t": 38.691
+    },
+    {
+     "w": "trava",
+     "t": 38.892
+    },
+    {
+     "w": "no",
+     "t": 39.186
+    },
+    {
+     "w": "fim",
+     "t": 39.292
+    },
+    {
+     "w": "Parabéns",
+     "t": 40.389
+    },
+    {
+     "w": "você",
+     "t": 41.12
+    },
+    {
+     "w": "construiu",
+     "t": 41.415
+    },
+    {
+     "w": "um",
+     "t": 41.91
+    },
+    {
+     "w": "zíper",
+     "t": 42.052
+    }
+   ]
+  }
+ ]
+}

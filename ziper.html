@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("ziper", { fundo: 0x2a3240, seed: 9191 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+{ const pl = new THREE.PointLight(0xffffff, 2.5, 8); pl.position.set(1, 1.5, 2.5); scene.add(pl); }
+// jaqueta (dois lados de tecido)
+const tecido = mat(0xc0302a, { map: texRuido("#c0302a", 25, 4), roughness: .9 });
+const ladoE = add(new THREE.BoxGeometry(.8, 2.2, .04), tecido, -.43, 0, 0), ladoD = add(new THREE.BoxGeometry(.8, 2.2, .04), tecido, .43, 0, 0);
+const botoes = Array.from({ length: 6 }, (_, i) => add(new THREE.CylinderGeometry(.05, .05, .02, 20), mat(0x2a2a2a), -.06, .85 - i * .34, .03));
+botoes.forEach((b) => b.rotation.x = PI / 2);
+// dentes
+const N = 40, Y0 = 1.0, PASSO = .05;
+const dentes = [];
+for (let i = 0; i < N; i++) for (const s of [-1, 1]) { const g2 = grupo(0, Y0 - i * PASSO - (s > 0 ? PASSO / 2 : 0), 0); const d = add(new THREE.BoxGeometry(.07, .03, .03), mat(0xc0c6cc, { metalness: .45, roughness: .3 }), 0, 0, 0, g2); const ganc = add(new THREE.BoxGeometry(.02, .015, .02), mat(0xe0e4ea, { metalness: .45 }), s * -.04, .012, 0, g2); dentes.push({ g: g2, s, i }); }
+const cursor = grupo(0, 1.05, .02); add(new THREE.BoxGeometry(.16, .12, .06), mat(0x8a8e96, { metalness: .45 }), 0, 0, 0, cursor); const cunha = add(new THREE.ConeGeometry(.02, .08, 3), mat(0xffd23a), 0, .02, .04, cursor); cunha.rotation.z = PI;
+const puxador = add(new THREE.BoxGeometry(.05, .16, .015), mat(0x5a5e66, { metalness: .45 }), 0, -.1, .05, cursor); puxador.visible = false;
+const trava = add(new THREE.BoxGeometry(.12, .05, .05), mat(0x5a5e66), 0, Y0 - N * PASSO - .02, .02); trava.visible = false;
+// mini set: dois dentes encaixando
+const MX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), MX, 0, -.8);
+const dA = grupo(MX - .5, .55, 0), dB = grupo(MX + .5, .45, 0);
+for (const [g2, s] of [[dA, 1], [dB, -1]]) { add(new THREE.BoxGeometry(.5, .16, .16), mat(0xc0c6cc, { metalness: .45, roughness: .3 }), 0, 0, 0, g2); add(new THREE.BoxGeometry(.12, .1, .12), mat(0xffd23a), s * .3, .08, 0, g2); add(new THREE.BoxGeometry(.12, .06, .12), mat(0x1a1a1a), s * -.15, -.06, 0, g2); }
+const lbl = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, .3); s.scale.set(.5, .25, 1); scene.add(s); return s; };
+const lG = lbl("GANCHO", "#ffd23a", MX - .3, .9), lB = lbl("BURACO", "#ffffff", MX + .3, .15);
+
+K.camera_({
+  geral: [V(.6, .2, 3.8), V(0, .1, 0)],
+  perto: [V(.25, .65, 1.1), V(0, .55, 0)],
+  dente: [V(MX, .6, 3.6), V(MX, .5, 0)],
+  fim: [V(-.8, .2, 3.6), V(0, .1, 0)],
+}, [
+  [0, "geral"], [F(2), "geral"], [C(3), "dente"], [F(3), "dente"], [C(4), "perto"], [F(6), "perto"], [C(7), "geral"], [T, "fim"],
+]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const comZip = t >= C(3);
+  botoes.forEach((b, i) => b.visible = !comZip); dentes.forEach((d) => d.g.visible = comZip); cursor.visible = t > P(4, "cursor") - .3;
+  // posição do cursor: desce fechando (cena 5), sobe abrindo (cena 6), fecha de novo no fim
+  let yc = 1.05;
+  if (em(P(5, "junta") - .5, F(5))) yc = 1.05 - 2.0 * prog(t, P(5, "junta") - .5, F(5));
+  else if (em(C(6), F(6))) yc = -.95 + 2.0 * prog(t, C(6), F(6));
+  else if (t > C(7)) yc = 1.05 - 2.0 * prog(t, C(7), C(7) + 3);
+  else if (t > F(5)) yc = -.95;
+  cursor.position.y = yc;
+  // dentes acima do cursor ficam abertos (afastados), abaixo fechados... o fechamento é ATRÁS do cursor (acima dele quando desce)
+  const descendo = em(P(5, "junta") - .5, F(5)) || t > C(7), subindo = em(C(6), F(6));
+  dentes.forEach((d) => { const fechado = comZip && ((descendo && d.g.position.y > yc) || (subindo && d.g.position.y < yc) || (!descendo && !subindo && t > F(5) && t < C(6))); d.g.position.x = d.s * (fechado ? .025 : .06 + Math.max(0, (d.g.position.y - yc)) * .0); d.g.children[0].material.color.set(fechado ? 0xd8dce2 : 0xc0c6cc); });
+  ladoE.position.x = -.43 - (comZip ? .02 : 0); ladoD.position.x = .43 + (comZip ? .02 : 0);
+  // mini set: encaixe
+  const k = prog(t, C(3) + 1, F(3) - .5); dA.position.x = MX - .5 + .2 * k; dB.position.x = MX + .5 - .2 * k; dA.position.y = .55 - .05 * k; dB.position.y = .45 + .05 * k;
+  lG.visible = lB.visible = em(P(3, "gancho") - .3, F(3));
+  puxador.visible = t > P(7, "puxador") - .3; trava.visible = t > P(7, "trava") - .3;
+  K.cartoes(t, [
+    [P(1, "botoes") - .3, F(1), "BOTÕES", "#ffffff"],
+    [P(2, "tempo") - .3, F(2), "LEVA TEMPO ⏳", "#ff9a5a"],
+    [P(3, "fileiras") - .3, F(3), "GANCHO EM CIMA, BURACO EMBAIXO", "#ffd23a"],
+    [P(4, "cursor") - .3, F(4), "CURSOR EM Y", "#ffffff"],
+    [P(5, "clique") - .4, F(5), "CLIQUE, CLIQUE, CLIQUE", "#ffd23a"],
+    [P(6, "cunha") - .3, F(6), "A CUNHA SEPARA", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
