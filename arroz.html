@@ -1,0 +1,113 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("arroz", { fundo: 0xe8dcc8, seed: 4141 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- cozinha ----------
+add(new THREE.BoxGeometry(6, .1, 3), mat(0xffffff, { map: texRuido("#d8d2c8", 20, 3), roughness: .5 }), 0, -.05, 0);
+add(new THREE.PlaneGeometry(8, 5), mat(0xffffff, { map: grade("#eef2f0", "#cfd8d4", 64, 8) }), 0, 2, -1.2);
+// fogão (cena 1-2)
+const fogao = grupo(-2.2, 0, 0); add(new THREE.BoxGeometry(1.1, .12, .9), mat(0x2a2a2e), 0, .06, 0, fogao);
+const chamaF = Array.from({ length: 10 }, (_, i) => { const c = add(new THREE.ConeGeometry(.03, .1, 8), new THREE.MeshBasicMaterial({ color: 0x3a8aff, transparent: true, opacity: .9 }), Math.cos(i / 10 * PI * 2) * .14, .17, Math.sin(i / 10 * PI * 2) * .14, fogao); return c; });
+const panelaF = grupo(0, .14, 0, fogao); add(new THREE.CylinderGeometry(.3, .26, .3, 40, 1, true), mat(0x9aa0a8, { metalness: .4, roughness: .3, side: THREE.DoubleSide }), 0, .15, 0, panelaF); add(new THREE.CylinderGeometry(.26, .26, .02, 40), mat(0x8a9098, { metalness: .4 }), 0, .01, 0, panelaF);
+const aguaF = add(new THREE.CylinderGeometry(.27, .25, .14, 40), new THREE.MeshStandardMaterial({ color: 0x8ac8f0, transparent: true, opacity: .6 }), 0, .09, 0, panelaF);
+const queimado = add(new THREE.CylinderGeometry(.25, .25, .015, 40), mat(0x1a1210, { roughness: 1 }), 0, .03, 0, panelaF);
+const fumaca = Array.from({ length: 14 }, () => ({ s: sprite(0x3a3a3a), f: rnd(), x: (rnd() - .5) * .3 }));
+const vaporF = Array.from({ length: 12 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .3 }));
+
+// ---------- panela elétrica em corte ----------
+const pe = grupo(0, 0, 0);
+const casca = add(new THREE.CylinderGeometry(.42, .4, .55, 48, 1, true, 0, PI * 1.5), mat(0xf4f4f4, { side: THREE.DoubleSide }), 0, .3, 0, pe); casca.rotation.y = PI * .25;
+const base = add(new THREE.CylinderGeometry(.4, .42, .06, 48), mat(0xe8e8e8), 0, .03, 0, pe);
+const resist = add(new THREE.TorusGeometry(.22, .025, 10, 40), new THREE.MeshStandardMaterial({ color: 0x5a2a1a, emissive: 0xff3a10, emissiveIntensity: 0 }), 0, .1, 0, pe); resist.rotation.x = PI / 2;
+const placa = add(new THREE.CylinderGeometry(.3, .3, .03, 40), mat(0x8a8e96, { metalness: .4 }), 0, .125, 0, pe);
+const panInt = add(new THREE.CylinderGeometry(.33, .3, .38, 48, 1, true, 0, PI * 1.5), mat(0xc8ccd2, { metalness: .45, roughness: .3, side: THREE.DoubleSide }), 0, .33, 0, pe); panInt.rotation.y = PI * .25;
+add(new THREE.CylinderGeometry(.3, .3, .015, 40), mat(0xb8bec6, { metalness: .4 }), 0, .15, 0, pe);
+const aguaE = add(new THREE.CylinderGeometry(.31, .3, .2, 40, 1, false, 0, PI * 1.5), new THREE.MeshStandardMaterial({ color: 0x8ac8f0, transparent: true, opacity: .55 }), 0, .25, 0, pe); aguaE.rotation.y = PI * .25;
+const arroz = add(new THREE.CylinderGeometry(.3, .3, .1, 40, 1, false, 0, PI * 1.5), mat(0xf6f2e6, { map: texRuido("#f2ecdc", 40, 3), roughness: .9 }), 0, .2, 0, pe); arroz.rotation.y = PI * .25;
+const bolhas = Array.from({ length: 26 }, () => ({ s: sprite(0xffffff, pe), f: rnd(), x: (rnd() - .5) * .45, z: rnd() * .25 }));
+const ondasC = Array.from({ length: 14 }, () => ({ s: sprite(0xff6a3a, pe), f: rnd(), a: rnd() * PI * 2 }));
+const tampa = grupo(0, .58, 0, pe); add(new THREE.SphereGeometry(.42, 40, 16, 0, PI * 2, 0, PI * .3), mat(0xf4f4f4), 0, -.32, 0, tampa); const valv = add(new THREE.CylinderGeometry(.04, .05, .06, 20), mat(0x3a3a3a), .1, .08, 0, tampa);
+const vaporT = Array.from({ length: 12 }, () => ({ s: sprite(0xffffff, pe), f: rnd() }));
+const painel = add(new THREE.BoxGeometry(.2, .12, .06), mat(0x2a2a2e), 0, .2, .42, pe);
+const ledLaranja = add(new THREE.SphereGeometry(.018, 12, 8), new THREE.MeshBasicMaterial({ color: 0x5a3a1a }), -.05, .22, .455, pe);
+const alavanca = add(new THREE.BoxGeometry(.08, .04, .05), mat(0xe04a3a), .05, .17, .45, pe);
+
+// ---------- mini set: o ímã térmico ----------
+const MX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), MX, 0, -.8); { const pl = new THREE.PointLight(0xffffff, 3, 6); pl.position.set(MX + 1, 1.5, 2); scene.add(pl); }
+const fundoP = add(new THREE.BoxGeometry(1.4, .12, .5), mat(0xb8bec6, { metalness: .4 }), MX, .9, 0);
+const ima = add(new THREE.CylinderGeometry(.14, .14, .3, 24), mat(0x3a3a3a), MX, .62, 0);
+const imaR = add(new THREE.CylinderGeometry(.14, .14, .08, 24), mat(0xd6453a), MX, .74, 0);
+const mola = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 60 }, (_, i) => V(MX + Math.cos(i * .8) * .1, .1 + i * .006, Math.sin(i * .8) * .1))), 160, .012, 6), mat(0xc0c6cc, { metalness: .4 }));
+const haste = add(new THREE.BoxGeometry(.04, .5, .04), mat(0x9aa0a8), MX, .3, .18);
+const botao = add(new THREE.BoxGeometry(.3, .08, .12), mat(0xe04a3a), MX + .2, .1, .2);
+const lbl = (txt, cor, x, y, z = .3) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lIma = lbl("ÍMÃ", "#ffffff", MX - .45, .6), lFundo = lbl("FUNDO", "#ffd23a", MX + .45, 1.05);
+const calorM = Array.from({ length: 14 }, () => ({ s: sprite(0xff5a2a), f: rnd(), x: (rnd() - .5) * 1.2 }));
+
+K.camera_({
+  fogao: [V(-2.2 + .8, 1.45, 2.4), V(-2.2, .3, 0)],
+  corte: [V(1.3, 1.3, 2.8), V(0, .3, 0)],
+  fundo: [V(.8, .8, 1.9), V(0, .22, 0)],
+  ima: [V(MX + .7, .95, 3.8), V(MX, .58, 0)],
+  frente: [V(.2, .7, 2.3), V(0, .3, .2)],
+  fim: [V(-1.4, 1.2, 2.7), V(0, .35, 0)],
+}, [
+  [0, "fogao"], [F(2), "fogao"], [C(3), "corte"], [P(3, "aluminio") - .3, "fundo"], [F(3), "fundo"], [C(4), "corte"], [F(4), "corte"],
+  [C(5), "fundo"], [P(5, "truque") - .3, "fundo"], [P(5, "truque") - .25, "ima"], [F(5), "ima"], [P(6, "manter") - .5, "ima"], [P(6, "manter") - .45, "frente"], [F(6), "frente"], [C(7), "corte"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  fogao.visible = t < C(3); pe.visible = t >= C(3);
+  chamaF.forEach((c) => { c.scale.y = 1 + .2 * Math.sin(t * 20 + c.position.x * 30); });
+  const seca = prog(t, P(2, "seca") - .3, P(2, "queima"));
+  aguaF.scale.y = 1 - .95 * seca; aguaF.position.y = .09 * aguaF.scale.y;
+  queimado.visible = t > P(2, "queima") - .3;
+  fumaca.forEach((f) => { const k = frac(t * .4 + f.f); f.s.position.set(-2.2 + f.x * (1 + k), .45 + k * .9, 0); f.s.scale.setScalar(.15 + k * .2); f.s.material.opacity = em(P(2, "queima") - .2, F(2)) ? .6 * (1 - k) : 0; });
+  vaporF.forEach((f) => { const k = frac(t * .5 + f.f); f.s.position.set(-2.2 + f.x, .45 + k * .6, 0); f.s.scale.setScalar(.1); f.s.material.opacity = (t < P(2, "seca")) ? .5 * (1 - k) : 0; });
+  // panela elétrica
+  const aquece = t > P(3, "resistencia") - .3;
+  const semAgua = t > P(5, "acaba") - .3;
+  resist.material.emissiveIntensity = aquece ? (t > P(6, "manter") - .2 ? .25 : 1) : 0;
+  const nivel = t < P(5, "acaba") - .3 ? 1 : 1 - prog(t, P(5, "acaba") - .3, P(5, "acaba") + .4);
+  aguaE.scale.y = Math.max(.01, nivel); aguaE.position.y = .16 + .1 * aguaE.scale.y; aguaE.visible = nivel > .02;
+  arroz.scale.y = 1 + 1.4 * prog(t, C(4), P(5, "acaba")); arroz.position.y = .16 + .05 * arroz.scale.y;
+  const ferve = em(P(4, "ferve") - 1.5, P(5, "acaba"));
+  bolhas.forEach((b) => { const k = frac(t * .9 + b.f); b.s.position.set(b.x, .17 + k * .2, b.z); b.s.scale.setScalar(.025); b.s.material.opacity = ferve ? .8 * Math.sin(k * PI) : 0; });
+  ondasC.forEach((o) => { const k = frac(t * .7 + o.f); o.s.position.set(Math.cos(o.a) * .22, .1 + k * .06, Math.sin(o.a) * .22); o.s.scale.setScalar(.05); o.s.material.opacity = aquece && t < C(7) ? .6 * (1 - k) : 0; });
+  tampa.visible = t > P(7, "tampa") - .3; vaporT.forEach((v) => { const k = frac(t * .6 + v.f); v.s.position.set(.1 + Math.sin(k * 6) * .02, .7 + k * .5, 0); v.s.scale.setScalar(.06 + k * .08); v.s.material.opacity = tampa.visible ? .55 * (1 - k) : 0; });
+  const manter = t > P(6, "manter") - .5;
+  ledLaranja.material.color.set(manter && t > P(7, "luzinha") - .3 ? 0xffa02a : manter ? 0xffa02a : 0x5a3a1a);
+  alavanca.position.y = .17 + (manter ? .03 : 0);
+  // mini set
+  const solta = t > P(6, "solta") - .2;
+  const q = prog(t, P(5, "esquenta") - .5, P(6, "solta"));
+  fundoP.material.emissive = new THREE.Color(0xff3a10); fundoP.material.emissiveIntensity = .5 * q;
+  calorM.forEach((c) => { const k = frac(t * .8 + c.f); c.s.position.set(MX + c.x, .84 - k * .25, .2); c.s.scale.setScalar(.06); c.s.material.opacity = em(P(5, "esquenta") - .5, F(6)) ? .7 * (1 - k) : 0; });
+  const queda = solta ? prog(t, P(6, "solta") - .2, P(6, "solta") + .3) : 0;
+  ima.position.y = .62 - .25 * queda; imaR.position.y = .74 - .25 * queda; haste.position.y = .3 + .12 * prog(t, P(6, "mola") - .3, P(6, "botao")); botao.position.y = .1 + .12 * prog(t, P(6, "mola") - .3, P(6, "botao"));
+  lIma.visible = em(P(5, "ima") - .3, F(6)); lFundo.visible = em(P(5, "truque") - .25, F(6));
+  const temp = t < P(3, "resistencia") ? 25 : t < P(5, "acaba") - .3 ? Math.min(100, Math.round(25 + 75 * lin(t, P(3, "resistencia"), C(4) + 2))) : Math.round(100 + 30 * lin(t, P(5, "acaba") - .3, P(5, "acaba") + 2.5));
+  K.cartoes(t, [
+    [P(1, "arroz") - .3, F(1), "ARROZ 🍚", "#ffffff"],
+    [P(2, "esquece") - .3, P(2, "queima") - .3, "VOCÊ ESQUECE…", "#ffd23a"],
+    [P(2, "queima") - .3, F(2), "QUEIMA E GRUDA", "#ff4a3a"],
+    [P(3, "resistencia") - .3, P(3, "aluminio") - .3, "RESISTÊNCIA", "#ff6a3a"],
+    [P(3, "aluminio") - .3, F(3), "ALUMÍNIO ESPALHA O CALOR", "#c0c6cc"],
+    [C(4), P(5, "truque") - .3, `${temp} °C`, temp > 100 ? "#ff4a3a" : "#5aa0ff"],
+    [P(5, "truque") - .3, P(6, "solta") - .3, "ÍMÃ QUE PERDE A FORÇA", "#ffd23a"],
+    [P(6, "solta") - .3, P(6, "manter") - .5, "SOLTOU! A MOLA SOBE", "#ff6a3a"],
+    [P(6, "manter") - .5, F(6), "CLIQUE: MANTER AQUECIDO", "#ffa02a"],
+  ]);
+});
+</script>
+</body></html>

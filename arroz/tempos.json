@@ -1,0 +1,569 @@
+{
+ "total": 47.27,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.48,
+   "texto": "Se você colocar arroz e água numa panela em cima do fogo, terá arroz.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.197
+    },
+    {
+     "w": "você",
+     "t": 0.409
+    },
+    {
+     "w": "colocar",
+     "t": 0.704
+    },
+    {
+     "w": "arroz",
+     "t": 1.105
+    },
+    {
+     "w": "e",
+     "t": 1.388
+    },
+    {
+     "w": "água",
+     "t": 1.53
+    },
+    {
+     "w": "numa",
+     "t": 1.801
+    },
+    {
+     "w": "panela",
+     "t": 2.001
+    },
+    {
+     "w": "em",
+     "t": 2.391
+    },
+    {
+     "w": "cima",
+     "t": 2.485
+    },
+    {
+     "w": "do",
+     "t": 2.815
+    },
+    {
+     "w": "fogo",
+     "t": 2.921
+    },
+    {
+     "w": "terá",
+     "t": 3.523
+    },
+    {
+     "w": "arroz",
+     "t": 3.782
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.63,
+   "fim": 9.76,
+   "texto": "Mas você esquece. A água seca. E o fundo queima e gruda.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.677
+    },
+    {
+     "w": "você",
+     "t": 4.948
+    },
+    {
+     "w": "esquece",
+     "t": 5.255
+    },
+    {
+     "w": "A",
+     "t": 6.576
+    },
+    {
+     "w": "água",
+     "t": 6.717
+    },
+    {
+     "w": "seca",
+     "t": 7.024
+    },
+    {
+     "w": "E",
+     "t": 8.239
+    },
+    {
+     "w": "o",
+     "t": 8.368
+    },
+    {
+     "w": "fundo",
+     "t": 8.427
+    },
+    {
+     "w": "queima",
+     "t": 8.816
+    },
+    {
+     "w": "e",
+     "t": 9.099
+    },
+    {
+     "w": "gruda",
+     "t": 9.146
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.91,
+   "fim": 15.57,
+   "texto": "Então, você coloca uma resistência embaixo de uma panela de alumínio, que espalha o calor por igual.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.957
+    },
+    {
+     "w": "você",
+     "t": 10.747
+    },
+    {
+     "w": "coloca",
+     "t": 11.018
+    },
+    {
+     "w": "uma",
+     "t": 11.419
+    },
+    {
+     "w": "resistência",
+     "t": 11.537
+    },
+    {
+     "w": "embaixo",
+     "t": 12.139
+    },
+    {
+     "w": "de",
+     "t": 12.575
+    },
+    {
+     "w": "uma",
+     "t": 12.646
+    },
+    {
+     "w": "panela",
+     "t": 12.776
+    },
+    {
+     "w": "de",
+     "t": 13.153
+    },
+    {
+     "w": "alumínio",
+     "t": 13.235
+    },
+    {
+     "w": "que",
+     "t": 13.896
+    },
+    {
+     "w": "espalha",
+     "t": 14.014
+    },
+    {
+     "w": "o",
+     "t": 14.403
+    },
+    {
+     "w": "calor",
+     "t": 14.438
+    },
+    {
+     "w": "por",
+     "t": 14.804
+    },
+    {
+     "w": "igual",
+     "t": 14.969
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 15.72,
+   "fim": 23.88,
+   "texto": "Enquanto tem água, a temperatura trava nos cem graus. Por mais que esquente, a água não passa disso. Só ferve.",
+   "palavras": [
+    {
+     "w": "Enquanto",
+     "t": 15.767
+    },
+    {
+     "w": "tem",
+     "t": 16.251
+    },
+    {
+     "w": "água",
+     "t": 16.451
+    },
+    {
+     "w": "a",
+     "t": 16.97
+    },
+    {
+     "w": "temperatura",
+     "t": 17.053
+    },
+    {
+     "w": "trava",
+     "t": 17.701
+    },
+    {
+     "w": "nos",
+     "t": 18.02
+    },
+    {
+     "w": "cem",
+     "t": 18.173
+    },
+    {
+     "w": "graus",
+     "t": 18.361
+    },
+    {
+     "w": "Por",
+     "t": 19.611
+    },
+    {
+     "w": "mais",
+     "t": 19.788
+    },
+    {
+     "w": "que",
+     "t": 20.107
+    },
+    {
+     "w": "esquente",
+     "t": 20.189
+    },
+    {
+     "w": "a",
+     "t": 20.814
+    },
+    {
+     "w": "água",
+     "t": 20.909
+    },
+    {
+     "w": "não",
+     "t": 21.192
+    },
+    {
+     "w": "passa",
+     "t": 21.38
+    },
+    {
+     "w": "disso",
+     "t": 21.711
+    },
+    {
+     "w": "Só",
+     "t": 22.902
+    },
+    {
+     "w": "ferve",
+     "t": 23.137
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 24.03,
+   "fim": 31.21,
+   "texto": "Quando a água acaba, o fundo passa dos cem graus. E aí entra o truque: um ímã que perde a força quando esquenta.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 24.077
+    },
+    {
+     "w": "a",
+     "t": 24.348
+    },
+    {
+     "w": "água",
+     "t": 24.396
+    },
+    {
+     "w": "acaba",
+     "t": 24.667
+    },
+    {
+     "w": "o",
+     "t": 25.374
+    },
+    {
+     "w": "fundo",
+     "t": 25.457
+    },
+    {
+     "w": "passa",
+     "t": 25.822
+    },
+    {
+     "w": "dos",
+     "t": 26.117
+    },
+    {
+     "w": "cem",
+     "t": 26.341
+    },
+    {
+     "w": "graus",
+     "t": 26.518
+    },
+    {
+     "w": "E",
+     "t": 27.756
+    },
+    {
+     "w": "aí",
+     "t": 27.886
+    },
+    {
+     "w": "entra",
+     "t": 28.122
+    },
+    {
+     "w": "o",
+     "t": 28.346
+    },
+    {
+     "w": "truque",
+     "t": 28.381
+    },
+    {
+     "w": "um",
+     "t": 28.959
+    },
+    {
+     "w": "ímã",
+     "t": 29.136
+    },
+    {
+     "w": "que",
+     "t": 29.348
+    },
+    {
+     "w": "perde",
+     "t": 29.49
+    },
+    {
+     "w": "a",
+     "t": 29.808
+    },
+    {
+     "w": "força",
+     "t": 29.879
+    },
+    {
+     "w": "quando",
+     "t": 30.292
+    },
+    {
+     "w": "esquenta",
+     "t": 30.504
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 31.36,
+   "fim": 38.96,
+   "texto": "O ímã solta, a mola empurra o botão pra cima, e a panela muda sozinha pro modo manter aquecido. É aquele clique.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 31.407
+    },
+    {
+     "w": "ímã",
+     "t": 31.537
+    },
+    {
+     "w": "solta",
+     "t": 31.785
+    },
+    {
+     "w": "a",
+     "t": 32.421
+    },
+    {
+     "w": "mola",
+     "t": 32.504
+    },
+    {
+     "w": "empurra",
+     "t": 32.763
+    },
+    {
+     "w": "o",
+     "t": 33.129
+    },
+    {
+     "w": "botão",
+     "t": 33.164
+    },
+    {
+     "w": "pra",
+     "t": 33.483
+    },
+    {
+     "w": "cima",
+     "t": 33.636
+    },
+    {
+     "w": "e",
+     "t": 34.332
+    },
+    {
+     "w": "a",
+     "t": 34.426
+    },
+    {
+     "w": "panela",
+     "t": 34.509
+    },
+    {
+     "w": "muda",
+     "t": 34.851
+    },
+    {
+     "w": "sozinha",
+     "t": 35.145
+    },
+    {
+     "w": "pro",
+     "t": 35.629
+    },
+    {
+     "w": "modo",
+     "t": 35.77
+    },
+    {
+     "w": "manter",
+     "t": 36.053
+    },
+    {
+     "w": "aquecido",
+     "t": 36.384
+    },
+    {
+     "w": "É",
+     "t": 37.752
+    },
+    {
+     "w": "aquele",
+     "t": 37.917
+    },
+    {
+     "w": "clique",
+     "t": 38.282
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 39.11,
+   "fim": 46.67,
+   "texto": "Coloque uma tampa com válvula de vapor e uma luzinha laranja. Parabéns, você construiu uma panela elétrica de arroz.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 39.157
+    },
+    {
+     "w": "uma",
+     "t": 39.664
+    },
+    {
+     "w": "tampa",
+     "t": 39.853
+    },
+    {
+     "w": "com",
+     "t": 40.207
+    },
+    {
+     "w": "válvula",
+     "t": 40.384
+    },
+    {
+     "w": "de",
+     "t": 40.855
+    },
+    {
+     "w": "vapor",
+     "t": 40.938
+    },
+    {
+     "w": "e",
+     "t": 41.351
+    },
+    {
+     "w": "uma",
+     "t": 41.41
+    },
+    {
+     "w": "luzinha",
+     "t": 41.539
+    },
+    {
+     "w": "laranja",
+     "t": 41.952
+    },
+    {
+     "w": "Parabéns",
+     "t": 43.261
+    },
+    {
+     "w": "você",
+     "t": 44.063
+    },
+    {
+     "w": "construiu",
+     "t": 44.369
+    },
+    {
+     "w": "uma",
+     "t": 44.865
+    },
+    {
+     "w": "panela",
+     "t": 45.018
+    },
+    {
+     "w": "elétrica",
+     "t": 45.336
+    },
+    {
+     "w": "de",
+     "t": 45.855
+    },
+    {
+     "w": "arroz",
+     "t": 45.95
+    }
+   ]
+  }
+ ]
+}
