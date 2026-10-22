@@ -1,0 +1,194 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@500;600;700;800&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// A Herança — Ep.1 (@romancemaduro)
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/heranca1/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa, celular, telaBloqueio, telaNotificacao, hud, adesivo, balao } = K;
+const ease = K.ease, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini, F = (n) => CENA(n).fim;
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+const FALA = TEMPOS.fala;
+const CARLA = { sexo: "f", cabelo: "#4a2a1a", roupa: "#8a3a4a", calca: "#3a3a4a", pele: "#e3a77f" };
+const RAFA = { sexo: "m", cabelo: "#1a1410", roupa: "#3a5a8a", calca: "#2e3a52", pele: "#d39a72" };
+const piscar = (t, f = 0) => ((t + f) % 3.7) < .12 ? .1 : 1;
+const CHAO = 1460;
+
+// ---------- legenda (blocos de 3 palavras) ----------
+const CHAVE = { testamento: "#d6453a", nunca: "#e0a83a", trinta: "#4fae5a", casa: "#6ab8f0", carro: "#d6453a", loja: "#e0a83a", lucas: "#4fae5a", mulher: "#6ab8f0", sinal: "#d6453a", filho: "#e0a83a", chora: "#4fae5a", porta: "#6ab8f0", mora: "#d6453a", papel: "#e0a83a", quatro: "#4fae5a", terno: "#6ab8f0", oculos: "#d6453a", marido: "#e0a83a" };
+const blocos = []; for (const c of TEMPOS.cenas) { const ws = c.palavras; for (let i = 0; i < ws.length; i += 3) blocos.push({ t: ws[i].t, ws: ws.slice(i, i + 3).map((p) => p.w.replace(/[.,!?;:"]+$/, "")) }); }
+function legenda(t, y = 1620) {
+  if (t > FALA + .2) return; let b = null; for (const x of blocos) if (t >= x.t) b = x; if (!b) return;
+  g.font = "700 80px Oswald"; const ps = b.ws.map((w) => w.toUpperCase()); const larg = ps.map((w) => g.measureText(w + " ").width); let x = W / 2 - larg.reduce((a, c) => a + c, 0) / 2;
+  const k = Math.min(1, (t - b.t) / .1);
+  ps.forEach((w, i) => { g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 13; g.strokeStyle = "rgba(0,0,0,.8)"; g.lineJoin = "round"; g.strokeText(w, x, y + (1 - k) * 12); g.fillStyle = CHAVE[norm(w)] || "#fff"; g.fillText(w, x, y + (1 - k) * 12); x += larg[i]; });
+}
+const HUDS = () => [[0, 1, "22:14", "SALA"], [C(4), 3, "20:05", "JANTAR"], [C(5), 3, "22:40", "CORREDOR"], [C(6), 5, "19:30", "QUARTO"], [C(7), 6, "23:10", "QUARTO"], [C(8), 7, "23:47", "COZINHA"]];
+
+// ---------- cenas ----------
+function cenaSala(t, k, { carla = {}, rafa = {}, cam = {} } = {}) {
+  g.save(); camera(k, { z0: 1, z1: 1.07, ...cam });
+  K.sala(CHAO, t);
+  K.rackTv(330, CHAO + 40, 1, t);
+  K.sofa(150, CHAO + 330, 780, "#6a5a7a");
+  pessoa(410, CHAO + 300, 1.05, { ...CARLA, sentado: true, olhar: .6, piscar: piscar(t), ...carla });
+  pessoa(660, CHAO + 300, 1.1, { ...RAFA, sentado: true, olhar: -.2, piscar: piscar(t, 1.3), braco: .9, celular: true, ...rafa });
+  g.restore(); vinheta(.5);
+}
+function telaSenha(t, ini) { // digita 6 números e dá erro
+  const dig = Math.min(6, Math.floor(lin(t, ini, ini + 1.0) * 6.99)); const err = t > ini + 1.1 ? clamp((t - ini - 1.1) / .6, 0, 1) : 0;
+  celular(W / 2, 980, 1.05, (x, y, w, h) => telaBloqueio(x, y, w, h, err > 0 ? 6 : dig, err));
+}
+function cenaJantar(t, k) {
+  g.save(); camera(k, { z0: 1, z1: 1.1, cy: 1100 });
+  K.parede(0, CHAO, "#d4c2a8", "#c2ae92"); K.quadro(380, 300, 320, 220, K.fotoFamilia, "#2a2018"); K.planta(980, CHAO, 1.1);
+  K.pisoMadeira(CHAO, "#8a5e3c"); K.rodape(CHAO);
+  K.cadeira(250, CHAO + 60); K.cadeira(830, CHAO + 60);
+  pessoa(300, CHAO + 40, 1.08, { ...CARLA, sentado: true, olhar: .9, expr: "desconfiada", piscar: piscar(t) });
+  pessoa(780, CHAO + 40, 1.1, { ...RAFA, sentado: true, olhar: -.3, piscar: piscar(t, 1.1) });
+  K.mesaJantar(120, CHAO + 200, 840, t);
+  // celular virado pra mesa
+  rr(690, CHAO - 168, 90, 46, 10, "#1a1b20"); rr(694, CHAO - 164, 82, 4, 2, "#444");
+  if (t > P(4, "virada") - .3) { g.strokeStyle = "#d6453a"; g.lineWidth = 8; g.beginPath(); g.ellipse(735, CHAO - 146, 90 + 6 * Math.sin(t * 6), 50, 0, 0, 6.283); g.stroke(); }
+  K.pendente(540, 380, 1);
+  g.restore(); tinta("#0a1030", .12); vinheta(.55);
+}
+function cenaCorredor(t, k) {
+  g.save(); camera(k, { z0: 1, z1: 1.08, x1: 30 });
+  K.corredorBanheiro(CHAO, t, 1);
+  pessoa(170, CHAO + 60, 1.15, { ...CARLA, olhar: 1, expr: "desconfiada", braco2: .2, piscar: piscar(t) });
+  g.restore(); tinta("#0a1030", .2); vinheta(.6);
+  // ícone do celular no banho
+  if (t > P(5, "celular") - .4) { const a = prog(t, P(5, "celular") - .4, P(5, "celular")); g.globalAlpha = a; rr(800, 760, 160, 160, 40, "rgba(255,255,255,.95)"); txt("🚿📱", 880, 842, 64, "#000", 500, "center", "Nunito"); g.globalAlpha = 1; }
+  if (t > P(5, "vinte") - .3) { const min = Math.round(20 * lin(t, P(5, "vinte") - .3, P(5, "minutos") + .5)); K.rr(W / 2 - 150, 600, 300, 110, 14, "#fdf8ec"); txt(`${min} MIN`, W / 2, 656, 72, "#d6453a"); }
+}
+function cenaQuarto(t, k, noite = 0, carla = {}) {
+  g.save(); camera(k, { z0: 1, z1: 1.06 });
+  K.quarto(CHAO, t, noite);
+  pessoa(noite ? 220 : 440, noite ? CHAO - 90 : CHAO + 60, 1.12, { ...CARLA, sentado: !!noite, piscar: piscar(t), ...carla });
+  g.restore(); if (noite) tinta("#0a1030", .25); vinheta(.55);
+}
+function cenaCozinha(t, k, acende) {
+  g.save(); camera(k, { z0: 1, z1: 1.12, cx: 760, cy: CHAO - 500 });
+  K.cozinha(CHAO, 1, t);
+  // celular na pia
+  rr(820, CHAO - 500, 100, 46, 10, "#1a1b20");
+  if (acende > 0) { rr(826, CHAO - 496, 88, 38, 6, `rgba(150,190,255,${acende})`); glow(870, CHAO - 480, 300, "rgba(150,190,255,A)", .55 * acende); }
+  pessoa(330, CHAO + 70, 1.12, { ...CARLA, olhar: 1, expr: acende > .5 ? "desconfiada" : "neutro", piscar: piscar(t) });
+  g.restore(); vinheta(.65);
+}
+function fotoBatizado(t, a) {
+  g.save(); g.globalAlpha = a; g.translate(W / 2, 930); g.rotate(-.05);
+  rr(-330, -400, 660, 760, 10, "#fdfbf6"); g.fillStyle = "rgba(0,0,0,.25)"; g.fillRect(-320, 360, 650, 14);
+  g.save(); g.beginPath(); g.rect(-300, -370, 600, 600); g.clip(); g.fillStyle = "#c9d8e8"; g.fillRect(-300, -370, 600, 600);
+  rr(-300, 80, 600, 160, 0, "#b8a890");
+  pessoa(-120, 230, .9, { sexo: "f", cabelo: "#c89a4a", roupa: "#2a8a7a", calca: "#2a3a4a", expr: "sorriso" });
+  pessoa(120, 230, .9, { ...CARLA, expr: "sorriso" });
+  rr(-70, -60, 80, 60, 30, "#fff"); circ(-30, -66, 22, "#f2c49a"); // bebê no colo
+  g.restore();
+  txt("Batizado do Theo 💙 — madrinha Ju", 0, 300, 38, "#3a3a3a", 600, "center", "Nunito");
+  g.restore();
+}
+
+// ---------- quadro ----------
+const JU = { sexo: "f", cabelo: "#c89a4a", roupa: "#2a8a7a", calca: "#2a3a4a", pele: "#efc4a0" };
+const SOGRA = { sexo: "f", cabelo: "#c8c8c8", roupa: "#7a4a6a", calca: "#3a3a4a", pele: "#e0b08a" };
+const HUDS4 = () => [[0, 12, "20:08", "TÁXI"], [C(5), 12, "22:00", "MOTEL LUA AZUL"], [C(8), 12, "22:01", "MOTEL LUA AZUL"]];
+function motel(t, portao = 0) {
+  g.fillStyle = "#0e1020"; g.fillRect(0, 0, W, H); for (let i = 0; i < 50; i++) K.circ((i * 97) % W, (i * 53) % 600, 2, "rgba(255,255,255,.6)");
+  rr(80, 520, 920, 900, 10, "#2a2440"); for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) rr(130 + c * 170, 720 + r * 130, 110, 80, 6, (r + c) % 3 ? "#3a3450" : "#f2c45a");
+  rr(260, 380, 560, 150, 20, "#1a1430"); g.save(); g.shadowColor = "#4ab8ff"; g.shadowBlur = 40; txt("MOTEL LUA AZUL", W / 2, 455, 64, "#7ad0ff", 900, "center", "Nunito"); g.restore(); K.circ(820, 330, 50, "#7ad0ff"); K.circ(845, 315, 46, "#0e1020");
+  rr(380, 1180, 320, 240, 12, "#111"); rr(380, 1180, 320, 240 * (1 - portao), 12, "#4a4a5a"); for (let i = 0; i < 8 * (1 - portao); i++) K.rect(380, 1190 + i * 28, 320, 4, "#3a3a48");
+  rect(0, 1420, W, 500, "#22242a"); for (let x = 20; x < W; x += 180) rect(x, 1640, 100, 12, "#ddd");
+}
+function taxiDentro(t, sogra = 1) {
+  g.fillStyle = "#1a1c22"; g.fillRect(0, 0, W, H);
+  rr(60, 260, 960, 640, 40, "#0e1020"); for (let i = 0; i < 30; i++) K.circ(80 + (i * 97) % 920, 300 + (i * 53) % 560, 3, (i % 4) ? "rgba(255,214,120,.6)" : "rgba(122,208,255,.7)");
+  rect(0, 900, W, 1020, "#2a2a30"); rr(40, 1180, 1000, 300, 40, "#3a3440");
+  g.save(); g.translate(330, 1900 + 330 * 1.7 - 400 - 260); g.scale(1.7, 1.7); pessoa(0, 0, 1, { ...CARLA, sentado: true, expr: "triste", olhar: 1, celular: true, braco: 1.1 }); g.restore();
+  if (sogra) { g.save(); g.globalAlpha = sogra; g.translate(760, 1900 + 330 * 1.7 - 400 - 260); g.scale(1.7, 1.7); pessoa(0, 0, 1, { ...SOGRA, sentado: true, expr: t > P(2, "suspira") - .2 && t < C(3) ? "triste" : "neutro", olhar: -1 }); g.restore(); }
+}
+function carroSaindo(x, y, s, motorista, passageira) { K.carro(x, y, "#3a5a8a", s); g.save(); g.beginPath(); g.rect(x - 100 * s, y - 240 * s, 220 * s, 90 * s); g.clip(); if (motorista) { K.circ(x + 60 * s, y - 190 * s, 28 * s, RAFA.pele); g.fillStyle = RAFA.cabelo; g.beginPath(); g.arc(x + 60 * s, y - 198 * s, 29 * s, Math.PI, 0); g.fill(); } if (passageira) { K.circ(x - 40 * s, y - 190 * s, 26 * s, JU.pele); g.fillStyle = JU.cabelo; g.beginPath(); g.arc(x - 40 * s, y - 198 * s, 28 * s, Math.PI, 0); g.fill(); K.rr(x - 62 * s, y - 196 * s, 44 * s, 12 * s, 4, "#111"); } g.restore(); }
+const HUDS5 = () => [[0, 12, "22:02", "MOTEL LUA AZUL"], [C(6), 12, "22:04", "MOTEL LUA AZUL"]];
+function ruaMotel(t) { motel(t, 1); K.carro(560, 1620, "#3a5a8a", 1.2); }
+function closeDupla(a, b, xa = 330, xb = 760, s = 1.9) { g.save(); g.translate(xa, 1900 + 330 * s - 400 - 280); g.scale(s, s); pessoa(0, 0, 1, a); g.restore(); g.save(); g.translate(xb, 1900 + 330 * s - 400 - 280); g.scale(s, s); pessoa(0, 0, 1, b); g.restore(); }
+function fatura(t, k) { g.save(); g.translate(W / 2, 980); g.rotate(-.05); g.scale(.8 + .2 * k, .8 + .2 * k); rr(-320, -440, 640, 880, 8, "#fdfbf6"); txt("FATURA · CARTÃO CONJUNTO", 0, -380, 32, "#333", 800, "center", "Nunito"); rect(-280, -340, 560, 3, "#ccc");
+  [["SEG", "Mercado Bom Preço", "312,40"], ["SEG", "Farmácia Saúde", "48,90"], ["TER 20:00", "MOTEL LUA AZUL", "189,00"], ["QUA", "Posto Ipiranguinha", "150,00"], ["QUI", "Padaria Pão Quente", "23,50"]].forEach(([d, n, v], i) => { const y = -260 + i * 120; txt(d, -270, y - 20, 22, "#888", 700, "left", "Nunito"); txt(n, -270, y + 14, 32, "#222", 800, "left", "Nunito"); txt("R$ " + v, 270, y + 14, 30, "#222", 700, "right", "Nunito"); if (i === 2) { g.strokeStyle = "#d6304a"; g.lineWidth = 7; g.beginPath(); g.ellipse(0, y + 2, 310, 56, 0, 0, 6.283); g.stroke(); } }); g.restore(); }
+const HUDS6 = () => [[0, 12, "22:05", "MOTEL LUA AZUL"], [C(2), 12, "22:04", "10 SEGUNDOS ANTES"], [C(3), 12, "22:05", "MOTEL LUA AZUL"]];
+const EDU = { sexo: "m", cabelo: "#4a2a1a", roupa: "#5a6a3a", calca: "#2e3a52", pele: "#e3a77f" };
+function calcada(t, taxi = 1) { motel(t, 1); if (taxi) { K.carro(260, 1520, "#e8b820", 1); rr(200, 1260, 120, 34, 6, "#222"); txt("TÁXI", 260, 1278, 24, "#f2c840"); } }
+function fotoEdu(t, a) { g.save(); g.globalAlpha = a; g.translate(W / 2, 820); g.rotate(.04); rr(-300, -380, 600, 680, 10, "#fdfbf6"); g.save(); g.beginPath(); g.rect(-270, -350, 540, 520); g.clip(); g.fillStyle = "#e8d8e8"; g.fillRect(-270, -350, 540, 520);
+  pessoa(-110, 170, .85, { ...EDU, expr: "sorriso" }); pessoa(110, 170, .85, { ...CARLA, roupa: "#f4f4f4", expr: "sorriso" }); g.restore();
+  txt("Casamento da Carla 💍 — padrinho Edu", 0, 240, 27, "#3a3a3a", 600, "center", "Nunito"); g.restore(); }
+function fichinha(s, y, a, cor = "#d6453a") { if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = "700 46px Oswald"; const w = g.measureText(s).width + 50; rr(W / 2 - w / 2, y - 36, w, 72, 10, cor); txt(s, W / 2, y + 2, 46, "#fff"); g.restore(); }
+function fatura2(t, k) { g.save(); g.translate(W / 2, 960); g.rotate(.04); g.scale(.8 + .2 * k, .8 + .2 * k); rr(-320, -440, 640, 880, 8, "#fdfbf6"); txt("FATURA · AGOSTO", 0, -380, 34, "#333", 800, "center", "Nunito"); rect(-280, -340, 560, 3, "#ccc");
+  [["QUA", "Supermercado Dia Bom", "287,10"], ["QUI", "Farmácia Saúde", "32,90"], ["TER 20:00", "MOTEL LUA AZUL", "189,00"], ["SEX", "Posto Ipiranguinha", "140,00"], ["SÁB", "Pizzaria Forno a Lenha", "78,00"]].forEach(([d, n, v], i) => { const y = -260 + i * 120; txt(d, -270, y - 20, 22, "#888", 700, "left", "Nunito"); txt(n, -270, y + 14, 32, "#222", 800, "left", "Nunito"); txt("R$ " + v, 270, y + 14, 30, "#222", 700, "right", "Nunito"); if (i === 2) { g.strokeStyle = "#d6304a"; g.lineWidth = 7; g.beginPath(); g.ellipse(0, y + 2, 310, 56, 0, 0, 6.283); g.stroke(); } }); g.restore(); }
+// ---------- apoio comum dos episódios 2D (entra antes do renderFrame) ----------
+const fundo = (c) => { g.fillStyle = c; g.fillRect(0, 0, W, H); };
+const um = (o, s = 2.3, x = W / 2, dy = 260) => { g.save(); g.translate(x, 1900 + 330 * s - 400 - dy); g.scale(s, s); pessoa(0, 0, 1, o); g.restore(); };
+const par = (a, b, s = 1.9, xa = 330, xb = 760, dy = 280) => { um(a, s, xa, dy); um(b, s, xb, dy); };
+const desat = (a = .75) => { g.save(); g.globalCompositeOperation = "saturation"; g.fillStyle = `rgba(128,128,128,${a})`; g.fillRect(0, 0, W, H); g.restore(); };
+const congela = (t, a) => { if (t < a) return false; desat(.8); g.fillStyle = `rgba(214,48,74,${.15 * prog(t, a, a + .4)})`; g.fillRect(0, 0, W, H); return true; };
+const flash = (rot, txt2, cor = "#555") => { desat(); K.tinta("#3a2a10", .15); K.vinheta(.6); adesivo(rot, txt2, 1, 330, cor); };
+function ficha(s, y, a, cor = "#d6453a", x = W / 2) { if (a <= 0) return; g.save(); g.globalAlpha = Math.min(1, a); g.font = "700 46px Oswald"; const w = g.measureText(s).width + 50; rr(x - w / 2, y - 36, w, 72, 10, cor); txt(s, x, y + 2, 46, "#fff"); g.restore(); }
+function papel(titulo, linhas, k = 1, y = 900, rot = -.04) { g.save(); g.translate(W / 2, y); g.rotate(rot); g.scale(.85 + .15 * k, .85 + .15 * k); rr(-330, -400, 660, 800, 8, "#fdfbf6"); txt(titulo, 0, -330, 34, "#333", 800, "center", "Nunito"); rect(-290, -290, 580, 3, "#ccc"); linhas.forEach((l, i) => { if (typeof l === "string") txt(l, -280, -220 + i * 90, 34, "#222", 700, "left", "Nunito"); else rect(-280, -230 + i * 90, l, 16, "#c8c8c8"); }); g.restore(); }
+function cardFinal(t, perg, a, b, rod, sub, tam = 46, fundoCor = "#0e0f14") { rect(0, 0, W, H, fundoCor); K.glow(W / 2, 700, 600, "rgba(214,69,58,A)", .2); const al = prog(t, FALA + .3, FALA + .8); g.globalAlpha = al; let ts = 92; g.font = `700 ${ts}px Oswald`; while (g.measureText(perg).width > 980) { ts -= 4; g.font = `700 ${ts}px Oswald`; } txt(perg, W / 2, 700, ts, "#fff"); rr(110, 820, 410, 116, 58, "#d6453a"); txt(a, 315, 880, tam, "#fff"); rr(560, 820, 410, 116, 58, "#4fae5a"); txt(b, 765, 880, tam, "#fff"); txt("COMENTA 👇", W / 2, 1040, 46, "#e0a83a"); txt(sub, W / 2, 1110, 34, "#bbb", 500); txt(rod, W / 2, 1500, 26, "#666", 500); g.globalAlpha = 1; }
+function hudFases(t, fases) { if (t > FALA + .3) return; let h = fases[0]; for (const x of fases) if (t >= x[0]) h = x; K.hud(t, h[1], h[2], h[3]); }
+function chuva(t, a = .5) { g.strokeStyle = `rgba(200,220,240,${a})`; g.lineWidth = 3; for (let i = 0; i < 80; i++) { const x = (i * 137) % W, y = ((i * 251 + t * 1600) % (H + 200)) - 100; g.beginPath(); g.moveTo(x, y); g.lineTo(x - 14, y + 50); g.stroke(); } }
+const MARTA = { sexo: "f", cabelo: "#9a9a9a", roupa: "#3a3a5a", calca: "#2a2a3a", pele: "#e3a77f" };
+const ADV = { sexo: "m", cabelo: "#5a5a5a", roupa: "#2a2a2a", calca: "#1a1a22", pele: "#d9a07a", bigode: true, oculos: true };
+const FILHA = { sexo: "f", cabelo: "#4a2a1a", roupa: "#8a4a6a", calca: "#2a2a3a", pele: "#e3a77f" };
+const FILHO = { sexo: "m", cabelo: "#2a1a10", roupa: "#4a7a5a", calca: "#2a2a3a", pele: "#e3a77f" };
+const OSVALDO = { sexo: "m", cabelo: "#bbb", roupa: "#6a5a4a", calca: "#3a3a3a", pele: "#d9a07a", bigode: true };
+const LUCAS = { sexo: "m", cabelo: "#2a1a10", roupa: "#1a1a22", calca: "#1a1a22", pele: "#d9a07a" };
+function cartorio(t) { K.parede(0, CHAO, "#d8d0c0", "#c8bfae"); K.quadro(380, 300, 320, 240, (x, y, w, h) => { rect(x, y, w, h, "#e8e2d0"); txt("CARTÓRIO", x + w / 2, y + h / 2, 48, "#6a5a3a", 800, "center", "Nunito"); }, "#6a4a2a"); K.pisoMadeira(CHAO, "#6a4a30"); K.rodape(CHAO); }
+function mesaCart(t) { rr(80, CHAO - 120, 920, 40, 8, "#5a3a24"); rect(120, CHAO - 80, 20, 300, "#4a2a18"); rect(940, CHAO - 80, 20, 300, "#4a2a18"); rr(420, CHAO - 150, 240, 36, 4, "#fdfbf6"); for (let i = 0; i < 3; i++) rect(440, CHAO - 144 + i * 10, 200, 3, "#bbb"); }
+function retrato(x, y, s, o, a = 1) { g.save(); g.globalAlpha = a; g.translate(x, y); g.scale(s, s); rr(-170, -230, 340, 460, 8, "#3a2a1a"); rr(-150, -210, 300, 420, 4, "#e8dcc8"); g.beginPath(); g.rect(-150, -210, 300, 420); g.clip(); pessoa(0, 560, 1.3, { ...o, expr: "sorriso" }); g.restore(); }
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
+  if (t < C(2)) { // CENA 1: a caneta na mão
+    cartorio(t); pessoa(300, CHAO + 40, 1.1, { ...MARTA, sentado: true, olhar: 1, braco: 1.2, expr: t > P(1, "nome") - .2 ? "choque" : "neutro", piscar: piscar(t) }); pessoa(800, CHAO + 40, 1.1, { ...ADV, sentado: true, olhar: -1, braco: 1.4 }); mesaCart(t); K.vinheta(.5);
+    rr(370, CHAO - 210, 8, 70, 3, "#1a2a6a");
+    if (t > P(1, "advogado") - .3) balao(800, 900, "“…e mais um herdeiro.”", 1);
+    adesivo("", t > P(1, "nunca") - .3 ? "UM NOME QUE ELA NUNCA OUVIU" : "A CANETA NA MÃO 🖊", 1, 330, "transparent");
+  } else if (t < C(3)) { // CENA 2: trinta anos
+    fundo("#1a1610"); retrato(W / 2, 950, 1.6, OSVALDO); flash("5 MINUTOS ANTES", "30 ANOS DE CASADA 💍");
+  } else if (t < C(4)) { // CENA 3: o que ele deixou
+    fundo("#1a1610"); retrato(W / 2, 900, 1.3, OSVALDO); K.vinheta(.6); adesivo("OSVALDO", "MORREU NO MÊS PASSADO", 1, 330, "#3a3a4a");
+    ficha("🏠 A CASA", 1280, prog(t, P(3, "casa") - .3, P(3, "casa")), "#3a3a4a"); ficha("🚗 O CARRO", 1380, prog(t, P(3, "carro") - .3, P(3, "carro")), "#3a3a4a"); ficha("🏪 A LOJA", 1480, prog(t, P(3, "loja") - .3, P(3, "loja")), "#3a3a4a");
+  } else if (t < C(5)) { // CENA 4: o Lucas
+    fundo("#14161e"); papel("TESTAMENTO", [300, 420, 380, "4. LUCAS FERREIRA", "   22 anos", 360], prog(t, C(4), C(4) + .4), 860);
+    if (t > P(4, "filho") - .3) ficha("FILHO DE OUTRA MULHER", 1430, 1); K.vinheta(.5);
+  } else if (t < C(6)) { // CENA 5: sinal 1
+    fundo("#1a1418"); um({ ...MARTA, expr: "triste", olhar: 0, lagrima: t }, 2.4, W / 2, 260); K.vinheta(.65);
+    adesivo("SINAL #1", "QUEM ESCONDE UM FILHO…", prog(t, P(5, "sinal") - .2, P(5, "sinal") + .2), 330);
+  } else if (t < C(7)) { // CENA 6: a família
+    cartorio(t); const sai = prog(t, P(6, "cacula") - .3, P(6, "porta") + .3);
+    pessoa(230, CHAO + 60, 1.1, { ...FILHA, expr: "triste", lagrima: t * 1.3, olhar: 1 }); pessoa(800 + 400 * sai, CHAO + 60, 1.15, { ...FILHO, expr: "bravo", olhar: 1 }); pessoa(520, CHAO + 60, 1.12, { ...MARTA, expr: "neutro", olhar: 0, piscar: piscar(t) }); K.vinheta(.5);
+    if (t > P(6, "porta") - .2 && t < P(6, "marta") - .2) txt("BAM!", 900, 900, 80, "#d6453a", 900, "center", "Nunito");
+    if (t > P(6, "pergunta") - .3) balao(520, 820, "“Onde esse menino mora?”", 1);
+  } else if (t < C(8)) { // CENA 7: dividir em 4
+    fundo("#14161e"); const k = prog(t, C(7), F(7)); ["#c0304a", "#e0a83a", "#4fae5a", "#6ab8f0"].forEach((c, i) => { g.fillStyle = c; g.beginPath(); g.moveTo(W / 2, 1000); g.arc(W / 2, 1000, 280, -PI2 / 4 + i * PI2 / 4 * k, -PI2 / 4 + (i + 1) * PI2 / 4 * k); g.fill(); }); K.vinheta(.5);
+    adesivo("", "NO PAPEL… DIVIDIR EM 4", prog(t, P(7, "papel") - .3, P(7, "papel")), 330, "transparent");
+  } else if (t < FALA + .3) { // CENA 8: os olhos do marido
+    const tira = t > P(8, "oculos") - .3;
+    if (t < P(8, "tira") - .4) { K.rua(CHAO, t); pessoa(700, CHAO + 220, 1.2, { ...LUCAS, oculos: true, olhar: -1 }); rect(700 - 30 * 1.2, CHAO + 220 - 420 * 1.2 - 8, 60 * 1.2, 16, "#111"); pessoa(250, CHAO + 220, 1.15, { ...MARTA, olhar: 1 }); K.vinheta(.5); adesivo("", "UM RAPAZ DE TERNO ESPERANDO", 1, 330, "transparent"); }
+    else { fundo("#14161e"); retrato(290, 820, .9, OSVALDO); um({ ...LUCAS, olhar: 0, expr: "neutro", piscar: 1 }, 2.4, 700, 260); if (!tira) rr(700 - 60 * 2.4, 1900 + 330 * 2.4 - 400 - 260 - 420 * 2.4 - 20, 120 * 2.4, 40, 12, "#111"); if (tira) adesivo("", "OS OLHOS DO MARIDO", 1, 330, "transparent"); }
+    congela(t, P(8, "marido") - .05); K.vinheta(.7);
+  } else cardFinal(t, "O QUE A MARTA FAZ?", "FALA COM ELE", "VAI EMBORA", "A HERANÇA · EP. 1", "A MAIORIA DECIDE O EP. 2");
+  hudFases(t, [[0, 1, "10:15", "CARTÓRIO"], [C(2), 1, "10:10", "CARTÓRIO"], [C(3), 1, "10:15", "CARTÓRIO"], [C(8), 1, "10:40", "PORTA DO CARTÓRIO"]]);
+  legenda(t);
+};
+const PI2 = Math.PI * 2;
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.load("700 40px Nunito"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
