@@ -1,0 +1,175 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("apuracao", { fundo: 0x1d2633, seed: 2510 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, rotulo, fluxo, texRuido, prog, lin, pulse, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+const plano = (w, h, map, x, y, z, pai = scene) => { const m = add(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map, transparent: true, side: THREE.DoubleSide }), x, y, z, pai); m.castShadow = false; return m; };
+
+// ---------- SET A (x=0): mapa do Brasil com as urnas ----------
+const BR = [[-73.9,-7.3],[-70,-4],[-69.5,1],[-67,2],[-64,4],[-60,5.2],[-56,2],[-51.6,4.3],[-50,1.8],[-48,-1],[-44,-2.5],[-40,-2.8],[-35,-5],[-34.8,-7.5],[-35.5,-9.5],[-37,-11],[-39,-14],[-39.5,-18],[-41,-22],[-44,-23],[-48,-25.5],[-48.6,-28.5],[-50.5,-31],[-53.4,-33.7],[-57.5,-30.2],[-55.5,-28],[-54.6,-25.6],[-54.2,-24],[-55.5,-22],[-58,-20],[-57.6,-16.3],[-60,-15.5],[-60.5,-13.5],[-65,-11.8],[-66.5,-9.8],[-70,-11],[-72.5,-9.8]];
+const mx = (lon) => (lon + 54) / 10, mz = (lat) => -(lat + 15) / 10;
+const dentro = (lon, lat) => { let d = false; for (let i = 0, j = BR.length - 1; i < BR.length; j = i++) { const [xi, yi] = BR[i], [xj, yj] = BR[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) d = !d; } return d; };
+const texMapa = (() => { const c = document.createElement("canvas"); c.width = c.height = 1024; const g = c.getContext("2d"); g.fillStyle = "#3a6f9a"; g.fillRect(0, 0, 1024, 1024); g.fillStyle = "#4f8a5a"; g.fillRect(0, 0, 1024, 1024 * .0); const px = ([lon, lat]) => [(lon + 79) / 50 * 1024, (10 - lat) / 50 * 1024]; g.beginPath(); BR.forEach((p, i) => { const [x, y] = px(p); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.fillStyle = "#5fb36c"; g.fill(); g.lineWidth = 6; g.strokeStyle = "#e8f5d0"; g.stroke(); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+add(new THREE.PlaneGeometry(28, 28), mat(0x3a6f9a, { roughness: .9 }), 0, -.01, 0).rotation.x = -PI / 2;
+const mapa = add(new THREE.PlaneGeometry(5, 5), mat(0xffffff, { map: texMapa, roughness: .9 }), 0, 0, 0); mapa.rotation.x = -PI / 2;
+const URNAS = []; while (URNAS.length < 420) { const lon = -74 + rnd() * 40, lat = -34 + rnd() * 39; if (dentro(lon, lat)) URNAS.push(V(mx(lon), .025, mz(lat))); }
+URNAS.sort((a, b) => a.distanceTo(V(0, 0, 0)) - b.distanceTo(V(0, 0, 0)));
+const imU = new THREE.InstancedMesh(new THREE.BoxGeometry(.05, .04, .04), mat(0xf0e8d4, { roughness: .4 }), URNAS.length);
+const imP = new THREE.InstancedMesh(new THREE.PlaneGeometry(.035, .05), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }), URNAS.length);
+const o3 = new THREE.Object3D();
+URNAS.forEach((p, i) => { o3.position.copy(p); o3.rotation.set(0, 0, 0); o3.scale.setScalar(1); o3.updateMatrix(); imU.setMatrixAt(i, o3.matrix); });
+imU.castShadow = true; scene.add(imU, imP);
+const BSB = V(mx(-47.9), .03, mz(-15.8));
+const pino = grupo(BSB.x, 0, BSB.z);
+add(new THREE.ConeGeometry(.06, .22, 20), brilho(0xffd23a), 0, .14, 0, pino).rotation.x = PI;
+add(new THREE.SphereGeometry(.07, 20, 14), brilho(0xffd23a), 0, .28, 0, pino);
+const lTSE = plano(.6, .3, rotulo("TSE", "#ffd23a"), BSB.x, .5, BSB.z);
+const voando = Array.from({ length: 90 }, () => ({ s: sprite(0xffe066), de: URNAS[Math.floor(rnd() * URNAS.length)], f: rnd() }));
+
+// ---------- SET B (x=20): urna, boletim e cartão de memória ----------
+const B = grupo(20, 0, 0);
+add(new THREE.BoxGeometry(3, .06, 2), mat(0xffffff, { map: texRuido("#a07a52", 25, 3) }), 0, -.03, 0, B);
+const urna = grupo(0, 0, 0, B);
+add(new THREE.BoxGeometry(.9, .2, .6), mat(0xe8e0cc, { roughness: .4 }), 0, .1, 0, urna);
+const tampo = grupo(0, .2, 0, urna); tampo.rotation.x = .3;
+add(new THREE.BoxGeometry(.9, .04, .6), mat(0xe8e0cc, { roughness: .4 }), 0, 0, 0, tampo);
+add(new THREE.PlaneGeometry(.36, .26), brilho(0xf4f4f0), -.2, .021, -.02, tampo).rotation.x = -PI / 2;
+for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) add(new THREE.BoxGeometry(.06, .02, .05), mat(0x1b1f26), .14 + c * .075, .025, -.12 + r * .065, tampo);
+add(new THREE.BoxGeometry(.1, .02, .05), mat(0x3aaa3a), .3, .025, .17, tampo);
+const fenda = add(new THREE.BoxGeometry(.2, .02, .03), mat(0x111111), .3, .21, -.22, urna);
+const texBU = (() => { const c = document.createElement("canvas"); c.width = 256; c.height = 512; const g = c.getContext("2d"); g.fillStyle = "#fbfbf6"; g.fillRect(0, 0, 256, 512); g.fillStyle = "#111"; g.font = "900 26px Nunito, Arial"; g.textAlign = "center"; g.fillText("BOLETIM", 128, 46); g.fillText("DE URNA", 128, 78); g.font = "700 22px monospace"; g.textAlign = "left"; ["CAND. A ... 112", "CAND. B .... 97", "BRANCOS ..... 6", "NULOS ....... 9"].forEach((l, i) => g.fillText(l, 16, 140 + i * 36)); for (let y = 0; y < 12; y++) for (let x = 0; x < 12; x++) if (rnd() < .5 || (x < 3 && y < 3) || (x > 8 && y < 3) || (x < 3 && y > 8)) g.fillRect(68 + x * 10, 330 + y * 10, 10, 10); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+const bu = plano(.2, .4, texBU, .3, .22, -.22, urna); bu.geometry.translate(0, .2, 0); bu.material.transparent = false;
+const cartaoP = add(new THREE.BoxGeometry(.12, .012, .09), mat(0x2e6fd0, { roughness: .3 }), -.5, .1, .05, urna);
+add(new THREE.BoxGeometry(.05, .013, .03), mat(0xd4a640, { metalness: .4 }), .02, 0, 0, cartaoP);
+
+// ---------- SET B2 (x=25): cartão grande com o lacre ----------
+const L = grupo(25, 1, 0);
+const canC = document.createElement("canvas"); canC.width = 512; canC.height = 384; const gC = canC.getContext("2d"); const texC = new THREE.CanvasTexture(canC); texC.colorSpace = THREE.SRGBColorSpace;
+let ultC = "";
+function desenhaCartao(n, cor) { if (n + cor === ultC) return; ultC = n + cor; gC.fillStyle = "#2e6fd0"; gC.fillRect(0, 0, 512, 384); gC.fillStyle = "#d4a640"; gC.fillRect(30, 30, 90, 70); gC.fillStyle = "#fff"; gC.font = "900 40px Nunito, Arial"; gC.fillText("RESULTADO", 150, 80); gC.font = "900 52px Nunito, Arial"; gC.fillText("CAND. A", 40, 190); gC.fillStyle = cor; gC.fillText(n, 300, 190); gC.fillStyle = "#fff"; gC.fillText("CAND. B", 40, 270); gC.fillText("97", 300, 270); texC.needsUpdate = true; }
+desenhaCartao("112", "#fff");
+const cartaoG = add(new THREE.BoxGeometry(1.6, 1.2, .04), [mat(0x2e6fd0), mat(0x2e6fd0), mat(0x2e6fd0), mat(0x2e6fd0), new THREE.MeshBasicMaterial({ map: texC }), mat(0x2e6fd0)], 0, 0, 0, L);
+const anel = [0, 1].map((i) => { const m = add(new THREE.TorusGeometry(.28, .045, 12, 40, PI), mat(0x3aff7a, { emissive: 0x3aff7a, emissiveIntensity: .8 }), .55, -.3, .08, L); m.rotation.z = i * PI; return m; });
+const lacre = plano(.4, .2, rotulo("LACRE", "#3aff7a", { tam: 110 }), .55, -.3, .1, L);
+const xis = grupo(0, 0, .12, L); for (const r of [.785, -.785]) add(new THREE.BoxGeometry(1.5, .14, .02), brilho(0xff2a1a), 0, 0, 0, xis).rotation.z = r;
+
+// ---------- SET C (x=40): cartório → rede fechada → TSE; satélite na floresta ----------
+const R = grupo(40, 0, 0);
+add(new THREE.PlaneGeometry(14, 14), mat(0x6aa85a, { roughness: .95 }), 0, 0, 0, R).rotation.x = -PI / 2;
+const predio = (x, z, w, h, d, cor, txt) => { const g = grupo(x, 0, z, R); add(new THREE.BoxGeometry(w, h, d), mat(cor), 0, h / 2, 0, g); add(new THREE.BoxGeometry(w + .04, .06, d + .04), mat(0x2e6fd0), 0, h * .8, 0, g); for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(w * .18, h * .25, .01), brilho(0x9ad0ff), -w * .3 + i * w * .3, h * .45, d / 2 + .01, g); plano(w * 1.2, w * .5, rotulo(txt, "#fff", { fundo: "#1b2a4a", tam: 110 }), 0, h + .35, 0, g); return g; };
+predio(-1.1, 1.0, 1.0, .9, .7, 0xf1ece0, "CARTÓRIO");
+const tse = predio(1.0, -1.6, 1.6, 1.6, 1.0, 0xf6f6f6, "TSE");
+add(new THREE.CylinderGeometry(.6, .6, .12, 40, 1, false, 0, PI), mat(0xffffff), 0, 1.66, 0, tse).rotation.z = PI / 2;
+const curvaRede = new THREE.CatmullRomCurve3([V(39.2, .25, 1.2), V(39.6, .15, .2), V(40.4, .15, -.4), V(40.9, .25, -1.0)]);
+const cano = add(new THREE.TubeGeometry(curvaRede, 60, .06, 12), vidro(.35, 0x9ad0ff), 0, 0, 0); cano.castShadow = false;
+const fluxoRede = fluxo(curvaRede, 26, 0x3aff7a);
+for (let i = 0; i < 22; i++) { const a = rnd() * PI * 2, r = 1.8 + rnd() * 2.5; const x = Math.cos(a) * r - 1.5, z = 4 + Math.sin(a) * r * .5; const g = grupo(x, 0, z, R); add(new THREE.CylinderGeometry(.04, .05, .3, 8), mat(0x6a4426), 0, .15, 0, g); add(new THREE.ConeGeometry(.3 + rnd() * .15, .8, 10), mat(0x2f7a3a), 0, .65, 0, g); }
+const casa = grupo(-1.5, 0, 4, R); add(new THREE.BoxGeometry(.5, .35, .4), mat(0xc8a06a), 0, .175, 0, casa); add(new THREE.ConeGeometry(.42, .3, 4), mat(0x8a5a32), 0, .5, 0, casa).rotation.y = PI / 4;
+const antena = add(new THREE.SphereGeometry(.15, 20, 10, 0, PI * 2, 0, PI / 2), mat(0xdddddd, { side: THREE.DoubleSide }), .35, .45, 0, casa); antena.rotation.x = -.8;
+const sat = grupo(0, 4.2, 2.6, R); add(new THREE.BoxGeometry(.3, .3, .3), mat(0xd4a640, { metalness: .4 }), 0, 0, 0, sat);
+for (const s of [-1, 1]) add(new THREE.BoxGeometry(.8, .02, .3), mat(0x1b3a8a, { metalness: .3 }), s * .58, 0, 0, sat);
+const curvaSat = new THREE.CatmullRomCurve3([V(38.85, .55, 4), V(39.4, 2.6, 3.4), V(40, 4.1, 2.6), V(40.8, 2.8, .5), V(41, 1.9, -1.4)]);
+const fluxoSat = fluxo(curvaSat, 22, 0xffe066);
+
+// ---------- SET D (x=60): computadores do TSE + barras da totalização ----------
+const D = grupo(60, 0, 0);
+add(new THREE.PlaneGeometry(10, 10), mat(0xffffff, { map: K.grade("#2a3140", "#3a4456", 32, 8), roughness: .5 }), 0, 0, 0, D).rotation.x = -PI / 2;
+const leds = [];
+for (let r = 0; r < 2; r++) for (let i = 0; i < 6; i++) { const x = -2.2 + i * .85, z = -2.4 - r * 1.4; add(new THREE.BoxGeometry(.6, 2.2, .7), mat(0x14181f, { roughness: .4 }), x, 1.1, z, D); for (let k = 0; k < 8; k++) { const s = sprite([0x3aff7a, 0x2e8fff, 0xffd23a][k % 3], D); s.position.set(x - .2 + (k % 4) * .13, .5 + Math.floor(k / 4) * .9 + rnd() * .6, z + .37); s.scale.setScalar(.09); leds.push({ s, f: rnd() * 10, v: 2 + rnd() * 5 }); } }
+const H = 3.4;
+const barra = (x, cor) => { const m = add(new THREE.BoxGeometry(.5, 1, .5), mat(cor, { roughness: .35, emissive: cor, emissiveIntensity: .15 }), x, 0, .6, D); m.geometry.translate(0, .5, 0); return m; };
+const bA = barra(-.55, 0xd9483a), bB = barra(.3, 0x2e7fe0), bF = barra(1.15, 0x8a93a2); bF.material.transparent = true; bF.material.opacity = .7;
+const lA = plano(.75, .375, rotulo("LULA", "#fff", { fundo: "#d9483a", tam: 120 }), -.55, 0, .9, D);
+const lB = plano(.75, .375, rotulo("FLÁVIO", "#fff", { fundo: "#2e7fe0", tam: 110 }), .3, 0, .9, D);
+const lF = plano(.75, .375, rotulo("FALTAM", "#fff", { fundo: "#5a6372", tam: 110 }), 1.15, 0, .9, D);
+const pA = plano(.75, .375, rotulo("51,8%", "#fff", { tam: 130 }), -.55, 0, .9, D), pB = plano(.75, .375, rotulo("48,2%", "#fff", { tam: 130 }), .3, 0, .9, D);
+const fogos = Array.from({ length: 50 }, () => ({ s: sprite([0xffd23a, 0xff6a5a, 0x7fd3ff, 0x3aff7a][Math.floor(rnd() * 4)], D), a: rnd() * PI * 2, b: rnd() * PI, v: .6 + rnd() * .8, f: rnd() }));
+
+// ---------- câmera ----------
+const VISTAS = {
+  mapa:    [V(.15, 10.5, 6.2), V(.15, 0, .45)],
+  mapaP:   [V(.25, 7.5, 4.6), V(.25, 0, .55)],
+  mapaF:   [V(.2, 13, 8.5), V(.2, 0, .6)],
+  urna:    [V(20.1, 1.5, 3.6), V(20.1, .3, 0)],
+  bu:      [V(20.3, .9, 1.9), V(20.25, .45, -.2)],
+  cartao:  [V(19.4, .85, 1.6), V(19.35, .15, .05)],
+  lacre:   [V(25, 1.5, 6.2), V(25, 1.3, 0)],
+  rede:    [V(39.85, 4.2, 10.5), V(39.85, .8, -.3)],
+  satelite:[V(39.6, 2.8, 13), V(39.8, 2.3, 2.4)],
+  dc:      [V(60.3, 2.4, 9.2), V(60.3, 1.7, 0)],
+  barras:  [V(60.3, 2.9, 8.4), V(60.3, 2.45, .6)],
+};
+const KEYS = [
+  [0, "mapaP"], [F(1), "mapa"],
+  [C(2) - .02, "mapa"], [C(2), "urna"], [P(2, "boletim") - .3, "bu"], [P(2, "cartao") - .5, "cartao"], [F(2), "cartao"],
+  [C(3) - .02, "cartao"], [C(3), "lacre"], [F(3), "lacre"],
+  [C(4) - .02, "lacre"], [C(4), "rede"], [P(4, "floresta") - .5, "rede"], [P(4, "floresta") + .4, "satelite"], [F(4), "satelite"],
+  [C(5) - .02, "satelite"], [C(5), "mapa"], [P(5, "chegando") - .02, "mapa"], [P(5, "chegando"), "dc"], [F(5), "dc"],
+  [C(6), "dc"], [P(6, "matematicamente") - .5, "barras"], [F(7), "barras"],
+  [C(8) - .02, "barras"], [C(8), "mapaP"], [T, "mapaF"],
+];
+K.camera_(VISTAS, KEYS);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // mapa: urnas aparecendo
+  const nU = em(C(2), C(8)) ? URNAS.length : Math.floor(URNAS.length * prog(t, P(1, "cento") - .5, P(1, "espalhadas") + .3));
+  imU.count = t >= C(8) ? URNAS.length : nU;
+  const pIn = prog(t, P(8, "boletim") - .3, P(8, "secao") + .3);
+  imP.count = t >= C(8) - .1 ? URNAS.length : 0;
+  if (imP.count) { URNAS.forEach((p, i) => { o3.position.set(p.x, .09 + .02 * pIn, p.z); o3.rotation.set(-.3, 0, 0); o3.scale.setScalar(Math.max(.001, prog(t, P(8, "boletim") - .3 + i * .003, P(8, "boletim") + .1 + i * .003))); o3.updateMatrix(); imP.setMatrixAt(i, o3.matrix); }); imP.instanceMatrix.needsUpdate = true; }
+  const conv = em(C(5) - .1, P(5, "chegando") + .1);
+  voando.forEach((v) => { const k = frac(t * .45 + v.f); v.s.position.lerpVectors(v.de, BSB, k); v.s.position.y = .05 + Math.sin(k * PI) * .9; v.s.scale.setScalar(.12); v.s.material.opacity = conv ? Math.min(1, Math.sin(k * PI) * 3) : 0; });
+  pino.visible = lTSE.visible = em(C(5) - .1, P(5, "chegando") + .1); pino.position.y = .05 * Math.sin(t * 4);
+  // urna: boletim + cartão
+  bu.scale.y = Math.max(.01, prog(t, P(2, "imprime") - .2, P(2, "boletim") + .5));
+  cartaoP.position.x = -.5 - .25 * prog(t, P(2, "cartao") - .2, P(2, "memoria") + .2);
+  cartaoP.position.y = .1 + .05 * pulse(t, P(2, "memoria"), .8);
+  // lacre
+  const mudou = t > P(3, "mudar") + .15;
+  desenhaCartao(mudou ? "912" : "112", mudou ? "#ff6a5a" : "#fff");
+  const ok = t < P(3, "quebra") - .1;
+  const lIn = prog(t, P(3, "assinatura") - .3, P(3, "assinatura") + .3);
+  anel.forEach((a, i) => { a.scale.setScalar(Math.max(.01, lIn)); a.material.color.set(ok ? 0x3aff7a : 0xff3a2a); a.material.emissive.set(ok ? 0x3aff7a : 0xff3a2a); const sep = prog(t, P(3, "quebra") - .1, P(3, "quebra") + .4); a.position.set(.55 + (i ? -1 : 1) * sep * .12, -.3 + (i ? -1 : 1) * sep * .1, .08); a.rotation.z = i * PI + (ok ? t * .8 : 0); });
+  lacre.visible = t > P(3, "assinatura") - .1 && ok; lacre.material.opacity = lIn;
+  xis.visible = t > P(3, "recusa") - .2; xis.scale.setScalar(Math.max(.01, prog(t, P(3, "recusa") - .2, P(3, "recusa") + .1)));
+  cartaoG.rotation.y = .12 * Math.sin(t * .7); cartaoG.position.x = mudou && !ok ? .02 * Math.sin(t * 60) * (t < P(3, "quebra") + .5 ? 1 : 0) : 0;
+  // rede + satélite
+  fluxoRede.atualiza(t, em(C(4), F(4) + .1), .45, .14);
+  fluxoSat.atualiza(t, em(P(4, "floresta") - .4, F(4) + .1), .4, .16);
+  sat.rotation.y = t * .2;
+  // computadores + barras
+  leds.forEach((l) => { l.s.material.opacity = .4 + .6 * (Math.sin(t * l.v + l.f) > .2 ? 1 : 0); });
+  const f = em(0, P(5, "somam") - .2) ? .02 : .02 + .97 * lin(t, P(5, "somam") - .2, P(6, "maior")) + .01 * prog(t, P(6, "maior"), P(6, "matematicamente"));
+  const hA = H * .5178 * f, hB = H * .4822 * f, hF = Math.max(.002, H * (1 - f));
+  bA.scale.y = hA; bB.scale.y = hB; bF.scale.y = hF;
+  const nomes = t > P(7, "lula") - .2;
+  lA.position.y = hA + .3; lB.position.y = hB + .3; lF.position.y = hF + .3;
+  lA.visible = lB.visible = nomes; lF.visible = t < C(7);
+  pA.visible = pB.visible = t > P(7, "cinquenta") - .2; pA.position.y = hA + .7; pB.position.y = hB + .7;
+  bA.material.emissiveIntensity = .15 + (t > P(7, "reeleito") - .2 ? .25 + .15 * Math.sin(t * 5) : 0);
+  fogos.forEach((p) => { const k = frac(t * p.v * .5 + p.f); const r = k * 1.6; p.s.position.set(-.55 + Math.cos(p.a) * Math.sin(p.b) * r, hA + 1.4 + Math.cos(p.b) * r - k * k * .6, .6 + Math.sin(p.a) * .3); p.s.scale.setScalar(.12 * (1 - k * .5)); p.s.material.opacity = em(P(7, "reeleito") - .2, P(7, "primeiro") - .3) ? 1 - k : 0; });
+  K.cartoes(t, [
+    [P(1, "cento") - .3, P(1, "urnas") - .5, "+120 MILHÕES DE VOTOS", "#ffd23a"],
+    [P(1, "urnas") - .5, F(1), "~500 MIL URNAS", "#ffffff"],
+    [P(2, "resultado") - .3, P(2, "imprime") - .3, "SÓ O RESULTADO", "#3aff7a"],
+    [P(2, "cartao") - .3, F(2), "CARTÃO DE MEMÓRIA", "#7fd3ff"],
+    [P(3, "assinatura") - .3, P(3, "mudar") - .2, "ASSINATURA DIGITAL", "#3aff7a"],
+    [P(3, "recusa") - .3, F(3), "RECUSADO", "#ff4a3a"],
+    [P(4, "rede") - .3, P(4, "floresta") - .5, "REDE FECHADA", "#3aff7a"],
+    [P(4, "satelite") - .4, F(4), "VIA SATÉLITE", "#ffd23a"],
+    [P(5, "totalizacao") - .4, F(5), "TOTALIZAÇÃO", "#ffd23a"],
+    [P(6, "diferenca") - .3, P(6, "matematicamente") - .4, "DIFERENÇA > FALTAM", "#ffffff"],
+    [P(6, "matematicamente") - .4, F(6), "MATEMATICAMENTE ELEITO", "#3aff7a"],
+    [P(7, "reeleito") - .3, P(7, "primeiro") - .3, "LULA REELEITO", "#ffd23a"],
+    [P(7, "primeiro") - .3, F(7), "VIROU O 1º TURNO", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>
