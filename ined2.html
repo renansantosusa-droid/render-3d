@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "3 inéditos da eleição" (versão 2: contagem regressiva) — 26/10
+import { motion } from "/kitmotion.js";
+const K = await motion("ined2", { fundo: "#0a0f1e", fundo2: "#18123a", padrao: "diagonal", destaque: "#5ce1ff", rotulo: "3 INÉDITOS", rotuloCor: "#6a3df0", sub: "• 2º TURNO", tag: "HISTÓRIA", legenda: "caixa", transicao: "lado", palavras: 2, legY: 1470 });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, digital, seta, urna } = K;
+const num = (n) => n.toLocaleString("pt-BR");
+const selo = (t, n, s) => pop(ap(t, ini(n)), W / 2, 400, () => { rr(250, 340, 580, 120, 60, "#6a3df0"); txt("INÉDITO Nº " + s, W / 2, 404, 58, "#fff"); });
+const CENA = [null,
+  (t) => {
+    pop(ap(t, P(1, "historia") - .3), W / 2, 560, () => { rr(190, 440, 700, 240, 20, "#f4ecd8"); txt("LIVRO DA HISTÓRIA", W / 2, 520, 48, "#5a4a30"); txt("ELEIÇÃO 2026", W / 2, 600, 70, "#1b2436"); });
+    ["1", "2", "3"].forEach((s, i) => pop(ap(t, P(1, "tres") - .2 + i * .2), 300 + i * 240, 900, () => { circ(300 + i * 240, 900, 90, C.AM); txt(s, 300 + i * 240, 906, 110, "#0a0f1e"); }));
+    pop(ap(t, P(1, "ineditos") - .2), W / 2, 1110, () => txt("E TODOS INÉDITOS", W / 2, 1110, 80, "#fff", { contorno: 10 }));
+  },
+  (t) => {
+    selo(t, 2, "1"); txt("O RELÓGIO", W / 2, 540, 72, "#fff", { contorno: 8 });
+    digital(W / 2, 800, 17 + 2 * ease((t - P(2, "esticada")) / 1.8), C.AM);
+    pop(ap(t, P(2, "inteiro") - .2), W / 2, 1060, () => pilula("PRORROGADA NO BRASIL INTEIRO", W / 2, 1060, 50, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(3, "zanin") - .3), W / 2, 520, () => { rr(140, 420, 800, 200, 30, "#1d1a40"); txt("MIN. CRISTIANO ZANIN", W / 2, 490, 58, "#fff"); txt("STF", W / 2, 565, 50, C.AM); });
+    pop(ap(t, P(3, "campanhas") - .2), W / 2, 760, () => pilula("A PEDIDO DAS 2 CAMPANHAS", W / 2, 760, 50, C.AM, "#000"));
+    pop(ap(t, P(3, "onibus") - .2), 330, 960, () => pilula("FALTA DE ÔNIBUS", 330, 960, 44, "#fff", "#000"));
+    pop(ap(t, P(3, "chuva") - .2), 770, 960, () => pilula("CHUVA", 770, 960, 44, "#fff", "#000"));
+  },
+  (t) => {
+    selo(t, 4, "2"); txt("A VIRADA", W / 2, 540, 72, "#fff", { contorno: 8 });
+    const col = (x, nome, v, cor, t0) => { const k = ease((t - t0) / 1), h = 420 * v / 57e6 * k; rr(x - 120, 1120 - h, 240, h, 18, cor); txt(nome, x, 1170, 50, "#fff"); txt((v * k / 1e6).toFixed(1).replace(".", ",") + " mi", x, 1080 - h, 54, "#fff", { contorno: 6 }); };
+    col(380, "FLÁVIO", 56104503, C.A2, P(4, "flavio") - .2); col(700, "LULA", 53879538, C.A1, P(4, "flavio"));
+    pop(ap(t, P(4, "vantagem") - .2), W / 2, 1290, () => pilula("1º TURNO: FLÁVIO NA FRENTE", W / 2, 1290, 46, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(5, "perdeu") - .3), W / 2, 460, () => txt("E PERDEU NO 2º TURNO", W / 2, 460, 76, "#fff", { contorno: 8 }));
+    pop(ap(t, P(5, "nunca") - .2), W / 2, 760, () => { txt("1989 → 2022", W / 2, 700, 96, C.AM, { contorno: 10 }); txt("quem estava atrás nunca tinha virado", W / 2, 800, 42, "#fff", { contorno: 6 }); });
+    carimbo("PRIMEIRA VEZ", W / 2, 1040, ap(t, P(5, "presidente") - .2), C.VM, .06, 100);
+  },
+  (t) => {
+    selo(t, 6, "3"); txt("OS VOTOS", W / 2, 540, 72, "#fff", { contorno: 8 });
+    const t0 = P(6, "sessenta") - .3; if (t > t0) txt(num(conta(t, t0, 64256232, 1.6)), W / 2, 760, 124, C.AM, { contorno: 12 });
+    pop(ap(t, P(6, "maior") - .2), W / 2, 960, () => { rr(140, 880, 800, 170, 28, "#1d1a40"); txt("MAIOR VOTAÇÃO DE UM", W / 2, 935, 50, "#fff"); txt("PRESIDENTE NO BRASIL", W / 2, 1000, 50, C.AM); });
+    pop(ap(t, P(6, "brasil") - .1), W / 2, 1130, () => pilula("ANTES: 60,3 MILHÕES (2022)", W / 2, 1130, 42, "#fff", "#000"));
+  },
+  (t) => {
+    ["O RELÓGIO", "A VIRADA", "OS VOTOS"].forEach((s, i) => pop(ap(t, ini(7) + i * .25), W / 2, 520 + i * 190, () => { rr(200, 450 + i * 190, 680, 140, 70, "#1d1a40"); txt(s, W / 2, 522 + i * 190, 70, "#fff"); }));
+    pop(ap(t, P(7, "jeito") - .2), W / 2, 1150, () => pilula("CADA UM ENXERGA DE UM JEITO", W / 2, 1150, 46, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 620, () => { txt("QUAL TE CHAMOU", W / 2, 580, 86, "#fff", { contorno: 10 }); txt("MAIS ATENÇÃO?", W / 2, 690, 100, C.AM, { contorno: 10 }); });
+    ["1", "2", "3"].forEach((s, i) => pop(ap(t, P(8, "atencao") - .1 + i * .15), 330 + i * 210, 930, () => { circ(330 + i * 210, 930, 70, "#6a3df0"); txt(s, 330 + i * 210, 935, 80, "#fff"); }));
+    pop(ap(t, P(8, "comenta") - .3), W / 2, 1120, () => pilula("COMENTA AQUI EMBAIXO", W / 2, 1120, 56, "#fff", "#000"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

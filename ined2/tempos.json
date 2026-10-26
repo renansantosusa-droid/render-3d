@@ -1,0 +1,697 @@
+{
+ "total": 60.41,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.3,
+   "texto": "Essa eleição entrou pra história. E não foi por um motivo só. Foram três, e todos inéditos.",
+   "palavras": [
+    {
+     "w": "Essa",
+     "t": 0.2
+    },
+    {
+     "w": "eleição",
+     "t": 0.471
+    },
+    {
+     "w": "entrou",
+     "t": 0.908
+    },
+    {
+     "w": "pra",
+     "t": 1.191
+    },
+    {
+     "w": "história",
+     "t": 1.367
+    },
+    {
+     "w": "E",
+     "t": 2.638
+    },
+    {
+     "w": "não",
+     "t": 2.756
+    },
+    {
+     "w": "foi",
+     "t": 3.004
+    },
+    {
+     "w": "por",
+     "t": 3.204
+    },
+    {
+     "w": "um",
+     "t": 3.369
+    },
+    {
+     "w": "motivo",
+     "t": 3.452
+    },
+    {
+     "w": "só",
+     "t": 3.912
+    },
+    {
+     "w": "Foram",
+     "t": 5.02
+    },
+    {
+     "w": "três",
+     "t": 5.35
+    },
+    {
+     "w": "e",
+     "t": 5.928
+    },
+    {
+     "w": "todos",
+     "t": 6.058
+    },
+    {
+     "w": "inéditos",
+     "t": 6.353
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.45,
+   "fim": 15.64,
+   "texto": "Inédito número um: o relógio. Pela primeira vez, a votação foi esticada no país inteiro, das cinco pras sete da noite.",
+   "palavras": [
+    {
+     "w": "Inédito",
+     "t": 7.5
+    },
+    {
+     "w": "número",
+     "t": 8.042
+    },
+    {
+     "w": "um",
+     "t": 8.361
+    },
+    {
+     "w": "o",
+     "t": 8.903
+    },
+    {
+     "w": "relógio",
+     "t": 8.974
+    },
+    {
+     "w": "Pela",
+     "t": 10.304
+    },
+    {
+     "w": "primeira",
+     "t": 10.528
+    },
+    {
+     "w": "vez",
+     "t": 10.882
+    },
+    {
+     "w": "a",
+     "t": 11.448
+    },
+    {
+     "w": "votação",
+     "t": 11.53
+    },
+    {
+     "w": "foi",
+     "t": 12.049
+    },
+    {
+     "w": "esticada",
+     "t": 12.179
+    },
+    {
+     "w": "no",
+     "t": 12.662
+    },
+    {
+     "w": "país",
+     "t": 12.768
+    },
+    {
+     "w": "inteiro",
+     "t": 13.051
+    },
+    {
+     "w": "das",
+     "t": 13.771
+    },
+    {
+     "w": "cinco",
+     "t": 14.007
+    },
+    {
+     "w": "pras",
+     "t": 14.349
+    },
+    {
+     "w": "sete",
+     "t": 14.584
+    },
+    {
+     "w": "da",
+     "t": 14.879
+    },
+    {
+     "w": "noite",
+     "t": 14.974
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 15.79,
+   "fim": 23.64,
+   "texto": "Foi uma decisão do ministro Cristiano Zanin, do STF, depois de pedidos das duas campanhas por falta de ônibus e por causa da chuva.",
+   "palavras": [
+    {
+     "w": "Foi",
+     "t": 15.84
+    },
+    {
+     "w": "uma",
+     "t": 16.088
+    },
+    {
+     "w": "decisão",
+     "t": 16.241
+    },
+    {
+     "w": "do",
+     "t": 16.677
+    },
+    {
+     "w": "ministro",
+     "t": 16.76
+    },
+    {
+     "w": "Cristiano",
+     "t": 17.22
+    },
+    {
+     "w": "Zanin",
+     "t": 17.68
+    },
+    {
+     "w": "do",
+     "t": 18.222
+    },
+    {
+     "w": "STF",
+     "t": 18.411
+    },
+    {
+     "w": "depois",
+     "t": 19.39
+    },
+    {
+     "w": "de",
+     "t": 19.779
+    },
+    {
+     "w": "pedidos",
+     "t": 19.861
+    },
+    {
+     "w": "das",
+     "t": 20.274
+    },
+    {
+     "w": "duas",
+     "t": 20.463
+    },
+    {
+     "w": "campanhas",
+     "t": 20.757
+    },
+    {
+     "w": "por",
+     "t": 21.312
+    },
+    {
+     "w": "falta",
+     "t": 21.489
+    },
+    {
+     "w": "de",
+     "t": 21.831
+    },
+    {
+     "w": "ônibus",
+     "t": 21.972
+    },
+    {
+     "w": "e",
+     "t": 22.314
+    },
+    {
+     "w": "por",
+     "t": 22.42
+    },
+    {
+     "w": "causa",
+     "t": 22.585
+    },
+    {
+     "w": "da",
+     "t": 22.868
+    },
+    {
+     "w": "chuva",
+     "t": 22.963
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 23.79,
+   "fim": 32.31,
+   "texto": "Inédito número dois: a virada. Flávio Bolsonaro saiu do primeiro turno na frente, com mais de dois milhões de votos de vantagem.",
+   "palavras": [
+    {
+     "w": "Inédito",
+     "t": 23.84
+    },
+    {
+     "w": "número",
+     "t": 24.382
+    },
+    {
+     "w": "dois",
+     "t": 24.713
+    },
+    {
+     "w": "a",
+     "t": 25.397
+    },
+    {
+     "w": "virada",
+     "t": 25.479
+    },
+    {
+     "w": "Flávio",
+     "t": 26.738
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 27.174
+    },
+    {
+     "w": "saiu",
+     "t": 27.705
+    },
+    {
+     "w": "do",
+     "t": 28
+    },
+    {
+     "w": "primeiro",
+     "t": 28.106
+    },
+    {
+     "w": "turno",
+     "t": 28.495
+    },
+    {
+     "w": "na",
+     "t": 28.79
+    },
+    {
+     "w": "frente",
+     "t": 28.92
+    },
+    {
+     "w": "com",
+     "t": 29.604
+    },
+    {
+     "w": "mais",
+     "t": 29.828
+    },
+    {
+     "w": "de",
+     "t": 30.075
+    },
+    {
+     "w": "dois",
+     "t": 30.181
+    },
+    {
+     "w": "milhões",
+     "t": 30.512
+    },
+    {
+     "w": "de",
+     "t": 30.913
+    },
+    {
+     "w": "votos",
+     "t": 31.019
+    },
+    {
+     "w": "de",
+     "t": 31.42
+    },
+    {
+     "w": "vantagem",
+     "t": 31.514
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.46,
+   "fim": 40.59,
+   "texto": "E perdeu no segundo. Nunca, desde mil novecentos e oitenta e nove, quem estava atrás no primeiro turno tinha virado uma eleição pra presidente.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 32.51
+    },
+    {
+     "w": "perdeu",
+     "t": 32.628
+    },
+    {
+     "w": "no",
+     "t": 33.052
+    },
+    {
+     "w": "segundo",
+     "t": 33.147
+    },
+    {
+     "w": "Nunca",
+     "t": 34.477
+    },
+    {
+     "w": "desde",
+     "t": 35.066
+    },
+    {
+     "w": "mil",
+     "t": 35.42
+    },
+    {
+     "w": "novecentos",
+     "t": 35.561
+    },
+    {
+     "w": "e",
+     "t": 36.104
+    },
+    {
+     "w": "oitenta",
+     "t": 36.198
+    },
+    {
+     "w": "e",
+     "t": 36.481
+    },
+    {
+     "w": "nove",
+     "t": 36.517
+    },
+    {
+     "w": "quem",
+     "t": 37.047
+    },
+    {
+     "w": "estava",
+     "t": 37.212
+    },
+    {
+     "w": "atrás",
+     "t": 37.507
+    },
+    {
+     "w": "no",
+     "t": 37.802
+    },
+    {
+     "w": "primeiro",
+     "t": 37.896
+    },
+    {
+     "w": "turno",
+     "t": 38.25
+    },
+    {
+     "w": "tinha",
+     "t": 38.545
+    },
+    {
+     "w": "virado",
+     "t": 38.757
+    },
+    {
+     "w": "uma",
+     "t": 39.087
+    },
+    {
+     "w": "eleição",
+     "t": 39.17
+    },
+    {
+     "w": "pra",
+     "t": 39.583
+    },
+    {
+     "w": "presidente",
+     "t": 39.736
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.74,
+   "fim": 50.13,
+   "texto": "Inédito número três: os votos. Lula terminou com sessenta e quatro milhões e duzentos mil votos, o maior número já recebido por um presidente no Brasil.",
+   "palavras": [
+    {
+     "w": "Inédito",
+     "t": 40.79
+    },
+    {
+     "w": "número",
+     "t": 41.356
+    },
+    {
+     "w": "três",
+     "t": 41.71
+    },
+    {
+     "w": "os",
+     "t": 42.453
+    },
+    {
+     "w": "votos",
+     "t": 42.594
+    },
+    {
+     "w": "Lula",
+     "t": 43.9
+    },
+    {
+     "w": "terminou",
+     "t": 44.242
+    },
+    {
+     "w": "com",
+     "t": 44.643
+    },
+    {
+     "w": "sessenta",
+     "t": 44.797
+    },
+    {
+     "w": "e",
+     "t": 45.198
+    },
+    {
+     "w": "quatro",
+     "t": 45.233
+    },
+    {
+     "w": "milhões",
+     "t": 45.528
+    },
+    {
+     "w": "e",
+     "t": 45.858
+    },
+    {
+     "w": "duzentos",
+     "t": 45.964
+    },
+    {
+     "w": "mil",
+     "t": 46.424
+    },
+    {
+     "w": "votos",
+     "t": 46.589
+    },
+    {
+     "w": "o",
+     "t": 47.285
+    },
+    {
+     "w": "maior",
+     "t": 47.344
+    },
+    {
+     "w": "número",
+     "t": 47.686
+    },
+    {
+     "w": "já",
+     "t": 48.004
+    },
+    {
+     "w": "recebido",
+     "t": 48.157
+    },
+    {
+     "w": "por",
+     "t": 48.665
+    },
+    {
+     "w": "um",
+     "t": 48.794
+    },
+    {
+     "w": "presidente",
+     "t": 48.877
+    },
+    {
+     "w": "no",
+     "t": 49.372
+    },
+    {
+     "w": "Brasil",
+     "t": 49.455
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.28,
+   "fim": 55.22,
+   "texto": "Três inéditos num domingo só. E cada um enxerga de um jeito diferente.",
+   "palavras": [
+    {
+     "w": "Três",
+     "t": 50.33
+    },
+    {
+     "w": "inéditos",
+     "t": 50.578
+    },
+    {
+     "w": "num",
+     "t": 51.226
+    },
+    {
+     "w": "domingo",
+     "t": 51.356
+    },
+    {
+     "w": "só",
+     "t": 51.792
+    },
+    {
+     "w": "E",
+     "t": 52.874
+    },
+    {
+     "w": "cada",
+     "t": 53.004
+    },
+    {
+     "w": "um",
+     "t": 53.252
+    },
+    {
+     "w": "enxerga",
+     "t": 53.358
+    },
+    {
+     "w": "de",
+     "t": 53.841
+    },
+    {
+     "w": "um",
+     "t": 53.936
+    },
+    {
+     "w": "jeito",
+     "t": 54.042
+    },
+    {
+     "w": "diferente",
+     "t": 54.372
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 55.37,
+   "fim": 59.81,
+   "texto": "Qual desses três te chamou mais atenção? Comenta aqui embaixo.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 55.42
+    },
+    {
+     "w": "desses",
+     "t": 55.644
+    },
+    {
+     "w": "três",
+     "t": 55.939
+    },
+    {
+     "w": "te",
+     "t": 56.21
+    },
+    {
+     "w": "chamou",
+     "t": 56.304
+    },
+    {
+     "w": "mais",
+     "t": 56.67
+    },
+    {
+     "w": "atenção",
+     "t": 56.929
+    },
+    {
+     "w": "Comenta",
+     "t": 58.365
+    },
+    {
+     "w": "aqui",
+     "t": 58.849
+    },
+    {
+     "w": "embaixo",
+     "t": 59.026
+    }
+   ]
+  }
+ ]
+}
