@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "O Trump pode interferir na eleição do Brasil?" (variação 1) — Reel teste 26/10 11h
+// Fatos: Martin De Luca (advogado ligado ao Trump) chamou de "manipulação descarada" (Exame 25/10); tarifa 50% e sanção a Moraes (2025);
+// Venezuela 03/01/2026: bombardeio + captura de Maduro. Trump não tinha comentado o resultado até a noite da eleição.
+import { motion } from "/kitmotion.js";
+const K = await motion("trump1", { fundo: "#0d1424", fundo2: "#1a1030", padrao: "radar", destaque: "#ff5a5a", alerta: "#ffd23a", rotulo: "MUNDO", rotuloCor: "#c8323a", sub: "• EUA x BRASIL", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, digital, balao, bandeiraEUA, bandeiraBR, jato, alvo, predioBranco, seta } = K;
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 520, () => { bandeiraEUA(110, 400, 380, 240, t); bandeiraBR(590, 400, 380, 260); txt("?", W / 2, 530, 160, "#fff", { contorno: 12 }); });
+    pop(ap(t, P(1, "trump") - .2), W / 2, 820, () => txt("O TRUMP PODE", W / 2, 820, 100, "#fff", { contorno: 10 }));
+    pop(ap(t, P(1, "interferir") - .2), W / 2, 950, () => txt("INTERFERIR?", W / 2, 950, 140, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "redes") - .2), W / 2, 1130, () => pilula("A PERGUNTA QUE EXPLODIU NAS REDES", W / 2, 1130, 42, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(2, "luca") - .3), W / 2, 560, () => { balao(110, 420, 860, 300, "#f4f1ea"); txt("“MANIPULAÇÃO", W / 2, 520, 80, "#1b2436"); txt("DESCARADA”", W / 2, 615, 80, "#c8323a"); });
+    pop(ap(t, P(2, "luca")), W / 2, 830, () => { txt("MARTIN DE LUCA", W / 2, 830, 60, "#fff", { contorno: 8 }); txt("advogado ligado ao Trump", W / 2, 900, 42, C.CINZA, { peso: 500 }); });
+    pop(ap(t, P(2, "dezenove") - .3), W / 2, 1120, () => digital(W / 2, 1120, 19, C.AM));
+  },
+  (t) => {
+    pop(ap(t, P(3, "brasil") - .2), W / 2, 380, () => pilula("2025: TRUMP x BRASIL", W / 2, 380, 56, "#c8323a", "#fff"));
+    pop(ap(t, P(3, "tarifa") - .2), W / 2, 700, () => { for (let i = 0; i < 3; i++) rr(150 + i * 130, 620 + (i % 2) * 20, 120, 160, 10, ["#2f6fd6", "#f2b632", "#2fa84f"][i]); txt("50%", 760, 700, 200, C.AM, { contorno: 12 }); txt("TARIFA", 760, 830, 54, "#fff"); });
+    pop(ap(t, P(3, "moraes") - .3), W / 2, 1060, () => { rr(140, 970, 800, 180, 30, "#241a3a"); txt("SANÇÃO CONTRA", W / 2, 1030, 50, C.CINZA); txt("MIN. ALEXANDRE DE MORAES", W / 2, 1100, 56, "#fff"); });
+  },
+  (t) => {
+    pop(ap(t, P(4, "venezuela") - .2), W / 2, 380, () => pilula("VENEZUELA • JAN/2026", W / 2, 380, 56, C.AM, "#000"));
+    alvo(W / 2, 760, 170, t);
+    const kj = clamp((t - P(4, "bombardearam") + .3) / 2.5); if (kj > 0) { jato(-150 + 1300 * kj, 600, .9, 0); jato(-300 + 1300 * kj, 700, .7, 0); }
+    carimbo("MADURO CAPTURADO", W / 2, 1080, ap(t, P(4, "capturaram") - .1), C.VM, -.08, 84);
+  },
+  (t) => {
+    pop(ap(t, P(5, "diferentes") - .2), W / 2, 380, () => txt("CASOS BEM DIFERENTES", W / 2, 380, 72, "#fff", { contorno: 8 }));
+    pop(ap(t, P(5, "maduro") - .3), 300, 760, () => { rr(70, 500, 450, 560, 34, "#241a3a"); txt("VENEZUELA", 295, 570, 56, C.AM); txt("EUA NÃO", 295, 700, 50, "#fff"); txt("RECONHECIAM", 295, 760, 50, "#fff"); txt("A ELEIÇÃO", 295, 820, 50, "#fff"); txt("+ ACUSAÇÃO DE", 295, 930, 38, C.CINZA); txt("NARCOTRÁFICO", 295, 980, 38, C.CINZA); });
+    pop(ap(t, P(5, "tse") - .3), 780, 760, () => { rr(560, 500, 450, 560, 34, "#14324a"); txt("BRASIL", 785, 570, 56, "#5cd0ff"); txt("RESULTADO", 785, 700, 50, "#fff"); txt("PROCLAMADO", 785, 760, 50, "#fff"); txt("PELO TSE", 785, 820, 50, "#fff"); });
+  },
+  (t) => {
+    pop(ap(t, P(6, "washington") - .2), W / 2, 640, () => predioBranco(W / 2, 640, 1.2));
+    ["TARIFAS", "SANÇÕES", "DISCURSO"].forEach((s, i) => pop(ap(t, P(6, ["tarifas", "sancoes", "discurso"][i]) - .2), 220 + i * 320, 940, () => pilula(s, 220 + i * 320, 940, 48, i === 0 ? C.AM : "#fff", "#000")));
+    pop(ap(t, P(6, "pronunciado") - .4), W / 2, 1140, () => pilula("TRUMP AINDA NÃO TINHA FALADO", W / 2, 1140, 48, "#c8323a", "#fff"));
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 600, () => { bandeiraEUA(240, 470, 600, 360, t); });
+    pop(ap(t, P(7, "meter") - .2), W / 2, 960, () => txt("VÃO SE METER?", W / 2, 960, 120, C.AM, { contorno: 12 }));
+    pop(ap(t, P(7, "comentarios") - .3), W / 2, 1150, () => pilula("COMENTA", W / 2, 1150, 64, "#fff", "#000"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

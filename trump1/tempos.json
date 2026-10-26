@@ -1,0 +1,777 @@
+{
+ "total": 67.55,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.73,
+   "texto": "O Trump pode interferir na eleição do Brasil? Depois da prorrogação do horário de votação, essa pergunta explodiu nas redes.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 0.2
+    },
+    {
+     "w": "Trump",
+     "t": 0.341
+    },
+    {
+     "w": "pode",
+     "t": 0.719
+    },
+    {
+     "w": "interferir",
+     "t": 0.978
+    },
+    {
+     "w": "na",
+     "t": 1.474
+    },
+    {
+     "w": "eleição",
+     "t": 1.556
+    },
+    {
+     "w": "do",
+     "t": 1.957
+    },
+    {
+     "w": "Brasil",
+     "t": 2.051
+    },
+    {
+     "w": "Depois",
+     "t": 3.287
+    },
+    {
+     "w": "da",
+     "t": 3.77
+    },
+    {
+     "w": "prorrogação",
+     "t": 3.876
+    },
+    {
+     "w": "do",
+     "t": 4.454
+    },
+    {
+     "w": "horário",
+     "t": 4.537
+    },
+    {
+     "w": "de",
+     "t": 4.855
+    },
+    {
+     "w": "votação",
+     "t": 4.95
+    },
+    {
+     "w": "essa",
+     "t": 5.728
+    },
+    {
+     "w": "pergunta",
+     "t": 5.928
+    },
+    {
+     "w": "explodiu",
+     "t": 6.388
+    },
+    {
+     "w": "nas",
+     "t": 6.825
+    },
+    {
+     "w": "redes",
+     "t": 7.001
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.88,
+   "fim": 18.34,
+   "texto": "Quem puxou o assunto foi Martin De Luca, advogado ligado ao Trump. Ele chamou de manipulação descarada a decisão do STF que estendeu a votação até as dezenove horas.",
+   "palavras": [
+    {
+     "w": "Quem",
+     "t": 7.93
+    },
+    {
+     "w": "puxou",
+     "t": 8.166
+    },
+    {
+     "w": "o",
+     "t": 8.531
+    },
+    {
+     "w": "assunto",
+     "t": 8.602
+    },
+    {
+     "w": "foi",
+     "t": 9.027
+    },
+    {
+     "w": "Martin",
+     "t": 9.18
+    },
+    {
+     "w": "De",
+     "t": 9.546
+    },
+    {
+     "w": "Luca",
+     "t": 9.64
+    },
+    {
+     "w": "advogado",
+     "t": 10.23
+    },
+    {
+     "w": "ligado",
+     "t": 10.784
+    },
+    {
+     "w": "ao",
+     "t": 11.197
+    },
+    {
+     "w": "Trump",
+     "t": 11.303
+    },
+    {
+     "w": "Ele",
+     "t": 12.538
+    },
+    {
+     "w": "chamou",
+     "t": 12.75
+    },
+    {
+     "w": "de",
+     "t": 13.128
+    },
+    {
+     "w": "manipulação",
+     "t": 13.222
+    },
+    {
+     "w": "descarada",
+     "t": 13.859
+    },
+    {
+     "w": "a",
+     "t": 14.401
+    },
+    {
+     "w": "decisão",
+     "t": 14.437
+    },
+    {
+     "w": "do",
+     "t": 14.885
+    },
+    {
+     "w": "STF",
+     "t": 15.026
+    },
+    {
+     "w": "que",
+     "t": 15.651
+    },
+    {
+     "w": "estendeu",
+     "t": 15.746
+    },
+    {
+     "w": "a",
+     "t": 16.182
+    },
+    {
+     "w": "votação",
+     "t": 16.229
+    },
+    {
+     "w": "até",
+     "t": 16.736
+    },
+    {
+     "w": "as",
+     "t": 17.019
+    },
+    {
+     "w": "dezenove",
+     "t": 17.125
+    },
+    {
+     "w": "horas",
+     "t": 17.68
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 18.49,
+   "fim": 29.51,
+   "texto": "E não é a primeira vez que o governo Trump olha pro Brasil. Em dois mil e vinte e cinco, ele impôs tarifa de cinquenta por cento sobre produtos brasileiros e sancionou o ministro Alexandre de Moraes.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 18.54
+    },
+    {
+     "w": "não",
+     "t": 18.67
+    },
+    {
+     "w": "é",
+     "t": 18.976
+    },
+    {
+     "w": "a",
+     "t": 19.106
+    },
+    {
+     "w": "primeira",
+     "t": 19.165
+    },
+    {
+     "w": "vez",
+     "t": 19.507
+    },
+    {
+     "w": "que",
+     "t": 19.79
+    },
+    {
+     "w": "o",
+     "t": 19.896
+    },
+    {
+     "w": "governo",
+     "t": 19.943
+    },
+    {
+     "w": "Trump",
+     "t": 20.427
+    },
+    {
+     "w": "olha",
+     "t": 20.781
+    },
+    {
+     "w": "pro",
+     "t": 21.04
+    },
+    {
+     "w": "Brasil",
+     "t": 21.17
+    },
+    {
+     "w": "Em",
+     "t": 22.429
+    },
+    {
+     "w": "dois",
+     "t": 22.547
+    },
+    {
+     "w": "mil",
+     "t": 22.771
+    },
+    {
+     "w": "e",
+     "t": 22.889
+    },
+    {
+     "w": "vinte",
+     "t": 22.959
+    },
+    {
+     "w": "e",
+     "t": 23.172
+    },
+    {
+     "w": "cinco",
+     "t": 23.207
+    },
+    {
+     "w": "ele",
+     "t": 23.82
+    },
+    {
+     "w": "impôs",
+     "t": 23.938
+    },
+    {
+     "w": "tarifa",
+     "t": 24.304
+    },
+    {
+     "w": "de",
+     "t": 24.681
+    },
+    {
+     "w": "cinquenta",
+     "t": 24.787
+    },
+    {
+     "w": "por",
+     "t": 25.306
+    },
+    {
+     "w": "cento",
+     "t": 25.459
+    },
+    {
+     "w": "sobre",
+     "t": 25.801
+    },
+    {
+     "w": "produtos",
+     "t": 26.049
+    },
+    {
+     "w": "brasileiros",
+     "t": 26.521
+    },
+    {
+     "w": "e",
+     "t": 27.04
+    },
+    {
+     "w": "sancionou",
+     "t": 27.157
+    },
+    {
+     "w": "o",
+     "t": 27.629
+    },
+    {
+     "w": "ministro",
+     "t": 27.676
+    },
+    {
+     "w": "Alexandre",
+     "t": 28.136
+    },
+    {
+     "w": "de",
+     "t": 28.655
+    },
+    {
+     "w": "Moraes",
+     "t": 28.749
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 29.66,
+   "fim": 40.59,
+   "texto": "Na Venezuela, ele foi muito além. Em janeiro deste ano, os Estados Unidos bombardearam alvos militares e capturaram Nicolás Maduro, levado pra responder à Justiça americana.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 29.71
+    },
+    {
+     "w": "Venezuela",
+     "t": 29.887
+    },
+    {
+     "w": "ele",
+     "t": 30.712
+    },
+    {
+     "w": "foi",
+     "t": 30.854
+    },
+    {
+     "w": "muito",
+     "t": 31.043
+    },
+    {
+     "w": "além",
+     "t": 31.42
+    },
+    {
+     "w": "Em",
+     "t": 32.526
+    },
+    {
+     "w": "janeiro",
+     "t": 32.655
+    },
+    {
+     "w": "deste",
+     "t": 33.068
+    },
+    {
+     "w": "ano",
+     "t": 33.375
+    },
+    {
+     "w": "os",
+     "t": 33.917
+    },
+    {
+     "w": "Estados",
+     "t": 34.011
+    },
+    {
+     "w": "Unidos",
+     "t": 34.448
+    },
+    {
+     "w": "bombardearam",
+     "t": 34.884
+    },
+    {
+     "w": "alvos",
+     "t": 35.544
+    },
+    {
+     "w": "militares",
+     "t": 35.863
+    },
+    {
+     "w": "e",
+     "t": 36.37
+    },
+    {
+     "w": "capturaram",
+     "t": 36.488
+    },
+    {
+     "w": "Nicolás",
+     "t": 37.007
+    },
+    {
+     "w": "Maduro",
+     "t": 37.396
+    },
+    {
+     "w": "levado",
+     "t": 38.127
+    },
+    {
+     "w": "pra",
+     "t": 38.587
+    },
+    {
+     "w": "responder",
+     "t": 38.705
+    },
+    {
+     "w": "à",
+     "t": 39.188
+    },
+    {
+     "w": "Justiça",
+     "t": 39.259
+    },
+    {
+     "w": "americana",
+     "t": 39.719
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 40.74,
+   "fim": 52,
+   "texto": "Mas são casos bem diferentes. Os Estados Unidos não reconheciam a eleição de Maduro e o acusavam de narcotráfico. No Brasil, o resultado foi proclamado pelo TSE.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 40.79
+    },
+    {
+     "w": "são",
+     "t": 41.073
+    },
+    {
+     "w": "casos",
+     "t": 41.274
+    },
+    {
+     "w": "bem",
+     "t": 41.674
+    },
+    {
+     "w": "diferentes",
+     "t": 41.899
+    },
+    {
+     "w": "Os",
+     "t": 43.429
+    },
+    {
+     "w": "Estados",
+     "t": 43.535
+    },
+    {
+     "w": "Unidos",
+     "t": 43.995
+    },
+    {
+     "w": "não",
+     "t": 44.466
+    },
+    {
+     "w": "reconheciam",
+     "t": 44.608
+    },
+    {
+     "w": "a",
+     "t": 45.257
+    },
+    {
+     "w": "eleição",
+     "t": 45.292
+    },
+    {
+     "w": "de",
+     "t": 45.681
+    },
+    {
+     "w": "Maduro",
+     "t": 45.775
+    },
+    {
+     "w": "e",
+     "t": 46.235
+    },
+    {
+     "w": "o",
+     "t": 46.282
+    },
+    {
+     "w": "acusavam",
+     "t": 46.353
+    },
+    {
+     "w": "de",
+     "t": 46.896
+    },
+    {
+     "w": "narcotráfico",
+     "t": 47.002
+    },
+    {
+     "w": "No",
+     "t": 48.57
+    },
+    {
+     "w": "Brasil",
+     "t": 48.724
+    },
+    {
+     "w": "o",
+     "t": 49.466
+    },
+    {
+     "w": "resultado",
+     "t": 49.537
+    },
+    {
+     "w": "foi",
+     "t": 50.115
+    },
+    {
+     "w": "proclamado",
+     "t": 50.268
+    },
+    {
+     "w": "pelo",
+     "t": 50.87
+    },
+    {
+     "w": "TSE",
+     "t": 51.106
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 52.15,
+   "fim": 61.29,
+   "texto": "O que está ao alcance de Washington é pressão: tarifas, sanções e discurso. Até a noite da eleição, o próprio Trump não tinha se pronunciado.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 52.2
+    },
+    {
+     "w": "que",
+     "t": 52.33
+    },
+    {
+     "w": "está",
+     "t": 52.424
+    },
+    {
+     "w": "ao",
+     "t": 52.672
+    },
+    {
+     "w": "alcance",
+     "t": 52.813
+    },
+    {
+     "w": "de",
+     "t": 53.273
+    },
+    {
+     "w": "Washington",
+     "t": 53.379
+    },
+    {
+     "w": "é",
+     "t": 53.922
+    },
+    {
+     "w": "pressão",
+     "t": 53.981
+    },
+    {
+     "w": "tarifas",
+     "t": 54.688
+    },
+    {
+     "w": "sanções",
+     "t": 55.549
+    },
+    {
+     "w": "e",
+     "t": 56.08
+    },
+    {
+     "w": "discurso",
+     "t": 56.198
+    },
+    {
+     "w": "Até",
+     "t": 57.61
+    },
+    {
+     "w": "a",
+     "t": 57.917
+    },
+    {
+     "w": "noite",
+     "t": 57.964
+    },
+    {
+     "w": "da",
+     "t": 58.27
+    },
+    {
+     "w": "eleição",
+     "t": 58.353
+    },
+    {
+     "w": "o",
+     "t": 59.013
+    },
+    {
+     "w": "próprio",
+     "t": 59.108
+    },
+    {
+     "w": "Trump",
+     "t": 59.497
+    },
+    {
+     "w": "não",
+     "t": 59.827
+    },
+    {
+     "w": "tinha",
+     "t": 59.98
+    },
+    {
+     "w": "se",
+     "t": 60.24
+    },
+    {
+     "w": "pronunciado",
+     "t": 60.369
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 61.44,
+   "fim": 66.95,
+   "texto": "Você acha que os Estados Unidos vão se meter nessa história? Deixa aqui nos comentários.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 61.49
+    },
+    {
+     "w": "acha",
+     "t": 61.856
+    },
+    {
+     "w": "que",
+     "t": 62.15
+    },
+    {
+     "w": "os",
+     "t": 62.221
+    },
+    {
+     "w": "Estados",
+     "t": 62.257
+    },
+    {
+     "w": "Unidos",
+     "t": 62.634
+    },
+    {
+     "w": "vão",
+     "t": 63.094
+    },
+    {
+     "w": "se",
+     "t": 63.294
+    },
+    {
+     "w": "meter",
+     "t": 63.424
+    },
+    {
+     "w": "nessa",
+     "t": 63.754
+    },
+    {
+     "w": "história",
+     "t": 63.978
+    },
+    {
+     "w": "Deixa",
+     "t": 65.237
+    },
+    {
+     "w": "aqui",
+     "t": 65.603
+    },
+    {
+     "w": "nos",
+     "t": 65.791
+    },
+    {
+     "w": "comentários",
+     "t": 65.945
+    }
+   ]
+  }
+ ]
+}
