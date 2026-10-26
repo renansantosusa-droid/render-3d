@@ -1,0 +1,913 @@
+{
+ "total": 79.21,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 9.04,
+   "texto": "Os deputados podem pedir o impeachment do Lula por causa das duas horas a mais na eleição? Essa pergunta começou a circular logo depois do resultado.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 0.2
+    },
+    {
+     "w": "deputados",
+     "t": 0.353
+    },
+    {
+     "w": "podem",
+     "t": 0.99
+    },
+    {
+     "w": "pedir",
+     "t": 1.285
+    },
+    {
+     "w": "o",
+     "t": 1.591
+    },
+    {
+     "w": "impeachment",
+     "t": 1.615
+    },
+    {
+     "w": "do",
+     "t": 2.181
+    },
+    {
+     "w": "Lula",
+     "t": 2.299
+    },
+    {
+     "w": "por",
+     "t": 2.606
+    },
+    {
+     "w": "causa",
+     "t": 2.771
+    },
+    {
+     "w": "das",
+     "t": 3.101
+    },
+    {
+     "w": "duas",
+     "t": 3.278
+    },
+    {
+     "w": "horas",
+     "t": 3.537
+    },
+    {
+     "w": "a",
+     "t": 3.891
+    },
+    {
+     "w": "mais",
+     "t": 4.009
+    },
+    {
+     "w": "na",
+     "t": 4.257
+    },
+    {
+     "w": "eleição",
+     "t": 4.339
+    },
+    {
+     "w": "Essa",
+     "t": 5.634
+    },
+    {
+     "w": "pergunta",
+     "t": 5.94
+    },
+    {
+     "w": "começou",
+     "t": 6.4
+    },
+    {
+     "w": "a",
+     "t": 6.825
+    },
+    {
+     "w": "circular",
+     "t": 6.872
+    },
+    {
+     "w": "logo",
+     "t": 7.391
+    },
+    {
+     "w": "depois",
+     "t": 7.721
+    },
+    {
+     "w": "do",
+     "t": 8.098
+    },
+    {
+     "w": "resultado",
+     "t": 8.192
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 9.19,
+   "fim": 20.14,
+   "texto": "Relembrando: a votação do segundo turno foi prorrogada das dezessete pras dezenove horas, por decisão do ministro Cristiano Zanin, do STF, depois de pedidos das duas campanhas.",
+   "palavras": [
+    {
+     "w": "Relembrando",
+     "t": 9.24
+    },
+    {
+     "w": "a",
+     "t": 10.183
+    },
+    {
+     "w": "votação",
+     "t": 10.29
+    },
+    {
+     "w": "do",
+     "t": 10.785
+    },
+    {
+     "w": "segundo",
+     "t": 10.891
+    },
+    {
+     "w": "turno",
+     "t": 11.351
+    },
+    {
+     "w": "foi",
+     "t": 11.681
+    },
+    {
+     "w": "prorrogada",
+     "t": 11.846
+    },
+    {
+     "w": "das",
+     "t": 12.4
+    },
+    {
+     "w": "dezessete",
+     "t": 12.542
+    },
+    {
+     "w": "pras",
+     "t": 13.143
+    },
+    {
+     "w": "dezenove",
+     "t": 13.344
+    },
+    {
+     "w": "horas",
+     "t": 13.874
+    },
+    {
+     "w": "por",
+     "t": 14.476
+    },
+    {
+     "w": "decisão",
+     "t": 14.629
+    },
+    {
+     "w": "do",
+     "t": 15.089
+    },
+    {
+     "w": "ministro",
+     "t": 15.183
+    },
+    {
+     "w": "Cristiano",
+     "t": 15.643
+    },
+    {
+     "w": "Zanin",
+     "t": 16.091
+    },
+    {
+     "w": "do",
+     "t": 16.646
+    },
+    {
+     "w": "STF",
+     "t": 16.834
+    },
+    {
+     "w": "depois",
+     "t": 17.79
+    },
+    {
+     "w": "de",
+     "t": 18.202
+    },
+    {
+     "w": "pedidos",
+     "t": 18.285
+    },
+    {
+     "w": "das",
+     "t": 18.721
+    },
+    {
+     "w": "duas",
+     "t": 18.91
+    },
+    {
+     "w": "campanhas",
+     "t": 19.24
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 20.29,
+   "fim": 29.21,
+   "texto": "E o Congresso que toma posse em fevereiro é o mais à direita dos últimos anos. Só o PL elegeu cento e vinte e um deputados, a maior bancada da Câmara.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 20.34
+    },
+    {
+     "w": "o",
+     "t": 20.458
+    },
+    {
+     "w": "Congresso",
+     "t": 20.517
+    },
+    {
+     "w": "que",
+     "t": 21.036
+    },
+    {
+     "w": "toma",
+     "t": 21.177
+    },
+    {
+     "w": "posse",
+     "t": 21.425
+    },
+    {
+     "w": "em",
+     "t": 21.731
+    },
+    {
+     "w": "fevereiro",
+     "t": 21.779
+    },
+    {
+     "w": "é",
+     "t": 22.298
+    },
+    {
+     "w": "o",
+     "t": 22.404
+    },
+    {
+     "w": "mais",
+     "t": 22.463
+    },
+    {
+     "w": "à",
+     "t": 22.71
+    },
+    {
+     "w": "direita",
+     "t": 22.816
+    },
+    {
+     "w": "dos",
+     "t": 23.194
+    },
+    {
+     "w": "últimos",
+     "t": 23.3
+    },
+    {
+     "w": "anos",
+     "t": 23.689
+    },
+    {
+     "w": "Só",
+     "t": 24.972
+    },
+    {
+     "w": "o",
+     "t": 25.231
+    },
+    {
+     "w": "PL",
+     "t": 25.29
+    },
+    {
+     "w": "elegeu",
+     "t": 25.656
+    },
+    {
+     "w": "cento",
+     "t": 26.021
+    },
+    {
+     "w": "e",
+     "t": 26.375
+    },
+    {
+     "w": "vinte",
+     "t": 26.41
+    },
+    {
+     "w": "e",
+     "t": 26.646
+    },
+    {
+     "w": "um",
+     "t": 26.67
+    },
+    {
+     "w": "deputados",
+     "t": 26.74
+    },
+    {
+     "w": "a",
+     "t": 27.59
+    },
+    {
+     "w": "maior",
+     "t": 27.648
+    },
+    {
+     "w": "bancada",
+     "t": 27.931
+    },
+    {
+     "w": "da",
+     "t": 28.403
+    },
+    {
+     "w": "Câmara",
+     "t": 28.521
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 29.36,
+   "fim": 39.36,
+   "texto": "Somando os partidos mais à direita, são cerca de duzentos e setenta e seis deputados, segundo levantamento do Poder360. Mais da metade da Câmara.",
+   "palavras": [
+    {
+     "w": "Somando",
+     "t": 29.41
+    },
+    {
+     "w": "os",
+     "t": 29.882
+    },
+    {
+     "w": "partidos",
+     "t": 29.976
+    },
+    {
+     "w": "mais",
+     "t": 30.46
+    },
+    {
+     "w": "à",
+     "t": 30.684
+    },
+    {
+     "w": "direita",
+     "t": 30.79
+    },
+    {
+     "w": "são",
+     "t": 31.485
+    },
+    {
+     "w": "cerca",
+     "t": 31.674
+    },
+    {
+     "w": "de",
+     "t": 32.075
+    },
+    {
+     "w": "duzentos",
+     "t": 32.181
+    },
+    {
+     "w": "e",
+     "t": 32.653
+    },
+    {
+     "w": "setenta",
+     "t": 32.771
+    },
+    {
+     "w": "e",
+     "t": 33.101
+    },
+    {
+     "w": "seis",
+     "t": 33.136
+    },
+    {
+     "w": "deputados",
+     "t": 33.337
+    },
+    {
+     "w": "segundo",
+     "t": 34.28
+    },
+    {
+     "w": "levantamento",
+     "t": 34.681
+    },
+    {
+     "w": "do",
+     "t": 35.33
+    },
+    {
+     "w": "Poder360",
+     "t": 35.424
+    },
+    {
+     "w": "Mais",
+     "t": 37.709
+    },
+    {
+     "w": "da",
+     "t": 37.992
+    },
+    {
+     "w": "metade",
+     "t": 38.086
+    },
+    {
+     "w": "da",
+     "t": 38.523
+    },
+    {
+     "w": "Câmara",
+     "t": 38.652
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 39.51,
+   "fim": 48.09,
+   "texto": "Mas pra abrir um impeachment, precisa de dois terços: trezentos e quarenta e dois votos. Ou seja, ainda faltariam uns sessenta e seis.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.56
+    },
+    {
+     "w": "pra",
+     "t": 39.89
+    },
+    {
+     "w": "abrir",
+     "t": 40.055
+    },
+    {
+     "w": "um",
+     "t": 40.327
+    },
+    {
+     "w": "impeachment",
+     "t": 40.421
+    },
+    {
+     "w": "precisa",
+     "t": 41.211
+    },
+    {
+     "w": "de",
+     "t": 41.635
+    },
+    {
+     "w": "dois",
+     "t": 41.765
+    },
+    {
+     "w": "terços",
+     "t": 42.072
+    },
+    {
+     "w": "trezentos",
+     "t": 42.685
+    },
+    {
+     "w": "e",
+     "t": 43.251
+    },
+    {
+     "w": "quarenta",
+     "t": 43.357
+    },
+    {
+     "w": "e",
+     "t": 43.687
+    },
+    {
+     "w": "dois",
+     "t": 43.723
+    },
+    {
+     "w": "votos",
+     "t": 43.923
+    },
+    {
+     "w": "Ou",
+     "t": 45.218
+    },
+    {
+     "w": "seja",
+     "t": 45.394
+    },
+    {
+     "w": "ainda",
+     "t": 46.008
+    },
+    {
+     "w": "faltariam",
+     "t": 46.314
+    },
+    {
+     "w": "uns",
+     "t": 46.81
+    },
+    {
+     "w": "sessenta",
+     "t": 46.951
+    },
+    {
+     "w": "e",
+     "t": 47.364
+    },
+    {
+     "w": "seis",
+     "t": 47.411
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 48.24,
+   "fim": 57.1,
+   "texto": "No Senado, o PL deve chegar a vinte e oito cadeiras, também a maior bancada. Pra condenar um presidente, são cinquenta e quatro senadores.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 48.29
+    },
+    {
+     "w": "Senado",
+     "t": 48.467
+    },
+    {
+     "w": "o",
+     "t": 49.233
+    },
+    {
+     "w": "PL",
+     "t": 49.34
+    },
+    {
+     "w": "deve",
+     "t": 49.788
+    },
+    {
+     "w": "chegar",
+     "t": 49.953
+    },
+    {
+     "w": "a",
+     "t": 50.259
+    },
+    {
+     "w": "vinte",
+     "t": 50.318
+    },
+    {
+     "w": "e",
+     "t": 50.578
+    },
+    {
+     "w": "oito",
+     "t": 50.601
+    },
+    {
+     "w": "cadeiras",
+     "t": 50.79
+    },
+    {
+     "w": "também",
+     "t": 51.509
+    },
+    {
+     "w": "a",
+     "t": 51.887
+    },
+    {
+     "w": "maior",
+     "t": 51.946
+    },
+    {
+     "w": "bancada",
+     "t": 52.252
+    },
+    {
+     "w": "Pra",
+     "t": 53.558
+    },
+    {
+     "w": "condenar",
+     "t": 53.747
+    },
+    {
+     "w": "um",
+     "t": 54.183
+    },
+    {
+     "w": "presidente",
+     "t": 54.254
+    },
+    {
+     "w": "são",
+     "t": 55.127
+    },
+    {
+     "w": "cinquenta",
+     "t": 55.327
+    },
+    {
+     "w": "e",
+     "t": 55.799
+    },
+    {
+     "w": "quatro",
+     "t": 55.846
+    },
+    {
+     "w": "senadores",
+     "t": 56.165
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 57.25,
+   "fim": 67.03,
+   "texto": "E tem um detalhe jurídico: impeachment exige crime de responsabilidade do próprio presidente. A prorrogação foi decisão de um ministro do STF, não do Lula.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 57.3
+    },
+    {
+     "w": "tem",
+     "t": 57.418
+    },
+    {
+     "w": "um",
+     "t": 57.607
+    },
+    {
+     "w": "detalhe",
+     "t": 57.689
+    },
+    {
+     "w": "jurídico",
+     "t": 58.09
+    },
+    {
+     "w": "impeachment",
+     "t": 58.809
+    },
+    {
+     "w": "exige",
+     "t": 59.34
+    },
+    {
+     "w": "crime",
+     "t": 59.717
+    },
+    {
+     "w": "de",
+     "t": 60
+    },
+    {
+     "w": "responsabilidade",
+     "t": 60.107
+    },
+    {
+     "w": "do",
+     "t": 61.015
+    },
+    {
+     "w": "próprio",
+     "t": 61.144
+    },
+    {
+     "w": "presidente",
+     "t": 61.51
+    },
+    {
+     "w": "A",
+     "t": 62.91
+    },
+    {
+     "w": "prorrogação",
+     "t": 63.028
+    },
+    {
+     "w": "foi",
+     "t": 63.689
+    },
+    {
+     "w": "decisão",
+     "t": 63.807
+    },
+    {
+     "w": "de",
+     "t": 64.302
+    },
+    {
+     "w": "um",
+     "t": 64.396
+    },
+    {
+     "w": "ministro",
+     "t": 64.455
+    },
+    {
+     "w": "do",
+     "t": 64.962
+    },
+    {
+     "w": "STF",
+     "t": 65.104
+    },
+    {
+     "w": "não",
+     "t": 66.024
+    },
+    {
+     "w": "do",
+     "t": 66.283
+    },
+    {
+     "w": "Lula",
+     "t": 66.413
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 67.18,
+   "fim": 78.61,
+   "texto": "Quem defende o pedido lembra que a campanha do Lula também pediu mais tempo. Força política existe. A base jurídica é o que vai ser discutido. E você, o que acha?",
+   "palavras": [
+    {
+     "w": "Quem",
+     "t": 67.23
+    },
+    {
+     "w": "defende",
+     "t": 67.454
+    },
+    {
+     "w": "o",
+     "t": 67.867
+    },
+    {
+     "w": "pedido",
+     "t": 67.902
+    },
+    {
+     "w": "lembra",
+     "t": 68.221
+    },
+    {
+     "w": "que",
+     "t": 68.598
+    },
+    {
+     "w": "a",
+     "t": 68.692
+    },
+    {
+     "w": "campanha",
+     "t": 68.751
+    },
+    {
+     "w": "do",
+     "t": 69.211
+    },
+    {
+     "w": "Lula",
+     "t": 69.305
+    },
+    {
+     "w": "também",
+     "t": 69.612
+    },
+    {
+     "w": "pediu",
+     "t": 69.966
+    },
+    {
+     "w": "mais",
+     "t": 70.296
+    },
+    {
+     "w": "tempo",
+     "t": 70.591
+    },
+    {
+     "w": "Força",
+     "t": 71.755
+    },
+    {
+     "w": "política",
+     "t": 72.18
+    },
+    {
+     "w": "existe",
+     "t": 72.628
+    },
+    {
+     "w": "A",
+     "t": 73.937
+    },
+    {
+     "w": "base",
+     "t": 74.055
+    },
+    {
+     "w": "jurídica",
+     "t": 74.385
+    },
+    {
+     "w": "é",
+     "t": 74.88
+    },
+    {
+     "w": "o",
+     "t": 74.939
+    },
+    {
+     "w": "que",
+     "t": 74.998
+    },
+    {
+     "w": "vai",
+     "t": 75.116
+    },
+    {
+     "w": "ser",
+     "t": 75.27
+    },
+    {
+     "w": "discutido",
+     "t": 75.47
+    },
+    {
+     "w": "E",
+     "t": 76.897
+    },
+    {
+     "w": "você",
+     "t": 77.015
+    },
+    {
+     "w": "o",
+     "t": 77.711
+    },
+    {
+     "w": "que",
+     "t": 77.805
+    },
+    {
+     "w": "acha",
+     "t": 77.982
+    }
+   ]
+  }
+ ]
+}

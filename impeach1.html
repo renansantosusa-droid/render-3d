@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Os deputados podem pedir o impeachment do Lula?" (variação 1) — Reel teste 26/10 10h
+// Números: PL 121 deputados e ~28 senadores (CNN/Agência Senado), direita ~276 (Poder360), 342 e 54 = 2/3.
+import { motion } from "/kitmotion.js";
+const K = await motion("impeach1", { fundo: "#0b1220", fundo2: "#141c3a", padrao: "grade", destaque: "#ffd23a", rotulo: "BRASÍLIA", rotuloCor: "#3d6bff", sub: "• CONGRESSO 2027", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, relogio, balanca, papel, plenario, barraMeta, congresso, seta } = K;
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 560, () => congresso(W / 2, 600, 1.05));
+    pop(ap(t, P(1, "impeachment") - .2), W / 2, 860, () => txt("IMPEACHMENT", W / 2, 860, 130, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "lula") - .1), W / 2, 1010, () => txt("DO LULA?", W / 2, 1010, 110, "#fff", { contorno: 10 }));
+    pop(ap(t, P(1, "horas") - .2), W / 2, 1160, () => pilula("POR CAUSA DAS +2 HORAS", W / 2, 1160, 50, "#3d6bff", "#fff"));
+  },
+  (t) => {
+    relogio(W / 2, 680, 240, 17 + 2 * ease((t - P(2, "prorrogada")) / 2), C.AM);
+    pop(ap(t, P(2, "dezenove")), W / 2, 1000, () => txt("17H → 19H", W / 2, 1000, 96, "#fff", { contorno: 10 }));
+    pop(ap(t, P(2, "zanin") - .2), W / 2, 1130, () => pilula("DECISÃO: MIN. ZANIN (STF)", W / 2, 1130, 48, "#fff", "#000"));
+    pop(ap(t, P(2, "campanhas") - .2), W / 2, 1250, () => pilula("PEDIDO DAS 2 CAMPANHAS", W / 2, 1250, 44, "#3d6bff", "#fff"));
+  },
+  (t) => {
+    const t0 = P(3, "cento") - .2;
+    plenario(W / 2, 960, 430, 513, 121, "#4d8bff", (t - t0) / 1.4);
+    pop(ap(t, P(3, "congresso") - .2), W / 2, 380, () => txt("CÂMARA • 513 DEPUTADOS", W / 2, 380, 64, "#fff", { contorno: 8 }));
+    if (t > t0) { txt(String(conta(t, t0, 121)), W / 2, 880, 150, "#fff", { contorno: 10 }); txt("DEPUTADOS DO PL", W / 2, 1010, 50, "#4d8bff"); }
+    pop(ap(t, P(3, "bancada") - .2), W / 2, 1130, () => pilula("MAIOR BANCADA", W / 2, 1130, 52, C.AM, "#000"));
+  },
+  (t) => {
+    const t0 = P(4, "duzentos") - .2;
+    plenario(W / 2, 960, 430, 513, 276, C.AM, (t - t0) / 1.6);
+    pop(ap(t, ini(4)), W / 2, 380, () => txt("PARTIDOS MAIS À DIREITA", W / 2, 380, 64, "#fff", { contorno: 8 }));
+    if (t > t0) { txt("≈" + conta(t, t0, 276, 1.6), W / 2, 880, 150, "#fff", { contorno: 10 }); txt("SEGUNDO O PODER360", W / 2, 1010, 44, C.CINZA); }
+    pop(ap(t, P(4, "metade") - .2), W / 2, 1130, () => pilula("MAIS DA METADE DA CÂMARA", W / 2, 1130, 50, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(5, "impeachment") - .2), W / 2, 420, () => { txt("PRA ABRIR IMPEACHMENT", W / 2, 420, 66, "#fff", { contorno: 8 }); txt("2/3 DA CÂMARA", W / 2, 510, 54, C.AM); });
+    const k = ap(t, P(5, "trezentos") - .3, 1.2); if (k > 0) barraMeta(110, 760, 860, 276, 342, 513, C.AM, k);
+    pop(ap(t, P(5, "trezentos")), W / 2, 920, () => txt("276 DE 342 NECESSÁRIOS", W / 2, 920, 56, "#fff"));
+    carimbo("FALTAM ≈ 66", W / 2, 1120, ap(t, P(5, "faltariam") - .1), C.VM, -.08, 100);
+  },
+  (t) => {
+    pop(ap(t, P(6, "senado") - .2), W / 2, 380, () => txt("SENADO • 81 CADEIRAS", W / 2, 380, 64, "#fff", { contorno: 8 }));
+    plenario(W / 2, 900, 380, 81, 28, "#4d8bff", (t - P(6, "vinte") + .2) / 1.2, "#33405a", 5);
+    if (t > P(6, "vinte") - .2) { txt("≈" + conta(t, P(6, "vinte") - .2, 28), W / 2, 840, 120, "#fff", { contorno: 10 }); txt("SENADORES DO PL", W / 2, 950, 44, "#4d8bff"); }
+    pop(ap(t, P(6, "cinquenta") - .2), W / 2, 1100, () => pilula("PRA CONDENAR: 54 VOTOS", W / 2, 1100, 54, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(7, "juridico") - .2), W / 2, 760, () => { papel(190, 420, 700, 640); txt("CRIME DE", W / 2, 500, 54, "#1b2436"); txt("RESPONSABILIDADE?", W / 2, 570, 66, "#1b2436"); });
+    pop(ap(t, P(7, "ministro") - .3), W / 2, 1180, () => { pilula("STF • ZANIN", 290, 1180, 56, C.AM, "#000"); pilula("LULA", 800, 1180, 56, "#3a4458", "#fff"); });
+    if (t > P(7, "ministro")) seta(290, 1110, 290, 1000, C.AM, ap(t, P(7, "ministro"), .5));
+    carimbo("NÃO DECIDIU", 800, 1000, ap(t, P(7, "lula", 0) > P(7, "ministro") ? P(7, "lula") : P(7, "ministro") + .6), C.VM, .1, 64);
+  },
+  (t) => {
+    balanca(W / 2, 760, 1.25, Math.sin(t * 1.3) * .08, C.AM);
+    pop(ap(t, P(8, "politica") - .2), 280, 1000, () => pilula("FORÇA POLÍTICA ✓", 280, 1000, 46, "#3d6bff", "#fff"));
+    pop(ap(t, P(8, "juridica") - .2), 800, 1000, () => pilula("BASE JURÍDICA ?", 800, 1000, 46, "#fff", "#000"));
+    pop(ap(t, P(8, "pedido") - .2), W / 2, 400, () => pilula("A CAMPANHA DO LULA TAMBÉM PEDIU MAIS TEMPO", W / 2, 400, 38, "#fff", "#000"));
+    pop(ap(t, P(8, "voce") - .2), W / 2, 1200, () => txt("E VOCÊ, O QUE ACHA?", W / 2, 1200, 80, C.AM, { contorno: 10 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
