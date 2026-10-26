@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Já que a saída do Brasil é o aeroporto" (versão 2: por prioridade) — 26/10
+import { motion } from "/kitmotion.js";
+import { paises } from "/paises.js";
+const K = await motion("sair2", { fundo: "#0f1a14", fundo2: "#183024", padrao: "pontos", destaque: "#7cf2a6", rotulo: "SAIR DO BRASIL", rotuloCor: "#1f9d55", sub: "• QUAL PAÍS?", tag: "PRIORIDADES", legenda: "caixa", transicao: "zoom", palavras: 2, legY: 1470 });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo } = K;
+const X = paises(K);
+const PRIO = (t, n, s) => pop(ap(t, ini(n)), W / 2, 380, () => pilula("PRIORIDADE: " + s, W / 2, 380, 52, C.AM, "#000"));
+const CENA = [null,
+  (t) => {
+    const d = ["PT?", "UY?", "PY?"][Math.floor(Math.max(0, t - P(1, "portugal") + .2) / .7) % 3] || "?";
+    pop(ap(t, P(1, "aeroporto") - .4), W / 2, 640, () => X.embarque(W / 2, 640, 1.05, t > P(1, "portugal") - .2 ? d : "???", t));
+    pop(ap(t, P(1, "familia") - .2), W / 2, 960, () => txt("QUAL COMBINA COM A SUA FAMÍLIA?", W / 2, 960, 56, "#fff", { contorno: 8 }));
+    [["portugal", "pt", 140], ["uruguai", "uy", 420], ["paraguai", "py", 700]].forEach(([w, c, x]) => pop(ap(t, P(1, w) - .2), x + 120, 1150, () => X.bandeira(c, x, 1080, 240, 150, t)));
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 420, () => txt("NÃO TEM RESPOSTA ÚNICA", W / 2, 420, 72, "#fff", { contorno: 8 }));
+    ["CUSTO", "IMPOSTO", "SEGURANÇA"].forEach((s, i) => pop(ap(t, P(2, "prioridade") - .3 + i * .2), W / 2, 640 + i * 170, () => { rr(200, 580 + i * 170, 680, 120, 24, "#1d3a2c"); rr(230, 605 + i * 170, 70, 70, 14, "#f4f1ea"); txt(s, 580, 642 + i * 170, 60, "#fff"); }));
+  },
+  (t) => {
+    PRIO(t, 3, "CUSTO");
+    pop(ap(t, P(3, "paraguai") - .2), W / 2, 600, () => X.bandeira("py", 290, 480, 500, 300, t));
+    const t0 = P(3, "vinte") - .2; if (t > t0) { txt("+" + conta(t, t0, 23000, 1.2).toLocaleString("pt-BR"), W / 2, 960, 140, C.AM, { contorno: 12 }); txt("BRASILEIROS COM RESIDÊNCIA EM 2025", W / 2, 1080, 40, "#fff", { contorno: 6 }); }
+  },
+  (t) => {
+    pop(ap(t, P(4, "regra") - .2), W / 2, 520, () => { rr(120, 420, 840, 220, 30, "#1d3a2c"); txt("SÓ A RENDA DE DENTRO", W / 2, 490, 58, "#fff"); txt("ATÉ 10%", W / 2, 580, 80, C.AM); });
+    pop(ap(t, P(4, "acordo") - .3), W / 2, 880, () => { circ(W / 2, 820, 60, "#ffd23a"); txt("!", W / 2, 824, 90, "#000"); txt("SEM ACORDO BRASIL x PARAGUAI", W / 2, 950, 52, "#fff", { contorno: 6 }); });
+    carimbo("RISCO DE IMPOSTO DOBRADO", W / 2, 1120, ap(t, P(4, "dobrado") - .2), C.VM, .06, 60);
+  },
+  (t) => {
+    PRIO(t, 5, "PERTO + MENOS IMPOSTO");
+    pop(ap(t, P(5, "uruguai") - .2), W / 2, 580, () => X.bandeira("uy", 290, 470, 500, 300, t));
+    [["3H", "DE VOO", "voo"], ["0%", "HERANÇA", "heranca"], ["11", "ANOS SEM IR DE FORA", "onze"]].forEach(([a, b, w], i) => pop(ap(t, P(5, w) - .2), 200 + i * 340, 970, () => { rr(70 + i * 340, 860, 260, 230, 26, "#1d3a2c"); txt(a, 200 + i * 340, 950, 96, C.AM); txt(b, 200 + i * 340, 1040, b.length > 10 ? 24 : 34, "#fff"); }));
+  },
+  (t) => {
+    pop(ap(t, P(6, "bolso") - .2), W / 2, 400, () => txt("PREPARA O BOLSO", W / 2, 400, 84, "#fff", { contorno: 8 }));
+    for (let i = 0; i < 6; i++) { const k = ap(t, P(6, "montevideu") - .2 + i * .12); if (k > 0) { g.save(); g.globalAlpha *= k; txt("$", 170 + i * 150, 680 + Math.sin(t * 4 + i) * 30, 120, "#4fd18b", { contorno: 8 }); g.restore(); } }
+    pop(ap(t, P(6, "cara") - .2), W / 2, 960, () => { rr(120, 860, 840, 200, 30, "#3a1d1d"); txt("MONTEVIDÉU", W / 2, 920, 56, "#ff8a8a"); txt("A MAIS CARA DA AMÉRICA LATINA", W / 2, 1000, 50, "#fff"); });
+  },
+  (t) => {
+    PRIO(t, 7, "SEGURANÇA");
+    pop(ap(t, P(7, "portugal") - .2), W / 2, 590, () => X.bandeira("pt", 290, 480, 500, 300, t));
+    pop(ap(t, P(7, "europa") - .3), W / 2, 880, () => pilula("PORTA DE ENTRADA PRA EUROPA", W / 2, 880, 46, "#fff", "#000"));
+    pop(ap(t, P(7, "lingua") - .2), 330, 1060, () => pilula("MESMA LÍNGUA", 330, 1060, 46, C.AM, "#000"));
+    pop(ap(t, P(7, "pacificos") - .2), 760, 1060, () => { X.escudo(760, 1060, .6); });
+  },
+  (t) => {
+    pop(ap(t, P(8, "salario") - .3), W / 2, 560, () => { rr(140, 440, 800, 240, 30, "#1d3a2c"); txt("€920", W / 2, 540, 130, C.AM); txt("SALÁRIO MÍNIMO", W / 2, 640, 42, "#fff"); });
+    pop(ap(t, P(8, "aluguel") - .3), W / 2, 900, () => { rr(140, 780, 800, 240, 30, "#3a1d1d"); txt("€2.000+", W / 2, 880, 130, "#ff8a8a"); txt("ALUGUEL DE FAMÍLIA EM LISBOA", W / 2, 980, 40, "#fff"); });
+  },
+  (t) => {
+    pop(ap(t, P(9, "contador") - .3), W / 2, 520, () => { rr(170, 420, 740, 200, 30, "#f4f1ea"); txt("ANTES DE DECIDIR,", W / 2, 490, 46, "#1b2436"); txt("FALA COM UM CONTADOR", W / 2, 565, 54, "#1f9d55"); });
+    ["pt", "uy", "py"].forEach((c, i) => pop(ap(t, P(9, "tres") - .3 + i * .12), 210 + i * 330, 860, () => X.bandeira(c, 100 + i * 330, 790, 220, 140, t)));
+    pop(ap(t, P(9, "seu") - .3), W / 2, 1120, () => txt("QUAL SERIA O SEU?", W / 2, 1120, 90, C.AM, { contorno: 10 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

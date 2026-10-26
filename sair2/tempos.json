@@ -1,0 +1,921 @@
+{
+ "total": 69.69,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.87,
+   "texto": "Já que a saída do Brasil é o aeroporto, qual desses três destinos combina mais com a sua família: Portugal, Uruguai ou Paraguai?",
+   "palavras": [
+    {
+     "w": "Já",
+     "t": 0.2
+    },
+    {
+     "w": "que",
+     "t": 0.448
+    },
+    {
+     "w": "a",
+     "t": 0.542
+    },
+    {
+     "w": "saída",
+     "t": 0.601
+    },
+    {
+     "w": "do",
+     "t": 0.931
+    },
+    {
+     "w": "Brasil",
+     "t": 1.025
+    },
+    {
+     "w": "é",
+     "t": 1.497
+    },
+    {
+     "w": "o",
+     "t": 1.58
+    },
+    {
+     "w": "aeroporto",
+     "t": 1.662
+    },
+    {
+     "w": "qual",
+     "t": 2.57
+    },
+    {
+     "w": "desses",
+     "t": 2.759
+    },
+    {
+     "w": "três",
+     "t": 3.054
+    },
+    {
+     "w": "destinos",
+     "t": 3.301
+    },
+    {
+     "w": "combina",
+     "t": 3.761
+    },
+    {
+     "w": "mais",
+     "t": 4.209
+    },
+    {
+     "w": "com",
+     "t": 4.481
+    },
+    {
+     "w": "a",
+     "t": 4.622
+    },
+    {
+     "w": "sua",
+     "t": 4.669
+    },
+    {
+     "w": "família",
+     "t": 4.917
+    },
+    {
+     "w": "Portugal",
+     "t": 5.636
+    },
+    {
+     "w": "Uruguai",
+     "t": 6.438
+    },
+    {
+     "w": "ou",
+     "t": 6.945
+    },
+    {
+     "w": "Paraguai",
+     "t": 7.075
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 8.02,
+   "fim": 13.94,
+   "texto": "Não existe resposta certa pra todo mundo. Existe o país que bate com a sua prioridade.",
+   "palavras": [
+    {
+     "w": "Não",
+     "t": 8.07
+    },
+    {
+     "w": "existe",
+     "t": 8.306
+    },
+    {
+     "w": "resposta",
+     "t": 8.719
+    },
+    {
+     "w": "certa",
+     "t": 9.261
+    },
+    {
+     "w": "pra",
+     "t": 9.627
+    },
+    {
+     "w": "todo",
+     "t": 9.803
+    },
+    {
+     "w": "mundo",
+     "t": 10.098
+    },
+    {
+     "w": "Existe",
+     "t": 11.239
+    },
+    {
+     "w": "o",
+     "t": 11.723
+    },
+    {
+     "w": "país",
+     "t": 11.758
+    },
+    {
+     "w": "que",
+     "t": 12.088
+    },
+    {
+     "w": "bate",
+     "t": 12.206
+    },
+    {
+     "w": "com",
+     "t": 12.56
+    },
+    {
+     "w": "a",
+     "t": 12.702
+    },
+    {
+     "w": "sua",
+     "t": 12.749
+    },
+    {
+     "w": "prioridade",
+     "t": 12.996
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.09,
+   "fim": 22.52,
+   "texto": "A prioridade é o custo? Olha pro Paraguai. Mais de vinte e três mil brasileiros pegaram residência lá só em dois mil e vinte e cinco.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 14.14
+    },
+    {
+     "w": "prioridade",
+     "t": 14.258
+    },
+    {
+     "w": "é",
+     "t": 14.895
+    },
+    {
+     "w": "o",
+     "t": 14.942
+    },
+    {
+     "w": "custo",
+     "t": 15.013
+    },
+    {
+     "w": "Olha",
+     "t": 16.236
+    },
+    {
+     "w": "pro",
+     "t": 16.543
+    },
+    {
+     "w": "Paraguai",
+     "t": 16.696
+    },
+    {
+     "w": "Mais",
+     "t": 18.088
+    },
+    {
+     "w": "de",
+     "t": 18.441
+    },
+    {
+     "w": "vinte",
+     "t": 18.559
+    },
+    {
+     "w": "e",
+     "t": 18.783
+    },
+    {
+     "w": "três",
+     "t": 18.819
+    },
+    {
+     "w": "mil",
+     "t": 19.055
+    },
+    {
+     "w": "brasileiros",
+     "t": 19.208
+    },
+    {
+     "w": "pegaram",
+     "t": 19.786
+    },
+    {
+     "w": "residência",
+     "t": 20.092
+    },
+    {
+     "w": "lá",
+     "t": 20.706
+    },
+    {
+     "w": "só",
+     "t": 20.823
+    },
+    {
+     "w": "em",
+     "t": 21.036
+    },
+    {
+     "w": "dois",
+     "t": 21.142
+    },
+    {
+     "w": "mil",
+     "t": 21.366
+    },
+    {
+     "w": "e",
+     "t": 21.519
+    },
+    {
+     "w": "vinte",
+     "t": 21.602
+    },
+    {
+     "w": "e",
+     "t": 21.849
+    },
+    {
+     "w": "cinco",
+     "t": 21.897
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.67,
+   "fim": 32.3,
+   "texto": "Lá, a regra é tributar a renda de dentro do país, com alíquota de até dez por cento. Só que Brasil e Paraguai não têm acordo pra evitar imposto dobrado.",
+   "palavras": [
+    {
+     "w": "Lá",
+     "t": 22.72
+    },
+    {
+     "w": "a",
+     "t": 23.251
+    },
+    {
+     "w": "regra",
+     "t": 23.345
+    },
+    {
+     "w": "é",
+     "t": 23.722
+    },
+    {
+     "w": "tributar",
+     "t": 23.77
+    },
+    {
+     "w": "a",
+     "t": 24.277
+    },
+    {
+     "w": "renda",
+     "t": 24.336
+    },
+    {
+     "w": "de",
+     "t": 24.642
+    },
+    {
+     "w": "dentro",
+     "t": 24.772
+    },
+    {
+     "w": "do",
+     "t": 25.043
+    },
+    {
+     "w": "país",
+     "t": 25.149
+    },
+    {
+     "w": "com",
+     "t": 25.833
+    },
+    {
+     "w": "alíquota",
+     "t": 25.998
+    },
+    {
+     "w": "de",
+     "t": 26.458
+    },
+    {
+     "w": "até",
+     "t": 26.564
+    },
+    {
+     "w": "dez",
+     "t": 26.812
+    },
+    {
+     "w": "por",
+     "t": 27.119
+    },
+    {
+     "w": "cento",
+     "t": 27.272
+    },
+    {
+     "w": "Só",
+     "t": 28.484
+    },
+    {
+     "w": "que",
+     "t": 28.779
+    },
+    {
+     "w": "Brasil",
+     "t": 28.873
+    },
+    {
+     "w": "e",
+     "t": 29.262
+    },
+    {
+     "w": "Paraguai",
+     "t": 29.309
+    },
+    {
+     "w": "não",
+     "t": 29.793
+    },
+    {
+     "w": "têm",
+     "t": 29.981
+    },
+    {
+     "w": "acordo",
+     "t": 30.111
+    },
+    {
+     "w": "pra",
+     "t": 30.595
+    },
+    {
+     "w": "evitar",
+     "t": 30.736
+    },
+    {
+     "w": "imposto",
+     "t": 31.066
+    },
+    {
+     "w": "dobrado",
+     "t": 31.55
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.45,
+   "fim": 42.52,
+   "texto": "A prioridade é ficar perto e pagar menos imposto? O Uruguai está a três horas de voo, não cobra imposto sobre herança e pode isentar a renda de fora por até onze anos.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 32.5
+    },
+    {
+     "w": "prioridade",
+     "t": 32.618
+    },
+    {
+     "w": "é",
+     "t": 33.231
+    },
+    {
+     "w": "ficar",
+     "t": 33.267
+    },
+    {
+     "w": "perto",
+     "t": 33.609
+    },
+    {
+     "w": "e",
+     "t": 33.962
+    },
+    {
+     "w": "pagar",
+     "t": 34.009
+    },
+    {
+     "w": "menos",
+     "t": 34.351
+    },
+    {
+     "w": "imposto",
+     "t": 34.658
+    },
+    {
+     "w": "O",
+     "t": 36.059
+    },
+    {
+     "w": "Uruguai",
+     "t": 36.176
+    },
+    {
+     "w": "está",
+     "t": 36.589
+    },
+    {
+     "w": "a",
+     "t": 36.825
+    },
+    {
+     "w": "três",
+     "t": 36.884
+    },
+    {
+     "w": "horas",
+     "t": 37.12
+    },
+    {
+     "w": "de",
+     "t": 37.462
+    },
+    {
+     "w": "voo",
+     "t": 37.556
+    },
+    {
+     "w": "não",
+     "t": 38.169
+    },
+    {
+     "w": "cobra",
+     "t": 38.37
+    },
+    {
+     "w": "imposto",
+     "t": 38.653
+    },
+    {
+     "w": "sobre",
+     "t": 39.113
+    },
+    {
+     "w": "herança",
+     "t": 39.337
+    },
+    {
+     "w": "e",
+     "t": 39.726
+    },
+    {
+     "w": "pode",
+     "t": 39.773
+    },
+    {
+     "w": "isentar",
+     "t": 40.021
+    },
+    {
+     "w": "a",
+     "t": 40.375
+    },
+    {
+     "w": "renda",
+     "t": 40.445
+    },
+    {
+     "w": "de",
+     "t": 40.728
+    },
+    {
+     "w": "fora",
+     "t": 40.834
+    },
+    {
+     "w": "por",
+     "t": 41.165
+    },
+    {
+     "w": "até",
+     "t": 41.306
+    },
+    {
+     "w": "onze",
+     "t": 41.53
+    },
+    {
+     "w": "anos",
+     "t": 41.896
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.67,
+   "fim": 48.32,
+   "texto": "Em troca, prepara o bolso: Montevidéu já foi apontada como a cidade mais cara da América Latina.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 42.72
+    },
+    {
+     "w": "troca",
+     "t": 42.885
+    },
+    {
+     "w": "prepara",
+     "t": 43.475
+    },
+    {
+     "w": "o",
+     "t": 43.805
+    },
+    {
+     "w": "bolso",
+     "t": 43.84
+    },
+    {
+     "w": "Montevidéu",
+     "t": 44.536
+    },
+    {
+     "w": "já",
+     "t": 45.114
+    },
+    {
+     "w": "foi",
+     "t": 45.244
+    },
+    {
+     "w": "apontada",
+     "t": 45.397
+    },
+    {
+     "w": "como",
+     "t": 45.928
+    },
+    {
+     "w": "a",
+     "t": 46.116
+    },
+    {
+     "w": "cidade",
+     "t": 46.152
+    },
+    {
+     "w": "mais",
+     "t": 46.576
+    },
+    {
+     "w": "cara",
+     "t": 46.847
+    },
+    {
+     "w": "da",
+     "t": 47.083
+    },
+    {
+     "w": "América",
+     "t": 47.178
+    },
+    {
+     "w": "Latina",
+     "t": 47.579
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.47,
+   "fim": 56.29,
+   "texto": "A prioridade é segurança e uma porta de entrada pra Europa? Portugal fala a nossa língua e está entre os países mais pacíficos do mundo.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 48.52
+    },
+    {
+     "w": "prioridade",
+     "t": 48.638
+    },
+    {
+     "w": "é",
+     "t": 49.239
+    },
+    {
+     "w": "segurança",
+     "t": 49.275
+    },
+    {
+     "w": "e",
+     "t": 49.876
+    },
+    {
+     "w": "uma",
+     "t": 49.912
+    },
+    {
+     "w": "porta",
+     "t": 50.1
+    },
+    {
+     "w": "de",
+     "t": 50.442
+    },
+    {
+     "w": "entrada",
+     "t": 50.537
+    },
+    {
+     "w": "pra",
+     "t": 50.902
+    },
+    {
+     "w": "Europa",
+     "t": 51.032
+    },
+    {
+     "w": "Portugal",
+     "t": 52.279
+    },
+    {
+     "w": "fala",
+     "t": 52.845
+    },
+    {
+     "w": "a",
+     "t": 53.081
+    },
+    {
+     "w": "nossa",
+     "t": 53.104
+    },
+    {
+     "w": "língua",
+     "t": 53.387
+    },
+    {
+     "w": "e",
+     "t": 53.741
+    },
+    {
+     "w": "está",
+     "t": 53.777
+    },
+    {
+     "w": "entre",
+     "t": 54.024
+    },
+    {
+     "w": "os",
+     "t": 54.201
+    },
+    {
+     "w": "países",
+     "t": 54.284
+    },
+    {
+     "w": "mais",
+     "t": 54.755
+    },
+    {
+     "w": "pacíficos",
+     "t": 55.015
+    },
+    {
+     "w": "do",
+     "t": 55.616
+    },
+    {
+     "w": "mundo",
+     "t": 55.734
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 56.44,
+   "fim": 62.84,
+   "texto": "Mas o salário mínimo é de novecentos e vinte euros, e o aluguel de uma família em Lisboa passa fácil de dois mil euros.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 56.49
+    },
+    {
+     "w": "o",
+     "t": 56.69
+    },
+    {
+     "w": "salário",
+     "t": 56.808
+    },
+    {
+     "w": "mínimo",
+     "t": 57.209
+    },
+    {
+     "w": "é",
+     "t": 57.54
+    },
+    {
+     "w": "de",
+     "t": 57.61
+    },
+    {
+     "w": "novecentos",
+     "t": 57.693
+    },
+    {
+     "w": "e",
+     "t": 58.235
+    },
+    {
+     "w": "vinte",
+     "t": 58.353
+    },
+    {
+     "w": "euros",
+     "t": 58.589
+    },
+    {
+     "w": "e",
+     "t": 59.202
+    },
+    {
+     "w": "o",
+     "t": 59.308
+    },
+    {
+     "w": "aluguel",
+     "t": 59.367
+    },
+    {
+     "w": "de",
+     "t": 59.792
+    },
+    {
+     "w": "uma",
+     "t": 59.863
+    },
+    {
+     "w": "família",
+     "t": 60.004
+    },
+    {
+     "w": "em",
+     "t": 60.417
+    },
+    {
+     "w": "Lisboa",
+     "t": 60.488
+    },
+    {
+     "w": "passa",
+     "t": 60.936
+    },
+    {
+     "w": "fácil",
+     "t": 61.231
+    },
+    {
+     "w": "de",
+     "t": 61.643
+    },
+    {
+     "w": "dois",
+     "t": 61.738
+    },
+    {
+     "w": "mil",
+     "t": 61.962
+    },
+    {
+     "w": "euros",
+     "t": 62.186
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 62.99,
+   "fim": 69.09,
+   "texto": "Antes de decidir, conversa com um contador. E me conta aqui: qual dos três seria o seu?",
+   "palavras": [
+    {
+     "w": "Antes",
+     "t": 63.04
+    },
+    {
+     "w": "de",
+     "t": 63.394
+    },
+    {
+     "w": "decidir",
+     "t": 63.488
+    },
+    {
+     "w": "conversa",
+     "t": 64.184
+    },
+    {
+     "w": "com",
+     "t": 64.785
+    },
+    {
+     "w": "um",
+     "t": 64.95
+    },
+    {
+     "w": "contador",
+     "t": 65.045
+    },
+    {
+     "w": "E",
+     "t": 66.386
+    },
+    {
+     "w": "me",
+     "t": 66.504
+    },
+    {
+     "w": "conta",
+     "t": 66.634
+    },
+    {
+     "w": "aqui",
+     "t": 66.964
+    },
+    {
+     "w": "qual",
+     "t": 67.483
+    },
+    {
+     "w": "dos",
+     "t": 67.695
+    },
+    {
+     "w": "três",
+     "t": 67.931
+    },
+    {
+     "w": "seria",
+     "t": 68.19
+    },
+    {
+     "w": "o",
+     "t": 68.462
+    },
+    {
+     "w": "seu",
+     "t": 68.521
+    }
+   ]
+  }
+ ]
+}
