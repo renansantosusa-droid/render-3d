@@ -1,0 +1,1117 @@
+{
+ "total": 96.88,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 8.45,
+   "texto": "A eleição pode ser anulada? Essa pergunta tomou conta do Brasil depois do segundo turno. E tudo começou com um relógio.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 0.2
+    },
+    {
+     "w": "eleição",
+     "t": 0.341
+    },
+    {
+     "w": "pode",
+     "t": 0.79
+    },
+    {
+     "w": "ser",
+     "t": 1.014
+    },
+    {
+     "w": "anulada",
+     "t": 1.167
+    },
+    {
+     "w": "Essa",
+     "t": 2.473
+    },
+    {
+     "w": "pergunta",
+     "t": 2.78
+    },
+    {
+     "w": "tomou",
+     "t": 3.263
+    },
+    {
+     "w": "conta",
+     "t": 3.558
+    },
+    {
+     "w": "do",
+     "t": 3.876
+    },
+    {
+     "w": "Brasil",
+     "t": 3.971
+    },
+    {
+     "w": "depois",
+     "t": 4.384
+    },
+    {
+     "w": "do",
+     "t": 4.784
+    },
+    {
+     "w": "segundo",
+     "t": 4.891
+    },
+    {
+     "w": "turno",
+     "t": 5.374
+    },
+    {
+     "w": "E",
+     "t": 6.565
+    },
+    {
+     "w": "tudo",
+     "t": 6.707
+    },
+    {
+     "w": "começou",
+     "t": 7.013
+    },
+    {
+     "w": "com",
+     "t": 7.473
+    },
+    {
+     "w": "um",
+     "t": 7.626
+    },
+    {
+     "w": "relógio",
+     "t": 7.709
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 8.6,
+   "fim": 18.23,
+   "texto": "O horário oficial pra fechar as urnas era cinco da tarde. Mas o ministro Cristiano Zanin, do STF, mandou estender a votação até as sete da noite.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 8.65
+    },
+    {
+     "w": "horário",
+     "t": 8.744
+    },
+    {
+     "w": "oficial",
+     "t": 9.075
+    },
+    {
+     "w": "pra",
+     "t": 9.534
+    },
+    {
+     "w": "fechar",
+     "t": 9.676
+    },
+    {
+     "w": "as",
+     "t": 10.03
+    },
+    {
+     "w": "urnas",
+     "t": 10.089
+    },
+    {
+     "w": "era",
+     "t": 10.442
+    },
+    {
+     "w": "cinco",
+     "t": 10.714
+    },
+    {
+     "w": "da",
+     "t": 11.115
+    },
+    {
+     "w": "tarde",
+     "t": 11.244
+    },
+    {
+     "w": "Mas",
+     "t": 12.468
+    },
+    {
+     "w": "o",
+     "t": 12.692
+    },
+    {
+     "w": "ministro",
+     "t": 12.81
+    },
+    {
+     "w": "Cristiano",
+     "t": 13.246
+    },
+    {
+     "w": "Zanin",
+     "t": 13.683
+    },
+    {
+     "w": "do",
+     "t": 14.26
+    },
+    {
+     "w": "STF",
+     "t": 14.461
+    },
+    {
+     "w": "mandou",
+     "t": 15.428
+    },
+    {
+     "w": "estender",
+     "t": 15.77
+    },
+    {
+     "w": "a",
+     "t": 16.194
+    },
+    {
+     "w": "votação",
+     "t": 16.253
+    },
+    {
+     "w": "até",
+     "t": 16.772
+    },
+    {
+     "w": "as",
+     "t": 17.032
+    },
+    {
+     "w": "sete",
+     "t": 17.161
+    },
+    {
+     "w": "da",
+     "t": 17.503
+    },
+    {
+     "w": "noite",
+     "t": 17.598
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 18.38,
+   "fim": 26.83,
+   "texto": "O pedido veio das duas campanhas. Uma reclamou da falta de ônibus na Bahia. A outra, de chuva e alagamento no Sul.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 18.43
+    },
+    {
+     "w": "pedido",
+     "t": 18.56
+    },
+    {
+     "w": "veio",
+     "t": 18.984
+    },
+    {
+     "w": "das",
+     "t": 19.255
+    },
+    {
+     "w": "duas",
+     "t": 19.421
+    },
+    {
+     "w": "campanhas",
+     "t": 19.727
+    },
+    {
+     "w": "Uma",
+     "t": 21.187
+    },
+    {
+     "w": "reclamou",
+     "t": 21.411
+    },
+    {
+     "w": "da",
+     "t": 21.906
+    },
+    {
+     "w": "falta",
+     "t": 22.024
+    },
+    {
+     "w": "de",
+     "t": 22.389
+    },
+    {
+     "w": "ônibus",
+     "t": 22.543
+    },
+    {
+     "w": "na",
+     "t": 22.908
+    },
+    {
+     "w": "Bahia",
+     "t": 23.003
+    },
+    {
+     "w": "A",
+     "t": 24.229
+    },
+    {
+     "w": "outra",
+     "t": 24.394
+    },
+    {
+     "w": "de",
+     "t": 24.96
+    },
+    {
+     "w": "chuva",
+     "t": 25.09
+    },
+    {
+     "w": "e",
+     "t": 25.514
+    },
+    {
+     "w": "alagamento",
+     "t": 25.573
+    },
+    {
+     "w": "no",
+     "t": 26.187
+    },
+    {
+     "w": "Sul",
+     "t": 26.293
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.98,
+   "fim": 35.96,
+   "texto": "Só que muitas urnas já estavam encerradas. E urna encerrada não pode ser reaberta. Os tribunais regionais avisaram isso na hora.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 27.03
+    },
+    {
+     "w": "que",
+     "t": 27.325
+    },
+    {
+     "w": "muitas",
+     "t": 27.443
+    },
+    {
+     "w": "urnas",
+     "t": 27.797
+    },
+    {
+     "w": "já",
+     "t": 28.209
+    },
+    {
+     "w": "estavam",
+     "t": 28.339
+    },
+    {
+     "w": "encerradas",
+     "t": 28.728
+    },
+    {
+     "w": "E",
+     "t": 30.282
+    },
+    {
+     "w": "urna",
+     "t": 30.447
+    },
+    {
+     "w": "encerrada",
+     "t": 30.647
+    },
+    {
+     "w": "não",
+     "t": 31.214
+    },
+    {
+     "w": "pode",
+     "t": 31.426
+    },
+    {
+     "w": "ser",
+     "t": 31.709
+    },
+    {
+     "w": "reaberta",
+     "t": 31.886
+    },
+    {
+     "w": "Os",
+     "t": 33.301
+    },
+    {
+     "w": "tribunais",
+     "t": 33.489
+    },
+    {
+     "w": "regionais",
+     "t": 34.02
+    },
+    {
+     "w": "avisaram",
+     "t": 34.468
+    },
+    {
+     "w": "isso",
+     "t": 35.058
+    },
+    {
+     "w": "na",
+     "t": 35.294
+    },
+    {
+     "w": "hora",
+     "t": 35.435
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 36.11,
+   "fim": 42.36,
+   "texto": "Então a regra mudou de novo. Mais duas horas, mas só nas seções que ainda não tinham fechado.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 36.16
+    },
+    {
+     "w": "a",
+     "t": 36.596
+    },
+    {
+     "w": "regra",
+     "t": 36.644
+    },
+    {
+     "w": "mudou",
+     "t": 36.997
+    },
+    {
+     "w": "de",
+     "t": 37.327
+    },
+    {
+     "w": "novo",
+     "t": 37.445
+    },
+    {
+     "w": "Mais",
+     "t": 38.61
+    },
+    {
+     "w": "duas",
+     "t": 38.893
+    },
+    {
+     "w": "horas",
+     "t": 39.117
+    },
+    {
+     "w": "mas",
+     "t": 39.789
+    },
+    {
+     "w": "só",
+     "t": 40.013
+    },
+    {
+     "w": "nas",
+     "t": 40.178
+    },
+    {
+     "w": "seções",
+     "t": 40.344
+    },
+    {
+     "w": "que",
+     "t": 40.768
+    },
+    {
+     "w": "ainda",
+     "t": 40.851
+    },
+    {
+     "w": "não",
+     "t": 41.134
+    },
+    {
+     "w": "tinham",
+     "t": 41.322
+    },
+    {
+     "w": "fechado",
+     "t": 41.605
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.51,
+   "fim": 53.53,
+   "texto": "Aí surge o problema. Ninguém sabe ao certo quais seções ficaram abertas. Se estavam numa região mais forte pra um dos lados, esse lado pode ter ganhado votos a mais.",
+   "palavras": [
+    {
+     "w": "Aí",
+     "t": 42.56
+    },
+    {
+     "w": "surge",
+     "t": 42.855
+    },
+    {
+     "w": "o",
+     "t": 43.185
+    },
+    {
+     "w": "problema",
+     "t": 43.232
+    },
+    {
+     "w": "Ninguém",
+     "t": 44.574
+    },
+    {
+     "w": "sabe",
+     "t": 45.045
+    },
+    {
+     "w": "ao",
+     "t": 45.34
+    },
+    {
+     "w": "certo",
+     "t": 45.423
+    },
+    {
+     "w": "quais",
+     "t": 45.812
+    },
+    {
+     "w": "seções",
+     "t": 46.024
+    },
+    {
+     "w": "ficaram",
+     "t": 46.472
+    },
+    {
+     "w": "abertas",
+     "t": 46.861
+    },
+    {
+     "w": "Se",
+     "t": 48.265
+    },
+    {
+     "w": "estavam",
+     "t": 48.418
+    },
+    {
+     "w": "numa",
+     "t": 48.843
+    },
+    {
+     "w": "região",
+     "t": 49.043
+    },
+    {
+     "w": "mais",
+     "t": 49.385
+    },
+    {
+     "w": "forte",
+     "t": 49.585
+    },
+    {
+     "w": "pra",
+     "t": 49.998
+    },
+    {
+     "w": "um",
+     "t": 50.152
+    },
+    {
+     "w": "dos",
+     "t": 50.222
+    },
+    {
+     "w": "lados",
+     "t": 50.376
+    },
+    {
+     "w": "esse",
+     "t": 51.06
+    },
+    {
+     "w": "lado",
+     "t": 51.272
+    },
+    {
+     "w": "pode",
+     "t": 51.59
+    },
+    {
+     "w": "ter",
+     "t": 51.861
+    },
+    {
+     "w": "ganhado",
+     "t": 51.991
+    },
+    {
+     "w": "votos",
+     "t": 52.427
+    },
+    {
+     "w": "a",
+     "t": 52.758
+    },
+    {
+     "w": "mais",
+     "t": 52.876
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 53.68,
+   "fim": 62.07,
+   "texto": "Lula venceu com cinquenta e um vírgula setenta e nove por cento dos votos válidos. Flávio Bolsonaro ficou com quarenta e oito vírgula vinte e um.",
+   "palavras": [
+    {
+     "w": "Lula",
+     "t": 53.73
+    },
+    {
+     "w": "venceu",
+     "t": 54.072
+    },
+    {
+     "w": "com",
+     "t": 54.532
+    },
+    {
+     "w": "cinquenta",
+     "t": 54.685
+    },
+    {
+     "w": "e",
+     "t": 55.157
+    },
+    {
+     "w": "um",
+     "t": 55.204
+    },
+    {
+     "w": "vírgula",
+     "t": 55.369
+    },
+    {
+     "w": "setenta",
+     "t": 55.699
+    },
+    {
+     "w": "e",
+     "t": 56.053
+    },
+    {
+     "w": "nove",
+     "t": 56.077
+    },
+    {
+     "w": "por",
+     "t": 56.301
+    },
+    {
+     "w": "cento",
+     "t": 56.466
+    },
+    {
+     "w": "dos",
+     "t": 56.808
+    },
+    {
+     "w": "votos",
+     "t": 56.985
+    },
+    {
+     "w": "válidos",
+     "t": 57.386
+    },
+    {
+     "w": "Flávio",
+     "t": 58.763
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 59.234
+    },
+    {
+     "w": "ficou",
+     "t": 59.824
+    },
+    {
+     "w": "com",
+     "t": 60.154
+    },
+    {
+     "w": "quarenta",
+     "t": 60.307
+    },
+    {
+     "w": "e",
+     "t": 60.697
+    },
+    {
+     "w": "oito",
+     "t": 60.732
+    },
+    {
+     "w": "vírgula",
+     "t": 60.98
+    },
+    {
+     "w": "vinte",
+     "t": 61.345
+    },
+    {
+     "w": "e",
+     "t": 61.628
+    },
+    {
+     "w": "um",
+     "t": 61.652
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 62.22,
+   "fim": 70.94,
+   "texto": "E a decisão abriu espaço pra uma contestação do outro lado. Flávio não reconheceu o resultado e anunciou que vai pedir a anulação do segundo turno.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 62.27
+    },
+    {
+     "w": "a",
+     "t": 62.388
+    },
+    {
+     "w": "decisão",
+     "t": 62.459
+    },
+    {
+     "w": "abriu",
+     "t": 62.895
+    },
+    {
+     "w": "espaço",
+     "t": 63.143
+    },
+    {
+     "w": "pra",
+     "t": 63.626
+    },
+    {
+     "w": "uma",
+     "t": 63.744
+    },
+    {
+     "w": "contestação",
+     "t": 63.886
+    },
+    {
+     "w": "do",
+     "t": 64.57
+    },
+    {
+     "w": "outro",
+     "t": 64.723
+    },
+    {
+     "w": "lado",
+     "t": 64.994
+    },
+    {
+     "w": "Flávio",
+     "t": 66.17
+    },
+    {
+     "w": "não",
+     "t": 66.642
+    },
+    {
+     "w": "reconheceu",
+     "t": 66.795
+    },
+    {
+     "w": "o",
+     "t": 67.409
+    },
+    {
+     "w": "resultado",
+     "t": 67.444
+    },
+    {
+     "w": "e",
+     "t": 68.045
+    },
+    {
+     "w": "anunciou",
+     "t": 68.081
+    },
+    {
+     "w": "que",
+     "t": 68.6
+    },
+    {
+     "w": "vai",
+     "t": 68.718
+    },
+    {
+     "w": "pedir",
+     "t": 68.871
+    },
+    {
+     "w": "a",
+     "t": 69.178
+    },
+    {
+     "w": "anulação",
+     "t": 69.213
+    },
+    {
+     "w": "do",
+     "t": 69.708
+    },
+    {
+     "w": "segundo",
+     "t": 69.814
+    },
+    {
+     "w": "turno",
+     "t": 70.31
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 71.09,
+   "fim": 82.68,
+   "texto": "Os especialistas não concordam entre si. Pra um professor da FGV, a prorrogação abre caminho pra pedidos de anulação. Pra outros, foi um erro, mas não muda o resultado.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 71.14
+    },
+    {
+     "w": "especialistas",
+     "t": 71.258
+    },
+    {
+     "w": "não",
+     "t": 72.178
+    },
+    {
+     "w": "concordam",
+     "t": 72.39
+    },
+    {
+     "w": "entre",
+     "t": 72.968
+    },
+    {
+     "w": "si",
+     "t": 73.192
+    },
+    {
+     "w": "Pra",
+     "t": 74.262
+    },
+    {
+     "w": "um",
+     "t": 74.427
+    },
+    {
+     "w": "professor",
+     "t": 74.51
+    },
+    {
+     "w": "da",
+     "t": 75.017
+    },
+    {
+     "w": "FGV",
+     "t": 75.135
+    },
+    {
+     "w": "a",
+     "t": 76.137
+    },
+    {
+     "w": "prorrogação",
+     "t": 76.22
+    },
+    {
+     "w": "abre",
+     "t": 76.856
+    },
+    {
+     "w": "caminho",
+     "t": 77.057
+    },
+    {
+     "w": "pra",
+     "t": 77.434
+    },
+    {
+     "w": "pedidos",
+     "t": 77.576
+    },
+    {
+     "w": "de",
+     "t": 78.012
+    },
+    {
+     "w": "anulação",
+     "t": 78.095
+    },
+    {
+     "w": "Pra",
+     "t": 79.451
+    },
+    {
+     "w": "outros",
+     "t": 79.675
+    },
+    {
+     "w": "foi",
+     "t": 80.276
+    },
+    {
+     "w": "um",
+     "t": 80.43
+    },
+    {
+     "w": "erro",
+     "t": 80.606
+    },
+    {
+     "w": "mas",
+     "t": 81.078
+    },
+    {
+     "w": "não",
+     "t": 81.314
+    },
+    {
+     "w": "muda",
+     "t": 81.538
+    },
+    {
+     "w": "o",
+     "t": 81.821
+    },
+    {
+     "w": "resultado",
+     "t": 81.856
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 82.83,
+   "fim": 90.46,
+   "texto": "Pra uma eleição ser anulada, a Justiça precisa concluir que a mudança afetou o resultado. Quem decide isso são os tribunais.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 82.88
+    },
+    {
+     "w": "uma",
+     "t": 83.069
+    },
+    {
+     "w": "eleição",
+     "t": 83.175
+    },
+    {
+     "w": "ser",
+     "t": 83.576
+    },
+    {
+     "w": "anulada",
+     "t": 83.741
+    },
+    {
+     "w": "a",
+     "t": 84.46
+    },
+    {
+     "w": "Justiça",
+     "t": 84.543
+    },
+    {
+     "w": "precisa",
+     "t": 85.003
+    },
+    {
+     "w": "concluir",
+     "t": 85.38
+    },
+    {
+     "w": "que",
+     "t": 85.863
+    },
+    {
+     "w": "a",
+     "t": 85.934
+    },
+    {
+     "w": "mudança",
+     "t": 85.97
+    },
+    {
+     "w": "afetou",
+     "t": 86.43
+    },
+    {
+     "w": "o",
+     "t": 86.771
+    },
+    {
+     "w": "resultado",
+     "t": 86.807
+    },
+    {
+     "w": "Quem",
+     "t": 88.231
+    },
+    {
+     "w": "decide",
+     "t": 88.431
+    },
+    {
+     "w": "isso",
+     "t": 88.915
+    },
+    {
+     "w": "são",
+     "t": 89.21
+    },
+    {
+     "w": "os",
+     "t": 89.434
+    },
+    {
+     "w": "tribunais",
+     "t": 89.563
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 90.61,
+   "fim": 96.28,
+   "texto": "E pra você, as duas horas a mais mudaram alguma coisa? Deixa aqui nos comentários.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 90.66
+    },
+    {
+     "w": "pra",
+     "t": 90.79
+    },
+    {
+     "w": "você",
+     "t": 90.955
+    },
+    {
+     "w": "as",
+     "t": 91.592
+    },
+    {
+     "w": "duas",
+     "t": 91.78
+    },
+    {
+     "w": "horas",
+     "t": 92.051
+    },
+    {
+     "w": "a",
+     "t": 92.393
+    },
+    {
+     "w": "mais",
+     "t": 92.5
+    },
+    {
+     "w": "mudaram",
+     "t": 92.676
+    },
+    {
+     "w": "alguma",
+     "t": 93.066
+    },
+    {
+     "w": "coisa",
+     "t": 93.372
+    },
+    {
+     "w": "Deixa",
+     "t": 94.572
+    },
+    {
+     "w": "aqui",
+     "t": 94.938
+    },
+    {
+     "w": "nos",
+     "t": 95.126
+    },
+    {
+     "w": "comentários",
+     "t": 95.28
+    }
+   ]
+  }
+ ]
+}

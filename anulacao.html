@@ -1,0 +1,209 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0b1220}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Motion de notícia (26/10/2026): "A eleição pode ser anulada?" — tudo desenhado em canvas, sem imagem.
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch("/anulacao/tempos.json")).json();
+const CENAS = T.cenas;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const back = (k) => { k = clamp(k); const c = 1.7; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+// instante em que a palavra é dita na cena c (k = qual ocorrência)
+const P = (c, w, k = 0) => { const cn = CENAS[c - 1]; const l = cn.palavras.filter((p) => norm(p.w) === norm(w)); return (l[k] || l[0] || { t: cn.ini + .2 }).t; };
+const ap = (t, t0, d = .35) => ease((t - t0) / d);
+const AM = "#ffd23a", VM = "#ff4d4d", BR = "#ffffff", CINZA = "#8a96ab", A1 = "#f2b632", A2 = "#4fb3c9";
+
+// ---------- desenho básico ----------
+const rr = (x, y, w, h, r, c) => { g.fillStyle = c; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+const circ = (x, y, r, c) => { g.fillStyle = c; g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill(); };
+function txt(s, x, y, tam, cor, { peso = 700, fonte = "Oswald", al = "center", contorno = 0, sombra = false } = {}) {
+  g.font = `${peso} ${tam}px ${fonte}`; g.textAlign = al; g.textBaseline = "middle";
+  if (sombra) { g.fillStyle = "rgba(0,0,0,.45)"; g.fillText(s, x + 4, y + 6); }
+  if (contorno) { g.lineWidth = contorno; g.strokeStyle = "#000"; g.lineJoin = "round"; g.strokeText(s, x, y); }
+  g.fillStyle = cor; g.fillText(s, x, y);
+}
+function pilula(s, x, y, tam, fundo, cor = "#000", al = "center") {
+  g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + tam * 1.1, h = tam * 1.55;
+  const x0 = al === "center" ? x - w / 2 : x; rr(x0, y - h / 2, w, h, h / 2, fundo); txt(s, x0 + w / 2, y + 2, tam, cor);
+  return w;
+}
+// aparece crescendo a partir do centro (x, y)
+function pop(k, x, y, f) { if (k <= 0) return; g.save(); g.globalAlpha = clamp(k * 1.6); g.translate(x, y); const s = back(k); g.scale(s, s); g.translate(-x, -y); f(); g.restore(); }
+function carimbo(s, x, y, k, cor = VM, giro = -.12, tam = 92) {
+  if (k <= 0) return; g.save(); g.translate(x, y); g.rotate(giro); const s2 = 1 + 1.4 * (1 - ease(k)); g.scale(s2, s2); g.globalAlpha = clamp(k * 2);
+  g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + 60, h = tam * 1.4;
+  g.lineWidth = 10; g.strokeStyle = cor; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 18); g.stroke(); txt(s, 0, 4, tam, cor); g.restore();
+}
+
+// ---------- ícones ----------
+function relogio(x, y, r, horas, brilhoCor = AM) {
+  circ(x, y, r + 18, "rgba(255,210,58,.12)"); circ(x, y, r, "#f4f1ea"); circ(x, y, r - 14, "#ffffff");
+  g.strokeStyle = "#1b2436"; for (let i = 0; i < 60; i++) { const a = i / 60 * 6.2832, l = i % 5 ? 14 : 34; g.lineWidth = i % 5 ? 3 : 8; g.beginPath(); g.moveTo(x + Math.sin(a) * (r - 22), y - Math.cos(a) * (r - 22)); g.lineTo(x + Math.sin(a) * (r - 22 - l), y - Math.cos(a) * (r - 22 - l)); g.stroke(); }
+  const ah = (horas % 12) / 12 * 6.2832, am = (horas % 1) * 6.2832;
+  g.lineCap = "round"; g.strokeStyle = "#1b2436"; g.lineWidth = r * .07; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(ah) * r * .5, y - Math.cos(ah) * r * .5); g.stroke();
+  g.lineWidth = r * .045; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(am) * r * .74, y - Math.cos(am) * r * .74); g.stroke();
+  circ(x, y, r * .07, brilhoCor);
+}
+function urna(x, y, s = 1, fechada = 0) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rr(-120, -80, 240, 170, 22, fechada ? "#9aa1ad" : "#efe7d3"); rr(-120, 60, 240, 30, 12, "rgba(0,0,0,.12)");
+  rr(-92, -58, 110, 74, 10, fechada ? "#3c4452" : "#2c6e8f"); // tela
+  if (!fechada) { rr(-82, -48, 90, 14, 4, "rgba(255,255,255,.55)"); rr(-82, -26, 60, 10, 4, "rgba(255,255,255,.35)"); }
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 4; j++) rr(36 + i * 22, -58 + j * 22, 16, 16, 4, fechada ? "#6b7280" : "#2b2b2b");
+  rr(36, 32, 60, 18, 5, fechada ? "#6b7280" : "#2fa84f");
+  if (fechada) { // cadeado
+    const k = fechada; g.globalAlpha = clamp(k); rr(-34, -10, 68, 56, 10, "#ffd23a"); g.lineWidth = 12; g.strokeStyle = "#ffd23a"; g.beginPath(); g.arc(0, -10, 22, Math.PI, 0); g.stroke(); circ(0, 16, 8, "#7a5a00"); g.globalAlpha = 1;
+  }
+  g.restore();
+}
+function onibus(x, y) {
+  rr(x - 130, y - 70, 260, 130, 22, "#f2b632"); rr(x - 112, y - 54, 70, 50, 8, "#bfe3f2"); rr(x - 30, y - 54, 70, 50, 8, "#bfe3f2"); rr(x + 52, y - 54, 60, 50, 8, "#bfe3f2");
+  rr(x - 130, y + 14, 260, 10, 4, "rgba(0,0,0,.18)"); circ(x - 74, y + 62, 24, "#1b2436"); circ(x + 74, y + 62, 24, "#1b2436"); circ(x - 74, y + 62, 10, "#9aa1ad"); circ(x + 74, y + 62, 10, "#9aa1ad");
+}
+function nuvem(x, y, t) {
+  for (let i = 0; i < 9; i++) { const dx = -90 + i * 22, ph = (t * 1.6 + i * .37) % 1; g.strokeStyle = "rgba(120,190,255,.9)"; g.lineWidth = 6; g.lineCap = "round"; g.beginPath(); g.moveTo(x + dx, y + 30 + ph * 90); g.lineTo(x + dx - 6, y + 52 + ph * 90); g.stroke(); }
+  circ(x - 60, y, 50, "#cfd6e3"); circ(x, y - 24, 66, "#dfe5ee"); circ(x + 62, y + 2, 48, "#cfd6e3"); rr(x - 110, y, 220, 50, 25, "#d6dce8");
+}
+function balanca(x, y, s, incl) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rr(-10, -170, 20, 260, 8, "#e8c66a"); rr(-90, 80, 180, 26, 10, "#e8c66a"); circ(0, -176, 20, "#e8c66a");
+  g.rotate(incl); rr(-220, -180, 440, 14, 7, "#e8c66a");
+  for (const sx of [-1, 1]) { const px = sx * 205; g.save(); g.translate(px, -173); g.rotate(-incl); g.strokeStyle = "#e8c66a"; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(-62, 120); g.moveTo(0, 0); g.lineTo(62, 120); g.stroke(); g.fillStyle = "#e8c66a"; g.beginPath(); g.ellipse(0, 122, 78, 20, 0, 0, Math.PI); g.fill(); g.restore(); }
+  g.restore();
+}
+function papel(x, y, w, h) {
+  g.save(); g.shadowColor = "rgba(0,0,0,.4)"; g.shadowBlur = 30; rr(x, y, w, h, 14, "#f7f5ef"); g.restore();
+  for (let i = 0; i < 9; i++) rr(x + 50, y + 170 + i * 52, (w - 100) * (i % 3 === 2 ? .6 : 1), 14, 7, "#d9d4c7");
+}
+function balao(x, y, w, h, cor) { rr(x, y, w, h, 30, cor); g.fillStyle = cor; g.beginPath(); g.moveTo(x + 70, y + h - 2); g.lineTo(x + 60, y + h + 46); g.lineTo(x + 130, y + h - 2); g.fill(); }
+
+// grade fixa de seções (mesma nas cenas 5 e 6)
+const SEC = []; { let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 9; i++) for (let j = 0; j < 7; j++) SEC.push({ x: 180 + j * 120, y: 470 + i * 92, aberta: rnd() < .36, d: rnd() }); }
+function grade(t, kAbre, kDuvida) {
+  for (const q of SEC) {
+    const k = q.aberta ? clamp((kAbre - q.d * .5) * 2) : 0;
+    const cor = k > 0 ? `rgb(${Math.round(110 - 60 * k)},${Math.round(120 + 90 * k)},${Math.round(140 - 40 * k)})` : "#3a4458";
+    rr(q.x - 46, q.y - 34, 92, 68, 12, cor);
+    if (q.aberta && kDuvida > 0) { g.globalAlpha = clamp((kDuvida - q.d * .4) * 2); txt("?", q.x, q.y + 2, 54, AM, { contorno: 6 }); g.globalAlpha = 1; }
+  }
+}
+
+// ---------- cenas ----------
+const CENA = [
+  null,
+  (t, c) => { // 1: gancho
+    pop(ap(t, P(1, "eleicao") - .15), W / 2, 560, () => txt("A ELEIÇÃO", W / 2, 560, 150, BR, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "pode") - .1), W / 2, 720, () => txt("PODE SER", W / 2, 720, 150, BR, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "anulada") - .1), W / 2, 890, () => { g.save(); g.translate(W / 2, 890); g.rotate(-.03 + Math.sin(t * 7) * .01); txt("ANULADA?", 0, 0, 190, AM, { contorno: 14, sombra: true }); g.restore(); });
+    pop(ap(t, P(1, "segundo")), W / 2, 1060, () => pilula("DEPOIS DO 2º TURNO", W / 2, 1060, 46, VM, BR));
+    pop(ap(t, P(1, "relogio") - .2), W / 2, 1230, () => relogio(W / 2, 1230, 105, 17 + Math.max(0, t - P(1, "relogio")) * .05));
+  },
+  (t, c) => { // 2: 17h -> 19h
+    const t0 = P(2, "estender"), k = ease((t - t0) / 2.4);
+    relogio(W / 2, 700, 270, 17 + 2 * k);
+    const y = 1080;
+    g.globalAlpha = 1 - ap(t, t0, .5) * .55; txt("17H", W / 2 - (k > 0 ? 200 * ease((t - t0) / .5) : 0), y, 150, BR, { contorno: 10 }); g.globalAlpha = 1;
+    if (t > t0) { const kr = ap(t, t0, .4); g.strokeStyle = VM; g.lineWidth = 14; g.beginPath(); g.moveTo(W / 2 - 330, y + 10); g.lineTo(W / 2 - 330 + 260 * kr, y - 10); g.stroke(); }
+    pop(ap(t, P(2, "sete")), W / 2 + 200, y, () => txt("19H", W / 2 + 200, y, 150, AM, { contorno: 10 }));
+    pop(ap(t, P(2, "sete") + .3), W / 2, y + 130, () => pilula("+2 HORAS", W / 2, y + 130, 54, AM));
+    pop(ap(t, P(2, "zanin") - .3), W / 2, 320, () => { pilula("STF", W / 2 - 250, 320, 50, VM, BR); txt("MIN. CRISTIANO ZANIN", W / 2 + 80, 322, 56, BR, { contorno: 6 }); });
+  },
+  (t, c) => { // 3: os dois pedidos
+    pop(ap(t, P(3, "duas") - .2), W / 2, 380, () => txt("AS 2 CAMPANHAS PEDIRAM", W / 2, 380, 70, BR, { contorno: 8 }));
+    pop(ap(t, P(3, "onibus") - .3), W / 2, 680, () => { rr(90, 500, 900, 360, 34, "#16223a"); onibus(270, 680); txt("FALTA DE", 640, 620, 60, BR, { al: "center" }); txt("ÔNIBUS", 640, 700, 92, A1); pilula("BAHIA", 640, 790, 40, "#2a3958", BR); });
+    pop(ap(t, P(3, "chuva") - .3), W / 2, 1100, () => { rr(90, 920, 900, 360, 34, "#16223a"); nuvem(270, 1080, t); txt("CHUVA E", 640, 1040, 60, BR); txt("ALAGAMENTO", 640, 1120, 84, A2); pilula("SUL", 640, 1210, 40, "#2a3958", BR); });
+  },
+  (t, c) => { // 4: urna encerrada não reabre
+    const kf = ap(t, P(4, "encerradas"), .5);
+    [[300, 560], [780, 560], [300, 880], [780, 880]].forEach(([x, y], i) => pop(ap(t, CENAS[3].ini + i * .12), x, y, () => urna(x, y, 1.25, kf)));
+    pop(ap(t, P(4, "encerradas")), W / 2, 380, () => pilula("JÁ ENCERRADAS", W / 2, 380, 58, "#3a4458", BR));
+    carimbo("NÃO REABRE", W / 2, 720, ap(t, P(4, "reaberta"), .35), VM, -.14, 110);
+    pop(ap(t, P(4, "tribunais")), W / 2, 1140, () => pilula("TREs AVISARAM NA HORA", W / 2, 1140, 54, AM));
+  },
+  (t, c) => { // 5: só onde estava aberta
+    pop(ap(t, P(5, "regra") - .2), W / 2, 330, () => txt("A REGRA MUDOU DE NOVO", W / 2, 330, 72, BR, { contorno: 8 }));
+    grade(t, (t - P(5, "secoes")) / 1.2, 0);
+    pop(ap(t, P(5, "horas")), W / 2, 400, () => {});
+    const k = ap(t, P(5, "secoes") + .4);
+    if (k > 0) { g.globalAlpha = k; rr(130, 1310, 40, 40, 8, "#32d26f"); txt("ABERTA ATÉ 19H", 190, 1331, 44, BR, { al: "left" }); rr(600, 1310, 40, 40, 8, "#3a4458"); txt("JÁ FECHADA", 660, 1331, 44, CINZA, { al: "left" }); g.globalAlpha = 1; }
+  },
+  (t, c) => { // 6: a dúvida
+    grade(t, 9, (t - P(6, "quais")) / 1.4);
+    pop(ap(t, P(6, "problema") - .2), W / 2, 330, () => txt("QUAIS FICARAM ABERTAS?", W / 2, 330, 72, AM, { contorno: 8 }));
+    const kb = ap(t, P(6, "lados") - .2, .5);
+    if (kb > 0) { g.save(); g.globalAlpha = kb; rr(0, 380, W, 940, 0, "rgba(11,18,32,.82)"); g.restore(); pop(kb, W / 2, 860, () => balanca(W / 2, 880, 1.3, Math.sin((t - P(6, "lados")) * 2.2) * .16)); }
+    pop(ap(t, P(6, "votos")), W / 2, 1220, () => pilula("VOTOS A MAIS PRA UM LADO?", W / 2, 1220, 54, AM));
+  },
+  (t, c) => { // 7: resultado
+    txt("RESULTADO", W / 2, 400, 84, BR, { contorno: 8 }); txt("VOTOS VÁLIDOS • TSE", W / 2, 480, 40, CINZA, { peso: 500 });
+    const bar = (y, nome, pct, cor, t0) => { const k = ease((t - t0) / 1.2); rr(90, y, 900, 150, 24, "#16223a"); rr(90, y, 900 * pct / 100 * k, 150, 24, cor); txt(nome, 130, y + 75, 70, BR, { al: "left", contorno: 8 }); txt((pct * k).toFixed(2).replace(".", ",") + "%", 950, y + 75, 70, BR, { al: "right", contorno: 8 }); };
+    bar(620, "LULA", 51.79, A1, P(7, "lula") - .1);
+    bar(840, "FLÁVIO", 48.21, A2, P(7, "flavio") - .1);
+    pop(ap(t, P(7, "validos")), W / 2, 1120, () => pilula("DIFERENÇA DE 3,58 PONTOS", W / 2, 1120, 50, "#2a3958", BR));
+  },
+  (t, c) => { // 8: contestação
+    pop(ap(t, CENAS[7].ini), W / 2, 820, () => { papel(190, 420, 700, 780); txt("PEDIDO DE", W / 2, 500, 54, "#1b2436"); txt("ANULAÇÃO", W / 2, 570, 80, "#1b2436"); });
+    carimbo("CONTESTAÇÃO", W / 2, 860, ap(t, P(8, "contestacao") - .1, .35), VM, -.16, 96);
+    pop(ap(t, P(8, "reconheceu")), W / 2, 1290, () => pilula("NÃO RECONHECEU O RESULTADO", W / 2, 1290, 50, BR));
+    pop(ap(t, P(8, "anulacao")), W / 2, 330, () => pilula("FLÁVIO VAI À JUSTIÇA", W / 2, 330, 56, A2, "#0b1220"));
+  },
+  (t, c) => { // 9: especialistas
+    pop(ap(t, CENAS[8].ini + .1), W / 2, 340, () => txt("ESPECIALISTAS DIVIDIDOS", W / 2, 340, 72, BR, { contorno: 8 }));
+    pop(ap(t, P(9, "fgv") - .2), W / 2, 600, () => { balao(110, 450, 860, 290, "#f4f1ea"); txt("“ABRE CAMINHO PRA", W / 2, 545, 64, "#1b2436"); txt("PEDIDOS DE ANULAÇÃO”", W / 2, 625, 64, "#c0392b"); txt("— professor da FGV", W / 2, 700, 38, "#5a6474", { peso: 500 }); });
+    pop(ap(t, P(9, "outros") - .2), W / 2, 980, () => { balao(110, 840, 860, 290, "#16223a"); txt("“FOI UM ERRO, MAS", W / 2, 935, 64, BR); txt("NÃO MUDA O RESULTADO”", W / 2, 1015, 64, A2); txt("— outros especialistas", W / 2, 1090, 38, CINZA, { peso: 500 }); });
+  },
+  (t, c) => { // 10: quem decide
+    balanca(W / 2, 720, 1.35, Math.sin(t * 1.4) * .05);
+    pop(ap(t, P(10, "concluir") - .2), W / 2, 1060, () => { rr(110, 990, 860, 140, 26, "#16223a"); rr(150, 1025, 70, 70, 12, "#f4f1ea"); txt("?", 185, 1062, 60, "#1b2436"); txt("A MUDANÇA AFETOU", 600, 1035, 54, BR); txt("O RESULTADO?", 600, 1095, 54, AM); });
+    pop(ap(t, P(10, "tribunais") - .2), W / 2, 1260, () => pilula("QUEM DECIDE: OS TRIBUNAIS", W / 2, 1260, 56, AM));
+  },
+  (t, c) => { // 11: pergunta
+    pop(ap(t, CENAS[10].ini + .05), W / 2, 560, () => txt("E PRA VOCÊ?", W / 2, 560, 150, AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(11, "horas") - .2), W / 2, 760, () => { txt("+2 HORAS MUDARAM", W / 2, 740, 76, BR, { contorno: 8 }); txt("ALGUMA COISA?", W / 2, 830, 76, BR, { contorno: 8 }); });
+    pop(ap(t, P(11, "comentarios") - .3), W / 2, 1080, () => { balao(340, 990, 400, 170, "#f4f1ea"); circ(450, 1075, 16, "#1b2436"); circ(540, 1075, 16, "#1b2436"); circ(630, 1075, 16, "#1b2436");
+      const b = Math.sin(t * 6) * 14; g.fillStyle = AM; g.beginPath(); g.moveTo(W / 2 - 40, 1240 + b); g.lineTo(W / 2 + 40, 1240 + b); g.lineTo(W / 2, 1300 + b); g.fill(); });
+  },
+];
+
+// legenda embaixo: grupo de até 4 palavras, a palavra falada em amarelo
+const GRUPOS = []; for (const cn of CENAS) for (let i = 0; i < cn.palavras.length; i += 3) GRUPOS.push({ ws: cn.palavras.slice(i, i + 3), fim: (cn.palavras[i + 3] || { t: cn.fim + .15 }).t });
+function legenda(t) {
+  const gr = GRUPOS.find((x) => t >= x.ws[0].t && t < x.fim) ; if (!gr) return;
+  const ws = gr.ws.map((p) => p.w.toUpperCase().replace(/[.,!?;:]+$/, "")); let tam = 76; g.font = `900 ${tam}px Nunito`; let lw = ws.map((w) => g.measureText(w).width), esp = 22;
+  const larg = () => lw.reduce((a, b) => a + b, 0) + esp * (ws.length - 1); if (larg() > 940) { tam = Math.floor(tam * 940 / larg()); g.font = `900 ${tam}px Nunito`; lw = ws.map((w) => g.measureText(w).width); esp = 18; }
+  const tot = larg(); let x = W / 2 - tot / 2;
+  const k = ease((t - gr.ws[0].t) / .12), y = 1500 + (1 - k) * 20;
+  ws.forEach((w, i) => { const ativa = t >= gr.ws[i].t && (i === ws.length - 1 || t < gr.ws[i + 1].t);
+    g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 12; g.lineJoin = "round"; g.strokeStyle = "#000"; g.globalAlpha = k; g.strokeText(w, x, y); g.fillStyle = ativa ? AM : BR; g.fillText(w, x, y); g.globalAlpha = 1; x += lw[i] + esp; });
+}
+
+function fundo(t) {
+  const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, "#0b1220"); gr.addColorStop(1, "#121e35"); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.strokeStyle = "rgba(255,255,255,.035)"; g.lineWidth = 2; const off = (t * 18) % 90;
+  for (let x = -90 + off; x < W; x += 90) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, H); g.stroke(); }
+  for (let y = -90 + off; y < H; y += 90) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+  const v = g.createRadialGradient(W / 2, H * .45, H * .2, W / 2, H * .5, H * .8); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.55)"); g.fillStyle = v; g.fillRect(0, 0, W, H);
+}
+function moldura(t) {
+  pilula("ELEIÇÕES 2026", 90, 170, 44, VM, BR, "left"); txt("• 2º TURNO", 470, 172, 44, BR, { al: "left", peso: 500 });
+  txt("ENTENDA", 990, 172, 34, AM, { al: "right" });
+  rr(90, 230, 900, 8, 4, "rgba(255,255,255,.12)"); rr(90, 230, 900 * clamp(t / T.total), 8, 4, AM);
+  txt("@comofuncionatalcoisa", W / 2, 1800, 40, "rgba(255,255,255,.8)", { peso: 500 });
+}
+
+window.renderFrame = (t) => {
+  fundo(t);
+  let c = 1; for (let i = 0; i < CENAS.length; i++) if (t >= CENAS[i].ini - .1) c = i + 1;
+  const k = ease((t - (CENAS[c - 1].ini - .1)) / .3);
+  g.save(); g.globalAlpha = c === 1 ? 1 : k; g.translate(0, (1 - k) * 40 * (c === 1 ? 0 : 1)); CENA[c](t, c); g.restore();
+  moldura(t); legenda(t);
+};
+await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.load("900 40px Nunito"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
