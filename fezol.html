@@ -1,0 +1,147 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Fez o L? A conta chegou antes da meia-noite" — cópia do Reel da PV COMPANY (grupo CÓPIAS DO CLAUDE, 26/10 14:04)
+// Dados conferidos 26/10: real -9,8% a -10,1% no futuro da CME e dólar implícito R$ 5,55-5,56 (Poder360, Meon/Bloomberg Línea);
+// DBGG R$ 11,055 tri = 82,9% do PIB em ago/2026 e 71,7% em dez/2022 (BC, IFI); R$ 11,1 tri ÷ 213 mi (IBGE) ≈ R$ 52 mil;
+// Selic 14,25% na última decisão confirmada (o original dizia 13,75%, errado); Brasil 6º em saída de milionários 2025 (Henley & Partners).
+import { motion } from "/kitmotion.js";
+const K = await motion("fezol", { fundo: "#0a0e17", fundo2: "#111827", padrao: "pontos", destaque: "#ffd23a", alerta: "#ff4d4d", rotulo: "ECONOMIA", rotuloCor: "#ff4d4d", sub: "• PÓS-ELEIÇÃO", tag: "A CONTA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, txtCabe, pilula, pop, desliza, jato } = K;
+const VERDE = "#32d26f", LARANJA = "#ff8a3a", AZUL = "#2f6fd1";
+
+const fonte = (s, s2) => { txt(s, W / 2, 1640, 26, "rgba(255,255,255,.45)", { peso: 500, fonte: "Nunito" }); if (s2) txt(s2, W / 2, 1676, 26, "rgba(255,255,255,.45)", { peso: 500, fonte: "Nunito" }); };
+
+// recibo: linhas = [[esquerda, direita, cor, instante]]
+function recibo(x, y, w, titulo, sub, linhas, t) {
+  const h = 150 + linhas.length * 64;
+  g.save(); g.shadowColor = "rgba(0,0,0,.5)"; g.shadowBlur = 40;
+  g.fillStyle = C.PAPEL; g.beginPath(); g.moveTo(x, y); g.lineTo(x + w, y); g.lineTo(x + w, y + h);
+  for (let i = 0, n = 16; i <= n; i++) g.lineTo(x + w - i * w / n, y + h + (i % 2 ? 0 : 18));
+  g.closePath(); g.fill(); g.restore();
+  txt(titulo, x + w / 2, y + 52, 50, C.TINTA);
+  txt(sub, x + w / 2, y + 96, 26, "#7a8090", { peso: 500, fonte: "Nunito" });
+  g.setLineDash([10, 8]); g.strokeStyle = "#b9b4a8"; g.lineWidth = 3; g.beginPath(); g.moveTo(x + 30, y + 122); g.lineTo(x + w - 30, y + 122); g.stroke(); g.setLineDash([]);
+  linhas.forEach(([e, d, cor, t0], i) => { const k = ap(t, t0, .25); if (k <= 0) return; g.save(); g.globalAlpha *= k;
+    txt(e, x + 40, y + 170 + i * 64, 38, C.TINTA, { al: "left", peso: 800, fonte: "Nunito" }); txt(d, x + w - 40, y + 170 + i * 64, 40, cor, { al: "right" }); g.restore(); });
+}
+function nota(x, y, valor, s = 1) {
+  g.save(); g.translate(x, y); g.scale(s, s);
+  rr(-260, -130, 520, 260, 22, AZUL); g.strokeStyle = "rgba(255,255,255,.35)"; g.lineWidth = 4; g.beginPath(); g.roundRect(-240, -110, 480, 220, 14); g.stroke();
+  txt("BANCO CENTRAL DO BRASIL", -230, -88, 20, "rgba(255,255,255,.8)", { al: "left", fonte: "Nunito", peso: 800 });
+  circ(-150, 5, 72, "rgba(255,255,255,.18)"); txt("R$", -150, 8, 64, "#fff");
+  txt(String(valor), 110, 0, 150, "#fff"); txt("REAIS", 200, 92, 26, "rgba(255,255,255,.85)", { fonte: "Nunito", peso: 900 });
+  g.restore();
+}
+function lua(x, y) { circ(x, y, 46, "#ffe08a"); circ(x + 26, y - 14, 42, "#0e1420"); }
+function sol(x, y, t) { g.strokeStyle = C.AM; g.lineWidth = 8; g.lineCap = "round"; for (let i = 0; i < 10; i++) { const a = i / 10 * 6.2832 + t * .6; g.beginPath(); g.moveTo(x + Math.cos(a) * 58, y + Math.sin(a) * 58); g.lineTo(x + Math.cos(a) * 80, y + Math.sin(a) * 80); g.stroke(); } circ(x, y, 46, C.AM); }
+function card(x, y, nome, desenho, kSeta) {
+  rr(x - 140, y - 170, 280, 340, 26, "#1a2234"); desenho(x, y - 30); txt(nome, x, y + 120, 36, "#fff", { fonte: "Nunito", peso: 900 });
+  if (kSeta > 0) pop(kSeta, x + 110, y - 150, () => { rr(x + 74, y - 186, 72, 72, 14, C.VM); g.fillStyle = "#fff"; g.beginPath(); g.moveTo(x + 110, y - 172); g.lineTo(x + 134, y - 146); g.lineTo(x + 120, y - 146); g.lineTo(x + 120, y - 126); g.lineTo(x + 100, y - 126); g.lineTo(x + 100, y - 146); g.lineTo(x + 86, y - 146); g.fill(); });
+}
+const celular = (x, y) => { rr(x - 55, y - 95, 110, 190, 22, "#e6ebf3"); rr(x - 45, y - 80, 90, 160, 14, AZUL); for (let i = 0; i < 3; i++) for (let j = 0; j < 2; j++) rr(x - 34 + i * 24, y - 40 + j * 28, 18, 18, 4, "#cfe0ff"); };
+const bomba = (x, y) => { rr(x - 60, y - 90, 100, 190, 14, "#e23b3b"); rr(x - 44, y - 70, 68, 50, 8, "#fff"); txt("R$", x - 10, y - 44, 26, "#e23b3b"); rr(x - 74, y + 92, 128, 18, 6, "#9aa1ad"); g.strokeStyle = "#2b2b2b"; g.lineWidth = 10; g.beginPath(); g.moveTo(x + 40, y - 40); g.quadraticCurveTo(x + 86, y - 30, x + 76, y + 40); g.stroke(); };
+const pao = (x, y) => { g.fillStyle = "#d9963c"; g.beginPath(); g.ellipse(x, y, 100, 52, -.12, 0, 6.2832); g.fill(); g.strokeStyle = "#f3c77d"; g.lineWidth = 7; g.lineCap = "round"; for (let i = -1; i <= 1; i++) { g.beginPath(); g.moveTo(x + i * 44 - 16, y + 22); g.lineTo(x + i * 44 + 16, y - 22); g.stroke(); } };
+function mamadeira(x, y) { rr(x - 50, y - 70, 100, 190, 26, "#eef6ff"); rr(x - 50, y + 20, 100, 100, 26, "#ffffff"); rr(x - 58, y - 92, 116, 32, 10, "#4f9ae8"); g.fillStyle = "#f2c98a"; g.beginPath(); g.moveTo(x - 26, y - 92); g.quadraticCurveTo(x, y - 170, x + 26, y - 92); g.fill(); for (let i = 0; i < 4; i++) rr(x + 20, y - 40 + i * 34, 22, 5, 2, "#7fb2ea"); }
+function carro(x, y, cor = "#e23b3b") { g.fillStyle = cor; g.beginPath(); g.roundRect(x - 160, y - 20, 320, 90, 26); g.fill(); g.beginPath(); g.moveTo(x - 90, y - 20); g.lineTo(x - 50, y - 90); g.lineTo(x + 60, y - 90); g.lineTo(x + 110, y - 20); g.fill(); rr(x - 40, y - 76, 44, 50, 6, "#bfe3f2"); rr(x + 14, y - 76, 50, 50, 6, "#bfe3f2"); circ(x - 92, y + 72, 36, "#1b2436"); circ(x + 92, y + 72, 36, "#1b2436"); circ(x - 92, y + 72, 14, "#9aa1ad"); circ(x + 92, y + 72, 14, "#9aa1ad"); }
+function pilha(x, base, alt, cor, borda) { for (let yy = base; yy > base - alt; yy -= 9) { g.fillStyle = borda; g.beginPath(); g.ellipse(x, yy, 80, 22, 0, 0, 6.2832); g.fill(); g.fillStyle = cor; g.beginPath(); g.ellipse(x, yy - 4, 80, 22, 0, 0, 6.2832); g.fill(); } }
+function cartao(x, y, cor, nome) { g.save(); g.shadowColor = "rgba(0,0,0,.45)"; g.shadowBlur = 30; rr(x - 210, y - 130, 420, 260, 24, cor); g.restore(); rr(x - 170, y - 80, 60, 46, 8, "#e9c46a"); txt("•••• •••• ••••  1425", x - 170, y + 20, 30, "#fff", { al: "left", fonte: "Nunito", peso: 800 }); txt(nome, x - 170, y + 80, 40, "#fff", { al: "left" }); circ(x + 140, y + 78, 26, "#eb5a3c"); circ(x + 168, y + 78, 26, "rgba(247,166,0,.9)"); }
+function loja(x, y, kFecha) {
+  rr(x - 260, y - 60, 520, 330, 8, "#3b4558"); rr(x - 220, y + 10, 230, 160, 8, "#1e3a5f"); g.strokeStyle = "rgba(255,255,255,.25)"; g.lineWidth = 6; g.beginPath(); g.moveTo(x - 190, y + 140); g.lineTo(x - 120, y + 40); g.stroke();
+  rr(x + 50, y + 20, 150, 250, 6, "#2a1d16"); circ(x + 180, y + 150, 7, C.AM);
+  for (let i = 0; i < 8; i++) { const cx = x - 260 + i * 65; g.fillStyle = i % 2 ? "#fff" : "#e23b3b"; g.fillRect(cx, y - 130, 65, 70); g.beginPath(); g.arc(cx + 32.5, y - 60, 32.5, 0, Math.PI); g.fill(); }
+  if (kFecha > 0) pop(kFecha, x + 125, y + 70, () => { g.strokeStyle = "#ddd"; g.lineWidth = 3; g.beginPath(); g.moveTo(x + 60, y + 50); g.lineTo(x + 125, y + 10); g.lineTo(x + 190, y + 50); g.stroke(); rr(x + 30, y + 46, 190, 64, 10, "#fff"); txt("FECHADO", x + 125, y + 80, 40, C.VM); });
+}
+
+const CENA = [null,
+  (t) => { // Fez o L? + conta
+    pop(ap(t, ini(1)), W / 2, 400, () => txt("FEZ O L?", W / 2, 400, 170, C.AM, { contorno: 12 }));
+    pop(ap(t, P(1, "conta") - .2), W / 2, 540, () => txt("A CONTA CHEGOU ANTES DA MEIA-NOITE", W / 2, 540, 44, "#fff", { fonte: "Nunito", peso: 900 }));
+    desliza(ap(t, P(1, "conta"), .5), 0, 200, () => recibo(260, 640, 560, "CONTA DA REELEIÇÃO", "domingo, 25/10 · antes da meia-noite",
+      [["Real", "−10%", C.VM, P(1, "chegou")], ["Dólar", "R$ 5,56", C.VM, P(1, "antes")], ["Dívida", "R$ 11,1 tri", C.TINTA, P(1, "da")], ["TOTAL", "VOCÊ PAGA", C.VM, P(1, "meia-noite")]], t));
+  },
+  (t) => { // real derreteu
+    pop(ap(t, P(2, "real") - .3), W / 2, 420, () => pilula("REAL · MERCADO FUTURO", W / 2, 420, 46, "rgba(255,210,58,.15)", C.AM));
+    const t0 = P(2, "derreteu") - .1; if (t > t0) txt(`−${(conta(t, t0, 99, 1.4) / 10).toFixed(1).replace(".", ",")}%`, W / 2, 640, 230, C.VM, { contorno: 12 });
+    pop(ap(t, P(2, "futuro") - .2), W / 2, 880, () => pilula("DÓLAR A R$ 5,56", W / 2, 880, 58, C.AM, "#000"));
+    fonte("Real no mercado futuro (CME), domingo 25/10 à noite", "Fontes: Bloomberg Línea, Poder360");
+  },
+  (t) => { // nota de 100 vira 90
+    const kv = ap(t, P(3, "acordar") - .1, .5);
+    pop(ap(t, P(3, "dormir") - .2), W / 2, 760, () => {
+      nota(W / 2, 760, kv > .5 ? 90 : 100, 1 - .12 * kv);
+      if (kv < .5) lua(W / 2 + 230, 590); else sol(W / 2 + 220, 600, t);
+    });
+    pop(ap(t, P(3, "dormir")), W / 2, 1010, () => kv < .5 ? txt("DORMIU COM R$ 100", W / 2, 1010, 60, "#fff") : txt("ACORDOU: VALE R$ 90 EM DÓLAR", W / 2, 1010, 58, C.AM));
+    fonte("Analogia: com o real 10% mais fraco, R$ 100 compram ~10% menos dólares");
+  },
+  (t) => { // dólar alto empurra preço
+    pop(ap(t, ini(4)), W / 2, 420, () => { txt("DÓLAR ALTO", W / 2, 390, 110, "#fff", { contorno: 10 }); txt("EMPURRA PREÇO", W / 2, 500, 96, C.AM, { contorno: 10 }); });
+    [["CELULAR", celular, "celular", 220], ["COMBUSTÍVEL", bomba, "combustivel", 540], ["PÃO", pao, "pao", 860]].forEach(([n, d, w, x]) =>
+      pop(ap(t, P(4, w) - .2), x, 860, () => card(x, 860, n, d, ap(t, P(4, w) + .2))));
+    pop(ap(t, P(4, "trigo") - .2), W / 2, 1120, () => txt("o trigo do pão francês é, em boa parte, importado", W / 2, 1120, 34, "#cfd6e3", { fonte: "Nunito", peso: 800 }));
+    fonte("Produtos com peças, insumos ou preço em dólar tendem a subir com o câmbio");
+  },
+  (t) => { // dívida 11 tri
+    pop(ap(t, P(5, "divida") - .2), W / 2, 380, () => txt("DÍVIDA BRUTA DO GOVERNO", W / 2, 380, 52, "#cfd6e3", { fonte: "Nunito", peso: 900 }));
+    const t0 = P(5, "onze") - .4; if (t > t0) txt(`R$ ${(conta(t, t0, 111, 1.2) / 10).toFixed(1).replace(".", ",")} TRI`, W / 2, 540, 170, "#fff", { contorno: 10 });
+    pop(ap(t, P(5, "cinquenta") - .2), W / 2, 720, () => pilula("R$ 52 MIL POR BRASILEIRO", W / 2, 720, 58, C.AM, "#000"));
+    fonte("R$ 11,1 trilhões (BC, ago/2026) ÷ 213 milhões de habitantes (IBGE)");
+  },
+  (t) => { // bebê = carro usado
+    txt("R$ 11,1 TRI", W / 2, 400, 120, "#fff", { contorno: 10 }); pilula("R$ 52 MIL POR BRASILEIRO", W / 2, 520, 50, C.AM, "#000");
+    pop(ap(t, P(6, "bebe") - .2), 300, 820, () => mamadeira(300, 820));
+    pop(ap(t, P(6, "devendo") - .2), W / 2, 830, () => txt("=", 520, 830, 140, "#fff"));
+    pop(ap(t, P(6, "carro") - .2), 770, 830, () => { carro(770, 840); pilula("R$ 52 MIL", 770, 700, 40, C.AM, "#000"); });
+    pop(ap(t, P(6, "carro")), W / 2, 1100, () => { txt("CADA BEBÊ JÁ NASCE", W / 2, 1080, 64, "#fff"); txt("DEVENDO UM CARRO USADO", W / 2, 1170, 64, C.AM); });
+    fonte("R$ 11,1 trilhões (BC, ago/2026) ÷ 213 milhões de habitantes (IBGE)");
+  },
+  (t) => { // família 100 / 72 / 83
+    txt("PENSA NUMA FAMÍLIA", W / 2, 400, 80, "#fff", { contorno: 8 });
+    const k1 = ap(t, P(7, "cem") - .3, .8), base = 1150;
+    if (k1 > 0) { pilha(330, base, 520 * k1, VERDE, "#1e8d48"); txt(String(conta(t, P(7, "cem") - .3, 100, .8)), 330, base - 520 * k1 - 70, 90, VERDE, { contorno: 8 }); txt("GANHA", 330, base + 80, 52, "#fff"); }
+    const tD = P(7, "setenta") - .3, tH = P(7, "oitenta") - .3, kD = ap(t, tD, .8);
+    if (kD > 0) {
+      const hoje = t > tH, v = hoje ? 72 + Math.round(11 * ease((t - tH) / .8)) : Math.round(72 * kD), alt = 520 * v / 100;
+      pilha(750, base, alt, hoje ? "#ff4d4d" : LARANJA, hoje ? "#a82424" : "#b85a17");
+      txt(String(v), 750, base - alt - 70, 90, hoje ? C.VM : LARANJA, { contorno: 8 }); txt("DEVE", 750, base + 80, 52, "#fff");
+      txt(hoje ? "hoje" : "quando Lula assumiu", 750, base + 135, 32, "#cfd6e3", { fonte: "Nunito", peso: 800 });
+    }
+    fonte("Dívida bruta / PIB: 71,7% (dez/2022) → 82,9% (ago/2026)", "Fonte: Banco Central");
+  },
+  (t) => { // juros 14%, cartão com cartão
+    pop(ap(t, P(8, "juros") - .2), W / 2, 400, () => txt("JURO NA CASA DOS 14%", W / 2, 400, 96, C.AM, { contorno: 10 }));
+    pop(ap(t, P(8, "divida") - .2), W / 2, 500, () => txt("a dívida nova paga a velha", W / 2, 500, 46, "#fff", { fonte: "Nunito", peso: 800 }));
+    pop(ap(t, P(8, "divida") - .3), 620, 800, () => cartao(620, 800, "#4a5470", "DÍVIDA VELHA"));
+    desliza(ap(t, P(8, "nova") - .1, .4), -300, 0, () => cartao(460, 700, "#d9342b", "DÍVIDA NOVA"));
+    pop(ap(t, P(8, "quitar") - .2), W / 2, 1080, () => { rr(150, 1010, 780, 150, 24, C.AM); txt("QUITAR O CARTÃO", W / 2, 1060, 58, "#000"); txt("COM OUTRO CARTÃO", W / 2, 1120, 58, "#000"); });
+    fonte("Selic: 14,25% ao ano (Banco Central, última decisão)");
+  },
+  (t) => { // milionários
+    pop(ap(t, ini(9)), W / 2, 400, () => { txt("QUEM TEM DINHEIRO", W / 2, 380, 80, "#fff", { contorno: 8 }); txt("FAZ AS MALAS", W / 2, 470, 90, C.AM, { contorno: 8 }); });
+    const kv = clamp((t - P(9, "malas") + .2) / 2.2);
+    if (kv > 0) { const x = -150 + 1350 * ease(kv); for (let i = 0; i < 6; i++) { const nx = x - 180 - i * 70, ny = 640 + Math.sin(t * 6 + i) * 14; if (nx > -60) { rr(nx - 28, ny - 16, 56, 32, 5, "#2fa84f"); circ(nx, ny, 9, "#bff0cf"); } } jato(x, 620, 1.2, 0, "#eef2f7"); }
+    pop(ap(t, P(9, "sexto") - .2), W / 2, 900, () => { txt("6º", W / 2, 890, 260, C.AM, { contorno: 12 }); txt("país que mais perdeu", W / 2, 1060, 50, "#fff", { fonte: "Nunito", peso: 900 }); txt("milionários em 2025", W / 2, 1120, 50, "#fff", { fonte: "Nunito", peso: 900 }); });
+    fonte("Estimativa Henley & Partners (Private Wealth Migration Report 2025)");
+  },
+  (t) => { // garçom
+    pop(ap(t, ini(10)), W / 2, 400, () => txt("QUANDO O DONO VAI EMBORA…", W / 2, 400, 60, "#fff", { contorno: 8 }));
+    pop(ap(t, ini(10) + .1), W / 2, 760, () => loja(W / 2, 700, ap(t, P(10, "embora"))));
+    pop(ap(t, P(10, "perde") - .2), W / 2, 1150, () => { rr(140, 1070, 800, 160, 24, C.AM); txt("QUEM PERDE O EMPREGO", W / 2, 1122, 58, "#000"); txt("É O GARÇOM", W / 2, 1184, 58, "#000"); });
+  },
+  (t) => { // quem fez o L paga
+    pop(ap(t, ini(11)), W / 2, 420, () => { txt("QUEM FEZ O L", W / 2, 400, 120, "#fff", { contorno: 10 }); txt("VAI PAGAR ESSA CONTA.", W / 2, 510, 70, C.AM, { contorno: 8 }); });
+    desliza(ap(t, P(11, "conta") - .2, .4), 0, 160, () => recibo(200, 600, 680, "CONTA DA REELEIÇÃO", "4 anos · sem parcelamento",
+      [["Quem fez o L", "PAGA", C.TINTA, P(11, "conta")], ["Quem não fez", "PAGA TAMBÉM", C.VM, P(11, "nao")]], t));
+    pop(ap(t, P(11, "tambem")), W / 2, 1100, () => txt("TODO MUNDO", W / 2, 1100, 120, C.VM, { contorno: 10 }));
+  },
+  (t) => { // CTA
+    pop(ap(t, ini(12)), W / 2, 640, () => { txt("MARCA AQUELE AMIGO", W / 2, 600, 80, "#fff", { contorno: 8 }); txt("QUE FEZ O L", W / 2, 730, 150, C.AM, { contorno: 12 }); });
+    pop(ap(t, P(12, "segue") - .2), W / 2, 1000, () => { txt("E SEGUE O", W / 2, 960, 60, "#fff"); txtCabe("@COMOFUNCIONATALCOISA", W / 2, 1060, 90, C.AM, 960); txt("▼", W / 2, 1180, 70, "#fff"); });
+  },
+];
+K.rodar(CENA);
+</script></body></html>

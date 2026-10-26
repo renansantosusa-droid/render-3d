@@ -1,0 +1,865 @@
+{
+ "total": 65.38,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.82,
+   "texto": "Fez o L? A conta chegou antes da meia-noite.",
+   "palavras": [
+    {
+     "w": "Fez",
+     "t": 0.2
+    },
+    {
+     "w": "o",
+     "t": 0.471
+    },
+    {
+     "w": "L",
+     "t": 0.66
+    },
+    {
+     "w": "A",
+     "t": 1.766
+    },
+    {
+     "w": "conta",
+     "t": 1.895
+    },
+    {
+     "w": "chegou",
+     "t": 2.249
+    },
+    {
+     "w": "antes",
+     "t": 2.615
+    },
+    {
+     "w": "da",
+     "t": 2.886
+    },
+    {
+     "w": "meia-noite",
+     "t": 2.98
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.97,
+   "fim": 9.47,
+   "texto": "Domingo à noite, com a bolsa fechada, o real derreteu quase dez por cento no mercado futuro.",
+   "palavras": [
+    {
+     "w": "Domingo",
+     "t": 4.02
+    },
+    {
+     "w": "à",
+     "t": 4.492
+    },
+    {
+     "w": "noite",
+     "t": 4.539
+    },
+    {
+     "w": "com",
+     "t": 5.187
+    },
+    {
+     "w": "a",
+     "t": 5.353
+    },
+    {
+     "w": "bolsa",
+     "t": 5.4
+    },
+    {
+     "w": "fechada",
+     "t": 5.695
+    },
+    {
+     "w": "o",
+     "t": 6.461
+    },
+    {
+     "w": "real",
+     "t": 6.544
+    },
+    {
+     "w": "derreteu",
+     "t": 6.827
+    },
+    {
+     "w": "quase",
+     "t": 7.204
+    },
+    {
+     "w": "dez",
+     "t": 7.558
+    },
+    {
+     "w": "por",
+     "t": 7.794
+    },
+    {
+     "w": "cento",
+     "t": 7.959
+    },
+    {
+     "w": "no",
+     "t": 8.312
+    },
+    {
+     "w": "mercado",
+     "t": 8.383
+    },
+    {
+     "w": "futuro",
+     "t": 8.82
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.62,
+   "fim": 13.69,
+   "texto": "É como dormir com uma nota de cem e acordar com ela valendo noventa em dólar.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 9.67
+    },
+    {
+     "w": "como",
+     "t": 9.8
+    },
+    {
+     "w": "dormir",
+     "t": 10.036
+    },
+    {
+     "w": "com",
+     "t": 10.401
+    },
+    {
+     "w": "uma",
+     "t": 10.566
+    },
+    {
+     "w": "nota",
+     "t": 10.696
+    },
+    {
+     "w": "de",
+     "t": 11.014
+    },
+    {
+     "w": "cem",
+     "t": 11.144
+    },
+    {
+     "w": "e",
+     "t": 11.415
+    },
+    {
+     "w": "acordar",
+     "t": 11.451
+    },
+    {
+     "w": "com",
+     "t": 11.911
+    },
+    {
+     "w": "ela",
+     "t": 12.099
+    },
+    {
+     "w": "valendo",
+     "t": 12.264
+    },
+    {
+     "w": "noventa",
+     "t": 12.63
+    },
+    {
+     "w": "em",
+     "t": 13.019
+    },
+    {
+     "w": "dólar",
+     "t": 13.102
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 13.84,
+   "fim": 21.11,
+   "texto": "Dólar alto empurra preço. Celular, combustível, e até o pão francês, que usa trigo importado.",
+   "palavras": [
+    {
+     "w": "Dólar",
+     "t": 13.89
+    },
+    {
+     "w": "alto",
+     "t": 14.291
+    },
+    {
+     "w": "empurra",
+     "t": 14.527
+    },
+    {
+     "w": "preço",
+     "t": 14.987
+    },
+    {
+     "w": "Celular",
+     "t": 16.21
+    },
+    {
+     "w": "combustível",
+     "t": 17.036
+    },
+    {
+     "w": "e",
+     "t": 18.038
+    },
+    {
+     "w": "até",
+     "t": 18.132
+    },
+    {
+     "w": "o",
+     "t": 18.392
+    },
+    {
+     "w": "pão",
+     "t": 18.474
+    },
+    {
+     "w": "francês",
+     "t": 18.698
+    },
+    {
+     "w": "que",
+     "t": 19.441
+    },
+    {
+     "w": "usa",
+     "t": 19.607
+    },
+    {
+     "w": "trigo",
+     "t": 19.925
+    },
+    {
+     "w": "importado",
+     "t": 20.232
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 21.26,
+   "fim": 27.37,
+   "texto": "A dívida bruta já passa de onze trilhões de reais. Dá uns cinquenta e dois mil por brasileiro.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 21.31
+    },
+    {
+     "w": "dívida",
+     "t": 21.44
+    },
+    {
+     "w": "bruta",
+     "t": 21.817
+    },
+    {
+     "w": "já",
+     "t": 22.183
+    },
+    {
+     "w": "passa",
+     "t": 22.336
+    },
+    {
+     "w": "de",
+     "t": 22.737
+    },
+    {
+     "w": "onze",
+     "t": 22.89
+    },
+    {
+     "w": "trilhões",
+     "t": 23.232
+    },
+    {
+     "w": "de",
+     "t": 23.727
+    },
+    {
+     "w": "reais",
+     "t": 23.834
+    },
+    {
+     "w": "Dá",
+     "t": 25.104
+    },
+    {
+     "w": "uns",
+     "t": 25.305
+    },
+    {
+     "w": "cinquenta",
+     "t": 25.517
+    },
+    {
+     "w": "e",
+     "t": 25.942
+    },
+    {
+     "w": "dois",
+     "t": 25.977
+    },
+    {
+     "w": "mil",
+     "t": 26.177
+    },
+    {
+     "w": "por",
+     "t": 26.378
+    },
+    {
+     "w": "brasileiro",
+     "t": 26.543
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 27.52,
+   "fim": 30.57,
+   "texto": "É como se cada bebê já nascesse devendo um carro usado.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 27.57
+    },
+    {
+     "w": "como",
+     "t": 27.7
+    },
+    {
+     "w": "se",
+     "t": 27.936
+    },
+    {
+     "w": "cada",
+     "t": 28.065
+    },
+    {
+     "w": "bebê",
+     "t": 28.301
+    },
+    {
+     "w": "já",
+     "t": 28.572
+    },
+    {
+     "w": "nascesse",
+     "t": 28.702
+    },
+    {
+     "w": "devendo",
+     "t": 29.15
+    },
+    {
+     "w": "um",
+     "t": 29.504
+    },
+    {
+     "w": "carro",
+     "t": 29.622
+    },
+    {
+     "w": "usado",
+     "t": 29.917
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 30.72,
+   "fim": 38.58,
+   "texto": "Pensa numa família que ganha cem. Quando o Lula assumiu, ela devia setenta e dois. Hoje, deve oitenta e três.",
+   "palavras": [
+    {
+     "w": "Pensa",
+     "t": 30.77
+    },
+    {
+     "w": "numa",
+     "t": 31.136
+    },
+    {
+     "w": "família",
+     "t": 31.348
+    },
+    {
+     "w": "que",
+     "t": 31.772
+    },
+    {
+     "w": "ganha",
+     "t": 31.902
+    },
+    {
+     "w": "cem",
+     "t": 32.209
+    },
+    {
+     "w": "Quando",
+     "t": 33.338
+    },
+    {
+     "w": "o",
+     "t": 33.609
+    },
+    {
+     "w": "Lula",
+     "t": 33.645
+    },
+    {
+     "w": "assumiu",
+     "t": 33.869
+    },
+    {
+     "w": "ela",
+     "t": 34.47
+    },
+    {
+     "w": "devia",
+     "t": 34.67
+    },
+    {
+     "w": "setenta",
+     "t": 35.001
+    },
+    {
+     "w": "e",
+     "t": 35.437
+    },
+    {
+     "w": "dois",
+     "t": 35.484
+    },
+    {
+     "w": "Hoje",
+     "t": 36.663
+    },
+    {
+     "w": "deve",
+     "t": 37.229
+    },
+    {
+     "w": "oitenta",
+     "t": 37.501
+    },
+    {
+     "w": "e",
+     "t": 37.854
+    },
+    {
+     "w": "três",
+     "t": 37.913
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 38.73,
+   "fim": 45.54,
+   "texto": "E com juros na casa dos catorze por cento, a dívida nova paga a velha. É quitar o cartão com outro cartão.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 38.78
+    },
+    {
+     "w": "com",
+     "t": 38.886
+    },
+    {
+     "w": "juros",
+     "t": 39.11
+    },
+    {
+     "w": "na",
+     "t": 39.44
+    },
+    {
+     "w": "casa",
+     "t": 39.57
+    },
+    {
+     "w": "dos",
+     "t": 39.853
+    },
+    {
+     "w": "catorze",
+     "t": 40.006
+    },
+    {
+     "w": "por",
+     "t": 40.502
+    },
+    {
+     "w": "cento",
+     "t": 40.643
+    },
+    {
+     "w": "a",
+     "t": 41.221
+    },
+    {
+     "w": "dívida",
+     "t": 41.315
+    },
+    {
+     "w": "nova",
+     "t": 41.669
+    },
+    {
+     "w": "paga",
+     "t": 41.952
+    },
+    {
+     "w": "a",
+     "t": 42.2
+    },
+    {
+     "w": "velha",
+     "t": 42.235
+    },
+    {
+     "w": "É",
+     "t": 43.388
+    },
+    {
+     "w": "quitar",
+     "t": 43.53
+    },
+    {
+     "w": "o",
+     "t": 43.895
+    },
+    {
+     "w": "cartão",
+     "t": 43.942
+    },
+    {
+     "w": "com",
+     "t": 44.331
+    },
+    {
+     "w": "outro",
+     "t": 44.555
+    },
+    {
+     "w": "cartão",
+     "t": 44.815
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 45.69,
+   "fim": 52.46,
+   "texto": "Quem tem dinheiro faz as malas. O Brasil foi o sexto país que mais perdeu milionários em dois mil e vinte e cinco.",
+   "palavras": [
+    {
+     "w": "Quem",
+     "t": 45.74
+    },
+    {
+     "w": "tem",
+     "t": 45.976
+    },
+    {
+     "w": "dinheiro",
+     "t": 46.141
+    },
+    {
+     "w": "faz",
+     "t": 46.601
+    },
+    {
+     "w": "as",
+     "t": 46.801
+    },
+    {
+     "w": "malas",
+     "t": 47.002
+    },
+    {
+     "w": "O",
+     "t": 48.296
+    },
+    {
+     "w": "Brasil",
+     "t": 48.39
+    },
+    {
+     "w": "foi",
+     "t": 48.862
+    },
+    {
+     "w": "o",
+     "t": 49.027
+    },
+    {
+     "w": "sexto",
+     "t": 49.074
+    },
+    {
+     "w": "país",
+     "t": 49.452
+    },
+    {
+     "w": "que",
+     "t": 49.782
+    },
+    {
+     "w": "mais",
+     "t": 49.888
+    },
+    {
+     "w": "perdeu",
+     "t": 50.148
+    },
+    {
+     "w": "milionários",
+     "t": 50.49
+    },
+    {
+     "w": "em",
+     "t": 51.008
+    },
+    {
+     "w": "dois",
+     "t": 51.15
+    },
+    {
+     "w": "mil",
+     "t": 51.35
+    },
+    {
+     "w": "e",
+     "t": 51.504
+    },
+    {
+     "w": "vinte",
+     "t": 51.574
+    },
+    {
+     "w": "e",
+     "t": 51.822
+    },
+    {
+     "w": "cinco",
+     "t": 51.857
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 52.61,
+   "fim": 55.95,
+   "texto": "E quando o dono vai embora, quem perde o emprego é o garçom.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 52.66
+    },
+    {
+     "w": "quando",
+     "t": 52.778
+    },
+    {
+     "w": "o",
+     "t": 53.014
+    },
+    {
+     "w": "dono",
+     "t": 53.049
+    },
+    {
+     "w": "vai",
+     "t": 53.332
+    },
+    {
+     "w": "embora",
+     "t": 53.485
+    },
+    {
+     "w": "quem",
+     "t": 54.075
+    },
+    {
+     "w": "perde",
+     "t": 54.323
+    },
+    {
+     "w": "o",
+     "t": 54.677
+    },
+    {
+     "w": "emprego",
+     "t": 54.712
+    },
+    {
+     "w": "é",
+     "t": 55.148
+    },
+    {
+     "w": "o",
+     "t": 55.231
+    },
+    {
+     "w": "garçom",
+     "t": 55.278
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 56.1,
+   "fim": 60.56,
+   "texto": "Quem fez o L vai pagar essa conta. E quem não fez, também.",
+   "palavras": [
+    {
+     "w": "Quem",
+     "t": 56.15
+    },
+    {
+     "w": "fez",
+     "t": 56.386
+    },
+    {
+     "w": "o",
+     "t": 56.645
+    },
+    {
+     "w": "L",
+     "t": 56.787
+    },
+    {
+     "w": "vai",
+     "t": 56.975
+    },
+    {
+     "w": "pagar",
+     "t": 57.141
+    },
+    {
+     "w": "essa",
+     "t": 57.424
+    },
+    {
+     "w": "conta",
+     "t": 57.648
+    },
+    {
+     "w": "E",
+     "t": 58.859
+    },
+    {
+     "w": "quem",
+     "t": 58.989
+    },
+    {
+     "w": "não",
+     "t": 59.166
+    },
+    {
+     "w": "fez",
+     "t": 59.355
+    },
+    {
+     "w": "também",
+     "t": 59.909
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "ini": 60.71,
+   "fim": 64.78,
+   "texto": "Marca aquele amigo que fez o L, e segue o Como Funciona Tal Coisa.",
+   "palavras": [
+    {
+     "w": "Marca",
+     "t": 60.76
+    },
+    {
+     "w": "aquele",
+     "t": 61.126
+    },
+    {
+     "w": "amigo",
+     "t": 61.326
+    },
+    {
+     "w": "que",
+     "t": 61.692
+    },
+    {
+     "w": "fez",
+     "t": 61.81
+    },
+    {
+     "w": "o",
+     "t": 62.022
+    },
+    {
+     "w": "L",
+     "t": 62.187
+    },
+    {
+     "w": "e",
+     "t": 62.741
+    },
+    {
+     "w": "segue",
+     "t": 62.812
+    },
+    {
+     "w": "o",
+     "t": 63.13
+    },
+    {
+     "w": "Como",
+     "t": 63.177
+    },
+    {
+     "w": "Funciona",
+     "t": 63.425
+    },
+    {
+     "w": "Tal",
+     "t": 63.979
+    },
+    {
+     "w": "Coisa",
+     "t": 64.156
+    }
+   ]
+  }
+ ]
+}
