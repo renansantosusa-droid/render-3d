@@ -1,0 +1,737 @@
+{
+ "total": 64.54,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.92,
+   "texto": "Trump, Venezuela e a eleição brasileira. O que liga essas três coisas? Duas horas a mais de votação.",
+   "palavras": [
+    {
+     "w": "Trump",
+     "t": 0.2
+    },
+    {
+     "w": "Venezuela",
+     "t": 0.884
+    },
+    {
+     "w": "e",
+     "t": 1.615
+    },
+    {
+     "w": "a",
+     "t": 1.674
+    },
+    {
+     "w": "eleição",
+     "t": 1.721
+    },
+    {
+     "w": "brasileira",
+     "t": 2.075
+    },
+    {
+     "w": "O",
+     "t": 3.452
+    },
+    {
+     "w": "que",
+     "t": 3.582
+    },
+    {
+     "w": "liga",
+     "t": 3.759
+    },
+    {
+     "w": "essas",
+     "t": 4.018
+    },
+    {
+     "w": "três",
+     "t": 4.313
+    },
+    {
+     "w": "coisas",
+     "t": 4.584
+    },
+    {
+     "w": "Duas",
+     "t": 5.94
+    },
+    {
+     "w": "horas",
+     "t": 6.247
+    },
+    {
+     "w": "a",
+     "t": 6.612
+    },
+    {
+     "w": "mais",
+     "t": 6.742
+    },
+    {
+     "w": "de",
+     "t": 7.025
+    },
+    {
+     "w": "votação",
+     "t": 7.119
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 8.07,
+   "fim": 21.16,
+   "texto": "No segundo turno, o ministro Cristiano Zanin, do STF, prorrogou a votação até as sete da noite. E um advogado ligado ao Trump, Martin De Luca, reagiu na hora: chamou de manipulação descarada.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 8.12
+    },
+    {
+     "w": "segundo",
+     "t": 8.285
+    },
+    {
+     "w": "turno",
+     "t": 8.721
+    },
+    {
+     "w": "o",
+     "t": 9.394
+    },
+    {
+     "w": "ministro",
+     "t": 9.464
+    },
+    {
+     "w": "Cristiano",
+     "t": 9.912
+    },
+    {
+     "w": "Zanin",
+     "t": 10.337
+    },
+    {
+     "w": "do",
+     "t": 10.927
+    },
+    {
+     "w": "STF",
+     "t": 11.127
+    },
+    {
+     "w": "prorrogou",
+     "t": 12.07
+    },
+    {
+     "w": "a",
+     "t": 12.554
+    },
+    {
+     "w": "votação",
+     "t": 12.625
+    },
+    {
+     "w": "até",
+     "t": 13.155
+    },
+    {
+     "w": "as",
+     "t": 13.415
+    },
+    {
+     "w": "sete",
+     "t": 13.556
+    },
+    {
+     "w": "da",
+     "t": 13.898
+    },
+    {
+     "w": "noite",
+     "t": 13.993
+    },
+    {
+     "w": "E",
+     "t": 15.193
+    },
+    {
+     "w": "um",
+     "t": 15.311
+    },
+    {
+     "w": "advogado",
+     "t": 15.428
+    },
+    {
+     "w": "ligado",
+     "t": 15.971
+    },
+    {
+     "w": "ao",
+     "t": 16.36
+    },
+    {
+     "w": "Trump",
+     "t": 16.466
+    },
+    {
+     "w": "Martin",
+     "t": 17.091
+    },
+    {
+     "w": "De",
+     "t": 17.457
+    },
+    {
+     "w": "Luca",
+     "t": 17.575
+    },
+    {
+     "w": "reagiu",
+     "t": 18.129
+    },
+    {
+     "w": "na",
+     "t": 18.518
+    },
+    {
+     "w": "hora",
+     "t": 18.66
+    },
+    {
+     "w": "chamou",
+     "t": 19.167
+    },
+    {
+     "w": "de",
+     "t": 19.556
+    },
+    {
+     "w": "manipulação",
+     "t": 19.65
+    },
+    {
+     "w": "descarada",
+     "t": 20.299
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 21.31,
+   "fim": 31.54,
+   "texto": "Aí muita gente lembrou da Venezuela. Em três de janeiro, os Estados Unidos atacaram alvos em Caracas, capturaram Nicolás Maduro e o levaram pra fora do país.",
+   "palavras": [
+    {
+     "w": "Aí",
+     "t": 21.36
+    },
+    {
+     "w": "muita",
+     "t": 21.678
+    },
+    {
+     "w": "gente",
+     "t": 22.091
+    },
+    {
+     "w": "lembrou",
+     "t": 22.362
+    },
+    {
+     "w": "da",
+     "t": 22.716
+    },
+    {
+     "w": "Venezuela",
+     "t": 22.822
+    },
+    {
+     "w": "Em",
+     "t": 24.294
+    },
+    {
+     "w": "três",
+     "t": 24.494
+    },
+    {
+     "w": "de",
+     "t": 24.789
+    },
+    {
+     "w": "janeiro",
+     "t": 24.871
+    },
+    {
+     "w": "os",
+     "t": 25.626
+    },
+    {
+     "w": "Estados",
+     "t": 25.709
+    },
+    {
+     "w": "Unidos",
+     "t": 26.18
+    },
+    {
+     "w": "atacaram",
+     "t": 26.546
+    },
+    {
+     "w": "alvos",
+     "t": 27.112
+    },
+    {
+     "w": "em",
+     "t": 27.371
+    },
+    {
+     "w": "Caracas",
+     "t": 27.525
+    },
+    {
+     "w": "capturaram",
+     "t": 28.303
+    },
+    {
+     "w": "Nicolás",
+     "t": 28.857
+    },
+    {
+     "w": "Maduro",
+     "t": 29.258
+    },
+    {
+     "w": "e",
+     "t": 29.765
+    },
+    {
+     "w": "o",
+     "t": 29.812
+    },
+    {
+     "w": "levaram",
+     "t": 29.848
+    },
+    {
+     "w": "pra",
+     "t": 30.26
+    },
+    {
+     "w": "fora",
+     "t": 30.414
+    },
+    {
+     "w": "do",
+     "t": 30.709
+    },
+    {
+     "w": "país",
+     "t": 30.815
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 31.69,
+   "fim": 43.28,
+   "texto": "Só que o Brasil não é a Venezuela. Lá, Washington não reconhecia a eleição de Maduro. Aqui, o TSE proclamou o resultado, e Lula toma posse em cinco de janeiro.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 31.74
+    },
+    {
+     "w": "que",
+     "t": 32.047
+    },
+    {
+     "w": "o",
+     "t": 32.129
+    },
+    {
+     "w": "Brasil",
+     "t": 32.165
+    },
+    {
+     "w": "não",
+     "t": 32.601
+    },
+    {
+     "w": "é",
+     "t": 32.86
+    },
+    {
+     "w": "a",
+     "t": 33.014
+    },
+    {
+     "w": "Venezuela",
+     "t": 33.061
+    },
+    {
+     "w": "Lá",
+     "t": 34.544
+    },
+    {
+     "w": "Washington",
+     "t": 35.098
+    },
+    {
+     "w": "não",
+     "t": 35.605
+    },
+    {
+     "w": "reconhecia",
+     "t": 35.77
+    },
+    {
+     "w": "a",
+     "t": 36.395
+    },
+    {
+     "w": "eleição",
+     "t": 36.442
+    },
+    {
+     "w": "de",
+     "t": 36.82
+    },
+    {
+     "w": "Maduro",
+     "t": 36.914
+    },
+    {
+     "w": "Aqui",
+     "t": 38.188
+    },
+    {
+     "w": "o",
+     "t": 38.824
+    },
+    {
+     "w": "TSE",
+     "t": 38.954
+    },
+    {
+     "w": "proclamou",
+     "t": 39.508
+    },
+    {
+     "w": "o",
+     "t": 39.992
+    },
+    {
+     "w": "resultado",
+     "t": 40.015
+    },
+    {
+     "w": "e",
+     "t": 40.924
+    },
+    {
+     "w": "Lula",
+     "t": 41.03
+    },
+    {
+     "w": "toma",
+     "t": 41.36
+    },
+    {
+     "w": "posse",
+     "t": 41.655
+    },
+    {
+     "w": "em",
+     "t": 42.032
+    },
+    {
+     "w": "cinco",
+     "t": 42.138
+    },
+    {
+     "w": "de",
+     "t": 42.527
+    },
+    {
+     "w": "janeiro",
+     "t": 42.61
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 43.43,
+   "fim": 51.8,
+   "texto": "E o histórico do Trump com o Brasil é de pressão econômica: tarifa de cinquenta por cento em dois mil e vinte e cinco e sanção contra o ministro Alexandre de Moraes.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 43.48
+    },
+    {
+     "w": "o",
+     "t": 43.598
+    },
+    {
+     "w": "histórico",
+     "t": 43.657
+    },
+    {
+     "w": "do",
+     "t": 44.129
+    },
+    {
+     "w": "Trump",
+     "t": 44.247
+    },
+    {
+     "w": "com",
+     "t": 44.589
+    },
+    {
+     "w": "o",
+     "t": 44.742
+    },
+    {
+     "w": "Brasil",
+     "t": 44.789
+    },
+    {
+     "w": "é",
+     "t": 45.202
+    },
+    {
+     "w": "de",
+     "t": 45.272
+    },
+    {
+     "w": "pressão",
+     "t": 45.367
+    },
+    {
+     "w": "econômica",
+     "t": 45.732
+    },
+    {
+     "w": "tarifa",
+     "t": 46.534
+    },
+    {
+     "w": "de",
+     "t": 46.959
+    },
+    {
+     "w": "cinquenta",
+     "t": 47.065
+    },
+    {
+     "w": "por",
+     "t": 47.572
+    },
+    {
+     "w": "cento",
+     "t": 47.725
+    },
+    {
+     "w": "em",
+     "t": 48.032
+    },
+    {
+     "w": "dois",
+     "t": 48.091
+    },
+    {
+     "w": "mil",
+     "t": 48.315
+    },
+    {
+     "w": "e",
+     "t": 48.445
+    },
+    {
+     "w": "vinte",
+     "t": 48.527
+    },
+    {
+     "w": "e",
+     "t": 48.787
+    },
+    {
+     "w": "cinco",
+     "t": 48.822
+    },
+    {
+     "w": "e",
+     "t": 49.14
+    },
+    {
+     "w": "sanção",
+     "t": 49.199
+    },
+    {
+     "w": "contra",
+     "t": 49.659
+    },
+    {
+     "w": "o",
+     "t": 49.966
+    },
+    {
+     "w": "ministro",
+     "t": 49.989
+    },
+    {
+     "w": "Alexandre",
+     "t": 50.449
+    },
+    {
+     "w": "de",
+     "t": 50.945
+    },
+    {
+     "w": "Moraes",
+     "t": 51.039
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 51.95,
+   "fim": 59.31,
+   "texto": "Então, uma intervenção do jeito venezuelano é muito improvável. Pressão política e econômica, essa sim pode vir.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 52
+    },
+    {
+     "w": "uma",
+     "t": 52.743
+    },
+    {
+     "w": "intervenção",
+     "t": 52.884
+    },
+    {
+     "w": "do",
+     "t": 53.545
+    },
+    {
+     "w": "jeito",
+     "t": 53.663
+    },
+    {
+     "w": "venezuelano",
+     "t": 53.958
+    },
+    {
+     "w": "é",
+     "t": 54.63
+    },
+    {
+     "w": "muito",
+     "t": 54.689
+    },
+    {
+     "w": "improvável",
+     "t": 55.066
+    },
+    {
+     "w": "Pressão",
+     "t": 56.443
+    },
+    {
+     "w": "política",
+     "t": 56.856
+    },
+    {
+     "w": "e",
+     "t": 57.327
+    },
+    {
+     "w": "econômica",
+     "t": 57.363
+    },
+    {
+     "w": "essa",
+     "t": 58.07
+    },
+    {
+     "w": "sim",
+     "t": 58.306
+    },
+    {
+     "w": "pode",
+     "t": 58.554
+    },
+    {
+     "w": "vir",
+     "t": 58.837
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 59.46,
+   "fim": 63.94,
+   "texto": "E você, acha que o Trump vai entrar nessa briga? Comenta aqui.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 59.51
+    },
+    {
+     "w": "você",
+     "t": 59.628
+    },
+    {
+     "w": "acha",
+     "t": 60.288
+    },
+    {
+     "w": "que",
+     "t": 60.595
+    },
+    {
+     "w": "o",
+     "t": 60.677
+    },
+    {
+     "w": "Trump",
+     "t": 60.725
+    },
+    {
+     "w": "vai",
+     "t": 61.043
+    },
+    {
+     "w": "entrar",
+     "t": 61.196
+    },
+    {
+     "w": "nessa",
+     "t": 61.444
+    },
+    {
+     "w": "briga",
+     "t": 61.703
+    },
+    {
+     "w": "Comenta",
+     "t": 62.892
+    },
+    {
+     "w": "aqui",
+     "t": 63.375
+    }
+   ]
+  }
+ ]
+}
