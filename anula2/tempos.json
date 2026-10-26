@@ -1,0 +1,709 @@
+{
+ "total": 63.63,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.2,
+   "texto": "Duas horas a mais podem derrubar o resultado de uma eleição? Essa é a briga que começou logo depois do segundo turno.",
+   "palavras": [
+    {
+     "w": "Duas",
+     "t": 0.2
+    },
+    {
+     "w": "horas",
+     "t": 0.518
+    },
+    {
+     "w": "a",
+     "t": 0.872
+    },
+    {
+     "w": "mais",
+     "t": 0.978
+    },
+    {
+     "w": "podem",
+     "t": 1.202
+    },
+    {
+     "w": "derrubar",
+     "t": 1.462
+    },
+    {
+     "w": "o",
+     "t": 1.875
+    },
+    {
+     "w": "resultado",
+     "t": 1.91
+    },
+    {
+     "w": "de",
+     "t": 2.452
+    },
+    {
+     "w": "uma",
+     "t": 2.558
+    },
+    {
+     "w": "eleição",
+     "t": 2.653
+    },
+    {
+     "w": "Essa",
+     "t": 3.935
+    },
+    {
+     "w": "é",
+     "t": 4.23
+    },
+    {
+     "w": "a",
+     "t": 4.277
+    },
+    {
+     "w": "briga",
+     "t": 4.336
+    },
+    {
+     "w": "que",
+     "t": 4.702
+    },
+    {
+     "w": "começou",
+     "t": 4.82
+    },
+    {
+     "w": "logo",
+     "t": 5.256
+    },
+    {
+     "w": "depois",
+     "t": 5.598
+    },
+    {
+     "w": "do",
+     "t": 5.964
+    },
+    {
+     "w": "segundo",
+     "t": 6.07
+    },
+    {
+     "w": "turno",
+     "t": 6.577
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.35,
+   "fim": 17.8,
+   "texto": "Domingo, cinco da tarde, hora de fechar as urnas. Mas uma decisão do ministro Cristiano Zanin, do STF, empurrou o fim da votação pras sete da noite.",
+   "palavras": [
+    {
+     "w": "Domingo",
+     "t": 7.4
+    },
+    {
+     "w": "cinco",
+     "t": 8.284
+    },
+    {
+     "w": "da",
+     "t": 8.674
+    },
+    {
+     "w": "tarde",
+     "t": 8.803
+    },
+    {
+     "w": "hora",
+     "t": 9.487
+    },
+    {
+     "w": "de",
+     "t": 9.723
+    },
+    {
+     "w": "fechar",
+     "t": 9.829
+    },
+    {
+     "w": "as",
+     "t": 10.207
+    },
+    {
+     "w": "urnas",
+     "t": 10.266
+    },
+    {
+     "w": "Mas",
+     "t": 11.654
+    },
+    {
+     "w": "uma",
+     "t": 11.878
+    },
+    {
+     "w": "decisão",
+     "t": 12.079
+    },
+    {
+     "w": "do",
+     "t": 12.515
+    },
+    {
+     "w": "ministro",
+     "t": 12.598
+    },
+    {
+     "w": "Cristiano",
+     "t": 13.034
+    },
+    {
+     "w": "Zanin",
+     "t": 13.47
+    },
+    {
+     "w": "do",
+     "t": 14.072
+    },
+    {
+     "w": "STF",
+     "t": 14.272
+    },
+    {
+     "w": "empurrou",
+     "t": 15.239
+    },
+    {
+     "w": "o",
+     "t": 15.687
+    },
+    {
+     "w": "fim",
+     "t": 15.734
+    },
+    {
+     "w": "da",
+     "t": 15.947
+    },
+    {
+     "w": "votação",
+     "t": 16.065
+    },
+    {
+     "w": "pras",
+     "t": 16.548
+    },
+    {
+     "w": "sete",
+     "t": 16.772
+    },
+    {
+     "w": "da",
+     "t": 17.079
+    },
+    {
+     "w": "noite",
+     "t": 17.173
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 17.95,
+   "fim": 25.79,
+   "texto": "O pano de fundo: pedidos das duas campanhas. Faltou ônibus em cidades da Bahia e caiu muita chuva em cidades do Sul.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 18
+    },
+    {
+     "w": "pano",
+     "t": 18.153
+    },
+    {
+     "w": "de",
+     "t": 18.472
+    },
+    {
+     "w": "fundo",
+     "t": 18.59
+    },
+    {
+     "w": "pedidos",
+     "t": 19.191
+    },
+    {
+     "w": "das",
+     "t": 19.592
+    },
+    {
+     "w": "duas",
+     "t": 19.781
+    },
+    {
+     "w": "campanhas",
+     "t": 20.075
+    },
+    {
+     "w": "Faltou",
+     "t": 21.535
+    },
+    {
+     "w": "ônibus",
+     "t": 21.995
+    },
+    {
+     "w": "em",
+     "t": 22.36
+    },
+    {
+     "w": "cidades",
+     "t": 22.502
+    },
+    {
+     "w": "da",
+     "t": 22.962
+    },
+    {
+     "w": "Bahia",
+     "t": 23.056
+    },
+    {
+     "w": "e",
+     "t": 23.422
+    },
+    {
+     "w": "caiu",
+     "t": 23.492
+    },
+    {
+     "w": "muita",
+     "t": 23.775
+    },
+    {
+     "w": "chuva",
+     "t": 24.2
+    },
+    {
+     "w": "em",
+     "t": 24.577
+    },
+    {
+     "w": "cidades",
+     "t": 24.648
+    },
+    {
+     "w": "do",
+     "t": 25.108
+    },
+    {
+     "w": "Sul",
+     "t": 25.25
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.94,
+   "fim": 34.88,
+   "texto": "Só que muitas seções já tinham encerrado, e urna fechada não reabre. Então a prorrogação ficou só pras seções que ainda estavam funcionando.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 25.99
+    },
+    {
+     "w": "que",
+     "t": 26.273
+    },
+    {
+     "w": "muitas",
+     "t": 26.391
+    },
+    {
+     "w": "seções",
+     "t": 26.792
+    },
+    {
+     "w": "já",
+     "t": 27.24
+    },
+    {
+     "w": "tinham",
+     "t": 27.358
+    },
+    {
+     "w": "encerrado",
+     "t": 27.641
+    },
+    {
+     "w": "e",
+     "t": 28.49
+    },
+    {
+     "w": "urna",
+     "t": 28.655
+    },
+    {
+     "w": "fechada",
+     "t": 28.903
+    },
+    {
+     "w": "não",
+     "t": 29.351
+    },
+    {
+     "w": "reabre",
+     "t": 29.551
+    },
+    {
+     "w": "Então",
+     "t": 30.822
+    },
+    {
+     "w": "a",
+     "t": 31.27
+    },
+    {
+     "w": "prorrogação",
+     "t": 31.317
+    },
+    {
+     "w": "ficou",
+     "t": 31.954
+    },
+    {
+     "w": "só",
+     "t": 32.296
+    },
+    {
+     "w": "pras",
+     "t": 32.497
+    },
+    {
+     "w": "seções",
+     "t": 32.756
+    },
+    {
+     "w": "que",
+     "t": 33.216
+    },
+    {
+     "w": "ainda",
+     "t": 33.31
+    },
+    {
+     "w": "estavam",
+     "t": 33.605
+    },
+    {
+     "w": "funcionando",
+     "t": 33.982
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.03,
+   "fim": 41.99,
+   "texto": "Na prática, algumas regiões votaram até mais tarde e outras não. E ninguém sabe dizer exatamente quais foram.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 35.08
+    },
+    {
+     "w": "prática",
+     "t": 35.28
+    },
+    {
+     "w": "algumas",
+     "t": 35.858
+    },
+    {
+     "w": "regiões",
+     "t": 36.271
+    },
+    {
+     "w": "votaram",
+     "t": 36.696
+    },
+    {
+     "w": "até",
+     "t": 37.061
+    },
+    {
+     "w": "mais",
+     "t": 37.25
+    },
+    {
+     "w": "tarde",
+     "t": 37.509
+    },
+    {
+     "w": "e",
+     "t": 37.946
+    },
+    {
+     "w": "outras",
+     "t": 38.028
+    },
+    {
+     "w": "não",
+     "t": 38.358
+    },
+    {
+     "w": "E",
+     "t": 39.417
+    },
+    {
+     "w": "ninguém",
+     "t": 39.511
+    },
+    {
+     "w": "sabe",
+     "t": 39.889
+    },
+    {
+     "w": "dizer",
+     "t": 40.172
+    },
+    {
+     "w": "exatamente",
+     "t": 40.455
+    },
+    {
+     "w": "quais",
+     "t": 41.08
+    },
+    {
+     "w": "foram",
+     "t": 41.363
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.14,
+   "fim": 50.06,
+   "texto": "Lula venceu por pouco mais de três pontos. Flávio Bolsonaro não reconheceu a derrota e promete ir à Justiça pedir a anulação.",
+   "palavras": [
+    {
+     "w": "Lula",
+     "t": 42.19
+    },
+    {
+     "w": "venceu",
+     "t": 42.532
+    },
+    {
+     "w": "por",
+     "t": 42.968
+    },
+    {
+     "w": "pouco",
+     "t": 43.145
+    },
+    {
+     "w": "mais",
+     "t": 43.475
+    },
+    {
+     "w": "de",
+     "t": 43.77
+    },
+    {
+     "w": "três",
+     "t": 43.888
+    },
+    {
+     "w": "pontos",
+     "t": 44.171
+    },
+    {
+     "w": "Flávio",
+     "t": 45.465
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 45.902
+    },
+    {
+     "w": "não",
+     "t": 46.444
+    },
+    {
+     "w": "reconheceu",
+     "t": 46.609
+    },
+    {
+     "w": "a",
+     "t": 47.234
+    },
+    {
+     "w": "derrota",
+     "t": 47.293
+    },
+    {
+     "w": "e",
+     "t": 47.718
+    },
+    {
+     "w": "promete",
+     "t": 47.753
+    },
+    {
+     "w": "ir",
+     "t": 48.213
+    },
+    {
+     "w": "à",
+     "t": 48.296
+    },
+    {
+     "w": "Justiça",
+     "t": 48.39
+    },
+    {
+     "w": "pedir",
+     "t": 48.897
+    },
+    {
+     "w": "a",
+     "t": 49.239
+    },
+    {
+     "w": "anulação",
+     "t": 49.286
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.21,
+   "fim": 63.03,
+   "texto": "Um professor da FGV vê caminho pra esse pedido. Outros especialistas acham que não muda nada. A palavra final é dos tribunais. E você, o que acha? Comenta.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 50.26
+    },
+    {
+     "w": "professor",
+     "t": 50.425
+    },
+    {
+     "w": "da",
+     "t": 50.979
+    },
+    {
+     "w": "FGV",
+     "t": 51.097
+    },
+    {
+     "w": "vê",
+     "t": 51.699
+    },
+    {
+     "w": "caminho",
+     "t": 51.84
+    },
+    {
+     "w": "pra",
+     "t": 52.218
+    },
+    {
+     "w": "esse",
+     "t": 52.418
+    },
+    {
+     "w": "pedido",
+     "t": 52.642
+    },
+    {
+     "w": "Outros",
+     "t": 53.877
+    },
+    {
+     "w": "especialistas",
+     "t": 54.208
+    },
+    {
+     "w": "acham",
+     "t": 55.045
+    },
+    {
+     "w": "que",
+     "t": 55.458
+    },
+    {
+     "w": "não",
+     "t": 55.576
+    },
+    {
+     "w": "muda",
+     "t": 55.752
+    },
+    {
+     "w": "nada",
+     "t": 56.059
+    },
+    {
+     "w": "A",
+     "t": 57.191
+    },
+    {
+     "w": "palavra",
+     "t": 57.309
+    },
+    {
+     "w": "final",
+     "t": 57.757
+    },
+    {
+     "w": "é",
+     "t": 58.146
+    },
+    {
+     "w": "dos",
+     "t": 58.205
+    },
+    {
+     "w": "tribunais",
+     "t": 58.453
+    },
+    {
+     "w": "E",
+     "t": 59.939
+    },
+    {
+     "w": "você",
+     "t": 60.057
+    },
+    {
+     "w": "o",
+     "t": 60.752
+    },
+    {
+     "w": "que",
+     "t": 60.847
+    },
+    {
+     "w": "acha",
+     "t": 61.024
+    },
+    {
+     "w": "Comenta",
+     "t": 62.215
+    }
+   ]
+  }
+ ]
+}
