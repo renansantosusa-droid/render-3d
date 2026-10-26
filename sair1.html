@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Já que a saída do Brasil é o aeroporto" (versão 1: comparativo) — 26/10
+// Dados: Numbeo/Eurodicas e Nomad (PT 2026), Mercer via Folhapress (Montevidéu), agorarn/Forbes (PY 2025), Ipanema/Renova (imposto PY).
+import { motion } from "/kitmotion.js";
+import { paises } from "/paises.js";
+const K = await motion("sair1", { fundo: "#0b1424", fundo2: "#132447", padrao: "grade", destaque: "#ffd23a", rotulo: "MUDAR DE PAÍS", rotuloCor: "#2f7de1", sub: "• COM A FAMÍLIA", tag: "COMPARATIVO", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, seta } = K;
+const X = paises(K);
+const CENA = [null,
+  (t) => {
+    X.pista(t, (t - ini(1)) / 3.2);
+    pop(ap(t, P(1, "aeroporto") - .3), W / 2, 420, () => { txt("A SAÍDA DO BRASIL", W / 2, 400, 84, "#fff", { contorno: 10 }); txt("É O AEROPORTO?", W / 2, 500, 96, C.AM, { contorno: 10 }); });
+    [["portugal", "pt", 110], ["uruguai", "uy", 410], ["paraguai", "py", 710]].forEach(([w, c, x]) => pop(ap(t, P(1, w) - .2), x + 130, 760, () => { X.bandeira(c, x, 680, 260, 170, t); txt(w.toUpperCase(), x + 130, 900, 44, "#fff", { contorno: 6 }); }));
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 420, () => txt("CADA UM GANHA E PERDE", W / 2, 420, 72, "#fff", { contorno: 8 }));
+    [["pt", 110], ["uy", 410], ["py", 710]].forEach(([c, x], i) => pop(ap(t, ini(2) + .2 + i * .15), x + 130, 760, () => { X.bandeira(c, x, 560, 260, 170, t); rr(x, 780, 260, 120, 20, "#14324a"); txt("+", x + 70, 840, 90, "#4fd18b"); txt("−", x + 190, 840, 90, "#ff5a5a"); }));
+    pop(ap(t, P(2, "numeros") - .2), W / 2, 1080, () => pilula("BORA PROS NÚMEROS", W / 2, 1080, 56, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(3)), W / 2, 520, () => X.bandeira("pt", 290, 400, 500, 320, t));
+    pop(ap(t, P(3, "seguranca") - .2), 300, 920, () => { X.escudo(300, 900, .8); txt("SEGURANÇA", 300, 1060, 44, "#fff"); });
+    pop(ap(t, P(3, "idioma") - .2), 780, 920, () => { rr(640, 820, 280, 160, 30, "#f4f1ea"); txt("Olá!", 780, 900, 56, "#1b2436"); txt("MESMO IDIOMA", 780, 1060, 44, "#fff"); });
+    pop(ap(t, P(3, "pacificos") - .3), W / 2, 1200, () => pilula("TOP 10 MAIS PACÍFICOS DO MUNDO", W / 2, 1200, 46, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(4, "salario") - .3), W / 2, 600, () => X.etiqueta(W / 2, 600, 1, "€920", "salário mínimo em Portugal"));
+    pop(ap(t, P(4, "lisboa") - .3), W / 2, 950, () => X.etiqueta(W / 2, 950, 1, "€2.000+", "3 quartos em Lisboa, por mês", "#ff8a5a"));
+    pop(ap(t, P(4, "pesa") - .2), W / 2, 380, () => txt("MAS A CONTA PESA", W / 2, 380, 76, "#fff", { contorno: 8 }));
+  },
+  (t) => {
+    pop(ap(t, ini(5)), W / 2, 480, () => X.bandeira("uy", 290, 360, 500, 320, t));
+    pop(ap(t, P(5, "voo") - .2), W / 2, 820, () => pilula("SP → MONTEVIDÉU: MENOS DE 3H", W / 2, 820, 46, "#fff", "#000"));
+    pop(ap(t, P(5, "heranca") - .2), W / 2, 960, () => pilula("0 IMPOSTO SOBRE HERANÇA", W / 2, 960, 50, "#4fd18b", "#000"));
+    pop(ap(t, P(5, "onze") - .2), W / 2, 1110, () => { rr(120, 1040, 840, 150, 26, "#14324a"); txt("ATÉ 11 ANOS SEM IR", W / 2, 1090, 54, C.AM); txt("sobre renda do exterior (residência fiscal)", W / 2, 1150, 32, "#ccd", { peso: 500 }); });
+  },
+  (t) => {
+    pop(ap(t, P(6, "preco") - .2), W / 2, 380, () => txt("O PROBLEMA É O PREÇO", W / 2, 380, 76, "#fff", { contorno: 8 }));
+    pop(ap(t, P(6, "montevideu") - .3), W / 2, 700, () => X.etiqueta(W / 2, 700, 1.05, "$$$", "Montevidéu", "#ff5a5a"));
+    pop(ap(t, P(6, "cara") - .3), W / 2, 1000, () => { txt("A CIDADE MAIS CARA", W / 2, 980, 64, C.AM, { contorno: 8 }); txt("DA AMÉRICA LATINA (MERCER)", W / 2, 1060, 46, "#fff", { contorno: 6 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 480, () => X.bandeira("py", 290, 360, 500, 320, t));
+    pop(ap(t, P(7, "cresce") - .2), W / 2, 790, () => pilula("O QUE MAIS CRESCE ENTRE BRASILEIROS", W / 2, 790, 42, "#fff", "#000"));
+    const t0 = P(7, "vinte", 1) - .2; if (t > t0) { txt((conta(t, t0, 23526, 1.4)).toLocaleString("pt-BR"), W / 2, 980, 150, C.AM, { contorno: 12 }); txt("RESIDÊNCIAS DE BRASILEIROS EM 2025", W / 2, 1100, 42, "#fff", { contorno: 6 }); }
+  },
+  (t) => {
+    pop(ap(t, P(8, "territorial") - .2), W / 2, 480, () => { txt("IMPOSTO TERRITORIAL", W / 2, 440, 76, "#fff", { contorno: 8 }); txt("em geral, só a renda ganha no Paraguai", W / 2, 520, 38, "#ccd", { peso: 500 }); });
+    pop(ap(t, P(8, "dez") - .2), W / 2, 740, () => { txt("ATÉ", W / 2 - 230, 760, 70, "#fff"); txt("10%", W / 2 + 60, 750, 200, "#4fd18b", { contorno: 12 }); });
+    K.carimbo("SEM ACORDO DE BITRIBUTAÇÃO", W / 2, 1060, ap(t, P(8, "bitributacao") - .2), C.VM, -.07, 64);
+  },
+  (t) => {
+    [["pt", "SEGURANÇA + EUROPA", "seguranca"], ["uy", "IMPOSTO + PERTO", "imposto"], ["py", "CUSTO + CRESCIMENTO", "custo"]].forEach(([c, s, w], i) => pop(ap(t, P(9, w) - .2), W / 2, 460 + i * 220, () => { X.bandeira(c, 120, 400 + i * 220, 190, 124, t); rr(340, 410 + i * 220, 620, 104, 22, "#14324a"); txt(s, 650, 464 + i * 220, 50, "#fff"); }));
+    pop(ap(t, P(9, "escolheria") - .3), W / 2, 1180, () => txt("QUAL VOCÊ ESCOLHERIA?", W / 2, 1180, 80, C.AM, { contorno: 10 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

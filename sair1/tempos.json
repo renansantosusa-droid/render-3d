@@ -1,0 +1,965 @@
+{
+ "total": 81.22,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.5,
+   "texto": "Já que a saída do Brasil é o aeroporto, pra onde você levaria a sua família? Portugal, Uruguai ou Paraguai?",
+   "palavras": [
+    {
+     "w": "Já",
+     "t": 0.2
+    },
+    {
+     "w": "que",
+     "t": 0.448
+    },
+    {
+     "w": "a",
+     "t": 0.542
+    },
+    {
+     "w": "saída",
+     "t": 0.601
+    },
+    {
+     "w": "do",
+     "t": 0.943
+    },
+    {
+     "w": "Brasil",
+     "t": 1.037
+    },
+    {
+     "w": "é",
+     "t": 1.485
+    },
+    {
+     "w": "o",
+     "t": 1.556
+    },
+    {
+     "w": "aeroporto",
+     "t": 1.639
+    },
+    {
+     "w": "pra",
+     "t": 2.558
+    },
+    {
+     "w": "onde",
+     "t": 2.759
+    },
+    {
+     "w": "você",
+     "t": 3.077
+    },
+    {
+     "w": "levaria",
+     "t": 3.313
+    },
+    {
+     "w": "a",
+     "t": 3.726
+    },
+    {
+     "w": "sua",
+     "t": 3.761
+    },
+    {
+     "w": "família",
+     "t": 4.021
+    },
+    {
+     "w": "Portugal",
+     "t": 5.292
+    },
+    {
+     "w": "Uruguai",
+     "t": 6.141
+    },
+    {
+     "w": "ou",
+     "t": 6.6
+    },
+    {
+     "w": "Paraguai",
+     "t": 6.718
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.65,
+   "fim": 12.32,
+   "texto": "Cada um ganha numa coisa e perde em outra. Então bora pros números.",
+   "palavras": [
+    {
+     "w": "Cada",
+     "t": 7.7
+    },
+    {
+     "w": "um",
+     "t": 7.959
+    },
+    {
+     "w": "ganha",
+     "t": 8.125
+    },
+    {
+     "w": "numa",
+     "t": 8.443
+    },
+    {
+     "w": "coisa",
+     "t": 8.667
+    },
+    {
+     "w": "e",
+     "t": 8.997
+    },
+    {
+     "w": "perde",
+     "t": 9.044
+    },
+    {
+     "w": "em",
+     "t": 9.351
+    },
+    {
+     "w": "outra",
+     "t": 9.433
+    },
+    {
+     "w": "Então",
+     "t": 10.598
+    },
+    {
+     "w": "bora",
+     "t": 11.011
+    },
+    {
+     "w": "pros",
+     "t": 11.341
+    },
+    {
+     "w": "números",
+     "t": 11.553
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.47,
+   "fim": 21.26,
+   "texto": "Portugal é pra quem quer segurança e Europa sem trocar de idioma. Ele aparece entre os dez países mais pacíficos do mundo no Índice Global da Paz.",
+   "palavras": [
+    {
+     "w": "Portugal",
+     "t": 12.52
+    },
+    {
+     "w": "é",
+     "t": 13.086
+    },
+    {
+     "w": "pra",
+     "t": 13.145
+    },
+    {
+     "w": "quem",
+     "t": 13.322
+    },
+    {
+     "w": "quer",
+     "t": 13.534
+    },
+    {
+     "w": "segurança",
+     "t": 13.723
+    },
+    {
+     "w": "e",
+     "t": 14.301
+    },
+    {
+     "w": "Europa",
+     "t": 14.336
+    },
+    {
+     "w": "sem",
+     "t": 14.749
+    },
+    {
+     "w": "trocar",
+     "t": 14.985
+    },
+    {
+     "w": "de",
+     "t": 15.386
+    },
+    {
+     "w": "idioma",
+     "t": 15.503
+    },
+    {
+     "w": "Ele",
+     "t": 16.762
+    },
+    {
+     "w": "aparece",
+     "t": 16.916
+    },
+    {
+     "w": "entre",
+     "t": 17.399
+    },
+    {
+     "w": "os",
+     "t": 17.588
+    },
+    {
+     "w": "dez",
+     "t": 17.647
+    },
+    {
+     "w": "países",
+     "t": 17.883
+    },
+    {
+     "w": "mais",
+     "t": 18.354
+    },
+    {
+     "w": "pacíficos",
+     "t": 18.614
+    },
+    {
+     "w": "do",
+     "t": 19.227
+    },
+    {
+     "w": "mundo",
+     "t": 19.345
+    },
+    {
+     "w": "no",
+     "t": 19.675
+    },
+    {
+     "w": "Índice",
+     "t": 19.77
+    },
+    {
+     "w": "Global",
+     "t": 20.1
+    },
+    {
+     "w": "da",
+     "t": 20.477
+    },
+    {
+     "w": "Paz",
+     "t": 20.607
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.41,
+   "fim": 30.23,
+   "texto": "Mas a conta pesa. O salário mínimo é de novecentos e vinte euros, e um apartamento de três quartos em Lisboa passa de dois mil euros por mês.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 21.46
+    },
+    {
+     "w": "a",
+     "t": 21.672
+    },
+    {
+     "w": "conta",
+     "t": 21.826
+    },
+    {
+     "w": "pesa",
+     "t": 22.156
+    },
+    {
+     "w": "O",
+     "t": 23.379
+    },
+    {
+     "w": "salário",
+     "t": 23.497
+    },
+    {
+     "w": "mínimo",
+     "t": 23.934
+    },
+    {
+     "w": "é",
+     "t": 24.264
+    },
+    {
+     "w": "de",
+     "t": 24.346
+    },
+    {
+     "w": "novecentos",
+     "t": 24.441
+    },
+    {
+     "w": "e",
+     "t": 24.96
+    },
+    {
+     "w": "vinte",
+     "t": 25.089
+    },
+    {
+     "w": "euros",
+     "t": 25.325
+    },
+    {
+     "w": "e",
+     "t": 25.95
+    },
+    {
+     "w": "um",
+     "t": 26.033
+    },
+    {
+     "w": "apartamento",
+     "t": 26.139
+    },
+    {
+     "w": "de",
+     "t": 26.764
+    },
+    {
+     "w": "três",
+     "t": 26.905
+    },
+    {
+     "w": "quartos",
+     "t": 27.188
+    },
+    {
+     "w": "em",
+     "t": 27.601
+    },
+    {
+     "w": "Lisboa",
+     "t": 27.754
+    },
+    {
+     "w": "passa",
+     "t": 28.214
+    },
+    {
+     "w": "de",
+     "t": 28.568
+    },
+    {
+     "w": "dois",
+     "t": 28.662
+    },
+    {
+     "w": "mil",
+     "t": 28.875
+    },
+    {
+     "w": "euros",
+     "t": 29.099
+    },
+    {
+     "w": "por",
+     "t": 29.393
+    },
+    {
+     "w": "mês",
+     "t": 29.582
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 30.38,
+   "fim": 41.14,
+   "texto": "O Uruguai fica a menos de três horas de voo de São Paulo. Não tem imposto sobre herança, e quem muda a residência fiscal pode ficar até onze anos sem imposto sobre renda do exterior.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 30.43
+    },
+    {
+     "w": "Uruguai",
+     "t": 30.56
+    },
+    {
+     "w": "fica",
+     "t": 30.984
+    },
+    {
+     "w": "a",
+     "t": 31.232
+    },
+    {
+     "w": "menos",
+     "t": 31.267
+    },
+    {
+     "w": "de",
+     "t": 31.621
+    },
+    {
+     "w": "três",
+     "t": 31.739
+    },
+    {
+     "w": "horas",
+     "t": 31.987
+    },
+    {
+     "w": "de",
+     "t": 32.376
+    },
+    {
+     "w": "voo",
+     "t": 32.482
+    },
+    {
+     "w": "de",
+     "t": 32.753
+    },
+    {
+     "w": "São",
+     "t": 32.859
+    },
+    {
+     "w": "Paulo",
+     "t": 33.083
+    },
+    {
+     "w": "Não",
+     "t": 34.224
+    },
+    {
+     "w": "tem",
+     "t": 34.507
+    },
+    {
+     "w": "imposto",
+     "t": 34.637
+    },
+    {
+     "w": "sobre",
+     "t": 35.121
+    },
+    {
+     "w": "herança",
+     "t": 35.356
+    },
+    {
+     "w": "e",
+     "t": 36.005
+    },
+    {
+     "w": "quem",
+     "t": 36.088
+    },
+    {
+     "w": "muda",
+     "t": 36.323
+    },
+    {
+     "w": "a",
+     "t": 36.595
+    },
+    {
+     "w": "residência",
+     "t": 36.63
+    },
+    {
+     "w": "fiscal",
+     "t": 37.184
+    },
+    {
+     "w": "pode",
+     "t": 37.621
+    },
+    {
+     "w": "ficar",
+     "t": 37.868
+    },
+    {
+     "w": "até",
+     "t": 38.234
+    },
+    {
+     "w": "onze",
+     "t": 38.434
+    },
+    {
+     "w": "anos",
+     "t": 38.788
+    },
+    {
+     "w": "sem",
+     "t": 39.083
+    },
+    {
+     "w": "imposto",
+     "t": 39.236
+    },
+    {
+     "w": "sobre",
+     "t": 39.708
+    },
+    {
+     "w": "renda",
+     "t": 39.967
+    },
+    {
+     "w": "do",
+     "t": 40.297
+    },
+    {
+     "w": "exterior",
+     "t": 40.415
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 41.29,
+   "fim": 48.33,
+   "texto": "O problema é o preço. Uma pesquisa da Mercer apontou Montevidéu como a cidade mais cara da América Latina pra se viver.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 41.34
+    },
+    {
+     "w": "problema",
+     "t": 41.47
+    },
+    {
+     "w": "é",
+     "t": 41.953
+    },
+    {
+     "w": "o",
+     "t": 42.024
+    },
+    {
+     "w": "preço",
+     "t": 42.107
+    },
+    {
+     "w": "Uma",
+     "t": 43.33
+    },
+    {
+     "w": "pesquisa",
+     "t": 43.554
+    },
+    {
+     "w": "da",
+     "t": 44.014
+    },
+    {
+     "w": "Mercer",
+     "t": 44.12
+    },
+    {
+     "w": "apontou",
+     "t": 44.521
+    },
+    {
+     "w": "Montevidéu",
+     "t": 44.863
+    },
+    {
+     "w": "como",
+     "t": 45.453
+    },
+    {
+     "w": "a",
+     "t": 45.618
+    },
+    {
+     "w": "cidade",
+     "t": 45.665
+    },
+    {
+     "w": "mais",
+     "t": 46.09
+    },
+    {
+     "w": "cara",
+     "t": 46.361
+    },
+    {
+     "w": "da",
+     "t": 46.597
+    },
+    {
+     "w": "América",
+     "t": 46.679
+    },
+    {
+     "w": "Latina",
+     "t": 47.021
+    },
+    {
+     "w": "pra",
+     "t": 47.469
+    },
+    {
+     "w": "se",
+     "t": 47.611
+    },
+    {
+     "w": "viver",
+     "t": 47.764
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.48,
+   "fim": 56.28,
+   "texto": "Já o Paraguai é o que mais cresce entre brasileiros. Em dois mil e vinte e cinco, mais de vinte e três mil conseguiram residência por lá.",
+   "palavras": [
+    {
+     "w": "Já",
+     "t": 48.53
+    },
+    {
+     "w": "o",
+     "t": 48.766
+    },
+    {
+     "w": "Paraguai",
+     "t": 48.825
+    },
+    {
+     "w": "é",
+     "t": 49.332
+    },
+    {
+     "w": "o",
+     "t": 49.379
+    },
+    {
+     "w": "que",
+     "t": 49.45
+    },
+    {
+     "w": "mais",
+     "t": 49.58
+    },
+    {
+     "w": "cresce",
+     "t": 49.851
+    },
+    {
+     "w": "entre",
+     "t": 50.264
+    },
+    {
+     "w": "brasileiros",
+     "t": 50.499
+    },
+    {
+     "w": "Em",
+     "t": 51.982
+    },
+    {
+     "w": "dois",
+     "t": 52.112
+    },
+    {
+     "w": "mil",
+     "t": 52.348
+    },
+    {
+     "w": "e",
+     "t": 52.466
+    },
+    {
+     "w": "vinte",
+     "t": 52.525
+    },
+    {
+     "w": "e",
+     "t": 52.714
+    },
+    {
+     "w": "cinco",
+     "t": 52.761
+    },
+    {
+     "w": "mais",
+     "t": 53.421
+    },
+    {
+     "w": "de",
+     "t": 53.633
+    },
+    {
+     "w": "vinte",
+     "t": 53.739
+    },
+    {
+     "w": "e",
+     "t": 53.975
+    },
+    {
+     "w": "três",
+     "t": 54.011
+    },
+    {
+     "w": "mil",
+     "t": 54.258
+    },
+    {
+     "w": "conseguiram",
+     "t": 54.471
+    },
+    {
+     "w": "residência",
+     "t": 55.013
+    },
+    {
+     "w": "por",
+     "t": 55.626
+    },
+    {
+     "w": "lá",
+     "t": 55.78
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 56.43,
+   "fim": 67.72,
+   "texto": "O imposto é territorial: em geral, só a renda ganha no Paraguai é tributada, com alíquota de até dez por cento. Mas atenção: não existe acordo contra bitributação com o Brasil.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 56.48
+    },
+    {
+     "w": "imposto",
+     "t": 56.574
+    },
+    {
+     "w": "é",
+     "t": 57.129
+    },
+    {
+     "w": "territorial",
+     "t": 57.176
+    },
+    {
+     "w": "em",
+     "t": 58.037
+    },
+    {
+     "w": "geral",
+     "t": 58.143
+    },
+    {
+     "w": "só",
+     "t": 58.756
+    },
+    {
+     "w": "a",
+     "t": 58.956
+    },
+    {
+     "w": "renda",
+     "t": 59.004
+    },
+    {
+     "w": "ganha",
+     "t": 59.31
+    },
+    {
+     "w": "no",
+     "t": 59.581
+    },
+    {
+     "w": "Paraguai",
+     "t": 59.688
+    },
+    {
+     "w": "é",
+     "t": 60.112
+    },
+    {
+     "w": "tributada",
+     "t": 60.171
+    },
+    {
+     "w": "com",
+     "t": 61.067
+    },
+    {
+     "w": "alíquota",
+     "t": 61.232
+    },
+    {
+     "w": "de",
+     "t": 61.692
+    },
+    {
+     "w": "até",
+     "t": 61.775
+    },
+    {
+     "w": "dez",
+     "t": 62.011
+    },
+    {
+     "w": "por",
+     "t": 62.305
+    },
+    {
+     "w": "cento",
+     "t": 62.447
+    },
+    {
+     "w": "Mas",
+     "t": 63.659
+    },
+    {
+     "w": "atenção",
+     "t": 63.871
+    },
+    {
+     "w": "não",
+     "t": 64.791
+    },
+    {
+     "w": "existe",
+     "t": 65.027
+    },
+    {
+     "w": "acordo",
+     "t": 65.404
+    },
+    {
+     "w": "contra",
+     "t": 65.781
+    },
+    {
+     "w": "bitributação",
+     "t": 66.064
+    },
+    {
+     "w": "com",
+     "t": 66.807
+    },
+    {
+     "w": "o",
+     "t": 66.984
+    },
+    {
+     "w": "Brasil",
+     "t": 67.031
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 67.87,
+   "fim": 80.62,
+   "texto": "Resumindo: segurança e Europa, Portugal. Imposto e proximidade, Uruguai. Custo e crescimento, Paraguai. E você, qual escolheria? Comenta aqui.",
+   "palavras": [
+    {
+     "w": "Resumindo",
+     "t": 67.92
+    },
+    {
+     "w": "segurança",
+     "t": 68.84
+    },
+    {
+     "w": "e",
+     "t": 69.465
+    },
+    {
+     "w": "Europa",
+     "t": 69.5
+    },
+    {
+     "w": "Portugal",
+     "t": 70.196
+    },
+    {
+     "w": "Imposto",
+     "t": 71.573
+    },
+    {
+     "w": "e",
+     "t": 72.162
+    },
+    {
+     "w": "proximidade",
+     "t": 72.21
+    },
+    {
+     "w": "Uruguai",
+     "t": 73.082
+    },
+    {
+     "w": "Custo",
+     "t": 74.415
+    },
+    {
+     "w": "e",
+     "t": 74.757
+    },
+    {
+     "w": "crescimento",
+     "t": 74.804
+    },
+    {
+     "w": "Paraguai",
+     "t": 75.712
+    },
+    {
+     "w": "E",
+     "t": 77.115
+    },
+    {
+     "w": "você",
+     "t": 77.233
+    },
+    {
+     "w": "qual",
+     "t": 77.905
+    },
+    {
+     "w": "escolheria",
+     "t": 78.129
+    },
+    {
+     "w": "Comenta",
+     "t": 79.568
+    },
+    {
+     "w": "aqui",
+     "t": 80.052
+    }
+   ]
+  }
+ ]
+}
