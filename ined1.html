@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "3 coisas inéditas na eleição" (versão 1) — 26/10
+// TSE: 1º turno Flávio 56.104.503 x Lula 53.879.538; 2º turno Lula 64.256.232 x Flávio 59.826.041. Recorde anterior: Lula 2022, 60.345.999.
+// Prorrogação nacional inédita: O Tempo, InfoMoney (25-26/10/2026).
+import { motion } from "/kitmotion.js";
+const K = await motion("ined1", { fundo: "#140f05", fundo2: "#2a1d08", padrao: "pontos", destaque: "#ffc83a", rotulo: "HISTÓRICO", rotuloCor: "#c0392b", sub: "• ELEIÇÃO 2026", tag: "INÉDITO", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, relogio, seta } = K;
+const num = (n) => n.toLocaleString("pt-BR");
+const ANOS = [1989, 2002, 2006, 2010, 2014, 2018, 2022];
+const CENA = [null,
+  (t) => {
+    pop(ap(t, P(1, "tres") - .2), W / 2, 620, () => { txt("3", W / 2, 600, 340, C.AM, { contorno: 16, sombra: true }); });
+    pop(ap(t, P(1, "nunca") - .2), W / 2, 880, () => txt("COISAS INÉDITAS", W / 2, 880, 100, "#fff", { contorno: 10 }));
+    pop(ap(t, P(1, "presidente") - .2), W / 2, 1020, () => txt("NUMA ELEIÇÃO PRA PRESIDENTE", W / 2, 1020, 56, "#fff", { contorno: 8 }));
+    carimbo("NO MESMO DOMINGO", W / 2, 1200, ap(t, P(1, "domingo") - .2), C.VM, -.06, 70);
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 420, () => pilula("Nº 1 • A VIRADA", W / 2, 420, 60, C.AM, "#000"));
+    const k = ease((t - P(2, "virou") + .2) / 1);
+    rr(140, 620, 380, 420, 30, "#2e2210"); rr(560, 620, 380, 420, 30, "#2e2210"); txt("1º TURNO", 330, 680, 46, "#ccc"); txt("2º TURNO", 750, 680, 46, "#ccc");
+    txt("FLÁVIO", 330, 790, 56, C.A2); txt("LULA", 330, 900, 56, C.A1); txt("1º", 470, 790, 40, "#fff"); txt("2º", 470, 900, 40, "#fff");
+    if (k > 0) { g.save(); g.globalAlpha = k; txt("LULA", 750, 790, 56, C.A1); txt("FLÁVIO", 750, 900, 56, C.A2); txt("1º", 890, 790, 40, "#fff"); txt("2º", 890, 900, 40, "#fff"); g.restore(); seta(520, 900, 580, 790, C.AM, k, 10); }
+    pop(ap(t, P(2, "ganhou") - .2), W / 2, 1150, () => pilula("QUEM ESTAVA ATRÁS, VIROU", W / 2, 1150, 50, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(3, "outubro") - .3), W / 2, 400, () => pilula("1º TURNO • 4 DE OUTUBRO", W / 2, 400, 52, "#fff", "#000"));
+    const bar = (y, nome, v, cor, t0) => { const k = ease((t - t0) / 1.2); rr(90, y, 900, 140, 24, "#2e2210"); rr(90, y, 900 * v / 60e6 * k, 140, 24, cor); txt(nome, 130, y + 70, 62, "#fff", { al: "left", contorno: 6 }); txt(num(Math.round(v * k)), 950, y + 70, 52, "#fff", { al: "right", contorno: 6 }); };
+    bar(600, "FLÁVIO", 56104503, C.A2, P(3, "flavio") - .2); bar(800, "LULA", 53879538, C.A1, P(3, "lula") - .2);
+    pop(ap(t, P(3, "lula")), W / 2, 1060, () => pilula("FLÁVIO NA FRENTE POR 2,2 MILHÕES", W / 2, 1060, 46, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, P(4, "mil") - .3), W / 2, 400, () => txt("QUEM LIDERAVA O 1º TURNO…", W / 2, 400, 64, "#fff", { contorno: 8 }));
+    g.strokeStyle = "rgba(255,255,255,.3)"; g.lineWidth = 6; g.beginPath(); g.moveTo(120, 760); g.lineTo(960, 760); g.stroke();
+    ANOS.forEach((a, i) => { const x = 140 + i * 115, k = ap(t, P(4, "sempre") - .6 + i * .12); if (k > 0) pop(k, x, 760, () => { circ(x, 760, 34, "#4fd18b"); txt("✓", x, 762, 40, "#fff"); txt(String(a), x, 840, 30, "#ccc", { peso: 500 }); }); });
+    const kn = ap(t, P(4, "nao") - .2); if (kn > 0) pop(kn, W / 2, 1040, () => { circ(W / 2, 1000, 70, C.VM); txt("✕", W / 2, 1004, 80, "#fff"); txt("2026", W / 2, 1110, 64, C.VM, { contorno: 6 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(5)), W / 2, 400, () => pilula("Nº 2 • O RECORDE DE VOTOS", W / 2, 400, 56, C.AM, "#000"));
+    const t0 = P(5, "sessenta") - .4; if (t > t0) { txt(num(conta(t, t0, 64256232, 1.6)), W / 2, 680, 120, C.AM, { contorno: 12 }); txt("VOTOS DE LULA NO 2º TURNO", W / 2, 780, 44, "#fff", { contorno: 6 }); }
+    pop(ap(t, P(5, "dez") - .2), W / 2, 920, () => pilula("+10,4 MILHÕES DESDE O 1º TURNO", W / 2, 920, 46, "#fff", "#000"));
+    pop(ap(t, P(5, "nenhum") - .2), W / 2, 1110, () => { rr(140, 1030, 800, 160, 26, "#2e2210"); txt("MAIOR VOTAÇÃO DA HISTÓRIA", W / 2, 1085, 50, C.AM); txt("recorde anterior: 60,3 milhões (2022)", W / 2, 1150, 34, "#ccc", { peso: 500 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 400, () => pilula("Nº 3 • O RELÓGIO", W / 2, 400, 60, C.AM, "#000"));
+    relogio(W / 2, 760, 250, 17 + 2 * ease((t - P(6, "prorrogada")) / 2), C.AM);
+    pop(ap(t, P(6, "inteiro") - .2), W / 2, 1100, () => pilula("PRORROGADA NO PAÍS INTEIRO", W / 2, 1100, 50, "#fff", "#000"));
+    pop(ap(t, P(6, "stf") - .2), W / 2, 1230, () => pilula("17H → 19H • DECISÃO DO STF", W / 2, 1230, 46, C.AM, "#000"));
+  },
+  (t) => {
+    [["VIRADA", "virada"], ["RECORDE", "recorde"], ["+2 HORAS", "horas"]].forEach(([s, w], i) => pop(ap(t, P(7, w) - .2), W / 2, 520 + i * 200, () => { rr(170, 450 + i * 200, 740, 150, 30, "#2e2210"); circ(260, 525 + i * 200, 44, C.AM); txt(String(i + 1), 260, 528 + i * 200, 52, "#000"); txt(s, 600, 528 + i * 200, 80, "#fff"); }));
+    carimbo("TUDO NA MESMA ELEIÇÃO", W / 2, 1180, ap(t, P(7, "eleicao") - .2), C.VM, -.05, 64);
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 560, () => { rr(120, 440, 400, 240, 30, "#2e2210"); txt("UM JEITO", 320, 560, 60, "#fff"); rr(560, 440, 400, 240, 30, "#2e2210"); txt("OUTRO JEITO", 760, 560, 56, "#fff"); txt("?", W / 2, 560, 100, C.AM, { contorno: 10 }); });
+    pop(ap(t, P(8, "voce") - .2), W / 2, 880, () => txt("E VOCÊ, O QUE ACHA?", W / 2, 880, 90, C.AM, { contorno: 10 }));
+    pop(ap(t, P(8, "comenta") - .3), W / 2, 1060, () => pilula("COMENTA AQUI", W / 2, 1060, 60, "#fff", "#000"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

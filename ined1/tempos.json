@@ -1,0 +1,729 @@
+{
+ "total": 63.07,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 6.31,
+   "texto": "Três coisas que nunca tinham acontecido numa eleição pra presidente no Brasil aconteceram de uma vez só, neste domingo.",
+   "palavras": [
+    {
+     "w": "Três",
+     "t": 0.2
+    },
+    {
+     "w": "coisas",
+     "t": 0.507
+    },
+    {
+     "w": "que",
+     "t": 0.896
+    },
+    {
+     "w": "nunca",
+     "t": 1.014
+    },
+    {
+     "w": "tinham",
+     "t": 1.344
+    },
+    {
+     "w": "acontecido",
+     "t": 1.639
+    },
+    {
+     "w": "numa",
+     "t": 2.158
+    },
+    {
+     "w": "eleição",
+     "t": 2.311
+    },
+    {
+     "w": "pra",
+     "t": 2.712
+    },
+    {
+     "w": "presidente",
+     "t": 2.853
+    },
+    {
+     "w": "no",
+     "t": 3.301
+    },
+    {
+     "w": "Brasil",
+     "t": 3.372
+    },
+    {
+     "w": "aconteceram",
+     "t": 3.75
+    },
+    {
+     "w": "de",
+     "t": 4.327
+    },
+    {
+     "w": "uma",
+     "t": 4.41
+    },
+    {
+     "w": "vez",
+     "t": 4.587
+    },
+    {
+     "w": "só",
+     "t": 4.846
+    },
+    {
+     "w": "neste",
+     "t": 5.306
+    },
+    {
+     "w": "domingo",
+     "t": 5.636
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 6.46,
+   "fim": 10.57,
+   "texto": "A primeira: quem ficou em segundo no primeiro turno virou e ganhou no segundo.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 6.51
+    },
+    {
+     "w": "primeira",
+     "t": 6.628
+    },
+    {
+     "w": "quem",
+     "t": 7.241
+    },
+    {
+     "w": "ficou",
+     "t": 7.453
+    },
+    {
+     "w": "em",
+     "t": 7.76
+    },
+    {
+     "w": "segundo",
+     "t": 7.843
+    },
+    {
+     "w": "no",
+     "t": 8.279
+    },
+    {
+     "w": "primeiro",
+     "t": 8.385
+    },
+    {
+     "w": "turno",
+     "t": 8.751
+    },
+    {
+     "w": "virou",
+     "t": 9.057
+    },
+    {
+     "w": "e",
+     "t": 9.364
+    },
+    {
+     "w": "ganhou",
+     "t": 9.411
+    },
+    {
+     "w": "no",
+     "t": 9.741
+    },
+    {
+     "w": "segundo",
+     "t": 9.847
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.72,
+   "fim": 20.22,
+   "texto": "No dia quatro de outubro, Flávio Bolsonaro terminou na frente, com mais de cinquenta e seis milhões de votos. Lula teve quase cinquenta e quatro milhões.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 10.77
+    },
+    {
+     "w": "dia",
+     "t": 10.947
+    },
+    {
+     "w": "quatro",
+     "t": 11.183
+    },
+    {
+     "w": "de",
+     "t": 11.584
+    },
+    {
+     "w": "outubro",
+     "t": 11.678
+    },
+    {
+     "w": "Flávio",
+     "t": 12.35
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 12.728
+    },
+    {
+     "w": "terminou",
+     "t": 13.282
+    },
+    {
+     "w": "na",
+     "t": 13.671
+    },
+    {
+     "w": "frente",
+     "t": 13.801
+    },
+    {
+     "w": "com",
+     "t": 14.496
+    },
+    {
+     "w": "mais",
+     "t": 14.709
+    },
+    {
+     "w": "de",
+     "t": 14.945
+    },
+    {
+     "w": "cinquenta",
+     "t": 15.051
+    },
+    {
+     "w": "e",
+     "t": 15.522
+    },
+    {
+     "w": "seis",
+     "t": 15.558
+    },
+    {
+     "w": "milhões",
+     "t": 15.77
+    },
+    {
+     "w": "de",
+     "t": 16.206
+    },
+    {
+     "w": "votos",
+     "t": 16.301
+    },
+    {
+     "w": "Lula",
+     "t": 17.595
+    },
+    {
+     "w": "teve",
+     "t": 17.949
+    },
+    {
+     "w": "quase",
+     "t": 18.22
+    },
+    {
+     "w": "cinquenta",
+     "t": 18.609
+    },
+    {
+     "w": "e",
+     "t": 19.057
+    },
+    {
+     "w": "quatro",
+     "t": 19.104
+    },
+    {
+     "w": "milhões",
+     "t": 19.411
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.37,
+   "fim": 27.84,
+   "texto": "Desde mil novecentos e oitenta e nove, quem liderava o primeiro turno sempre tinha levado a eleição. Dessa vez, não.",
+   "palavras": [
+    {
+     "w": "Desde",
+     "t": 20.42
+    },
+    {
+     "w": "mil",
+     "t": 20.845
+    },
+    {
+     "w": "novecentos",
+     "t": 20.974
+    },
+    {
+     "w": "e",
+     "t": 21.552
+    },
+    {
+     "w": "oitenta",
+     "t": 21.658
+    },
+    {
+     "w": "e",
+     "t": 21.953
+    },
+    {
+     "w": "nove",
+     "t": 21.988
+    },
+    {
+     "w": "quem",
+     "t": 22.554
+    },
+    {
+     "w": "liderava",
+     "t": 22.743
+    },
+    {
+     "w": "o",
+     "t": 23.179
+    },
+    {
+     "w": "primeiro",
+     "t": 23.215
+    },
+    {
+     "w": "turno",
+     "t": 23.58
+    },
+    {
+     "w": "sempre",
+     "t": 23.887
+    },
+    {
+     "w": "tinha",
+     "t": 24.323
+    },
+    {
+     "w": "levado",
+     "t": 24.524
+    },
+    {
+     "w": "a",
+     "t": 24.937
+    },
+    {
+     "w": "eleição",
+     "t": 24.972
+    },
+    {
+     "w": "Dessa",
+     "t": 26.254
+    },
+    {
+     "w": "vez",
+     "t": 26.679
+    },
+    {
+     "w": "não",
+     "t": 27.21
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 27.99,
+   "fim": 39.21,
+   "texto": "A segunda: o recorde de votos. Lula somou mais de dez milhões no segundo turno e chegou a sessenta e quatro milhões. Nenhum presidente tinha recebido tantos votos.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 28.04
+    },
+    {
+     "w": "segunda",
+     "t": 28.146
+    },
+    {
+     "w": "o",
+     "t": 28.948
+    },
+    {
+     "w": "recorde",
+     "t": 29.031
+    },
+    {
+     "w": "de",
+     "t": 29.573
+    },
+    {
+     "w": "votos",
+     "t": 29.679
+    },
+    {
+     "w": "Lula",
+     "t": 30.997
+    },
+    {
+     "w": "somou",
+     "t": 31.315
+    },
+    {
+     "w": "mais",
+     "t": 31.646
+    },
+    {
+     "w": "de",
+     "t": 31.964
+    },
+    {
+     "w": "dez",
+     "t": 32.07
+    },
+    {
+     "w": "milhões",
+     "t": 32.33
+    },
+    {
+     "w": "no",
+     "t": 32.778
+    },
+    {
+     "w": "segundo",
+     "t": 32.884
+    },
+    {
+     "w": "turno",
+     "t": 33.344
+    },
+    {
+     "w": "e",
+     "t": 33.674
+    },
+    {
+     "w": "chegou",
+     "t": 33.721
+    },
+    {
+     "w": "a",
+     "t": 34.075
+    },
+    {
+     "w": "sessenta",
+     "t": 34.134
+    },
+    {
+     "w": "e",
+     "t": 34.606
+    },
+    {
+     "w": "quatro",
+     "t": 34.653
+    },
+    {
+     "w": "milhões",
+     "t": 34.959
+    },
+    {
+     "w": "Nenhum",
+     "t": 36.363
+    },
+    {
+     "w": "presidente",
+     "t": 36.787
+    },
+    {
+     "w": "tinha",
+     "t": 37.353
+    },
+    {
+     "w": "recebido",
+     "t": 37.542
+    },
+    {
+     "w": "tantos",
+     "t": 38.049
+    },
+    {
+     "w": "votos",
+     "t": 38.474
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 39.36,
+   "fim": 49.33,
+   "texto": "E a terceira: o relógio. Pela primeira vez, a votação foi prorrogada no país inteiro, das dezessete pras dezenove horas, por decisão do STF.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 39.41
+    },
+    {
+     "w": "a",
+     "t": 39.528
+    },
+    {
+     "w": "terceira",
+     "t": 39.622
+    },
+    {
+     "w": "o",
+     "t": 40.377
+    },
+    {
+     "w": "relógio",
+     "t": 40.46
+    },
+    {
+     "w": "Pela",
+     "t": 41.801
+    },
+    {
+     "w": "primeira",
+     "t": 42.049
+    },
+    {
+     "w": "vez",
+     "t": 42.402
+    },
+    {
+     "w": "a",
+     "t": 43.004
+    },
+    {
+     "w": "votação",
+     "t": 43.086
+    },
+    {
+     "w": "foi",
+     "t": 43.617
+    },
+    {
+     "w": "prorrogada",
+     "t": 43.747
+    },
+    {
+     "w": "no",
+     "t": 44.301
+    },
+    {
+     "w": "país",
+     "t": 44.407
+    },
+    {
+     "w": "inteiro",
+     "t": 44.678
+    },
+    {
+     "w": "das",
+     "t": 45.398
+    },
+    {
+     "w": "dezessete",
+     "t": 45.598
+    },
+    {
+     "w": "pras",
+     "t": 46.2
+    },
+    {
+     "w": "dezenove",
+     "t": 46.4
+    },
+    {
+     "w": "horas",
+     "t": 46.931
+    },
+    {
+     "w": "por",
+     "t": 47.497
+    },
+    {
+     "w": "decisão",
+     "t": 47.674
+    },
+    {
+     "w": "do",
+     "t": 48.169
+    },
+    {
+     "w": "STF",
+     "t": 48.322
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 49.48,
+   "fim": 54.56,
+   "texto": "Uma virada, um recorde e duas horas a mais. Tudo na mesma eleição.",
+   "palavras": [
+    {
+     "w": "Uma",
+     "t": 49.53
+    },
+    {
+     "w": "virada",
+     "t": 49.778
+    },
+    {
+     "w": "um",
+     "t": 50.426
+    },
+    {
+     "w": "recorde",
+     "t": 50.544
+    },
+    {
+     "w": "e",
+     "t": 51.087
+    },
+    {
+     "w": "duas",
+     "t": 51.134
+    },
+    {
+     "w": "horas",
+     "t": 51.393
+    },
+    {
+     "w": "a",
+     "t": 51.735
+    },
+    {
+     "w": "mais",
+     "t": 51.853
+    },
+    {
+     "w": "Tudo",
+     "t": 53.1
+    },
+    {
+     "w": "na",
+     "t": 53.383
+    },
+    {
+     "w": "mesma",
+     "t": 53.501
+    },
+    {
+     "w": "eleição",
+     "t": 53.843
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 54.71,
+   "fim": 62.47,
+   "texto": "Tem gente vendo isso de um jeito, tem gente vendo de outro. E você, o que acha disso tudo? Comenta aqui.",
+   "palavras": [
+    {
+     "w": "Tem",
+     "t": 54.76
+    },
+    {
+     "w": "gente",
+     "t": 54.913
+    },
+    {
+     "w": "vendo",
+     "t": 55.232
+    },
+    {
+     "w": "isso",
+     "t": 55.574
+    },
+    {
+     "w": "de",
+     "t": 55.833
+    },
+    {
+     "w": "um",
+     "t": 55.927
+    },
+    {
+     "w": "jeito",
+     "t": 56.045
+    },
+    {
+     "w": "tem",
+     "t": 56.6
+    },
+    {
+     "w": "gente",
+     "t": 56.741
+    },
+    {
+     "w": "vendo",
+     "t": 57.083
+    },
+    {
+     "w": "de",
+     "t": 57.402
+    },
+    {
+     "w": "outro",
+     "t": 57.531
+    },
+    {
+     "w": "E",
+     "t": 58.637
+    },
+    {
+     "w": "você",
+     "t": 58.755
+    },
+    {
+     "w": "o",
+     "t": 59.439
+    },
+    {
+     "w": "que",
+     "t": 59.533
+    },
+    {
+     "w": "acha",
+     "t": 59.71
+    },
+    {
+     "w": "disso",
+     "t": 59.993
+    },
+    {
+     "w": "tudo",
+     "t": 60.288
+    },
+    {
+     "w": "Comenta",
+     "t": 61.42
+    },
+    {
+     "w": "aqui",
+     "t": 61.903
+    }
+   ]
+  }
+ ]
+}
