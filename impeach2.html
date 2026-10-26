@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Impeachment do Lula? Faz a conta comigo" (variação 2) — Reel teste 26/10 10h10
+import { motion } from "/kitmotion.js";
+const K = await motion("impeach2", { fundo: "#120c1e", fundo2: "#1e1235", padrao: "pontos", destaque: "#7cf2a6", rotulo: "FAZ A CONTA", rotuloCor: "#7b3dff", sub: "• IMPEACHMENT", tag: "NÚMEROS", legenda: "caixa", transicao: "zoom" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, barraMeta, congresso, seta } = K;
+function calculadora(x, y, s, t) { g.save(); g.translate(x, y); g.scale(s, s); rr(-150, -210, 300, 420, 30, "#2c2346"); rr(-120, -180, 240, 90, 14, "#a9f5c8"); txt(String(Math.floor(t * 37) % 1000).padStart(3, "0"), 90, -133, 64, "#1b2436", { al: "right" });
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) rr(-120 + j * 84, -70 + i * 66, 72, 54, 12, i === 3 && j === 2 ? C.AM : "#4a3d70"); g.restore(); }
+function numero(t, n, valor, rotulo, sub, t0) {
+  pop(ap(t, ini(n)), W / 2, 380, () => pilula("Nº " + (n - 1), W / 2, 380, 60, "#7b3dff", "#fff"));
+  if (t > t0) { txt(String(conta(t, t0, valor, 1.4)), W / 2, 720, 300, C.AM, { contorno: 14, sombra: true }); }
+  pop(ap(t, t0 + .6), W / 2, 960, () => { txt(rotulo, W / 2, 960, 70, "#fff", { contorno: 8 }); txt(sub, W / 2, 1050, 44, C.CINZA); });
+}
+const CENA = [null,
+  (t) => {
+    pop(ap(t, P(1, "impeachment") - .2), W / 2, 520, () => { txt("IMPEACHMENT", W / 2, 480, 120, C.AM, { contorno: 12 }); txt("POR 2 HORAS?", W / 2, 610, 110, "#fff", { contorno: 10 }); });
+    pop(ap(t, P(1, "conta") - .3), W / 2, 950, () => calculadora(W / 2, 950, 1, t));
+  },
+  (t) => numero(t, 2, 121, "DEPUTADOS DO PL", "maior bancada a partir de fev/2027", P(2, "cento") - .2),
+  (t) => numero(t, 3, 276, "PARTIDOS MAIS À DIREITA", "levantamento do Poder360", P(3, "duzentos") - .2),
+  (t) => { numero(t, 4, 342, "PRA ABRIR IMPEACHMENT", "dois terços dos 513 deputados", P(4, "trezentos") - .2);
+    pop(ap(t, P(4, "tercos") - .2), W / 2, 1170, () => pilula("2/3 DA CÂMARA", W / 2, 1170, 52, C.AM, "#000")); },
+  (t) => {
+    const k = ap(t, ini(5), 1); if (k > 0) barraMeta(110, 560, 860, 276, 342, 513, "#7b3dff", k);
+    pop(ap(t, P(5, "sozinha") - .2), W / 2, 420, () => txt("A DIREITA SOZINHA NÃO CHEGA", W / 2, 420, 60, "#fff", { contorno: 8 }));
+    pop(ap(t, P(5, "centro") - .2), W / 2, 760, () => pilula("FALTAM ≈ 66 → PRECISA DO CENTRO", W / 2, 760, 46, C.AM, "#000"));
+    pop(ap(t, P(5, "senado") - .2), W / 2, 1000, () => { rr(190, 900, 700, 220, 30, "#2c2346"); txt("SENADO", W / 2, 960, 50, C.CINZA); txt("54 VOTOS PRA CONDENAR", W / 2, 1040, 60, "#fff"); });
+  },
+  (t) => {
+    pop(ap(t, P(6, "crime") - .2), W / 2, 420, () => { txt("O MOTIVO PRECISA SER", W / 2, 400, 56, "#fff", { contorno: 8 }); txt("CRIME DO PRESIDENTE", W / 2, 480, 70, C.AM, { contorno: 8 }); });
+    pop(ap(t, P(6, "decidiu") - .2), W / 2, 800, () => { rr(140, 650, 800, 300, 34, "#2c2346"); txt("QUEM DECIDIU", W / 2, 720, 50, C.CINZA); txt("A PRORROGAÇÃO?", W / 2, 790, 62, "#fff"); });
+    pop(ap(t, P(6, "zanin") - .2), W / 2, 1060, () => pilula("MIN. ZANIN • STF", W / 2, 1060, 64, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 620, () => congresso(W / 2, 650, 1));
+    pop(ap(t, P(7, "pedir") - .2), 300, 960, () => pilula("PEDIR", 300, 960, 70, "#7b3dff", "#fff"));
+    pop(ap(t, P(7, "aprovar") - .2), 780, 960, () => pilula("APROVAR", 780, 960, 70, C.AM, "#000"));
+    pop(ap(t, P(7, "aprovar")), W / 2, 960, () => txt("≠", W / 2, 955, 110, "#fff", { contorno: 8 }));
+    pop(ap(t, P(7, "comenta") - .3), W / 2, 1180, () => txt("SAI DO PAPEL? COMENTA", W / 2, 1180, 70, C.AM, { contorno: 8 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

@@ -1,0 +1,749 @@
+{
+ "total": 66.64,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.1,
+   "texto": "Impeachment do Lula por causa da prorrogação da eleição? Antes de acreditar em qualquer coisa, faz a conta comigo.",
+   "palavras": [
+    {
+     "w": "Impeachment",
+     "t": 0.2
+    },
+    {
+     "w": "do",
+     "t": 0.801
+    },
+    {
+     "w": "Lula",
+     "t": 0.919
+    },
+    {
+     "w": "por",
+     "t": 1.261
+    },
+    {
+     "w": "causa",
+     "t": 1.426
+    },
+    {
+     "w": "da",
+     "t": 1.745
+    },
+    {
+     "w": "prorrogação",
+     "t": 1.851
+    },
+    {
+     "w": "da",
+     "t": 2.452
+    },
+    {
+     "w": "eleição",
+     "t": 2.535
+    },
+    {
+     "w": "Antes",
+     "t": 3.806
+    },
+    {
+     "w": "de",
+     "t": 4.159
+    },
+    {
+     "w": "acreditar",
+     "t": 4.218
+    },
+    {
+     "w": "em",
+     "t": 4.749
+    },
+    {
+     "w": "qualquer",
+     "t": 4.832
+    },
+    {
+     "w": "coisa",
+     "t": 5.209
+    },
+    {
+     "w": "faz",
+     "t": 5.834
+    },
+    {
+     "w": "a",
+     "t": 5.987
+    },
+    {
+     "w": "conta",
+     "t": 6.129
+    },
+    {
+     "w": "comigo",
+     "t": 6.435
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.25,
+   "fim": 16.67,
+   "texto": "Número um: cento e vinte e um. É quantos deputados o PL elegeu. A maior bancada da Câmara a partir de fevereiro de dois mil e vinte e sete.",
+   "palavras": [
+    {
+     "w": "Número",
+     "t": 7.3
+    },
+    {
+     "w": "um",
+     "t": 7.689
+    },
+    {
+     "w": "cento",
+     "t": 8.173
+    },
+    {
+     "w": "e",
+     "t": 8.515
+    },
+    {
+     "w": "vinte",
+     "t": 8.562
+    },
+    {
+     "w": "e",
+     "t": 8.868
+    },
+    {
+     "w": "um",
+     "t": 8.892
+    },
+    {
+     "w": "É",
+     "t": 9.892
+    },
+    {
+     "w": "quantos",
+     "t": 10.021
+    },
+    {
+     "w": "deputados",
+     "t": 10.458
+    },
+    {
+     "w": "o",
+     "t": 11.047
+    },
+    {
+     "w": "PL",
+     "t": 11.165
+    },
+    {
+     "w": "elegeu",
+     "t": 11.495
+    },
+    {
+     "w": "A",
+     "t": 12.757
+    },
+    {
+     "w": "maior",
+     "t": 12.863
+    },
+    {
+     "w": "bancada",
+     "t": 13.205
+    },
+    {
+     "w": "da",
+     "t": 13.677
+    },
+    {
+     "w": "Câmara",
+     "t": 13.795
+    },
+    {
+     "w": "a",
+     "t": 14.149
+    },
+    {
+     "w": "partir",
+     "t": 14.184
+    },
+    {
+     "w": "de",
+     "t": 14.55
+    },
+    {
+     "w": "fevereiro",
+     "t": 14.656
+    },
+    {
+     "w": "de",
+     "t": 15.151
+    },
+    {
+     "w": "dois",
+     "t": 15.257
+    },
+    {
+     "w": "mil",
+     "t": 15.446
+    },
+    {
+     "w": "e",
+     "t": 15.575
+    },
+    {
+     "w": "vinte",
+     "t": 15.646
+    },
+    {
+     "w": "e",
+     "t": 15.941
+    },
+    {
+     "w": "sete",
+     "t": 15.988
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 16.82,
+   "fim": 25.57,
+   "texto": "Número dois: duzentos e setenta e seis. É a soma dos partidos mais à direita, de acordo com levantamento do Poder360.",
+   "palavras": [
+    {
+     "w": "Número",
+     "t": 16.87
+    },
+    {
+     "w": "dois",
+     "t": 17.318
+    },
+    {
+     "w": "duzentos",
+     "t": 17.908
+    },
+    {
+     "w": "e",
+     "t": 18.45
+    },
+    {
+     "w": "setenta",
+     "t": 18.556
+    },
+    {
+     "w": "e",
+     "t": 18.922
+    },
+    {
+     "w": "seis",
+     "t": 18.969
+    },
+    {
+     "w": "É",
+     "t": 20.204
+    },
+    {
+     "w": "a",
+     "t": 20.358
+    },
+    {
+     "w": "soma",
+     "t": 20.405
+    },
+    {
+     "w": "dos",
+     "t": 20.735
+    },
+    {
+     "w": "partidos",
+     "t": 20.888
+    },
+    {
+     "w": "mais",
+     "t": 21.372
+    },
+    {
+     "w": "à",
+     "t": 21.584
+    },
+    {
+     "w": "direita",
+     "t": 21.69
+    },
+    {
+     "w": "de",
+     "t": 22.386
+    },
+    {
+     "w": "acordo",
+     "t": 22.48
+    },
+    {
+     "w": "com",
+     "t": 22.94
+    },
+    {
+     "w": "levantamento",
+     "t": 23.07
+    },
+    {
+     "w": "do",
+     "t": 23.73
+    },
+    {
+     "w": "Poder360",
+     "t": 23.836
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.72,
+   "fim": 34.66,
+   "texto": "Número três: trezentos e quarenta e dois. É o mínimo de deputados pra autorizar um processo de impeachment. Dois terços da Câmara.",
+   "palavras": [
+    {
+     "w": "Número",
+     "t": 25.77
+    },
+    {
+     "w": "três",
+     "t": 26.23
+    },
+    {
+     "w": "trezentos",
+     "t": 26.843
+    },
+    {
+     "w": "e",
+     "t": 27.409
+    },
+    {
+     "w": "quarenta",
+     "t": 27.539
+    },
+    {
+     "w": "e",
+     "t": 27.869
+    },
+    {
+     "w": "dois",
+     "t": 27.916
+    },
+    {
+     "w": "É",
+     "t": 29.093
+    },
+    {
+     "w": "o",
+     "t": 29.234
+    },
+    {
+     "w": "mínimo",
+     "t": 29.317
+    },
+    {
+     "w": "de",
+     "t": 29.706
+    },
+    {
+     "w": "deputados",
+     "t": 29.788
+    },
+    {
+     "w": "pra",
+     "t": 30.425
+    },
+    {
+     "w": "autorizar",
+     "t": 30.543
+    },
+    {
+     "w": "um",
+     "t": 31.05
+    },
+    {
+     "w": "processo",
+     "t": 31.121
+    },
+    {
+     "w": "de",
+     "t": 31.675
+    },
+    {
+     "w": "impeachment",
+     "t": 31.77
+    },
+    {
+     "w": "Dois",
+     "t": 33.102
+    },
+    {
+     "w": "terços",
+     "t": 33.479
+    },
+    {
+     "w": "da",
+     "t": 33.845
+    },
+    {
+     "w": "Câmara",
+     "t": 33.975
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.81,
+   "fim": 44.62,
+   "texto": "Ou seja, a direita sozinha não chega. Precisaria convencer partidos de centro. E no Senado, a conta é de cinquenta e quatro votos pra condenar.",
+   "palavras": [
+    {
+     "w": "Ou",
+     "t": 34.86
+    },
+    {
+     "w": "seja",
+     "t": 35.025
+    },
+    {
+     "w": "a",
+     "t": 35.591
+    },
+    {
+     "w": "direita",
+     "t": 35.662
+    },
+    {
+     "w": "sozinha",
+     "t": 36.051
+    },
+    {
+     "w": "não",
+     "t": 36.546
+    },
+    {
+     "w": "chega",
+     "t": 36.735
+    },
+    {
+     "w": "Precisaria",
+     "t": 37.959
+    },
+    {
+     "w": "convencer",
+     "t": 38.595
+    },
+    {
+     "w": "partidos",
+     "t": 39.15
+    },
+    {
+     "w": "de",
+     "t": 39.669
+    },
+    {
+     "w": "centro",
+     "t": 39.786
+    },
+    {
+     "w": "E",
+     "t": 41.025
+    },
+    {
+     "w": "no",
+     "t": 41.119
+    },
+    {
+     "w": "Senado",
+     "t": 41.225
+    },
+    {
+     "w": "a",
+     "t": 41.897
+    },
+    {
+     "w": "conta",
+     "t": 42.003
+    },
+    {
+     "w": "é",
+     "t": 42.369
+    },
+    {
+     "w": "de",
+     "t": 42.428
+    },
+    {
+     "w": "cinquenta",
+     "t": 42.546
+    },
+    {
+     "w": "e",
+     "t": 42.97
+    },
+    {
+     "w": "quatro",
+     "t": 43.006
+    },
+    {
+     "w": "votos",
+     "t": 43.301
+    },
+    {
+     "w": "pra",
+     "t": 43.725
+    },
+    {
+     "w": "condenar",
+     "t": 43.878
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 44.77,
+   "fim": 55.13,
+   "texto": "Além disso, o motivo precisa ser crime de responsabilidade do presidente. E quem decidiu prorrogar a votação até as dezenove horas foi o ministro Zanin, do STF.",
+   "palavras": [
+    {
+     "w": "Além",
+     "t": 44.82
+    },
+    {
+     "w": "disso",
+     "t": 45.127
+    },
+    {
+     "w": "o",
+     "t": 45.799
+    },
+    {
+     "w": "motivo",
+     "t": 45.858
+    },
+    {
+     "w": "precisa",
+     "t": 46.329
+    },
+    {
+     "w": "ser",
+     "t": 46.754
+    },
+    {
+     "w": "crime",
+     "t": 46.954
+    },
+    {
+     "w": "de",
+     "t": 47.261
+    },
+    {
+     "w": "responsabilidade",
+     "t": 47.367
+    },
+    {
+     "w": "do",
+     "t": 48.287
+    },
+    {
+     "w": "presidente",
+     "t": 48.393
+    },
+    {
+     "w": "E",
+     "t": 49.805
+    },
+    {
+     "w": "quem",
+     "t": 49.923
+    },
+    {
+     "w": "decidiu",
+     "t": 50.1
+    },
+    {
+     "w": "prorrogar",
+     "t": 50.501
+    },
+    {
+     "w": "a",
+     "t": 50.937
+    },
+    {
+     "w": "votação",
+     "t": 50.985
+    },
+    {
+     "w": "até",
+     "t": 51.492
+    },
+    {
+     "w": "as",
+     "t": 51.739
+    },
+    {
+     "w": "dezenove",
+     "t": 51.857
+    },
+    {
+     "w": "horas",
+     "t": 52.388
+    },
+    {
+     "w": "foi",
+     "t": 52.695
+    },
+    {
+     "w": "o",
+     "t": 52.848
+    },
+    {
+     "w": "ministro",
+     "t": 52.883
+    },
+    {
+     "w": "Zanin",
+     "t": 53.367
+    },
+    {
+     "w": "do",
+     "t": 53.909
+    },
+    {
+     "w": "STF",
+     "t": 54.121
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 55.28,
+   "fim": 66.04,
+   "texto": "A oposição vai ter o maior Congresso da sua história. Mas força pra pedir é diferente de força pra aprovar. Você acha que esse pedido sai do papel? Comenta.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 55.33
+    },
+    {
+     "w": "oposição",
+     "t": 55.472
+    },
+    {
+     "w": "vai",
+     "t": 56.073
+    },
+    {
+     "w": "ter",
+     "t": 56.25
+    },
+    {
+     "w": "o",
+     "t": 56.38
+    },
+    {
+     "w": "maior",
+     "t": 56.427
+    },
+    {
+     "w": "Congresso",
+     "t": 56.71
+    },
+    {
+     "w": "da",
+     "t": 57.288
+    },
+    {
+     "w": "sua",
+     "t": 57.382
+    },
+    {
+     "w": "história",
+     "t": 57.594
+    },
+    {
+     "w": "Mas",
+     "t": 58.83
+    },
+    {
+     "w": "força",
+     "t": 59.101
+    },
+    {
+     "w": "pra",
+     "t": 59.466
+    },
+    {
+     "w": "pedir",
+     "t": 59.596
+    },
+    {
+     "w": "é",
+     "t": 59.903
+    },
+    {
+     "w": "diferente",
+     "t": 59.973
+    },
+    {
+     "w": "de",
+     "t": 60.457
+    },
+    {
+     "w": "força",
+     "t": 60.551
+    },
+    {
+     "w": "pra",
+     "t": 60.94
+    },
+    {
+     "w": "aprovar",
+     "t": 61.07
+    },
+    {
+     "w": "Você",
+     "t": 62.308
+    },
+    {
+     "w": "acha",
+     "t": 62.662
+    },
+    {
+     "w": "que",
+     "t": 62.98
+    },
+    {
+     "w": "esse",
+     "t": 63.075
+    },
+    {
+     "w": "pedido",
+     "t": 63.264
+    },
+    {
+     "w": "sai",
+     "t": 63.641
+    },
+    {
+     "w": "do",
+     "t": 63.889
+    },
+    {
+     "w": "papel",
+     "t": 63.995
+    },
+    {
+     "w": "Comenta",
+     "t": 65.221
+    }
+   ]
+  }
+ ]
+}
