@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("ventilador", { fundo: 0xe4ecf2, seed: 2810 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- quarto ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b08050", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xe8dcc8, { map: texRuido("#e8dcc8", 12, 4) }), 0, 4, -1.5);
+
+// ---------- ventilador ----------
+const AZ = 0x3a8ad8;
+add(new THREE.CylinderGeometry(.42, .48, .08, 40), mat(0x2a2e36), 0, .04, 0);
+const haste = add(new THREE.CylinderGeometry(.04, .04, 1.1, 16), mat(0xc0c6cc, { metalness: .4 }), 0, .6, 0);
+const pe = grupo(0, 1.15, 0);           // inclina (cena 7)
+const cabeca = grupo(0, 0, 0, pe);      // oscila (cena 5)
+add(new THREE.CylinderGeometry(.16, .16, .32, 30), mat(0xf2f2f2), 0, .12, -.18, cabeca).rotation.x = PI / 2;
+add(new THREE.SphereGeometry(.16, 24, 12, 0, PI * 2, 0, PI / 2), mat(0xf2f2f2), 0, .12, -.34, cabeca).rotation.x = -PI / 2;
+const pino = add(new THREE.CylinderGeometry(.03, .03, .12, 12), mat(0xffd23a), 0, .32, -.22, cabeca);
+const rotor = grupo(0, .12, .02, cabeca);
+add(new THREE.CylinderGeometry(.07, .07, .06, 20), mat(AZ), 0, 0, 0, rotor).rotation.x = PI / 2;
+const pas = [0, 1, 2].map((i) => { const b = grupo(0, 0, 0, rotor); b.rotation.z = i * PI * 2 / 3; const p = add(new THREE.SphereGeometry(1, 24, 12), vidro(.85, AZ), 0, .3, 0, b); p.scale.set(.13, .26, .015); return p; });
+const grade = grupo(0, .12, .02, cabeca); const gM = mat(0xd8dce2, { metalness: .3 });
+for (const r of [.15, .3, .45]) add(new THREE.TorusGeometry(r, .008, 6, 48), gM, 0, 0, .1, grade);
+for (let i = 0; i < 16; i++) { const a = i / 16 * PI * 2; const s = add(new THREE.BoxGeometry(.008, .45, .008), gM, Math.cos(a) * .225, Math.sin(a) * .225, .1, grade); s.rotation.z = a - PI / 2; }
+grade.scale.setScalar(.001);
+const ar = Array.from({ length: 40 }, () => ({ s: sprite(0x8ac8ff), f: rnd(), a: rnd() * PI * 2, r: .08 + rnd() * .38 }));
+const quente = Array.from({ length: 16 }, () => ({ s: sprite(0xff8a3a), f: rnd(), a: rnd() * PI * 2, r: rnd() * .4 }));
+
+// ---------- mini set 1: pele + camada de ar quente + suor ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.BoxGeometry(1.4, .5, 1), mat(0xf6d2b8, { map: texRuido("#f6d2b8", 14, 3), roughness: .8 }), BX, .5, 0);
+const camada = add(new THREE.BoxGeometry(1.5, .22, 1.05), new THREE.MeshStandardMaterial({ color: 0xff7a2a, transparent: true, opacity: .5, depthWrite: false }), BX, .86, 0);
+const suor = Array.from({ length: 14 }, (_, i) => ({ s: sprite(0x5ab0ff), x: BX - .6 + (i % 7) * .2, z: i < 7 ? -.2 : .2, f: rnd() }));
+const vento = Array.from({ length: 30 }, () => ({ s: sprite(0x9ad8ff), f: rnd(), y: .8 + rnd() * .5, z: (rnd() - .5) * .8 }));
+
+// ---------- mini set 2: rosca sem fim + engrenagem ----------
+const GX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), GX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(GX + 1, 2, 2.5); scene.add(pl); }
+const rosca = grupo(GX, 1.1, 0);
+add(new THREE.CylinderGeometry(.06, .06, 1.6, 16), mat(0xc0c6cc, { metalness: .4 }), 0, 0, 0, rosca).rotation.z = PI / 2;
+{ const pts = []; for (let i = 0; i <= 200; i++) { const a = i / 200 * PI * 12; pts.push(V(-.5 + i / 200, Math.cos(a) * .12, Math.sin(a) * .12)); } add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 300, .03, 6), mat(0xe0c040, { metalness: .4 }), 0, 0, 0, rosca); }
+const eng = grupo(GX, .53, 0); add(new THREE.CylinderGeometry(.4, .4, .12, 40), mat(0x3a8ad8), 0, 0, 0, eng).rotation.x = PI / 2;
+for (let i = 0; i < 24; i++) { const a = i / 24 * PI * 2; const d = add(new THREE.BoxGeometry(.06, .08, .12), mat(0x3a8ad8), Math.cos(a) * .43, Math.sin(a) * .43, 0, eng); d.rotation.z = a; }
+const braco = add(new THREE.BoxGeometry(.06, .5, .06), mat(0xffd23a), .25, 0, .1, eng);
+
+const lbl = (txt, cor, x, y, z = .4) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lQ = lbl("AR QUENTE", "#ffb070", BX, 1.25), lM = lbl("MOTOR", "#ffffff", GX, 1.45), lE = lbl("CABEÇA", "#ffd23a", GX, .02);
+
+K.camera_({
+  geral: [V(2.1, 1.7, 3.3), V(0, .95, 0)],
+  frente: [V(.25, 1.45, 1.55), V(0, 1.25, 0)],
+  lado: [V(2.5, 1.5, 1.9), V(0, 1.25, .1)],
+  pele: [V(BX + .2, 1.8, 3.6), V(BX, .8, 0)],
+  rosca: [V(GX + .2, 1.2, 2.9), V(GX, .8, 0)],
+  topo: [V(.9, 2.2, .9), V(0, 1.2, -.1)],
+  fim: [V(-2.0, 1.5, 2.9), V(0, .95, 0)],
+}, [
+  [0, "geral"], [C(2), "frente"], [P(2, "frente") - .2, "lado"], [F(2), "lado"], [C(3), "geral"], [F(3), "geral"], [C(4), "pele"], [F(4), "pele"],
+  [C(5), "geral"], [P(5, "engrenagem") - .3, "rosca"], [P(5, "pino") - .5, "rosca"], [P(5, "pino") - .5, "topo"], [F(5), "topo"], [C(6), "frente"], [F(6), "frente"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // velocidade das pás
+  let vel = t < C(2) ? 14 : 12; if (em(C(6), F(6))) vel = t < P(6, "longo") - .3 ? 14 : 6;
+  rotor.rotation.z = -t * vel;
+  const passo = t < P(2, "entorta") - .2 ? 0 : .55 * prog(t, P(2, "entorta") - .2, P(2, "entorta") + .5);
+  pas.forEach((p) => { p.rotation.y = passo; });
+  // ar indo pra frente (só com a pá entortada)
+  const empurra = passo > .2;
+  ar.forEach((a) => { const k = frac(t * .8 + a.f); a.s.position.set(Math.cos(a.a) * a.r, 1.27 + Math.sin(a.a) * a.r, .1 + k * 2.4); a.s.scale.setScalar(.05); a.s.material.opacity = empurra ? .8 * (1 - k) : 0; });
+  quente.forEach((q) => { const k = frac(t * .6 + q.f); q.s.position.set(Math.cos(q.a) * q.r, 1.27 + Math.sin(q.a) * q.r, -.3 + k * 2); q.s.scale.setScalar(.07); q.s.material.opacity = em(P(3, "esquenta") - .3, F(3)) ? .7 * (1 - k) : 0; });
+  // pele: camada some com o vento, suor evapora
+  const sopra = em(P(4, "vento") - .3, F(4));
+  camada.material.opacity = .5 * (1 - prog(t, P(4, "arranca") - .2, P(4, "arranca") + .6)); camada.position.y = .86 + .3 * prog(t, P(4, "arranca") - .2, P(4, "arranca") + .6); camada.position.x = BX + 1.5 * prog(t, P(4, "arranca") - .2, P(4, "arranca") + .6);
+  vento.forEach((v) => { const k = frac(t * 1.2 + v.f); v.s.position.set(BX - .9 + k * 1.8, v.y, v.z); v.s.scale.setScalar(.05); v.s.material.opacity = sopra ? .8 * (1 - k) : 0; });
+  const evap = prog(t, P(4, "suor") - .3, P(4, "evaporando") + .3);
+  suor.forEach((s) => { const k = frac(t * .5 + s.f); const sobe = t > P(4, "evaporando") - .3; s.s.position.set(s.x + (sobe ? k * .4 : 0), .78 + (sobe ? k * .8 : 0), s.z); s.s.scale.setScalar(sobe ? .09 + k * .1 : .11); s.s.material.color.set(sobe ? 0xe8f4ff : 0x5ab0ff); s.s.material.opacity = t > P(4, "suor") - .3 && t < C(5) ? (sobe ? .7 * (1 - k) : .9) : 0; });
+  lQ.visible = em(P(4, "camadinha") - .3, P(4, "arranca"));
+  // rosca sem fim
+  rosca.rotation.x = t * 12; eng.rotation.z = -t * .5; lM.visible = lE.visible = em(P(5, "engrenagem") - .3, P(5, "pino") - .5);
+  // oscilação da cabeça
+  const osc = t > P(5, "vira") - .5 && t < C(6) || t > C(7);
+  cabeca.rotation.y = osc ? Math.sin((t - P(5, "vira")) * .9) * .7 : cabeca.rotation.y * .9;
+  pino.material.emissive = new THREE.Color(0xffa000); pino.material.emissiveIntensity = em(P(5, "pino") - .5, F(5)) ? 1 : 0; pino.position.y = .32 + (t > P(5, "puxa") - .2 && t < C(6) ? .05 : 0);
+  // grade e inclinação
+  grade.scale.setScalar(Math.max(.001, prog(t, P(7, "grade") - .3, P(7, "grade") + .3)));
+  pe.rotation.x = -.25 * prog(t, P(7, "inclina") - .3, P(7, "inclina") + .5);
+  K.cartoes(t, [
+    [P(1, "ventilador") - .3, F(1), "VENTILADOR", "#ffffff"],
+    [C(2), P(2, "entorta") - .3, "PÁ RETA: SÓ CORTA O AR", "#ff4a3a"],
+    [P(2, "entorta") - .3, F(2), "PÁ TORTA = HÉLICE", "#8ac8ff"],
+    [P(3, "gela") - .4, F(3), "NÃO GELA O AR!", "#ff8a3a"],
+    [P(4, "evaporando") - .4, F(4), "SUOR EVAPORANDO = FRIO", "#8ac8ff"],
+    [P(5, "pino") - .5, F(5), "O PINO DE CIMA", "#ffd23a"],
+    [C(6), P(6, "longo") - .3, "VELOCIDADE 3", "#ffffff"],
+    [P(6, "longo") - .3, F(6), "VELOCIDADE 1", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>

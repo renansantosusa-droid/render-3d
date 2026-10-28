@@ -1,0 +1,713 @@
+{
+ "total": 58.77,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.42,
+   "texto": "Se você girar umas pás bem rápido, terá um ventilador.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.4
+    },
+    {
+     "w": "girar",
+     "t": 0.648
+    },
+    {
+     "w": "umas",
+     "t": 0.919
+    },
+    {
+     "w": "pás",
+     "t": 1.155
+    },
+    {
+     "w": "bem",
+     "t": 1.415
+    },
+    {
+     "w": "rápido",
+     "t": 1.627
+    },
+    {
+     "w": "terá",
+     "t": 2.24
+    },
+    {
+     "w": "um",
+     "t": 2.464
+    },
+    {
+     "w": "ventilador",
+     "t": 2.582
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.57,
+   "fim": 13.5,
+   "texto": "Mas pá reta só corta o ar, não empurra nada. Então, você entorta cada pá, igual uma hélice. Agora cada volta joga o ar pra frente.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.62
+    },
+    {
+     "w": "pá",
+     "t": 3.915
+    },
+    {
+     "w": "reta",
+     "t": 4.056
+    },
+    {
+     "w": "só",
+     "t": 4.375
+    },
+    {
+     "w": "corta",
+     "t": 4.575
+    },
+    {
+     "w": "o",
+     "t": 4.87
+    },
+    {
+     "w": "ar",
+     "t": 4.941
+    },
+    {
+     "w": "não",
+     "t": 5.306
+    },
+    {
+     "w": "empurra",
+     "t": 5.53
+    },
+    {
+     "w": "nada",
+     "t": 5.967
+    },
+    {
+     "w": "Então",
+     "t": 7.108
+    },
+    {
+     "w": "você",
+     "t": 7.862
+    },
+    {
+     "w": "entorta",
+     "t": 8.098
+    },
+    {
+     "w": "cada",
+     "t": 8.594
+    },
+    {
+     "w": "pá",
+     "t": 8.841
+    },
+    {
+     "w": "igual",
+     "t": 9.325
+    },
+    {
+     "w": "uma",
+     "t": 9.643
+    },
+    {
+     "w": "hélice",
+     "t": 9.855
+    },
+    {
+     "w": "Agora",
+     "t": 11.082
+    },
+    {
+     "w": "cada",
+     "t": 11.542
+    },
+    {
+     "w": "volta",
+     "t": 11.766
+    },
+    {
+     "w": "joga",
+     "t": 12.108
+    },
+    {
+     "w": "o",
+     "t": 12.403
+    },
+    {
+     "w": "ar",
+     "t": 12.485
+    },
+    {
+     "w": "pra",
+     "t": 12.638
+    },
+    {
+     "w": "frente",
+     "t": 12.803
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 13.65,
+   "fim": 19.94,
+   "texto": "Só que tem uma coisa estranha: o ventilador não gela o ar. O motor até esquenta ele um pouquinho.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 13.7
+    },
+    {
+     "w": "que",
+     "t": 13.995
+    },
+    {
+     "w": "tem",
+     "t": 14.136
+    },
+    {
+     "w": "uma",
+     "t": 14.266
+    },
+    {
+     "w": "coisa",
+     "t": 14.431
+    },
+    {
+     "w": "estranha",
+     "t": 14.726
+    },
+    {
+     "w": "o",
+     "t": 15.492
+    },
+    {
+     "w": "ventilador",
+     "t": 15.587
+    },
+    {
+     "w": "não",
+     "t": 16.235
+    },
+    {
+     "w": "gela",
+     "t": 16.436
+    },
+    {
+     "w": "o",
+     "t": 16.707
+    },
+    {
+     "w": "ar.",
+     "t": 16.801
+    },
+    {
+     "w": "O",
+     "t": 17.777
+    },
+    {
+     "w": "motor",
+     "t": 17.872
+    },
+    {
+     "w": "até",
+     "t": 18.273
+    },
+    {
+     "w": "esquenta",
+     "t": 18.497
+    },
+    {
+     "w": "ele",
+     "t": 18.945
+    },
+    {
+     "w": "um",
+     "t": 19.098
+    },
+    {
+     "w": "pouquinho",
+     "t": 19.204
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.09,
+   "fim": 31.25,
+   "texto": "Ele te refresca porque o seu corpo vive cercado de uma camadinha de ar quente. O vento arranca essa camada e ainda seca o suor da pele. E suor evaporando leva calor embora.",
+   "palavras": [
+    {
+     "w": "Ele",
+     "t": 20.14
+    },
+    {
+     "w": "te",
+     "t": 20.376
+    },
+    {
+     "w": "refresca",
+     "t": 20.47
+    },
+    {
+     "w": "porque",
+     "t": 21.036
+    },
+    {
+     "w": "o",
+     "t": 21.307
+    },
+    {
+     "w": "seu",
+     "t": 21.355
+    },
+    {
+     "w": "corpo",
+     "t": 21.555
+    },
+    {
+     "w": "vive",
+     "t": 21.921
+    },
+    {
+     "w": "cercado",
+     "t": 22.156
+    },
+    {
+     "w": "de",
+     "t": 22.699
+    },
+    {
+     "w": "uma",
+     "t": 22.793
+    },
+    {
+     "w": "camadinha",
+     "t": 22.947
+    },
+    {
+     "w": "de",
+     "t": 23.501
+    },
+    {
+     "w": "ar",
+     "t": 23.607
+    },
+    {
+     "w": "quente",
+     "t": 23.737
+    },
+    {
+     "w": "O",
+     "t": 24.937
+    },
+    {
+     "w": "vento",
+     "t": 25.066
+    },
+    {
+     "w": "arranca",
+     "t": 25.397
+    },
+    {
+     "w": "essa",
+     "t": 25.809
+    },
+    {
+     "w": "camada",
+     "t": 26.045
+    },
+    {
+     "w": "e",
+     "t": 26.505
+    },
+    {
+     "w": "ainda",
+     "t": 26.564
+    },
+    {
+     "w": "seca",
+     "t": 26.847
+    },
+    {
+     "w": "o",
+     "t": 27.201
+    },
+    {
+     "w": "suor",
+     "t": 27.248
+    },
+    {
+     "w": "da",
+     "t": 27.59
+    },
+    {
+     "w": "pele",
+     "t": 27.708
+    },
+    {
+     "w": "E",
+     "t": 28.84
+    },
+    {
+     "w": "suor",
+     "t": 28.958
+    },
+    {
+     "w": "evaporando",
+     "t": 29.312
+    },
+    {
+     "w": "leva",
+     "t": 29.901
+    },
+    {
+     "w": "calor",
+     "t": 30.22
+    },
+    {
+     "w": "embora",
+     "t": 30.573
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.4,
+   "fim": 44.14,
+   "texto": "Mas ele só venta num lugar. Então, você coloca uma engrenagem em espiral no eixo do motor. Ela gira devagar um braço que vira a cabeça pra lá e pra cá. É o pino que você puxa em cima.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 31.45
+    },
+    {
+     "w": "ele",
+     "t": 31.674
+    },
+    {
+     "w": "só",
+     "t": 31.981
+    },
+    {
+     "w": "venta",
+     "t": 32.181
+    },
+    {
+     "w": "num",
+     "t": 32.535
+    },
+    {
+     "w": "lugar",
+     "t": 32.665
+    },
+    {
+     "w": "Então",
+     "t": 33.794
+    },
+    {
+     "w": "você",
+     "t": 34.572
+    },
+    {
+     "w": "coloca",
+     "t": 34.843
+    },
+    {
+     "w": "uma",
+     "t": 35.268
+    },
+    {
+     "w": "engrenagem",
+     "t": 35.386
+    },
+    {
+     "w": "em",
+     "t": 35.952
+    },
+    {
+     "w": "espiral",
+     "t": 36.034
+    },
+    {
+     "w": "no",
+     "t": 36.518
+    },
+    {
+     "w": "eixo",
+     "t": 36.671
+    },
+    {
+     "w": "do",
+     "t": 36.919
+    },
+    {
+     "w": "motor",
+     "t": 37.001
+    },
+    {
+     "w": "Ela",
+     "t": 38.204
+    },
+    {
+     "w": "gira",
+     "t": 38.487
+    },
+    {
+     "w": "devagar",
+     "t": 38.723
+    },
+    {
+     "w": "um",
+     "t": 39.053
+    },
+    {
+     "w": "braço",
+     "t": 39.148
+    },
+    {
+     "w": "que",
+     "t": 39.572
+    },
+    {
+     "w": "vira",
+     "t": 39.678
+    },
+    {
+     "w": "a",
+     "t": 39.867
+    },
+    {
+     "w": "cabeça",
+     "t": 39.902
+    },
+    {
+     "w": "pra",
+     "t": 40.386
+    },
+    {
+     "w": "lá",
+     "t": 40.551
+    },
+    {
+     "w": "e",
+     "t": 40.763
+    },
+    {
+     "w": "pra",
+     "t": 40.846
+    },
+    {
+     "w": "cá",
+     "t": 41.034
+    },
+    {
+     "w": "É",
+     "t": 42.084
+    },
+    {
+     "w": "o",
+     "t": 42.225
+    },
+    {
+     "w": "pino",
+     "t": 42.332
+    },
+    {
+     "w": "que",
+     "t": 42.638
+    },
+    {
+     "w": "você",
+     "t": 42.744
+    },
+    {
+     "w": "puxa",
+     "t": 43.004
+    },
+    {
+     "w": "em",
+     "t": 43.393
+    },
+    {
+     "w": "cima",
+     "t": 43.487
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 44.29,
+   "fim": 51.5,
+   "texto": "Os botões de velocidade só mudam o caminho da energia dentro do motor. Caminho mais longo, giro mais lento.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 44.34
+    },
+    {
+     "w": "botões",
+     "t": 44.529
+    },
+    {
+     "w": "de",
+     "t": 45
+    },
+    {
+     "w": "velocidade",
+     "t": 45.071
+    },
+    {
+     "w": "só",
+     "t": 45.767
+    },
+    {
+     "w": "mudam",
+     "t": 45.967
+    },
+    {
+     "w": "o",
+     "t": 46.333
+    },
+    {
+     "w": "caminho",
+     "t": 46.38
+    },
+    {
+     "w": "da",
+     "t": 46.769
+    },
+    {
+     "w": "energia",
+     "t": 46.864
+    },
+    {
+     "w": "dentro",
+     "t": 47.371
+    },
+    {
+     "w": "do",
+     "t": 47.724
+    },
+    {
+     "w": "motor",
+     "t": 47.807
+    },
+    {
+     "w": "Caminho",
+     "t": 49.019
+    },
+    {
+     "w": "mais",
+     "t": 49.42
+    },
+    {
+     "w": "longo",
+     "t": 49.656
+    },
+    {
+     "w": "giro",
+     "t": 50.316
+    },
+    {
+     "w": "mais",
+     "t": 50.587
+    },
+    {
+     "w": "lento",
+     "t": 50.858
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 51.65,
+   "fim": 58.17,
+   "texto": "Coloque uma grade pra proteger os dedos e um pé que inclina. Parabéns, você construiu um ventilador.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 51.7
+    },
+    {
+     "w": "uma",
+     "t": 52.184
+    },
+    {
+     "w": "grade",
+     "t": 52.349
+    },
+    {
+     "w": "pra",
+     "t": 52.726
+    },
+    {
+     "w": "proteger",
+     "t": 52.879
+    },
+    {
+     "w": "os",
+     "t": 53.316
+    },
+    {
+     "w": "dedos",
+     "t": 53.41
+    },
+    {
+     "w": "e",
+     "t": 53.717
+    },
+    {
+     "w": "um",
+     "t": 53.834
+    },
+    {
+     "w": "pé",
+     "t": 53.988
+    },
+    {
+     "w": "que",
+     "t": 54.165
+    },
+    {
+     "w": "inclina",
+     "t": 54.294
+    },
+    {
+     "w": "Parabéns",
+     "t": 55.589
+    },
+    {
+     "w": "você",
+     "t": 56.367
+    },
+    {
+     "w": "construiu",
+     "t": 56.662
+    },
+    {
+     "w": "um",
+     "t": 57.157
+    },
+    {
+     "w": "ventilador",
+     "t": 57.299
+    }
+   ]
+  }
+ ]
+}
