@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("fralda", { fundo: 0xeef0f6, seed: 2813 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- quarto do bebê + trocador ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#c8a070", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xd8ecf4, { map: texRuido("#d8ecf4", 8, 4) }), 0, 4, -1.4);
+add(new THREE.BoxGeometry(1.6, .6, 1.1), mat(0xf4f4f4), 0, .3, 0);
+add(new THREE.BoxGeometry(1.5, .06, 1.0), mat(0x9ad0e8, { roughness: .9 }), 0, .63, 0);
+
+// ---------- pano ----------
+const panoM = mat(0xf6f2ea, { roughness: .95, map: texRuido("#f6f2ea", 14, 3) });
+const pano = add(new THREE.BoxGeometry(.8, .05, 1.0), panoM, 0, .69, 0);
+const pingos = Array.from({ length: 12 }, () => ({ s: sprite(0xe8d060), f: rnd(), x: (rnd() < .5 ? -1 : 1) * .4, z: (rnd() - .5) * .8 }));
+
+// ---------- fralda (ampulheta) ----------
+const sh = new THREE.Shape(); sh.moveTo(-.38, -.6); sh.lineTo(.38, -.6); sh.lineTo(.38, -.35); sh.quadraticCurveTo(.18, 0, .38, .35); sh.lineTo(.38, .6); sh.lineTo(-.38, .6); sh.lineTo(-.38, .35); sh.quadraticCurveTo(-.18, 0, -.38, -.35); sh.lineTo(-.38, -.6);
+const fralda = grupo(0, .69, 0); fralda.visible = false;
+const base = add(new THREE.ExtrudeGeometry(sh, { depth: .05, bevelEnabled: true, bevelSize: .015, bevelThickness: .015, bevelSegments: 3 }), mat(0xfbfbfb, { roughness: .9 }), 0, 0, 0, fralda); base.rotation.x = -PI / 2;
+const nucleo = add(new THREE.BoxGeometry(.3, .03, .8), mat(0xe8eef4, { roughness: 1 }), 0, .06, 0, fralda);
+const faixa = add(new THREE.BoxGeometry(.04, .005, .7), brilho(0xf0d040), 0, .078, 0, fralda); faixa.scale.set(.001, 1, 1);
+const elas = []; for (const s of [-1, 1]) { const pts = []; for (let i = 0; i <= 20; i++) { const z = -.35 + i * .035; pts.push(V(s * (.38 - .2 * Math.sin((i / 20) * PI)), .07, z)); } const e = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, .012, 6), mat(0xf4a0c0), 0, 0, 0, fralda); e.scale.set(1, .001, 1); elas.push(e); const b = add(new THREE.BoxGeometry(.012, .08, .7), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: .9 }), s * .2, .1, 0, fralda); b.scale.y = .001; elas.push(b); }
+const fitas = [-1, 1].map((s) => { const f = add(new THREE.BoxGeometry(.16, .01, .1), mat(0x6ac0f0), s * .46, .05, -.48, fralda); f.scale.setScalar(.001); return f; });
+
+// ---------- mini set 1: grãos de poliacrilato ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+const graos = []; for (let i = 0; i < 12; i++) { const m = add(new THREE.IcosahedronGeometry(.07, 1), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .4, transparent: true, opacity: 1 }), BX - .45 + (i % 4) * .3, .7 + Math.floor(i / 4) * .25, (i % 2) * .1); graos.push(m); }
+const agua = Array.from({ length: 30 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), alvo: Math.floor(rnd() * 12) }));
+const prensa = add(new THREE.BoxGeometry(1.4, .1, .6), mat(0x5a5e66, { metalness: .3 }), BX, 2.4, 0);
+
+// ---------- mini set 2: camadas explodidas ----------
+const LX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), LX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(LX + 1, 2, 2.5); scene.add(pl); }
+const cTopo = add(new THREE.BoxGeometry(1.2, .02, .7), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: .8 }), LX, 1.3, 0);
+const cMeio = add(new THREE.BoxGeometry(1.2, .16, .7), mat(0xe0e8f0, { roughness: 1 }), LX, .95, 0);
+const cBaixo = add(new THREE.BoxGeometry(1.2, .02, .7), new THREE.MeshStandardMaterial({ color: 0x9ad0f0, transparent: true, opacity: .85 }), LX, .6, 0);
+const xixi = Array.from({ length: 20 }, () => ({ s: sprite(0xe8d060), f: rnd(), x: (rnd() - .5) * 1, z: (rnd() - .5) * .5 }));
+const vap = Array.from({ length: 16 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * 1, z: (rnd() - .5) * .5 }));
+const lbl = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 64 }), transparent: true })); s.position.set(x, y, .45); s.scale.set(.7, .35, 1); scene.add(s); return s; };
+const l1 = lbl("TECIDO", "#ffffff", LX - .35, 1.45), l2 = lbl("GEL", "#8ac8ff", LX - .35, 1.1), l3 = lbl("PLÁSTICO", "#9ad0f0", LX - .35, .45);
+
+K.camera_({
+  geral: [V(1.5, 2.5, 2.9), V(0, .62, 0)],
+  topo: [V(.1, 2.6, 1.3), V(0, .68, 0)],
+  graos: [V(BX + .1, 1.3, 4.2), V(BX, 1.0, 0)],
+  camadas: [V(LX + .5, 1.7, 3.9), V(LX, .95, 0)],
+  pernas: [V(.9, 1.4, 1.0), V(0, .7, 0)],
+  fim: [V(-1.5, 2.4, 2.8), V(0, .62, 0)],
+}, [
+  [0, "geral"], [C(2), "geral"], [F(2), "topo"], [C(3), "graos"], [F(4), "graos"], [C(5), "camadas"], [F(5), "camadas"], [C(6), "geral"], [P(6, "elasticos") - .3, "pernas"], [F(6), "pernas"], [C(7), "topo"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // pano x fralda
+  const ehFralda = t > C(3);
+  pano.visible = !ehFralda; fralda.visible = ehFralda;
+  const molha = prog(t, P(2, "encharca") - .3, P(2, "molhado")); panoM.color.setRGB(.96 - .06 * molha, .95 - .03 * molha, .92 - .25 * molha);
+  pingos.forEach((p) => { const k = frac(t * 1.2 + p.f); p.s.position.set(p.x * (1 + k * .1), .69 - k * .6, p.z); p.s.scale.setScalar(.04); p.s.material.opacity = em(P(2, "vaza") - .3, F(2)) ? .9 * (1 - k) : 0; });
+  // grãos incham e viram gel; a prensa aperta e nada sai
+  const incha = prog(t, P(3, "incha") - .4, P(3, "gel") + .3);
+  graos.forEach((g) => { g.scale.setScalar(1 + 2 * incha); g.material.color.set(incha > .6 ? 0xa8d8ff : 0xffffff); g.material.opacity = 1 - .45 * incha; g.material.roughness = .4 - .3 * incha; });
+  agua.forEach((a) => { const k = frac(t * 1.1 + a.f); const g = graos[a.alvo]; a.s.position.set(g.position.x, g.position.y + .5 * (1 - k), g.position.z); a.s.scale.setScalar(.035); a.s.material.opacity = em(P(3, "puxa") - .3, F(3)) ? .9 * (1 - k * k) : 0; });
+  const aperta = em(C(4), F(4)) ? prog(t, P(4, "apertando") - .4, P(4, "apertando") + .3) : 0; prensa.position.y = 2.4 - 1.05 * aperta; prensa.visible = em(C(4), F(4));
+  graos.forEach((g) => { g.scale.y = (1 + 2 * incha) * (1 - .3 * aperta); });
+  // camadas: xixi só desce, vapor sai por baixo
+  xixi.forEach((x) => { const k = frac(t * .9 + x.f); x.s.position.set(LX + x.x, 1.6 - k * .65, x.z); x.s.scale.setScalar(.04); x.s.material.opacity = em(P(5, "xixi") - .3, P(5, "plastico") - .3) ? .9 * (1 - k * .3) : 0; });
+  vap.forEach((v) => { const k = frac(t * .5 + v.f); v.s.position.set(LX + v.x, .58 - k * .45, v.z); v.s.scale.setScalar(.05 + k * .05); v.s.material.opacity = em(P(5, "vapor") - .3, F(5)) ? .6 * (1 - k) : 0; });
+  cMeio.material.color.set(t > P(5, "xixi") + .5 ? 0xb8dcf8 : 0xe0e8f0);
+  l1.visible = em(P(5, "tecido") - .3, F(5)); l2.visible = em(P(5, "sequinha") - .3, F(5)); l3.visible = em(P(5, "plastico") - .3, F(5));
+  // elásticos e barreira
+  const ke = prog(t, P(6, "elasticos") - .3, P(6, "elasticos") + .3), kb = prog(t, P(6, "barreira") - .3, P(6, "barreira") + .3);
+  elas.forEach((e, i) => { if (i % 2 === 0) e.scale.y = Math.max(.001, ke); else e.scale.y = Math.max(.001, kb); });
+  // faixa que muda de cor + fitas
+  faixa.scale.x = Math.max(.001, prog(t, P(7, "faixa") - .3, P(7, "faixa") + .3)); faixa.material.color.set(t > P(7, "molha") ? 0x3a7aff : 0xf0d040);
+  fitas.forEach((f) => f.scale.setScalar(Math.max(.001, prog(t, P(7, "fitas") - .3, P(7, "fitas") + .3))));
+  K.cartoes(t, [
+    [P(1, "fralda") - .3, F(1), "FRALDA", "#ffffff"],
+    [P(2, "encharca") - .3, F(2), "ENCHARCA E VAZA", "#ff4a3a"],
+    [P(3, "poliacrilato") - .4, P(3, "incha") - .3, "POLIACRILATO", "#ffffff"],
+    [P(3, "incha") - .3, P(3, "segura") - .3, "INCHA E VIRA GEL", "#8ac8ff"],
+    [P(3, "segura") - .3, F(3), "ATÉ 300x O PRÓPRIO PESO", "#ffd23a"],
+    [C(4), F(4), "O GEL NÃO DEVOLVE", "#8ac8ff"],
+    [P(5, "vapor") - .3, F(5), "PASSA VAPOR, NÃO LÍQUIDO", "#ffffff"],
+    [P(6, "barreira") - .3, F(6), "BARREIRA EM PÉ", "#f4a0c0"],
+    [P(7, "faixa") - .3, P(7, "fitas") - .3, "MOLHOU = MUDA DE COR", "#5a9aff"],
+  ]);
+});
+</script>
+</body></html>

@@ -1,0 +1,633 @@
+{
+ "total": 55.85,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.8,
+   "texto": "Se você dobrar um pano grosso em volta do bebê, terá uma fralda.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.424
+    },
+    {
+     "w": "dobrar",
+     "t": 0.672
+    },
+    {
+     "w": "um",
+     "t": 0.99
+    },
+    {
+     "w": "pano",
+     "t": 1.108
+    },
+    {
+     "w": "grosso",
+     "t": 1.32
+    },
+    {
+     "w": "em",
+     "t": 1.639
+    },
+    {
+     "w": "volta",
+     "t": 1.698
+    },
+    {
+     "w": "do",
+     "t": 2.004
+    },
+    {
+     "w": "bebê",
+     "t": 2.099
+    },
+    {
+     "w": "terá",
+     "t": 2.7
+    },
+    {
+     "w": "uma",
+     "t": 2.948
+    },
+    {
+     "w": "fralda",
+     "t": 3.125
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.95,
+   "fim": 9.28,
+   "texto": "Mas o pano encharca, vaza e fica molhado encostado na pele. A noite inteira.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4
+    },
+    {
+     "w": "o",
+     "t": 4.189
+    },
+    {
+     "w": "pano",
+     "t": 4.354
+    },
+    {
+     "w": "encharca",
+     "t": 4.601
+    },
+    {
+     "w": "vaza",
+     "t": 5.285
+    },
+    {
+     "w": "e",
+     "t": 5.627
+    },
+    {
+     "w": "fica",
+     "t": 5.663
+    },
+    {
+     "w": "molhado",
+     "t": 5.899
+    },
+    {
+     "w": "encostado",
+     "t": 6.288
+    },
+    {
+     "w": "na",
+     "t": 6.83
+    },
+    {
+     "w": "pele",
+     "t": 6.948
+    },
+    {
+     "w": "A",
+     "t": 8.113
+    },
+    {
+     "w": "noite",
+     "t": 8.219
+    },
+    {
+     "w": "inteira",
+     "t": 8.596
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.43,
+   "fim": 20.76,
+   "texto": "Então, você coloca lá dentro um pó branco, o poliacrilato. Cada grãozinho puxa a água e incha até virar gel. Ele segura até trezentas vezes o próprio peso em água pura.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.48
+    },
+    {
+     "w": "você",
+     "t": 10.27
+    },
+    {
+     "w": "coloca",
+     "t": 10.541
+    },
+    {
+     "w": "lá",
+     "t": 10.919
+    },
+    {
+     "w": "dentro",
+     "t": 11.025
+    },
+    {
+     "w": "um",
+     "t": 11.331
+    },
+    {
+     "w": "pó",
+     "t": 11.414
+    },
+    {
+     "w": "branco",
+     "t": 11.555
+    },
+    {
+     "w": "o",
+     "t": 12.169
+    },
+    {
+     "w": "poliacrilato",
+     "t": 12.275
+    },
+    {
+     "w": "Cada",
+     "t": 13.852
+    },
+    {
+     "w": "grãozinho",
+     "t": 14.135
+    },
+    {
+     "w": "puxa",
+     "t": 14.595
+    },
+    {
+     "w": "a",
+     "t": 14.902
+    },
+    {
+     "w": "água",
+     "t": 14.949
+    },
+    {
+     "w": "e",
+     "t": 15.303
+    },
+    {
+     "w": "incha",
+     "t": 15.373
+    },
+    {
+     "w": "até",
+     "t": 15.633
+    },
+    {
+     "w": "virar",
+     "t": 15.845
+    },
+    {
+     "w": "gel",
+     "t": 16.116
+    },
+    {
+     "w": "Ele",
+     "t": 17.248
+    },
+    {
+     "w": "segura",
+     "t": 17.449
+    },
+    {
+     "w": "até",
+     "t": 17.862
+    },
+    {
+     "w": "trezentas",
+     "t": 18.027
+    },
+    {
+     "w": "vezes",
+     "t": 18.652
+    },
+    {
+     "w": "o",
+     "t": 18.97
+    },
+    {
+     "w": "próprio",
+     "t": 19.1
+    },
+    {
+     "w": "peso",
+     "t": 19.465
+    },
+    {
+     "w": "em",
+     "t": 19.784
+    },
+    {
+     "w": "água",
+     "t": 19.925
+    },
+    {
+     "w": "pura",
+     "t": 20.196
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.91,
+   "fim": 25.58,
+   "texto": "E o gel não devolve. Mesmo apertando, o líquido continua preso.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 20.96
+    },
+    {
+     "w": "o",
+     "t": 21.09
+    },
+    {
+     "w": "gel",
+     "t": 21.137
+    },
+    {
+     "w": "não",
+     "t": 21.42
+    },
+    {
+     "w": "devolve",
+     "t": 21.597
+    },
+    {
+     "w": "Mesmo",
+     "t": 22.962
+    },
+    {
+     "w": "apertando",
+     "t": 23.292
+    },
+    {
+     "w": "o",
+     "t": 24.047
+    },
+    {
+     "w": "líquido",
+     "t": 24.129
+    },
+    {
+     "w": "continua",
+     "t": 24.495
+    },
+    {
+     "w": "preso",
+     "t": 24.978
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 25.73,
+   "fim": 38.72,
+   "texto": "Por cima, um tecido fininho que deixa o xixi passar só pra baixo. Por isso a pele fica sequinha. Por baixo, um plástico com furos microscópicos. Passa vapor, mas não passa líquido.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 25.78
+    },
+    {
+     "w": "cima",
+     "t": 25.957
+    },
+    {
+     "w": "um",
+     "t": 26.535
+    },
+    {
+     "w": "tecido",
+     "t": 26.676
+    },
+    {
+     "w": "fininho",
+     "t": 27.089
+    },
+    {
+     "w": "que",
+     "t": 27.49
+    },
+    {
+     "w": "deixa",
+     "t": 27.596
+    },
+    {
+     "w": "o",
+     "t": 27.855
+    },
+    {
+     "w": "xixi",
+     "t": 27.891
+    },
+    {
+     "w": "passar",
+     "t": 28.245
+    },
+    {
+     "w": "só",
+     "t": 28.646
+    },
+    {
+     "w": "pra",
+     "t": 28.799
+    },
+    {
+     "w": "baixo",
+     "t": 28.952
+    },
+    {
+     "w": "Por",
+     "t": 30.176
+    },
+    {
+     "w": "isso",
+     "t": 30.364
+    },
+    {
+     "w": "a",
+     "t": 30.624
+    },
+    {
+     "w": "pele",
+     "t": 30.695
+    },
+    {
+     "w": "fica",
+     "t": 30.989
+    },
+    {
+     "w": "sequinha",
+     "t": 31.261
+    },
+    {
+     "w": "Por",
+     "t": 32.605
+    },
+    {
+     "w": "baixo",
+     "t": 32.782
+    },
+    {
+     "w": "um",
+     "t": 33.324
+    },
+    {
+     "w": "plástico",
+     "t": 33.466
+    },
+    {
+     "w": "com",
+     "t": 33.973
+    },
+    {
+     "w": "furos",
+     "t": 34.162
+    },
+    {
+     "w": "microscópicos",
+     "t": 34.539
+    },
+    {
+     "w": "Passa",
+     "t": 36.261
+    },
+    {
+     "w": "vapor",
+     "t": 36.591
+    },
+    {
+     "w": "mas",
+     "t": 37.31
+    },
+    {
+     "w": "não",
+     "t": 37.522
+    },
+    {
+     "w": "passa",
+     "t": 37.747
+    },
+    {
+     "w": "líquido",
+     "t": 38.065
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 38.87,
+   "fim": 47.73,
+   "texto": "Mas o xixi ainda escorria pelas pernas. Então, você coloca elásticos em volta das coxas, com uma barreira em pé, igual um muro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 38.92
+    },
+    {
+     "w": "o",
+     "t": 39.132
+    },
+    {
+     "w": "xixi",
+     "t": 39.25
+    },
+    {
+     "w": "ainda",
+     "t": 39.616
+    },
+    {
+     "w": "escorria",
+     "t": 39.875
+    },
+    {
+     "w": "pelas",
+     "t": 40.37
+    },
+    {
+     "w": "pernas",
+     "t": 40.665
+    },
+    {
+     "w": "Então",
+     "t": 41.983
+    },
+    {
+     "w": "você",
+     "t": 42.785
+    },
+    {
+     "w": "coloca",
+     "t": 43.045
+    },
+    {
+     "w": "elásticos",
+     "t": 43.422
+    },
+    {
+     "w": "em",
+     "t": 43.929
+    },
+    {
+     "w": "volta",
+     "t": 44.106
+    },
+    {
+     "w": "das",
+     "t": 44.412
+    },
+    {
+     "w": "coxas",
+     "t": 44.601
+    },
+    {
+     "w": "com",
+     "t": 45.332
+    },
+    {
+     "w": "uma",
+     "t": 45.462
+    },
+    {
+     "w": "barreira",
+     "t": 45.592
+    },
+    {
+     "w": "em",
+     "t": 45.969
+    },
+    {
+     "w": "pé",
+     "t": 46.075
+    },
+    {
+     "w": "igual",
+     "t": 46.629
+    },
+    {
+     "w": "um",
+     "t": 46.983
+    },
+    {
+     "w": "muro",
+     "t": 47.16
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 47.88,
+   "fim": 55.25,
+   "texto": "Coloque uma faixa que muda de cor quando molha e fitas que colam. Parabéns, você construiu uma fralda descartável.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 47.93
+    },
+    {
+     "w": "uma",
+     "t": 48.425
+    },
+    {
+     "w": "faixa",
+     "t": 48.59
+    },
+    {
+     "w": "que",
+     "t": 48.944
+    },
+    {
+     "w": "muda",
+     "t": 49.05
+    },
+    {
+     "w": "de",
+     "t": 49.369
+    },
+    {
+     "w": "cor",
+     "t": 49.487
+    },
+    {
+     "w": "quando",
+     "t": 49.734
+    },
+    {
+     "w": "molha",
+     "t": 49.982
+    },
+    {
+     "w": "e",
+     "t": 50.312
+    },
+    {
+     "w": "fitas",
+     "t": 50.371
+    },
+    {
+     "w": "que",
+     "t": 50.784
+    },
+    {
+     "w": "colam",
+     "t": 50.925
+    },
+    {
+     "w": "Parabéns",
+     "t": 52.125
+    },
+    {
+     "w": "você",
+     "t": 52.904
+    },
+    {
+     "w": "construiu",
+     "t": 53.198
+    },
+    {
+     "w": "uma",
+     "t": 53.705
+    },
+    {
+     "w": "fralda",
+     "t": 53.871
+    },
+    {
+     "w": "descartável",
+     "t": 54.26
+    }
+   ]
+  }
+ ]
+}
