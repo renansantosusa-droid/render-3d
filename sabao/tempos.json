@@ -1,0 +1,645 @@
+{
+ "total": 55.4,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 6.25,
+   "texto": "Se você lavar uma mão cheia de gordura só com água, terá uma mão cheia de gordura. E molhada.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.412
+    },
+    {
+     "w": "lavar",
+     "t": 0.648
+    },
+    {
+     "w": "uma",
+     "t": 0.966
+    },
+    {
+     "w": "mão",
+     "t": 1.096
+    },
+    {
+     "w": "cheia",
+     "t": 1.297
+    },
+    {
+     "w": "de",
+     "t": 1.58
+    },
+    {
+     "w": "gordura",
+     "t": 1.674
+    },
+    {
+     "w": "só",
+     "t": 2.158
+    },
+    {
+     "w": "com",
+     "t": 2.37
+    },
+    {
+     "w": "água",
+     "t": 2.582
+    },
+    {
+     "w": "terá",
+     "t": 3.042
+    },
+    {
+     "w": "uma",
+     "t": 3.278
+    },
+    {
+     "w": "mão",
+     "t": 3.419
+    },
+    {
+     "w": "cheia",
+     "t": 3.632
+    },
+    {
+     "w": "de",
+     "t": 3.95
+    },
+    {
+     "w": "gordura",
+     "t": 4.033
+    },
+    {
+     "w": "E",
+     "t": 5.362
+    },
+    {
+     "w": "molhada",
+     "t": 5.48
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 6.4,
+   "fim": 11.76,
+   "texto": "A água e a gordura não se misturam. A água desliza por cima e a sujeira fica.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 6.45
+    },
+    {
+     "w": "água",
+     "t": 6.603
+    },
+    {
+     "w": "e",
+     "t": 6.91
+    },
+    {
+     "w": "a",
+     "t": 6.957
+    },
+    {
+     "w": "gordura",
+     "t": 7.04
+    },
+    {
+     "w": "não",
+     "t": 7.547
+    },
+    {
+     "w": "se",
+     "t": 7.735
+    },
+    {
+     "w": "misturam",
+     "t": 7.853
+    },
+    {
+     "w": "A",
+     "t": 9.171
+    },
+    {
+     "w": "água",
+     "t": 9.313
+    },
+    {
+     "w": "desliza",
+     "t": 9.619
+    },
+    {
+     "w": "por",
+     "t": 10.044
+    },
+    {
+     "w": "cima",
+     "t": 10.209
+    },
+    {
+     "w": "e",
+     "t": 10.575
+    },
+    {
+     "w": "a",
+     "t": 10.645
+    },
+    {
+     "w": "sujeira",
+     "t": 10.704
+    },
+    {
+     "w": "fica",
+     "t": 11.176
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.91,
+   "fim": 21,
+   "texto": "Então, você precisa de uma molécula com duas pontas. Uma cabeça que adora água. E um rabo que adora gordura e foge da água.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 11.96
+    },
+    {
+     "w": "você",
+     "t": 12.738
+    },
+    {
+     "w": "precisa",
+     "t": 13.01
+    },
+    {
+     "w": "de",
+     "t": 13.422
+    },
+    {
+     "w": "uma",
+     "t": 13.505
+    },
+    {
+     "w": "molécula",
+     "t": 13.611
+    },
+    {
+     "w": "com",
+     "t": 14.118
+    },
+    {
+     "w": "duas",
+     "t": 14.319
+    },
+    {
+     "w": "pontas",
+     "t": 14.684
+    },
+    {
+     "w": "Uma",
+     "t": 16.014
+    },
+    {
+     "w": "cabeça",
+     "t": 16.25
+    },
+    {
+     "w": "que",
+     "t": 16.768
+    },
+    {
+     "w": "adora",
+     "t": 16.875
+    },
+    {
+     "w": "água",
+     "t": 17.217
+    },
+    {
+     "w": "E",
+     "t": 18.396
+    },
+    {
+     "w": "um",
+     "t": 18.514
+    },
+    {
+     "w": "rabo",
+     "t": 18.667
+    },
+    {
+     "w": "que",
+     "t": 18.985
+    },
+    {
+     "w": "adora",
+     "t": 19.08
+    },
+    {
+     "w": "gordura",
+     "t": 19.386
+    },
+    {
+     "w": "e",
+     "t": 19.858
+    },
+    {
+     "w": "foge",
+     "t": 19.905
+    },
+    {
+     "w": "da",
+     "t": 20.294
+    },
+    {
+     "w": "água",
+     "t": 20.412
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.15,
+   "fim": 30.87,
+   "texto": "Os rabos se enfiam na gordura. Centenas de moléculas cercam a gotinha, com as cabeças pra fora, e formam uma bolinha. Essa é a micela.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 21.2
+    },
+    {
+     "w": "rabos",
+     "t": 21.377
+    },
+    {
+     "w": "se",
+     "t": 21.731
+    },
+    {
+     "w": "enfiam",
+     "t": 21.825
+    },
+    {
+     "w": "na",
+     "t": 22.179
+    },
+    {
+     "w": "gordura",
+     "t": 22.297
+    },
+    {
+     "w": "Centenas",
+     "t": 23.638
+    },
+    {
+     "w": "de",
+     "t": 24.287
+    },
+    {
+     "w": "moléculas",
+     "t": 24.369
+    },
+    {
+     "w": "cercam",
+     "t": 24.947
+    },
+    {
+     "w": "a",
+     "t": 25.336
+    },
+    {
+     "w": "gotinha",
+     "t": 25.383
+    },
+    {
+     "w": "com",
+     "t": 26.115
+    },
+    {
+     "w": "as",
+     "t": 26.256
+    },
+    {
+     "w": "cabeças",
+     "t": 26.362
+    },
+    {
+     "w": "pra",
+     "t": 26.881
+    },
+    {
+     "w": "fora",
+     "t": 27.046
+    },
+    {
+     "w": "e",
+     "t": 27.671
+    },
+    {
+     "w": "formam",
+     "t": 27.766
+    },
+    {
+     "w": "uma",
+     "t": 28.155
+    },
+    {
+     "w": "bolinha",
+     "t": 28.296
+    },
+    {
+     "w": "Essa",
+     "t": 29.57
+    },
+    {
+     "w": "é",
+     "t": 29.935
+    },
+    {
+     "w": "a",
+     "t": 30.018
+    },
+    {
+     "w": "micela",
+     "t": 30.053
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.02,
+   "fim": 38.05,
+   "texto": "Agora a gordura está presa numa bolinha que a água consegue carregar. É só enxaguar, e ela vai embora pelo ralo.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 31.07
+    },
+    {
+     "w": "a",
+     "t": 31.412
+    },
+    {
+     "w": "gordura",
+     "t": 31.447
+    },
+    {
+     "w": "está",
+     "t": 31.872
+    },
+    {
+     "w": "presa",
+     "t": 32.072
+    },
+    {
+     "w": "numa",
+     "t": 32.426
+    },
+    {
+     "w": "bolinha",
+     "t": 32.615
+    },
+    {
+     "w": "que",
+     "t": 33.039
+    },
+    {
+     "w": "a",
+     "t": 33.157
+    },
+    {
+     "w": "água",
+     "t": 33.216
+    },
+    {
+     "w": "consegue",
+     "t": 33.487
+    },
+    {
+     "w": "carregar",
+     "t": 33.971
+    },
+    {
+     "w": "É",
+     "t": 35.23
+    },
+    {
+     "w": "só",
+     "t": 35.371
+    },
+    {
+     "w": "enxaguar",
+     "t": 35.572
+    },
+    {
+     "w": "e",
+     "t": 36.48
+    },
+    {
+     "w": "ela",
+     "t": 36.551
+    },
+    {
+     "w": "vai",
+     "t": 36.739
+    },
+    {
+     "w": "embora",
+     "t": 36.869
+    },
+    {
+     "w": "pelo",
+     "t": 37.258
+    },
+    {
+     "w": "ralo",
+     "t": 37.459
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 38.2,
+   "fim": 49.82,
+   "texto": "E de onde vem essa molécula? Da própria gordura. Você mistura óleo ou sebo com soda cáustica, e a reação transforma a gordura em sabão. Essa é a saponificação.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 38.25
+    },
+    {
+     "w": "de",
+     "t": 38.38
+    },
+    {
+     "w": "onde",
+     "t": 38.521
+    },
+    {
+     "w": "vem",
+     "t": 38.816
+    },
+    {
+     "w": "essa",
+     "t": 39.075
+    },
+    {
+     "w": "molécula",
+     "t": 39.276
+    },
+    {
+     "w": "Da",
+     "t": 40.665
+    },
+    {
+     "w": "própria",
+     "t": 40.865
+    },
+    {
+     "w": "gordura",
+     "t": 41.254
+    },
+    {
+     "w": "Você",
+     "t": 42.563
+    },
+    {
+     "w": "mistura",
+     "t": 42.87
+    },
+    {
+     "w": "óleo",
+     "t": 43.259
+    },
+    {
+     "w": "ou",
+     "t": 43.53
+    },
+    {
+     "w": "sebo",
+     "t": 43.613
+    },
+    {
+     "w": "com",
+     "t": 43.955
+    },
+    {
+     "w": "soda",
+     "t": 44.132
+    },
+    {
+     "w": "cáustica",
+     "t": 44.45
+    },
+    {
+     "w": "e",
+     "t": 45.252
+    },
+    {
+     "w": "a",
+     "t": 45.358
+    },
+    {
+     "w": "reação",
+     "t": 45.429
+    },
+    {
+     "w": "transforma",
+     "t": 45.912
+    },
+    {
+     "w": "a",
+     "t": 46.431
+    },
+    {
+     "w": "gordura",
+     "t": 46.478
+    },
+    {
+     "w": "em",
+     "t": 46.903
+    },
+    {
+     "w": "sabão",
+     "t": 46.974
+    },
+    {
+     "w": "Essa",
+     "t": 48.153
+    },
+    {
+     "w": "é",
+     "t": 48.518
+    },
+    {
+     "w": "a",
+     "t": 48.589
+    },
+    {
+     "w": "saponificação",
+     "t": 48.636
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 49.97,
+   "fim": 54.8,
+   "texto": "Coloque um perfume e uma cor. Parabéns, você construiu um sabão.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 50.02
+    },
+    {
+     "w": "um",
+     "t": 50.492
+    },
+    {
+     "w": "perfume",
+     "t": 50.574
+    },
+    {
+     "w": "e",
+     "t": 51.093
+    },
+    {
+     "w": "uma",
+     "t": 51.152
+    },
+    {
+     "w": "cor",
+     "t": 51.364
+    },
+    {
+     "w": "Parabéns",
+     "t": 52.446
+    },
+    {
+     "w": "você",
+     "t": 53.213
+    },
+    {
+     "w": "construiu",
+     "t": 53.531
+    },
+    {
+     "w": "um",
+     "t": 54.038
+    },
+    {
+     "w": "sabão",
+     "t": 54.133
+    }
+   ]
+  }
+ ]
+}

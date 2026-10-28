@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("sabao", { fundo: 0xe6eef2, seed: 2814 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- pia ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: grade("#e8e4dc", "#c8c4bc", 64, 8) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xffffff, { map: grade("#f4f8fa", "#c8d4dc", 64, 10) }), 0, 4, -1.0);
+add(new THREE.BoxGeometry(2, .9, 1.2), mat(0xf4f4f4), 0, .45, -.2);
+add(new THREE.BoxGeometry(1.0, .05, .7), mat(0xc0c6cc, { metalness: .4, roughness: .3 }), 0, .88, 0);
+const ralo = add(new THREE.CylinderGeometry(.06, .06, .01, 20), mat(0x3a3e46), 0, .91, 0);
+add(new THREE.CylinderGeometry(.03, .03, .5, 12), mat(0xc0c6cc, { metalness: .45 }), 0, 1.15, -.38);
+add(new THREE.CylinderGeometry(.025, .025, .3, 12), mat(0xc0c6cc, { metalness: .45 }), 0, 1.38, -.25).rotation.x = PI / 2;
+// mão (palma pra cima)
+const pele = mat(0xe8b48a, { roughness: .7 });
+const mao = grupo(0, 1.05, .05); add(new THREE.BoxGeometry(.32, .07, .36), pele, 0, 0, 0, mao);
+for (let i = 0; i < 4; i++) { const d = add(new THREE.CylinderGeometry(.03, .033, .26, 12), pele, -.12 + i * .08, .0, -.3, mao); d.rotation.x = PI / 2; add(new THREE.SphereGeometry(.03, 12, 8), pele, -.12 + i * .08, 0, -.43, mao); }
+const ded = add(new THREE.CylinderGeometry(.034, .036, .2, 12), pele, .22, 0, -.02, mao); ded.rotation.z = PI / 2.6;
+add(new THREE.CylinderGeometry(.12, .14, .3, 20), pele, 0, 0, .3, mao).rotation.x = PI / 2;
+const gord = []; for (let i = 0; i < 7; i++) { const g = add(new THREE.SphereGeometry(.05 + rnd() * .03, 16, 8), new THREE.MeshStandardMaterial({ color: 0xe8c040, transparent: true, opacity: .85, roughness: .1 }), (rnd() - .5) * .24, .04, (rnd() - .5) * .28, mao); g.scale.y = .35; gord.push(g); }
+const torneira = Array.from({ length: 16 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), x: (rnd() - .5) * .03 }));
+const escorre = Array.from({ length: 12 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), z: (rnd() - .5) * .3 }));
+const espuma = Array.from({ length: 30 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .3, z: (rnd() - .5) * .35 }));
+const barra = add(new THREE.BoxGeometry(.24, .07, .14), mat(0xf4a0c0, { roughness: .3 }), .38, .95, .2); barra.scale.setScalar(.001);
+const perfume = Array.from({ length: 10 }, () => ({ s: sprite(0xf4a0d0), f: rnd() }));
+
+// ---------- mini set 1: água + óleo no copo ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.CylinderGeometry(.35, .3, 1.0, 36, 1, true), vidro(.25), BX, .7, 0);
+add(new THREE.CylinderGeometry(.33, .3, .55, 36), new THREE.MeshStandardMaterial({ color: 0x3a9af0, transparent: true, opacity: .6 }), BX, .48, 0);
+const oleo = add(new THREE.CylinderGeometry(.335, .33, .14, 36), new THREE.MeshStandardMaterial({ color: 0xe8c040, transparent: true, opacity: .85 }), BX, .83, 0);
+const gotasO = Array.from({ length: 8 }, () => ({ s: sprite(0xe8c040), f: rnd(), x: (rnd() - .5) * .4 }));
+
+// ---------- molécula (cabeça + rabo) ----------
+function molecula(pai, s = 1) { const m = grupo(0, 0, 0, pai); add(new THREE.SphereGeometry(.06 * s, 16, 10), mat(0xd6453a), 0, 0, 0, m); for (let i = 1; i <= 6; i++) add(new THREE.SphereGeometry(.03 * s, 10, 6), mat(0x8a8e96), (i % 2 ? .02 : -.02) * s, 0, i * .05 * s, m); return m; }
+const MX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), MX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(MX + 1, 2, 2.5); scene.add(pl); }
+const grande = molecula(scene, 3); grande.position.set(MX, 1.0, 0); grande.rotation.y = PI / 2;
+const lbl = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 64 }), transparent: true })); s.position.set(x, y, .3); s.scale.set(.7, .35, 1); scene.add(s); return s; };
+const lCab = lbl("AMA ÁGUA", "#ff7a6a", MX - .05, 1.35), lRabo = lbl("AMA GORDURA", "#c0c6cc", MX + .6, .7);
+
+// ---------- mini set 2: micela ----------
+const NX = 300;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1e3a5a), NX, 0, -1.5); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(NX + 1, 2, 2.5); scene.add(pl); }
+const micela = grupo(NX, 1.0, 0);
+const gotaG = add(new THREE.SphereGeometry(.2, 24, 16), new THREE.MeshStandardMaterial({ color: 0xe8c040, roughness: .15 }), 0, 0, 0, micela);
+const mols = []; const N = 40; for (let i = 0; i < N; i++) { const y = 1 - (i + .5) / N * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996; const dir = V(Math.cos(a) * r, y, Math.sin(a) * r); const m = molecula(micela, 1.3); m.userData = { dir, ini: V((rnd() - .5) * 3, (rnd() - .5) * 2.5, (rnd() - .5) * 1.5) }; mols.push(m); }
+const corrente = Array.from({ length: 30 }, () => ({ s: sprite(0x8ac8ff), f: rnd(), y: .4 + rnd() * 1.2 }));
+
+// ---------- mini set 3: panela de saponificação ----------
+const SX = 400;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), SX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(SX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.CylinderGeometry(.45, .42, .5, 36, 1, true), mat(0x8a8e96, { metalness: .4, side: THREE.DoubleSide }), SX, .55, 0);
+add(new THREE.CylinderGeometry(.42, .42, .03, 36), mat(0x6a6e76), SX, .3, 0);
+const liq = add(new THREE.CylinderGeometry(.42, .42, .3, 36), mat(0xe8c040, { roughness: .2 }), SX, .46, 0);
+const soda = Array.from({ length: 14 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .3 }));
+const bolhasS = Array.from({ length: 14 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .7, z: (rnd() - .5) * .7 }));
+
+K.camera_({
+  geral: [V(1.0, 2.2, 2.3), V(0, .98, 0)],
+  copo: [V(BX + .2, 1.1, 2.6), V(BX, .7, 0)],
+  mol: [V(MX + .36, 1.15, 4.3), V(MX + .36, 1.0, 0)],
+  micela: [V(NX + .2, 1.2, 4.2), V(NX + .2, 1.0, 0)],
+  panela: [V(SX + .2, 1.55, 2.1), V(SX, .5, 0)],
+  fim: [V(-1.0, 2.1, 2.3), V(.1, .98, 0)],
+}, [
+  [0, "geral"], [F(1), "geral"], [C(2), "copo"], [F(2), "copo"], [C(3), "mol"], [F(3), "mol"], [C(4), "micela"], [P(5, "enxaguar") - .3, "micela"], [P(5, "enxaguar") - .3, "geral"], [F(5), "geral"],
+  [C(6), "panela"], [F(6), "panela"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // mão: água escorre e a gordura fica (cena 1); depois do sabão, espuma e limpa
+  const agua = em(P(1, "agua") - .3, C(2)) || em(P(5, "enxaguar") - .3, F(5));
+  torneira.forEach((a) => { const k = frac(t * 2.4 + a.f); a.s.position.set(a.x, 1.38 - k * .3, -.12); a.s.scale.setScalar(.03); a.s.material.opacity = agua ? .9 : 0; });
+  escorre.forEach((e) => { const k = frac(t * 1.5 + e.f); e.s.position.set(-.18 - k * .1, 1.05 - k * .15, e.z); e.s.scale.setScalar(.025); e.s.material.opacity = agua ? .8 * (1 - k) : 0; });
+  const limpa = prog(t, P(5, "enxaguar") - .2, P(5, "ralo"));
+  gord.forEach((g) => { g.material.opacity = .85 * (1 - limpa); g.visible = limpa < .99; });
+  espuma.forEach((e) => { const k = frac(t * .3 + e.f); e.s.position.set(e.x, 1.1 + k * .05, e.z + .05); e.s.scale.setScalar(.05 + k * .04); e.s.material.opacity = em(P(5, "agora") - .3, P(5, "enxaguar") + .4) ? .9 : 0; });
+  // copo: água e óleo não misturam
+  oleo.position.y = .83 + Math.sin(t * 2) * .005;
+  gotasO.forEach((g) => { const k = frac(t * .6 + g.f); g.s.position.set(BX + g.x, .4 + k * .45, .1); g.s.scale.setScalar(.05); g.s.material.opacity = em(C(2), F(2)) ? .9 * (1 - k * .3) : 0; });
+  // molécula grande
+  grande.rotation.x = Math.sin(t) * .15;
+  lCab.visible = em(P(3, "cabeca") - .3, F(3)); lRabo.visible = em(P(3, "rabo") - .3, F(3));
+  // micela se monta
+  const monta = prog(t, P(4, "rabos") - .3, P(4, "bolinha") + .2);
+  mols.forEach((m) => { const d = m.userData.dir; const alvo = d.clone().multiplyScalar(.5); m.position.lerpVectors(m.userData.ini, alvo, monta); m.lookAt(micela.localToWorld(V(0, 0, 0))); });
+  micela.rotation.y = t * .3;
+  // a água carrega a micela
+  const leva = prog(t, P(5, "carregar") - .3, P(5, "enxaguar"));
+  micela.position.set(NX + 1.6 * leva, 1.0 - .2 * leva, 0);
+  corrente.forEach((c) => { const k = frac(t * .9 + c.f); c.s.position.set(NX - 1.2 + k * 2.6, c.y, -.4); c.s.scale.setScalar(.05); c.s.material.opacity = em(P(5, "agua") - .3, F(5)) ? .6 * (1 - k) : 0; });
+  // panela: óleo + soda -> sabão
+  const sap = prog(t, P(6, "reacao") - .3, P(6, "saponificacao"));
+  liq.material.color.setRGB(.91 + .05 * sap, .75 + .2 * sap, .25 + .67 * sap);
+  soda.forEach((s) => { const k = frac(t * 1.5 + s.f); s.s.position.set(SX + s.x, 1.2 - k * .6, 0); s.s.scale.setScalar(.04); s.s.material.opacity = em(P(6, "soda") - .3, P(6, "reacao")) ? .9 : 0; });
+  bolhasS.forEach((b) => { const k = frac(t * .8 + b.f); b.s.position.set(SX + b.x * .9, .62 + k * .15, b.z * .9); b.s.scale.setScalar(.04); b.s.material.opacity = em(P(6, "reacao") - .3, F(6)) ? .8 * (1 - k) : 0; });
+  // acabamentos
+  barra.scale.setScalar(Math.max(.001, prog(t, P(7, "perfume") - .3, P(7, "perfume") + .3)));
+  barra.material.color.set(t > P(7, "cor") - .2 ? 0xf4a0c0 : 0xf4f0e8);
+  perfume.forEach((p) => { const k = frac(t * .5 + p.f); p.s.position.set(.38 + Math.sin(p.f * 9 + k * 4) * .08, 1.0 + k * .4, .1); p.s.scale.setScalar(.04); p.s.material.opacity = t > P(7, "perfume") ? .7 * (1 - k) : 0; });
+  K.cartoes(t, [
+    [P(1, "gordura", 2) - .3, F(1), "SÓ ÁGUA NÃO RESOLVE", "#ff4a3a"],
+    [C(2), F(2), "ÁGUA E GORDURA NÃO SE MISTURAM", "#ffd23a"],
+    [P(4, "micela") - .4, F(4), "MICELA", "#ffd23a"],
+    [P(5, "carregar") - .3, P(5, "enxaguar") - .3, "A ÁGUA LEVA A GORDURA", "#8ac8ff"],
+    [P(6, "soda") - .4, P(6, "saponificacao") - .4, "ÓLEO + SODA CÁUSTICA", "#ffffff"],
+    [P(6, "saponificacao") - .4, F(6), "SAPONIFICAÇÃO", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
