@@ -1,0 +1,825 @@
+{
+ "total": 68.2,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 9.23,
+   "texto": "Flávio Bolsonaro foi para os Estados Unidos, segundo a Reuters. Mas como ele saiu do Brasil, se a Polícia Federal não registrou a saída dele?",
+   "palavras": [
+    {
+     "w": "Flávio",
+     "t": 0.2
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 0.636
+    },
+    {
+     "w": "foi",
+     "t": 1.191
+    },
+    {
+     "w": "para",
+     "t": 1.367
+    },
+    {
+     "w": "os",
+     "t": 1.533
+    },
+    {
+     "w": "Estados",
+     "t": 1.556
+    },
+    {
+     "w": "Unidos",
+     "t": 2.016
+    },
+    {
+     "w": "segundo",
+     "t": 2.771
+    },
+    {
+     "w": "a",
+     "t": 3.242
+    },
+    {
+     "w": "Reuters",
+     "t": 3.313
+    },
+    {
+     "w": "Mas",
+     "t": 4.655
+    },
+    {
+     "w": "como",
+     "t": 4.961
+    },
+    {
+     "w": "ele",
+     "t": 5.28
+    },
+    {
+     "w": "saiu",
+     "t": 5.421
+    },
+    {
+     "w": "do",
+     "t": 5.704
+    },
+    {
+     "w": "Brasil",
+     "t": 5.787
+    },
+    {
+     "w": "se",
+     "t": 6.494
+    },
+    {
+     "w": "a",
+     "t": 6.6
+    },
+    {
+     "w": "Polícia",
+     "t": 6.683
+    },
+    {
+     "w": "Federal",
+     "t": 7.096
+    },
+    {
+     "w": "não",
+     "t": 7.567
+    },
+    {
+     "w": "registrou",
+     "t": 7.709
+    },
+    {
+     "w": "a",
+     "t": 8.181
+    },
+    {
+     "w": "saída",
+     "t": 8.24
+    },
+    {
+     "w": "dele",
+     "t": 8.664
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 9.38,
+   "fim": 18.09,
+   "texto": "Volta um pouco. Na segunda-feira, o ministro Alexandre de Moraes deu vinte e quatro horas pra ele entregar os passaportes e proibiu que ele deixasse o país.",
+   "palavras": [
+    {
+     "w": "Volta",
+     "t": 9.43
+    },
+    {
+     "w": "um",
+     "t": 9.831
+    },
+    {
+     "w": "pouco",
+     "t": 9.961
+    },
+    {
+     "w": "Na",
+     "t": 11.137
+    },
+    {
+     "w": "segunda-feira",
+     "t": 11.326
+    },
+    {
+     "w": "o",
+     "t": 12.257
+    },
+    {
+     "w": "ministro",
+     "t": 12.328
+    },
+    {
+     "w": "Alexandre",
+     "t": 12.741
+    },
+    {
+     "w": "de",
+     "t": 13.213
+    },
+    {
+     "w": "Moraes",
+     "t": 13.307
+    },
+    {
+     "w": "deu",
+     "t": 13.661
+    },
+    {
+     "w": "vinte",
+     "t": 13.838
+    },
+    {
+     "w": "e",
+     "t": 14.062
+    },
+    {
+     "w": "quatro",
+     "t": 14.085
+    },
+    {
+     "w": "horas",
+     "t": 14.356
+    },
+    {
+     "w": "pra",
+     "t": 14.663
+    },
+    {
+     "w": "ele",
+     "t": 14.84
+    },
+    {
+     "w": "entregar",
+     "t": 14.97
+    },
+    {
+     "w": "os",
+     "t": 15.359
+    },
+    {
+     "w": "passaportes",
+     "t": 15.465
+    },
+    {
+     "w": "e",
+     "t": 16.113
+    },
+    {
+     "w": "proibiu",
+     "t": 16.22
+    },
+    {
+     "w": "que",
+     "t": 16.597
+    },
+    {
+     "w": "ele",
+     "t": 16.75
+    },
+    {
+     "w": "deixasse",
+     "t": 16.88
+    },
+    {
+     "w": "o",
+     "t": 17.352
+    },
+    {
+     "w": "país",
+     "t": 17.387
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 18.24,
+   "fim": 23.59,
+   "texto": "No mesmo dia, Flávio gravou um vídeo dizendo que ia ficar no Brasil pra organizar a oposição.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 18.29
+    },
+    {
+     "w": "mesmo",
+     "t": 18.467
+    },
+    {
+     "w": "dia",
+     "t": 18.844
+    },
+    {
+     "w": "Flávio",
+     "t": 19.34
+    },
+    {
+     "w": "gravou",
+     "t": 19.693
+    },
+    {
+     "w": "um",
+     "t": 20.012
+    },
+    {
+     "w": "vídeo",
+     "t": 20.13
+    },
+    {
+     "w": "dizendo",
+     "t": 20.46
+    },
+    {
+     "w": "que",
+     "t": 20.873
+    },
+    {
+     "w": "ia",
+     "t": 20.99
+    },
+    {
+     "w": "ficar",
+     "t": 21.144
+    },
+    {
+     "w": "no",
+     "t": 21.474
+    },
+    {
+     "w": "Brasil",
+     "t": 21.58
+    },
+    {
+     "w": "pra",
+     "t": 21.993
+    },
+    {
+     "w": "organizar",
+     "t": 22.158
+    },
+    {
+     "w": "a",
+     "t": 22.677
+    },
+    {
+     "w": "oposição",
+     "t": 22.724
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 23.74,
+   "fim": 32.91,
+   "texto": "Na terça, o prazo acabou por volta das onze da manhã. Os passaportes não foram entregues, e a Polícia Federal cancelou o brasileiro e o diplomático.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 23.79
+    },
+    {
+     "w": "terça",
+     "t": 24.014
+    },
+    {
+     "w": "o",
+     "t": 24.615
+    },
+    {
+     "w": "prazo",
+     "t": 24.733
+    },
+    {
+     "w": "acabou",
+     "t": 25.052
+    },
+    {
+     "w": "por",
+     "t": 25.394
+    },
+    {
+     "w": "volta",
+     "t": 25.547
+    },
+    {
+     "w": "das",
+     "t": 25.913
+    },
+    {
+     "w": "onze",
+     "t": 26.031
+    },
+    {
+     "w": "da",
+     "t": 26.42
+    },
+    {
+     "w": "manhã",
+     "t": 26.526
+    },
+    {
+     "w": "Os",
+     "t": 27.655
+    },
+    {
+     "w": "passaportes",
+     "t": 27.82
+    },
+    {
+     "w": "não",
+     "t": 28.563
+    },
+    {
+     "w": "foram",
+     "t": 28.728
+    },
+    {
+     "w": "entregues",
+     "t": 28.976
+    },
+    {
+     "w": "e",
+     "t": 29.813
+    },
+    {
+     "w": "a",
+     "t": 29.872
+    },
+    {
+     "w": "Polícia",
+     "t": 29.966
+    },
+    {
+     "w": "Federal",
+     "t": 30.367
+    },
+    {
+     "w": "cancelou",
+     "t": 30.733
+    },
+    {
+     "w": "o",
+     "t": 31.169
+    },
+    {
+     "w": "brasileiro",
+     "t": 31.216
+    },
+    {
+     "w": "e",
+     "t": 31.841
+    },
+    {
+     "w": "o",
+     "t": 31.912
+    },
+    {
+     "w": "diplomático",
+     "t": 31.983
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.06,
+   "fim": 42.37,
+   "texto": "Só que cancelar no sistema não impede de usar o documento pra entrar em outro país. E, desde dois mil e vinte e três, ele também tem passaporte italiano.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 33.11
+    },
+    {
+     "w": "que",
+     "t": 33.417
+    },
+    {
+     "w": "cancelar",
+     "t": 33.535
+    },
+    {
+     "w": "no",
+     "t": 34.077
+    },
+    {
+     "w": "sistema",
+     "t": 34.183
+    },
+    {
+     "w": "não",
+     "t": 34.655
+    },
+    {
+     "w": "impede",
+     "t": 34.832
+    },
+    {
+     "w": "de",
+     "t": 35.268
+    },
+    {
+     "w": "usar",
+     "t": 35.362
+    },
+    {
+     "w": "o",
+     "t": 35.61
+    },
+    {
+     "w": "documento",
+     "t": 35.657
+    },
+    {
+     "w": "pra",
+     "t": 36.235
+    },
+    {
+     "w": "entrar",
+     "t": 36.388
+    },
+    {
+     "w": "em",
+     "t": 36.648
+    },
+    {
+     "w": "outro",
+     "t": 36.766
+    },
+    {
+     "w": "país",
+     "t": 37.037
+    },
+    {
+     "w": "E",
+     "t": 38.308
+    },
+    {
+     "w": "desde",
+     "t": 38.791
+    },
+    {
+     "w": "dois",
+     "t": 39.169
+    },
+    {
+     "w": "mil",
+     "t": 39.369
+    },
+    {
+     "w": "e",
+     "t": 39.499
+    },
+    {
+     "w": "vinte",
+     "t": 39.558
+    },
+    {
+     "w": "e",
+     "t": 39.735
+    },
+    {
+     "w": "três",
+     "t": 39.77
+    },
+    {
+     "w": "ele",
+     "t": 40.289
+    },
+    {
+     "w": "também",
+     "t": 40.454
+    },
+    {
+     "w": "tem",
+     "t": 40.819
+    },
+    {
+     "w": "passaporte",
+     "t": 40.985
+    },
+    {
+     "w": "italiano",
+     "t": 41.562
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.52,
+   "fim": 53.12,
+   "texto": "Aí começou o mistério. A imprensa argentina falou de um jato particular em Puerto Iguazú, na fronteira. Mas a Argentina diz que não tem registro de entrada dele.",
+   "palavras": [
+    {
+     "w": "Aí",
+     "t": 42.57
+    },
+    {
+     "w": "começou",
+     "t": 42.912
+    },
+    {
+     "w": "o",
+     "t": 43.395
+    },
+    {
+     "w": "mistério",
+     "t": 43.443
+    },
+    {
+     "w": "A",
+     "t": 44.808
+    },
+    {
+     "w": "imprensa",
+     "t": 44.902
+    },
+    {
+     "w": "argentina",
+     "t": 45.397
+    },
+    {
+     "w": "falou",
+     "t": 45.916
+    },
+    {
+     "w": "de",
+     "t": 46.246
+    },
+    {
+     "w": "um",
+     "t": 46.317
+    },
+    {
+     "w": "jato",
+     "t": 46.4
+    },
+    {
+     "w": "particular",
+     "t": 46.706
+    },
+    {
+     "w": "em",
+     "t": 47.249
+    },
+    {
+     "w": "Puerto",
+     "t": 47.355
+    },
+    {
+     "w": "Iguazú",
+     "t": 47.709
+    },
+    {
+     "w": "na",
+     "t": 48.416
+    },
+    {
+     "w": "fronteira",
+     "t": 48.546
+    },
+    {
+     "w": "Mas",
+     "t": 49.926
+    },
+    {
+     "w": "a",
+     "t": 50.138
+    },
+    {
+     "w": "Argentina",
+     "t": 50.244
+    },
+    {
+     "w": "diz",
+     "t": 50.81
+    },
+    {
+     "w": "que",
+     "t": 51.093
+    },
+    {
+     "w": "não",
+     "t": 51.187
+    },
+    {
+     "w": "tem",
+     "t": 51.376
+    },
+    {
+     "w": "registro",
+     "t": 51.553
+    },
+    {
+     "w": "de",
+     "t": 52.072
+    },
+    {
+     "w": "entrada",
+     "t": 52.166
+    },
+    {
+     "w": "dele",
+     "t": 52.567
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 53.27,
+   "fim": 61.59,
+   "texto": "Mesmo assim, a Reuters ouviu um aliado próximo e uma fonte do governo americano. Os dois confirmam: ele está nos Estados Unidos.",
+   "palavras": [
+    {
+     "w": "Mesmo",
+     "t": 53.32
+    },
+    {
+     "w": "assim",
+     "t": 53.674
+    },
+    {
+     "w": "a",
+     "t": 54.322
+    },
+    {
+     "w": "Reuters",
+     "t": 54.405
+    },
+    {
+     "w": "ouviu",
+     "t": 54.77
+    },
+    {
+     "w": "um",
+     "t": 55.101
+    },
+    {
+     "w": "aliado",
+     "t": 55.219
+    },
+    {
+     "w": "próximo",
+     "t": 55.608
+    },
+    {
+     "w": "e",
+     "t": 56.079
+    },
+    {
+     "w": "uma",
+     "t": 56.127
+    },
+    {
+     "w": "fonte",
+     "t": 56.292
+    },
+    {
+     "w": "do",
+     "t": 56.669
+    },
+    {
+     "w": "governo",
+     "t": 56.763
+    },
+    {
+     "w": "americano",
+     "t": 57.164
+    },
+    {
+     "w": "Os",
+     "t": 58.565
+    },
+    {
+     "w": "dois",
+     "t": 58.73
+    },
+    {
+     "w": "confirmam",
+     "t": 59.037
+    },
+    {
+     "w": "ele",
+     "t": 59.874
+    },
+    {
+     "w": "está",
+     "t": 60.004
+    },
+    {
+     "w": "nos",
+     "t": 60.239
+    },
+    {
+     "w": "Estados",
+     "t": 60.334
+    },
+    {
+     "w": "Unidos",
+     "t": 60.782
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 61.74,
+   "fim": 67.6,
+   "texto": "A rota ainda é um mistério. Por onde você acha que ele saiu? Comenta aqui.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 61.79
+    },
+    {
+     "w": "rota",
+     "t": 61.92
+    },
+    {
+     "w": "ainda",
+     "t": 62.262
+    },
+    {
+     "w": "é",
+     "t": 62.545
+    },
+    {
+     "w": "um",
+     "t": 62.592
+    },
+    {
+     "w": "mistério",
+     "t": 62.71
+    },
+    {
+     "w": "Por",
+     "t": 64.028
+    },
+    {
+     "w": "onde",
+     "t": 64.216
+    },
+    {
+     "w": "você",
+     "t": 64.499
+    },
+    {
+     "w": "acha",
+     "t": 64.794
+    },
+    {
+     "w": "que",
+     "t": 65.101
+    },
+    {
+     "w": "ele",
+     "t": 65.195
+    },
+    {
+     "w": "saiu",
+     "t": 65.349
+    },
+    {
+     "w": "Comenta",
+     "t": 66.551
+    },
+    {
+     "w": "aqui",
+     "t": 67.035
+    }
+   ]
+  }
+ ]
+}

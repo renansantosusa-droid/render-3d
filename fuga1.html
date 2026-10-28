@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Como o Flávio saiu do Brasil sem passaporte?" (versão 1: o mistério da rota) — Reel teste 27/10
+// Fatos: Reuters via Agência Brasil 27/10 (aliado + fonte do governo dos EUA; PF sem registro de saída por posto oficial),
+// CartaCapital 27/10 (prazo 24h acabou ~11h; PF cancelou passaporte comum e diplomático; passaporte italiano 2023; Gulfstream em Puerto Iguazú; Argentina sem registro).
+import { motion } from "/kitmotion.js";
+const K = await motion("fuga1", { fundo: "#0d1424", fundo2: "#1a1030", padrao: "radar", destaque: "#ffd23a", rotulo: "BRASIL", rotuloCor: "#c8323a", sub: "• PÓS-ELEIÇÃO", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, pilula, pop, desliza, carimbo, digital, balao, bandeiraEUA, bandeiraBR, jato, seta, martelo } = K;
+function passaporte(x, y, s, cor = "#1f3b73", rotulo = "BRASIL") { g.save(); g.translate(x, y); g.scale(s, s); g.shadowColor = "rgba(0,0,0,.45)"; g.shadowBlur = 30; rr(-130, -180, 260, 360, 18, cor); g.shadowBlur = 0; g.strokeStyle = "#e8c66a"; g.lineWidth = 6; g.beginPath(); g.arc(0, -10, 56, 0, 6.2832); g.stroke(); circ(0, -10, 30, "#e8c66a"); txt("PASSAPORTE", 0, -120, 34, "#e8c66a"); txt(rotulo, 0, 110, 34, "#e8c66a"); g.restore(); }
+function bandeiraAR(x, y, w, h) { rr(x, y, w, h, 6, "#fff"); g.save(); g.beginPath(); g.roundRect(x, y, w, h, 6); g.clip(); g.fillStyle = "#74acdf"; g.fillRect(x, y, w, h / 3); g.fillRect(x, y + 2 * h / 3, w, h / 3); g.restore(); circ(x + w / 2, y + h / 2, h * .1, "#f6b40e"); }
+function bandeiraIT(x, y, w, h) { rr(x, y, w, h, 6, "#fff"); g.save(); g.beginPath(); g.roundRect(x, y, w, h, 6); g.clip(); g.fillStyle = "#009246"; g.fillRect(x, y, w / 3, h); g.fillStyle = "#ce2b37"; g.fillRect(x + 2 * w / 3, y, w / 3, h); g.restore(); }
+function x_(cx, cy, r, k) { if (k <= 0) return; g.save(); g.strokeStyle = C.VM; g.lineWidth = 26; g.lineCap = "round"; g.beginPath(); g.moveTo(cx - r, cy - r); g.lineTo(cx - r + 2 * r * clamp(k * 2), cy - r + 2 * r * clamp(k * 2)); if (k > .5) { g.moveTo(cx + r, cy - r); g.lineTo(cx + r - 2 * r * clamp(k * 2 - 1), cy - r + 2 * r * clamp(k * 2 - 1)); } g.stroke(); g.restore(); }
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 520, () => { bandeiraBR(110, 420, 340, 220); bandeiraEUA(630, 410, 340, 220, t); });
+    const k = clamp((t - P(1, "unidos") + .3) / 2); if (k > 0) jato(250 + 580 * ease(k), 690 - 160 * Math.sin(k * 3.14), 1.1, -.25 + .5 * k);
+    pop(ap(t, P(1, "como") - .2), W / 2, 880, () => txt("COMO ELE SAIU", W / 2, 880, 110, "#fff", { contorno: 10 }));
+    pop(ap(t, P(1, "brasil") - .2), W / 2, 1010, () => txt("DO BRASIL?", W / 2, 1010, 130, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "registrou") - .3), W / 2, 1190, () => pilula("PF: NENHUM REGISTRO DE SAÍDA OFICIAL", W / 2, 1190, 42, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 380, () => pilula("SEGUNDA, 26/10", W / 2, 380, 56, "#c8323a", "#fff"));
+    pop(ap(t, P(2, "moraes") - .3), W / 2, 640, () => { martelo(300, 620, 1, -.3 + Math.sin(t * 6) * .08); txt("MIN. ALEXANDRE", 690, 590, 54, "#fff", { contorno: 6 }); txt("DE MORAES", 690, 660, 54, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(2, "horas") - .4), W / 2, 950, () => { txt("24H", W / 2, 960, 220, C.AM, { contorno: 14 }); txt("PRA ENTREGAR OS PASSAPORTES", W / 2, 1090, 46, "#fff", { contorno: 6 }); });
+    carimbo("PROIBIDO DE SAIR DO PAÍS", W / 2, 1250, ap(t, P(2, "proibiu") - .1), C.VM, -.06, 62);
+  },
+  (t) => {
+    pop(ap(t, ini(3)), W / 2, 600, () => { rr(190, 380, 700, 460, 36, "#1b2436"); rr(220, 410, 640, 360, 20, "#2a3958"); g.fillStyle = "#fff"; g.beginPath(); g.moveTo(500, 520); g.lineTo(600, 590); g.lineTo(500, 660); g.fill(); circ(560, 800, 12, C.VM); txt("VÍDEO NAS REDES", 650, 806, 32, "#fff", { al: "left" }); });
+    pop(ap(t, P(3, "ficar") - .3), W / 2, 1040, () => { balao(140, 930, 800, 200, "#f4f1ea"); txt("VOU FICAR NO BRASIL", W / 2, 1035, 70, "#1b2436"); });
+    pop(ap(t, P(3, "oposicao") - .3), W / 2, 1260, () => pilula("PRA ORGANIZAR A OPOSIÇÃO", W / 2, 1260, 46, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(4)), W / 2, 380, () => pilula("TERÇA, 27/10", W / 2, 380, 56, "#c8323a", "#fff"));
+    pop(ap(t, P(4, "onze") - .3), W / 2, 580, () => digital(W / 2, 580, 11, C.AM));
+    pop(ap(t, P(4, "entregues") - .3), W / 2, 950, () => { passaporte(360, 950, .9); passaporte(720, 950, .9, "#7a1f2b", "DIPLOMÁTICO"); });
+    x_(360, 950, 110, (t - P(4, "cancelou")) / .5); x_(720, 950, 110, (t - P(4, "diplomatico")) / .5);
+    pop(ap(t, P(4, "cancelou") - .2), W / 2, 1240, () => pilula("CANCELADOS PELA PF", W / 2, 1240, 54, C.VM, "#fff"));
+  },
+  (t) => {
+    pop(ap(t, ini(5)), W / 2, 500, () => { rr(120, 400, 840, 220, 30, "#14324a"); txt("CANCELADO NO SISTEMA", W / 2, 475, 58, "#fff"); txt("≠ IMPEDIDO DE ENTRAR EM OUTRO PAÍS", W / 2, 555, 40, C.AM); });
+    pop(ap(t, P(5, "italiano") - .5), W / 2, 920, () => { passaporte(380, 920, .95, "#6b1d2a", "ITÁLIA"); bandeiraIT(600, 830, 300, 190); txt("DESDE 2023", 750, 1080, 52, C.AM, { contorno: 6 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 380, () => txt("O MISTÉRIO", W / 2, 380, 110, C.AM, { contorno: 10 }));
+    pop(ap(t, P(6, "argentina") - .3), W / 2, 640, () => { bandeiraAR(110, 540, 300, 190); txt("JATO PARTICULAR", 680, 600, 54, "#fff", { contorno: 6 }); txt("PUERTO IGUAZÚ", 680, 680, 54, C.AM, { contorno: 6 }); });
+    pop(ap(t, P(6, "particular") - .2), W / 2, 880, () => jato(W / 2, 880, 1.4, 0, "#e9edf3"));
+    carimbo("SEM REGISTRO DE ENTRADA", W / 2, 1180, ap(t, P(6, "registro") - .1), C.VM, -.07, 64);
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 400, () => pilula("AGÊNCIA REUTERS", W / 2, 400, 60, "#fff", "#000"));
+    pop(ap(t, P(7, "aliado") - .2), 300, 700, () => { circ(300, 640, 70, "#2a3958"); circ(300, 610, 32, "#8a96ab"); rr(250, 650, 100, 60, 30, "#8a96ab"); txt("ALIADO PRÓXIMO", 300, 780, 40, "#fff"); });
+    pop(ap(t, P(7, "americano") - .3), 780, 700, () => { bandeiraEUA(660, 580, 240, 150, t); txt("FONTE DO GOVERNO", 780, 780, 40, "#fff"); txt("DOS EUA", 780, 830, 40, "#fff"); });
+    carimbo("ESTÁ NOS EUA", W / 2, 1100, ap(t, P(7, "esta") - .1), C.AM, -.08, 100);
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 420, () => txt("POR ONDE ELE SAIU?", W / 2, 420, 92, C.AM, { contorno: 10 }));
+    [["FRONTEIRA COM A ARGENTINA", 640], ["PASSAPORTE ITALIANO", 800], ["OUTRA ROTA", 960]].forEach(([s, y], i) => pop(ap(t, ini(8) + .5 + i * .35), W / 2, y, () => { rr(140, y - 60, 800, 120, 26, "#1b2436"); txt(["A", "B", "C"][i], 210, y + 4, 70, C.AM); txt(s, 560, y + 4, 50, "#fff"); }));
+    pop(ap(t, P(8, "comenta") - .3), W / 2, 1180, () => pilula("COMENTA 👇", W / 2, 1180, 60, "#fff", "#000"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
