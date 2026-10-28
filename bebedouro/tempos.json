@@ -1,0 +1,753 @@
+{
+ "total": 60.95,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.2,
+   "texto": "Se você virar um garrafão de água de cabeça pra baixo em cima de um pote, terá um bebedouro.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.4
+    },
+    {
+     "w": "virar",
+     "t": 0.695
+    },
+    {
+     "w": "um",
+     "t": 0.931
+    },
+    {
+     "w": "garrafão",
+     "t": 1.002
+    },
+    {
+     "w": "de",
+     "t": 1.497
+    },
+    {
+     "w": "água",
+     "t": 1.639
+    },
+    {
+     "w": "de",
+     "t": 1.886
+    },
+    {
+     "w": "cabeça",
+     "t": 1.969
+    },
+    {
+     "w": "pra",
+     "t": 2.488
+    },
+    {
+     "w": "baixo",
+     "t": 2.629
+    },
+    {
+     "w": "em",
+     "t": 2.983
+    },
+    {
+     "w": "cima",
+     "t": 3.077
+    },
+    {
+     "w": "de",
+     "t": 3.384
+    },
+    {
+     "w": "um",
+     "t": 3.455
+    },
+    {
+     "w": "pote",
+     "t": 3.561
+    },
+    {
+     "w": "terá",
+     "t": 4.115
+    },
+    {
+     "w": "um",
+     "t": 4.327
+    },
+    {
+     "w": "bebedouro",
+     "t": 4.398
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.35,
+   "fim": 15.32,
+   "texto": "Mas por que a água não transborda? Porque quando a água do pote cobre a boca do garrafão, o ar não consegue entrar. E sem ar entrando, a água não sai.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.4
+    },
+    {
+     "w": "por",
+     "t": 5.683
+    },
+    {
+     "w": "que",
+     "t": 5.884
+    },
+    {
+     "w": "a",
+     "t": 6.072
+    },
+    {
+     "w": "água",
+     "t": 6.178
+    },
+    {
+     "w": "não",
+     "t": 6.473
+    },
+    {
+     "w": "transborda",
+     "t": 6.626
+    },
+    {
+     "w": "Porque",
+     "t": 8.062
+    },
+    {
+     "w": "quando",
+     "t": 8.44
+    },
+    {
+     "w": "a",
+     "t": 8.664
+    },
+    {
+     "w": "água",
+     "t": 8.711
+    },
+    {
+     "w": "do",
+     "t": 8.982
+    },
+    {
+     "w": "pote",
+     "t": 9.088
+    },
+    {
+     "w": "cobre",
+     "t": 9.383
+    },
+    {
+     "w": "a",
+     "t": 9.678
+    },
+    {
+     "w": "boca",
+     "t": 9.737
+    },
+    {
+     "w": "do",
+     "t": 10.067
+    },
+    {
+     "w": "garrafão",
+     "t": 10.161
+    },
+    {
+     "w": "o",
+     "t": 10.94
+    },
+    {
+     "w": "ar",
+     "t": 11.046
+    },
+    {
+     "w": "não",
+     "t": 11.211
+    },
+    {
+     "w": "consegue",
+     "t": 11.435
+    },
+    {
+     "w": "entrar",
+     "t": 11.93
+    },
+    {
+     "w": "E",
+     "t": 13.074
+    },
+    {
+     "w": "sem",
+     "t": 13.192
+    },
+    {
+     "w": "ar",
+     "t": 13.404
+    },
+    {
+     "w": "entrando",
+     "t": 13.51
+    },
+    {
+     "w": "a",
+     "t": 14.171
+    },
+    {
+     "w": "água",
+     "t": 14.253
+    },
+    {
+     "w": "não",
+     "t": 14.536
+    },
+    {
+     "w": "sai",
+     "t": 14.737
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 15.47,
+   "fim": 24.49,
+   "texto": "Você abre a torneira, o nível desce, a boca descobre, sobe uma bolha de ar e desce um pouco de água. É aquele barulho de gole que você escuta.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 15.52
+    },
+    {
+     "w": "abre",
+     "t": 15.897
+    },
+    {
+     "w": "a",
+     "t": 16.169
+    },
+    {
+     "w": "torneira",
+     "t": 16.216
+    },
+    {
+     "w": "o",
+     "t": 16.912
+    },
+    {
+     "w": "nível",
+     "t": 16.97
+    },
+    {
+     "w": "desce",
+     "t": 17.312
+    },
+    {
+     "w": "a",
+     "t": 17.902
+    },
+    {
+     "w": "boca",
+     "t": 17.985
+    },
+    {
+     "w": "descobre",
+     "t": 18.327
+    },
+    {
+     "w": "sobe",
+     "t": 19.105
+    },
+    {
+     "w": "uma",
+     "t": 19.376
+    },
+    {
+     "w": "bolha",
+     "t": 19.518
+    },
+    {
+     "w": "de",
+     "t": 19.871
+    },
+    {
+     "w": "ar",
+     "t": 19.989
+    },
+    {
+     "w": "e",
+     "t": 20.166
+    },
+    {
+     "w": "desce",
+     "t": 20.225
+    },
+    {
+     "w": "um",
+     "t": 20.485
+    },
+    {
+     "w": "pouco",
+     "t": 20.591
+    },
+    {
+     "w": "de",
+     "t": 20.897
+    },
+    {
+     "w": "água",
+     "t": 21.004
+    },
+    {
+     "w": "É",
+     "t": 22.156
+    },
+    {
+     "w": "aquele",
+     "t": 22.298
+    },
+    {
+     "w": "barulho",
+     "t": 22.593
+    },
+    {
+     "w": "de",
+     "t": 22.946
+    },
+    {
+     "w": "gole",
+     "t": 23.053
+    },
+    {
+     "w": "que",
+     "t": 23.395
+    },
+    {
+     "w": "você",
+     "t": 23.501
+    },
+    {
+     "w": "escuta",
+     "t": 23.784
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 24.64,
+   "fim": 33.68,
+   "texto": "Mas água em temperatura ambiente ninguém gosta. Então, você coloca uma plaquinha que, quando passa energia, fica fria de um lado e quente do outro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 24.69
+    },
+    {
+     "w": "água",
+     "t": 24.89
+    },
+    {
+     "w": "em",
+     "t": 25.256
+    },
+    {
+     "w": "temperatura",
+     "t": 25.315
+    },
+    {
+     "w": "ambiente",
+     "t": 25.916
+    },
+    {
+     "w": "ninguém",
+     "t": 26.353
+    },
+    {
+     "w": "gosta",
+     "t": 26.718
+    },
+    {
+     "w": "Então",
+     "t": 27.918
+    },
+    {
+     "w": "você",
+     "t": 28.685
+    },
+    {
+     "w": "coloca",
+     "t": 28.944
+    },
+    {
+     "w": "uma",
+     "t": 29.345
+    },
+    {
+     "w": "plaquinha",
+     "t": 29.487
+    },
+    {
+     "w": "que",
+     "t": 29.923
+    },
+    {
+     "w": "quando",
+     "t": 30.324
+    },
+    {
+     "w": "passa",
+     "t": 30.583
+    },
+    {
+     "w": "energia",
+     "t": 30.831
+    },
+    {
+     "w": "fica",
+     "t": 31.574
+    },
+    {
+     "w": "fria",
+     "t": 31.822
+    },
+    {
+     "w": "de",
+     "t": 32.128
+    },
+    {
+     "w": "um",
+     "t": 32.223
+    },
+    {
+     "w": "lado",
+     "t": 32.352
+    },
+    {
+     "w": "e",
+     "t": 32.635
+    },
+    {
+     "w": "quente",
+     "t": 32.706
+    },
+    {
+     "w": "do",
+     "t": 33.001
+    },
+    {
+     "w": "outro",
+     "t": 33.095
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.83,
+   "fim": 45.01,
+   "texto": "O lado frio gela o reservatório. O lado quente precisa de um ventilador atrás, senão a placa para de funcionar. Os modelos maiores usam um compressor, igual uma geladeira.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 33.88
+    },
+    {
+     "w": "lado",
+     "t": 33.998
+    },
+    {
+     "w": "frio",
+     "t": 34.364
+    },
+    {
+     "w": "gela",
+     "t": 34.623
+    },
+    {
+     "w": "o",
+     "t": 34.941
+    },
+    {
+     "w": "reservatório",
+     "t": 34.965
+    },
+    {
+     "w": "O",
+     "t": 36.566
+    },
+    {
+     "w": "lado",
+     "t": 36.684
+    },
+    {
+     "w": "quente",
+     "t": 37.026
+    },
+    {
+     "w": "precisa",
+     "t": 37.297
+    },
+    {
+     "w": "de",
+     "t": 37.698
+    },
+    {
+     "w": "um",
+     "t": 37.78
+    },
+    {
+     "w": "ventilador",
+     "t": 37.875
+    },
+    {
+     "w": "atrás",
+     "t": 38.394
+    },
+    {
+     "w": "senão",
+     "t": 39.089
+    },
+    {
+     "w": "a",
+     "t": 39.396
+    },
+    {
+     "w": "placa",
+     "t": 39.467
+    },
+    {
+     "w": "para",
+     "t": 39.832
+    },
+    {
+     "w": "de",
+     "t": 40.021
+    },
+    {
+     "w": "funcionar",
+     "t": 40.127
+    },
+    {
+     "w": "Os",
+     "t": 41.436
+    },
+    {
+     "w": "modelos",
+     "t": 41.589
+    },
+    {
+     "w": "maiores",
+     "t": 42.026
+    },
+    {
+     "w": "usam",
+     "t": 42.45
+    },
+    {
+     "w": "um",
+     "t": 42.804
+    },
+    {
+     "w": "compressor",
+     "t": 42.875
+    },
+    {
+     "w": "igual",
+     "t": 43.736
+    },
+    {
+     "w": "uma",
+     "t": 44.042
+    },
+    {
+     "w": "geladeira",
+     "t": 44.184
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 45.16,
+   "fim": 53.09,
+   "texto": "Pra água quente, você coloca um segundo reservatório com uma resistência. E uma trava na torneira, pra criança não se queimar.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 45.21
+    },
+    {
+     "w": "água",
+     "t": 45.422
+    },
+    {
+     "w": "quente",
+     "t": 45.729
+    },
+    {
+     "w": "você",
+     "t": 46.389
+    },
+    {
+     "w": "coloca",
+     "t": 46.637
+    },
+    {
+     "w": "um",
+     "t": 47.05
+    },
+    {
+     "w": "segundo",
+     "t": 47.12
+    },
+    {
+     "w": "reservatório",
+     "t": 47.545
+    },
+    {
+     "w": "com",
+     "t": 48.252
+    },
+    {
+     "w": "uma",
+     "t": 48.406
+    },
+    {
+     "w": "resistência",
+     "t": 48.535
+    },
+    {
+     "w": "E",
+     "t": 50.042
+    },
+    {
+     "w": "uma",
+     "t": 50.172
+    },
+    {
+     "w": "trava",
+     "t": 50.372
+    },
+    {
+     "w": "na",
+     "t": 50.702
+    },
+    {
+     "w": "torneira",
+     "t": 50.809
+    },
+    {
+     "w": "pra",
+     "t": 51.493
+    },
+    {
+     "w": "criança",
+     "t": 51.646
+    },
+    {
+     "w": "não",
+     "t": 52.129
+    },
+    {
+     "w": "se",
+     "t": 52.33
+    },
+    {
+     "w": "queimar",
+     "t": 52.46
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 53.24,
+   "fim": 60.35,
+   "texto": "Coloque um espeto que fura a tampa do garrafão e uma bandeja pra pingar. Parabéns, você construiu um bebedouro.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 53.29
+    },
+    {
+     "w": "um",
+     "t": 53.797
+    },
+    {
+     "w": "espeto",
+     "t": 53.891
+    },
+    {
+     "w": "que",
+     "t": 54.351
+    },
+    {
+     "w": "fura",
+     "t": 54.481
+    },
+    {
+     "w": "a",
+     "t": 54.717
+    },
+    {
+     "w": "tampa",
+     "t": 54.776
+    },
+    {
+     "w": "do",
+     "t": 55.094
+    },
+    {
+     "w": "garrafão",
+     "t": 55.189
+    },
+    {
+     "w": "e",
+     "t": 55.743
+    },
+    {
+     "w": "uma",
+     "t": 55.814
+    },
+    {
+     "w": "bandeja",
+     "t": 55.967
+    },
+    {
+     "w": "pra",
+     "t": 56.498
+    },
+    {
+     "w": "pingar",
+     "t": 56.627
+    },
+    {
+     "w": "Parabéns",
+     "t": 57.827
+    },
+    {
+     "w": "você",
+     "t": 58.594
+    },
+    {
+     "w": "construiu",
+     "t": 58.9
+    },
+    {
+     "w": "um",
+     "t": 59.431
+    },
+    {
+     "w": "bebedouro",
+     "t": 59.537
+    }
+   ]
+  }
+ ]
+}

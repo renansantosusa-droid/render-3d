@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("bebedouro", { fundo: 0xe2eaf0, seed: 2811 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- cozinha ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: grade("#d8d4cc", "#b8b4ac", 64, 8) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xf0ebe0, { map: texRuido("#f0ebe0", 10, 4) }), 0, 4, -1.2);
+
+// ---------- bebedouro ----------
+const gab = add(new THREE.BoxGeometry(.5, 1.0, .45), vidro(.0, 0xffffff), 0, .5, 0);
+const gabM = new THREE.MeshStandardMaterial({ color: 0xf4f4f4, roughness: .5, transparent: true, opacity: 1 }); gab.material = gabM;
+const nicho = add(new THREE.BoxGeometry(.4, .28, .05), mat(0xb8bcc4), 0, .58, .21);
+const ledge = add(new THREE.BoxGeometry(.4, .03, .12), mat(0x9aa0a8), 0, .44, .27);
+const bandeja = add(new THREE.BoxGeometry(.38, .02, .1), mat(0x3a3e46), 0, .465, .27); bandeja.scale.setScalar(.001);
+const torF = add(new THREE.BoxGeometry(.06, .06, .08), mat(0x3a8ad8), -.1, .74, .26), torQ = add(new THREE.BoxGeometry(.06, .06, .08), mat(0xd6453a), .1, .74, .26);
+const trava = add(new THREE.BoxGeometry(.03, .03, .03), mat(0xffd23a), .1, .79, .28); trava.visible = false;
+const copo = add(new THREE.CylinderGeometry(.045, .035, .12, 20, 1, true), vidro(.35), -.1, .52, .27);
+const aguaCopo = add(new THREE.CylinderGeometry(.04, .034, .1, 20), new THREE.MeshStandardMaterial({ color: 0x5ab0ff, transparent: true, opacity: .7 }), -.1, .47, .27);
+// tanques internos (aparecem quando o gabinete fica transparente)
+const tFrio = add(new THREE.CylinderGeometry(.11, .11, .22, 24), new THREE.MeshStandardMaterial({ color: 0x5ab0ff, transparent: true, opacity: 0 }), -.1, .82, -.02);
+const tQuente = add(new THREE.CylinderGeometry(.09, .09, .2, 24), new THREE.MeshStandardMaterial({ color: 0xd6453a, transparent: true, opacity: 0, emissive: 0xff3a10, emissiveIntensity: 0 }), .12, .3, -.02);
+const resist = add(new THREE.TorusGeometry(.05, .012, 6, 20), new THREE.MeshBasicMaterial({ color: 0xff5a1a, transparent: true, opacity: 0 }), .12, .27, -.02); resist.rotation.x = PI / 2;
+// pote + garrafão de cabeça pra baixo
+add(new THREE.CylinderGeometry(.21, .21, .14, 36, 1, true), vidro(.3), 0, 1.07, 0);
+const aguaPote = add(new THREE.CylinderGeometry(.2, .2, 1, 36), new THREE.MeshStandardMaterial({ color: 0x3a9af0, transparent: true, opacity: .55, depthWrite: false }), 0, 1.04, 0);
+const garrafao = grupo(0, 0, 0);
+add(new THREE.CylinderGeometry(.05, .05, .1, 20, 1, true), vidro(.35, 0x8ac8ff), 0, 1.11, 0, garrafao);
+add(new THREE.CylinderGeometry(.2, .1, .1, 30, 1, true), vidro(.3, 0x8ac8ff), 0, 1.21, 0, garrafao);
+add(new THREE.CylinderGeometry(.2, .2, .45, 30, 1, true), vidro(.3, 0x8ac8ff), 0, 1.485, 0, garrafao);
+const aguaG = add(new THREE.CylinderGeometry(.19, .19, 1, 30), new THREE.MeshStandardMaterial({ color: 0x3a9af0, transparent: true, opacity: .45, depthWrite: false }), 0, 1.4, 0);
+const boca = add(new THREE.TorusGeometry(.05, .008, 6, 24), brilho(0xffd23a), 0, 1.06, 0); boca.rotation.x = PI / 2;
+const espeto = add(new THREE.ConeGeometry(.03, .12, 12), mat(0xc0c6cc, { metalness: .4 }), 0, 1.06, 0); espeto.scale.setScalar(.001);
+const bolhas = Array.from({ length: 8 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .08 }));
+const jato = Array.from({ length: 14 }, () => ({ s: sprite(0x5ab0ff), f: rnd() }));
+const xAr = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("✕ AR", "#ff4a3a", { tam: 90 }), transparent: true })); xAr.position.set(.3, 1.09, .1); xAr.scale.set(.25, .125, 1); scene.add(xAr);
+
+// ---------- mini set: placa que esfria de um lado e esquenta do outro ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+const placa = grupo(BX, .9, 0);
+const lFrio = add(new THREE.BoxGeometry(.8, .04, .8), mat(0x8ac8ff), 0, .05, 0, placa), lQuente = add(new THREE.BoxGeometry(.8, .04, .8), mat(0xff7a4a), 0, -.05, 0, placa);
+for (let i = 0; i < 6; i++) add(new THREE.BoxGeometry(.06, .06, .06), mat(i % 2 ? 0x3a3a3a : 0x8a8a8a), -.3 + i * .12, 0, 0, placa);
+const aleta = grupo(BX, .55, 0); for (let i = 0; i < 9; i++) add(new THREE.BoxGeometry(.03, .22, .7), mat(0xc0c6cc, { metalness: .4 }), -.36 + i * .09, 0, 0, aleta); aleta.visible = false;
+const fan = grupo(BX, .3, 0); add(new THREE.BoxGeometry(.6, .06, .6), mat(0x2a2a2a), 0, 0, 0, fan); const helice = grupo(0, .04, 0, fan); for (let i = 0; i < 5; i++) { const b = add(new THREE.BoxGeometry(.24, .01, .08), mat(0x4a4a4a), .13, 0, 0, helice); b.position.set(Math.cos(i * 1.256) * .13, 0, Math.sin(i * 1.256) * .13); b.rotation.y = -i * 1.256; } fan.visible = false;
+const frio = Array.from({ length: 16 }, () => ({ s: sprite(0x8ac8ff), f: rnd(), x: (rnd() - .5) * .7, z: (rnd() - .5) * .7 }));
+const calor = Array.from({ length: 16 }, () => ({ s: sprite(0xff7a3a), f: rnd(), x: (rnd() - .5) * .7, z: (rnd() - .5) * .7 }));
+
+K.camera_({
+  geral: [V(1.7, 1.6, 3.5), V(0, .88, 0)],
+  pote: [V(.55, 1.25, .95), V(0, 1.1, 0)],
+  torneira: [V(.45, .85, 1.25), V(0, .75, .1)],
+  placa: [V(BX + .4, 1.5, 3.3), V(BX, .65, 0)],
+  dentro: [V(.85, .95, 1.5), V(0, .62, 0)],
+  fim: [V(-1.7, 1.5, 3.4), V(0, .88, 0)],
+}, [
+  [0, "geral"], [C(2), "pote"], [F(2), "pote"], [C(3), "torneira"], [P(3, "bolha") - .4, "pote"], [F(3), "pote"], [C(4), "placa"], [F(5), "placa"],
+  [C(6), "dentro"], [F(6), "dentro"], [C(7), "geral"], [P(7, "espeto") - .3, "pote"], [P(7, "bandeja") - .3, "torneira"], [P(7, "parabens") - .2, "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // nível do pote: cobre a boca; na cena 3 desce, descobre, borbulha, sobe de novo
+  const abre = em(P(3, "abre") - .2, P(3, "gole") + .5);
+  const ciclo = abre ? frac((t - P(3, "abre")) * .9) : 0;
+  const nivel = abre ? (ciclo < .6 ? 1.085 - .035 * (ciclo / .6) : 1.05 + .035 * ((ciclo - .6) / .4)) : 1.085;
+  aguaPote.scale.y = nivel - 1.0; aguaPote.position.y = 1.0 + (nivel - 1.0) / 2;
+  const glub = abre && ciclo > .55;
+  bolhas.forEach((b, i) => { const k = frac(t * 1.5 + b.f); b.s.position.set(b.x, 1.08 + k * .5, 0); b.s.scale.setScalar(.035 + .02 * (i % 3)); b.s.material.opacity = glub || em(P(7, "espeto") + .2, P(7, "espeto") + 1) ? .9 * (1 - k * .5) : 0; });
+  const hG = .4 - .08 * prog(t, C(3), F(3)); aguaG.scale.y = hG; aguaG.position.y = 1.18 + hG / 2;
+  boca.visible = em(P(2, "boca") - .3, F(3)); xAr.visible = em(P(2, "entrar") - .3, F(2));
+  // torneira e copo
+  jato.forEach((j) => { const k = frac(t * 2 + j.f); j.s.position.set(-.1, .71 - k * .18, .28); j.s.scale.setScalar(.025); j.s.material.opacity = abre ? .9 : 0; });
+  const enche = t < C(3) ? .2 : .2 + .8 * prog(t, P(3, "abre"), F(3)); aguaCopo.scale.y = enche; aguaCopo.position.y = .465 + .05 * enche - .05 + .005;
+  torF.rotation.x = abre ? -.4 : 0;
+  // placa: lado frio x lado quente
+  const liga = t > P(4, "energia") - .3;
+  frio.forEach((f) => { const k = frac(t * .6 + f.f); f.s.position.set(BX + f.x, .97 + k * .4, f.z); f.s.scale.setScalar(.05); f.s.material.opacity = liga && t < C(6) ? .8 * (1 - k) : 0; });
+  calor.forEach((f) => { const k = frac(t * .9 + f.f); f.s.position.set(BX + f.x, .8 - k * .5, f.z); f.s.scale.setScalar(.06); f.s.material.opacity = liga && t < C(6) && t < P(5, "ventilador") - .3 ? .8 * (1 - k * .3) : (liga && t < C(6) ? .5 * (1 - k) : 0); });
+  lFrio.material.emissive = new THREE.Color(0x2a6aff); lFrio.material.emissiveIntensity = liga ? .4 : 0; lQuente.material.emissive = new THREE.Color(0xff3a10); lQuente.material.emissiveIntensity = liga ? .5 : 0;
+  aleta.visible = fan.visible = t > P(5, "ventilador") - .3; helice.rotation.y = t * 14;
+  // dentro do gabinete
+  const transp = em(C(6), F(6)) ? .25 : 1; gabM.opacity = transp; gabM.depthWrite = transp > .9;
+  tFrio.material.opacity = em(C(6), F(6)) ? .7 : 0;
+  const q = em(P(6, "resistencia") - .3, F(6)); tQuente.material.opacity = em(C(6), F(6)) ? .7 : 0; tQuente.material.emissiveIntensity = q ? .6 + .3 * Math.sin(t * 6) : 0; resist.material.opacity = q ? 1 : 0;
+  trava.visible = t > P(6, "trava") - .3; trava.material.emissive = new THREE.Color(0xffa000); trava.material.emissiveIntensity = em(P(6, "trava") - .3, F(6)) ? 1 : 0;
+  espeto.scale.setScalar(Math.max(.001, prog(t, P(7, "espeto") - .3, P(7, "espeto") + .2)));
+  bandeja.scale.setScalar(Math.max(.001, prog(t, P(7, "bandeja") - .3, P(7, "bandeja") + .2)));
+  K.cartoes(t, [
+    [P(1, "bebedouro") - .3, F(1), "BEBEDOURO", "#ffffff"],
+    [P(2, "transborda") - .4, P(2, "boca") - .3, "POR QUE NÃO TRANSBORDA?", "#ffd23a"],
+    [P(2, "entrar") - .3, F(2), "SEM AR ENTRANDO, A ÁGUA NÃO SAI", "#ff4a3a"],
+    [P(3, "bolha") - .4, F(3), "GLUB!", "#8ac8ff"],
+    [P(4, "fria") - .3, F(4), "FRIA DE UM LADO, QUENTE DO OUTRO", "#8ac8ff"],
+    [P(5, "ventilador") - .3, P(5, "compressor") - .3, "O CALOR PRECISA SAIR", "#ff7a3a"],
+    [P(5, "compressor") - .3, F(5), "MAIORES: COMPRESSOR", "#ffffff"],
+    [P(6, "resistencia") - .3, P(6, "trava") - .3, "ÁGUA QUENTE: RESISTÊNCIA", "#ff7a3a"],
+    [P(6, "trava") - .3, F(6), "TRAVA DE SEGURANÇA", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
