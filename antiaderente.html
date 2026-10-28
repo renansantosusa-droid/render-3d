@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("antiaderente", { fundo: 0xe8e2d8, seed: 2812 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- fogão ----------
+add(new THREE.BoxGeometry(3, .1, 2), mat(0x2a2a2e, { roughness: .3 }), 0, -.15, 0);
+for (const a of [0, PI / 2]) { const b = add(new THREE.BoxGeometry(1.2, .03, .04), mat(0x111111), 0, -.07, 0); b.rotation.y = a; }
+const chama = Array.from({ length: 24 }, (_, i) => ({ s: sprite(0x3a7aff), a: i / 24 * PI * 2, f: rnd() }));
+
+// ---------- frigideira ----------
+const pan = grupo(0, 0, 0);
+const panM = mat(0xb8bec6, { metalness: .45, roughness: .3 });
+const fundo = add(new THREE.CylinderGeometry(.5, .48, .05, 48), panM, 0, 0, 0, pan);
+const borda = add(new THREE.CylinderGeometry(.58, .5, .12, 48, 1, true), panM, 0, .07, 0, pan); borda.material = panM.clone(); borda.material.side = THREE.DoubleSide;
+const caboM = mat(0x2a2a2a); const cabo = add(new THREE.BoxGeometry(.7, .05, .08), caboM, .9, .1, 0, pan); cabo.rotation.z = .12;
+const fundoGrosso = add(new THREE.CylinderGeometry(.48, .48, .04, 48), mat(0xd8a050, { metalness: .4 }), 0, -.045, 0, pan); fundoGrosso.scale.set(.001, 1, .001);
+const ovo = grupo(0, .03, 0, pan);
+const clara = add(new THREE.SphereGeometry(.26, 32, 12), mat(0xfbfbf6, { roughness: .4 }), 0, 0, 0, ovo); clara.scale.y = .08;
+const gema = add(new THREE.SphereGeometry(.09, 24, 12), mat(0xffb020, { roughness: .3 }), .03, .02, .02, ovo); gema.scale.y = .6;
+const riscos = []; for (let i = 0; i < 5; i++) { const r = add(new THREE.BoxGeometry(.5, .004, .012), brilho(0xc8c8c8), 0, .03, -.2 + i * .1, pan); r.rotation.y = .3 + i * .1; r.visible = false; riscos.push(r); }
+const colher = grupo(0, .25, 0); add(new THREE.BoxGeometry(.5, .025, .04), mat(0xc0c6cc, { metalness: .45 }), .3, 0, 0, colher); add(new THREE.SphereGeometry(.08, 16, 8), mat(0xc0c6cc, { metalness: .45 }), 0, -.02, 0, colher).scale.y = .3; colher.visible = false;
+const fumaca = Array.from({ length: 16 }, () => ({ s: sprite(0x8a8a8a), f: rnd(), x: (rnd() - .5) * .7, z: (rnd() - .5) * .7 }));
+const termo = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("260 °C", "#ff4a3a", { tam: 110 }), transparent: true })); termo.position.set(0, .55, 0); termo.scale.set(.6, .3, 1); scene.add(termo);
+
+// ---------- mini set 1: buraquinhos do metal ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.BoxGeometry(1.4, .4, .8), mat(0xb8bec6, { metalness: .4, roughness: .35 }), BX, .4, 0);
+const furos = [], colas = []; for (let i = 0; i < 6; i++) for (let j = 0; j < 3; j++) { const x = BX - .55 + i * .22, z = -.25 + j * .25; furos.push(add(new THREE.CylinderGeometry(.05, .03, .02, 12), brilho(0x2a2e34), x, .605, z)); const c = add(new THREE.CylinderGeometry(.045, .03, .12, 12), mat(0xfbfbf6), x, .6, z); c.scale.y = .001; colas.push(c); }
+const camadaClara = add(new THREE.BoxGeometry(1.4, .06, .8), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0 }), BX, .66, 0);
+
+// ---------- mini set 2: molécula de teflon (carbono + flúor) ----------
+const MX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), MX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(MX + 1, 2, 2.5); scene.add(pl); }
+const mol = grupo(MX, .9, 0);
+for (let i = 0; i < 7; i++) { const x = -.6 + i * .2, y = i % 2 ? .06 : -.06; add(new THREE.SphereGeometry(.07, 16, 10), mat(0x2a2a2a), x, y, 0, mol); for (const s of [-1, 1]) add(new THREE.SphereGeometry(.075, 16, 10), mat(0x7ad04a), x, y + (i % 2 ? .1 : -.1), s * .11, mol); }
+const bate = add(new THREE.SphereGeometry(.09, 16, 10), mat(0xfbfbf6), MX, 1.5, 0), gota = add(new THREE.SphereGeometry(.07, 16, 10), mat(0x5ab0ff, { roughness: .1 }), MX + .3, 1.5, 0);
+const lF = (() => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("FLÚOR", "#9ae06a", { tam: 80 }), transparent: true })); s.position.set(MX, .45, .3); s.scale.set(.6, .3, 1); scene.add(s); return s; })();
+
+// ---------- mini set 3: jato de areia + camadas ----------
+const LX = 300;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), LX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(LX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.BoxGeometry(1.2, .4, .8), mat(0xc8ccd2, { metalness: .4 }), LX, .4, 0);
+const asp = []; for (let i = 0; i < 40; i++) { const m = add(new THREE.ConeGeometry(.025, .04, 4), mat(0xa8acb2, { metalness: .4 }), LX - .55 + (i % 10) * .12, .62, -.3 + Math.floor(i / 10) * .2); m.scale.setScalar(.001); asp.push(m); }
+const primer = add(new THREE.BoxGeometry(1.2, .05, .8), mat(0x8a6a4a), LX, .63, 0); primer.scale.y = .001;
+const teflonC = add(new THREE.BoxGeometry(1.2, .07, .8), mat(0x1a1a1e, { roughness: .2 }), LX, .69, 0); teflonC.scale.y = .001;
+const areia = Array.from({ length: 30 }, () => ({ s: sprite(0xe0c080), f: rnd(), x: (rnd() - .5) * 1.1, z: (rnd() - .5) * .7 }));
+
+K.camera_({
+  geral: [V(1.7, 1.9, 2.7), V(.1, .05, 0)],
+  topo: [V(.25, 1.25, .75), V(0, .02, 0)],
+  furos: [V(BX + .2, 1.25, 1.9), V(BX, .55, 0)],
+  mol: [V(MX + .1, 1.3, 3.6), V(MX, 1.0, 0)],
+  camadas: [V(LX + .25, 1.45, 1.6), V(LX, .6, 0)],
+  fim: [V(-1.7, 1.8, 2.6), V(.1, .05, 0)],
+}, [
+  [0, "geral"], [C(2), "topo"], [P(2, "perto") - .3, "furos"], [F(2), "furos"], [C(3), "geral"], [P(3, "moleculas") - .3, "mol"], [F(3), "mol"],
+  [C(4), "geral"], [F(4), "geral"], [C(5), "camadas"], [F(5), "camadas"], [C(6), "topo"], [P(6, "vazia") - .3, "geral"], [F(6), "geral"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  chama.forEach((c) => { const k = frac(t * 2 + c.f); const alto = em(P(6, "alto") - .3, F(6)) ? 1.6 : 1; c.s.position.set(Math.cos(c.a) * .32, -.08 + k * .06 * alto, Math.sin(c.a) * .32); c.s.scale.setScalar(.06 * alto); c.s.material.opacity = .8 * (1 - k); });
+  // aço x teflon
+  const tef = t > P(3, "teflon") - .3;
+  const cor = tef ? 0x1e1e22 : 0xb8bec6; panM.color.set(cor); borda.material.color.set(tef ? 0x2a2a30 : 0xb8bec6); panM.metalness = tef ? .1 : .45;
+  // ovo: gruda (cena 1-2) / desliza (depois)
+  ovo.visible = t < C(4) || t > C(7);
+  ovo.position.x = tef ? Math.sin(t * 1.5) * .12 : 0; ovo.position.z = tef ? Math.cos(t * 1.1) * .08 : 0;
+  pan.rotation.z = tef && t < C(4) ? Math.sin(t * 1.5) * .05 : 0;
+  // furos: a clara entra e vira cola
+  const entra = prog(t, P(2, "clara") - .2, P(2, "cola"));
+  camadaClara.material.opacity = em(P(2, "clara") - .4, F(2)) ? .85 * (1 - entra * .6) : 0;
+  colas.forEach((c) => { c.scale.y = Math.max(.001, entra); c.position.y = .6 - .05 * entra; c.material.color.set(t > P(2, "cola") - .3 ? 0xf0e0b0 : 0xfbfbf6); });
+  // molécula: o ovo e a gota quicam
+  mol.rotation.y = Math.sin(t * .6) * .4;
+  const kq = (s) => { const k = frac((t - P(3, "ovo")) * .8 + s); return 1.5 - 1.05 * Math.sin(k * PI); };
+  bate.visible = gota.visible = t > P(3, "nada") - .3 && t < C(4);
+  bate.position.y = kq(0); gota.position.y = kq(.5);
+  lF.visible = em(P(3, "fluor") - .3, F(3));
+  // jato de areia + camadas + forno
+  const jateia = em(P(5, "jateia") - .3, P(5, "aspero") + .3);
+  areia.forEach((a) => { const k = frac(t * 2 + a.f); a.s.position.set(LX + a.x * .3 + k * a.x * .7, 1.4 - k * .75, a.z); a.s.scale.setScalar(.03); a.s.material.opacity = jateia ? .9 : 0; });
+  const ka = prog(t, P(5, "jateia") - .2, P(5, "aspero") + .2); asp.forEach((m) => m.scale.setScalar(Math.max(.001, ka)));
+  primer.scale.y = Math.max(.001, prog(t, P(5, "camada") - .3, P(5, "camada") + .3));
+  teflonC.scale.y = Math.max(.001, prog(t, P(5, "teflon") - .3, P(5, "teflon") + .3));
+  teflonC.material.emissive = new THREE.Color(0xff3a10); teflonC.material.emissiveIntensity = em(P(5, "forno") - .3, F(5)) ? .5 + .2 * Math.sin(t * 5) : 0;
+  // colher risca; frigideira vazia esquenta e solta fumaça
+  colher.visible = em(C(6), P(6, "vazia") - .3); colher.position.set(Math.sin(t * 5) * .25, .07, Math.cos(t * 3) * .1); colher.rotation.y = .3;
+  riscos.forEach((r, i) => { r.visible = t > P(6, "arranca") - .3 + i * .15 && t < C(7); });
+  const quente = em(P(6, "alto") - .3, F(6)); panM.emissive = new THREE.Color(0xff3a10); panM.emissiveIntensity = quente ? .35 * prog(t, P(6, "alto") - .3, P(6, "graus")) : 0;
+  termo.visible = em(P(6, "graus") - .6, F(6));
+  fumaca.forEach((f) => { const k = frac(t * .5 + f.f); f.s.position.set(f.x, .1 + k * .8, f.z); f.s.scale.setScalar(.1 + k * .2); f.s.material.opacity = em(P(6, "revestimento") - .4, F(6)) ? .5 * (1 - k) : 0; });
+  // acabamentos
+  caboM.emissive = new THREE.Color(0xffa000); caboM.emissiveIntensity = em(P(7, "cabo") - .3, P(7, "fundo") - .3) ? .5 : 0;
+  const fg = prog(t, P(7, "fundo") - .3, P(7, "fundo") + .3); fundoGrosso.scale.set(Math.max(.001, fg), 1, Math.max(.001, fg));
+  K.cartoes(t, [
+    [P(1, "frigideira") - .3, F(1), "FRIGIDEIRA", "#ffffff"],
+    [P(2, "gruda") - .3, P(2, "perto") - .3, "O OVO GRUDA", "#ff4a3a"],
+    [P(2, "cola") - .4, F(2), "VIRA COLA", "#ff4a3a"],
+    [P(3, "teflon") - .3, P(3, "fluor") - .3, "TEFLON", "#ffffff"],
+    [P(3, "nada") - .3, F(3), "NADA GRUDA", "#9ae06a"],
+    [C(4), F(4), "E O TEFLON GRUDA COMO?", "#ffd23a"],
+    [P(5, "jateia") - .3, P(5, "camada") - .3, "JATO DE AREIA", "#e0c080"],
+    [P(5, "camada") - .3, P(5, "teflon") - .3, "1ª CAMADA AGARRA", "#c0c6cc"],
+    [P(5, "forno") - .3, F(5), "FORNO: ~400 °C", "#ff7a3a"],
+    [C(6), P(6, "vazia") - .3, "COLHER DE METAL RISCA", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>

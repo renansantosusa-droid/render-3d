@@ -1,0 +1,701 @@
+{
+ "total": 56.89,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.98,
+   "texto": "Se você esquentar um disco de metal no fogo, terá uma frigideira.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.4
+    },
+    {
+     "w": "esquentar",
+     "t": 0.636
+    },
+    {
+     "w": "um",
+     "t": 1.096
+    },
+    {
+     "w": "disco",
+     "t": 1.202
+    },
+    {
+     "w": "de",
+     "t": 1.544
+    },
+    {
+     "w": "metal",
+     "t": 1.627
+    },
+    {
+     "w": "no",
+     "t": 1.945
+    },
+    {
+     "w": "fogo",
+     "t": 2.063
+    },
+    {
+     "w": "terá",
+     "t": 2.641
+    },
+    {
+     "w": "uma",
+     "t": 2.889
+    },
+    {
+     "w": "frigideira",
+     "t": 3.042
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.13,
+   "fim": 12.63,
+   "texto": "Mas o ovo gruda. De perto, o metal é cheio de buraquinhos. A clara entra neles, cozinha lá dentro e vira cola.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.18
+    },
+    {
+     "w": "o",
+     "t": 4.416
+    },
+    {
+     "w": "ovo",
+     "t": 4.593
+    },
+    {
+     "w": "gruda",
+     "t": 4.84
+    },
+    {
+     "w": "De",
+     "t": 6.029
+    },
+    {
+     "w": "perto",
+     "t": 6.217
+    },
+    {
+     "w": "o",
+     "t": 6.925
+    },
+    {
+     "w": "metal",
+     "t": 7.007
+    },
+    {
+     "w": "é",
+     "t": 7.432
+    },
+    {
+     "w": "cheio",
+     "t": 7.491
+    },
+    {
+     "w": "de",
+     "t": 7.821
+    },
+    {
+     "w": "buraquinhos",
+     "t": 7.915
+    },
+    {
+     "w": "A",
+     "t": 9.425
+    },
+    {
+     "w": "clara",
+     "t": 9.555
+    },
+    {
+     "w": "entra",
+     "t": 9.873
+    },
+    {
+     "w": "neles",
+     "t": 10.073
+    },
+    {
+     "w": "cozinha",
+     "t": 10.722
+    },
+    {
+     "w": "lá",
+     "t": 11.158
+    },
+    {
+     "w": "dentro",
+     "t": 11.3
+    },
+    {
+     "w": "e",
+     "t": 11.677
+    },
+    {
+     "w": "vira",
+     "t": 11.76
+    },
+    {
+     "w": "cola",
+     "t": 12.031
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.78,
+   "fim": 24.07,
+   "texto": "Então, você cobre o metal com um plástico especial, o teflon. As moléculas dele são cercadas de flúor, que quase não se liga a nada. Nem ao ovo, nem à água.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.83
+    },
+    {
+     "w": "você",
+     "t": 13.62
+    },
+    {
+     "w": "cobre",
+     "t": 13.88
+    },
+    {
+     "w": "o",
+     "t": 14.186
+    },
+    {
+     "w": "metal",
+     "t": 14.21
+    },
+    {
+     "w": "com",
+     "t": 14.587
+    },
+    {
+     "w": "um",
+     "t": 14.729
+    },
+    {
+     "w": "plástico",
+     "t": 14.823
+    },
+    {
+     "w": "especial",
+     "t": 15.295
+    },
+    {
+     "w": "o",
+     "t": 16.085
+    },
+    {
+     "w": "teflon",
+     "t": 16.191
+    },
+    {
+     "w": "As",
+     "t": 17.438
+    },
+    {
+     "w": "moléculas",
+     "t": 17.615
+    },
+    {
+     "w": "dele",
+     "t": 18.181
+    },
+    {
+     "w": "são",
+     "t": 18.393
+    },
+    {
+     "w": "cercadas",
+     "t": 18.546
+    },
+    {
+     "w": "de",
+     "t": 19.065
+    },
+    {
+     "w": "flúor",
+     "t": 19.171
+    },
+    {
+     "w": "que",
+     "t": 19.714
+    },
+    {
+     "w": "quase",
+     "t": 19.879
+    },
+    {
+     "w": "não",
+     "t": 20.268
+    },
+    {
+     "w": "se",
+     "t": 20.433
+    },
+    {
+     "w": "liga",
+     "t": 20.587
+    },
+    {
+     "w": "a",
+     "t": 20.858
+    },
+    {
+     "w": "nada",
+     "t": 20.893
+    },
+    {
+     "w": "Nem",
+     "t": 22.061
+    },
+    {
+     "w": "ao",
+     "t": 22.332
+    },
+    {
+     "w": "ovo",
+     "t": 22.521
+    },
+    {
+     "w": "nem",
+     "t": 23.051
+    },
+    {
+     "w": "à",
+     "t": 23.322
+    },
+    {
+     "w": "água",
+     "t": 23.429
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 24.22,
+   "fim": 28.85,
+   "texto": "Mas aí vem o problema: se nada gruda no teflon, como ele gruda na panela?",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 24.27
+    },
+    {
+     "w": "aí",
+     "t": 24.47
+    },
+    {
+     "w": "vem",
+     "t": 24.765
+    },
+    {
+     "w": "o",
+     "t": 24.966
+    },
+    {
+     "w": "problema",
+     "t": 25.036
+    },
+    {
+     "w": "se",
+     "t": 25.815
+    },
+    {
+     "w": "nada",
+     "t": 25.956
+    },
+    {
+     "w": "gruda",
+     "t": 26.263
+    },
+    {
+     "w": "no",
+     "t": 26.558
+    },
+    {
+     "w": "teflon",
+     "t": 26.664
+    },
+    {
+     "w": "como",
+     "t": 27.324
+    },
+    {
+     "w": "ele",
+     "t": 27.595
+    },
+    {
+     "w": "gruda",
+     "t": 27.737
+    },
+    {
+     "w": "na",
+     "t": 28.02
+    },
+    {
+     "w": "panela",
+     "t": 28.15
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 29,
+   "fim": 40.05,
+   "texto": "A fábrica jateia areia no alumínio pra deixar ele áspero. Passa uma primeira camada que agarra nas ranhuras. E o teflon vai por cima, assado no forno a quase quatrocentos graus.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 29.05
+    },
+    {
+     "w": "fábrica",
+     "t": 29.191
+    },
+    {
+     "w": "jateia",
+     "t": 29.651
+    },
+    {
+     "w": "areia",
+     "t": 30.041
+    },
+    {
+     "w": "no",
+     "t": 30.288
+    },
+    {
+     "w": "alumínio",
+     "t": 30.371
+    },
+    {
+     "w": "pra",
+     "t": 30.819
+    },
+    {
+     "w": "deixar",
+     "t": 30.972
+    },
+    {
+     "w": "ele",
+     "t": 31.302
+    },
+    {
+     "w": "áspero",
+     "t": 31.444
+    },
+    {
+     "w": "Passa",
+     "t": 32.703
+    },
+    {
+     "w": "uma",
+     "t": 33.009
+    },
+    {
+     "w": "primeira",
+     "t": 33.151
+    },
+    {
+     "w": "camada",
+     "t": 33.469
+    },
+    {
+     "w": "que",
+     "t": 33.917
+    },
+    {
+     "w": "agarra",
+     "t": 34.035
+    },
+    {
+     "w": "nas",
+     "t": 34.389
+    },
+    {
+     "w": "ranhuras",
+     "t": 34.554
+    },
+    {
+     "w": "E",
+     "t": 35.969
+    },
+    {
+     "w": "o",
+     "t": 36.087
+    },
+    {
+     "w": "teflon",
+     "t": 36.146
+    },
+    {
+     "w": "vai",
+     "t": 36.476
+    },
+    {
+     "w": "por",
+     "t": 36.618
+    },
+    {
+     "w": "cima",
+     "t": 36.783
+    },
+    {
+     "w": "assado",
+     "t": 37.373
+    },
+    {
+     "w": "no",
+     "t": 37.833
+    },
+    {
+     "w": "forno",
+     "t": 37.95
+    },
+    {
+     "w": "a",
+     "t": 38.281
+    },
+    {
+     "w": "quase",
+     "t": 38.363
+    },
+    {
+     "w": "quatrocentos",
+     "t": 38.705
+    },
+    {
+     "w": "graus",
+     "t": 39.389
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.2,
+   "fim": 49.77,
+   "texto": "Por isso colher de metal estraga: ela arranca as camadas. E frigideira vazia no fogo alto passa de duzentos e sessenta graus e o revestimento começa a se desfazer.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 40.25
+    },
+    {
+     "w": "isso",
+     "t": 40.427
+    },
+    {
+     "w": "colher",
+     "t": 40.722
+    },
+    {
+     "w": "de",
+     "t": 41.075
+    },
+    {
+     "w": "metal",
+     "t": 41.17
+    },
+    {
+     "w": "estraga",
+     "t": 41.5
+    },
+    {
+     "w": "ela",
+     "t": 42.184
+    },
+    {
+     "w": "arranca",
+     "t": 42.349
+    },
+    {
+     "w": "as",
+     "t": 42.715
+    },
+    {
+     "w": "camadas",
+     "t": 42.821
+    },
+    {
+     "w": "E",
+     "t": 44.245
+    },
+    {
+     "w": "frigideira",
+     "t": 44.363
+    },
+    {
+     "w": "vazia",
+     "t": 44.882
+    },
+    {
+     "w": "no",
+     "t": 45.294
+    },
+    {
+     "w": "fogo",
+     "t": 45.4
+    },
+    {
+     "w": "alto",
+     "t": 45.695
+    },
+    {
+     "w": "passa",
+     "t": 45.967
+    },
+    {
+     "w": "de",
+     "t": 46.285
+    },
+    {
+     "w": "duzentos",
+     "t": 46.379
+    },
+    {
+     "w": "e",
+     "t": 46.804
+    },
+    {
+     "w": "sessenta",
+     "t": 46.898
+    },
+    {
+     "w": "graus",
+     "t": 47.275
+    },
+    {
+     "w": "e",
+     "t": 47.582
+    },
+    {
+     "w": "o",
+     "t": 47.7
+    },
+    {
+     "w": "revestimento",
+     "t": 47.735
+    },
+    {
+     "w": "começa",
+     "t": 48.384
+    },
+    {
+     "w": "a",
+     "t": 48.809
+    },
+    {
+     "w": "se",
+     "t": 48.844
+    },
+    {
+     "w": "desfazer",
+     "t": 48.985
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 49.92,
+   "fim": 56.29,
+   "texto": "Coloque um cabo que não esquenta e um fundo grosso que espalha o calor. Parabéns, você construiu uma frigideira antiaderente.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 49.97
+    },
+    {
+     "w": "um",
+     "t": 50.43
+    },
+    {
+     "w": "cabo",
+     "t": 50.536
+    },
+    {
+     "w": "que",
+     "t": 50.878
+    },
+    {
+     "w": "não",
+     "t": 51.008
+    },
+    {
+     "w": "esquenta",
+     "t": 51.173
+    },
+    {
+     "w": "e",
+     "t": 51.527
+    },
+    {
+     "w": "um",
+     "t": 51.562
+    },
+    {
+     "w": "fundo",
+     "t": 51.704
+    },
+    {
+     "w": "grosso",
+     "t": 51.975
+    },
+    {
+     "w": "que",
+     "t": 52.34
+    },
+    {
+     "w": "espalha",
+     "t": 52.423
+    },
+    {
+     "w": "o",
+     "t": 52.718
+    },
+    {
+     "w": "calor.",
+     "t": 52.753
+    },
+    {
+     "w": "Parabéns",
+     "t": 53.083
+    },
+    {
+     "w": "você",
+     "t": 53.873
+    },
+    {
+     "w": "construiu",
+     "t": 54.168
+    },
+    {
+     "w": "uma",
+     "t": 54.663
+    },
+    {
+     "w": "frigideira",
+     "t": 54.829
+    },
+    {
+     "w": "antiaderente",
+     "t": 55.371
+    }
+   ]
+  }
+ ]
+}
