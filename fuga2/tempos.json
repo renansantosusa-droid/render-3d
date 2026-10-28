@@ -1,0 +1,749 @@
+{
+ "total": 64.17,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 9.48,
+   "texto": "Em três dias, Flávio Bolsonaro perdeu a eleição, prometeu ficar e, segundo a Reuters, foi parar nos Estados Unidos. Olha a linha do tempo.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 0.2
+    },
+    {
+     "w": "três",
+     "t": 0.4
+    },
+    {
+     "w": "dias",
+     "t": 0.742
+    },
+    {
+     "w": "Flávio",
+     "t": 1.403
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 1.78
+    },
+    {
+     "w": "perdeu",
+     "t": 2.311
+    },
+    {
+     "w": "a",
+     "t": 2.688
+    },
+    {
+     "w": "eleição",
+     "t": 2.724
+    },
+    {
+     "w": "prometeu",
+     "t": 3.384
+    },
+    {
+     "w": "ficar",
+     "t": 3.82
+    },
+    {
+     "w": "e",
+     "t": 4.209
+    },
+    {
+     "w": "segundo",
+     "t": 4.563
+    },
+    {
+     "w": "a",
+     "t": 4.941
+    },
+    {
+     "w": "Reuters",
+     "t": 5
+    },
+    {
+     "w": "foi",
+     "t": 5.707
+    },
+    {
+     "w": "parar",
+     "t": 5.884
+    },
+    {
+     "w": "nos",
+     "t": 6.238
+    },
+    {
+     "w": "Estados",
+     "t": 6.332
+    },
+    {
+     "w": "Unidos",
+     "t": 6.792
+    },
+    {
+     "w": "Olha",
+     "t": 8.157
+    },
+    {
+     "w": "a",
+     "t": 8.464
+    },
+    {
+     "w": "linha",
+     "t": 8.487
+    },
+    {
+     "w": "do",
+     "t": 8.735
+    },
+    {
+     "w": "tempo",
+     "t": 8.876
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 9.63,
+   "fim": 16.24,
+   "texto": "Domingo: Lula é reeleito. Flávio não reconhece a derrota e diz que vai pedir a anulação do resultado.",
+   "palavras": [
+    {
+     "w": "Domingo",
+     "t": 9.68
+    },
+    {
+     "w": "Lula",
+     "t": 10.482
+    },
+    {
+     "w": "é",
+     "t": 10.812
+    },
+    {
+     "w": "reeleito",
+     "t": 10.883
+    },
+    {
+     "w": "Flávio",
+     "t": 12.213
+    },
+    {
+     "w": "não",
+     "t": 12.684
+    },
+    {
+     "w": "reconhece",
+     "t": 12.861
+    },
+    {
+     "w": "a",
+     "t": 13.451
+    },
+    {
+     "w": "derrota",
+     "t": 13.486
+    },
+    {
+     "w": "e",
+     "t": 13.911
+    },
+    {
+     "w": "diz",
+     "t": 13.946
+    },
+    {
+     "w": "que",
+     "t": 14.182
+    },
+    {
+     "w": "vai",
+     "t": 14.288
+    },
+    {
+     "w": "pedir",
+     "t": 14.441
+    },
+    {
+     "w": "a",
+     "t": 14.748
+    },
+    {
+     "w": "anulação",
+     "t": 14.795
+    },
+    {
+     "w": "do",
+     "t": 15.302
+    },
+    {
+     "w": "resultado",
+     "t": 15.396
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 16.39,
+   "fim": 25.61,
+   "texto": "Segunda: Alexandre de Moraes manda ele entregar os passaportes em vinte e quatro horas, num inquérito por lavagem de dinheiro. Flávio nega irregularidades.",
+   "palavras": [
+    {
+     "w": "Segunda",
+     "t": 16.44
+    },
+    {
+     "w": "Alexandre",
+     "t": 17.242
+    },
+    {
+     "w": "de",
+     "t": 17.725
+    },
+    {
+     "w": "Moraes",
+     "t": 17.808
+    },
+    {
+     "w": "manda",
+     "t": 18.162
+    },
+    {
+     "w": "ele",
+     "t": 18.492
+    },
+    {
+     "w": "entregar",
+     "t": 18.669
+    },
+    {
+     "w": "os",
+     "t": 19.058
+    },
+    {
+     "w": "passaportes",
+     "t": 19.176
+    },
+    {
+     "w": "em",
+     "t": 19.824
+    },
+    {
+     "w": "vinte",
+     "t": 19.99
+    },
+    {
+     "w": "e",
+     "t": 20.225
+    },
+    {
+     "w": "quatro",
+     "t": 20.249
+    },
+    {
+     "w": "horas",
+     "t": 20.532
+    },
+    {
+     "w": "num",
+     "t": 21.11
+    },
+    {
+     "w": "inquérito",
+     "t": 21.251
+    },
+    {
+     "w": "por",
+     "t": 21.699
+    },
+    {
+     "w": "lavagem",
+     "t": 21.841
+    },
+    {
+     "w": "de",
+     "t": 22.313
+    },
+    {
+     "w": "dinheiro",
+     "t": 22.431
+    },
+    {
+     "w": "Flávio",
+     "t": 23.666
+    },
+    {
+     "w": "nega",
+     "t": 24.149
+    },
+    {
+     "w": "irregularidades",
+     "t": 24.444
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.76,
+   "fim": 32.65,
+   "texto": "A ordem veio depois que o irmão, Eduardo Bolsonaro, disse numa transmissão que Flávio deveria sair do país se perdesse.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 25.81
+    },
+    {
+     "w": "ordem",
+     "t": 25.94
+    },
+    {
+     "w": "veio",
+     "t": 26.305
+    },
+    {
+     "w": "depois",
+     "t": 26.576
+    },
+    {
+     "w": "que",
+     "t": 26.966
+    },
+    {
+     "w": "o",
+     "t": 27.072
+    },
+    {
+     "w": "irmão",
+     "t": 27.143
+    },
+    {
+     "w": "Eduardo",
+     "t": 27.732
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 28.216
+    },
+    {
+     "w": "disse",
+     "t": 28.97
+    },
+    {
+     "w": "numa",
+     "t": 29.265
+    },
+    {
+     "w": "transmissão",
+     "t": 29.466
+    },
+    {
+     "w": "que",
+     "t": 30.02
+    },
+    {
+     "w": "Flávio",
+     "t": 30.138
+    },
+    {
+     "w": "deveria",
+     "t": 30.515
+    },
+    {
+     "w": "sair",
+     "t": 30.881
+    },
+    {
+     "w": "do",
+     "t": 31.258
+    },
+    {
+     "w": "país",
+     "t": 31.376
+    },
+    {
+     "w": "se",
+     "t": 31.694
+    },
+    {
+     "w": "perdesse",
+     "t": 31.789
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.8,
+   "fim": 42.77,
+   "texto": "Terça: o prazo acaba, e os passaportes não aparecem. À tarde, a Reuters ouve um aliado e uma fonte do governo americano: ele está nos Estados Unidos.",
+   "palavras": [
+    {
+     "w": "Terça",
+     "t": 32.85
+    },
+    {
+     "w": "o",
+     "t": 33.487
+    },
+    {
+     "w": "prazo",
+     "t": 33.593
+    },
+    {
+     "w": "acaba",
+     "t": 33.959
+    },
+    {
+     "w": "e",
+     "t": 34.595
+    },
+    {
+     "w": "os",
+     "t": 34.666
+    },
+    {
+     "w": "passaportes",
+     "t": 34.772
+    },
+    {
+     "w": "não",
+     "t": 35.503
+    },
+    {
+     "w": "aparecem",
+     "t": 35.692
+    },
+    {
+     "w": "À",
+     "t": 37.081
+    },
+    {
+     "w": "tarde",
+     "t": 37.21
+    },
+    {
+     "w": "a",
+     "t": 37.906
+    },
+    {
+     "w": "Reuters",
+     "t": 38.024
+    },
+    {
+     "w": "ouve",
+     "t": 38.378
+    },
+    {
+     "w": "um",
+     "t": 38.673
+    },
+    {
+     "w": "aliado",
+     "t": 38.767
+    },
+    {
+     "w": "e",
+     "t": 39.203
+    },
+    {
+     "w": "uma",
+     "t": 39.239
+    },
+    {
+     "w": "fonte",
+     "t": 39.416
+    },
+    {
+     "w": "do",
+     "t": 39.758
+    },
+    {
+     "w": "governo",
+     "t": 39.852
+    },
+    {
+     "w": "americano",
+     "t": 40.241
+    },
+    {
+     "w": "ele",
+     "t": 41.067
+    },
+    {
+     "w": "está",
+     "t": 41.196
+    },
+    {
+     "w": "nos",
+     "t": 41.432
+    },
+    {
+     "w": "Estados",
+     "t": 41.526
+    },
+    {
+     "w": "Unidos",
+     "t": 41.975
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.92,
+   "fim": 51.18,
+   "texto": "Não é a primeira vez. No fim de dois mil e vinte e dois, Jair Bolsonaro também viajou para os Estados Unidos depois de perder para o Lula.",
+   "palavras": [
+    {
+     "w": "Não",
+     "t": 42.97
+    },
+    {
+     "w": "é",
+     "t": 43.265
+    },
+    {
+     "w": "a",
+     "t": 43.406
+    },
+    {
+     "w": "primeira",
+     "t": 43.465
+    },
+    {
+     "w": "vez",
+     "t": 43.843
+    },
+    {
+     "w": "No",
+     "t": 45.043
+    },
+    {
+     "w": "fim",
+     "t": 45.231
+    },
+    {
+     "w": "de",
+     "t": 45.455
+    },
+    {
+     "w": "dois",
+     "t": 45.562
+    },
+    {
+     "w": "mil",
+     "t": 45.75
+    },
+    {
+     "w": "e",
+     "t": 45.856
+    },
+    {
+     "w": "vinte",
+     "t": 45.927
+    },
+    {
+     "w": "e",
+     "t": 46.128
+    },
+    {
+     "w": "dois",
+     "t": 46.163
+    },
+    {
+     "w": "Jair",
+     "t": 46.67
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 47.106
+    },
+    {
+     "w": "também",
+     "t": 47.672
+    },
+    {
+     "w": "viajou",
+     "t": 48.026
+    },
+    {
+     "w": "para",
+     "t": 48.451
+    },
+    {
+     "w": "os",
+     "t": 48.616
+    },
+    {
+     "w": "Estados",
+     "t": 48.651
+    },
+    {
+     "w": "Unidos",
+     "t": 49.064
+    },
+    {
+     "w": "depois",
+     "t": 49.512
+    },
+    {
+     "w": "de",
+     "t": 49.913
+    },
+    {
+     "w": "perder",
+     "t": 50.007
+    },
+    {
+     "w": "para",
+     "t": 50.396
+    },
+    {
+     "w": "o",
+     "t": 50.573
+    },
+    {
+     "w": "Lula",
+     "t": 50.597
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 51.33,
+   "fim": 59.54,
+   "texto": "E agora? O mandato de senador do Flávio acaba em primeiro de fevereiro. A partir daí, ele perde o foro privilegiado.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 51.38
+    },
+    {
+     "w": "agora",
+     "t": 51.498
+    },
+    {
+     "w": "O",
+     "t": 52.769
+    },
+    {
+     "w": "mandato",
+     "t": 52.875
+    },
+    {
+     "w": "de",
+     "t": 53.382
+    },
+    {
+     "w": "senador",
+     "t": 53.476
+    },
+    {
+     "w": "do",
+     "t": 53.924
+    },
+    {
+     "w": "Flávio",
+     "t": 54.019
+    },
+    {
+     "w": "acaba",
+     "t": 54.42
+    },
+    {
+     "w": "em",
+     "t": 54.738
+    },
+    {
+     "w": "primeiro",
+     "t": 54.809
+    },
+    {
+     "w": "de",
+     "t": 55.221
+    },
+    {
+     "w": "fevereiro",
+     "t": 55.316
+    },
+    {
+     "w": "A",
+     "t": 56.625
+    },
+    {
+     "w": "partir",
+     "t": 56.743
+    },
+    {
+     "w": "daí",
+     "t": 57.132
+    },
+    {
+     "w": "ele",
+     "t": 57.674
+    },
+    {
+     "w": "perde",
+     "t": 57.839
+    },
+    {
+     "w": "o",
+     "t": 58.193
+    },
+    {
+     "w": "foro",
+     "t": 58.24
+    },
+    {
+     "w": "privilegiado",
+     "t": 58.523
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 59.69,
+   "fim": 63.57,
+   "texto": "Você acha que ele volta? Deixa aqui nos comentários.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 59.74
+    },
+    {
+     "w": "acha",
+     "t": 60.106
+    },
+    {
+     "w": "que",
+     "t": 60.412
+    },
+    {
+     "w": "ele",
+     "t": 60.518
+    },
+    {
+     "w": "volta",
+     "t": 60.672
+    },
+    {
+     "w": "Deixa",
+     "t": 61.86
+    },
+    {
+     "w": "aqui",
+     "t": 62.225
+    },
+    {
+     "w": "nos",
+     "t": 62.414
+    },
+    {
+     "w": "comentários",
+     "t": 62.567
+    }
+   ]
+  }
+ ]
+}

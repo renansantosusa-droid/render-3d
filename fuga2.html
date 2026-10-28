@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Flávio Bolsonaro: 3 dias, da derrota aos EUA" (versão 2: linha do tempo) — Reel normal 27/10
+// Fatos: Reuters via Agência Brasil 27/10 (ordem de Moraes após fala de Eduardo; inquérito de lavagem com Willer Tomaz, ambos negam;
+// aliado + fonte do governo dos EUA; Jair viajou aos EUA após 2022), CartaCapital 27/10 (fim do mandato 01/02/2027, perde o foro).
+import { motion } from "/kitmotion.js";
+const K = await motion("fuga2", { fundo: "#0b1424", fundo2: "#132447", padrao: "grade", destaque: "#ffd23a", rotulo: "BRASIL", rotuloCor: "#2f7de1", sub: "• PÓS-ELEIÇÃO", tag: "LINHA DO TEMPO", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, conta, C, rr, circ, txt, pilula, pop, carimbo, digital, balao, bandeiraEUA, bandeiraBR, jato, urna, martelo, papel, congresso } = K;
+const DIAS = ["DOM 25", "SEG 26", "TER 27"];
+function linha(t, ativo, y = 330) { rr(140, y - 4, 800, 8, 4, "#2a3958"); DIAS.forEach((d, i) => { const x = 200 + i * 340, on = i <= ativo; circ(x, y, on ? 26 : 18, on ? (i === ativo ? C.AM : "#fff") : "#2a3958"); txt(d, x, y + 70, 40, on ? "#fff" : C.CINZA); }); }
+function passaporte(x, y, s, cor = "#1f3b73") { g.save(); g.translate(x, y); g.scale(s, s); rr(-130, -180, 260, 360, 18, cor); g.strokeStyle = "#e8c66a"; g.lineWidth = 6; g.beginPath(); g.arc(0, -10, 56, 0, 6.2832); g.stroke(); circ(0, -10, 30, "#e8c66a"); txt("PASSAPORTE", 0, -120, 34, "#e8c66a"); g.restore(); }
+const CENA = [null,
+  (t) => {
+    pop(ap(t, P(1, "tres") - .2), W / 2, 520, () => { txt("3", W / 2 - 150, 560, 300, C.AM, { contorno: 14 }); txt("DIAS", W / 2 + 120, 540, 130, "#fff", { contorno: 10 }); });
+    pop(ap(t, P(1, "eleicao") - .2), W / 2, 790, () => pilula("PERDEU A ELEIÇÃO", W / 2, 790, 54, "#fff", "#000"));
+    pop(ap(t, P(1, "ficar") - .2), W / 2, 920, () => pilula("PROMETEU FICAR", W / 2, 920, 54, "#fff", "#000"));
+    pop(ap(t, P(1, "unidos") - .3), W / 2, 1080, () => { bandeiraEUA(330, 1000, 420, 200, t); jato(W / 2 + Math.sin(t) * 20, 1270, 1, 0, "#e9edf3"); });
+  },
+  (t) => {
+    linha(t, 0);
+    pop(ap(t, P(2, "lula") - .3), W / 2, 640, () => { urna(W / 2, 640, 1); });
+    pop(ap(t, P(2, "reeleito") - .2), W / 2, 880, () => txt("LULA REELEITO", W / 2, 880, 96, "#fff", { contorno: 10 }));
+    carimbo("PEDIDO DE ANULAÇÃO", W / 2, 1100, ap(t, P(2, "anulacao") - .1), C.VM, -.07, 70);
+  },
+  (t) => {
+    linha(t, 1);
+    pop(ap(t, P(3, "moraes") - .3), W / 2, 590, () => { martelo(300, 580, .9, -.3 + Math.sin(t * 6) * .08); txt("MORAES (STF)", 690, 590, 60, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(3, "passaportes") - .3), W / 2, 900, () => { passaporte(340, 920, .62); txt("24H", 720, 940, 180, C.AM, { contorno: 12 }); });
+    pop(ap(t, P(3, "lavagem") - .3), W / 2, 1170, () => pilula("INQUÉRITO: LAVAGEM DE DINHEIRO", W / 2, 1170, 46, "#fff", "#000"));
+    pop(ap(t, P(3, "nega") - .2), W / 2, 1280, () => txt("ELE NEGA", W / 2, 1280, 60, C.CINZA, { contorno: 6 }));
+  },
+  (t) => {
+    linha(t, 1);
+    pop(ap(t, P(4, "eduardo") - .3), W / 2, 580, () => { circ(W / 2, 560, 110, "#2a3958"); circ(W / 2, 520, 48, "#8a96ab"); rr(W / 2 - 75, 580, 150, 80, 40, "#8a96ab"); txt("EDUARDO BOLSONARO", W / 2, 740, 58, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(4, "transmissao") - .3), W / 2, 960, () => { balao(120, 860, 840, 210, "#f4f1ea"); txt("SE O FLÁVIO PERDER,", W / 2, 940, 60, "#1b2436"); txt("DEVERIA SAIR DO PAÍS", W / 2, 1020, 60, "#c8323a"); });
+  },
+  (t) => {
+    linha(t, 2);
+    pop(ap(t, P(5, "prazo") - .3), W / 2, 560, () => digital(W / 2, 560, 11, C.AM));
+    pop(ap(t, P(5, "aparecem") - .3), W / 2, 810, () => { passaporte(W / 2, 810, .6); txt("?", W / 2 + 160, 830, 160, C.VM, { contorno: 10 }); });
+    pop(ap(t, P(5, "reuters") - .3), W / 2, 1040, () => pilula("REUTERS: ALIADO + FONTE DOS EUA", W / 2, 1040, 44, "#fff", "#000"));
+    carimbo("ESTÁ NOS EUA", W / 2, 1200, ap(t, P(5, "esta") - .1), C.AM, -.08, 90);
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 400, () => txt("NÃO É A PRIMEIRA VEZ", W / 2, 400, 80, C.AM, { contorno: 8 }));
+    pop(ap(t, P(6, "jair") - .3), W / 2, 700, () => { rr(140, 560, 800, 290, 30, "#14324a"); txt("2022", W / 2, 660, 130, "#fff"); txt("JAIR PERDE PRO LULA E VAI AOS EUA", W / 2, 790, 40, C.AM); });
+    pop(ap(t, P(6, "viajou") - .2), W / 2, 1020, () => { bandeiraBR(170, 950, 230, 150); bandeiraEUA(680, 950, 230, 150, t); const k = (t % 2.4) / 2.4; jato(420 + 240 * k, 1025 - Math.sin(k * 3.14) * 60, .8, 0, "#e9edf3"); });
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 400, () => txt("E AGORA?", W / 2, 400, 120, C.AM, { contorno: 10 }));
+    pop(ap(t, P(7, "fevereiro") - .3), W / 2, 700, () => { rr(340, 560, 400, 300, 30, "#f4f1ea"); rr(340, 560, 400, 90, 30, "#c8323a"); g.fillStyle = "#c8323a"; g.fillRect(340, 610, 400, 40); txt("FEV 2027", W / 2, 608, 50, "#fff"); txt("1º", W / 2, 770, 140, "#1b2436"); });
+    pop(ap(t, P(7, "mandato") - .2), W / 2, 950, () => pilula("FIM DO MANDATO DE SENADOR", W / 2, 950, 48, "#fff", "#000"));
+    carimbo("SEM FORO PRIVILEGIADO", W / 2, 1150, ap(t, P(7, "foro") - .1), C.VM, -.06, 66);
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 560, () => { bandeiraEUA(150, 470, 320, 200, t); bandeiraBR(610, 470, 320, 210); txt("→", W / 2, 590, 120, "#fff", { contorno: 8 }); });
+    pop(ap(t, P(8, "volta") - .2), W / 2, 880, () => txt("ELE VOLTA?", W / 2, 880, 140, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(8, "comentarios") - .3), W / 2, 1080, () => pilula("COMENTA 👇", W / 2, 1080, 60, "#fff", "#000"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
