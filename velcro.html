@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("velcro", { fundo: 0xe4eaf0, seed: 2901 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- mesa + tênis ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b88a5a", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+const tenis = grupo(0, 0, 0);
+add(new THREE.BoxGeometry(1.0, .1, .4), mat(0xf4f4f4), 0, .05, 0, tenis);
+const corpo = add(new THREE.SphereGeometry(.5, 32, 16, 0, PI * 2, 0, PI / 2), mat(0x3a7ad8), .05, .1, 0, tenis); corpo.scale.set(1, .55, .42);
+add(new THREE.CylinderGeometry(.16, .18, .3, 24), mat(0x3a7ad8), -.28, .3, 0, tenis);
+const tira = grupo(.05, .34, 0, tenis); const tiraM = add(new THREE.BoxGeometry(.12, .02, .5), mat(0x1a1a1e), 0, 0, .25, tira); tiraM.position.z = 0;
+const tiraPivo = grupo(.05, .34, -.22, tenis); tira.removeFromParent(); tiraPivo.add(tira); tira.position.set(0, 0, .22);
+
+// ---------- mini set 1: carrapicho no pelo ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+const carr = grupo(BX, .9, 0); add(new THREE.SphereGeometry(.28, 24, 16), mat(0x7a5a2a), 0, 0, 0, carr);
+for (let i = 0; i < 90; i++) { const y = 1 - (i + .5) / 90 * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996; const d = V(Math.cos(a) * r, y, Math.sin(a) * r); const c = add(new THREE.ConeGeometry(.018, .16, 6), mat(0xa07a3a), d.x * .34, d.y * .34, d.z * .34, carr); c.lookAt(carr.position.clone().add(d.clone().multiplyScalar(5))); c.rotateX(PI / 2); const gh = add(new THREE.TorusGeometry(.025, .007, 6, 10, PI), mat(0xa07a3a), d.x * .43, d.y * .43, d.z * .43, carr); gh.lookAt(carr.position.clone().add(d.clone().multiplyScalar(5))); }
+for (let i = 0; i < 40; i++) { const p = add(new THREE.CylinderGeometry(.006, .006, 1.2, 4), mat(0xc89a5a), BX - 1 + i * .05, .9, -.25 + (i % 3) * .05); p.rotation.z = .5 + Math.sin(i) * .1; }
+
+// ---------- mini set 2: ganchos x laçadas ----------
+const GX = 200, N = 12;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), GX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(GX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.BoxGeometry(1.9, .06, .3), mat(0x1a1a1e), GX, .42, 0);
+for (let i = 0; i < N; i++) { const x = GX - .82 + i * .15; add(new THREE.CylinderGeometry(.012, .012, .14, 8), mat(0x3a8ad8), x, .52, 0); const h = add(new THREE.TorusGeometry(.03, .012, 8, 14, PI * 1.3), mat(0x3a8ad8), x + .03, .6, 0); h.rotation.z = -.3; }
+const segs = [], lacos = [];
+for (let i = 0; i < N; i++) { const x = GX - .82 + i * .15; segs.push(add(new THREE.BoxGeometry(.16, .05, .3), mat(0xd8453a), x, .8, 0)); const l = add(new THREE.TorusGeometry(.05, .01, 8, 18), mat(0xf08a7a), x + .02, .7, 0); lacos.push(l); }
+const lbl = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70 }), transparent: true })); s.position.set(x, y, .3); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lG = lbl("GANCHOS", "#8ac8ff", GX, .25), lL = lbl("LAÇADAS", "#f08a7a", GX, 1.0);
+const peso = add(new THREE.BoxGeometry(.4, .3, .3), mat(0x5a5e66, { metalness: .3 }), GX, -.2, 0); peso.visible = false;
+
+K.camera_({
+  geral: [V(1.7, 1.4, 2.7), V(0, .25, 0)],
+  carr: [V(BX + .2, 1.1, 2.0), V(BX, .9, 0)],
+  ganchos: [V(GX + .1, .95, 3.7), V(GX, .62, 0)],
+  baixo: [V(GX + .1, .3, 3.2), V(GX, .35, 0)],
+  fim: [V(-1.7, 1.3, 2.6), V(0, .25, 0)],
+}, [
+  [0, "geral"], [C(2), "geral"], [P(2, "planta") - .3, "geral"], [P(2, "planta") - .3, "carr"], [F(2), "carr"], [C(3), "ganchos"], [F(5), "ganchos"], [C(6), "ganchos"], [F(6), "ganchos"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // tira do tênis abre e fecha
+  const fechada = t < C(2) ? prog(t, P(1, "velcro") - .8, P(1, "velcro")) : (t > C(7) ? prog(t, P(7, "tenis") - .3, P(7, "tenis") + .4) : 1);
+  tiraPivo.rotation.x = -1.6 * (1 - fechada);
+  carr.rotation.y = t * .4; carr.position.x = BX + (em(P(2, "pelo") - .3, F(2)) ? -.25 * prog(t, P(2, "pelo") - .3, P(2, "pelo") + .3) : 0);
+  // ganchos: desce e prende (cena 4); abre pela ponta (cena 5); puxar reto (cena 6)
+  const desce = t < C(4) ? 1 : 1 - prog(t, P(4, "aperta") - .3, P(4, "aperta") + .3);
+  const peel = em(P(5, "puxa") - .2, F(5) + .1) ? prog(t, P(5, "puxa") - .2, P(5, "escapando")) : 0;
+  const reto = em(C(6), F(6)) ? .03 * Math.abs(Math.sin(t * 10)) : 0;
+  segs.forEach((s, i) => { const solta = clamp(peel * (N + 2) - (N - 1 - i), 0, 1); const y = .8 + .4 * Math.max(desce, solta) + reto; s.position.y = y; lacos[i].position.y = y - .1; lacos[i].rotation.y = solta > 0 && solta < 1 ? .3 : 0; });
+  lG.visible = em(P(3, "ganchos") - .3, F(4)); lL.visible = em(P(4, "lacadinhas") - .3, F(4));
+  peso.visible = em(P(6, "peso") - .3, F(6));
+  K.cartoes(t, [
+    [P(1, "velcro") - .3, F(1), "VELCRO", "#ffffff"],
+    [P(2, "carrapicho") - .3, F(2), "CARRAPICHO", "#e0b060"],
+    [P(3, "ganchinhos") - .3, P(3, "ganchos") - .3, "CHEIO DE GANCHINHOS", "#e0b060"],
+    [P(4, "prendem") - .4, F(4), "GANCHO ENTRA NA LAÇADA", "#8ac8ff"],
+    [P(5, "barulho") - .3, F(5), "RRRRASGA: 1 GANCHO POR VEZ", "#ffffff"],
+    [C(6), F(6), "PUXAR RETO: QUASE IMPOSSÍVEL", "#ff4a3a"],
+    [P(7, "astronauta") - .3, P(7, "tenis") - .3, "ROUPA DE ASTRONAUTA", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>

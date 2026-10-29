@@ -1,0 +1,565 @@
+{
+ "total": 50.86,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.65,
+   "texto": "Se você grudar dois pedaços de tecido, terá um velcro.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.412
+    },
+    {
+     "w": "grudar",
+     "t": 0.683
+    },
+    {
+     "w": "dois",
+     "t": 1.061
+    },
+    {
+     "w": "pedaços",
+     "t": 1.367
+    },
+    {
+     "w": "de",
+     "t": 1.839
+    },
+    {
+     "w": "tecido",
+     "t": 1.945
+    },
+    {
+     "w": "terá",
+     "t": 2.594
+    },
+    {
+     "w": "um",
+     "t": 2.806
+    },
+    {
+     "w": "velcro",
+     "t": 2.971
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.8,
+   "fim": 12.79,
+   "texto": "Mas cola não solta, e costura não abre. Então, você copia uma planta: o carrapicho, aquela bolinha que gruda no pelo do cachorro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 3.85
+    },
+    {
+     "w": "cola",
+     "t": 4.157
+    },
+    {
+     "w": "não",
+     "t": 4.451
+    },
+    {
+     "w": "solta",
+     "t": 4.652
+    },
+    {
+     "w": "e",
+     "t": 5.242
+    },
+    {
+     "w": "costura",
+     "t": 5.336
+    },
+    {
+     "w": "não",
+     "t": 5.808
+    },
+    {
+     "w": "abre",
+     "t": 6.067
+    },
+    {
+     "w": "Então",
+     "t": 7.196
+    },
+    {
+     "w": "você",
+     "t": 7.951
+    },
+    {
+     "w": "copia",
+     "t": 8.222
+    },
+    {
+     "w": "uma",
+     "t": 8.552
+    },
+    {
+     "w": "planta",
+     "t": 8.753
+    },
+    {
+     "w": "o",
+     "t": 9.425
+    },
+    {
+     "w": "carrapicho",
+     "t": 9.508
+    },
+    {
+     "w": "aquela",
+     "t": 10.416
+    },
+    {
+     "w": "bolinha",
+     "t": 10.734
+    },
+    {
+     "w": "que",
+     "t": 11.147
+    },
+    {
+     "w": "gruda",
+     "t": 11.288
+    },
+    {
+     "w": "no",
+     "t": 11.571
+    },
+    {
+     "w": "pelo",
+     "t": 11.689
+    },
+    {
+     "w": "do",
+     "t": 11.913
+    },
+    {
+     "w": "cachorro",
+     "t": 12.031
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.94,
+   "fim": 20.51,
+   "texto": "De perto, ele é cheio de ganchinhos. Então, num lado da fita, você coloca milhares de ganchos de plástico duro.",
+   "palavras": [
+    {
+     "w": "De",
+     "t": 12.99
+    },
+    {
+     "w": "perto",
+     "t": 13.179
+    },
+    {
+     "w": "ele",
+     "t": 13.757
+    },
+    {
+     "w": "é",
+     "t": 13.933
+    },
+    {
+     "w": "cheio",
+     "t": 14.004
+    },
+    {
+     "w": "de",
+     "t": 14.346
+    },
+    {
+     "w": "ganchinhos",
+     "t": 14.429
+    },
+    {
+     "w": "Então",
+     "t": 15.9
+    },
+    {
+     "w": "num",
+     "t": 16.619
+    },
+    {
+     "w": "lado",
+     "t": 16.843
+    },
+    {
+     "w": "da",
+     "t": 17.115
+    },
+    {
+     "w": "fita",
+     "t": 17.232
+    },
+    {
+     "w": "você",
+     "t": 17.834
+    },
+    {
+     "w": "coloca",
+     "t": 18.093
+    },
+    {
+     "w": "milhares",
+     "t": 18.506
+    },
+    {
+     "w": "de",
+     "t": 18.907
+    },
+    {
+     "w": "ganchos",
+     "t": 19.013
+    },
+    {
+     "w": "de",
+     "t": 19.39
+    },
+    {
+     "w": "plástico",
+     "t": 19.508
+    },
+    {
+     "w": "duro",
+     "t": 19.98
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.66,
+   "fim": 27.86,
+   "texto": "No outro lado, milhares de laçadinhas macias. Quando você aperta, os ganchos entram nas laçadas e prendem.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 20.71
+    },
+    {
+     "w": "outro",
+     "t": 20.91
+    },
+    {
+     "w": "lado",
+     "t": 21.217
+    },
+    {
+     "w": "milhares",
+     "t": 21.771
+    },
+    {
+     "w": "de",
+     "t": 22.243
+    },
+    {
+     "w": "laçadinhas",
+     "t": 22.326
+    },
+    {
+     "w": "macias",
+     "t": 22.903
+    },
+    {
+     "w": "Quando",
+     "t": 24.375
+    },
+    {
+     "w": "você",
+     "t": 24.634
+    },
+    {
+     "w": "aperta",
+     "t": 24.882
+    },
+    {
+     "w": "os",
+     "t": 25.613
+    },
+    {
+     "w": "ganchos",
+     "t": 25.766
+    },
+    {
+     "w": "entram",
+     "t": 26.144
+    },
+    {
+     "w": "nas",
+     "t": 26.474
+    },
+    {
+     "w": "laçadas",
+     "t": 26.627
+    },
+    {
+     "w": "e",
+     "t": 27.099
+    },
+    {
+     "w": "prendem",
+     "t": 27.228
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.01,
+   "fim": 36.64,
+   "texto": "Pra abrir, você puxa de uma ponta. Os ganchos soltam um de cada vez. Aquele barulho de rasgado é cada gancho escapando.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 28.06
+    },
+    {
+     "w": "abrir",
+     "t": 28.284
+    },
+    {
+     "w": "você",
+     "t": 28.803
+    },
+    {
+     "w": "puxa",
+     "t": 29.121
+    },
+    {
+     "w": "de",
+     "t": 29.499
+    },
+    {
+     "w": "uma",
+     "t": 29.581
+    },
+    {
+     "w": "ponta",
+     "t": 29.782
+    },
+    {
+     "w": "Os",
+     "t": 30.982
+    },
+    {
+     "w": "ganchos",
+     "t": 31.17
+    },
+    {
+     "w": "soltam",
+     "t": 31.63
+    },
+    {
+     "w": "um",
+     "t": 32.031
+    },
+    {
+     "w": "de",
+     "t": 32.149
+    },
+    {
+     "w": "cada",
+     "t": 32.279
+    },
+    {
+     "w": "vez",
+     "t": 32.562
+    },
+    {
+     "w": "Aquele",
+     "t": 33.765
+    },
+    {
+     "w": "barulho",
+     "t": 34.119
+    },
+    {
+     "w": "de",
+     "t": 34.496
+    },
+    {
+     "w": "rasgado",
+     "t": 34.59
+    },
+    {
+     "w": "é",
+     "t": 35.144
+    },
+    {
+     "w": "cada",
+     "t": 35.227
+    },
+    {
+     "w": "gancho",
+     "t": 35.51
+    },
+    {
+     "w": "escapando",
+     "t": 35.84
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 36.79,
+   "fim": 43.99,
+   "texto": "Puxar reto, tudo de uma vez, é quase impossível. Por isso ele aguenta peso, mas abre fácil pela ponta.",
+   "palavras": [
+    {
+     "w": "Puxar",
+     "t": 36.84
+    },
+    {
+     "w": "reto",
+     "t": 37.241
+    },
+    {
+     "w": "tudo",
+     "t": 37.842
+    },
+    {
+     "w": "de",
+     "t": 38.102
+    },
+    {
+     "w": "uma",
+     "t": 38.196
+    },
+    {
+     "w": "vez",
+     "t": 38.373
+    },
+    {
+     "w": "é",
+     "t": 38.904
+    },
+    {
+     "w": "quase",
+     "t": 38.998
+    },
+    {
+     "w": "impossível",
+     "t": 39.375
+    },
+    {
+     "w": "Por",
+     "t": 40.811
+    },
+    {
+     "w": "isso",
+     "t": 40.976
+    },
+    {
+     "w": "ele",
+     "t": 41.248
+    },
+    {
+     "w": "aguenta",
+     "t": 41.33
+    },
+    {
+     "w": "peso",
+     "t": 41.696
+    },
+    {
+     "w": "mas",
+     "t": 42.309
+    },
+    {
+     "w": "abre",
+     "t": 42.439
+    },
+    {
+     "w": "fácil",
+     "t": 42.722
+    },
+    {
+     "w": "pela",
+     "t": 43.111
+    },
+    {
+     "w": "ponta",
+     "t": 43.347
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 44.14,
+   "fim": 50.26,
+   "texto": "Coloque numa roupa de astronauta e num tênis de criança. Parabéns, você construiu um velcro.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 44.19
+    },
+    {
+     "w": "numa",
+     "t": 44.697
+    },
+    {
+     "w": "roupa",
+     "t": 44.898
+    },
+    {
+     "w": "de",
+     "t": 45.228
+    },
+    {
+     "w": "astronauta",
+     "t": 45.31
+    },
+    {
+     "w": "e",
+     "t": 45.9
+    },
+    {
+     "w": "num",
+     "t": 45.947
+    },
+    {
+     "w": "tênis",
+     "t": 46.124
+    },
+    {
+     "w": "de",
+     "t": 46.419
+    },
+    {
+     "w": "criança",
+     "t": 46.513
+    },
+    {
+     "w": "Parabéns",
+     "t": 47.807
+    },
+    {
+     "w": "você",
+     "t": 48.586
+    },
+    {
+     "w": "construiu",
+     "t": 48.904
+    },
+    {
+     "w": "um",
+     "t": 49.435
+    },
+    {
+     "w": "velcro",
+     "t": 49.588
+    }
+   ]
+  }
+ ]
+}
