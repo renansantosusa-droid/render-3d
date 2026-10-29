@@ -1,0 +1,645 @@
+{
+ "total": 55.75,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.29,
+   "texto": "Se você separar dois metais diferentes com uma pasta, terá uma pilha.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.412
+    },
+    {
+     "w": "separar",
+     "t": 0.683
+    },
+    {
+     "w": "dois",
+     "t": 1.132
+    },
+    {
+     "w": "metais",
+     "t": 1.379
+    },
+    {
+     "w": "diferentes",
+     "t": 1.745
+    },
+    {
+     "w": "com",
+     "t": 2.299
+    },
+    {
+     "w": "uma",
+     "t": 2.441
+    },
+    {
+     "w": "pasta",
+     "t": 2.617
+    },
+    {
+     "w": "terá",
+     "t": 3.254
+    },
+    {
+     "w": "uma",
+     "t": 3.514
+    },
+    {
+     "w": "pilha",
+     "t": 3.691
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.44,
+   "fim": 11.93,
+   "texto": "Um lado, o zinco, solta elétrons com facilidade. O outro lado, de manganês, quer receber esses elétrons.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 4.49
+    },
+    {
+     "w": "lado",
+     "t": 4.714
+    },
+    {
+     "w": "o",
+     "t": 5.257
+    },
+    {
+     "w": "zinco",
+     "t": 5.351
+    },
+    {
+     "w": "solta",
+     "t": 5.905
+    },
+    {
+     "w": "elétrons",
+     "t": 6.188
+    },
+    {
+     "w": "com",
+     "t": 6.624
+    },
+    {
+     "w": "facilidade",
+     "t": 6.778
+    },
+    {
+     "w": "O",
+     "t": 8.32
+    },
+    {
+     "w": "outro",
+     "t": 8.449
+    },
+    {
+     "w": "lado",
+     "t": 8.768
+    },
+    {
+     "w": "de",
+     "t": 9.334
+    },
+    {
+     "w": "manganês",
+     "t": 9.44
+    },
+    {
+     "w": "quer",
+     "t": 10.23
+    },
+    {
+     "w": "receber",
+     "t": 10.407
+    },
+    {
+     "w": "esses",
+     "t": 10.831
+    },
+    {
+     "w": "elétrons",
+     "t": 11.032
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.08,
+   "fim": 22.97,
+   "texto": "Mas se os dois se encostarem, a troca acontece toda ali dentro e vira só calor. Então, você coloca uma barreira no meio, que deixa passar os íons, mas não os elétrons.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 12.13
+    },
+    {
+     "w": "se",
+     "t": 12.425
+    },
+    {
+     "w": "os",
+     "t": 12.519
+    },
+    {
+     "w": "dois",
+     "t": 12.625
+    },
+    {
+     "w": "se",
+     "t": 12.908
+    },
+    {
+     "w": "encostarem",
+     "t": 12.991
+    },
+    {
+     "w": "a",
+     "t": 13.816
+    },
+    {
+     "w": "troca",
+     "t": 13.911
+    },
+    {
+     "w": "acontece",
+     "t": 14.253
+    },
+    {
+     "w": "toda",
+     "t": 14.807
+    },
+    {
+     "w": "ali",
+     "t": 15.09
+    },
+    {
+     "w": "dentro",
+     "t": 15.255
+    },
+    {
+     "w": "e",
+     "t": 15.562
+    },
+    {
+     "w": "vira",
+     "t": 15.632
+    },
+    {
+     "w": "só",
+     "t": 15.892
+    },
+    {
+     "w": "calor.",
+     "t": 16.104
+    },
+    {
+     "w": "Então",
+     "t": 17.304
+    },
+    {
+     "w": "você",
+     "t": 18.106
+    },
+    {
+     "w": "coloca",
+     "t": 18.365
+    },
+    {
+     "w": "uma",
+     "t": 18.766
+    },
+    {
+     "w": "barreira",
+     "t": 18.884
+    },
+    {
+     "w": "no",
+     "t": 19.285
+    },
+    {
+     "w": "meio",
+     "t": 19.391
+    },
+    {
+     "w": "que",
+     "t": 19.922
+    },
+    {
+     "w": "deixa",
+     "t": 20.064
+    },
+    {
+     "w": "passar",
+     "t": 20.358
+    },
+    {
+     "w": "os",
+     "t": 20.7
+    },
+    {
+     "w": "íons",
+     "t": 20.747
+    },
+    {
+     "w": "mas",
+     "t": 21.514
+    },
+    {
+     "w": "não",
+     "t": 21.773
+    },
+    {
+     "w": "os",
+     "t": 21.974
+    },
+    {
+     "w": "elétrons",
+     "t": 22.045
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 23.12,
+   "fim": 34.49,
+   "texto": "Os elétrons ficam presos no zinco, loucos pra ir pro outro lado. O único caminho é por fora: pelo fio, pela lâmpada, pelo controle remoto. Isso é a corrente elétrica.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 23.17
+    },
+    {
+     "w": "elétrons",
+     "t": 23.288
+    },
+    {
+     "w": "ficam",
+     "t": 23.83
+    },
+    {
+     "w": "presos",
+     "t": 24.149
+    },
+    {
+     "w": "no",
+     "t": 24.55
+    },
+    {
+     "w": "zinco",
+     "t": 24.644
+    },
+    {
+     "w": "loucos",
+     "t": 25.245
+    },
+    {
+     "w": "pra",
+     "t": 25.623
+    },
+    {
+     "w": "ir",
+     "t": 25.812
+    },
+    {
+     "w": "pro",
+     "t": 25.965
+    },
+    {
+     "w": "outro",
+     "t": 26.154
+    },
+    {
+     "w": "lado",
+     "t": 26.425
+    },
+    {
+     "w": "O",
+     "t": 27.554
+    },
+    {
+     "w": "único",
+     "t": 27.672
+    },
+    {
+     "w": "caminho",
+     "t": 27.979
+    },
+    {
+     "w": "é",
+     "t": 28.332
+    },
+    {
+     "w": "por",
+     "t": 28.379
+    },
+    {
+     "w": "fora",
+     "t": 28.58
+    },
+    {
+     "w": "pelo",
+     "t": 29.17
+    },
+    {
+     "w": "fio",
+     "t": 29.394
+    },
+    {
+     "w": "pela",
+     "t": 29.971
+    },
+    {
+     "w": "lâmpada",
+     "t": 30.184
+    },
+    {
+     "w": "pelo",
+     "t": 30.903
+    },
+    {
+     "w": "controle",
+     "t": 31.115
+    },
+    {
+     "w": "remoto",
+     "t": 31.552
+    },
+    {
+     "w": "Isso",
+     "t": 32.837
+    },
+    {
+     "w": "é",
+     "t": 33.155
+    },
+    {
+     "w": "a",
+     "t": 33.214
+    },
+    {
+     "w": "corrente",
+     "t": 33.273
+    },
+    {
+     "w": "elétrica",
+     "t": 33.698
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.64,
+   "fim": 41.06,
+   "texto": "A pasta é alcalina, por isso o nome pilha alcalina. Quanto mais zinco ela tem, mais tempo ela dura.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 34.69
+    },
+    {
+     "w": "pasta",
+     "t": 34.832
+    },
+    {
+     "w": "é",
+     "t": 35.174
+    },
+    {
+     "w": "alcalina",
+     "t": 35.197
+    },
+    {
+     "w": "por",
+     "t": 35.928
+    },
+    {
+     "w": "isso",
+     "t": 36.093
+    },
+    {
+     "w": "o",
+     "t": 36.317
+    },
+    {
+     "w": "nome",
+     "t": 36.353
+    },
+    {
+     "w": "pilha",
+     "t": 36.624
+    },
+    {
+     "w": "alcalina",
+     "t": 36.883
+    },
+    {
+     "w": "Quanto",
+     "t": 38.225
+    },
+    {
+     "w": "mais",
+     "t": 38.543
+    },
+    {
+     "w": "zinco",
+     "t": 38.767
+    },
+    {
+     "w": "ela",
+     "t": 39.074
+    },
+    {
+     "w": "tem",
+     "t": 39.251
+    },
+    {
+     "w": "mais",
+     "t": 39.723
+    },
+    {
+     "w": "tempo",
+     "t": 40.006
+    },
+    {
+     "w": "ela",
+     "t": 40.324
+    },
+    {
+     "w": "dura",
+     "t": 40.489
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 41.21,
+   "fim": 48.56,
+   "texto": "Quando o zinco acaba de reagir, a pilha morre. Na recarregável, a energia da tomada empurra os elétrons de volta.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 41.26
+    },
+    {
+     "w": "o",
+     "t": 41.543
+    },
+    {
+     "w": "zinco",
+     "t": 41.578
+    },
+    {
+     "w": "acaba",
+     "t": 41.873
+    },
+    {
+     "w": "de",
+     "t": 42.203
+    },
+    {
+     "w": "reagir",
+     "t": 42.298
+    },
+    {
+     "w": "a",
+     "t": 43.017
+    },
+    {
+     "w": "pilha",
+     "t": 43.111
+    },
+    {
+     "w": "morre",
+     "t": 43.394
+    },
+    {
+     "w": "Na",
+     "t": 44.606
+    },
+    {
+     "w": "recarregável",
+     "t": 44.783
+    },
+    {
+     "w": "a",
+     "t": 45.797
+    },
+    {
+     "w": "energia",
+     "t": 45.892
+    },
+    {
+     "w": "da",
+     "t": 46.375
+    },
+    {
+     "w": "tomada",
+     "t": 46.493
+    },
+    {
+     "w": "empurra",
+     "t": 46.882
+    },
+    {
+     "w": "os",
+     "t": 47.271
+    },
+    {
+     "w": "elétrons",
+     "t": 47.319
+    },
+    {
+     "w": "de",
+     "t": 47.837
+    },
+    {
+     "w": "volta",
+     "t": 47.932
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.71,
+   "fim": 55.15,
+   "texto": "Coloque um botãozinho no polo positivo e uma capa de metal. Parabéns, você construiu uma pilha.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 48.76
+    },
+    {
+     "w": "um",
+     "t": 49.255
+    },
+    {
+     "w": "botãozinho",
+     "t": 49.314
+    },
+    {
+     "w": "no",
+     "t": 49.892
+    },
+    {
+     "w": "polo",
+     "t": 50.01
+    },
+    {
+     "w": "positivo",
+     "t": 50.328
+    },
+    {
+     "w": "e",
+     "t": 50.942
+    },
+    {
+     "w": "uma",
+     "t": 51.001
+    },
+    {
+     "w": "capa",
+     "t": 51.201
+    },
+    {
+     "w": "de",
+     "t": 51.496
+    },
+    {
+     "w": "metal",
+     "t": 51.578
+    },
+    {
+     "w": "Parabéns",
+     "t": 52.79
+    },
+    {
+     "w": "você",
+     "t": 53.545
+    },
+    {
+     "w": "construiu",
+     "t": 53.863
+    },
+    {
+     "w": "uma",
+     "t": 54.382
+    },
+    {
+     "w": "pilha",
+     "t": 54.571
+    }
+   ]
+  }
+ ]
+}
