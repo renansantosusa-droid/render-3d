@@ -1,0 +1,625 @@
+{
+ "total": 54.98,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.51,
+   "texto": "Se você colocar uma rodinha no cano que vem da rua, terá um relógio de água.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.424
+    },
+    {
+     "w": "colocar",
+     "t": 0.683
+    },
+    {
+     "w": "uma",
+     "t": 1.084
+    },
+    {
+     "w": "rodinha",
+     "t": 1.226
+    },
+    {
+     "w": "no",
+     "t": 1.615
+    },
+    {
+     "w": "cano",
+     "t": 1.745
+    },
+    {
+     "w": "que",
+     "t": 2.063
+    },
+    {
+     "w": "vem",
+     "t": 2.205
+    },
+    {
+     "w": "da",
+     "t": 2.37
+    },
+    {
+     "w": "rua",
+     "t": 2.511
+    },
+    {
+     "w": "terá",
+     "t": 2.995
+    },
+    {
+     "w": "um",
+     "t": 3.219
+    },
+    {
+     "w": "relógio",
+     "t": 3.301
+    },
+    {
+     "w": "de",
+     "t": 3.797
+    },
+    {
+     "w": "água",
+     "t": 3.915
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.66,
+   "fim": 10.35,
+   "texto": "A água entra e gira uma turbininha. Cada volta é uma quantidade certinha de água passando.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 4.71
+    },
+    {
+     "w": "água",
+     "t": 4.84
+    },
+    {
+     "w": "entra",
+     "t": 5.17
+    },
+    {
+     "w": "e",
+     "t": 5.406
+    },
+    {
+     "w": "gira",
+     "t": 5.441
+    },
+    {
+     "w": "uma",
+     "t": 5.689
+    },
+    {
+     "w": "turbininha",
+     "t": 5.83
+    },
+    {
+     "w": "Cada",
+     "t": 7.302
+    },
+    {
+     "w": "volta",
+     "t": 7.573
+    },
+    {
+     "w": "é",
+     "t": 7.903
+    },
+    {
+     "w": "uma",
+     "t": 7.938
+    },
+    {
+     "w": "quantidade",
+     "t": 8.068
+    },
+    {
+     "w": "certinha",
+     "t": 8.669
+    },
+    {
+     "w": "de",
+     "t": 9.177
+    },
+    {
+     "w": "água",
+     "t": 9.318
+    },
+    {
+     "w": "passando",
+     "t": 9.601
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.5,
+   "fim": 22.59,
+   "texto": "Mas a turbina gira molhada, e o mostrador precisa ficar seco. Então, você coloca um ímã na turbina e outro do lado de fora. Um puxa o outro através da parede, sem nenhum furo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 10.55
+    },
+    {
+     "w": "a",
+     "t": 10.75
+    },
+    {
+     "w": "turbina",
+     "t": 10.892
+    },
+    {
+     "w": "gira",
+     "t": 11.317
+    },
+    {
+     "w": "molhada",
+     "t": 11.541
+    },
+    {
+     "w": "e",
+     "t": 12.248
+    },
+    {
+     "w": "o",
+     "t": 12.354
+    },
+    {
+     "w": "mostrador",
+     "t": 12.401
+    },
+    {
+     "w": "precisa",
+     "t": 12.991
+    },
+    {
+     "w": "ficar",
+     "t": 13.427
+    },
+    {
+     "w": "seco",
+     "t": 13.71
+    },
+    {
+     "w": "Então",
+     "t": 14.91
+    },
+    {
+     "w": "você",
+     "t": 15.653
+    },
+    {
+     "w": "coloca",
+     "t": 15.925
+    },
+    {
+     "w": "um",
+     "t": 16.349
+    },
+    {
+     "w": "ímã",
+     "t": 16.491
+    },
+    {
+     "w": "na",
+     "t": 16.679
+    },
+    {
+     "w": "turbina",
+     "t": 16.809
+    },
+    {
+     "w": "e",
+     "t": 17.351
+    },
+    {
+     "w": "outro",
+     "t": 17.481
+    },
+    {
+     "w": "do",
+     "t": 17.752
+    },
+    {
+     "w": "lado",
+     "t": 17.847
+    },
+    {
+     "w": "de",
+     "t": 18.177
+    },
+    {
+     "w": "fora",
+     "t": 18.283
+    },
+    {
+     "w": "Um",
+     "t": 19.474
+    },
+    {
+     "w": "puxa",
+     "t": 19.675
+    },
+    {
+     "w": "o",
+     "t": 20.017
+    },
+    {
+     "w": "outro",
+     "t": 20.064
+    },
+    {
+     "w": "através",
+     "t": 20.335
+    },
+    {
+     "w": "da",
+     "t": 20.7
+    },
+    {
+     "w": "parede",
+     "t": 20.807
+    },
+    {
+     "w": "sem",
+     "t": 21.443
+    },
+    {
+     "w": "nenhum",
+     "t": 21.632
+    },
+    {
+     "w": "furo",
+     "t": 21.998
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.74,
+   "fim": 33.28,
+   "texto": "O ímã de fora gira uma fila de engrenagens. Cada uma gira dez vezes mais devagar que a anterior. Litros, dezenas, centenas, metros cúbicos.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 22.79
+    },
+    {
+     "w": "ímã",
+     "t": 22.931
+    },
+    {
+     "w": "de",
+     "t": 23.167
+    },
+    {
+     "w": "fora",
+     "t": 23.297
+    },
+    {
+     "w": "gira",
+     "t": 23.604
+    },
+    {
+     "w": "uma",
+     "t": 23.828
+    },
+    {
+     "w": "fila",
+     "t": 23.981
+    },
+    {
+     "w": "de",
+     "t": 24.311
+    },
+    {
+     "w": "engrenagens",
+     "t": 24.417
+    },
+    {
+     "w": "Cada",
+     "t": 25.983
+    },
+    {
+     "w": "uma",
+     "t": 26.207
+    },
+    {
+     "w": "gira",
+     "t": 26.396
+    },
+    {
+     "w": "dez",
+     "t": 26.667
+    },
+    {
+     "w": "vezes",
+     "t": 26.95
+    },
+    {
+     "w": "mais",
+     "t": 27.304
+    },
+    {
+     "w": "devagar",
+     "t": 27.575
+    },
+    {
+     "w": "que",
+     "t": 28.058
+    },
+    {
+     "w": "a",
+     "t": 28.153
+    },
+    {
+     "w": "anterior",
+     "t": 28.188
+    },
+    {
+     "w": "Litros",
+     "t": 29.509
+    },
+    {
+     "w": "dezenas",
+     "t": 30.216
+    },
+    {
+     "w": "centenas",
+     "t": 31.101
+    },
+    {
+     "w": "metros",
+     "t": 32.056
+    },
+    {
+     "w": "cúbicos",
+     "t": 32.469
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.43,
+   "fim": 40.51,
+   "texto": "Os números pretos contam metros cúbicos. Cada um é mil litros. Os vermelhos são os litros.",
+   "palavras": [
+    {
+     "w": "Os",
+     "t": 33.48
+    },
+    {
+     "w": "números",
+     "t": 33.669
+    },
+    {
+     "w": "pretos",
+     "t": 34.058
+    },
+    {
+     "w": "contam",
+     "t": 34.482
+    },
+    {
+     "w": "metros",
+     "t": 34.824
+    },
+    {
+     "w": "cúbicos",
+     "t": 35.237
+    },
+    {
+     "w": "Cada",
+     "t": 36.602
+    },
+    {
+     "w": "um",
+     "t": 36.885
+    },
+    {
+     "w": "é",
+     "t": 37.109
+    },
+    {
+     "w": "mil",
+     "t": 37.18
+    },
+    {
+     "w": "litros",
+     "t": 37.392
+    },
+    {
+     "w": "Os",
+     "t": 38.748
+    },
+    {
+     "w": "vermelhos",
+     "t": 38.949
+    },
+    {
+     "w": "são",
+     "t": 39.491
+    },
+    {
+     "w": "os",
+     "t": 39.656
+    },
+    {
+     "w": "litros",
+     "t": 39.774
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.66,
+   "fim": 47.91,
+   "texto": "E tem um truque: feche todas as torneiras da casa. Se a estrelinha do relógio continuar girando, tem vazamento.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 40.71
+    },
+    {
+     "w": "tem",
+     "t": 40.828
+    },
+    {
+     "w": "um",
+     "t": 40.993
+    },
+    {
+     "w": "truque",
+     "t": 41.111
+    },
+    {
+     "w": "feche",
+     "t": 41.677
+    },
+    {
+     "w": "todas",
+     "t": 42.066
+    },
+    {
+     "w": "as",
+     "t": 42.349
+    },
+    {
+     "w": "torneiras",
+     "t": 42.526
+    },
+    {
+     "w": "da",
+     "t": 43.01
+    },
+    {
+     "w": "casa",
+     "t": 43.139
+    },
+    {
+     "w": "Se",
+     "t": 44.327
+    },
+    {
+     "w": "a",
+     "t": 44.528
+    },
+    {
+     "w": "estrelinha",
+     "t": 44.575
+    },
+    {
+     "w": "do",
+     "t": 45.07
+    },
+    {
+     "w": "relógio",
+     "t": 45.153
+    },
+    {
+     "w": "continuar",
+     "t": 45.648
+    },
+    {
+     "w": "girando",
+     "t": 46.179
+    },
+    {
+     "w": "tem",
+     "t": 46.886
+    },
+    {
+     "w": "vazamento",
+     "t": 47.04
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.06,
+   "fim": 54.38,
+   "texto": "Coloque um lacre pra ninguém mexer e uma tampa de vidro. Parabéns, você construiu um hidrômetro.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 48.11
+    },
+    {
+     "w": "um",
+     "t": 48.582
+    },
+    {
+     "w": "lacre",
+     "t": 48.7
+    },
+    {
+     "w": "pra",
+     "t": 49.053
+    },
+    {
+     "w": "ninguém",
+     "t": 49.195
+    },
+    {
+     "w": "mexer",
+     "t": 49.549
+    },
+    {
+     "w": "e",
+     "t": 49.926
+    },
+    {
+     "w": "uma",
+     "t": 49.985
+    },
+    {
+     "w": "tampa",
+     "t": 50.185
+    },
+    {
+     "w": "de",
+     "t": 50.551
+    },
+    {
+     "w": "vidro",
+     "t": 50.669
+    },
+    {
+     "w": "Parabéns",
+     "t": 51.857
+    },
+    {
+     "w": "você",
+     "t": 52.635
+    },
+    {
+     "w": "construiu",
+     "t": 52.93
+    },
+    {
+     "w": "um",
+     "t": 53.437
+    },
+    {
+     "w": "hidrômetro",
+     "t": 53.602
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("hidrometro", { fundo: 0xdfe6ec, seed: 2904 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- muro + cano da rua + hidrômetro ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texRuido("#9a9a94", 30, 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xe8d8c0, { map: texRuido("#e8d8c0", 16, 4) }), 0, 4, -.6);
+add(new THREE.BoxGeometry(1.4, 1.0, .5), mat(0x8a8e96, { map: texRuido("#8a8e96", 20, 3) }), 0, .5, -.3);
+const canoM = new THREE.MeshStandardMaterial({ color: 0x5a8ad0, transparent: true, opacity: .45, depthWrite: false });
+for (const x of [-.75, .75]) add(new THREE.CylinderGeometry(.06, .06, .7, 20), canoM, x, .6, .05).rotation.z = PI / 2;
+const corpoH = add(new THREE.CylinderGeometry(.2, .2, .35, 32), mat(0xc8a050, { metalness: .5, roughness: .35 }), 0, .6, .05); corpoH.rotation.z = PI / 2;
+const topo = add(new THREE.CylinderGeometry(.19, .19, .12, 32), mat(0xc8a050, { metalness: .5, roughness: .35 }), 0, .82, .05);
+const cv = document.createElement("canvas"); cv.width = cv.height = 512; const gd = cv.getContext("2d"); const texD = new THREE.CanvasTexture(cv); texD.colorSpace = THREE.SRGBColorSpace;
+const mostrador = add(new THREE.CircleGeometry(.17, 48), new THREE.MeshBasicMaterial({ map: texD }), 0, .885, .05); mostrador.rotation.x = -PI / 2;
+const vidroT = add(new THREE.SphereGeometry(.18, 32, 12, 0, PI * 2, 0, PI / 2), vidro(.25), 0, .885, .05); vidroT.scale.set(1, .001, 1);
+const lacre = add(new THREE.TorusGeometry(.05, .008, 6, 16), brilho(0xd6302a), .22, .7, .05); lacre.scale.setScalar(.001);
+function pintaDial(litros, estrela) {
+  gd.fillStyle = "#f4f4ee"; gd.fillRect(0, 0, 512, 512); gd.fillStyle = "#1a1a1a"; gd.font = "900 40px Nunito"; gd.textAlign = "center"; gd.fillText("m³", 256, 120);
+  const m3 = Math.floor(litros / 1000), l = Math.floor(litros % 1000);
+  const pretos = String(m3).padStart(4, "0"), verm = String(l).padStart(3, "0");
+  for (let i = 0; i < 4; i++) { gd.fillStyle = "#111"; gd.fillRect(96 + i * 46, 160, 42, 64); gd.fillStyle = "#fff"; gd.font = "900 50px Nunito"; gd.fillText(pretos[i], 117 + i * 46, 210); }
+  for (let i = 0; i < 3; i++) { gd.fillStyle = "#c0201a"; gd.fillRect(282 + i * 46, 160, 42, 64); gd.fillStyle = "#fff"; gd.fillText(verm[i], 303 + i * 46, 210); }
+  gd.save(); gd.translate(256, 360); gd.rotate(estrela); gd.fillStyle = "#c0201a"; gd.beginPath(); for (let i = 0; i < 12; i++) { const r = i % 2 ? 22 : 60, a = i / 12 * PI * 2; gd.lineTo(Math.cos(a) * r, Math.sin(a) * r); } gd.fill(); gd.restore();
+  texD.needsUpdate = true;
+}
+const fluxo = Array.from({ length: 30 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), y: (rnd() - .5) * .06 }));
+const torn = grupo(1.15, 1.2, -.5); add(new THREE.CylinderGeometry(.03, .03, .2, 12), mat(0xc0c6cc, { metalness: .5 }), 0, 0, .1, torn).rotation.x = PI / 2; add(new THREE.BoxGeometry(.12, .03, .03), mat(0xc0c6cc, { metalness: .5 }), 0, .06, .05, torn);
+const xTorn = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("✕", "#ff4a3a", { tam: 200 }), transparent: true })); xTorn.position.set(1.15, 1.2, -.3); xTorn.scale.set(.4, .2, 1); scene.add(xTorn);
+
+// ---------- mini set 1: turbina + ímãs (corte) ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.CylinderGeometry(.5, .5, .5, 40, 1, true), vidro(.18, 0x8ac8ff), BX, .6, 0);
+const turb = grupo(BX, .6, 0); add(new THREE.CylinderGeometry(.04, .04, .5, 12), mat(0xc0c6cc), 0, 0, 0, turb); for (let i = 0; i < 8; i++) { const p = add(new THREE.BoxGeometry(.38, .3, .02), mat(0xf4f4f4), Math.cos(i * PI / 4) * .2, 0, Math.sin(i * PI / 4) * .2, turb); p.rotation.y = -i * PI / 4; }
+const ima1 = grupo(BX, .9, 0, scene); add(new THREE.BoxGeometry(.3, .08, .1), mat(0xd6302a), .075, 0, 0, ima1).scale.x = .5; add(new THREE.BoxGeometry(.15, .08, .1), mat(0x3a6ad8), -.075, 0, 0, ima1);
+const placaS = add(new THREE.BoxGeometry(1.1, .03, .6), new THREE.MeshStandardMaterial({ color: 0xc8ccd2, transparent: true, opacity: .6 }), BX, 1.0, 0);
+const ima2 = grupo(BX, 1.1, 0); add(new THREE.BoxGeometry(.15, .08, .1), mat(0x3a6ad8), .075, 0, 0, ima2); add(new THREE.BoxGeometry(.15, .08, .1), mat(0xd6302a), -.075, 0, 0, ima2);
+const agua = Array.from({ length: 40 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), z: (rnd() - .5) * .6, y: .4 + rnd() * .4 }));
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 64 }), transparent: true })); s.position.set(x, y, .4); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lMol = lb("MOLHADO", "#8ac8ff", BX, .22), lSec = lb("SECO", "#ffd23a", BX, 1.35);
+
+// ---------- mini set 2: fila de engrenagens ----------
+const GX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), GX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(GX + 1, 2, 2.5); scene.add(pl); }
+const engs = [0, 1, 2, 3].map((i) => { const e = grupo(GX - .66 + i * .44, .9 + (i % 2) * .08, 0); add(new THREE.CylinderGeometry(.16, .16, .06, 30), mat([0xffd23a, 0xff9a3a, 0x3a8ad8, 0x2fa84f][i], { metalness: .3 }), 0, 0, 0, e).rotation.x = PI / 2; for (let k = 0; k < 14; k++) { const a = k / 14 * PI * 2; const d = add(new THREE.BoxGeometry(.04, .05, .06), mat([0xffd23a, 0xff9a3a, 0x3a8ad8, 0x2fa84f][i]), Math.cos(a) * .18, Math.sin(a) * .18, 0, e); d.rotation.z = a; } add(new THREE.BoxGeometry(.02, .14, .07), brilho(0x111111), 0, .07, 0, e); return e; });
+const lE = ["LITROS", "DEZENAS", "CENTENAS", "m³"].map((s, i) => lb(s, "#ffffff", GX - .66 + i * .44, .55));
+
+K.camera_({
+  geral: [V(1.5, 1.7, 3.7), V(0, .7, 0)],
+  dial: [V(0, 1.95, .75), V(0, .86, .05)],
+  turb: [V(BX + .2, 1.15, 4.0), V(BX, .85, 0)],
+  eng: [V(GX, 1.0, 4.6), V(GX, .8, 0)],
+  fim: [V(-1.5, 1.6, 3.6), V(0, .7, 0)],
+}, [
+  [0, "geral"], [C(2), "geral"], [P(2, "turbininha") - .3, "geral"], [P(2, "turbininha") - .3, "turb"], [F(3), "turb"], [C(4), "eng"], [F(4), "eng"], [C(5), "dial"], [F(5), "dial"], [C(6), "geral"], [P(6, "estrelinha") - .4, "dial"], [F(6), "dial"], [C(7), "geral"], [T, "fim"],
+]);
+
+let litros = 123456;
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const vaza = em(P(6, "feche") - .2, F(6));
+  const vel = vaza ? .25 : (t > P(1, "rodinha") ? 1 : 0);
+  // contador: rápido na cena 5 (pra ver girar)
+  const lt = 123456 + (t > C(5) ? Math.min(t, F(5)) - C(5) : 0) * 180 + t * 8; pintaDial(lt, t * 2.4 * vel);
+  fluxo.forEach((f) => { const q = frac(t * .8 * vel + f.f); f.s.position.set(-1.1 + q * 2.2, .6 + f.y, .05); f.s.scale.setScalar(.04); f.s.material.opacity = vel > 0 ? .9 : 0; });
+  xTorn.visible = em(P(6, "torneiras") - .3, F(6));
+  // turbina e ímãs
+  const giro = t * 4; turb.rotation.y = giro; ima1.rotation.y = giro; ima2.rotation.y = t > P(3, "outro") - .3 ? giro : 0;
+  agua.forEach((a) => { const q = frac(t * 1.1 + a.f); a.s.position.set(BX - .6 + q * 1.2, a.y, a.z); a.s.scale.setScalar(.04); a.s.material.opacity = .8; });
+  ima1.visible = t > P(3, "ima") - .3; ima2.visible = t > P(3, "fora") - .3; placaS.visible = t > P(3, "seco") - .3;
+  lMol.visible = lSec.visible = em(P(3, "seco") - .3, F(3));
+  // engrenagens: cada uma 10x mais devagar (acelerado pra ver)
+  engs.forEach((e, i) => { e.rotation.z = -(i % 2 ? -1 : 1) * t * 3 / Math.pow(3.2, i); });
+  lE.forEach((l, i) => { l.visible = t > [P(4, "litros"), P(4, "dezenas"), P(4, "centenas"), P(4, "cubicos")][i] - .3; });
+  vidroT.scale.y = Math.max(.001, prog(t, P(7, "vidro") - .3, P(7, "vidro") + .3)); lacre.scale.setScalar(Math.max(.001, prog(t, P(7, "lacre") - .3, P(7, "lacre") + .3)));
+  K.cartoes(t, [
+    [P(1, "relogio") - .3, F(1), "RELÓGIO DE ÁGUA", "#ffffff"],
+    [P(2, "volta") - .3, F(2), "CADA VOLTA = X LITROS", "#8ac8ff"],
+    [P(3, "puxa") - .3, F(3), "UM ÍMÃ PUXA O OUTRO", "#ffd23a"],
+    [P(4, "dez") - .3, F(4), "10x MAIS DEVAGAR", "#ffffff"],
+    [P(5, "pretos") - .3, P(5, "vermelhos") - .3, "PRETOS: m³ (1.000 L)", "#ffffff"],
+    [P(5, "vermelhos") - .3, F(5), "VERMELHOS: LITROS", "#ff6a5a"],
+    [P(6, "estrelinha") - .4, P(6, "vazamento") - .4, "TUDO FECHADO E GIRANDO?", "#ffd23a"],
+    [P(6, "vazamento") - .4, F(6), "VAZAMENTO! 💧", "#ff4a3a"],
+  ]);
+});
+</script>
+</body></html>
