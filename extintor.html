@@ -1,0 +1,120 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("extintor", { fundo: 0xe0e4ea, seed: 2903 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+const fogo = (n, x, y, z, larg = .3) => Array.from({ length: n }, () => ({ s: sprite([0xff6a1a, 0xffb020, 0xff3a10][Math.floor(rnd() * 3)]), f: rnd(), dx: (rnd() - .5) * larg, dz: (rnd() - .5) * larg, x, y, z }));
+const animaFogo = (L, t, k, alt = .6) => L.forEach((p) => { const q = frac(t * 1.6 + p.f); p.s.position.set(p.x + p.dx * (1 - q), p.y + q * alt * Math.max(k, .01), p.z + p.dz * (1 - q)); p.s.scale.setScalar((.12 + .1 * (1 - q)) * Math.max(k, .01)); p.s.material.opacity = k > .02 ? .9 * (1 - q) : 0; });
+
+// ---------- cozinha: panela no fogão + tomada ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: grade("#d8d4cc", "#b8b4ac", 64, 8) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xf0ebe0, { map: grade("#f4f4f0", "#d4d4cc", 64, 10) }), 0, 4, -1.0);
+add(new THREE.BoxGeometry(1.2, .9, .8), mat(0xf4f4f4), 0, .45, -.4);
+add(new THREE.CylinderGeometry(.28, .26, .18, 32), mat(0x3a3a3e, { metalness: .4 }), -.15, .99, -.35);
+const fogoPan = fogo(40, -.15, 1.08, -.35, .45);
+const tomada = grupo(.9, 1.3, -.98); add(new THREE.BoxGeometry(.22, .3, .04), mat(0xf4f4f4), 0, 0, 0, tomada); for (const dx of [-.04, .04]) add(new THREE.CylinderGeometry(.015, .015, .02, 10), brilho(0x2a2a2a), dx, 0, .025, tomada).rotation.x = PI / 2;
+const faisca = Array.from({ length: 14 }, () => ({ s: sprite(0x8ac8ff), f: rnd(), a: rnd() * PI * 2 }));
+const balde = grupo(-.9, .95, .1); add(new THREE.CylinderGeometry(.18, .14, .3, 24, 1, true), mat(0x3a8ad8, { side: THREE.DoubleSide }), 0, 0, 0, balde);
+const agua = Array.from({ length: 30 }, () => ({ s: sprite(0x5ab0ff), f: rnd(), d: (rnd() - .5) * .2 }));
+
+// ---------- mini set 1: triângulo do fogo ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x1e2230), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+const vert = [V(BX, 1.6, 0), V(BX - .6, .55, 0), V(BX + .6, .55, 0)];
+const lados = [0, 1, 2].map((i) => { const a = vert[i], b = vert[(i + 1) % 3]; return add(new THREE.TubeGeometry(new THREE.LineCurve3(a, b), 2, .035, 8), brilho([0xff7a3a, 0xffd23a, 0x8ac8ff][i])); });
+const fogoTri = fogo(40, BX, .8, 0, .3);
+const lb = (txt, cor, x, y, z = .1) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 64 }), transparent: true })); s.position.set(x, y, z); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lCal = lb("CALOR", "#ff7a3a", BX - .55, 1.2), lCom = lb("COMBUSTÍVEL", "#ffd23a", BX, .38), lAr = lb("AR", "#8ac8ff", BX + .5, 1.2);
+
+// ---------- mini set 2: extintor de pó em corte ----------
+const EX = 200;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), EX, 0, -1); add(new THREE.PlaneGeometry(10, 10), mat(0x3a4250), EX, 0, 0).rotation.x = -PI / 2; { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(EX + 1, 2, 2.5); scene.add(pl); }
+const ext = grupo(EX - .4, 0, 0);
+add(new THREE.CylinderGeometry(.18, .18, .9, 32, 1, true, 0, PI * 1.4), mat(0xd6302a, { side: THREE.DoubleSide, metalness: .3 }), 0, .47, 0, ext).rotation.y = PI * .55;
+const po = add(new THREE.CylinderGeometry(.17, .17, .55, 32), mat(0xf0e6c8, { roughness: 1 }), 0, .3, 0, ext);
+const gas = add(new THREE.CylinderGeometry(.17, .17, .3, 32), new THREE.MeshStandardMaterial({ color: 0x8ac8ff, transparent: true, opacity: .45 }), 0, .74, 0, ext);
+add(new THREE.SphereGeometry(.18, 24, 12, 0, PI * 2, 0, PI / 2), mat(0xd6302a, { metalness: .3 }), 0, .92, 0, ext);
+add(new THREE.BoxGeometry(.08, .12, .08), mat(0x2a2a2a), 0, 1.13, 0, ext);
+const gatilho = add(new THREE.BoxGeometry(.2, .03, .05), mat(0x2a2a2a), .08, 1.22, 0, ext);
+const pino = add(new THREE.TorusGeometry(.04, .01, 8, 16), brilho(0xffd23a), -.08, 1.15, .05, ext);
+const mano = add(new THREE.CylinderGeometry(.05, .05, .02, 24), mat(0xffffff), .07, 1.08, .06, ext); mano.rotation.x = PI / 2; mano.scale.setScalar(.001);
+{ const c = document.createElement("canvas"); c.width = c.height = 128; const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, 128, 128); g.lineWidth = 18; [["#d6302a", 3.4, 4.2], ["#2fa84f", 4.2, 5.2], ["#d6302a", 5.2, 6.0]].forEach(([cor, a, b]) => { g.strokeStyle = cor; g.beginPath(); g.arc(64, 70, 44, a, b); g.stroke(); }); g.strokeStyle = "#111"; g.lineWidth = 5; g.beginPath(); g.moveTo(64, 70); g.lineTo(84, 32); g.stroke(); const tx = new THREE.CanvasTexture(c); mano.material = new THREE.MeshBasicMaterial({ map: tx }); }
+const etiqueta = add(new THREE.BoxGeometry(.2, .12, .01), mat(0xffffff), 0, .55, .185, ext); etiqueta.scale.setScalar(.001);
+const mang = add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(0, 1.1, 0), V(.2, 1.0, .05), V(.4, .85, .1), V(.55, .8, .1)]), 20, .025, 6), mat(0x1a1a1a), 0, 0, 0, ext);
+const fogoEx = fogo(36, EX + .55, .02, 0, .35);
+const nuvem = Array.from({ length: 40 }, () => ({ s: sprite(0xf4ecd8), f: rnd(), d: (rnd() - .5) * .3 }));
+const seta = add(new THREE.ConeGeometry(.06, .18, 12), brilho(0x2fa84f), EX + .55, .35, .1); seta.rotation.z = PI; seta.visible = false;
+
+// ---------- mini set 3: CO2 na TV ----------
+const CX = 300;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), CX, 0, -1); add(new THREE.PlaneGeometry(10, 10), mat(0x3a4250), CX, 0, 0).rotation.x = -PI / 2; { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(CX + 1, 2, 2.5); scene.add(pl); }
+add(new THREE.BoxGeometry(.7, .45, .1), mat(0x1a1a1e), CX + .35, .55, -.2); add(new THREE.BoxGeometry(.3, .3, .3), mat(0x5a5e66), CX + .35, .15, -.2);
+const fogoTV = fogo(30, CX + .35, .78, -.2, .4);
+const co2 = grupo(CX - .45, 0, .1); add(new THREE.CylinderGeometry(.14, .14, .8, 28), mat(0x1a1a1e, { metalness: .3 }), 0, .4, 0, co2); add(new THREE.BoxGeometry(.06, .1, .06), mat(0x5a5e66), 0, .85, 0, co2);
+const corneta = add(new THREE.ConeGeometry(.1, .3, 20, 1, true), mat(0x2a2a2a, { side: THREE.DoubleSide }), .3, .7, 0, co2); corneta.rotation.z = PI / 2;
+const gelo = []; for (let i = 0; i < 12; i++) { const m = add(new THREE.SphereGeometry(.02, 6, 4), mat(0xffffff), .2 + rnd() * .25, .7 + (rnd() - .5) * .15, (rnd() - .5) * .12, co2); m.visible = false; gelo.push(m); }
+const neve = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), f: rnd(), d: (rnd() - .5) * .25 }));
+
+K.camera_({
+  geral: [V(1.7, 2.1, 3.7), V(0, .95, -.3)],
+  tri: [V(BX, 1.05, 4.6), V(BX, 1.05, 0)],
+  ext: [V(EX + .1, 1.0, 4.1), V(EX + .05, .62, 0)],
+  topo: [V(EX - .2, 1.45, 1.1), V(EX - .4, 1.12, 0)],
+  co2: [V(CX, 1.0, 4.0), V(CX, .6, 0)],
+  fim: [V(EX - 1.2, 1.2, 3.4), V(EX - .2, .65, 0)],
+}, [
+  [0, "geral"], [F(2), "geral"], [C(3), "tri"], [F(3), "tri"], [C(4), "ext"], [F(4), "ext"], [C(5), "co2"], [F(5), "co2"], [C(6), "topo"], [P(6, "aponta") - .3, "topo"], [P(6, "aponta") - .3, "ext"], [F(6), "ext"], [C(7), "topo"], [P(7, "etiqueta") - .3, "fim"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // cozinha: balde, óleo explode, tomada dá choque
+  const vira = prog(t, P(1, "balde") - .2, P(1, "fogo") + .2); balde.rotation.z = -1.8 * vira; balde.position.x = -.9 + .5 * vira;
+  agua.forEach((a) => { const q = frac(t * 2 + a.f); a.s.position.set(-.35 + q * .2 + a.d, 1.2 - q * .2, -.35 + a.d); a.s.scale.setScalar(.04); a.s.material.opacity = em(P(1, "agua") - .2, F(1) + .5) || em(P(2, "oleo") - .3, P(2, "espalha")) ? .9 : 0; });
+  const exp = em(P(2, "vapor") - .2, P(2, "tomada") - .3) ? 1 + 2.2 * prog(t, P(2, "vapor") - .2, P(2, "espalha")) : 1;
+  animaFogo(fogoPan, t, t < C(3) ? exp : 0, .5);
+  faisca.forEach((f) => { const q = frac(t * 3 + f.f); f.s.position.set(.9 + Math.cos(f.a) * q * .3, 1.3 + Math.sin(f.a) * q * .3, -.9); f.s.scale.setScalar(.05); f.s.material.opacity = em(P(2, "choque") - .5, F(2)) ? 1 - q : 0; });
+  // triângulo: tira um lado e apaga
+  const tira = t > P(3, "tire") - .2; lados[2].visible = !tira || Math.sin(t * 20) > 0 && t < P(3, "tire") + .3; lados[2].visible = !tira;
+  animaFogo(fogoTri, t, em(C(3), F(3)) ? (tira ? 1 - prog(t, P(3, "tire") - .2, P(3, "apaga")) : 1) : 0, .5);
+  lCal.visible = t > P(3, "calor") - .3; lCom.visible = t > P(3, "combustivel") - .3; lAr.visible = t > P(3, "ar") - .3 && !tira;
+  // extintor de pó
+  const jato = em(P(4, "cobre") - .4, F(4)) || em(P(6, "gatilho") - .2, F(6));
+  nuvem.forEach((n) => { const q = frac(t * 1.5 + n.f); n.s.position.set(EX - .4 + .55 + q * .5 * 0 + n.d * q, .8 - q * .7, .1 + n.d); n.s.position.x = EX + .15 + q * .45; n.s.scale.setScalar(.06 + q * .12); n.s.material.opacity = jato ? .9 * (1 - q * .5) : 0; });
+  const apagaEx = em(C(4), F(4)) ? 1 - prog(t, P(4, "cobre"), P(4, "reacao") + .3) : (em(C(6), F(6)) ? 1 - prog(t, P(6, "gatilho"), F(6)) : 0);
+  animaFogo(fogoEx, t, em(C(4), F(4)) || em(C(6), F(6)) ? apagaEx : 0, .5);
+  po.material.emissive = new THREE.Color(0xffd23a); po.material.emissiveIntensity = em(P(4, "po") - .3, P(4, "gas") - .3) ? .3 : 0;
+  gas.material.opacity = em(P(4, "gas") - .3, P(4, "cobre") - .3) ? .45 + .3 * Math.sin(t * 8) : .45;
+  // CO2 + gelo na corneta
+  const solta = t > P(5, "gas") - .3 && t < C(6);
+  neve.forEach((n) => { const q = frac(t * 1.8 + n.f); n.s.position.set(CX - .45 + .45 + q * .7, .7 + n.d * q, .1 + n.d * q); n.s.scale.setScalar(.06 + q * .14); n.s.material.opacity = solta ? .85 * (1 - q) : 0; });
+  animaFogo(fogoTV, t, em(C(5), F(5)) ? 1 - prog(t, P(5, "expulsa") - .2, P(5, "gela") + .4) : 0, .4);
+  gelo.forEach((m) => { m.visible = t > P(5, "gelo") - .3 && t < C(6); });
+  // usar: pino, base, gatilho
+  const kp = prog(t, P(6, "pino") - .2, P(6, "pino") + .4); pino.position.set(-.08 - .3 * kp, 1.15 + .1 * kp, .05);
+  seta.visible = em(P(6, "base") - .3, F(6)); seta.position.y = .3 + .05 * Math.sin(t * 8);
+  gatilho.rotation.z = em(P(6, "gatilho") - .2, F(6)) ? -.25 : 0;
+  mano.scale.setScalar(Math.max(.001, prog(t, P(7, "manometro") - .3, P(7, "manometro") + .2)));
+  etiqueta.scale.setScalar(Math.max(.001, prog(t, P(7, "etiqueta") - .3, P(7, "etiqueta") + .2)));
+  K.cartoes(t, [
+    [P(1, "extintor") - .3, F(1), "EXTINTOR?", "#ffffff"],
+    [P(2, "oleo") - .3, P(2, "tomada") - .3, "ÁGUA NO ÓLEO: EXPLODE", "#ff4a3a"],
+    [P(2, "choque") - .5, F(2), "NA TOMADA: CHOQUE", "#8ac8ff"],
+    [P(3, "triangulo") - .3, F(3), "TRIÂNGULO DO FOGO", "#ffd23a"],
+    [P(4, "po") - .3, P(4, "gas") - .3, "PÓ QUÍMICO", "#f0e6c8"],
+    [P(4, "gas") - .3, P(4, "cobre") - .3, "GÁS SOB PRESSÃO", "#8ac8ff"],
+    [P(5, "carbonico") - .3, P(5, "gelo") - .3, "CO₂: TIRA O AR E GELA", "#ffffff"],
+    [P(5, "gelo") - .3, F(5), "GELO NO BICO ❄", "#ffffff"],
+    [P(6, "pino") - .3, P(6, "base") - .3, "1. PUXA O PINO", "#ffd23a"],
+    [P(6, "base") - .3, P(6, "gatilho") - .3, "2. MIRA NA BASE", "#2fa84f"],
+    [P(6, "gatilho") - .3, F(6), "3. APERTA", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>
