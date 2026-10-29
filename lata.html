@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("lata", { fundo: 0xe8e4dc, seed: 2902 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+const V2 = (x, y) => new THREE.Vector2(x, y);
+
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#a87a4a", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.PlaneGeometry(20, 8), mat(0xe8e0d0, { map: texRuido("#e8e0d0", 10, 4) }), 0, 4, -1.5);
+
+// ---------- folha que vira lata ----------
+const folha = add(new THREE.BoxGeometry(1.6, .01, .9), mat(0xc8ccd2, { metalness: .45, roughness: .25 }), 0, .01, 0);
+// ---------- lata em corte ----------
+const perfil = [V2(0, .07), V2(.1, .055), V2(.2, .025), V2(.25, 0), V2(.29, .02), V2(.3, .07), V2(.3, .82), V2(.27, .93), V2(.25, .97), V2(.255, 1.0)];
+const lata = grupo(0, 0, 0);
+const casca = add(new THREE.LatheGeometry(perfil, 48, 0, PI * 1.5), mat(0xd8453a, { metalness: .4, roughness: .3, side: THREE.DoubleSide }), 0, 0, 0, lata);
+const fundoM = mat(0xc8ccd2, { metalness: .45, roughness: .25, side: THREE.DoubleSide }); const domo = add(new THREE.LatheGeometry(perfil.slice(0, 6), 48), fundoM, 0, 0, 0, lata);
+const verniz = add(new THREE.LatheGeometry(perfil.map((p) => V2(Math.max(0, p.x - .012), p.y)), 48, 0, PI * 1.5), new THREE.MeshStandardMaterial({ color: 0xf0d870, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }), 0, 0, 0, lata);
+const liq = add(new THREE.CylinderGeometry(.285, .285, .74, 40, 1, false, 0, PI * 1.5), new THREE.MeshStandardMaterial({ color: 0x5a2a10, transparent: true, opacity: .75 }), 0, .44, 0, lata);
+const tampa = add(new THREE.CylinderGeometry(.25, .25, .015, 40), mat(0xc8ccd2, { metalness: .45, roughness: .25 }), 0, .995, 0, lata);
+const aba = grupo(.08, 1.005, 0, lata); add(new THREE.BoxGeometry(.11, .008, .08), mat(0xb0b4ba, { metalness: .45 }), .055, 0, 0, aba);
+const anel = add(new THREE.TorusGeometry(.05, .012, 8, 20), mat(0xb0b4ba, { metalness: .5 }), -.02, 1.015, 0, lata); anel.rotation.x = PI / 2; anel.scale.set(1.3, 1, 1);
+const rebite = add(new THREE.CylinderGeometry(.015, .015, .02, 12), mat(0x8a8e96, { metalness: .5 }), .02, 1.01, 0, lata);
+const bolhas = Array.from({ length: 24 }, () => ({ s: sprite(0xffffff, lata), f: rnd(), x: (rnd() - .5) * .4, z: rnd() * .25 }));
+const forcas = Array.from({ length: 20 }, (_, i) => ({ s: sprite(0xff4a3a, lata), a: i / 20 * PI * 2, f: rnd() }));
+lata.visible = false; lata.rotation.y = PI / 2;
+
+// ---------- mini set: fundo reto que estufa + lata vazia amassando ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(10, 10), mat(0x2a3240), BX, 0, -1); add(new THREE.PlaneGeometry(10, 10), mat(0x3a4250), BX, 0, 0).rotation.x = -PI / 2; { const pl = new THREE.PointLight(0xffffff, 3, 8); pl.position.set(BX + 1, 2, 2.5); scene.add(pl); }
+const reta = grupo(BX - .5, 0, 0); add(new THREE.CylinderGeometry(.3, .3, .9, 40), mat(0x3a8ad8, { metalness: .35 }), 0, .5, 0, reta); const barriga = add(new THREE.SphereGeometry(.3, 32, 12, 0, PI * 2, PI / 2, PI / 2), mat(0xc8ccd2, { metalness: .4 }), 0, .05, 0, reta); barriga.scale.y = .001;
+const vazia = grupo(BX + .5, 0, 0); const vaziaM = add(new THREE.CylinderGeometry(.3, .3, .9, 40), mat(0x2fa84f, { metalness: .35 }), 0, .45, 0, vazia);
+const mao = add(new THREE.BoxGeometry(.9, .14, .4), mat(0xe8b48a), BX + .5, 1.5, 0); mao.visible = false;
+
+K.camera_({
+  geral: [V(1.6, 1.6, 3.1), V(0, .5, 0)],
+  baixo: [V(.9, .5, 2.2), V(0, .55, 0)],
+  topo: [V(.25, 1.75, .75), V(0, .98, 0)],
+  mini: [V(BX, 1.1, 3.4), V(BX, .55, 0)],
+  pescoco: [V(.8, 1.15, 1.3), V(0, .9, 0)],
+  fim: [V(-1.6, 1.5, 3.0), V(0, .5, 0)],
+}, [
+  [0, "geral"], [C(2), "geral"], [P(2, "fundo") - .3, "geral"], [P(2, "fundo") - .3, "mini"], [F(2), "mini"], [C(3), "baixo"], [F(3), "baixo"], [C(4), "geral"], [P(4, "vazia") - .3, "geral"], [P(4, "vazia") - .3, "mini"], [F(4), "mini"],
+  [C(5), "topo"], [F(5), "topo"], [C(6), "pescoco"], [F(6), "pescoco"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // folha enrola -> lata
+  const vira = prog(t, P(1, "fechar") - .3, P(1, "lata") - .1); folha.visible = vira < 1; folha.scale.set(1 - .8 * vira, 1, 1 - .7 * vira); lata.visible = vira > .9;
+  // força do gás
+  forcas.forEach((f) => { const k = frac(t * 1.2 + f.f); const r = .05 + k * .26; f.s.position.set(Math.cos(f.a) * r, .45 + Math.sin(f.a * 3) * .25, Math.sin(f.a) * r); f.s.scale.setScalar(.07); f.s.material.opacity = (em(C(2), P(2, "fundo") - .3) || em(P(4, "pressao") - .3, P(4, "vazia") - .3)) ? .9 * (1 - k) : 0; });
+  bolhas.forEach((b) => { const k = frac(t * .5 + b.f); b.s.position.set(b.x, .1 + k * .75, b.z); b.s.scale.setScalar(.025); b.s.material.opacity = lata.visible ? .8 * (1 - k * .5) : 0; });
+  // fundo reto estufa e balança
+  const est = prog(t, P(2, "estufar") - .3, P(2, "estufar") + .4); barriga.scale.y = Math.max(.001, est * .5); reta.position.y = .15 * est; reta.rotation.z = est > .9 ? Math.sin(t * 5) * .15 : 0;
+  // cena 3: vira a lata pra mostrar o fundo
+  const mostra = em(C(3), F(3)) ? prog(t, C(3), C(3) + .8) : 0; lata.rotation.x = -1.25 * mostra; lata.position.set(0, .55 * mostra, -.2 * mostra);
+  fundoM.emissive = new THREE.Color(0xffa000); fundoM.emissiveIntensity = em(P(3, "concavo") - .3, F(3)) ? .35 : 0;
+  // lata vazia amassa
+  const am = prog(t, P(4, "amassa") - .4, P(4, "amassa") + .3); mao.visible = em(P(4, "vazia") - .3, F(4)); mao.position.y = 1.5 - .7 * am; vazia.scale.set(1 + .25 * am, 1 - .55 * am, 1 + .25 * am); vaziaM.rotation.y = am * .4;
+  // abrir: anel vira alavanca e empurra a aba pra dentro
+  const abre = prog(t, P(5, "puxa") - .2, P(5, "dentro"));
+  anel.rotation.x = PI / 2 - 1.2 * abre; anel.position.y = 1.015 + .05 * abre; aba.rotation.z = -1.0 * prog(t, P(5, "alavanca") - .2, P(5, "dentro"));
+  rebite.material.emissive = new THREE.Color(0xffa000); rebite.material.emissiveIntensity = em(P(5, "rebite") - .3, P(5, "puxa")) ? 1 : 0;
+  verniz.material.opacity = t > P(7, "verniz") - .3 ? .65 * prog(t, P(7, "verniz") - .3, P(7, "verniz") + .4) : 0;
+  liq.visible = !(em(P(7, "verniz") - .3, P(7, "metal") + .5));
+  K.cartoes(t, [
+    [P(1, "lata") - .2, F(1), "LATA DE REFRIGERANTE", "#ffffff"],
+    [P(2, "pneu") - .4, P(2, "fundo") - .3, "PRESSÃO DE PNEU DE CARRO", "#ff4a3a"],
+    [P(2, "estufar") - .3, F(2), "FUNDO RETO ESTUFA E ROLA", "#ff4a3a"],
+    [P(3, "concavo") - .3, F(3), "FUNDO PRA DENTRO = ARCO", "#ffd23a"],
+    [P(4, "papel") - .3, P(4, "vazia") - .3, "FINA COMO PAPEL", "#ffffff"],
+    [P(4, "vazia") - .3, F(4), "VAZIA, AMASSA NA MÃO", "#2fa84f"],
+    [P(5, "alavanca") - .3, F(5), "ANEL = ALAVANCA", "#ffd23a"],
+    [P(6, "estreito") - .3, F(6), "TAMPA MENOR = MENOS ALUMÍNIO", "#ffffff"],
+    [P(7, "verniz") - .3, P(7, "parabens") - .3, "VERNIZ POR DENTRO", "#f0d870"],
+  ]);
+});
+</script>
+</body></html>

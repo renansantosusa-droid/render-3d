@@ -1,0 +1,677 @@
+{
+ "total": 53.51,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.97,
+   "texto": "Se você enrolar uma folha de alumínio e fechar as pontas, terá uma lata de refrigerante.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.4
+    },
+    {
+     "w": "enrolar",
+     "t": 0.648
+    },
+    {
+     "w": "uma",
+     "t": 1.061
+    },
+    {
+     "w": "folha",
+     "t": 1.226
+    },
+    {
+     "w": "de",
+     "t": 1.509
+    },
+    {
+     "w": "alumínio",
+     "t": 1.568
+    },
+    {
+     "w": "e",
+     "t": 1.969
+    },
+    {
+     "w": "fechar",
+     "t": 2.004
+    },
+    {
+     "w": "as",
+     "t": 2.334
+    },
+    {
+     "w": "pontas",
+     "t": 2.488
+    },
+    {
+     "w": "terá",
+     "t": 3.136
+    },
+    {
+     "w": "uma",
+     "t": 3.349
+    },
+    {
+     "w": "lata",
+     "t": 3.49
+    },
+    {
+     "w": "de",
+     "t": 3.832
+    },
+    {
+     "w": "refrigerante",
+     "t": 3.938
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.12,
+   "fim": 13.92,
+   "texto": "Mas o gás lá dentro empurra pra todo lado, com uma pressão parecida com a de um pneu de carro. Um fundo reto ia estufar, e a lata ia rolar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.17
+    },
+    {
+     "w": "o",
+     "t": 5.382
+    },
+    {
+     "w": "gás",
+     "t": 5.512
+    },
+    {
+     "w": "lá",
+     "t": 5.748
+    },
+    {
+     "w": "dentro",
+     "t": 5.878
+    },
+    {
+     "w": "empurra",
+     "t": 6.149
+    },
+    {
+     "w": "pra",
+     "t": 6.55
+    },
+    {
+     "w": "todo",
+     "t": 6.75
+    },
+    {
+     "w": "lado",
+     "t": 7.021
+    },
+    {
+     "w": "com",
+     "t": 7.646
+    },
+    {
+     "w": "uma",
+     "t": 7.788
+    },
+    {
+     "w": "pressão",
+     "t": 7.929
+    },
+    {
+     "w": "parecida",
+     "t": 8.283
+    },
+    {
+     "w": "com",
+     "t": 8.837
+    },
+    {
+     "w": "a",
+     "t": 9.05
+    },
+    {
+     "w": "de",
+     "t": 9.156
+    },
+    {
+     "w": "um",
+     "t": 9.286
+    },
+    {
+     "w": "pneu",
+     "t": 9.38
+    },
+    {
+     "w": "de",
+     "t": 9.663
+    },
+    {
+     "w": "carro",
+     "t": 9.781
+    },
+    {
+     "w": "Um",
+     "t": 10.945
+    },
+    {
+     "w": "fundo",
+     "t": 11.146
+    },
+    {
+     "w": "reto",
+     "t": 11.488
+    },
+    {
+     "w": "ia",
+     "t": 11.818
+    },
+    {
+     "w": "estufar",
+     "t": 11.889
+    },
+    {
+     "w": "e",
+     "t": 12.644
+    },
+    {
+     "w": "a",
+     "t": 12.714
+    },
+    {
+     "w": "lata",
+     "t": 12.797
+    },
+    {
+     "w": "ia",
+     "t": 13.127
+    },
+    {
+     "w": "rolar",
+     "t": 13.304
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.07,
+   "fim": 22.65,
+   "texto": "Então, você faz o fundo côncavo, pra dentro, igual um arco. O arco espalha a força e aguenta muito mais, com menos metal.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 14.12
+    },
+    {
+     "w": "você",
+     "t": 14.887
+    },
+    {
+     "w": "faz",
+     "t": 15.146
+    },
+    {
+     "w": "o",
+     "t": 15.335
+    },
+    {
+     "w": "fundo",
+     "t": 15.453
+    },
+    {
+     "w": "côncavo",
+     "t": 15.747
+    },
+    {
+     "w": "pra",
+     "t": 16.455
+    },
+    {
+     "w": "dentro",
+     "t": 16.644
+    },
+    {
+     "w": "igual",
+     "t": 17.339
+    },
+    {
+     "w": "um",
+     "t": 17.634
+    },
+    {
+     "w": "arco",
+     "t": 17.823
+    },
+    {
+     "w": "O",
+     "t": 18.964
+    },
+    {
+     "w": "arco",
+     "t": 19.105
+    },
+    {
+     "w": "espalha",
+     "t": 19.4
+    },
+    {
+     "w": "a",
+     "t": 19.754
+    },
+    {
+     "w": "força",
+     "t": 19.801
+    },
+    {
+     "w": "e",
+     "t": 20.179
+    },
+    {
+     "w": "aguenta",
+     "t": 20.237
+    },
+    {
+     "w": "muito",
+     "t": 20.603
+    },
+    {
+     "w": "mais",
+     "t": 20.992
+    },
+    {
+     "w": "com",
+     "t": 21.535
+    },
+    {
+     "w": "menos",
+     "t": 21.7
+    },
+    {
+     "w": "metal",
+     "t": 21.995
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 22.8,
+   "fim": 31.13,
+   "texto": "A parede é fina como uma folha de papel. Quem deixa a lata dura é a própria pressão do gás. Vazia, ela amassa na mão.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 22.85
+    },
+    {
+     "w": "parede",
+     "t": 22.98
+    },
+    {
+     "w": "é",
+     "t": 23.345
+    },
+    {
+     "w": "fina",
+     "t": 23.392
+    },
+    {
+     "w": "como",
+     "t": 23.699
+    },
+    {
+     "w": "uma",
+     "t": 23.923
+    },
+    {
+     "w": "folha",
+     "t": 24.112
+    },
+    {
+     "w": "de",
+     "t": 24.407
+    },
+    {
+     "w": "papel.",
+     "t": 24.513
+    },
+    {
+     "w": "Quem",
+     "t": 25.725
+    },
+    {
+     "w": "deixa",
+     "t": 25.972
+    },
+    {
+     "w": "a",
+     "t": 26.35
+    },
+    {
+     "w": "lata",
+     "t": 26.373
+    },
+    {
+     "w": "dura",
+     "t": 26.656
+    },
+    {
+     "w": "é",
+     "t": 26.963
+    },
+    {
+     "w": "a",
+     "t": 27.069
+    },
+    {
+     "w": "própria",
+     "t": 27.151
+    },
+    {
+     "w": "pressão",
+     "t": 27.529
+    },
+    {
+     "w": "do",
+     "t": 27.906
+    },
+    {
+     "w": "gás",
+     "t": 28.012
+    },
+    {
+     "w": "Vazia",
+     "t": 29.25
+    },
+    {
+     "w": "ela",
+     "t": 29.946
+    },
+    {
+     "w": "amassa",
+     "t": 30.123
+    },
+    {
+     "w": "na",
+     "t": 30.5
+    },
+    {
+     "w": "mão",
+     "t": 30.595
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.28,
+   "fim": 39.87,
+   "texto": "Pra abrir, você coloca um anel preso por um rebite. Você puxa, ele vira alavanca e empurra a tampinha pra dentro, sem soltar da lata.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 31.33
+    },
+    {
+     "w": "abrir",
+     "t": 31.519
+    },
+    {
+     "w": "você",
+     "t": 32.085
+    },
+    {
+     "w": "coloca",
+     "t": 32.403
+    },
+    {
+     "w": "um",
+     "t": 32.816
+    },
+    {
+     "w": "anel",
+     "t": 32.922
+    },
+    {
+     "w": "preso",
+     "t": 33.17
+    },
+    {
+     "w": "por",
+     "t": 33.512
+    },
+    {
+     "w": "um",
+     "t": 33.665
+    },
+    {
+     "w": "rebite",
+     "t": 33.771
+    },
+    {
+     "w": "Você",
+     "t": 35.077
+    },
+    {
+     "w": "puxa",
+     "t": 35.396
+    },
+    {
+     "w": "ele",
+     "t": 35.985
+    },
+    {
+     "w": "vira",
+     "t": 36.174
+    },
+    {
+     "w": "alavanca",
+     "t": 36.374
+    },
+    {
+     "w": "e",
+     "t": 36.858
+    },
+    {
+     "w": "empurra",
+     "t": 36.881
+    },
+    {
+     "w": "a",
+     "t": 37.318
+    },
+    {
+     "w": "tampinha",
+     "t": 37.353
+    },
+    {
+     "w": "pra",
+     "t": 37.778
+    },
+    {
+     "w": "dentro",
+     "t": 37.943
+    },
+    {
+     "w": "sem",
+     "t": 38.556
+    },
+    {
+     "w": "soltar",
+     "t": 38.745
+    },
+    {
+     "w": "da",
+     "t": 39.169
+    },
+    {
+     "w": "lata",
+     "t": 39.264
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.02,
+   "fim": 44.88,
+   "texto": "E o topo é mais estreito que o corpo, pra tampa ser menor e gastar menos alumínio.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 40.07
+    },
+    {
+     "w": "o",
+     "t": 40.2
+    },
+    {
+     "w": "topo",
+     "t": 40.294
+    },
+    {
+     "w": "é",
+     "t": 40.671
+    },
+    {
+     "w": "mais",
+     "t": 40.73
+    },
+    {
+     "w": "estreito",
+     "t": 40.954
+    },
+    {
+     "w": "que",
+     "t": 41.45
+    },
+    {
+     "w": "o",
+     "t": 41.556
+    },
+    {
+     "w": "corpo",
+     "t": 41.627
+    },
+    {
+     "w": "pra",
+     "t": 42.263
+    },
+    {
+     "w": "tampa",
+     "t": 42.464
+    },
+    {
+     "w": "ser",
+     "t": 42.782
+    },
+    {
+     "w": "menor",
+     "t": 42.971
+    },
+    {
+     "w": "e",
+     "t": 43.348
+    },
+    {
+     "w": "gastar",
+     "t": 43.395
+    },
+    {
+     "w": "menos",
+     "t": 43.785
+    },
+    {
+     "w": "alumínio",
+     "t": 44.103
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 45.03,
+   "fim": 52.91,
+   "texto": "Coloque um verniz por dentro, pro refrigerante não encostar no metal. Parabéns, você construiu uma lata de refrigerante.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 45.08
+    },
+    {
+     "w": "um",
+     "t": 45.575
+    },
+    {
+     "w": "verniz",
+     "t": 45.646
+    },
+    {
+     "w": "por",
+     "t": 46.071
+    },
+    {
+     "w": "dentro",
+     "t": 46.236
+    },
+    {
+     "w": "pro",
+     "t": 46.849
+    },
+    {
+     "w": "refrigerante",
+     "t": 47.002
+    },
+    {
+     "w": "não",
+     "t": 47.71
+    },
+    {
+     "w": "encostar",
+     "t": 47.898
+    },
+    {
+     "w": "no",
+     "t": 48.405
+    },
+    {
+     "w": "metal",
+     "t": 48.488
+    },
+    {
+     "w": "Parabéns",
+     "t": 49.712
+    },
+    {
+     "w": "você",
+     "t": 50.514
+    },
+    {
+     "w": "construiu",
+     "t": 50.82
+    },
+    {
+     "w": "uma",
+     "t": 51.304
+    },
+    {
+     "w": "lata",
+     "t": 51.433
+    },
+    {
+     "w": "de",
+     "t": 51.775
+    },
+    {
+     "w": "refrigerante",
+     "t": 51.893
+    }
+   ]
+  }
+ ]
+}
