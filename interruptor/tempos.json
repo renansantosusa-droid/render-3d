@@ -1,0 +1,625 @@
+{
+ "total": 53.42,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.87,
+   "texto": "Se você colocar um interruptor no fio da lâmpada, terá uma luz que acende e apaga.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.2
+    },
+    {
+     "w": "você",
+     "t": 0.412
+    },
+    {
+     "w": "colocar",
+     "t": 0.683
+    },
+    {
+     "w": "um",
+     "t": 1.12
+    },
+    {
+     "w": "interruptor",
+     "t": 1.202
+    },
+    {
+     "w": "no",
+     "t": 1.78
+    },
+    {
+     "w": "fio",
+     "t": 1.898
+    },
+    {
+     "w": "da",
+     "t": 2.099
+    },
+    {
+     "w": "lâmpada",
+     "t": 2.193
+    },
+    {
+     "w": "terá",
+     "t": 2.9
+    },
+    {
+     "w": "uma",
+     "t": 3.148
+    },
+    {
+     "w": "luz",
+     "t": 3.301
+    },
+    {
+     "w": "que",
+     "t": 3.596
+    },
+    {
+     "w": "acende",
+     "t": 3.691
+    },
+    {
+     "w": "e",
+     "t": 4.127
+    },
+    {
+     "w": "apaga",
+     "t": 4.162
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.02,
+   "fim": 12.73,
+   "texto": "Mas a escada tem dois andares. Você acende embaixo, sobe, e a luz fica acesa lá embaixo a noite inteira.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.07
+    },
+    {
+     "w": "a",
+     "t": 5.27
+    },
+    {
+     "w": "escada",
+     "t": 5.388
+    },
+    {
+     "w": "tem",
+     "t": 5.86
+    },
+    {
+     "w": "dois",
+     "t": 6.061
+    },
+    {
+     "w": "andares",
+     "t": 6.32
+    },
+    {
+     "w": "Você",
+     "t": 7.744
+    },
+    {
+     "w": "acende",
+     "t": 8.098
+    },
+    {
+     "w": "embaixo",
+     "t": 8.522
+    },
+    {
+     "w": "sobe",
+     "t": 9.242
+    },
+    {
+     "w": "e",
+     "t": 9.985
+    },
+    {
+     "w": "a",
+     "t": 10.079
+    },
+    {
+     "w": "luz",
+     "t": 10.162
+    },
+    {
+     "w": "fica",
+     "t": 10.445
+    },
+    {
+     "w": "acesa",
+     "t": 10.68
+    },
+    {
+     "w": "lá",
+     "t": 11.046
+    },
+    {
+     "w": "embaixo",
+     "t": 11.211
+    },
+    {
+     "w": "a",
+     "t": 11.683
+    },
+    {
+     "w": "noite",
+     "t": 11.73
+    },
+    {
+     "w": "inteira",
+     "t": 12.048
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.88,
+   "fim": 21.21,
+   "texto": "Então, você troca por um interruptor diferente. Ele não liga nem desliga. Ele só escolhe entre dois caminhos de fio.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.93
+    },
+    {
+     "w": "você",
+     "t": 13.661
+    },
+    {
+     "w": "troca",
+     "t": 13.932
+    },
+    {
+     "w": "por",
+     "t": 14.31
+    },
+    {
+     "w": "um",
+     "t": 14.451
+    },
+    {
+     "w": "interruptor",
+     "t": 14.546
+    },
+    {
+     "w": "diferente",
+     "t": 15.135
+    },
+    {
+     "w": "Ele",
+     "t": 16.512
+    },
+    {
+     "w": "não",
+     "t": 16.713
+    },
+    {
+     "w": "liga",
+     "t": 16.889
+    },
+    {
+     "w": "nem",
+     "t": 17.208
+    },
+    {
+     "w": "desliga",
+     "t": 17.42
+    },
+    {
+     "w": "Ele",
+     "t": 18.741
+    },
+    {
+     "w": "só",
+     "t": 18.965
+    },
+    {
+     "w": "escolhe",
+     "t": 19.13
+    },
+    {
+     "w": "entre",
+     "t": 19.59
+    },
+    {
+     "w": "dois",
+     "t": 19.802
+    },
+    {
+     "w": "caminhos",
+     "t": 20.144
+    },
+    {
+     "w": "de",
+     "t": 20.533
+    },
+    {
+     "w": "fio",
+     "t": 20.651
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.36,
+   "fim": 28.05,
+   "texto": "Entre os dois interruptores passam dois fios. A lâmpada só acende quando os dois escolhem o mesmo fio.",
+   "palavras": [
+    {
+     "w": "Entre",
+     "t": 21.41
+    },
+    {
+     "w": "os",
+     "t": 21.693
+    },
+    {
+     "w": "dois",
+     "t": 21.776
+    },
+    {
+     "w": "interruptores",
+     "t": 22.023
+    },
+    {
+     "w": "passam",
+     "t": 22.837
+    },
+    {
+     "w": "dois",
+     "t": 23.226
+    },
+    {
+     "w": "fios",
+     "t": 23.556
+    },
+    {
+     "w": "A",
+     "t": 24.792
+    },
+    {
+     "w": "lâmpada",
+     "t": 24.91
+    },
+    {
+     "w": "só",
+     "t": 25.381
+    },
+    {
+     "w": "acende",
+     "t": 25.605
+    },
+    {
+     "w": "quando",
+     "t": 26.018
+    },
+    {
+     "w": "os",
+     "t": 26.195
+    },
+    {
+     "w": "dois",
+     "t": 26.301
+    },
+    {
+     "w": "escolhem",
+     "t": 26.513
+    },
+    {
+     "w": "o",
+     "t": 27.044
+    },
+    {
+     "w": "mesmo",
+     "t": 27.115
+    },
+    {
+     "w": "fio",
+     "t": 27.492
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.2,
+   "fim": 37.42,
+   "texto": "Embaixo, você escolhe o fio de cima. Lá em cima, o outro também está no fio de cima. O circuito fecha, e a luz acende.",
+   "palavras": [
+    {
+     "w": "Embaixo",
+     "t": 28.25
+    },
+    {
+     "w": "você",
+     "t": 29.052
+    },
+    {
+     "w": "escolhe",
+     "t": 29.288
+    },
+    {
+     "w": "o",
+     "t": 29.7
+    },
+    {
+     "w": "fio",
+     "t": 29.748
+    },
+    {
+     "w": "de",
+     "t": 29.972
+    },
+    {
+     "w": "cima",
+     "t": 30.078
+    },
+    {
+     "w": "Lá",
+     "t": 31.301
+    },
+    {
+     "w": "em",
+     "t": 31.514
+    },
+    {
+     "w": "cima",
+     "t": 31.632
+    },
+    {
+     "w": "o",
+     "t": 32.233
+    },
+    {
+     "w": "outro",
+     "t": 32.339
+    },
+    {
+     "w": "também",
+     "t": 32.693
+    },
+    {
+     "w": "está",
+     "t": 33.07
+    },
+    {
+     "w": "no",
+     "t": 33.294
+    },
+    {
+     "w": "fio",
+     "t": 33.389
+    },
+    {
+     "w": "de",
+     "t": 33.625
+    },
+    {
+     "w": "cima",
+     "t": 33.754
+    },
+    {
+     "w": "O",
+     "t": 34.934
+    },
+    {
+     "w": "circuito",
+     "t": 35.051
+    },
+    {
+     "w": "fecha",
+     "t": 35.535
+    },
+    {
+     "w": "e",
+     "t": 36.195
+    },
+    {
+     "w": "a",
+     "t": 36.29
+    },
+    {
+     "w": "luz",
+     "t": 36.372
+    },
+    {
+     "w": "acende",
+     "t": 36.584
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 37.57,
+   "fim": 45.37,
+   "texto": "Mudou qualquer um, ele troca de caminho e abre o circuito. Por isso não existe posição certa de ligado: depende do outro.",
+   "palavras": [
+    {
+     "w": "Mudou",
+     "t": 37.62
+    },
+    {
+     "w": "qualquer",
+     "t": 38.021
+    },
+    {
+     "w": "um",
+     "t": 38.434
+    },
+    {
+     "w": "ele",
+     "t": 38.858
+    },
+    {
+     "w": "troca",
+     "t": 39.035
+    },
+    {
+     "w": "de",
+     "t": 39.342
+    },
+    {
+     "w": "caminho",
+     "t": 39.424
+    },
+    {
+     "w": "e",
+     "t": 39.872
+    },
+    {
+     "w": "abre",
+     "t": 39.943
+    },
+    {
+     "w": "o",
+     "t": 40.203
+    },
+    {
+     "w": "circuito",
+     "t": 40.238
+    },
+    {
+     "w": "Por",
+     "t": 41.591
+    },
+    {
+     "w": "isso",
+     "t": 41.78
+    },
+    {
+     "w": "não",
+     "t": 42.063
+    },
+    {
+     "w": "existe",
+     "t": 42.24
+    },
+    {
+     "w": "posição",
+     "t": 42.641
+    },
+    {
+     "w": "certa",
+     "t": 43.124
+    },
+    {
+     "w": "de",
+     "t": 43.513
+    },
+    {
+     "w": "ligado",
+     "t": 43.596
+    },
+    {
+     "w": "depende",
+     "t": 44.221
+    },
+    {
+     "w": "do",
+     "t": 44.669
+    },
+    {
+     "w": "outro",
+     "t": 44.787
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 45.52,
+   "fim": 52.82,
+   "texto": "Coloque um em cada ponta da escada e uma tecla que brilha no escuro. Parabéns, você construiu um interruptor paralelo.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 45.57
+    },
+    {
+     "w": "um",
+     "t": 46.089
+    },
+    {
+     "w": "em",
+     "t": 46.207
+    },
+    {
+     "w": "cada",
+     "t": 46.289
+    },
+    {
+     "w": "ponta",
+     "t": 46.549
+    },
+    {
+     "w": "da",
+     "t": 46.867
+    },
+    {
+     "w": "escada",
+     "t": 46.95
+    },
+    {
+     "w": "e",
+     "t": 47.386
+    },
+    {
+     "w": "uma",
+     "t": 47.433
+    },
+    {
+     "w": "tecla",
+     "t": 47.622
+    },
+    {
+     "w": "que",
+     "t": 47.952
+    },
+    {
+     "w": "brilha",
+     "t": 48.07
+    },
+    {
+     "w": "no",
+     "t": 48.412
+    },
+    {
+     "w": "escuro",
+     "t": 48.518
+    },
+    {
+     "w": "Parabéns",
+     "t": 49.754
+    },
+    {
+     "w": "você",
+     "t": 50.508
+    },
+    {
+     "w": "construiu",
+     "t": 50.815
+    },
+    {
+     "w": "um",
+     "t": 51.298
+    },
+    {
+     "w": "interruptor",
+     "t": 51.416
+    },
+    {
+     "w": "paralelo",
+     "t": 52.018
+    }
+   ]
+  }
+ ]
+}

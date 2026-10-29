@@ -1,0 +1,79 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("interruptor", { fundo: 0x1e2230, seed: 2906 });
+const { THREE, scene, add, grupo, mat, vidro, brilho, V, sprite, texRuido, texMadeira, grade, prog, lin, entre, frac, clamp, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- casa em corte: escada entre dois andares ----------
+const parede = add(new THREE.PlaneGeometry(6, 6), mat(0xe8dcc8, { map: texRuido("#e8dcc8", 12, 4) }), 0, 1.6, -.3);
+add(new THREE.BoxGeometry(4, .1, 1.2), mat(0xffffff, { map: texMadeira("#a8784a", 3) }), 0, -.05, .3);
+add(new THREE.BoxGeometry(1.6, .1, 1.2), mat(0xffffff, { map: texMadeira("#a8784a", 3) }), 1.2, 1.55, .3);
+for (let i = 0; i < 10; i++) add(new THREE.BoxGeometry(.18, .155, .9), mat(0xc8a070), -.9 + i * .17, .08 + i * .155, .4);
+const AX = -1.0, AY = .95, BX2 = 1.25, BY = 2.25;
+function placa(x, y) { const g = grupo(x, y, -.25); add(new THREE.BoxGeometry(.2, .3, .03), mat(0xf4f4f4), 0, 0, 0, g); const tecla = add(new THREE.BoxGeometry(.1, .14, .04), mat(0xffffff), 0, 0, .025, g); return { g, tecla }; }
+const A = placa(AX, AY), B = placa(BX2, BY);
+const lampM = new THREE.MeshStandardMaterial({ color: 0xfff6d8, emissive: 0xffd060, emissiveIntensity: 0, transparent: true, opacity: .8 }); add(new THREE.SphereGeometry(.13, 24, 16), lampM, .1, 2.75, 0);
+add(new THREE.CylinderGeometry(.01, .01, .25, 6), mat(0x2a2a2a), .1, 2.95, 0);
+const luz = new THREE.PointLight(0xffd890, 0, 5); luz.position.set(.1, 2.6, .4); scene.add(luz);
+const halo = sprite(0xffe090); halo.position.set(.1, 2.75, .02);
+// fios
+const tubo = (pts, cor) => { const c = new THREE.CatmullRomCurve3(pts); const m = add(new THREE.TubeGeometry(c, 60, .018, 6), new THREE.MeshStandardMaterial({ color: cor, emissive: 0xffd23a, emissiveIntensity: 0 })); return { c, m }; };
+const fase = tubo([V(-1.9, AY, -.25), V(-1.4, AY, -.25), V(AX - .05, AY, -.25)], 0xd6302a);
+const ida1 = tubo([V(AX, AY + .1, -.25), V(AX + .2, AY + .5, -.25), V(BX2 - .4, BY + .2, -.25), V(BX2, BY + .1, -.25)], 0x3a8ad8);
+const ida2 = tubo([V(AX, AY - .1, -.25), V(AX + .5, AY - .1, -.25), V(BX2 - .1, BY - .5, -.25), V(BX2, BY - .1, -.25)], 0x2fa84f);
+const volta = tubo([V(BX2 + .05, BY, -.25), V(BX2 + .1, 2.75, -.25), V(.3, 2.75, -.1), V(.1, 2.75, 0)], 0xd6302a);
+const neutro = tubo([V(.1, 2.75, 0), V(-.5, 2.9, -.2), V(-1.9, 2.9, -.25)], 0x6ab8f0);
+const unico = tubo([V(AX, AY + .05, -.25), V(AX + .3, 2.4, -.25), V(-.2, 2.75, -.1), V(.1, 2.75, 0)], 0xd6302a);
+const corr = Array.from({ length: 50 }, () => ({ s: sprite(0xffd23a), f: rnd() }));
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 64 }), transparent: true })); s.position.set(x, y, .3); s.scale.set(.6, .3, 1); scene.add(s); return s; };
+const lA = lb("EMBAIXO", "#ffffff", AX, AY - .35), lB = lb("EM CIMA", "#ffffff", BX2, BY + .35);
+const brilhoA = sprite(0x9aff9a), brilhoB = sprite(0x9aff9a); brilhoA.position.set(AX, AY, -.2); brilhoB.position.set(BX2, BY, -.2);
+
+K.camera_({
+  geral: [V(.2, 1.75, 7.9), V(.12, 1.6, 0)],
+  a: [V(AX + .4, AY + .4, 3.0), V(AX + .2, AY + .2, -.25)],
+  fim: [V(-.8, 1.8, 7.7), V(.12, 1.6, 0)],
+}, [
+  [0, "geral"], [C(3), "geral"], [C(3), "a"], [F(3), "a"], [C(4), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const simples = t < C(3);
+  [ida1, ida2, volta].forEach((w) => { w.m.visible = !simples; }); unico.m.visible = simples; B.g.visible = !simples || em(P(2, "sobe") - .3, F(2));
+  // estado das teclas (0 = fio de cima/azul, 1 = fio de baixo/verde)
+  let sA = 0, sB = 0, aceso;
+  if (simples) { aceso = t > P(1, "acende") - .1 && !(em(P(1, "apaga") - .1, C(2))); if (em(C(2), F(2))) aceso = true; }
+  else {
+    if (em(C(6), F(6))) { if (t > P(6, "qualquer") - .1) sB = 1; if (t > P(6, "outro") - .3) sA = 1; }
+    if (em(C(3), C(5))) sA = (t * .8 | 0) % 2;
+    aceso = t > C(5) && sA === sB;
+  }
+  A.tecla.rotation.x = sA ? -.35 : .35; B.tecla.rotation.x = sB ? -.35 : .35; if (simples) A.tecla.rotation.x = aceso ? .35 : -.35;
+  lampM.emissiveIntensity = aceso ? 1.6 : 0; luz.intensity = aceso ? 4 : 0; halo.scale.setScalar(aceso ? .9 : .001); halo.material.opacity = aceso ? .7 : 0;
+  // caminho ativo brilha + corrente correndo
+  const ativo = simples ? [fase, unico, neutro] : [fase, sA ? ida2 : ida1, volta, neutro];
+  [fase, ida1, ida2, volta, neutro, unico].forEach((w) => { w.m.material.emissiveIntensity = 0; });
+  ativo.forEach((w) => { if (w !== neutro && (aceso || w === fase || (!simples && ((w === ida1 && !sA) || (w === ida2 && sA))))) w.m.material.emissiveIntensity = .5; });
+  if (!simples && t > C(4) && t < C(5)) { ida1.m.material.emissiveIntensity = .6 * (Math.sin(t * 6) > 0); ida2.m.material.emissiveIntensity = .6 * (Math.sin(t * 6) <= 0); }
+  corr.forEach((p, i) => { const w = ativo[i % ativo.length]; const q = frac(t * .5 + p.f); p.s.position.copy(w.c.getPointAt(q)); p.s.scale.setScalar(.04); p.s.material.opacity = aceso ? .95 : 0; });
+  lA.visible = lB.visible = !simples && t < C(7);
+  const brilha = t > P(7, "brilha") - .3; brilhoA.scale.setScalar(brilha ? .25 : .001); brilhoB.scale.setScalar(brilha ? .25 : .001); brilhoA.material.opacity = brilhoB.material.opacity = brilha ? .8 : 0;
+  K.cartoes(t, [
+    [P(1, "interruptor") - .3, F(1), "INTERRUPTOR SIMPLES", "#ffffff"],
+    [P(2, "acesa") - .4, F(2), "LUZ ACESA A NOITE TODA 💸", "#ff4a3a"],
+    [P(3, "escolhe") - .3, F(3), "ELE SÓ ESCOLHE O CAMINHO", "#ffd23a"],
+    [P(4, "dois", 2) - .3, F(4), "2 FIOS ENTRE ELES", "#8ac8ff"],
+    [P(5, "fecha") - .3, F(5), "MESMO FIO = ACENDE 💡", "#ffd23a"],
+    [P(6, "abre") - .3, P(6, "outro") - .3, "FIOS DIFERENTES = APAGA", "#ff4a3a"],
+    [P(6, "outro") - .3, F(6), "MUDOU O OUTRO: ACENDE DE NOVO", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
