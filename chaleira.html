@@ -1,0 +1,120 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("chaleira", { fundo: 0xe8e4dc, seed: 3001 });
+const { THREE, scene, add, grupo, mat, vidro, sprite, texMadeira, prog, entre, frac, C, F, P, T, rnd } = K;
+const PI = Math.PI;
+
+// ---------- bancada + chaleira em corte ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b08050", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.BoxGeometry(20, 6, .2), mat(0xdedad2), 0, 3, -2.5);
+const chapaM = mat(0x333333, { emissive: 0xff3010, emissiveIntensity: 0 });
+const chapa = add(new THREE.CylinderGeometry(.62, .62, .08, 40), chapaM, 0, .04, 0);
+const base = grupo(0, 0, 0);
+add(new THREE.CylinderGeometry(.56, .6, .1, 40), mat(0x2a2a2e), 0, .05, 0, base);
+const chal = grupo(0, .08, 0);
+const corpoM = vidro(.18, 0xdfe8f0); const corpo = add(new THREE.CylinderGeometry(.42, .48, 1.0, 40, 1, true), corpoM, 0, .55, 0, chal);
+add(new THREE.CylinderGeometry(.48, .48, .06, 40), mat(0x2a2a2e), 0, .06, 0, chal);
+const aguaM = new THREE.MeshStandardMaterial({ color: 0x4aa8e8, transparent: true, opacity: .55, roughness: .1 });
+const agua = add(new THREE.CylinderGeometry(.43, .46, 1, 40), aguaM, 0, .5, 0, chal);
+const resM = mat(0x6a5a50, { emissive: 0xff4010, emissiveIntensity: 0, metalness: .4 });
+const resist = add(new THREE.TorusGeometry(.28, .035, 10, 48), resM, 0, .13, 0, chal); resist.rotation.x = PI / 2;
+const placa2M = mat(0xc08040, { emissive: 0xff8020, emissiveIntensity: 0 });
+const placa2 = add(new THREE.BoxGeometry(.18, .02, .1), placa2M, 0, .095, 0, chal);
+// cabo + tubinho do vapor + botão
+const caboM = mat(0x2a2a2e);
+add(new THREE.BoxGeometry(.1, .7, .14), caboM, .66, .62, 0, chal);
+add(new THREE.BoxGeometry(.24, .1, .14), caboM, .54, .95, 0, chal);
+add(new THREE.BoxGeometry(.24, .1, .14), caboM, .54, .3, 0, chal);
+const botao = add(new THREE.BoxGeometry(.08, .06, .1), mat(0xe03030), .66, .22, 0, chal);
+const curvaV = new THREE.CatmullRomCurve3([new THREE.Vector3(.1, 1.0, 0), new THREE.Vector3(.4, 1.06, .06), new THREE.Vector3(.6, .98, .1), new THREE.Vector3(.62, .6, .1), new THREE.Vector3(.64, .26, .1)]);
+const tubo = add(new THREE.TubeGeometry(curvaV, 60, .018, 8), vidro(.5, 0xffffff), 0, 0, 0, chal); tubo.visible = false;
+const vaporTubo = K.fluxo(curvaV, 16, 0xffffff, chal);
+const tampa = grupo(0, 1.6, 0, chal); add(new THREE.CylinderGeometry(.42, .42, .05, 40), mat(0x2a2a2e), 0, 0, 0, tampa); add(new THREE.BoxGeometry(.2, .06, .08), mat(0x2a2a2e), 0, .05, 0, tampa); tampa.visible = false;
+const janela = add(new THREE.BoxGeometry(.12, .7, .02), new THREE.MeshStandardMaterial({ color: 0x8ad0ff, transparent: true, opacity: .9 }), 0, .55, .47, chal); janela.visible = false;
+// partículas: calor da chapa indo pro ar, bolhas e vapor
+const calorAr = Array.from({ length: 30 }, () => ({ s: sprite(0xff6030), f: rnd(), a: rnd() * PI * 2 }));
+const bolhas = Array.from({ length: 50 }, () => ({ s: sprite(0xffffff, chal), f: rnd(), a: rnd() * PI * 2, r: .05 + rnd() * .3 }));
+const vapor = Array.from({ length: 25 }, () => ({ s: sprite(0xffffff), f: rnd(), x: (rnd() - .5) * .5 }));
+
+// ---------- mini set: plaquinha de dois metais ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(12, 12), mat(0x2a3240), BX, 0, -1.5); { const pl = new THREE.PointLight(0xffffff, 4, 10); pl.position.set(BX + 1, 2.5, 3); scene.add(pl); }
+const N = 12, L = .1, segs = [];
+let pai = grupo(BX - .65, 1.05, 0);
+add(new THREE.BoxGeometry(.12, .3, .4), mat(0x5a5e66), -.06, 0, 0, pai);
+const cobreM = mat(0xd07840, { metalness: .6, roughness: .35, emissive: 0xff3010, emissiveIntensity: 0 }), acoM = mat(0xaab0b8, { metalness: .6, roughness: .35 });
+for (let i = 0; i < N; i++) { const g = new THREE.Group(); g.position.x = i ? L : 0; pai.add(g); add(new THREE.BoxGeometry(L + .002, .05, .3), cobreM, L / 2, .025, 0, g); add(new THREE.BoxGeometry(L + .002, .05, .3), acoM, L / 2, -.025, 0, g); segs.push(g); pai = g; }
+const alav = grupo(BX + .5, .62, 0); add(new THREE.BoxGeometry(.45, .05, .2), mat(0xe03030), .1, 0, 0, alav); add(new THREE.BoxGeometry(.1, .4, .3), mat(0x5a5e66), BX + .72, .4, 0);
+const curvaM = new THREE.CatmullRomCurve3([new THREE.Vector3(BX - 1.2, 1.9, .3), new THREE.Vector3(BX - .6, 1.6, .3), new THREE.Vector3(BX - .1, 1.25, .3), new THREE.Vector3(BX + .3, 1.15, .3)]);
+const vaporM = K.fluxo(curvaM, 22, 0xffffff);
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 80, w: 768 }), transparent: true })); s.position.set(x, y, .4); s.scale.set(.9, .3, 1); scene.add(s); return s; };
+const lCobre = lb("ESTICA MAIS", "#ffb070", BX - .2, 1.5), lAco = lb("ESTICA MENOS", "#dfe6ee", BX - .2, .55);
+
+K.camera_({
+  geral: [new THREE.Vector3(1.9, 1.95, 4.5), new THREE.Vector3(.12, .9, 0)],
+  cabo: [new THREE.Vector3(2.0, 1.35, 3.1), new THREE.Vector3(.4, .85, 0)],
+  mini: [new THREE.Vector3(BX + .05, 1.25, 4.7), new THREE.Vector3(BX + .05, 1.15, 0)],
+  fim: [new THREE.Vector3(-1.9, 2.0, 4.5), new THREE.Vector3(0, .92, 0)],
+}, [
+  [0, "geral"], [F(3), "geral"], [P(4, "botao") - .6, "cabo"], [F(4), "cabo"], [C(5), "mini"], [F(5), "mini"], [C(6), "geral"], [C(7), "geral"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // fase 1: chapa por baixo, esquentando o ar
+  const naChapa = t < P(2, "resistencia") - .3;
+  chapa.visible = naChapa; base.visible = !naChapa; chapaM.emissiveIntensity = naChapa ? .9 : 0;
+  calorAr.forEach((c) => { const q = frac(t * .5 + c.f); const r = .62 + q * .5; c.s.position.set(Math.cos(c.a) * r, .1 + q * .9, Math.sin(c.a) * r); c.s.scale.setScalar(.09); c.s.material.opacity = naChapa && t > P(1, "chapa") - .2 ? .6 * (1 - q) : 0; });
+  resist.visible = !naChapa;
+  // nível da água
+  let nivel = .85;
+  if (em(P(3, "ferve") - .3, C(4))) nivel = .85 * (1 - prog(t, P(3, "ferve") - .3, P(3, "seca")));
+  if (em(C(6), P(7, "janelinha"))) nivel = 0;
+  if (t >= P(7, "janelinha")) nivel = .85 * prog(t, P(7, "janelinha"), P(7, "janelinha") + 1.2);
+  agua.visible = nivel > .01; agua.scale.y = Math.max(.01, nivel); agua.position.y = .1 + nivel / 2;
+  // resistência: aquece / queima / desliga
+  const fervendo = em(P(2, "agora") - .2, F(5)) && !em(P(3, "seca"), C(4));
+  const queimando = em(P(3, "queima") - .3, C(4)) || em(C(6), P(6, "desliga") - .1);
+  resM.color.set(queimando ? 0xff7030 : fervendo ? 0xd06030 : 0x6a5a50); resM.emissiveIntensity = queimando ? 1.6 + .5 * Math.sin(t * 12) : fervendo ? .8 : 0;
+  placa2.visible = t > P(6, "segunda") - .3; placa2M.emissiveIntensity = em(P(6, "segunda") - .3, P(6, "desliga") + .3) ? 1 : 0;
+  bolhas.forEach((b) => { const q = frac(t * .7 + b.f); b.s.position.set(Math.cos(b.a) * b.r, .15 + q * nivel, Math.sin(b.a) * b.r); b.s.scale.setScalar(.04); b.s.material.opacity = fervendo && nivel > .05 ? .8 * (1 - q) : 0; });
+  const temVapor = (em(P(3, "ferve") - .3, P(3, "seca")) || em(P(4, "ferve") - .3, F(5)));
+  vapor.forEach((v) => { const q = frac(t * .35 + v.f); v.s.position.set(v.x + Math.sin(q * 6 + v.f * 9) * .08, 1.2 + q * 1.1, 0); v.s.scale.setScalar(.12 + q * .2); v.s.material.opacity = temVapor ? .5 * (1 - q) : 0; });
+  // tubinho e botão
+  tubo.visible = t > P(4, "tubinho") - .3 && t < C(7);
+  vaporTubo.atualiza(t, em(P(4, "desce") - .3, F(4)), .5, .05, .9);
+  const clique = t > P(5, "clique") - .1 && t < C(6);
+  botao.rotation.z = clique ? -.5 : 0; botao.position.y = clique ? .19 : .22;
+  // mini set: entorta
+  const dobra = prog(t, P(5, "estica") - .2, P(5, "clique"));
+  segs.forEach((g, i) => { g.rotation.z = i ? -dobra * .045 : 0; });
+  cobreM.emissiveIntensity = dobra * .5;
+  alav.rotation.z = t > P(5, "clique") - .05 ? -.35 : 0;
+  vaporM.atualiza(t, em(C(5), F(5)), .4, .1, .7);
+  lCobre.visible = lAco.visible = em(P(5, "estica") - .3, F(5));
+  // acabamentos
+  tampa.visible = t > P(7, "tampa") - .4; tampa.position.y = 1.07 + .5 * (1 - prog(t, P(7, "tampa") - .4, P(7, "tampa") + .3));
+  janela.visible = t > P(7, "janelinha") - .3;
+  corpoM.opacity = t > P(7, "janelinha") - .3 ? .95 : .18; corpoM.color.set(t > P(7, "janelinha") - .3 ? 0xf2f2f2 : 0xdfe8f0); corpoM.depthWrite = t > P(7, "janelinha") - .3;
+  aguaM.opacity = t > P(7, "janelinha") - .3 ? .0 : .55;
+  const gira = prog(t, P(7, "gira") - .3, P(7, "gira") + 1.5);
+  chal.position.y = .08 + .25 * Math.sin(gira * PI); chal.rotation.y = gira * PI * 2;
+  K.cartoes(t, [
+    [P(1, "chaleira") - .3, F(1), "CHALEIRA?", "#ffffff"],
+    [P(2, "ar") - .4, P(2, "resistencia") - .3, "CALOR INDO PRO AR", "#ff7040"],
+    [P(2, "resistencia") - .3, F(2), "RESISTÊNCIA DENTRO DA ÁGUA", "#ffb070"],
+    [P(3, "seca") - .2, P(3, "desligue") - .3, "SEM ÁGUA: QUEIMA", "#ff4a3a"],
+    [P(4, "tubinho") - .3, F(4), "TUBINHO DO VAPOR", "#ffffff"],
+    [P(5, "plaquinha") - .3, P(5, "estica") - .3, "DOIS METAIS GRUDADOS", "#ffb070"],
+    [P(5, "clique") - .2, F(5), "CLIQUE!", "#ffd23a"],
+    [P(6, "segunda") - .3, F(6), "2ª PLAQUINHA: PROTEÇÃO", "#8ac8ff"],
+  ]);
+});
+</script>
+</body></html>

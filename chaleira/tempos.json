@@ -1,0 +1,705 @@
+{
+ "total": 61.81,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.95,
+   "texto": "Se você colocar água numa jarra em cima de uma chapa quente, terá uma chaleira.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.294
+    },
+    {
+     "w": "colocar",
+     "t": 0.59
+    },
+    {
+     "w": "água",
+     "t": 1.03
+    },
+    {
+     "w": "numa",
+     "t": 1.318
+    },
+    {
+     "w": "jarra",
+     "t": 1.59
+    },
+    {
+     "w": "em",
+     "t": 2.043
+    },
+    {
+     "w": "cima",
+     "t": 2.35
+    },
+    {
+     "w": "de",
+     "t": 2.577
+    },
+    {
+     "w": "uma",
+     "t": 2.67
+    },
+    {
+     "w": "chapa",
+     "t": 2.843
+    },
+    {
+     "w": "quente",
+     "t": 3.243
+    },
+    {
+     "w": "terá",
+     "t": 4.03
+    },
+    {
+     "w": "uma",
+     "t": 4.25
+    },
+    {
+     "w": "chaleira",
+     "t": 4.363
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.1,
+   "fim": 15.82,
+   "texto": "Mas ela demora. A chapa esquenta mais o ar do que a água. Então, você coloca a resistência no fundo, colada na água. Agora quase todo o calor vai pra dentro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.1
+    },
+    {
+     "w": "ela",
+     "t": 5.3
+    },
+    {
+     "w": "demora",
+     "t": 5.48
+    },
+    {
+     "w": "A",
+     "t": 6.4
+    },
+    {
+     "w": "chapa",
+     "t": 6.593
+    },
+    {
+     "w": "esquenta",
+     "t": 6.913
+    },
+    {
+     "w": "mais",
+     "t": 7.356
+    },
+    {
+     "w": "o",
+     "t": 7.78
+    },
+    {
+     "w": "ar",
+     "t": 7.873
+    },
+    {
+     "w": "do",
+     "t": 8.033
+    },
+    {
+     "w": "que",
+     "t": 8.16
+    },
+    {
+     "w": "a",
+     "t": 8.26
+    },
+    {
+     "w": "água",
+     "t": 8.38
+    },
+    {
+     "w": "Então",
+     "t": 8.9
+    },
+    {
+     "w": "você",
+     "t": 9.996
+    },
+    {
+     "w": "coloca",
+     "t": 10.26
+    },
+    {
+     "w": "a",
+     "t": 10.58
+    },
+    {
+     "w": "resistência",
+     "t": 10.677
+    },
+    {
+     "w": "no",
+     "t": 11.313
+    },
+    {
+     "w": "fundo",
+     "t": 11.484
+    },
+    {
+     "w": "colada",
+     "t": 12.12
+    },
+    {
+     "w": "na",
+     "t": 12.593
+    },
+    {
+     "w": "água",
+     "t": 12.78
+    },
+    {
+     "w": "Agora",
+     "t": 13.313
+    },
+    {
+     "w": "quase",
+     "t": 13.953
+    },
+    {
+     "w": "todo",
+     "t": 14.38
+    },
+    {
+     "w": "o",
+     "t": 14.78
+    },
+    {
+     "w": "calor",
+     "t": 14.887
+    },
+    {
+     "w": "vai",
+     "t": 15.06
+    },
+    {
+     "w": "pra",
+     "t": 15.22
+    },
+    {
+     "w": "dentro",
+     "t": 15.397
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 15.97,
+   "fim": 25.57,
+   "texto": "Mas a água ferve, e ferve, e seca. E a resistência, sem água, queima. Então, você precisa que ela desligue sozinha.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 15.97
+    },
+    {
+     "w": "a",
+     "t": 16.21
+    },
+    {
+     "w": "água",
+     "t": 16.33
+    },
+    {
+     "w": "ferve",
+     "t": 16.73
+    },
+    {
+     "w": "e",
+     "t": 17.61
+    },
+    {
+     "w": "ferve",
+     "t": 17.81
+    },
+    {
+     "w": "e",
+     "t": 18.69
+    },
+    {
+     "w": "seca",
+     "t": 19.063
+    },
+    {
+     "w": "E",
+     "t": 19.85
+    },
+    {
+     "w": "a",
+     "t": 20.19
+    },
+    {
+     "w": "resistência",
+     "t": 20.37
+    },
+    {
+     "w": "sem",
+     "t": 21.07
+    },
+    {
+     "w": "água",
+     "t": 21.37
+    },
+    {
+     "w": "queima",
+     "t": 21.93
+    },
+    {
+     "w": "Então",
+     "t": 22.59
+    },
+    {
+     "w": "você",
+     "t": 23.41
+    },
+    {
+     "w": "precisa",
+     "t": 23.63
+    },
+    {
+     "w": "que",
+     "t": 24.09
+    },
+    {
+     "w": "ela",
+     "t": 24.25
+    },
+    {
+     "w": "desligue",
+     "t": 24.47
+    },
+    {
+     "w": "sozinha",
+     "t": 25.09
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.72,
+   "fim": 33.96,
+   "texto": "Você faz um tubinho que leva o vapor lá de cima até o botão, no cabo. Quando a água ferve, o vapor desce por ali.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 25.72
+    },
+    {
+     "w": "faz",
+     "t": 26.02
+    },
+    {
+     "w": "um",
+     "t": 26.227
+    },
+    {
+     "w": "tubinho",
+     "t": 26.36
+    },
+    {
+     "w": "que",
+     "t": 26.94
+    },
+    {
+     "w": "leva",
+     "t": 27.08
+    },
+    {
+     "w": "o",
+     "t": 27.36
+    },
+    {
+     "w": "vapor",
+     "t": 27.48
+    },
+    {
+     "w": "lá",
+     "t": 27.933
+    },
+    {
+     "w": "de",
+     "t": 28.093
+    },
+    {
+     "w": "cima",
+     "t": 28.32
+    },
+    {
+     "w": "até",
+     "t": 28.82
+    },
+    {
+     "w": "o",
+     "t": 29.28
+    },
+    {
+     "w": "botão",
+     "t": 29.38
+    },
+    {
+     "w": "no",
+     "t": 29.88
+    },
+    {
+     "w": "cabo",
+     "t": 30.12
+    },
+    {
+     "w": "Quando",
+     "t": 30.634
+    },
+    {
+     "w": "a",
+     "t": 31.36
+    },
+    {
+     "w": "água",
+     "t": 31.48
+    },
+    {
+     "w": "ferve",
+     "t": 31.8
+    },
+    {
+     "w": "o",
+     "t": 32.48
+    },
+    {
+     "w": "vapor",
+     "t": 32.587
+    },
+    {
+     "w": "desce",
+     "t": 33
+    },
+    {
+     "w": "por",
+     "t": 33.44
+    },
+    {
+     "w": "ali",
+     "t": 33.62
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.11,
+   "fim": 45.71,
+   "texto": "No caminho tem uma plaquinha de dois metais grudados. Um estica mais que o outro com o calor, então ela entorta e faz aquele clique. Esse é o termostato bimetálico.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 34.11
+    },
+    {
+     "w": "caminho",
+     "t": 34.25
+    },
+    {
+     "w": "tem",
+     "t": 34.73
+    },
+    {
+     "w": "uma",
+     "t": 34.95
+    },
+    {
+     "w": "plaquinha",
+     "t": 35.11
+    },
+    {
+     "w": "de",
+     "t": 35.657
+    },
+    {
+     "w": "dois",
+     "t": 35.774
+    },
+    {
+     "w": "metais",
+     "t": 36.11
+    },
+    {
+     "w": "grudados",
+     "t": 36.563
+    },
+    {
+     "w": "Um",
+     "t": 37.523
+    },
+    {
+     "w": "estica",
+     "t": 38.03
+    },
+    {
+     "w": "mais",
+     "t": 38.526
+    },
+    {
+     "w": "que",
+     "t": 38.95
+    },
+    {
+     "w": "o",
+     "t": 39.11
+    },
+    {
+     "w": "outro",
+     "t": 39.217
+    },
+    {
+     "w": "com",
+     "t": 39.59
+    },
+    {
+     "w": "o",
+     "t": 39.81
+    },
+    {
+     "w": "calor",
+     "t": 39.943
+    },
+    {
+     "w": "então",
+     "t": 40.497
+    },
+    {
+     "w": "ela",
+     "t": 40.87
+    },
+    {
+     "w": "entorta",
+     "t": 41.05
+    },
+    {
+     "w": "e",
+     "t": 41.79
+    },
+    {
+     "w": "faz",
+     "t": 42.01
+    },
+    {
+     "w": "aquele",
+     "t": 42.222
+    },
+    {
+     "w": "clique",
+     "t": 42.499
+    },
+    {
+     "w": "Esse",
+     "t": 43.23
+    },
+    {
+     "w": "é",
+     "t": 43.91
+    },
+    {
+     "w": "o",
+     "t": 43.99
+    },
+    {
+     "w": "termostato",
+     "t": 44.07
+    },
+    {
+     "w": "bimetálico",
+     "t": 44.83
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 45.86,
+   "fim": 52.5,
+   "texto": "E se ligar sem água? Tem uma segunda plaquinha embaixo da resistência, que desliga antes de queimar.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 45.86
+    },
+    {
+     "w": "se",
+     "t": 45.993
+    },
+    {
+     "w": "ligar",
+     "t": 46.14
+    },
+    {
+     "w": "sem",
+     "t": 46.46
+    },
+    {
+     "w": "água",
+     "t": 46.66
+    },
+    {
+     "w": "Tem",
+     "t": 47.16
+    },
+    {
+     "w": "uma",
+     "t": 47.74
+    },
+    {
+     "w": "segunda",
+     "t": 47.92
+    },
+    {
+     "w": "plaquinha",
+     "t": 48.38
+    },
+    {
+     "w": "embaixo",
+     "t": 48.9
+    },
+    {
+     "w": "da",
+     "t": 49.353
+    },
+    {
+     "w": "resistência",
+     "t": 49.506
+    },
+    {
+     "w": "que",
+     "t": 50.26
+    },
+    {
+     "w": "desliga",
+     "t": 50.58
+    },
+    {
+     "w": "antes",
+     "t": 51.153
+    },
+    {
+     "w": "de",
+     "t": 51.647
+    },
+    {
+     "w": "queimar",
+     "t": 51.74
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 52.65,
+   "fim": 61.21,
+   "texto": "Coloque uma tampa com trava, uma janelinha pra ver o nível e uma base que gira. Parabéns, você construiu uma chaleira elétrica.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 52.65
+    },
+    {
+     "w": "uma",
+     "t": 53.09
+    },
+    {
+     "w": "tampa",
+     "t": 53.29
+    },
+    {
+     "w": "com",
+     "t": 53.65
+    },
+    {
+     "w": "trava",
+     "t": 53.837
+    },
+    {
+     "w": "uma",
+     "t": 54.53
+    },
+    {
+     "w": "janelinha",
+     "t": 54.69
+    },
+    {
+     "w": "pra",
+     "t": 55.25
+    },
+    {
+     "w": "ver",
+     "t": 55.43
+    },
+    {
+     "w": "o",
+     "t": 55.65
+    },
+    {
+     "w": "nível",
+     "t": 55.73
+    },
+    {
+     "w": "e",
+     "t": 56.21
+    },
+    {
+     "w": "uma",
+     "t": 56.37
+    },
+    {
+     "w": "base",
+     "t": 56.57
+    },
+    {
+     "w": "que",
+     "t": 56.93
+    },
+    {
+     "w": "gira",
+     "t": 57.09
+    },
+    {
+     "w": "Parabéns",
+     "t": 57.83
+    },
+    {
+     "w": "você",
+     "t": 59.018
+    },
+    {
+     "w": "construiu",
+     "t": 59.256
+    },
+    {
+     "w": "uma",
+     "t": 59.73
+    },
+    {
+     "w": "chaleira",
+     "t": 59.903
+    },
+    {
+     "w": "elétrica",
+     "t": 60.45
+    }
+   ]
+  }
+ ]
+}
