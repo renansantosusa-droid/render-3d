@@ -1,0 +1,1245 @@
+{
+ "total": 103.18,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 12.24,
+   "texto": "Tinha um traidor contando todos os passos de Flávio Bolsonaro para o STF? A acusação saiu de dentro do próprio grupo, só que tem um passo que não fecha. Senta que eu te conto bem explicadinho.",
+   "palavras": [
+    {
+     "w": "Tinha",
+     "t": 0.2
+    },
+    {
+     "w": "um",
+     "t": 0.459
+    },
+    {
+     "w": "traidor",
+     "t": 0.542
+    },
+    {
+     "w": "contando",
+     "t": 0.908
+    },
+    {
+     "w": "todos",
+     "t": 1.403
+    },
+    {
+     "w": "os",
+     "t": 1.698
+    },
+    {
+     "w": "passos",
+     "t": 1.863
+    },
+    {
+     "w": "de",
+     "t": 2.228
+    },
+    {
+     "w": "Flávio",
+     "t": 2.346
+    },
+    {
+     "w": "Bolsonaro",
+     "t": 2.735
+    },
+    {
+     "w": "para",
+     "t": 3.29
+    },
+    {
+     "w": "o",
+     "t": 3.443
+    },
+    {
+     "w": "STF",
+     "t": 3.502
+    },
+    {
+     "w": "A",
+     "t": 5.02
+    },
+    {
+     "w": "acusação",
+     "t": 5.138
+    },
+    {
+     "w": "saiu",
+     "t": 5.704
+    },
+    {
+     "w": "de",
+     "t": 6.023
+    },
+    {
+     "w": "dentro",
+     "t": 6.141
+    },
+    {
+     "w": "do",
+     "t": 6.4
+    },
+    {
+     "w": "próprio",
+     "t": 6.506
+    },
+    {
+     "w": "grupo",
+     "t": 6.86
+    },
+    {
+     "w": "só",
+     "t": 7.438
+    },
+    {
+     "w": "que",
+     "t": 7.591
+    },
+    {
+     "w": "tem",
+     "t": 7.733
+    },
+    {
+     "w": "um",
+     "t": 7.874
+    },
+    {
+     "w": "passo",
+     "t": 8.004
+    },
+    {
+     "w": "que",
+     "t": 8.358
+    },
+    {
+     "w": "não",
+     "t": 8.464
+    },
+    {
+     "w": "fecha",
+     "t": 8.676
+    },
+    {
+     "w": "Senta",
+     "t": 9.926
+    },
+    {
+     "w": "que",
+     "t": 10.386
+    },
+    {
+     "w": "eu",
+     "t": 10.468
+    },
+    {
+     "w": "te",
+     "t": 10.563
+    },
+    {
+     "w": "conto",
+     "t": 10.681
+    },
+    {
+     "w": "bem",
+     "t": 11.046
+    },
+    {
+     "w": "explicadinho",
+     "t": 11.282
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 12.39,
+   "fim": 25.98,
+   "texto": "Imagina uma mesa de jantar cheia de aliados, todo mundo de terno e de confiança. Só que, segundo a acusação, um deles pedia licença, dizia que ia ao banheiro, e de lá contava cada passo do Flávio para o STF.",
+   "palavras": [
+    {
+     "w": "Imagina",
+     "t": 12.44
+    },
+    {
+     "w": "uma",
+     "t": 12.959
+    },
+    {
+     "w": "mesa",
+     "t": 13.112
+    },
+    {
+     "w": "de",
+     "t": 13.431
+    },
+    {
+     "w": "jantar",
+     "t": 13.513
+    },
+    {
+     "w": "cheia",
+     "t": 13.926
+    },
+    {
+     "w": "de",
+     "t": 14.232
+    },
+    {
+     "w": "aliados",
+     "t": 14.303
+    },
+    {
+     "w": "todo",
+     "t": 15.07
+    },
+    {
+     "w": "mundo",
+     "t": 15.365
+    },
+    {
+     "w": "de",
+     "t": 15.648
+    },
+    {
+     "w": "terno",
+     "t": 15.801
+    },
+    {
+     "w": "e",
+     "t": 16.202
+    },
+    {
+     "w": "de",
+     "t": 16.249
+    },
+    {
+     "w": "confiança",
+     "t": 16.343
+    },
+    {
+     "w": "Só",
+     "t": 17.779
+    },
+    {
+     "w": "que",
+     "t": 18.098
+    },
+    {
+     "w": "segundo",
+     "t": 18.546
+    },
+    {
+     "w": "a",
+     "t": 18.947
+    },
+    {
+     "w": "acusação",
+     "t": 18.97
+    },
+    {
+     "w": "um",
+     "t": 19.807
+    },
+    {
+     "w": "deles",
+     "t": 19.937
+    },
+    {
+     "w": "pedia",
+     "t": 20.267
+    },
+    {
+     "w": "licença",
+     "t": 20.527
+    },
+    {
+     "w": "dizia",
+     "t": 21.329
+    },
+    {
+     "w": "que",
+     "t": 21.706
+    },
+    {
+     "w": "ia",
+     "t": 21.871
+    },
+    {
+     "w": "ao",
+     "t": 22.013
+    },
+    {
+     "w": "banheiro",
+     "t": 22.107
+    },
+    {
+     "w": "e",
+     "t": 22.826
+    },
+    {
+     "w": "de",
+     "t": 22.921
+    },
+    {
+     "w": "lá",
+     "t": 23.039
+    },
+    {
+     "w": "contava",
+     "t": 23.204
+    },
+    {
+     "w": "cada",
+     "t": 23.64
+    },
+    {
+     "w": "passo",
+     "t": 23.911
+    },
+    {
+     "w": "do",
+     "t": 24.218
+    },
+    {
+     "w": "Flávio",
+     "t": 24.324
+    },
+    {
+     "w": "para",
+     "t": 24.737
+    },
+    {
+     "w": "o",
+     "t": 24.902
+    },
+    {
+     "w": "STF",
+     "t": 24.973
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 26.13,
+   "fim": 34.34,
+   "texto": "Essa cena é imaginada, tá? Quem acusou foi um aliado num programa na internet que diz saber quem é, mas não deu nome nem prova.",
+   "palavras": [
+    {
+     "w": "Essa",
+     "t": 26.18
+    },
+    {
+     "w": "cena",
+     "t": 26.522
+    },
+    {
+     "w": "é",
+     "t": 26.84
+    },
+    {
+     "w": "imaginada",
+     "t": 26.899
+    },
+    {
+     "w": "tá",
+     "t": 27.725
+    },
+    {
+     "w": "Quem",
+     "t": 28.795
+    },
+    {
+     "w": "acusou",
+     "t": 28.996
+    },
+    {
+     "w": "foi",
+     "t": 29.432
+    },
+    {
+     "w": "um",
+     "t": 29.597
+    },
+    {
+     "w": "aliado",
+     "t": 29.715
+    },
+    {
+     "w": "num",
+     "t": 30.104
+    },
+    {
+     "w": "programa",
+     "t": 30.234
+    },
+    {
+     "w": "na",
+     "t": 30.67
+    },
+    {
+     "w": "internet",
+     "t": 30.753
+    },
+    {
+     "w": "que",
+     "t": 31.319
+    },
+    {
+     "w": "diz",
+     "t": 31.401
+    },
+    {
+     "w": "saber",
+     "t": 31.578
+    },
+    {
+     "w": "quem",
+     "t": 31.896
+    },
+    {
+     "w": "é",
+     "t": 32.18
+    },
+    {
+     "w": "mas",
+     "t": 32.628
+    },
+    {
+     "w": "não",
+     "t": 32.864
+    },
+    {
+     "w": "deu",
+     "t": 33.005
+    },
+    {
+     "w": "nome",
+     "t": 33.182
+    },
+    {
+     "w": "nem",
+     "t": 33.477
+    },
+    {
+     "w": "prova",
+     "t": 33.701
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 34.49,
+   "fim": 45.84,
+   "texto": "Agora repara nos passos. No domingo da eleição, a PF pediu para reter o passaporte de Flávio. Na segunda, veio a ordem do STF para entregar em vinte e quatro horas.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 34.54
+    },
+    {
+     "w": "repara",
+     "t": 34.965
+    },
+    {
+     "w": "nos",
+     "t": 35.295
+    },
+    {
+     "w": "passos",
+     "t": 35.495
+    },
+    {
+     "w": "No",
+     "t": 36.825
+    },
+    {
+     "w": "domingo",
+     "t": 37.002
+    },
+    {
+     "w": "da",
+     "t": 37.379
+    },
+    {
+     "w": "eleição",
+     "t": 37.45
+    },
+    {
+     "w": "a",
+     "t": 38.146
+    },
+    {
+     "w": "PF",
+     "t": 38.228
+    },
+    {
+     "w": "pediu",
+     "t": 38.653
+    },
+    {
+     "w": "para",
+     "t": 38.924
+    },
+    {
+     "w": "reter",
+     "t": 39.101
+    },
+    {
+     "w": "o",
+     "t": 39.372
+    },
+    {
+     "w": "passaporte",
+     "t": 39.431
+    },
+    {
+     "w": "de",
+     "t": 40.103
+    },
+    {
+     "w": "Flávio",
+     "t": 40.221
+    },
+    {
+     "w": "Na",
+     "t": 41.459
+    },
+    {
+     "w": "segunda",
+     "t": 41.636
+    },
+    {
+     "w": "veio",
+     "t": 42.367
+    },
+    {
+     "w": "a",
+     "t": 42.639
+    },
+    {
+     "w": "ordem",
+     "t": 42.709
+    },
+    {
+     "w": "do",
+     "t": 43.099
+    },
+    {
+     "w": "STF",
+     "t": 43.24
+    },
+    {
+     "w": "para",
+     "t": 43.936
+    },
+    {
+     "w": "entregar",
+     "t": 44.089
+    },
+    {
+     "w": "em",
+     "t": 44.502
+    },
+    {
+     "w": "vinte",
+     "t": 44.608
+    },
+    {
+     "w": "e",
+     "t": 44.856
+    },
+    {
+     "w": "quatro",
+     "t": 44.879
+    },
+    {
+     "w": "horas",
+     "t": 45.186
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 45.99,
+   "fim": 57.01,
+   "texto": "O passaporte não foi entregue, e mesmo assim ele saiu pela Argentina e apareceu em Miami na quarta. Ou seja, se o traidor contava todos os passos, o mais importante passou batido.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 46.04
+    },
+    {
+     "w": "passaporte",
+     "t": 46.17
+    },
+    {
+     "w": "não",
+     "t": 46.83
+    },
+    {
+     "w": "foi",
+     "t": 46.983
+    },
+    {
+     "w": "entregue",
+     "t": 47.137
+    },
+    {
+     "w": "e",
+     "t": 47.891
+    },
+    {
+     "w": "mesmo",
+     "t": 47.986
+    },
+    {
+     "w": "assim",
+     "t": 48.269
+    },
+    {
+     "w": "ele",
+     "t": 48.564
+    },
+    {
+     "w": "saiu",
+     "t": 48.705
+    },
+    {
+     "w": "pela",
+     "t": 48.988
+    },
+    {
+     "w": "Argentina",
+     "t": 49.141
+    },
+    {
+     "w": "e",
+     "t": 49.672
+    },
+    {
+     "w": "apareceu",
+     "t": 49.743
+    },
+    {
+     "w": "em",
+     "t": 50.215
+    },
+    {
+     "w": "Miami",
+     "t": 50.285
+    },
+    {
+     "w": "na",
+     "t": 50.674
+    },
+    {
+     "w": "quarta",
+     "t": 50.828
+    },
+    {
+     "w": "Ou",
+     "t": 52.04
+    },
+    {
+     "w": "seja",
+     "t": 52.205
+    },
+    {
+     "w": "se",
+     "t": 52.877
+    },
+    {
+     "w": "o",
+     "t": 52.971
+    },
+    {
+     "w": "traidor",
+     "t": 53.018
+    },
+    {
+     "w": "contava",
+     "t": 53.396
+    },
+    {
+     "w": "todos",
+     "t": 53.82
+    },
+    {
+     "w": "os",
+     "t": 54.127
+    },
+    {
+     "w": "passos",
+     "t": 54.292
+    },
+    {
+     "w": "o",
+     "t": 54.999
+    },
+    {
+     "w": "mais",
+     "t": 55.094
+    },
+    {
+     "w": "importante",
+     "t": 55.341
+    },
+    {
+     "w": "passou",
+     "t": 55.966
+    },
+    {
+     "w": "batido",
+     "t": 56.297
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 57.16,
+   "fim": 67.8,
+   "texto": "E se a traição for real, o estrago vai longe. Contar algo à justiça não é crime, mas quem revela o que ouviu em sigilo de trabalho, como advogado, pode responder por isso.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 57.21
+    },
+    {
+     "w": "se",
+     "t": 57.34
+    },
+    {
+     "w": "a",
+     "t": 57.458
+    },
+    {
+     "w": "traição",
+     "t": 57.517
+    },
+    {
+     "w": "for",
+     "t": 57.929
+    },
+    {
+     "w": "real",
+     "t": 58.13
+    },
+    {
+     "w": "o",
+     "t": 58.743
+    },
+    {
+     "w": "estrago",
+     "t": 58.849
+    },
+    {
+     "w": "vai",
+     "t": 59.285
+    },
+    {
+     "w": "longe",
+     "t": 59.439
+    },
+    {
+     "w": "Contar",
+     "t": 60.662
+    },
+    {
+     "w": "algo",
+     "t": 61.052
+    },
+    {
+     "w": "à",
+     "t": 61.276
+    },
+    {
+     "w": "justiça",
+     "t": 61.346
+    },
+    {
+     "w": "não",
+     "t": 61.853
+    },
+    {
+     "w": "é",
+     "t": 62.019
+    },
+    {
+     "w": "crime",
+     "t": 62.089
+    },
+    {
+     "w": "mas",
+     "t": 62.702
+    },
+    {
+     "w": "quem",
+     "t": 62.915
+    },
+    {
+     "w": "revela",
+     "t": 63.103
+    },
+    {
+     "w": "o",
+     "t": 63.481
+    },
+    {
+     "w": "que",
+     "t": 63.528
+    },
+    {
+     "w": "ouviu",
+     "t": 63.658
+    },
+    {
+     "w": "em",
+     "t": 63.941
+    },
+    {
+     "w": "sigilo",
+     "t": 64.011
+    },
+    {
+     "w": "de",
+     "t": 64.436
+    },
+    {
+     "w": "trabalho",
+     "t": 64.53
+    },
+    {
+     "w": "como",
+     "t": 65.273
+    },
+    {
+     "w": "advogado",
+     "t": 65.474
+    },
+    {
+     "w": "pode",
+     "t": 66.287
+    },
+    {
+     "w": "responder",
+     "t": 66.559
+    },
+    {
+     "w": "por",
+     "t": 67.054
+    },
+    {
+     "w": "isso",
+     "t": 67.243
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 67.95,
+   "fim": 79.2,
+   "texto": "E tem o efeito bumerangue. Informação que chega por fora do processo pode virar pedido para anular decisões e afastar o ministro do caso. A traição pode acabar ajudando o próprio Flávio.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 68
+    },
+    {
+     "w": "tem",
+     "t": 68.141
+    },
+    {
+     "w": "o",
+     "t": 68.318
+    },
+    {
+     "w": "efeito",
+     "t": 68.413
+    },
+    {
+     "w": "bumerangue",
+     "t": 68.778
+    },
+    {
+     "w": "Informação",
+     "t": 70.143
+    },
+    {
+     "w": "que",
+     "t": 70.91
+    },
+    {
+     "w": "chega",
+     "t": 70.992
+    },
+    {
+     "w": "por",
+     "t": 71.275
+    },
+    {
+     "w": "fora",
+     "t": 71.429
+    },
+    {
+     "w": "do",
+     "t": 71.688
+    },
+    {
+     "w": "processo",
+     "t": 71.783
+    },
+    {
+     "w": "pode",
+     "t": 72.349
+    },
+    {
+     "w": "virar",
+     "t": 72.584
+    },
+    {
+     "w": "pedido",
+     "t": 72.832
+    },
+    {
+     "w": "para",
+     "t": 73.209
+    },
+    {
+     "w": "anular",
+     "t": 73.375
+    },
+    {
+     "w": "decisões",
+     "t": 73.74
+    },
+    {
+     "w": "e",
+     "t": 74.259
+    },
+    {
+     "w": "afastar",
+     "t": 74.353
+    },
+    {
+     "w": "o",
+     "t": 74.813
+    },
+    {
+     "w": "ministro",
+     "t": 74.86
+    },
+    {
+     "w": "do",
+     "t": 75.308
+    },
+    {
+     "w": "caso",
+     "t": 75.426
+    },
+    {
+     "w": "A",
+     "t": 76.582
+    },
+    {
+     "w": "traição",
+     "t": 76.7
+    },
+    {
+     "w": "pode",
+     "t": 77.183
+    },
+    {
+     "w": "acabar",
+     "t": 77.384
+    },
+    {
+     "w": "ajudando",
+     "t": 77.702
+    },
+    {
+     "w": "o",
+     "t": 78.115
+    },
+    {
+     "w": "próprio",
+     "t": 78.162
+    },
+    {
+     "w": "Flávio",
+     "t": 78.516
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 79.35,
+   "fim": 89.18,
+   "texto": "Enquanto isso, ninguém mandou prender o Flávio. Deputados pediram a prisão dele e um alerta para as polícias do mundo inteiro, mas o STF ainda não respondeu.",
+   "palavras": [
+    {
+     "w": "Enquanto",
+     "t": 79.4
+    },
+    {
+     "w": "isso",
+     "t": 79.931
+    },
+    {
+     "w": "ninguém",
+     "t": 80.414
+    },
+    {
+     "w": "mandou",
+     "t": 80.733
+    },
+    {
+     "w": "prender",
+     "t": 81.075
+    },
+    {
+     "w": "o",
+     "t": 81.452
+    },
+    {
+     "w": "Flávio",
+     "t": 81.499
+    },
+    {
+     "w": "Deputados",
+     "t": 82.746
+    },
+    {
+     "w": "pediram",
+     "t": 83.43
+    },
+    {
+     "w": "a",
+     "t": 83.772
+    },
+    {
+     "w": "prisão",
+     "t": 83.819
+    },
+    {
+     "w": "dele",
+     "t": 84.197
+    },
+    {
+     "w": "e",
+     "t": 84.503
+    },
+    {
+     "w": "um",
+     "t": 84.539
+    },
+    {
+     "w": "alerta",
+     "t": 84.668
+    },
+    {
+     "w": "para",
+     "t": 85.069
+    },
+    {
+     "w": "as",
+     "t": 85.223
+    },
+    {
+     "w": "polícias",
+     "t": 85.329
+    },
+    {
+     "w": "do",
+     "t": 85.777
+    },
+    {
+     "w": "mundo",
+     "t": 85.883
+    },
+    {
+     "w": "inteiro",
+     "t": 86.154
+    },
+    {
+     "w": "mas",
+     "t": 86.815
+    },
+    {
+     "w": "o",
+     "t": 86.956
+    },
+    {
+     "w": "STF",
+     "t": 87.109
+    },
+    {
+     "w": "ainda",
+     "t": 87.805
+    },
+    {
+     "w": "não",
+     "t": 88.088
+    },
+    {
+     "w": "respondeu",
+     "t": 88.336
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 89.33,
+   "fim": 102.58,
+   "texto": "Agora me diz, quem é o traidor? Deixa sua teoria aí embaixo, só sem nome, que acusar sem prova dá processo. E manda esse vídeo para aquele amigo que adora um mistério. E segue o perfil.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 89.38
+    },
+    {
+     "w": "me",
+     "t": 89.793
+    },
+    {
+     "w": "diz",
+     "t": 89.911
+    },
+    {
+     "w": "quem",
+     "t": 90.547
+    },
+    {
+     "w": "é",
+     "t": 90.83
+    },
+    {
+     "w": "o",
+     "t": 90.937
+    },
+    {
+     "w": "traidor",
+     "t": 91.007
+    },
+    {
+     "w": "Deixa",
+     "t": 92.278
+    },
+    {
+     "w": "sua",
+     "t": 92.703
+    },
+    {
+     "w": "teoria",
+     "t": 92.891
+    },
+    {
+     "w": "aí",
+     "t": 93.245
+    },
+    {
+     "w": "embaixo",
+     "t": 93.398
+    },
+    {
+     "w": "só",
+     "t": 94.118
+    },
+    {
+     "w": "sem",
+     "t": 94.283
+    },
+    {
+     "w": "nome",
+     "t": 94.519
+    },
+    {
+     "w": "que",
+     "t": 95.097
+    },
+    {
+     "w": "acusar",
+     "t": 95.191
+    },
+    {
+     "w": "sem",
+     "t": 95.639
+    },
+    {
+     "w": "prova",
+     "t": 95.863
+    },
+    {
+     "w": "dá",
+     "t": 96.193
+    },
+    {
+     "w": "processo",
+     "t": 96.299
+    },
+    {
+     "w": "E",
+     "t": 97.703
+    },
+    {
+     "w": "manda",
+     "t": 97.809
+    },
+    {
+     "w": "esse",
+     "t": 98.186
+    },
+    {
+     "w": "vídeo",
+     "t": 98.422
+    },
+    {
+     "w": "para",
+     "t": 98.729
+    },
+    {
+     "w": "aquele",
+     "t": 98.87
+    },
+    {
+     "w": "amigo",
+     "t": 99.094
+    },
+    {
+     "w": "que",
+     "t": 99.483
+    },
+    {
+     "w": "adora",
+     "t": 99.589
+    },
+    {
+     "w": "um",
+     "t": 99.92
+    },
+    {
+     "w": "mistério",
+     "t": 100.002
+    },
+    {
+     "w": "E",
+     "t": 101.323
+    },
+    {
+     "w": "segue",
+     "t": 101.441
+    },
+    {
+     "w": "o",
+     "t": 101.783
+    },
+    {
+     "w": "perfil",
+     "t": 101.83
+    }
+   ]
+  }
+ ]
+}

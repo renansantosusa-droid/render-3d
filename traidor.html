@@ -1,0 +1,90 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Tinha um traidor contando os passos do Flávio pro STF?" — cópia sem adaptar do Reel do Explicadinho (DfF5qTHtFI0), pedido do Renan 30/10.
+// Roteiro = fala original (só o "segue a explicadinha" virou "segue o perfil"). Visual refeito no molde fuga1.
+import { motion } from "/kitmotion.js";
+const K = await motion("traidor", { fundo: "#0d1424", fundo2: "#1f0f1a", padrao: "radar", destaque: "#ffd23a", rotulo: "BRASIL", rotuloCor: "#c8323a", sub: "• MISTÉRIO", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, pilula, pop, carimbo, balao, bandeiraEUA, bandeiraBR, jato, seta, martelo, balanca, congresso, relogio } = K;
+function pessoa(x, y, s, cor = "#2a3958", rosto = "#8a96ab") { g.save(); g.translate(x, y); g.scale(s, s); rr(-60, 10, 120, 130, 50, cor); g.fillStyle = "#fff"; g.beginPath(); g.moveTo(-14, 10); g.lineTo(0, 50); g.lineTo(14, 10); g.fill(); rr(-6, 22, 12, 50, 4, C.VM); circ(0, -40, 46, rosto); g.restore(); }
+function sombra(x, y, s, t) { g.save(); g.translate(x, y); g.scale(s, s); rr(-90, 20, 180, 200, 70, "#05070d"); circ(0, -60, 70, "#05070d"); g.strokeStyle = "rgba(255,210,58,.5)"; g.lineWidth = 6; g.beginPath(); g.arc(0, -60, 70, 0, 6.2832); g.stroke(); txt("?", 0, -50, 100, C.AM, { contorno: 6 }); g.restore(); }
+function passaporte(x, y, s, cor = "#1f3b73", rotulo = "BRASIL") { g.save(); g.translate(x, y); g.scale(s, s); g.shadowColor = "rgba(0,0,0,.45)"; g.shadowBlur = 30; rr(-130, -180, 260, 360, 18, cor); g.shadowBlur = 0; g.strokeStyle = "#e8c66a"; g.lineWidth = 6; g.beginPath(); g.arc(0, -10, 56, 0, 6.2832); g.stroke(); circ(0, -10, 30, "#e8c66a"); txt("PASSAPORTE", 0, -120, 34, "#e8c66a"); txt(rotulo, 0, 110, 34, "#e8c66a"); g.restore(); }
+function bandeiraAR(x, y, w, h) { rr(x, y, w, h, 6, "#fff"); g.save(); g.beginPath(); g.roundRect(x, y, w, h, 6); g.clip(); g.fillStyle = "#74acdf"; g.fillRect(x, y, w, h / 3); g.fillRect(x, y + 2 * h / 3, w, h / 3); g.restore(); circ(x + w / 2, y + h / 2, h * .1, "#f6b40e"); }
+function x_(cx, cy, r, k) { if (k <= 0) return; g.save(); g.strokeStyle = C.VM; g.lineWidth = 22; g.lineCap = "round"; g.beginPath(); g.moveTo(cx - r, cy - r); g.lineTo(cx - r + 2 * r * clamp(k * 2), cy - r + 2 * r * clamp(k * 2)); if (k > .5) { g.moveTo(cx + r, cy - r); g.lineTo(cx + r - 2 * r * clamp(k * 2 - 1), cy - r + 2 * r * clamp(k * 2 - 1)); } g.stroke(); g.restore(); }
+function bumerangue(x, y, s, giro) { g.save(); g.translate(x, y); g.rotate(giro); g.scale(s, s); g.strokeStyle = "#c98a3a"; g.lineWidth = 46; g.lineCap = "round"; g.beginPath(); g.moveTo(-120, 60); g.quadraticCurveTo(0, -110, 120, 60); g.stroke(); g.strokeStyle = "#8a5a22"; g.lineWidth = 10; g.stroke(); g.restore(); }
+function linha(y, dia, texto, cor, k) { if (k <= 0) return; g.save(); g.globalAlpha *= clamp(k * 1.5); g.translate(-60 * (1 - ease(k)), 0); circ(170, y, 26, cor); rr(230, y - 80, 760, 160, 24, "#1b2436"); txt(dia, 260, y - 30, 46, cor, { al: "left" }); txt(texto, 260, y + 34, 40, "#fff", { al: "left", peso: 500 }); g.restore(); }
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 560, () => sombra(W / 2, 600, 1.4 + Math.sin(t * 2) * .02, t));
+    pop(ap(t, P(1, "traidor") - .2), W / 2, 920, () => txt("UM TRAIDOR?", W / 2, 920, 130, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "stf") - .3), W / 2, 1070, () => pilula("CONTANDO OS PASSOS DO FLÁVIO PRO STF", W / 2, 1070, 40, "#fff", "#000"));
+    carimbo("UM PASSO NÃO FECHA", W / 2, 1260, ap(t, P(1, "fecha") - .1), C.VM, -.06, 66);
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 820, () => {
+      const pos = [[260, 620], [540, 600], [820, 620]];
+      pos.forEach(([x, y], i) => { if (i === 2) return; pessoa(x, y, 1.1); });
+      const sai = clamp((t - P(2, "licenca")) / 2.2); pessoa(820 + 120 * ease(sai), 620 - 40 * Math.sin(sai * 3.14), 1.1, sai > 0 ? "#4a2030" : "#2a3958");
+      rr(140, 760, 800, 70, 30, "#6b4a2e"); rr(170, 830, 30, 200, 10, "#4a3220"); rr(880, 830, 30, 200, 10, "#4a3220");
+      [300, 540, 780].forEach((x) => { circ(x, 790, 34, "#f4f1ea"); circ(x, 790, 20, "#d9d3c3"); });
+    });
+    pop(ap(t, P(2, "terno") - .3), W / 2, 420, () => pilula("JANTAR DE ALIADOS", W / 2, 420, 54, "#c8323a", "#fff"));
+    pop(ap(t, P(2, "banheiro") - .3), 860, 1120, () => { rr(760, 1060, 200, 130, 20, "#e9edf3"); txt("WC", 860, 1128, 70, "#1b2436"); });
+    pop(ap(t, P(2, "contava") - .3), 380, 1150, () => { balao(130, 1080, 500, 140, "#f4f1ea"); txt("📞 PRO STF...", 380, 1152, 56, "#1b2436"); });
+  },
+  (t) => {
+    carimbo("CENA IMAGINADA", W / 2, 470, ap(t, ini(3)), C.AM, -.06, 96);
+    pop(ap(t, P(3, "programa") - .3), W / 2, 720, () => { rr(190, 620, 700, 210, 30, "#1b2436"); circ(250, 670, 14, C.VM); txt("AO VIVO", 340, 674, 34, C.VM, { al: "left" }); txt("ALIADO ACUSOU", W / 2, 750, 64, "#fff"); });
+    pop(ap(t, P(3, "nome") - .3), 330, 1050, () => { rr(170, 960, 320, 180, 26, "#2a1520"); txt("NOME", 330, 1050, 72, "#fff"); x_(330, 1050, 70, (t - P(3, "nome") - .2) / .4); });
+    pop(ap(t, P(3, "prova") - .3), 750, 1050, () => { rr(590, 960, 320, 180, 26, "#2a1520"); txt("PROVA", 750, 1050, 72, "#fff"); x_(750, 1050, 70, (t - P(3, "prova") - .2) / .4); });
+  },
+  (t) => {
+    pop(ap(t, ini(4)), W / 2, 400, () => txt("REPARA NOS PASSOS", W / 2, 400, 90, C.AM, { contorno: 10 }));
+    g.fillStyle = "rgba(255,255,255,.2)"; g.fillRect(166, 560, 8, 560 * clamp((t - ini(4)) / 3));
+    linha(640, "DOMINGO (ELEIÇÃO)", "PF PEDE PRA RETER O PASSAPORTE", "#4fb3c9", ap(t, P(4, "domingo") - .2, .5));
+    linha(900, "SEGUNDA", "STF MANDA ENTREGAR EM 24H", C.AM, ap(t, P(4, "segunda") - .2, .5));
+    pop(ap(t, P(4, "horas") - .3), W / 2, 1150, () => { martelo(W / 2 - 210, 1140, .8, -.3 + Math.sin(t * 6) * .08); txt("24H", W / 2 + 90, 1150, 150, C.AM, { contorno: 12 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(5)), 260, 560, () => { passaporte(260, 560, .7); x_(260, 560, 90, (t - P(5, "entregue")) / .5); txt("NÃO ENTREGUE", 260, 720, 40, C.VM, { contorno: 6 }); });
+    pop(ap(t, P(5, "argentina") - .3), 620, 470, () => { bandeiraAR(500, 400, 240, 150); txt("ARGENTINA", 620, 600, 40, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(5, "miami") - .3), 880, 700, () => { bandeiraEUA(770, 640, 220, 140, t); txt("MIAMI • QUARTA", 880, 830, 40, C.AM, { contorno: 6 }); });
+    const k = clamp((t - P(5, "argentina")) / 2.2); if (k > 0) jato(600 + 260 * ease(k), 640 - 60 * Math.sin(k * 3.14), .9, .2);
+    carimbo("PASSOU BATIDO", W / 2, 1150, ap(t, P(5, "batido") - .1), C.VM, -.07, 110);
+    pop(ap(t, P(5, "traidor") - .3), W / 2, 980, () => pilula("O TRAIDOR CONTAVA TUDO?", W / 2, 980, 48, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 400, () => txt("SE FOR REAL...", W / 2, 400, 100, C.AM, { contorno: 10 }));
+    pop(ap(t, P(6, "justica") - .3), W / 2, 620, () => balanca(W / 2, 640, .9, Math.sin(t * 2) * .12));
+    pop(ap(t, P(6, "crime") - .3), W / 2, 880, () => { rr(120, 820, 840, 130, 26, "#123a26"); txt("CONTAR À JUSTIÇA: NÃO É CRIME", W / 2, 888, 48, "#32d26f"); });
+    pop(ap(t, P(6, "advogado") - .3), W / 2, 1090, () => { rr(120, 990, 840, 200, 26, "#3a1220"); txt("QUEBRAR SIGILO DE TRABALHO", W / 2, 1058, 46, "#ff8080"); txt("(EX.: ADVOGADO) PODE RESPONDER", W / 2, 1128, 44, "#fff"); });
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 400, () => txt("EFEITO BUMERANGUE", W / 2, 400, 96, C.AM, { contorno: 10 }));
+    const kb = clamp((t - ini(7) - .3) / 3); if (kb > 0) bumerangue(W / 2 + 300 * Math.sin(kb * 6.28), 650 - 80 * Math.sin(kb * 3.14), 1, t * 9);
+    pop(ap(t, P(7, "anular") - .3), W / 2, 880, () => pilula("PEDIDO PRA ANULAR DECISÕES", W / 2, 880, 50, "#fff", "#000"));
+    pop(ap(t, P(7, "afastar") - .3), W / 2, 1000, () => pilula("AFASTAR O MINISTRO DO CASO", W / 2, 1000, 50, "#fff", "#000"));
+    carimbo("PODE AJUDAR O FLÁVIO", W / 2, 1200, ap(t, P(7, "ajudando") - .1), C.AM, -.06, 76);
+  },
+  (t) => {
+    carimbo("NINGUÉM MANDOU PRENDER", W / 2, 420, ap(t, ini(8)), C.VM, -.05, 70);
+    pop(ap(t, P(8, "deputados") - .3), W / 2, 680, () => { congresso(W / 2, 680, .8); });
+    pop(ap(t, P(8, "prisao") - .3), W / 2, 880, () => pilula("DEPUTADOS PEDEM PRISÃO", W / 2, 880, 48, "#fff", "#000"));
+    pop(ap(t, P(8, "alerta") - .3), W / 2, 990, () => pilula("🚨 ALERTA PRAS POLÍCIAS DO MUNDO", W / 2, 990, 44, C.VM, "#fff"));
+    pop(ap(t, P(8, "respondeu") - .4), W / 2, 1200, () => { relogio(300, 1200, 80, (t * .5) % 12); txt("STF AINDA", 640, 1170, 60, "#fff", { contorno: 6 }); txt("NÃO RESPONDEU", 640, 1240, 60, C.AM, { contorno: 6 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(9)), W / 2, 560, () => sombra(W / 2, 580, 1.2, t));
+    pop(ap(t, P(9, "traidor") - .2), W / 2, 860, () => txt("QUEM É O TRAIDOR?", W / 2, 860, 104, C.AM, { contorno: 10, sombra: true }));
+    pop(ap(t, P(9, "teoria") - .3), W / 2, 1000, () => pilula("TEORIA NOS COMENTÁRIOS 👇", W / 2, 1000, 50, "#fff", "#000"));
+    carimbo("SEM NOMES!", W / 2, 1130, ap(t, P(9, "nome") - .1), C.VM, -.06, 70);
+    pop(ap(t, P(9, "amigo") - .3), W / 2, 1270, () => pilula("MANDA PRO AMIGO QUE AMA UM MISTÉRIO", W / 2, 1270, 38, C.AM, "#000"));
+    pop(ap(t, P(9, "segue") - .3), W / 2, 1380, () => pilula("SEGUE O PERFIL ➜", W / 2, 1380, 44, "#c8323a", "#fff"));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
