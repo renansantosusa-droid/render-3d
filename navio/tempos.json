@@ -1,0 +1,685 @@
+{
+ "total": 45.01,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.83,
+   "texto": "Se você jogar um bloco de aço na água, ele afunda. Então, como um navio de cem mil toneladas flutua?",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.294
+    },
+    {
+     "w": "jogar",
+     "t": 0.61
+    },
+    {
+     "w": "um",
+     "t": 0.897
+    },
+    {
+     "w": "bloco",
+     "t": 0.99
+    },
+    {
+     "w": "de",
+     "t": 1.323
+    },
+    {
+     "w": "aço",
+     "t": 1.51
+    },
+    {
+     "w": "na",
+     "t": 1.777
+    },
+    {
+     "w": "água",
+     "t": 1.87
+    },
+    {
+     "w": "ele",
+     "t": 2.27
+    },
+    {
+     "w": "afunda",
+     "t": 2.443
+    },
+    {
+     "w": "Então",
+     "t": 2.95
+    },
+    {
+     "w": "como",
+     "t": 3.398
+    },
+    {
+     "w": "um",
+     "t": 3.617
+    },
+    {
+     "w": "navio",
+     "t": 3.73
+    },
+    {
+     "w": "de",
+     "t": 4.15
+    },
+    {
+     "w": "cem",
+     "t": 4.35
+    },
+    {
+     "w": "mil",
+     "t": 4.51
+    },
+    {
+     "w": "toneladas",
+     "t": 4.69
+    },
+    {
+     "w": "flutua",
+     "t": 5.297
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.98,
+   "fim": 11.18,
+   "texto": "Toda coisa que entra na água empurra água pra fora. E a água empurrada empurra de volta, pra cima.",
+   "palavras": [
+    {
+     "w": "Toda",
+     "t": 5.98
+    },
+    {
+     "w": "coisa",
+     "t": 6.193
+    },
+    {
+     "w": "que",
+     "t": 6.5
+    },
+    {
+     "w": "entra",
+     "t": 6.66
+    },
+    {
+     "w": "na",
+     "t": 6.913
+    },
+    {
+     "w": "água",
+     "t": 7.06
+    },
+    {
+     "w": "empurra",
+     "t": 7.34
+    },
+    {
+     "w": "água",
+     "t": 7.82
+    },
+    {
+     "w": "pra",
+     "t": 8.08
+    },
+    {
+     "w": "fora",
+     "t": 8.22
+    },
+    {
+     "w": "E",
+     "t": 8.74
+    },
+    {
+     "w": "a",
+     "t": 8.82
+    },
+    {
+     "w": "água",
+     "t": 8.9
+    },
+    {
+     "w": "empurrada",
+     "t": 9.06
+    },
+    {
+     "w": "empurra",
+     "t": 9.58
+    },
+    {
+     "w": "de",
+     "t": 10.033
+    },
+    {
+     "w": "volta",
+     "t": 10.193
+    },
+    {
+     "w": "pra",
+     "t": 10.58
+    },
+    {
+     "w": "cima",
+     "t": 10.74
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.33,
+   "fim": 21.01,
+   "texto": "Um bloco maciço empurra pouca água, e o peso dele ganha. Mas se você esticar o mesmo aço numa casca bem larga e oca, ela afunda só um pouco e já empurrou um monte de água.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 11.33
+    },
+    {
+     "w": "bloco",
+     "t": 11.47
+    },
+    {
+     "w": "maciço",
+     "t": 11.89
+    },
+    {
+     "w": "empurra",
+     "t": 12.43
+    },
+    {
+     "w": "pouca",
+     "t": 12.83
+    },
+    {
+     "w": "água",
+     "t": 13.17
+    },
+    {
+     "w": "e",
+     "t": 13.53
+    },
+    {
+     "w": "o",
+     "t": 13.61
+    },
+    {
+     "w": "peso",
+     "t": 13.714
+    },
+    {
+     "w": "dele",
+     "t": 14.018
+    },
+    {
+     "w": "ganha",
+     "t": 14.27
+    },
+    {
+     "w": "Mas",
+     "t": 14.78
+    },
+    {
+     "w": "se",
+     "t": 14.983
+    },
+    {
+     "w": "você",
+     "t": 15.138
+    },
+    {
+     "w": "esticar",
+     "t": 15.37
+    },
+    {
+     "w": "o",
+     "t": 15.77
+    },
+    {
+     "w": "mesmo",
+     "t": 15.863
+    },
+    {
+     "w": "aço",
+     "t": 16.21
+    },
+    {
+     "w": "numa",
+     "t": 16.482
+    },
+    {
+     "w": "casca",
+     "t": 16.69
+    },
+    {
+     "w": "bem",
+     "t": 17.13
+    },
+    {
+     "w": "larga",
+     "t": 17.314
+    },
+    {
+     "w": "e",
+     "t": 17.69
+    },
+    {
+     "w": "oca",
+     "t": 17.77
+    },
+    {
+     "w": "ela",
+     "t": 18.19
+    },
+    {
+     "w": "afunda",
+     "t": 18.423
+    },
+    {
+     "w": "só",
+     "t": 18.77
+    },
+    {
+     "w": "um",
+     "t": 18.957
+    },
+    {
+     "w": "pouco",
+     "t": 19.063
+    },
+    {
+     "w": "e",
+     "t": 19.41
+    },
+    {
+     "w": "já",
+     "t": 19.543
+    },
+    {
+     "w": "empurrou",
+     "t": 19.69
+    },
+    {
+     "w": "um",
+     "t": 20.103
+    },
+    {
+     "w": "monte",
+     "t": 20.258
+    },
+    {
+     "w": "de",
+     "t": 20.583
+    },
+    {
+     "w": "água",
+     "t": 20.73
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 21.16,
+   "fim": 26.44,
+   "texto": "Quando a água empurrada pesa o mesmo que o navio, ele para de afundar. Esse é o empuxo, de Arquimedes.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 21.16
+    },
+    {
+     "w": "a",
+     "t": 21.36
+    },
+    {
+     "w": "água",
+     "t": 21.48
+    },
+    {
+     "w": "empurrada",
+     "t": 21.68
+    },
+    {
+     "w": "pesa",
+     "t": 22.18
+    },
+    {
+     "w": "o",
+     "t": 22.48
+    },
+    {
+     "w": "mesmo",
+     "t": 22.56
+    },
+    {
+     "w": "que",
+     "t": 22.8
+    },
+    {
+     "w": "o",
+     "t": 22.96
+    },
+    {
+     "w": "navio",
+     "t": 23.04
+    },
+    {
+     "w": "ele",
+     "t": 23.46
+    },
+    {
+     "w": "para",
+     "t": 23.688
+    },
+    {
+     "w": "de",
+     "t": 23.907
+    },
+    {
+     "w": "afundar",
+     "t": 24.013
+    },
+    {
+     "w": "Esse",
+     "t": 24.6
+    },
+    {
+     "w": "é",
+     "t": 24.88
+    },
+    {
+     "w": "o",
+     "t": 24.96
+    },
+    {
+     "w": "empuxo",
+     "t": 25.04
+    },
+    {
+     "w": "de",
+     "t": 25.587
+    },
+    {
+     "w": "Arquimedes",
+     "t": 25.693
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 26.59,
+   "fim": 34.59,
+   "texto": "Mas, se furar o casco, a água entra no lugar do ar, e ele afunda. Então, você divide o casco em compartimentos fechados. Um enche, os outros seguram.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 26.59
+    },
+    {
+     "w": "se",
+     "t": 27.017
+    },
+    {
+     "w": "furar",
+     "t": 27.13
+    },
+    {
+     "w": "o",
+     "t": 27.43
+    },
+    {
+     "w": "casco",
+     "t": 27.53
+    },
+    {
+     "w": "a",
+     "t": 27.99
+    },
+    {
+     "w": "água",
+     "t": 28.07
+    },
+    {
+     "w": "entra",
+     "t": 28.39
+    },
+    {
+     "w": "no",
+     "t": 28.643
+    },
+    {
+     "w": "lugar",
+     "t": 28.803
+    },
+    {
+     "w": "do",
+     "t": 29.097
+    },
+    {
+     "w": "ar",
+     "t": 29.23
+    },
+    {
+     "w": "e",
+     "t": 29.51
+    },
+    {
+     "w": "ele",
+     "t": 29.59
+    },
+    {
+     "w": "afunda",
+     "t": 29.763
+    },
+    {
+     "w": "Então",
+     "t": 30.19
+    },
+    {
+     "w": "você",
+     "t": 30.638
+    },
+    {
+     "w": "divide",
+     "t": 30.887
+    },
+    {
+     "w": "o",
+     "t": 31.27
+    },
+    {
+     "w": "casco",
+     "t": 31.37
+    },
+    {
+     "w": "em",
+     "t": 31.657
+    },
+    {
+     "w": "compartimentos",
+     "t": 31.76
+    },
+    {
+     "w": "fechados",
+     "t": 32.483
+    },
+    {
+     "w": "Um",
+     "t": 33.07
+    },
+    {
+     "w": "enche",
+     "t": 33.23
+    },
+    {
+     "w": "os",
+     "t": 33.683
+    },
+    {
+     "w": "outros",
+     "t": 33.836
+    },
+    {
+     "w": "seguram",
+     "t": 34.15
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 34.74,
+   "fim": 40.02,
+   "texto": "Carregado, ele afunda mais. Por isso o casco tem uma linha pintada: a marca de até onde ele pode descer.",
+   "palavras": [
+    {
+     "w": "Carregado",
+     "t": 34.74
+    },
+    {
+     "w": "ele",
+     "t": 35.26
+    },
+    {
+     "w": "afunda",
+     "t": 35.46
+    },
+    {
+     "w": "mais",
+     "t": 35.844
+    },
+    {
+     "w": "Por",
+     "t": 36.22
+    },
+    {
+     "w": "isso",
+     "t": 36.372
+    },
+    {
+     "w": "o",
+     "t": 36.54
+    },
+    {
+     "w": "casco",
+     "t": 36.64
+    },
+    {
+     "w": "tem",
+     "t": 37
+    },
+    {
+     "w": "uma",
+     "t": 37.1
+    },
+    {
+     "w": "linha",
+     "t": 37.26
+    },
+    {
+     "w": "pintada",
+     "t": 37.508
+    },
+    {
+     "w": "a",
+     "t": 38.06
+    },
+    {
+     "w": "marca",
+     "t": 38.167
+    },
+    {
+     "w": "de",
+     "t": 38.527
+    },
+    {
+     "w": "até",
+     "t": 38.66
+    },
+    {
+     "w": "onde",
+     "t": 38.948
+    },
+    {
+     "w": "ele",
+     "t": 39.16
+    },
+    {
+     "w": "pode",
+     "t": 39.284
+    },
+    {
+     "w": "descer",
+     "t": 39.58
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 40.17,
+   "fim": 44.41,
+   "texto": "Coloque uma hélice, um leme e uma âncora. Parabéns, você construiu um navio.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 40.17
+    },
+    {
+     "w": "uma",
+     "t": 40.53
+    },
+    {
+     "w": "hélice",
+     "t": 40.703
+    },
+    {
+     "w": "um",
+     "t": 41.183
+    },
+    {
+     "w": "leme",
+     "t": 41.343
+    },
+    {
+     "w": "e",
+     "t": 41.73
+    },
+    {
+     "w": "uma",
+     "t": 41.81
+    },
+    {
+     "w": "âncora",
+     "t": 42.01
+    },
+    {
+     "w": "Parabéns",
+     "t": 42.45
+    },
+    {
+     "w": "você",
+     "t": 43.114
+    },
+    {
+     "w": "construiu",
+     "t": 43.404
+    },
+    {
+     "w": "um",
+     "t": 43.823
+    },
+    {
+     "w": "navio",
+     "t": 43.91
+    }
+   ]
+  }
+ ]
+}

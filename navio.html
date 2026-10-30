@@ -1,0 +1,113 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("navio", { fundo: 0xbfe0f4, seed: 3003 });
+const { THREE, scene, add, grupo, mat, vidro, sprite, texRuido, prog, pulse, entre, frac, C, F, P, T, V, rnd } = K;
+const PI = Math.PI;
+
+// ---------- tanque em corte ----------
+add(new THREE.PlaneGeometry(30, 30), mat(0xd8d2c4), 0, 0, 0).rotation.x = -PI / 2;
+const TW = 2.6, TD = 1.2, NIVEL = 1.0;
+add(new THREE.BoxGeometry(TW + .1, .08, TD + .1), mat(0x50555e), 0, .04, 0);
+add(new THREE.BoxGeometry(TW, 1.5, TD), vidro(.12, 0xe8f4ff), 0, .83, 0);
+const aguaM = new THREE.MeshStandardMaterial({ color: 0x3a9ad8, transparent: true, opacity: .45, roughness: .1, depthWrite: false });
+const agua = add(new THREE.BoxGeometry(TW - .02, 1, TD - .02), aguaM, 0, .5, 0);
+const aco = mat(0x8a9098, { metalness: .5, roughness: .45, map: texRuido("#8a9098", 25, 2) });
+const bloco = add(new THREE.BoxGeometry(.38, .38, .38), aco, 0, 2.5, 0);
+// casco (origem no fundo do casco)
+const casco = grupo(0, NIVEL - .15, 0);
+const cascoM = mat(0x9aa2ac, { metalness: .2, roughness: .5 });
+const HW = 1.7, HH = .38, HD = .74;
+add(new THREE.BoxGeometry(HW, .05, HD), cascoM, 0, .025, 0, casco);
+for (const s of [-1, 1]) add(new THREE.BoxGeometry(HW, HH, .04), cascoM, 0, HH / 2, s * (HD / 2 - .02), casco);
+for (const s of [-1, 1]) add(new THREE.BoxGeometry(.04, HH, HD), cascoM, s * (HW / 2 - .02), HH / 2, 0, casco);
+const paredes = [-.42, 0, .42].map((x) => add(new THREE.BoxGeometry(.03, HH - .04, HD - .08), mat(0xc05030), x, HH / 2, 0, casco));
+const inundaM = new THREE.MeshStandardMaterial({ color: 0x2a7ac0, transparent: true, opacity: .75 });
+const inunda = add(new THREE.BoxGeometry(HW - .08, 1, HD - .08), inundaM, 0, .5, 0, casco);
+const inunda1 = add(new THREE.BoxGeometry(.38, 1, HD - .08), inundaM, .63, .5, 0, casco);
+const linha = add(new THREE.BoxGeometry(.3, .03, .01), brilhoMat(0xffffff), -.3, .32, HD / 2 + .005, casco);
+const linhaV = add(new THREE.BoxGeometry(.3, .03, .01), brilhoMat(0xe02020), -.3, .32, HD / 2 + .008, casco); linhaV.scale.set(.15, 4, 1);
+function brilhoMat(c) { return new THREE.MeshBasicMaterial({ color: c }); }
+const cores = [0xd04a3a, 0x3a7ac8, 0xe0a020, 0x3aa060, 0xd04a3a, 0x3a7ac8];
+const conts = cores.map((c, i) => add(new THREE.BoxGeometry(.24, .16, .5), mat(c), -.6 + i * .24, HH + .08, 0, casco));
+const fundoV = add(new THREE.BoxGeometry(HW + .01, .2, HD + .01), mat(0xb02a20), 0, .1, 0, casco);
+const ponte = add(new THREE.BoxGeometry(.25, .3, .5), mat(0xf2f2f2), .65, HH + .15, 0, casco);
+const helice = grupo(-HW / 2 - .08, .12, 0, casco); for (let i = 0; i < 3; i++) { const p = add(new THREE.BoxGeometry(.02, .16, .06), mat(0xd0a040, { metalness: .7 }), 0, 0, 0, helice); p.rotation.x = i * PI * 2 / 3; p.position.set(0, Math.cos(i * PI * 2 / 3) * .06, Math.sin(i * PI * 2 / 3) * .06); }
+const leme = add(new THREE.BoxGeometry(.12, .2, .02), mat(0x2a2a2e), -HW / 2 - .16, .14, 0, casco);
+const ancora = grupo(HW / 2 - .1, .2, HD / 2 + .04, casco); add(new THREE.BoxGeometry(.02, .14, .02), mat(0x2a2a2e), 0, 0, 0, ancora); add(new THREE.TorusGeometry(.05, .012, 6, 16, PI), mat(0x2a2a2e), 0, -.06, 0, ancora).rotation.z = PI;
+// setas
+function seta(cor) { const g = grupo(); const m = brilhoMat(cor); add(new THREE.CylinderGeometry(.035, .035, 1, 12), m, 0, .5, 0, g); add(new THREE.ConeGeometry(.08, .16, 16), m, 0, 1.05, 0, g); g.visible = false; return g; }
+const sobe = seta(0x2a8aff), desce = seta(0xff3a2a);
+const pingos = Array.from({ length: 24 }, () => ({ s: sprite(0x9ad8ff), f: rnd(), a: rnd() * PI * 2 }));
+const furo = sprite(0xffe080);
+
+K.camera_({
+  geral: [V(0, 3.2, 7.0), V(0, 1.15, 0)],
+  perto: [V(.5, 3.7, 4.3), V(0, .95, 0)],
+  fim: [V(-2.4, 2.4, 5.4), V(0, 1.1, 0)],
+}, [
+  [0, "geral"], [F(4), "geral"], [C(5), "perto"], [F(6), "perto"], [C(7), "perto"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // bloco
+  let by = 2.5, bOn = true, bEsc = 1;
+  if (t < P(1, "navio") - .3) by = 2.5 - (2.5 - .19) * prog(t, P(1, "jogar"), P(1, "afunda"));
+  else if (t < C(2)) bOn = false;
+  else if (t < C(3)) by = 1.4 - .4 * prog(t, C(2) + .2, P(2, "fora"));
+  else { by = 1.0 - .81 * prog(t, P(3, "ganha") - .3, P(3, "ganha") + .6); if (t > P(3, "esticar") - .3) { by = 1.0; bEsc = 1 - prog(t, P(3, "esticar") - .3, P(3, "esticar") + .5); } }
+  bloco.visible = bOn && bEsc > .02; bloco.position.y = by; bloco.scale.setScalar(Math.max(.01, bEsc));
+  // casco: aparece no fim da cena 1 e de vez a partir do "esticar"
+  const cascoOn = em(P(1, "navio") - .3, C(2)) || t > P(3, "esticar") - .3;
+  const cEsc = t > P(3, "esticar") - .3 && t < C(4) ? prog(t, P(3, "esticar"), P(3, "oca") + .3) : 1;
+  casco.visible = cascoOn; casco.scale.set(Math.max(.01, cEsc), Math.max(.01, cEsc), Math.max(.01, cEsc));
+  let calado = .15, tomba = 0, afundou = 0, enchido = 0, enchido1 = 0;
+  if (em(P(5, "furar") - .3, P(5, "divide") - .3)) { enchido = prog(t, P(5, "entra") - .3, P(5, "afunda")); afundou = prog(t, P(5, "afunda") - .4, P(5, "afunda") + .8); }
+  if (t > P(5, "enche") - .3 && t < C(6)) { enchido1 = prog(t, P(5, "enche") - .3, P(5, "enche") + .6); calado += .05 * enchido1; tomba = .05 * enchido1; }
+  const carga = t > P(6, "carregado") - .3 ? prog(t, P(6, "carregado") - .3, P(6, "carregado") + .6) : 0;
+  calado += .17 * carga;
+  casco.position.y = (NIVEL - calado) * (1 - afundou) + .08 * afundou + Math.sin(t * 1.3) * .008 * (1 - afundou);
+  casco.rotation.z = tomba + Math.sin(t * 1.1) * .01;
+  paredes.forEach((p) => (p.visible = t > P(5, "divide") - .3));
+  inunda.visible = enchido > .01; inunda.scale.y = Math.max(.01, enchido * .33); inunda.position.y = .03 + enchido * .165;
+  inunda1.visible = enchido1 > .01; inunda1.scale.y = Math.max(.01, enchido1 * .33); inunda1.position.y = .03 + enchido1 * .165;
+  furo.position.set(casco.position.x + .3, casco.position.y + .04, .4); furo.scale.setScalar(.25 * pulse(t, P(5, "furar") - .2, .6)); furo.material.opacity = pulse(t, P(5, "furar") - .2, .6);
+  linha.visible = linhaV.visible = t > P(6, "linha") - .3;
+  conts.forEach((c, i) => { const k = prog(t, P(6, "carregado") - .3 + i * .08, P(6, "carregado") + .2 + i * .08); c.visible = k > 0 && t > C(6); c.position.y = HH + .08 + (1 - k) * .8; });
+  fundoV.visible = ponte.visible = t > P(7, "helice") - .3;
+  helice.visible = t > P(7, "helice") - .3; helice.rotation.x = t * 6;
+  leme.visible = t > P(7, "leme") - .3; ancora.visible = t > P(7, "ancora") - .3;
+  // nível da água sobe com o que entra
+  const sub = (bOn && by < 1.2 && t > C(2) && t < P(3, "esticar")) ? .03 : 0;
+  const h = NIVEL + sub + (cascoOn ? .02 + .03 * carga : 0) - .03 * afundou;
+  agua.scale.y = h; agua.position.y = h / 2;
+  pingos.forEach((p) => { const q = frac(t * .6 + p.f); const r = .25 + q * .5; p.s.position.set(Math.cos(p.a) * r, NIVEL - .05 + Math.sin(q * PI) * .25, Math.sin(p.a) * r * .4 + .2); p.s.scale.setScalar(.06); p.s.material.opacity = em(P(2, "entra") - .3, P(2, "volta") - .3) ? .8 * (1 - q) : 0; });
+  // setas: empuxo (azul, pra cima) x peso (vermelha, pra baixo)
+  let up = 0, dn = 0, ax = 0, ay = NIVEL;
+  if (em(P(2, "volta") - .3, F(2))) { up = .6; ay = by - .19; }
+  if (em(C(3), P(3, "ganha") + .6)) { up = .3; dn = .9; ay = by; }
+  if (em(P(3, "monte") - .3, F(4))) { up = .9 * (t > C(4) ? 1 : prog(t, P(3, "monte") - .3, P(3, "monte") + .4)); dn = t > C(4) ? .9 : 0; ay = casco.position.y; }
+  if (em(P(6, "carregado") - .3, P(6, "linha") - .3)) { up = .9 + .3 * carga; dn = .9 + .3 * carga; ay = casco.position.y; }
+  sobe.visible = up > 0; sobe.scale.set(1, up || .01, 1); sobe.position.set(ax - .25, ay - up - .2, .7);
+  desce.visible = dn > 0; desce.scale.set(1, dn || .01, 1); desce.rotation.z = PI; desce.position.set(ax + .25, ay + dn + .25, .7);
+  K.cartoes(t, [
+    [P(1, "afunda") - .2, P(1, "navio") - .3, "AÇO AFUNDA", "#ff6060"],
+    [P(1, "toneladas") - .3, F(1), "100 MIL TONELADAS?", "#ffffff"],
+    [P(2, "fora") - .4, P(2, "volta") - .3, "EMPURRA ÁGUA PRA FORA", "#8ac8ff"],
+    [P(2, "volta") - .3, F(2), "A ÁGUA EMPURRA DE VOLTA", "#2a8aff"],
+    [P(3, "ganha") - .5, P(3, "esticar") - .3, "MACIÇO: O PESO GANHA", "#ff6060"],
+    [P(3, "oca") - .3, F(3), "CASCA LARGA E OCA", "#8ac8ff"],
+    [P(4, "empuxo") - .3, F(4), "EMPUXO = PESO DA ÁGUA EMPURRADA", "#2a8aff"],
+    [P(5, "furar") - .3, P(5, "divide") - .3, "FUROU: AFUNDA", "#ff4a3a"],
+    [P(5, "divide") - .3, F(5), "COMPARTIMENTOS FECHADOS", "#ffd23a"],
+    [P(6, "linha") - .3, F(6), "LINHA DE CARGA", "#ffffff"],
+  ]);
+});
+</script>
+</body></html>
