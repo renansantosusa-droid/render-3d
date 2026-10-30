@@ -1,0 +1,721 @@
+{
+ "total": 66.29,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.87,
+   "texto": "Se você amarrar uma fita no banco do carro, terá um cinto de segurança.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.374
+    },
+    {
+     "w": "amarrar",
+     "t": 0.683
+    },
+    {
+     "w": "uma",
+     "t": 1.15
+    },
+    {
+     "w": "fita",
+     "t": 1.35
+    },
+    {
+     "w": "no",
+     "t": 1.723
+    },
+    {
+     "w": "banco",
+     "t": 1.883
+    },
+    {
+     "w": "do",
+     "t": 2.177
+    },
+    {
+     "w": "carro",
+     "t": 2.31
+    },
+    {
+     "w": "terá",
+     "t": 2.91
+    },
+    {
+     "w": "um",
+     "t": 3.19
+    },
+    {
+     "w": "cinto",
+     "t": 3.43
+    },
+    {
+     "w": "de",
+     "t": 3.777
+    },
+    {
+     "w": "segurança",
+     "t": 3.89
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.02,
+   "fim": 15.34,
+   "texto": "Mas ela aperta o tempo todo. Você não consegue nem pegar o celular. Então, você enrola a fita num carretel com uma mola, que deixa puxar e recolhe sozinha.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.02
+    },
+    {
+     "w": "ela",
+     "t": 5.4
+    },
+    {
+     "w": "aperta",
+     "t": 5.633
+    },
+    {
+     "w": "o",
+     "t": 6.1
+    },
+    {
+     "w": "tempo",
+     "t": 6.193
+    },
+    {
+     "w": "todo",
+     "t": 6.54
+    },
+    {
+     "w": "Você",
+     "t": 7.02
+    },
+    {
+     "w": "não",
+     "t": 7.38
+    },
+    {
+     "w": "consegue",
+     "t": 7.56
+    },
+    {
+     "w": "nem",
+     "t": 8.02
+    },
+    {
+     "w": "pegar",
+     "t": 8.22
+    },
+    {
+     "w": "o",
+     "t": 8.58
+    },
+    {
+     "w": "celular",
+     "t": 8.69
+    },
+    {
+     "w": "Então",
+     "t": 9.5
+    },
+    {
+     "w": "você",
+     "t": 10.044
+    },
+    {
+     "w": "enrola",
+     "t": 10.367
+    },
+    {
+     "w": "a",
+     "t": 10.76
+    },
+    {
+     "w": "fita",
+     "t": 10.86
+    },
+    {
+     "w": "num",
+     "t": 11.2
+    },
+    {
+     "w": "carretel",
+     "t": 11.3
+    },
+    {
+     "w": "com",
+     "t": 11.86
+    },
+    {
+     "w": "uma",
+     "t": 12.04
+    },
+    {
+     "w": "mola",
+     "t": 12.26
+    },
+    {
+     "w": "que",
+     "t": 12.68
+    },
+    {
+     "w": "deixa",
+     "t": 12.94
+    },
+    {
+     "w": "puxar",
+     "t": 13.3
+    },
+    {
+     "w": "e",
+     "t": 13.86
+    },
+    {
+     "w": "recolhe",
+     "t": 14.06
+    },
+    {
+     "w": "sozinha",
+     "t": 14.593
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 15.49,
+   "fim": 25.41,
+   "texto": "Mas agora, numa batida, a fita sai inteira e o seu corpo vai pra frente. Então, o carretel precisa travar. Mas só na hora certa.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 15.49
+    },
+    {
+     "w": "agora",
+     "t": 15.797
+    },
+    {
+     "w": "numa",
+     "t": 16.434
+    },
+    {
+     "w": "batida",
+     "t": 16.77
+    },
+    {
+     "w": "a",
+     "t": 17.53
+    },
+    {
+     "w": "fita",
+     "t": 17.67
+    },
+    {
+     "w": "sai",
+     "t": 18.11
+    },
+    {
+     "w": "inteira",
+     "t": 18.354
+    },
+    {
+     "w": "e",
+     "t": 18.89
+    },
+    {
+     "w": "o",
+     "t": 19.05
+    },
+    {
+     "w": "seu",
+     "t": 19.15
+    },
+    {
+     "w": "corpo",
+     "t": 19.41
+    },
+    {
+     "w": "vai",
+     "t": 19.87
+    },
+    {
+     "w": "pra",
+     "t": 20.09
+    },
+    {
+     "w": "frente",
+     "t": 20.279
+    },
+    {
+     "w": "Então",
+     "t": 20.87
+    },
+    {
+     "w": "o",
+     "t": 21.45
+    },
+    {
+     "w": "carretel",
+     "t": 21.63
+    },
+    {
+     "w": "precisa",
+     "t": 22.29
+    },
+    {
+     "w": "travar",
+     "t": 22.898
+    },
+    {
+     "w": "Mas",
+     "t": 23.63
+    },
+    {
+     "w": "só",
+     "t": 23.917
+    },
+    {
+     "w": "na",
+     "t": 24.183
+    },
+    {
+     "w": "hora",
+     "t": 24.354
+    },
+    {
+     "w": "certa",
+     "t": 24.69
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.56,
+   "fim": 37.8,
+   "texto": "Você coloca uma bolinha de metal num ninho, embaixo de uma alavanca. Numa freada brusca, a bolinha rola pra frente, empurra a alavanca, e ela engata nos dentes do carretel.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 25.56
+    },
+    {
+     "w": "coloca",
+     "t": 25.94
+    },
+    {
+     "w": "uma",
+     "t": 26.4
+    },
+    {
+     "w": "bolinha",
+     "t": 26.58
+    },
+    {
+     "w": "de",
+     "t": 26.973
+    },
+    {
+     "w": "metal",
+     "t": 27.147
+    },
+    {
+     "w": "num",
+     "t": 27.54
+    },
+    {
+     "w": "ninho",
+     "t": 27.78
+    },
+    {
+     "w": "embaixo",
+     "t": 28.44
+    },
+    {
+     "w": "de",
+     "t": 28.973
+    },
+    {
+     "w": "uma",
+     "t": 29.12
+    },
+    {
+     "w": "alavanca",
+     "t": 29.293
+    },
+    {
+     "w": "Numa",
+     "t": 30.24
+    },
+    {
+     "w": "freada",
+     "t": 30.587
+    },
+    {
+     "w": "brusca",
+     "t": 31.053
+    },
+    {
+     "w": "a",
+     "t": 31.76
+    },
+    {
+     "w": "bolinha",
+     "t": 31.86
+    },
+    {
+     "w": "rola",
+     "t": 32.44
+    },
+    {
+     "w": "pra",
+     "t": 32.78
+    },
+    {
+     "w": "frente",
+     "t": 32.92
+    },
+    {
+     "w": "empurra",
+     "t": 33.72
+    },
+    {
+     "w": "a",
+     "t": 34.24
+    },
+    {
+     "w": "alavanca",
+     "t": 34.333
+    },
+    {
+     "w": "e",
+     "t": 35.22
+    },
+    {
+     "w": "ela",
+     "t": 35.4
+    },
+    {
+     "w": "engata",
+     "t": 35.68
+    },
+    {
+     "w": "nos",
+     "t": 36.18
+    },
+    {
+     "w": "dentes",
+     "t": 36.408
+    },
+    {
+     "w": "do",
+     "t": 36.787
+    },
+    {
+     "w": "carretel",
+     "t": 36.9
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 37.95,
+   "fim": 48.19,
+   "texto": "E tem uma segunda trava: se você puxa a fita rápido demais, ela trava. Por isso, puxando devagar, sai. Puxando de uma vez, trava.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 37.95
+    },
+    {
+     "w": "tem",
+     "t": 38.17
+    },
+    {
+     "w": "uma",
+     "t": 38.41
+    },
+    {
+     "w": "segunda",
+     "t": 38.66
+    },
+    {
+     "w": "trava",
+     "t": 39.23
+    },
+    {
+     "w": "se",
+     "t": 39.817
+    },
+    {
+     "w": "você",
+     "t": 40.094
+    },
+    {
+     "w": "puxa",
+     "t": 40.43
+    },
+    {
+     "w": "a",
+     "t": 40.73
+    },
+    {
+     "w": "fita",
+     "t": 40.83
+    },
+    {
+     "w": "rápido",
+     "t": 41.219
+    },
+    {
+     "w": "demais",
+     "t": 41.67
+    },
+    {
+     "w": "ela",
+     "t": 42.29
+    },
+    {
+     "w": "trava",
+     "t": 42.67
+    },
+    {
+     "w": "Por",
+     "t": 43.39
+    },
+    {
+     "w": "isso",
+     "t": 43.694
+    },
+    {
+     "w": "puxando",
+     "t": 44.11
+    },
+    {
+     "w": "devagar",
+     "t": 44.65
+    },
+    {
+     "w": "sai",
+     "t": 45.41
+    },
+    {
+     "w": "Puxando",
+     "t": 46.01
+    },
+    {
+     "w": "de",
+     "t": 46.617
+    },
+    {
+     "w": "uma",
+     "t": 46.71
+    },
+    {
+     "w": "vez",
+     "t": 46.93
+    },
+    {
+     "w": "trava",
+     "t": 47.417
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 48.34,
+   "fim": 57.14,
+   "texto": "Nos carros novos, numa batida, uma pequena carga explode e puxa a fita pra trás, colando você no banco antes do tranco.",
+   "palavras": [
+    {
+     "w": "Nos",
+     "t": 48.34
+    },
+    {
+     "w": "carros",
+     "t": 48.62
+    },
+    {
+     "w": "novos",
+     "t": 48.98
+    },
+    {
+     "w": "numa",
+     "t": 49.668
+    },
+    {
+     "w": "batida",
+     "t": 49.92
+    },
+    {
+     "w": "uma",
+     "t": 50.64
+    },
+    {
+     "w": "pequena",
+     "t": 50.868
+    },
+    {
+     "w": "carga",
+     "t": 51.353
+    },
+    {
+     "w": "explode",
+     "t": 51.7
+    },
+    {
+     "w": "e",
+     "t": 52.42
+    },
+    {
+     "w": "puxa",
+     "t": 52.66
+    },
+    {
+     "w": "a",
+     "t": 53.1
+    },
+    {
+     "w": "fita",
+     "t": 53.2
+    },
+    {
+     "w": "pra",
+     "t": 53.48
+    },
+    {
+     "w": "trás",
+     "t": 53.647
+    },
+    {
+     "w": "colando",
+     "t": 54.26
+    },
+    {
+     "w": "você",
+     "t": 54.884
+    },
+    {
+     "w": "no",
+     "t": 55.167
+    },
+    {
+     "w": "banco",
+     "t": 55.313
+    },
+    {
+     "w": "antes",
+     "t": 55.847
+    },
+    {
+     "w": "do",
+     "t": 56.233
+    },
+    {
+     "w": "tranco",
+     "t": 56.393
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 57.29,
+   "fim": 65.69,
+   "texto": "Coloque uma fivela com mola, um botão vermelho e um apito que não para. Parabéns, você construiu um cinto de segurança.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 57.29
+    },
+    {
+     "w": "uma",
+     "t": 57.73
+    },
+    {
+     "w": "fivela",
+     "t": 57.89
+    },
+    {
+     "w": "com",
+     "t": 58.45
+    },
+    {
+     "w": "mola",
+     "t": 58.65
+    },
+    {
+     "w": "um",
+     "t": 59.157
+    },
+    {
+     "w": "botão",
+     "t": 59.27
+    },
+    {
+     "w": "vermelho",
+     "t": 59.67
+    },
+    {
+     "w": "e",
+     "t": 60.29
+    },
+    {
+     "w": "um",
+     "t": 60.463
+    },
+    {
+     "w": "apito",
+     "t": 60.65
+    },
+    {
+     "w": "que",
+     "t": 61.09
+    },
+    {
+     "w": "não",
+     "t": 61.29
+    },
+    {
+     "w": "para",
+     "t": 61.61
+    },
+    {
+     "w": "Parabéns",
+     "t": 62.09
+    },
+    {
+     "w": "você",
+     "t": 63.034
+    },
+    {
+     "w": "construiu",
+     "t": 63.347
+    },
+    {
+     "w": "um",
+     "t": 64.01
+    },
+    {
+     "w": "cinto",
+     "t": 64.21
+    },
+    {
+     "w": "de",
+     "t": 64.543
+    },
+    {
+     "w": "segurança",
+     "t": 64.71
+    }
+   ]
+  }
+ ]
+}

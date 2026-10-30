@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("cinto", { fundo: 0xc9d6e2, seed: 3002 });
+const { THREE, scene, add, grupo, mat, sprite, texRuido, prog, pulse, entre, clamp, C, F, P, T, V } = K;
+const PI = Math.PI;
+
+// ---------- carro por dentro: banco, boneco, cinto ----------
+const carro = grupo(0, 0, 0);
+add(new THREE.PlaneGeometry(12, 12), mat(0x3a3e46, { map: texRuido("#3a3e46", 20, 8) }), 0, 0, 0, carro).rotation.x = -PI / 2;
+const bancoM = mat(0x2a2c32, { roughness: .9 });
+add(new THREE.BoxGeometry(.7, .16, .65), bancoM, 0, .45, 0, carro);
+const encosto = add(new THREE.BoxGeometry(.7, 1.0, .16), bancoM, 0, 1.0, -.34, carro); encosto.rotation.x = -.14;
+add(new THREE.BoxGeometry(.36, .2, .14), bancoM, 0, 1.6, -.42, carro);
+add(new THREE.BoxGeometry(.5, .45, .1), mat(0x50555e), 0, .2, 0, carro);
+add(new THREE.BoxGeometry(1.8, .35, .5), mat(0x23262c), 0, .95, 1.15, carro);
+add(new THREE.BoxGeometry(.1, 1.6, .12), mat(0x50555e), .46, .9, -.45, carro); // coluna da porta
+const cel = add(new THREE.BoxGeometry(.1, .02, .18), mat(0x111111, { emissive: 0x3060ff, emissiveIntensity: .6 }), -.15, 1.14, 1.0, carro);
+const luz = add(new THREE.CylinderGeometry(.04, .04, .02, 20), new THREE.MeshStandardMaterial({ color: 0x551010, emissive: 0xff2020, emissiveIntensity: 0 }), .3, 1.14, .95, carro);
+// boneco (pivô no quadril)
+const pele = mat(0xe8b890), roupa = mat(0x3a7ac8);
+const boneco = grupo(0, .56, -.12, carro);
+add(new THREE.CapsuleGeometry(.15, .38, 6, 16), roupa, 0, .34, 0, boneco);
+add(new THREE.SphereGeometry(.12, 24, 16), pele, 0, .8, .02, boneco);
+for (const s of [-1, 1]) add(new THREE.BoxGeometry(.13, .13, .5), mat(0x2a3a5a), s * .09, .02, .25, boneco);
+const bracoE = grupo(-.19, .55, 0, boneco); add(new THREE.CapsuleGeometry(.05, .4, 4, 10), roupa, 0, -.22, 0, bracoE);
+const bracoD = grupo(.19, .55, 0, boneco); add(new THREE.CapsuleGeometry(.05, .4, 4, 10), roupa, 0, -.22, 0, bracoD);
+// cinto: segmentos refeitos a cada quadro
+const fitaM = mat(0x1a1a1a, { roughness: .8, emissive: 0xff8020, emissiveIntensity: 0 });
+const seg = () => add(new THREE.BoxGeometry(.08, .012, 1), fitaM, 0, 0, 0, carro);
+const s1 = seg(), s2 = seg(), s3 = seg();
+const liga = (m, a, b) => { m.position.copy(a).add(b).multiplyScalar(.5); m.lookAt(b.x + carro.position.x, b.y + carro.position.y, b.z + carro.position.z); m.scale.z = a.distanceTo(b); };
+const ombro = V(.4, 1.42, -.38), quadril = V(-.3, .62, .08), retrator = V(.42, .62, -.42);
+const peito = new THREE.Object3D(); peito.position.set(.02, .42, .17); boneco.add(peito);
+const caixaR = add(new THREE.BoxGeometry(.14, .2, .14), mat(0x60656e), .42, .6, -.42, carro); caixaR.visible = false;
+const fivela = grupo(-.3, .6, .08, carro); add(new THREE.BoxGeometry(.1, .14, .05), mat(0x2a2a2e), 0, 0, 0, fivela); add(new THREE.BoxGeometry(.06, .03, .02), mat(0xe02020), 0, .03, .03, fivela); fivela.visible = false;
+const flash = sprite(0xff9020); flash.position.set(.42, .62, -.3);
+const nota = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo("♪", "#ff4040", { tam: 200 }), transparent: true })); nota.scale.set(.3, .15, 1); nota.position.set(.3, 1.3, .95); scene.add(nota);
+
+// ---------- mini set: o carretel por dentro ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(12, 12), mat(0x2a3240), BX, 0, -1); { const pl = new THREE.PointLight(0xffffff, 4, 10); pl.position.set(BX + 1, 2.5, 3); scene.add(pl); }
+const carretel = grupo(BX + .1, 1.15, 0);
+add(new THREE.CylinderGeometry(.32, .32, .25, 40), mat(0x1a1a1a, { roughness: .9 }), 0, 0, 0, carretel).rotation.x = PI / 2;
+const dentes = grupo(0, 0, .15, carretel);
+add(new THREE.CylinderGeometry(.38, .38, .04, 40), mat(0xb0b6be, { metalness: .6 }), 0, 0, 0, dentes).rotation.x = PI / 2;
+for (let i = 0; i < 16; i++) { const a = i / 16 * PI * 2; const d = add(new THREE.BoxGeometry(.08, .1, .04), mat(0xb0b6be, { metalness: .6 }), Math.cos(a) * .41, Math.sin(a) * .41, 0, dentes); d.rotation.z = a; }
+const peso = grupo(0, 0, .2, carretel); add(new THREE.BoxGeometry(.24, .06, .03), mat(0xf0c020), .12, 0, 0, peso);
+add(new THREE.BoxGeometry(.25, 1.2, .015), mat(0x1a1a1a), BX + .42, 1.75, 0);
+const alav = grupo(BX - .55, .68, .15); add(new THREE.BoxGeometry(.55, .05, .05), mat(0xe03030), .27, 0, 0, alav);
+add(new THREE.CylinderGeometry(.16, .1, .1, 24, 1, true), mat(0x7a7e86, { side: THREE.DoubleSide }), BX - .45, .54, .15);
+const bola = add(new THREE.SphereGeometry(.07, 24, 16), mat(0xd8dde4, { metalness: .9, roughness: .15 }), BX - .45, .6, .15);
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 80, w: 768 }), transparent: true })); s.position.set(x, y, .5); s.scale.set(.9, .3, 1); scene.add(s); return s; };
+const lBola = lb("BOLINHA", "#ffffff", BX - .4, .32), lAlav = lb("ALAVANCA", "#ff6060", BX - .4, .9), lDentes = lb("DENTES", "#dfe6ee", BX + .2, 1.68);
+
+// giro do carretel = soma de trechos [ini, fim, velocidade] (função só de t, pra renderizar em partes)
+const trechos = [
+  [C(4), P(4, "freada") - .2, 1.2], [P(4, "freada") - .2, P(4, "engata"), 4],
+  [C(5), P(5, "rapido") - .3, 1.2], [P(5, "rapido") - .3, P(5, "trava", 2), 7],
+  [P(5, "devagar") - .2, P(5, "sai") + .4, 1.2], [P(5, "vez") - .4, P(5, "trava", 3), 7],
+];
+const giro = (t) => trechos.reduce((s, [a, b, v]) => s + v * clamp(t - a, 0, b - a), 0);
+
+K.camera_({
+  geral: [V(2.5, 1.7, 1.5), V(0, .92, .25)],
+  lado: [V(3.2, 1.45, .7), V(0, .95, .3)],
+  mini: [V(BX - .1, 1.1, 4.6), V(BX - .1, 1.05, 0)],
+  fim: [V(-1.9, 1.45, 1.3), V(-.1, .88, .1)],
+}, [
+  [0, "geral"], [F(2), "geral"], [C(3), "lado"], [F(3), "lado"], [C(4), "mini"], [F(5), "mini"], [C(6), "lado"], [F(6), "lado"], [C(7), "fim"], [T, "fim"],
+]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // quanto o boneco vai pra frente
+  let incl = 0;
+  if (em(P(2, "celular") - .5, P(2, "enrola") - .3)) incl = .04 + .03 * Math.sin(t * 14);
+  if (em(P(2, "puxar") - .3, P(2, "recolhe") - .2)) incl = .45 * prog(t, P(2, "puxar") - .3, P(2, "puxar") + .4);
+  if (em(P(2, "recolhe") - .2, F(2))) incl = .45 * (1 - prog(t, P(2, "recolhe") - .2, P(2, "recolhe") + .5));
+  if (em(P(3, "batida") - .1, P(3, "travar") - .3)) incl = .95 * prog(t, P(3, "batida") - .1, P(3, "batida") + .25);
+  if (em(P(3, "travar") - .3, F(3))) incl = .95 * (1 - prog(t, P(3, "travar") - .3, P(3, "travar") + .5));
+  if (em(P(6, "batida") - .1, P(6, "explode") - .1)) incl = .25 * prog(t, P(6, "batida") - .1, P(6, "explode") - .1);
+  if (em(P(6, "explode") - .1, F(6))) incl = .25 - .33 * prog(t, P(6, "explode") - .1, P(6, "explode") + .2);
+  boneco.rotation.x = incl;
+  bracoD.rotation.x = em(P(2, "celular") - .5, P(2, "recolhe")) ? -1.1 : -.25;
+  bracoE.rotation.x = -.25;
+  // tranco no carro
+  const tranco = pulse(t, P(3, "batida") - .1, .5) + pulse(t, P(6, "batida") - .1, .4) + pulse(t, P(6, "tranco") - .1, .4);
+  carro.position.set(Math.sin(t * 60) * .03 * tranco, 0, -.05 * tranco);
+  // cinto
+  boneco.updateMatrixWorld(true); const pc = carro.worldToLocal(peito.getWorldPosition(new THREE.Vector3()));
+  const solto = em(P(3, "batida") - .1, P(3, "travar") - .3);
+  if (solto) pc.z += .08;
+  liga(s1, ombro, pc); liga(s2, pc, quadril);
+  const comRetrator = t > P(2, "carretel") - .3;
+  s3.visible = caixaR.visible = comRetrator; liga(s3, retrator, ombro);
+  const puxa = em(P(6, "explode") - .1, F(6));
+  fitaM.emissiveIntensity = puxa ? .7 * (1 - prog(t, P(6, "explode"), F(6))) : 0;
+  flash.scale.setScalar(.6 * pulse(t, P(6, "explode") - .1, .5)); flash.material.opacity = pulse(t, P(6, "explode") - .1, .5);
+  // acabamentos
+  fivela.visible = t > P(7, "fivela") - .3;
+  const apita = t > P(7, "apito") - .3;
+  luz.material.emissiveIntensity = apita && Math.sin(t * 10) > 0 ? 2 : 0;
+  nota.visible = apita && Math.sin(t * 10) > 0;
+  // mini set
+  carretel.rotation.z = -giro(t);
+  const bolaVai = prog(t, P(4, "rola") - .2, P(4, "empurra"));
+  bola.position.set(BX - .45 + .09 * bolaVai, .6 + .05 * bolaVai, .15);
+  alav.rotation.z = .3 * prog(t, P(4, "empurra") - .2, P(4, "engata")) * (t < C(5) + .3 ? 1 : 0);
+  peso.rotation.z = (em(P(5, "rapido") - .1, P(5, "devagar") - .3) || t > P(5, "vez") - .2) ? .9 : 0;
+  lBola.visible = em(P(4, "bolinha") - .3, F(4)); lAlav.visible = em(P(4, "alavanca") - .3, F(4)); lDentes.visible = em(P(4, "dentes") - .3, F(4));
+  K.cartoes(t, [
+    [P(1, "cinto") - .3, F(1), "CINTO?", "#ffffff"],
+    [P(2, "celular") - .5, P(2, "enrola") - .3, "APERTA DEMAIS", "#ff6060"],
+    [P(2, "carretel") - .3, F(2), "CARRETEL COM MOLA", "#8ac8ff"],
+    [P(3, "batida") - .1, P(3, "travar") - .3, "SEM TRAVA: VAI PRA FRENTE", "#ff4a3a"],
+    [P(4, "freada") - .3, F(4), "FREADA: A BOLINHA ROLA", "#ffd23a"],
+    [P(5, "rapido") - .3, P(5, "devagar") - .3, "PUXOU RÁPIDO: TRAVA", "#ffd23a"],
+    [P(5, "devagar") - .3, P(5, "vez") - .4, "DEVAGAR: SAI", "#8ac8ff"],
+    [P(5, "vez") - .4, F(5), "DE UMA VEZ: TRAVA", "#ff6060"],
+    [P(6, "explode") - .2, F(6), "PRÉ-TENSIONADOR", "#ff9020"],
+  ]);
+});
+</script>
+</body></html>
