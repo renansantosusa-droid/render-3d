@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Qual é a maior coisa que existe?" — cópia do Reel do Portallya (De7aQSPAWYh), pedido do Renan 31/10.
+// Corrigido: Sol = bola de GÁS (não gelo); Laniakea ~500 mi anos-luz (Tully 2014: ~520 mi); Muralha de Hércules ainda discutida.
+// "Homem vestido de hambúrguer" = brincadeira: ele passa mesmo nos 1os segundos (cena 1).
+import { motion } from "/kitmotion.js";
+const K = await motion("maiorcoisa", { fundo: "#05060f", fundo2: "#0d1030", padrao: "pontos", destaque: "#ffd23a", alerta: "#ff4d4d", rotulo: "ESCALA", rotuloCor: "#5b4bd6", sub: "• UNIVERSO", tag: "ENTENDA", legenda: "contorno", transicao: "zoom" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, txtCabe, pilula, pop, carimbo, CENAS } = K;
+const CY = 760;
+const fimDe = (c) => CENAS[c - 1].fim;
+// encolhe o objeto no fim da cena (o próximo é maior)
+function zoom(t, c, f) { const k = ease((t - (fimDe(c) - .5)) / .5); g.save(); g.translate(W / 2, CY); const s = 1 - .92 * k; g.scale(s, s); g.translate(-W / 2, -CY); f(); g.restore(); }
+function rotulo(t, c, nome, medida, pot, palavra) {
+  pop(ap(t, ini(c) + .05), W / 2, 1150, () => txt(nome, W / 2, 1150, 92, "#fff", { contorno: 10 }));
+  pop(ap(t, P(c, palavra) - .25), W / 2, 1270, () => pilula(medida, W / 2, 1270, 60, C.AM, "#000"));
+  pop(ap(t, ini(c) + .2), W / 2, 330, () => pilula(pot, W / 2, 330, 38, "rgba(255,255,255,.14)", "#fff"));
+}
+function hamburguer(x, y, s, t) { g.save(); g.translate(x, y); g.scale(s, s); const p = Math.sin(t * 10) * 14; g.strokeStyle = "#2b2b2b"; g.lineWidth = 16; g.lineCap = "round"; g.beginPath(); g.moveTo(-25, 90); g.lineTo(-25 - p, 160); g.moveTo(25, 90); g.lineTo(25 + p, 160); g.stroke(); g.fillStyle = "#e0a040"; g.beginPath(); g.ellipse(0, -40, 100, 70, 0, Math.PI, 0); g.fill(); rr(-105, -40, 210, 20, 8, "#3fa34d"); rr(-100, -20, 200, 34, 12, "#6b3a1e"); rr(-104, 14, 208, 14, 6, "#ffcc33"); rr(-100, 28, 200, 50, 20, "#e0a040"); circ(-30, -70, 6, "#fff3c4"); circ(20, -85, 6, "#fff3c4"); circ(50, -60, 6, "#fff3c4"); circ(-30, -2, 7, "#fff"); circ(30, -2, 7, "#fff"); circ(-30, -2, 3, "#000"); circ(30, -2, 3, "#000"); g.restore(); }
+let SEED = 7; const rnd = () => (SEED = (SEED * 16807) % 2147483647) / 2147483647; const EST = Array.from({ length: 260 }, () => [rnd(), rnd(), Math.floor(rnd() * 7)]);
+const CENA = [null,
+  (t) => {
+    rotulo(t, 1, "GRÃO DE AREIA", "1 MILÍMETRO", "≈ 0,001 m", "milimetro");
+    pop(ap(t, ini(1)), W / 2, 480, () => txt("QUAL É A MAIOR COISA QUE EXISTE?", W / 2, 470, 54, C.AM, { contorno: 8 }));
+    zoom(t, 1, () => pop(ap(t, P(1, "grao") - .3), W / 2, CY, () => { g.fillStyle = "#d9b77a"; g.beginPath(); for (let i = 0; i < 12; i++) { const a = i / 12 * 6.2832, r = 170 + ((i * 37) % 5) * 14; g.lineTo(W / 2 + Math.cos(a) * r, CY + Math.sin(a) * r * .85); } g.fill(); for (let i = 0; i < 30; i++) circ(W / 2 - 120 + (i * 53) % 240, CY - 100 + (i * 41) % 200, 6, "rgba(120,80,30,.35)"); }));
+    const kh = clamp((t - .6) / 3.6); if (kh > 0 && kh < 1) hamburguer(-120 + 1320 * kh, 1380, .55, t);
+  },
+  (t) => { rotulo(t, 2, "VOCÊ", "1,70 METRO", "≈ 1 m", "metro"); zoom(t, 2, () => pop(ap(t, ini(2)), W / 2, CY, () => { circ(W / 2, CY - 210, 70, "#f0c8a0"); rr(W / 2 - 90, CY - 130, 180, 230, 50, "#4f7bd6"); rr(W / 2 - 80, CY + 90, 70, 200, 30, "#2a3958"); rr(W / 2 + 10, CY + 90, 70, 200, 30, "#2a3958"); })); },
+  (t) => { rotulo(t, 3, "MONTE EVEREST", "8.849 METROS", "≈ 10.000 m", "oito"); zoom(t, 3, () => pop(ap(t, ini(3)), W / 2, CY, () => { g.fillStyle = "#5a6478"; g.beginPath(); g.moveTo(180, CY + 250); g.lineTo(W / 2, CY - 280); g.lineTo(900, CY + 250); g.fill(); g.fillStyle = "#3e4658"; g.beginPath(); g.moveTo(80, CY + 250); g.lineTo(330, CY - 60); g.lineTo(560, CY + 250); g.fill(); g.fillStyle = "#fff"; g.beginPath(); g.moveTo(W / 2 - 110, CY - 140); g.lineTo(W / 2, CY - 280); g.lineTo(W / 2 + 110, CY - 140); g.lineTo(W / 2 + 40, CY - 170); g.lineTo(W / 2, CY - 130); g.lineTo(W / 2 - 50, CY - 170); g.fill(); })); },
+  (t) => { rotulo(t, 4, "A TERRA", "12.742 QUILÔMETROS", "≈ 10.000.000 m", "doze"); zoom(t, 4, () => pop(ap(t, ini(4)), W / 2, CY, () => { circ(W / 2, CY, 280, "#1f5fa8"); g.save(); g.beginPath(); g.arc(W / 2, CY, 280, 0, 6.2832); g.clip(); const o = (t * 30) % 600; for (let i = 0; i < 6; i++) { g.fillStyle = "#3a9a4a"; g.beginPath(); g.ellipse(W / 2 - 300 + ((i * 170 + o) % 900), CY - 160 + (i * 97) % 320, 90, 60, i, 0, 6.2832); g.fill(); } g.restore(); g.strokeStyle = "rgba(120,190,255,.5)"; g.lineWidth = 16; g.beginPath(); g.arc(W / 2, CY, 290, 0, 6.2832); g.stroke(); })); },
+  (t) => { rotulo(t, 5, "O SOL", "1,4 MILHÃO DE KM", "≈ 1.000.000.000 m", "milhao"); pop(ap(t, P(5, "gas") - .3), W / 2, 1380, () => txt("UMA BOLA GIGANTE DE GÁS", W / 2, 1380, 48, "#ff9a3a", { contorno: 6 })); zoom(t, 5, () => pop(ap(t, ini(5)), W / 2, CY, () => { const gr = g.createRadialGradient(W / 2, CY, 40, W / 2, CY, 380); gr.addColorStop(0, "#fff6c0"); gr.addColorStop(.6, "#ffb020"); gr.addColorStop(.8, "rgba(255,120,20,.6)"); gr.addColorStop(1, "rgba(255,80,0,0)"); g.fillStyle = gr; g.beginPath(); g.arc(W / 2, CY, 380 + Math.sin(t * 3) * 8, 0, 6.2832); g.fill(); circ(W / 2 + 330, CY - 250, 4, "#4fb3c9"); txt("TERRA", W / 2 + 330, CY - 220, 26, "#9fc6dc"); })); },
+  (t) => { rotulo(t, 6, "SISTEMA SOLAR", "9 BILHÕES DE KM", "até Netuno", "nove"); zoom(t, 6, () => pop(ap(t, ini(6)), W / 2, CY, () => { circ(W / 2, CY, 22, "#ffb020"); for (let i = 1; i <= 8; i++) { const r = 40 + i * 42; g.strokeStyle = "rgba(255,255,255,.18)"; g.lineWidth = 3; g.beginPath(); g.ellipse(W / 2, CY, r, r * .55, 0, 0, 6.2832); g.stroke(); const a = t * (2.4 / i) + i; circ(W / 2 + Math.cos(a) * r, CY + Math.sin(a) * r * .55, 6 + (i > 4 ? 6 : 2), ["#aaa", "#e8c66a", "#4fb3c9", "#d0603a", "#d9a46a", "#e8d08a", "#9fe0f0", "#4f7bd6"][i - 1]); } txt("NETUNO", W / 2 + 376, CY - 40, 28, "#9fc6dc"); })); },
+  (t) => { rotulo(t, 7, "NEBULOSA DE ÓRION", "25 ANOS-LUZ", "≈ 2 x 10¹⁷ m", "vinte"); zoom(t, 7, () => pop(ap(t, ini(7)), W / 2, CY, () => { for (let i = 0; i < 14; i++) { const x = W / 2 + Math.cos(i * 2.3) * 170 * ((i % 4) / 3), y = CY + Math.sin(i * 1.7) * 150 * ((i % 3) / 2); const gr = g.createRadialGradient(x, y, 0, x, y, 200); gr.addColorStop(0, i % 2 ? "rgba(255,90,170,.45)" : "rgba(90,160,255,.4)"); gr.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = gr; g.fillRect(x - 200, y - 200, 400, 400); } for (let i = 0; i < 4; i++) circ(W / 2 - 40 + i * 25, CY - 10 + (i % 2) * 20, 6, "#fff"); })); },
+  (t) => { rotulo(t, 8, "VIA LÁCTEA", "100 MIL ANOS-LUZ", "≈ 10²¹ m", "cem"); zoom(t, 8, () => pop(ap(t, ini(8)), W / 2, CY, () => { const gr = g.createRadialGradient(W / 2, CY, 0, W / 2, CY, 90); gr.addColorStop(0, "#fff3c4"); gr.addColorStop(1, "rgba(255,220,150,0)"); g.fillStyle = gr; g.fillRect(W / 2 - 90, CY - 90, 180, 180); for (let b = 0; b < 2; b++) for (let i = 0; i < 260; i++) { const r = 20 + i * 1.3, a = i * .045 + b * Math.PI + t * .3; circ(W / 2 + Math.cos(a) * r + Math.sin(i * 7) * 14, CY + (Math.sin(a) * r + Math.cos(i * 5) * 14) * .7, 2 + (i % 3), i % 5 ? "rgba(200,215,255,.8)" : "rgba(255,200,150,.9)"); } })); },
+  (t) => { rotulo(t, 9, "LANIAKEA", "~500 MILHÕES DE ANOS-LUZ", "superaglomerado onde a gente mora", "quinhentos"); zoom(t, 9, () => pop(ap(t, ini(9)), W / 2, CY, () => { for (let f = 0; f < 6; f++) { g.strokeStyle = "rgba(140,170,255,.35)"; g.lineWidth = 4; g.beginPath(); for (let i = 0; i <= 20; i++) { const a = f * 1.05 + i * .02, r = i * 17; const x = W / 2 + Math.cos(a + Math.sin(i * .3) * .4) * r, y = CY + Math.sin(a + Math.sin(i * .3) * .4) * r * .8; i ? g.lineTo(x, y) : g.moveTo(x, y); circ(x, y, 3 + (i % 4), "rgba(220,230,255,.85)"); } g.stroke(); } circ(W / 2 + 60, CY - 30, 9, C.AM); txt("VOCÊ ESTÁ AQUI", W / 2 + 160, CY - 70, 28, C.AM, { contorno: 4 }); })); },
+  (t) => {
+    pop(ap(t, ini(10)), W / 2, 470, () => txt("ENTÃO, QUAL É A MAIOR?", W / 2, 470, 70, C.AM, { contorno: 8 }));
+    pop(ap(t, P(10, "grande") - .3), W / 2, CY, () => { for (let i = 0; i < 220; i++) { const [u, v, c] = EST[i]; const x = 60 + u * 960, y = CY - 90 + v * 180 + Math.sin(u * 9) * 60; circ(x, y, 2 + c * .6, c % 3 ? "rgba(160,190,255,.85)" : "rgba(255,210,150,.9)"); } g.strokeStyle = "rgba(255,210,58,.6)"; g.lineWidth = 4; g.strokeRect(50, CY - 170, 980, 340); });
+    pop(ap(t, P(10, "grande") - .2), W / 2, 1150, () => { txtCabe("GRANDE MURALHA DE", W / 2, 1110, 64, "#fff", 940, { contorno: 8 }); txtCabe("HÉRCULES-COROA BOREAL", W / 2, 1185, 64, "#fff", 940, { contorno: 8 }); });
+    pop(ap(t, P(10, "dez") - .25), W / 2, 1290, () => pilula("~10 BILHÕES DE ANOS-LUZ", W / 2, 1290, 54, C.AM, "#000"));
+    carimbo("AINDA EM DISCUSSÃO", W / 2, 1395, ap(t, P(10, "discutem") - .1), C.VM, -.05, 72);
+  },
+  (t) => {
+    pop(ap(t, ini(11)), W / 2, 450, () => txt("MAS TEM ALGO MAIS RARO...", W / 2, 450, 66, "#fff", { contorno: 8 }));
+    const kh = clamp((t - P(11, "homem") + .6) / 3.2); if (kh > 0) hamburguer(-200 + (W / 2 + 200) * ease(kh * 1.6), 820, 1.5, kh * 1.6 < 1 ? t : 0);
+    pop(ap(t, P(11, "hamburguer") - .2), W / 2, 1150, () => txt("O HOMEM-HAMBÚRGUER", W / 2, 1150, 80, C.AM, { contorno: 10 }));
+    pop(ap(t, P(11, "comeco") - .2), W / 2, 1260, () => pilula("PASSOU NO COMEÇO DO VÍDEO", W / 2, 1260, 46, "#fff", "#000"));
+    carimbo("VOCÊ VIU ELE?", W / 2, 1000, ap(t, P(11, "viu") - .1), C.VM, -.05, 86);
+    pop(ap(t, ini(11) + .5), W / 2, 1370, () => { txtCabe("FONTES: HORVÁTH ET AL. (A&A, 2014) • TULLY ET AL. (NATURE, 2014) • NASA", W / 2, 1360, 26, "rgba(255,255,255,.6)", 940, { peso: 500 }); txtCabe("TAMANHOS ARREDONDADOS • ILUSTRAÇÕES FORA DE ESCALA", W / 2, 1398, 26, "rgba(255,255,255,.6)", 940, { peso: 500 }); });
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

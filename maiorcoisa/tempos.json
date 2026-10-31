@@ -1,0 +1,653 @@
+{
+ "total": 62.17,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.67,
+   "texto": "Qual é a maior coisa que existe? Um grão de areia: um milímetro.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 0.15
+    },
+    {
+     "w": "é",
+     "t": 0.55
+    },
+    {
+     "w": "a",
+     "t": 0.67
+    },
+    {
+     "w": "maior",
+     "t": 0.763
+    },
+    {
+     "w": "coisa",
+     "t": 1.11
+    },
+    {
+     "w": "que",
+     "t": 1.55
+    },
+    {
+     "w": "existe",
+     "t": 1.739
+    },
+    {
+     "w": "Um",
+     "t": 2.683
+    },
+    {
+     "w": "grão",
+     "t": 3.03
+    },
+    {
+     "w": "de",
+     "t": 3.403
+    },
+    {
+     "w": "areia",
+     "t": 3.57
+    },
+    {
+     "w": "um",
+     "t": 4.417
+    },
+    {
+     "w": "milímetro",
+     "t": 4.55
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.82,
+   "fim": 7.74,
+   "texto": "Você: um metro e setenta.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 5.82
+    },
+    {
+     "w": "um",
+     "t": 6.433
+    },
+    {
+     "w": "metro",
+     "t": 6.607
+    },
+    {
+     "w": "e",
+     "t": 6.98
+    },
+    {
+     "w": "setenta",
+     "t": 7.08
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 7.89,
+   "fim": 11.97,
+   "texto": "O Everest: oito mil oitocentos e quarenta e nove metros.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 7.89
+    },
+    {
+     "w": "Everest",
+     "t": 8.06
+    },
+    {
+     "w": "oito",
+     "t": 8.93
+    },
+    {
+     "w": "mil",
+     "t": 9.23
+    },
+    {
+     "w": "oitocentos",
+     "t": 9.49
+    },
+    {
+     "w": "e",
+     "t": 10.29
+    },
+    {
+     "w": "quarenta",
+     "t": 10.397
+    },
+    {
+     "w": "e",
+     "t": 10.89
+    },
+    {
+     "w": "nove",
+     "t": 10.957
+    },
+    {
+     "w": "metros",
+     "t": 11.193
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 12.12,
+   "fim": 16.68,
+   "texto": "A Terra: doze mil setecentos e quarenta e dois quilômetros.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 12.12
+    },
+    {
+     "w": "Terra",
+     "t": 12.373
+    },
+    {
+     "w": "doze",
+     "t": 13.053
+    },
+    {
+     "w": "mil",
+     "t": 13.48
+    },
+    {
+     "w": "setecentos",
+     "t": 13.78
+    },
+    {
+     "w": "e",
+     "t": 14.6
+    },
+    {
+     "w": "quarenta",
+     "t": 14.707
+    },
+    {
+     "w": "e",
+     "t": 15.16
+    },
+    {
+     "w": "dois",
+     "t": 15.272
+    },
+    {
+     "w": "quilômetros",
+     "t": 15.48
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 16.83,
+   "fim": 22.19,
+   "texto": "O Sol, uma bola gigante de gás: um milhão e quatrocentos mil quilômetros.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 16.83
+    },
+    {
+     "w": "Sol",
+     "t": 17.01
+    },
+    {
+     "w": "uma",
+     "t": 17.45
+    },
+    {
+     "w": "bola",
+     "t": 17.71
+    },
+    {
+     "w": "gigante",
+     "t": 18.13
+    },
+    {
+     "w": "de",
+     "t": 18.643
+    },
+    {
+     "w": "gás",
+     "t": 18.79
+    },
+    {
+     "w": "um",
+     "t": 19.337
+    },
+    {
+     "w": "milhão",
+     "t": 19.45
+    },
+    {
+     "w": "e",
+     "t": 19.91
+    },
+    {
+     "w": "quatrocentos",
+     "t": 20.003
+    },
+    {
+     "w": "mil",
+     "t": 20.81
+    },
+    {
+     "w": "quilômetros",
+     "t": 21.038
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 22.34,
+   "fim": 27.3,
+   "texto": "O Sistema Solar, até Netuno: nove bilhões de quilômetros.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 22.34
+    },
+    {
+     "w": "Sistema",
+     "t": 22.48
+    },
+    {
+     "w": "Solar",
+     "t": 22.993
+    },
+    {
+     "w": "até",
+     "t": 23.66
+    },
+    {
+     "w": "Netuno",
+     "t": 24.1
+    },
+    {
+     "w": "nove",
+     "t": 24.98
+    },
+    {
+     "w": "bilhões",
+     "t": 25.38
+    },
+    {
+     "w": "de",
+     "t": 25.887
+    },
+    {
+     "w": "quilômetros",
+     "t": 26.004
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 27.45,
+   "fim": 30.89,
+   "texto": "A Nebulosa de Órion: vinte e cinco anos-luz.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 27.45
+    },
+    {
+     "w": "Nebulosa",
+     "t": 27.59
+    },
+    {
+     "w": "de",
+     "t": 28.223
+    },
+    {
+     "w": "Órion",
+     "t": 28.57
+    },
+    {
+     "w": "vinte",
+     "t": 29.09
+    },
+    {
+     "w": "e",
+     "t": 29.45
+    },
+    {
+     "w": "cinco",
+     "t": 29.583
+    },
+    {
+     "w": "anos-luz",
+     "t": 29.914
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 31.04,
+   "fim": 34.08,
+   "texto": "A Via Láctea: cem mil anos-luz.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 31.04
+    },
+    {
+     "w": "Via",
+     "t": 31.22
+    },
+    {
+     "w": "Láctea",
+     "t": 31.6
+    },
+    {
+     "w": "cem",
+     "t": 32.4
+    },
+    {
+     "w": "mil",
+     "t": 32.72
+    },
+    {
+     "w": "anos-luz",
+     "t": 33.04
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 34.23,
+   "fim": 41.19,
+   "texto": "Laniakea, o superaglomerado de galáxias onde a gente mora: uns quinhentos milhões de anos-luz.",
+   "palavras": [
+    {
+     "w": "Laniakea",
+     "t": 34.23
+    },
+    {
+     "w": "o",
+     "t": 35.35
+    },
+    {
+     "w": "superaglomerado",
+     "t": 35.523
+    },
+    {
+     "w": "de",
+     "t": 36.603
+    },
+    {
+     "w": "galáxias",
+     "t": 36.75
+    },
+    {
+     "w": "onde",
+     "t": 37.462
+    },
+    {
+     "w": "a",
+     "t": 37.63
+    },
+    {
+     "w": "gente",
+     "t": 37.737
+    },
+    {
+     "w": "mora",
+     "t": 38.15
+    },
+    {
+     "w": "uns",
+     "t": 38.77
+    },
+    {
+     "w": "quinhentos",
+     "t": 38.977
+    },
+    {
+     "w": "milhões",
+     "t": 39.57
+    },
+    {
+     "w": "de",
+     "t": 40.043
+    },
+    {
+     "w": "anos-luz",
+     "t": 40.214
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 41.34,
+   "fim": 52.46,
+   "texto": "Então, qual é a maior coisa que existe? A Grande Muralha de Hércules-Coroa Boreal: uns dez bilhões de anos-luz. E os cientistas ainda discutem se ela existe mesmo.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 41.34
+    },
+    {
+     "w": "qual",
+     "t": 41.884
+    },
+    {
+     "w": "é",
+     "t": 42.22
+    },
+    {
+     "w": "a",
+     "t": 42.4
+    },
+    {
+     "w": "maior",
+     "t": 42.533
+    },
+    {
+     "w": "coisa",
+     "t": 42.767
+    },
+    {
+     "w": "que",
+     "t": 43.14
+    },
+    {
+     "w": "existe",
+     "t": 43.329
+    },
+    {
+     "w": "A",
+     "t": 43.98
+    },
+    {
+     "w": "Grande",
+     "t": 44.277
+    },
+    {
+     "w": "Muralha",
+     "t": 44.66
+    },
+    {
+     "w": "de",
+     "t": 45.153
+    },
+    {
+     "w": "Hércules-Coroa",
+     "t": 45.34
+    },
+    {
+     "w": "Boreal",
+     "t": 46.26
+    },
+    {
+     "w": "uns",
+     "t": 47.1
+    },
+    {
+     "w": "dez",
+     "t": 47.4
+    },
+    {
+     "w": "bilhões",
+     "t": 47.66
+    },
+    {
+     "w": "de",
+     "t": 48.247
+    },
+    {
+     "w": "anos-luz",
+     "t": 48.364
+    },
+    {
+     "w": "E",
+     "t": 49.4
+    },
+    {
+     "w": "os",
+     "t": 49.553
+    },
+    {
+     "w": "cientistas",
+     "t": 49.713
+    },
+    {
+     "w": "ainda",
+     "t": 50.42
+    },
+    {
+     "w": "discutem",
+     "t": 50.684
+    },
+    {
+     "w": "se",
+     "t": 51.313
+    },
+    {
+     "w": "ela",
+     "t": 51.44
+    },
+    {
+     "w": "existe",
+     "t": 51.569
+    },
+    {
+     "w": "mesmo",
+     "t": 52.047
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 52.61,
+   "fim": 61.57,
+   "texto": "Mas tem uma coisa ainda mais rara: você ter reparado no homem vestido de hambúrguer que passou no começo do vídeo. Você viu ele?",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 52.61
+    },
+    {
+     "w": "tem",
+     "t": 52.91
+    },
+    {
+     "w": "uma",
+     "t": 53.13
+    },
+    {
+     "w": "coisa",
+     "t": 53.33
+    },
+    {
+     "w": "ainda",
+     "t": 53.797
+    },
+    {
+     "w": "mais",
+     "t": 54.194
+    },
+    {
+     "w": "rara",
+     "t": 54.53
+    },
+    {
+     "w": "você",
+     "t": 55.042
+    },
+    {
+     "w": "ter",
+     "t": 55.55
+    },
+    {
+     "w": "reparado",
+     "t": 55.797
+    },
+    {
+     "w": "no",
+     "t": 56.423
+    },
+    {
+     "w": "homem",
+     "t": 56.583
+    },
+    {
+     "w": "vestido",
+     "t": 56.914
+    },
+    {
+     "w": "de",
+     "t": 57.463
+    },
+    {
+     "w": "hambúrguer",
+     "t": 57.63
+    },
+    {
+     "w": "que",
+     "t": 58.21
+    },
+    {
+     "w": "passou",
+     "t": 58.514
+    },
+    {
+     "w": "no",
+     "t": 58.903
+    },
+    {
+     "w": "começo",
+     "t": 59.074
+    },
+    {
+     "w": "do",
+     "t": 59.543
+    },
+    {
+     "w": "vídeo",
+     "t": 59.73
+    },
+    {
+     "w": "Você",
+     "t": 60.514
+    },
+    {
+     "w": "viu",
+     "t": 60.823
+    },
+    {
+     "w": "ele",
+     "t": 61.11
+    }
+   ]
+  }
+ ]
+}
