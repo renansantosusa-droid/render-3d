@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Por que no Brasil o papel higiênico vai no lixo?" — cópia do Reel do Gabriel Marcondes (DfH51tgRv2i), pedido do Renan 30/10.
+// Roteiro = fala original; "país que exige 5 bolinhas" virou o teste real da EPA WaterSense (EUA: bolinhas de papel na descarga).
+import { motion } from "/kitmotion.js";
+const K = await motion("papel", { fundo: "#0b1a24", fundo2: "#10283a", padrao: "pontos", destaque: "#ffd23a", rotulo: "CURIOSIDADE", rotuloCor: "#1f8fb3", sub: "• BRASIL", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, pilula, pop, carimbo, bandeiraEUA, bandeiraBR, seta } = K;
+function vaso(x, y, s) { g.save(); g.translate(x, y); g.scale(s, s); rr(-40, -230, 170, 150, 18, "#e9edf3"); rr(-150, -90, 300, 70, 30, "#f4f6f9"); g.fillStyle = "#e9edf3"; g.beginPath(); g.moveTo(-140, -40); g.quadraticCurveTo(-130, 90, -60, 110); g.lineTo(60, 110); g.quadraticCurveTo(130, 90, 140, -40); g.fill(); rr(-70, 100, 140, 60, 10, "#d4dae3"); g.fillStyle = "#9fc6dc"; g.beginPath(); g.ellipse(0, -55, 110, 22, 0, 0, 6.2832); g.fill(); g.restore(); }
+function lixinho(x, y, s, cheio = 0) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = "#7a8aa3"; g.beginPath(); g.moveTo(-80, -100); g.lineTo(80, -100); g.lineTo(62, 100); g.lineTo(-62, 100); g.fill(); g.strokeStyle = "rgba(0,0,0,.25)"; g.lineWidth = 5; for (let i = -40; i <= 40; i += 40) { g.beginPath(); g.moveTo(i, -80); g.lineTo(i * .8, 85); g.stroke(); } rr(-92, -118, 184, 24, 10, "#5f6f88"); if (cheio > 0) { for (let i = 0; i < 5; i++) circ(-50 + i * 25, -125 - (i % 2) * 15, 22 * cheio, "#f4f1ea"); } g.restore(); }
+function rolo(x, y, s, giro = 0) { g.save(); g.translate(x, y); g.rotate(giro); g.scale(s, s); rr(-70, -90, 140, 180, 30, "#f7f5ef"); g.fillStyle = "#ffffff"; g.beginPath(); g.ellipse(0, -90, 70, 24, 0, 0, 6.2832); g.fill(); g.fillStyle = "#c9b99a"; g.beginPath(); g.ellipse(0, -90, 26, 10, 0, 0, 6.2832); g.fill(); g.restore(); }
+function casa(x, y, s) { g.save(); g.translate(x, y); g.scale(s, s); rr(-140, -60, 280, 200, 10, "#e8c66a"); g.fillStyle = "#c8323a"; g.beginPath(); g.moveTo(-170, -50); g.lineTo(0, -190); g.lineTo(170, -50); g.fill(); rr(-30, 40, 60, 100, 6, "#6b4a2e"); rr(60, 0, 50, 50, 6, "#9fc6dc"); g.restore(); }
+function bact(x, y, r, t, i) { const b = Math.sin(t * 4 + i) * 4; circ(x, y, r + b, "#5fbf4a"); for (let k = 0; k < 6; k++) { const a = k * 1.047 + t; circ(x + Math.cos(a) * (r + 10), y + Math.sin(a) * (r + 10), 6, "#4a9a3a"); } circ(x - r * .3, y - r * .2, r * .18, "#fff"); circ(x + r * .3, y - r * .2, r * .18, "#fff"); circ(x - r * .3, y - r * .2, r * .08, "#000"); circ(x + r * .3, y - r * .2, r * .08, "#000"); }
+function x_(cx, cy, r, k) { if (k <= 0) return; g.save(); g.strokeStyle = C.VM; g.lineWidth = 22; g.lineCap = "round"; g.beginPath(); g.moveTo(cx - r, cy - r); g.lineTo(cx - r + 2 * r * clamp(k * 2), cy - r + 2 * r * clamp(k * 2)); if (k > .5) { g.moveTo(cx + r, cy - r); g.lineTo(cx + r - 2 * r * clamp(k * 2 - 1), cy - r + 2 * r * clamp(k * 2 - 1)); } g.stroke(); g.restore(); }
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), 300, 700, () => vaso(300, 720, 1.2));
+    pop(ap(t, P(1, "lixo") - .3), 780, 700, () => lixinho(780, 720, 1.3, 1));
+    const k = clamp((t - P(1, "papel")) / 1.2); if (k > 0 && k < 1) rolo(300 + 480 * ease(k), 560 - 200 * Math.sin(k * 3.14), .5, k * 6);
+    pop(ap(t, P(1, "porque") - .2), W / 2, 1030, () => txt("POR QUE NO LIXO?", W / 2, 1030, 116, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "cano") - .3), W / 2, 1200, () => pilula("CULPA DE UM CANO QUE VOCÊ NEM TEM MAIS", W / 2, 1200, 40, "#fff", "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 460, () => pilula("ANTIGAMENTE", W / 2, 400, 56, "#c8323a", "#fff"));
+    pop(ap(t, P(2, "esgoto") - .3), W / 2, 640, () => { casa(330, 640, 1.1); txt("SEM REDE", 760, 600, 60, "#fff", { contorno: 6 }); txt("DE ESGOTO", 760, 670, 60, C.AM, { contorno: 6 }); });
+    pop(ap(t, P(2, "fossa") - .3), W / 2, 1010, () => { rr(100, 860, 880, 24, 8, "#5a3e24"); g.fillStyle = "#3a2a1a"; g.beginPath(); g.ellipse(W / 2, 1020, 220, 120, 0, 0, 6.2832); g.fill(); const nv = clamp((t - P(2, "rolo")) / 2.5); g.save(); g.beginPath(); g.ellipse(W / 2, 1020, 210, 110, 0, 0, 6.2832); g.clip(); rr(W / 2 - 220, 1130 - 200 * nv, 440, 240, 0, "#7a5a2a"); g.restore(); txt("FOSSA", W / 2, 1020, 70, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(2, "rapido") - .3), W / 2, 1220, () => pilula("CADA ROLO ENCHIA MAIS RÁPIDO", W / 2, 1220, 46, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(3)), W / 2, 400, () => txt("CANO ANTIGO", W / 2, 400, 110, C.AM, { contorno: 10 }));
+    pop(ap(t, P(3, "estreito") - .3), W / 2, 700, () => { g.save(); g.translate(W / 2, 700); g.rotate(.04); rr(-420, -50, 840, 100, 50, "#8a96ab"); rr(-400, -30, 800, 60, 30, "#2a3958"); const fl = (t * 120) % 800; circ(-400 + fl, 10, 12, "#9fc6dc"); circ(-200, 8, 30, "#f4f1ea"); circ(-170, 0, 26, "#f4f1ea"); g.restore(); });
+    pop(ap(t, P(3, "caimento") - .3), W / 2, 880, () => pilula("ESTREITO E QUASE SEM CAIMENTO", W / 2, 880, 48, "#fff", "#000"));
+    carimbo("PAPEL PRESO", W / 2, 1120, ap(t, P(3, "preso") - .1), C.VM, -.07, 110);
+  },
+  (t) => {
+    pop(ap(t, ini(4)), W / 2, 760, () => { vaso(360, 760, 1.2); lixinho(760, 820, 1.1, 1); });
+    carimbo("O COSTUME FICOU", W / 2, 1150, ap(t, P(4, "costume") - .1), C.AM, -.06, 96);
+  },
+  (t) => {
+    pop(ap(t, ini(5)), W / 2, 400, () => txt("FEITO PRO VASO", W / 2, 400, 110, C.AM, { contorno: 10 }));
+    pop(ap(t, P(5, "fibras") - .3), W / 2, 600, () => { rr(140, 530, 380, 130, 26, "#1b2436"); txt("FIBRAS CURTAS", 330, 598, 44, "#fff"); rr(560, 530, 380, 130, 26, "#1b2436"); txt("COLA QUE SOLTA", 750, 580, 40, "#fff"); txt("NA ÁGUA", 750, 625, 40, C.AM); });
+    pop(ap(t, P(5, "copo") - .3), W / 2, 960, () => { g.save(); g.globalAlpha *= .9; g.fillStyle = "rgba(200,230,255,.25)"; g.beginPath(); g.moveTo(380, 760); g.lineTo(700, 760); g.lineTo(660, 1160); g.lineTo(420, 1160); g.fill(); g.restore(); g.fillStyle = "#4fb3c9"; g.beginPath(); g.moveTo(395, 850); g.lineTo(685, 850); g.lineTo(660, 1160); g.lineTo(420, 1160); g.fill(); const d = clamp((t - P(5, "mexe")) / 2.5); for (let i = 0; i < 9; i++) { const a = i * .7 + t * 2 * d; const r = 20 + 90 * d; g.globalAlpha = 1 - d * .6; rr(540 + Math.cos(a) * r * (i % 3 + 1) / 3 - 30 * (1 - d), 990 + Math.sin(a) * r * .6 - 30 * (1 - d), 60 * (1 - d * .7), 60 * (1 - d * .7), 6, "#fff"); } g.globalAlpha = 1; });
+    pop(ap(t, P(5, "desmancha") - .3), W / 2, 1260, () => pilula("SE DESMANCHA EM MINUTOS", W / 2, 1260, 50, C.AM, "#000"));
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 460, () => { bandeiraEUA(330, 380, 420, 260, t); });
+    pop(ap(t, P(6, "teste") - .3), W / 2, 760, () => pilula("TESTE OFICIAL DO VASO", W / 2, 760, 56, "#fff", "#000"));
+    pop(ap(t, P(6, "vaso") - .3), W / 2, 1000, () => vaso(W / 2, 1020, .9));
+    const k = clamp((t - P(6, "bolinhas")) / 1.4); for (let i = 0; i < 4; i++) { const ki = clamp(k * 1.6 - i * .2); if (ki > 0 && ki < 1) circ(W / 2 - 60 + i * 40, 820 + 170 * ease(ki), 24 * (1 - ki * .5), "#f4f1ea"); }
+    carimbo("TEM QUE ENGOLIR", W / 2, 1250, ap(t, P(6, "descarga") - .1), "#32d26f", -.06, 80);
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 780, () => lixinho(W / 2, 800, 1.6, 1));
+    [[360, 560], [700, 540], [420, 980], [720, 1000], [560, 470]].forEach(([x, y], i) => pop(ap(t, P(7, "bacterias") - .4 + i * .12), x, y, () => bact(x, y, 40, t, i)));
+    pop(ap(t, P(7, "dias") - .3), W / 2, 1200, () => pilula("PAPEL SUJO POR DIAS", W / 2, 1200, 56, C.VM, "#fff"));
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 560, () => { rr(100, 420, 880, 260, 30, "#123a26"); txt("TEM FOSSA OU", W / 2, 510, 58, "#fff"); txt("ESGOTO MUITO VELHO?", W / 2, 590, 58, "#fff"); txt("LIXINHO FAZ SENTIDO ✓", W / 2, 650, 40, "#32d26f"); });
+    pop(ap(t, P(8, "nao") - .3), W / 2, 920, () => { rr(100, 780, 880, 280, 30, "#3a1220"); txt("SE NÃO TEM...", W / 2, 870, 60, "#fff"); txt("ELE CUIDA DE UM CANO", W / 2, 950, 52, "#ff8080"); txt("QUE NEM EXISTE MAIS", W / 2, 1020, 52, "#ff8080"); });
+  },
+  (t) => {
+    pop(ap(t, ini(9)), W / 2, 620, () => { bandeiraBR(170, 450, 300, 200); lixinho(760, 580, 1.1, 1); });
+    pop(ap(t, P(9, "brasil") - .3), W / 2, 860, () => txt("QUASE TODO BANHEIRO", W / 2, 860, 84, C.AM, { contorno: 10 }));
+    pop(ap(t, P(9, "segue") - .3), W / 2, 1020, () => pilula("SEGUE PRA MAIS CURIOSIDADES ➜", W / 2, 1020, 46, "#c8323a", "#fff"));
+    pop(ap(t, P(9, "manda") - .3), W / 2, 1150, () => pilula("MANDA PRA QUEM DEFENDE O LIXINHO", W / 2, 1150, 40, C.AM, "#000"));
+    carimbo("COMO SE FOSSE LEI", W / 2, 1290, ap(t, P(9, "lei") - .1), C.VM, -.06, 66);
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

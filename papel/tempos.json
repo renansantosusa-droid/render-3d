@@ -1,0 +1,941 @@
+{
+ "total": 69.95,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.91,
+   "texto": "Por que no Brasil a gente joga o papel higiênico no lixo e não no vaso? Porque a gente aprendeu isso com um cano que a sua casa nem tem mais.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 0.15
+    },
+    {
+     "w": "que",
+     "t": 0.33
+    },
+    {
+     "w": "no",
+     "t": 0.443
+    },
+    {
+     "w": "Brasil",
+     "t": 0.607
+    },
+    {
+     "w": "a",
+     "t": 0.99
+    },
+    {
+     "w": "gente",
+     "t": 1.07
+    },
+    {
+     "w": "joga",
+     "t": 1.31
+    },
+    {
+     "w": "o",
+     "t": 1.55
+    },
+    {
+     "w": "papel",
+     "t": 1.643
+    },
+    {
+     "w": "higiênico",
+     "t": 1.97
+    },
+    {
+     "w": "no",
+     "t": 2.417
+    },
+    {
+     "w": "lixo",
+     "t": 2.603
+    },
+    {
+     "w": "e",
+     "t": 3.03
+    },
+    {
+     "w": "não",
+     "t": 3.17
+    },
+    {
+     "w": "no",
+     "t": 3.377
+    },
+    {
+     "w": "vaso",
+     "t": 3.51
+    },
+    {
+     "w": "Porque",
+     "t": 4.41
+    },
+    {
+     "w": "a",
+     "t": 4.59
+    },
+    {
+     "w": "gente",
+     "t": 4.657
+    },
+    {
+     "w": "aprendeu",
+     "t": 4.824
+    },
+    {
+     "w": "isso",
+     "t": 5.254
+    },
+    {
+     "w": "com",
+     "t": 5.55
+    },
+    {
+     "w": "um",
+     "t": 5.697
+    },
+    {
+     "w": "cano",
+     "t": 5.83
+    },
+    {
+     "w": "que",
+     "t": 6.17
+    },
+    {
+     "w": "a",
+     "t": 6.27
+    },
+    {
+     "w": "sua",
+     "t": 6.35
+    },
+    {
+     "w": "casa",
+     "t": 6.55
+    },
+    {
+     "w": "nem",
+     "t": 6.91
+    },
+    {
+     "w": "tem",
+     "t": 7.09
+    },
+    {
+     "w": "mais",
+     "t": 7.334
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 8.06,
+   "fim": 16.7,
+   "texto": "Antes, muitas casas não tinham rede de esgoto. Tudo caía numa fossa enterrada no quintal, e cada rolo de papel enchia ela mais rápido.",
+   "palavras": [
+    {
+     "w": "Antes",
+     "t": 8.06
+    },
+    {
+     "w": "muitas",
+     "t": 8.748
+    },
+    {
+     "w": "casas",
+     "t": 9.16
+    },
+    {
+     "w": "não",
+     "t": 9.46
+    },
+    {
+     "w": "tinham",
+     "t": 9.64
+    },
+    {
+     "w": "rede",
+     "t": 10.012
+    },
+    {
+     "w": "de",
+     "t": 10.193
+    },
+    {
+     "w": "esgoto",
+     "t": 10.353
+    },
+    {
+     "w": "Tudo",
+     "t": 11.02
+    },
+    {
+     "w": "caía",
+     "t": 11.393
+    },
+    {
+     "w": "numa",
+     "t": 11.708
+    },
+    {
+     "w": "fossa",
+     "t": 11.964
+    },
+    {
+     "w": "enterrada",
+     "t": 12.32
+    },
+    {
+     "w": "no",
+     "t": 12.727
+    },
+    {
+     "w": "quintal",
+     "t": 12.833
+    },
+    {
+     "w": "e",
+     "t": 13.54
+    },
+    {
+     "w": "cada",
+     "t": 13.82
+    },
+    {
+     "w": "rolo",
+     "t": 14.22
+    },
+    {
+     "w": "de",
+     "t": 14.513
+    },
+    {
+     "w": "papel",
+     "t": 14.687
+    },
+    {
+     "w": "enchia",
+     "t": 15.116
+    },
+    {
+     "w": "ela",
+     "t": 15.7
+    },
+    {
+     "w": "mais",
+     "t": 15.884
+    },
+    {
+     "w": "rápido",
+     "t": 16.197
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 16.85,
+   "fim": 25.49,
+   "texto": "E onde tinha esgoto, muito cano antigo era estreito e quase sem caimento. A água corria devagar e o papel ficava preso no fundo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 16.85
+    },
+    {
+     "w": "onde",
+     "t": 16.994
+    },
+    {
+     "w": "tinha",
+     "t": 17.29
+    },
+    {
+     "w": "esgoto",
+     "t": 17.543
+    },
+    {
+     "w": "muito",
+     "t": 18.357
+    },
+    {
+     "w": "cano",
+     "t": 18.73
+    },
+    {
+     "w": "antigo",
+     "t": 18.97
+    },
+    {
+     "w": "era",
+     "t": 19.35
+    },
+    {
+     "w": "estreito",
+     "t": 19.47
+    },
+    {
+     "w": "e",
+     "t": 20.09
+    },
+    {
+     "w": "quase",
+     "t": 20.263
+    },
+    {
+     "w": "sem",
+     "t": 20.67
+    },
+    {
+     "w": "caimento",
+     "t": 20.903
+    },
+    {
+     "w": "A",
+     "t": 21.97
+    },
+    {
+     "w": "água",
+     "t": 22.25
+    },
+    {
+     "w": "corria",
+     "t": 22.57
+    },
+    {
+     "w": "devagar",
+     "t": 22.89
+    },
+    {
+     "w": "e",
+     "t": 23.65
+    },
+    {
+     "w": "o",
+     "t": 23.85
+    },
+    {
+     "w": "papel",
+     "t": 23.943
+    },
+    {
+     "w": "ficava",
+     "t": 24.25
+    },
+    {
+     "w": "preso",
+     "t": 24.594
+    },
+    {
+     "w": "no",
+     "t": 24.983
+    },
+    {
+     "w": "fundo",
+     "t": 25.138
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.64,
+   "fim": 29,
+   "texto": "Então a gente botou um lixinho do lado do vaso, e o costume ficou.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 25.64
+    },
+    {
+     "w": "a",
+     "t": 25.86
+    },
+    {
+     "w": "gente",
+     "t": 25.907
+    },
+    {
+     "w": "botou",
+     "t": 26.1
+    },
+    {
+     "w": "um",
+     "t": 26.387
+    },
+    {
+     "w": "lixinho",
+     "t": 26.52
+    },
+    {
+     "w": "do",
+     "t": 27.027
+    },
+    {
+     "w": "lado",
+     "t": 27.128
+    },
+    {
+     "w": "do",
+     "t": 27.347
+    },
+    {
+     "w": "vaso",
+     "t": 27.52
+    },
+    {
+     "w": "e",
+     "t": 28
+    },
+    {
+     "w": "o",
+     "t": 28.16
+    },
+    {
+     "w": "costume",
+     "t": 28.25
+    },
+    {
+     "w": "ficou",
+     "t": 28.64
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 29.15,
+   "fim": 40.51,
+   "texto": "Mas o papel higiênico é feito para o vaso: fibras curtinhas e uma cola que se desfaz na água. Joga um quadradinho num copo d'água, mexe, e em poucos minutos ele se desmancha.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 29.15
+    },
+    {
+     "w": "o",
+     "t": 29.39
+    },
+    {
+     "w": "papel",
+     "t": 29.497
+    },
+    {
+     "w": "higiênico",
+     "t": 29.67
+    },
+    {
+     "w": "é",
+     "t": 30.31
+    },
+    {
+     "w": "feito",
+     "t": 30.483
+    },
+    {
+     "w": "para",
+     "t": 30.702
+    },
+    {
+     "w": "o",
+     "t": 30.87
+    },
+    {
+     "w": "vaso",
+     "t": 31.03
+    },
+    {
+     "w": "fibras",
+     "t": 31.838
+    },
+    {
+     "w": "curtinhas",
+     "t": 32.174
+    },
+    {
+     "w": "e",
+     "t": 32.91
+    },
+    {
+     "w": "uma",
+     "t": 33.11
+    },
+    {
+     "w": "cola",
+     "t": 33.31
+    },
+    {
+     "w": "que",
+     "t": 33.65
+    },
+    {
+     "w": "se",
+     "t": 33.763
+    },
+    {
+     "w": "desfaz",
+     "t": 33.91
+    },
+    {
+     "w": "na",
+     "t": 34.323
+    },
+    {
+     "w": "água",
+     "t": 34.47
+    },
+    {
+     "w": "Joga",
+     "t": 35.23
+    },
+    {
+     "w": "um",
+     "t": 35.817
+    },
+    {
+     "w": "quadradinho",
+     "t": 35.902
+    },
+    {
+     "w": "num",
+     "t": 36.39
+    },
+    {
+     "w": "copo",
+     "t": 36.55
+    },
+    {
+     "w": "d'água",
+     "t": 36.79
+    },
+    {
+     "w": "mexe",
+     "t": 37.57
+    },
+    {
+     "w": "e",
+     "t": 38.15
+    },
+    {
+     "w": "em",
+     "t": 38.323
+    },
+    {
+     "w": "poucos",
+     "t": 38.47
+    },
+    {
+     "w": "minutos",
+     "t": 38.9
+    },
+    {
+     "w": "ele",
+     "t": 39.47
+    },
+    {
+     "w": "se",
+     "t": 39.763
+    },
+    {
+     "w": "desmancha",
+     "t": 39.93
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.66,
+   "fim": 47.38,
+   "texto": "Tanto que, nos Estados Unidos, o teste oficial de vaso sanitário obriga ele a engolir bolinhas de papel na descarga.",
+   "palavras": [
+    {
+     "w": "Tanto",
+     "t": 40.66
+    },
+    {
+     "w": "que",
+     "t": 40.92
+    },
+    {
+     "w": "nos",
+     "t": 41.08
+    },
+    {
+     "w": "Estados",
+     "t": 41.18
+    },
+    {
+     "w": "Unidos",
+     "t": 41.529
+    },
+    {
+     "w": "o",
+     "t": 42.14
+    },
+    {
+     "w": "teste",
+     "t": 42.327
+    },
+    {
+     "w": "oficial",
+     "t": 42.72
+    },
+    {
+     "w": "de",
+     "t": 43.193
+    },
+    {
+     "w": "vaso",
+     "t": 43.34
+    },
+    {
+     "w": "sanitário",
+     "t": 43.607
+    },
+    {
+     "w": "obriga",
+     "t": 44.32
+    },
+    {
+     "w": "ele",
+     "t": 45.02
+    },
+    {
+     "w": "a",
+     "t": 45.18
+    },
+    {
+     "w": "engolir",
+     "t": 45.26
+    },
+    {
+     "w": "bolinhas",
+     "t": 45.7
+    },
+    {
+     "w": "de",
+     "t": 46.207
+    },
+    {
+     "w": "papel",
+     "t": 46.313
+    },
+    {
+     "w": "na",
+     "t": 46.633
+    },
+    {
+     "w": "descarga",
+     "t": 46.788
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 47.53,
+   "fim": 52.01,
+   "texto": "Enquanto isso, no lixinho, o papel sujo fica dias com as bactérias dele.",
+   "palavras": [
+    {
+     "w": "Enquanto",
+     "t": 47.53
+    },
+    {
+     "w": "isso",
+     "t": 47.994
+    },
+    {
+     "w": "no",
+     "t": 48.543
+    },
+    {
+     "w": "lixinho",
+     "t": 48.73
+    },
+    {
+     "w": "o",
+     "t": 49.41
+    },
+    {
+     "w": "papel",
+     "t": 49.503
+    },
+    {
+     "w": "sujo",
+     "t": 49.85
+    },
+    {
+     "w": "fica",
+     "t": 50.218
+    },
+    {
+     "w": "dias",
+     "t": 50.49
+    },
+    {
+     "w": "com",
+     "t": 50.83
+    },
+    {
+     "w": "as",
+     "t": 50.943
+    },
+    {
+     "w": "bactérias",
+     "t": 51.09
+    },
+    {
+     "w": "dele",
+     "t": 51.61
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 52.16,
+   "fim": 60.96,
+   "texto": "Se a sua casa tem fossa ou um esgoto muito velho, o lixinho faz sentido. Se não, o seu lixinho está cuidando de um cano que nem existe mais.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 52.16
+    },
+    {
+     "w": "a",
+     "t": 52.32
+    },
+    {
+     "w": "sua",
+     "t": 52.44
+    },
+    {
+     "w": "casa",
+     "t": 52.608
+    },
+    {
+     "w": "tem",
+     "t": 52.84
+    },
+    {
+     "w": "fossa",
+     "t": 53.04
+    },
+    {
+     "w": "ou",
+     "t": 53.52
+    },
+    {
+     "w": "um",
+     "t": 53.707
+    },
+    {
+     "w": "esgoto",
+     "t": 53.813
+    },
+    {
+     "w": "muito",
+     "t": 54.293
+    },
+    {
+     "w": "velho",
+     "t": 54.62
+    },
+    {
+     "w": "o",
+     "t": 55.24
+    },
+    {
+     "w": "lixinho",
+     "t": 55.333
+    },
+    {
+     "w": "faz",
+     "t": 55.72
+    },
+    {
+     "w": "sentido",
+     "t": 55.9
+    },
+    {
+     "w": "Se",
+     "t": 56.853
+    },
+    {
+     "w": "não",
+     "t": 57.02
+    },
+    {
+     "w": "o",
+     "t": 57.52
+    },
+    {
+     "w": "seu",
+     "t": 57.64
+    },
+    {
+     "w": "lixinho",
+     "t": 57.813
+    },
+    {
+     "w": "está",
+     "t": 58.192
+    },
+    {
+     "w": "cuidando",
+     "t": 58.368
+    },
+    {
+     "w": "de",
+     "t": 58.773
+    },
+    {
+     "w": "um",
+     "t": 58.907
+    },
+    {
+     "w": "cano",
+     "t": 59.02
+    },
+    {
+     "w": "que",
+     "t": 59.38
+    },
+    {
+     "w": "nem",
+     "t": 59.54
+    },
+    {
+     "w": "existe",
+     "t": 59.897
+    },
+    {
+     "w": "mais",
+     "t": 60.336
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 61.11,
+   "fim": 69.35,
+   "texto": "Por isso tem um lixinho em quase todo banheiro do Brasil. Me segue para mais curiosidades assim, e manda para quem defende o lixinho como se fosse lei.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 61.11
+    },
+    {
+     "w": "isso",
+     "t": 61.302
+    },
+    {
+     "w": "tem",
+     "t": 61.47
+    },
+    {
+     "w": "um",
+     "t": 61.643
+    },
+    {
+     "w": "lixinho",
+     "t": 61.777
+    },
+    {
+     "w": "em",
+     "t": 62.203
+    },
+    {
+     "w": "quase",
+     "t": 62.337
+    },
+    {
+     "w": "todo",
+     "t": 62.71
+    },
+    {
+     "w": "banheiro",
+     "t": 63.09
+    },
+    {
+     "w": "do",
+     "t": 63.59
+    },
+    {
+     "w": "Brasil",
+     "t": 63.784
+    },
+    {
+     "w": "Me",
+     "t": 64.257
+    },
+    {
+     "w": "segue",
+     "t": 64.683
+    },
+    {
+     "w": "para",
+     "t": 64.982
+    },
+    {
+     "w": "mais",
+     "t": 65.142
+    },
+    {
+     "w": "curiosidades",
+     "t": 65.31
+    },
+    {
+     "w": "assim",
+     "t": 65.977
+    },
+    {
+     "w": "e",
+     "t": 66.67
+    },
+    {
+     "w": "manda",
+     "t": 66.75
+    },
+    {
+     "w": "para",
+     "t": 67.062
+    },
+    {
+     "w": "quem",
+     "t": 67.222
+    },
+    {
+     "w": "defende",
+     "t": 67.407
+    },
+    {
+     "w": "o",
+     "t": 67.81
+    },
+    {
+     "w": "lixinho",
+     "t": 67.883
+    },
+    {
+     "w": "como",
+     "t": 68.358
+    },
+    {
+     "w": "se",
+     "t": 68.603
+    },
+    {
+     "w": "fosse",
+     "t": 68.77
+    },
+    {
+     "w": "lei",
+     "t": 69.09
+    }
+   ]
+  }
+ ]
+}
