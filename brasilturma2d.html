@@ -1,0 +1,301 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0b1230;position:relative}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+const ID = "brasilturma2d";
+// Parte comum dos vídeos do Brasil da Turma (2D e 3D): tempos, tomadas, textos na tela e legenda.
+// É colada dentro de brasilturma2d.html / brasilturma3d.html pelo montar-turma.mjs (marcador //@@COMUM@@).
+const TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json();
+const W = 1080, H = 1920;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const pop = (t, a, d = .28) => { const k = clamp((t - a) / d, 0, 1); return k <= 0 ? 0 : k >= 1 ? 1 : (1 - Math.pow(1 - k, 3)) + .25 * Math.sin(k * Math.PI); };
+const entre = (t, a, b) => t >= a && t < b;
+const CENA = (n) => TEMPOS.cenas[n - 1];
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, palavra, ocorr = 1) {
+  let k = 0;
+  for (const p of CENA(n).palavras) if (norm(p.w) === norm(palavra) && ++k === ocorr) return p.t;
+  console.error("palavra nao achada", n, palavra); return CENA(n).ini;
+}
+const FIM = TEMPOS.total;
+
+// ---------- estados (bloco = coluna, linha) ----------
+const UFS = [
+  ["RR", 2, 0], ["AP", 4, 0], ["AM", 1, 1], ["PA", 3, 1], ["MA", 4, 1], ["CE", 5, 1], ["RN", 6, 1],
+  ["AC", 0, 2], ["RO", 1, 2], ["MT", 2, 2], ["TO", 3, 2], ["PI", 4, 2], ["PE", 5, 2], ["PB", 6, 2],
+  ["MS", 2, 3], ["GO", 3, 3], ["DF", 4, 3], ["BA", 5, 3], ["AL", 6, 3],
+  ["SP", 3, 4], ["MG", 4, 4], ["ES", 5, 4], ["SE", 6, 4], ["PR", 3, 5], ["RJ", 4, 5], ["SC", 3, 6], ["RS", 2, 7],
+].map(([uf, c, r]) => ({ uf, c, r }));
+// quando cada estado acende (SP pisca na cena 1; onda na cena 3; mais uma onda no "dia um")
+const ACENDE = {};
+const ONDA_A = ["PE", "AM", "PR", "RJ", "BA", "MG", "CE", "RS"];
+const ONDA_B = ["GO", "PA", "SC", "MA", "ES", "PB", "RN", "MT", "AL", "DF"];
+ONDA_A.forEach((u, i) => ACENDE[u] = P(3, "cidade") + .05 + i * .11);
+ONDA_B.forEach((u, i) => ACENDE[u] = P(6, "Hoje") + .1 + i * .09);
+ACENDE.SP = P(1, "cidade");
+const APAGADOS = ["RR", "AP", "AC", "RO", "TO", "PI", "SE", "MS"];
+// brilho 0..1 de um estado no tempo t
+function brilho(uf, t) {
+  if (uf === "SP") {
+    const a = P(1, "acender");
+    if (t < a) return 0;
+    if (t < ACENDE.SP) return [1, 0, 1, 0, 0, 1, 0, 1][Math.floor((t - a) * 14) % 8] * .8;
+    return 1;
+  }
+  const a = ACENDE[uf];
+  return a === undefined ? 0 : prog(t, a, a + .3);
+}
+
+// ---------- tomadas (cortes a cada ~2 s) ----------
+// mapa: x,y em blocos (coluna, linha), z = zoom (1 = Brasil inteiro). cidade: x em casas, y = altura do foco, z = zoom.
+const SHOTS = [
+  { a: 0, tipo: "mapa", de: [3, 3.8, 1.0], ate: [3, 3.6, 1.1] },
+  { a: P(1, "so") - .15, tipo: "mapa", de: [3, 4.1, 1.7], ate: [3, 4.0, 2.4] },
+  { a: CENA(2).ini, tipo: "mapaescuro", de: [3, 3.8, 1.1], ate: [3.2, 3.6, 1.2] },
+  { a: P(2, "nome") - .1, tipo: "mapaescuro", de: [2.6, 3.4, 1.25], ate: [2.8, 3.6, 1.35] },
+  { a: CENA(3).ini, tipo: "cidade", de: [-3, 1.0, 2.1], ate: [-3, 1.0, 2.6] },
+  { a: P(3, "sua", 1) - .25, tipo: "mapa", de: [3.6, 3.2, 1.3], ate: [3.2, 3.6, 1.05] },
+  { a: CENA(4).ini, tipo: "cidade", de: [-2, 2.2, 1.6], ate: [-2.4, 2.1, 1.8] },
+  { a: P(4, "vira") - .3, tipo: "cidade", de: [-3, .7, 2.3], ate: [-3, .8, 2.7] },
+  { a: CENA(5).ini, tipo: "cidade", de: [-1.6, 3.1, 1.5], ate: [-1, 3.3, 1.35] },
+  { a: P(5, "mais", 2) - .1, tipo: "cidade", de: [-1, 3.4, 1.2], ate: [-1, 4.4, 1.0] },
+  { a: P(5, "metropole") - .1, tipo: "cidade", de: [-1, 4.9, .95], ate: [-.8, 5.1, .9] },
+  { a: CENA(6).ini, tipo: "mapa", de: [3, 3.8, 1.35], ate: [3, 3.7, .98] },
+  { a: P(6, "Qual") - .1, tipo: "mapa", de: [1.4, 2.2, 1.55], ate: [2.2, 4.4, 1.55] },
+  { a: P(6, "Comenta") - .1, tipo: "mapa", de: [3, 4.3, 1.02], ate: [3, 4.1, 1.1] },
+];
+SHOTS.forEach((s, i) => s.b = i + 1 < SHOTS.length ? SHOTS[i + 1].a : FIM);
+function tomada(t) {
+  const s = SHOTS.findLast((x) => t >= x.a) || SHOTS[0];
+  const k = ease(clamp((t - s.a) / (s.b - s.a), 0, 1));
+  const v = s.de.map((d, i) => d + (s.ate[i] - d) * k);
+  return { tipo: s.tipo, x: v[0], y: v[1], z: v[2], i: SHOTS.indexOf(s), dt: t - s.a };
+}
+
+// ---------- cidade ----------
+const CASAS = [
+  { x: -3, a: P(3, "arroba"), h: "@seu.arroba", cor: "#ff7a45" },
+  { x: -4.5, a: P(5, "gente"), h: "@ana.tatui", cor: "#4cc3ff" },
+  { x: -1.5, a: P(5, "da"), h: "@lucas_sp", cor: "#ffd23f" },
+  { x: 0, a: P(5, "sua"), h: "@bia.oficial", cor: "#7ee081" },
+  { x: 1.5, a: P(5, "cidade"), h: "@joao.123", cor: "#ff6fa8" },
+  { x: 3, a: P(5, "entrar"), h: "@mari_s2", cor: "#b18cff" },
+  { x: 4.5, a: P(5, "entrar") + .2, h: "@pedrinho", cor: "#4cc3ff" },
+  { x: -6, a: P(5, "entrar") + .35, h: "@carol.f", cor: "#ffd23f" },
+  { x: 6, a: P(5, "entrar") + .45, h: "@zeca_tt", cor: "#ff7a45" },
+];
+const PREDIOS = [
+  { x: -5.2, alt: 3.2, a: P(5, "ate") }, { x: -2.3, alt: 4.4, a: P(5, "ate") + .1 }, { x: .7, alt: 5.6, a: P(5, "ate") + .2 },
+  { x: 3.6, alt: 3.8, a: P(5, "ate") + .3 }, { x: -.8, alt: 7.2, a: P(5, "metropole") - .1 }, { x: 2.2, alt: 8.4, a: P(5, "metropole") },
+  { x: -3.8, alt: 6.4, a: P(5, "metropole") + .1 }, { x: 5.2, alt: 6.0, a: P(5, "metropole") + .15 },
+];
+const T_FUNDADOR = P(4, "fundador"), T_SEMPRE = P(4, "Pra");
+
+// ---------- textos na tela (DOM por cima do canvas) ----------
+const css = document.createElement("style");
+css.textContent = `
+.ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
+#marca{top:70px;left:50%;transform:translateX(-50%);background:#ffd23f;color:#14204a;font-size:44px;padding:14px 34px;border-radius:99px;border:6px solid #14204a;box-shadow:0 8px 0 #14204a;white-space:nowrap;letter-spacing:1px}
+#marca b{color:#2b59c3}
+#cidadeTag{top:190px;left:50%;transform:translateX(-50%);background:#fff;color:#14204a;font-size:40px;padding:8px 26px;border-radius:18px;border:5px solid #14204a;white-space:nowrap}
+#chip{top:300px;left:50%;white-space:nowrap;background:rgba(8,14,40,.84);border-radius:34px;padding:8px 40px 20px;text-align:center;font-size:88px;color:#fff;-webkit-text-stroke:5px #14204a;paint-order:stroke fill;text-shadow:0 10px 0 #14204a;line-height:1.05}
+#chip.amarelo{color:#ffd23f}
+#legenda{top:1650px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}
+#legenda.am{color:#ffd23f}
+#coments{left:70px;right:70px;top:720px}
+.cm{display:flex;align-items:center;gap:22px;background:#fff;border-radius:34px;padding:22px 28px;margin-bottom:26px;box-shadow:0 10px 0 rgba(0,0,0,.35);transform-origin:left center}
+.cm .av{width:92px;height:92px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:48px;border:5px solid #fff;box-shadow:0 0 0 5px #e1306c}
+.cm .tx{font-size:34px;color:#8a8fa8;line-height:1.15}
+.cm .tx b{display:block;color:#14204a;font-size:50px}
+#cta{left:60px;right:60px;top:1180px;background:#ffd23f;border:8px solid #14204a;border-radius:44px;box-shadow:0 12px 0 #14204a;text-align:center;padding:30px 20px 34px;color:#14204a}
+#cta .l1{font-size:70px;line-height:1.05}
+#cta .l2{font-size:46px;color:#2b59c3;margin-top:8px}
+#seta{left:50%;top:1500px;width:0;height:0;margin-left:-70px;border-left:70px solid transparent;border-right:70px solid transparent;border-top:90px solid #ffd23f;filter:drop-shadow(0 8px 0 #14204a)}
+`;
+document.head.appendChild(css);
+const mk = (id, cls = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov " + cls; document.body.appendChild(d); return d; };
+const elMarca = mk("marca"); elMarca.innerHTML = "BRASIL DA <b>TURMA</b>";
+const elCidade = mk("cidadeTag"); elCidade.textContent = "TATUÍ · SP";
+const elComents = mk("coments");
+const COMENTS = [
+  ["A", "#e1306c", "@ana.recife", "Recife PE", P(2, "comenta")],
+  ["L", "#2b59c3", "@lucas_tatui", "Tatuí SP", P(2, "embaixo")],
+  ["B", "#0a8f5a", "@bia.manaus", "Manaus AM", P(2, "nome")],
+  ["J", "#ff7a45", "@joao.cwb", "Curitiba PR", P(2, "cidade")],
+];
+const cmEls = COMENTS.map(([ini, cor, h, txt]) => {
+  const d = document.createElement("div"); d.className = "cm";
+  d.innerHTML = `<div class="av" style="background:${cor}">${ini}</div><div class="tx">${h}<b>${txt}</b></div>`;
+  elComents.appendChild(d); return d;
+});
+const elChip = mk("chip");
+const elCta = mk("cta"); elCta.innerHTML = `<div class="l1">COMENTA SUA CIDADE<br>+ ESTADO</div><div class="l2">e acende o seu arroba no mapa</div>`;
+const elSeta = mk("seta");
+const elLeg = mk("legenda");
+const CHIPS = [
+  [P(2, "estado"), CENA(3).ini, "CIDADE + ESTADO", true],
+  [P(3, "morador"), P(3, "sua", 1) - .25, "VIROU MORADOR!", false],
+  [P(5, "vila"), P(5, "metropole") - .1, "VILA...", false],
+  [P(5, "metropole"), CENA(6).ini, "METRÓPOLE!", true],
+  [P(6, "dia"), P(6, "Qual") - .1, "DIA 1", true],
+  [P(6, "Qual"), P(6, "Comenta") - .1, "QUAL CIDADE<br>ACENDE PRIMEIRO?", false],
+];
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = new Set(["apagado", "acender", "cidade", "estado", "arroba", "morador", "acende", "fundador", "sempre", "vila", "metropole", "um", "turma", "comenta"]);
+const escala = (el, k) => el.style.transform = (el.id === "marca" || el.id === "cidadeTag" || el.id === "chip" ? "translateX(-50%) " : "") + `scale(${k})`;
+
+function textos(t, tipo) {
+  // marca sempre; tag da cidade nas tomadas da cidade
+  escala(elMarca, 1 + .06 * pulse(t, P(6, "Turma") - .1, .5));
+  elCidade.style.opacity = tipo === "cidade" ? 1 : 0;
+  // comentários (cena 2)
+  const emComent = entre(t, CENA(2).ini, CENA(3).ini + .25);
+  elComents.style.opacity = emComent ? 1 - lin(t, CENA(3).ini, CENA(3).ini + .25) : 0;
+  cmEls.forEach((d, i) => { const a = COMENTS[i][4]; const k = prog(t, a - .05, a + .22); d.style.opacity = k; d.style.transform = `translateX(${(1 - k) * -120}px) scale(${.7 + .3 * k + .06 * pulse(t, a + .1, .3)})`; });
+  // chip grande
+  const c = CHIPS.find(([a, b]) => entre(t, a, b));
+  if (c) { elChip.innerHTML = c[2]; elChip.className = "ov" + (c[3] ? " amarelo" : ""); elChip.style.opacity = 1; escala(elChip, .55 + .45 * prog(t, c[0], c[0] + .16) + .12 * pulse(t, c[0] + .08, .3)); elChip.style.fontSize = c[2].includes("<br>") ? "72px" : "88px"; }
+  else elChip.style.opacity = 0;
+  // CTA final
+  const tc = P(6, "Comenta") - .1, kc = prog(t, tc, tc + .25);
+  elCta.style.opacity = kc; escala(elCta, .6 + .4 * kc + .04 * Math.sin(t * 9) * kc);
+  elSeta.style.opacity = kc; elSeta.style.transform = `translateY(${18 * Math.abs(Math.sin(t * 5))}px)`;
+  // legenda: uma palavra por vez (some no CTA)
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual || t > tc || (c && norm(c[2]).startsWith(norm(atual.w)))) { elLeg.textContent = ""; return; }
+  elLeg.textContent = atual.w.toUpperCase();
+  elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : "");
+  escala(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09));
+}
+
+// ================= visual 2D (canvas) =================
+const g = document.getElementById("c").getContext("2d");
+const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+const ESTRELAS = Array.from({ length: 140 }, (_, i) => ({ x: (i * 7919) % 1080, y: (i * 104729) % 1920, f: (i * 37 % 100) / 100, s: 1 + (i % 3) }));
+function ceu(t, claro = 0) {
+  const gr = g.createLinearGradient(0, 0, 0, H);
+  gr.addColorStop(0, claro ? "#1b2c66" : "#080e26"); gr.addColorStop(1, claro ? "#3b4f9a" : "#16245a");
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  for (const e of ESTRELAS) { g.globalAlpha = .35 + .45 * Math.abs(Math.sin(t * 1.7 + e.f * 9)); g.fillStyle = "#fff"; g.fillRect(e.x, e.y, e.s, e.s); }
+  g.globalAlpha = 1;
+}
+// ---- mapa em blocos ----
+const TILE = 146, TW = 128, TH = 100;
+function mapa(t, cam, escuro) {
+  ceu(t);
+  const z = cam.z, cx = 540, cy = 900;
+  g.save(); g.translate(cx, cy); g.scale(z, z); g.translate(-(cam.x * TILE + TW / 2), -(cam.y * TILE + TH / 2));
+  for (const s of UFS) {
+    const b = brilho(s.uf, t), x = s.c * TILE, y = s.r * TILE, sobe = 14 * b;
+    // sombra/base
+    g.fillStyle = "#050a1c"; rr(x, y + 12, TW, TH, 22); g.fill();
+    if (b > 0) { g.shadowColor = "rgba(255,210,63,.95)"; g.shadowBlur = 70 * b; }
+    rr(x, y - sobe, TW, TH, 22);
+    const cor = b > 0 ? `rgb(${30 + 225 * b},${42 + 168 * b},${82 - 19 * b})` : "#1e2a52";
+    g.fillStyle = cor; g.fill(); g.shadowBlur = 0;
+    g.lineWidth = 6; g.strokeStyle = b > .3 ? "#14204a" : "#3b4b84"; g.stroke();
+    g.fillStyle = b > .3 ? "#14204a" : "#6f7fb8"; g.font = "900 44px Nunito"; g.textAlign = "center"; g.textBaseline = "middle";
+    g.fillText(s.uf, x + TW / 2, y - sobe + TH / 2 + 2);
+    // casinhas acesas em cima do bloco
+    if (b > .5) for (let k = 0; k < 3; k++) { const hx = x + 22 + k * 34, hy = y - sobe - 4; g.fillStyle = "#fff6c8"; g.fillRect(hx, hy - 16, 18, 16); g.beginPath(); g.moveTo(hx - 3, hy - 16); g.lineTo(hx + 9, hy - 28); g.lineTo(hx + 21, hy - 16); g.fillStyle = "#ff7a45"; g.fill(); }
+    // interrogação nos que seguem apagados (pergunta final)
+    if (APAGADOS.includes(s.uf) && t > P(6, "Qual") - .1 && t < P(6, "Comenta") - .1) {
+      const k = pulse(t, P(6, "Qual") + APAGADOS.indexOf(s.uf) * .08, .6) + .6;
+      g.fillStyle = "#ffd23f"; g.font = `900 ${60 * Math.min(1.3, k)}px Nunito`; g.fillText("?", x + TW / 2, y - 40);
+    }
+  }
+  // brilho que viaja dos comentários para o mapa (cena 3)
+  g.restore();
+  if (escuro) { g.fillStyle = "rgba(5,9,26,.62)"; g.fillRect(0, 0, W, H); }
+}
+// ---- cidade ----
+const U = 92; // pixels por unidade no zoom 1
+function casa(x, chao, k, cor, janela) {
+  if (k <= 0) return;
+  g.save(); g.translate(x, chao); g.scale(k, k);
+  g.fillStyle = "#050a1c"; g.fillRect(-58, -2, 116, 10);
+  g.fillStyle = "#fff6e0"; g.strokeStyle = "#14204a"; g.lineWidth = 7; g.lineJoin = "round";
+  g.fillRect(-50, -90, 100, 90); g.strokeRect(-50, -90, 100, 90);
+  g.beginPath(); g.moveTo(-64, -86); g.lineTo(0, -150); g.lineTo(64, -86); g.closePath(); g.fillStyle = cor; g.fill(); g.stroke();
+  g.fillStyle = janela ? "#ffd23f" : "#2a3566"; g.fillRect(-34, -66, 28, 26); g.strokeRect(-34, -66, 28, 26);
+  g.fillStyle = "#2b59c3"; g.fillRect(8, -52, 26, 52); g.strokeRect(8, -52, 26, 52);
+  g.restore();
+}
+function etiqueta(x, y, txt, k, cor = "#fff", corTx = "#14204a", tam = 34) {
+  if (k <= 0) return;
+  g.save(); g.translate(x, y); g.scale(k, k); g.font = `900 ${tam}px Nunito`;
+  const w = g.measureText(txt).width + 36; rr(-w / 2, -tam * .9, w, tam * 1.6, tam * .8);
+  g.fillStyle = cor; g.fill(); g.lineWidth = 5; g.strokeStyle = "#14204a"; g.stroke();
+  g.fillStyle = corTx; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(txt, 0, -tam * .1);
+  g.restore();
+}
+function coroa(x, y, k) {
+  if (k <= 0) return;
+  g.save(); g.translate(x, y); g.scale(k, k); g.rotate(.08 * Math.sin(t0 * 6));
+  g.beginPath(); g.moveTo(-46, 20); g.lineTo(-46, -18); g.lineTo(-23, 4); g.lineTo(0, -30); g.lineTo(23, 4); g.lineTo(46, -18); g.lineTo(46, 20); g.closePath();
+  g.fillStyle = "#ffd23f"; g.fill(); g.lineWidth = 7; g.strokeStyle = "#14204a"; g.stroke();
+  for (const [cx, cor] of [[-24, "#e4573a"], [0, "#2b59c3"], [24, "#0a8f5a"]]) { g.beginPath(); g.arc(cx, 8, 7, 0, 7); g.fillStyle = cor; g.fill(); }
+  g.restore();
+}
+let t0 = 0;
+function cidade(t, cam) {
+  ceu(t, 1);
+  const z = cam.z * U, chao = 1180;
+  g.save(); g.translate(540, 1000); g.scale(cam.z, cam.z); g.translate(-cam.x * U, -(chao - (cam.y) * U) + 0);
+  // morros e chão
+  g.fillStyle = "#24346e"; g.beginPath(); g.ellipse(-300, chao + 40, 900, 260, 0, Math.PI, 0); g.fill();
+  g.fillStyle = "#2c3f80"; g.beginPath(); g.ellipse(500, chao + 60, 800, 220, 0, Math.PI, 0); g.fill();
+  g.fillStyle = "#3f8f4a"; g.fillRect(-1400, chao, 2800, 900);
+  g.fillStyle = "#4fa85a"; g.fillRect(-1400, chao, 2800, 18);
+  g.fillStyle = "#59607a"; g.fillRect(-1400, chao + 70, 2800, 70);
+  for (let x = -1400; x < 1400; x += 120) { g.fillStyle = "#ffd23f"; g.fillRect(x, chao + 101, 60, 8); }
+  // prédios (crescem atrás das casas)
+  for (const p of PREDIOS) {
+    const k = prog(t, p.a, p.a + .5); if (k <= 0) continue;
+    const h = p.alt * U * k, w = 1.25 * U, x = p.x * U - w / 2;
+    g.fillStyle = "#e9eefc"; g.strokeStyle = "#14204a"; g.lineWidth = 7;
+    g.fillRect(x, chao - h, w, h); g.strokeRect(x, chao - h, w, h);
+    for (let yy = chao - h + 22; yy < chao - 30; yy += 44) for (let xx = x + 16; xx < x + w - 24; xx += 36) { g.fillStyle = ((xx * 7 + yy) % 5) < 3 ? "#ffd23f" : "#7ad3f7"; g.fillRect(xx, yy, 20, 22); }
+  }
+  // fileira do fundo (enche a cidade conforme a turma entra)
+  for (const c of CASAS.slice(1)) { const k = clamp(pop(t, c.a + .12), 0, 1.25); if (k > 0) casa((c.x + .75) * U, chao - 64, k * .72, "#8a6fd1", true); }
+  // casas
+  for (const c of CASAS) {
+    const k = clamp(pop(t, c.a), 0, 1.25); if (k <= 0) continue;
+    const x = c.x * U;
+    casa(x, chao, k, c.cor, true);
+    const prim = c === CASAS[0];
+    const iC = CASAS.indexOf(c);
+    etiqueta(x, chao + 52 + (!prim && iC % 2 ? 58 : 0), c.h, k * (prim ? 1.05 : .72), prim ? "#ffd23f" : "#fff");
+  }
+  // fundador
+  const kc = clamp(pop(t, T_FUNDADOR, .35), 0, 1.3);
+  coroa(CASAS[0].x * U, chao - 190 - 10 * Math.sin(t * 4), kc);
+  if (t > T_FUNDADOR) etiqueta(CASAS[0].x * U, chao - 255, "1º · FUNDADOR", clamp(pop(t, T_FUNDADOR + .1, .3), 0, 1.2), "#14204a", "#ffd23f", 30);
+  // carimbo "pra sempre"
+  if (t > T_SEMPRE && t < CENA(5).ini) { const k = clamp(pop(t, T_SEMPRE, .3), 0, 1.2); g.save(); g.translate(CASAS[0].x * U, chao - 70); g.rotate(-.22); g.scale(k * .8, k * .8); rr(-130, -40, 260, 80, 14); g.lineWidth = 8; g.strokeStyle = "#e4573a"; g.stroke(); g.fillStyle = "#e4573a"; g.font = "900 46px Nunito"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("PRA SEMPRE", 0, 2); g.restore(); }
+  g.restore();
+  // faíscas quando a casa nasce / acende
+  for (const c of CASAS) { const k = lin(t, c.a, c.a + .45); if (k <= 0 || k >= 1) continue; }
+}
+function quadro(t) {
+  t0 = t;
+  const cam = tomada(t);
+  if (cam.tipo === "cidade") cidade(t, cam); else mapa(t, cam, cam.tipo === "mapaescuro");
+  // flash curto em cada corte
+  const f = clamp(1 - cam.dt / .12, 0, 1); if (f > 0 && cam.i > 0) { g.fillStyle = `rgba(255,255,255,${.35 * f})`; g.fillRect(0, 0, W, H); }
+  textos(t, cam.tipo);
+}
+window.renderFrame = quadro;
+await document.fonts.load("900 40px Nunito"); await document.fonts.ready;
+quadro(0);
+window.pronto = true;
+</script>
+</body></html>
