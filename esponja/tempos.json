@@ -1,0 +1,785 @@
+{
+ "total": 74.6,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 11.75,
+   "texto": "Você usa ela todo dia, mas nunca viu o que tem aqui dentro. Vamos entrar. E no final, o truque que todo mundo faz pra limpar a esponja, e por que ele não resolve.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 0.15
+    },
+    {
+     "w": "usa",
+     "t": 0.45
+    },
+    {
+     "w": "ela",
+     "t": 0.73
+    },
+    {
+     "w": "todo",
+     "t": 1.078
+    },
+    {
+     "w": "dia",
+     "t": 1.37
+    },
+    {
+     "w": "mas",
+     "t": 1.97
+    },
+    {
+     "w": "nunca",
+     "t": 2.217
+    },
+    {
+     "w": "viu",
+     "t": 2.63
+    },
+    {
+     "w": "o",
+     "t": 2.85
+    },
+    {
+     "w": "que",
+     "t": 2.91
+    },
+    {
+     "w": "tem",
+     "t": 3.09
+    },
+    {
+     "w": "aqui",
+     "t": 3.302
+    },
+    {
+     "w": "dentro",
+     "t": 3.487
+    },
+    {
+     "w": "Vamos",
+     "t": 4.27
+    },
+    {
+     "w": "entrar",
+     "t": 4.607
+    },
+    {
+     "w": "E",
+     "t": 5.35
+    },
+    {
+     "w": "no",
+     "t": 5.723
+    },
+    {
+     "w": "final",
+     "t": 5.897
+    },
+    {
+     "w": "o",
+     "t": 6.59
+    },
+    {
+     "w": "truque",
+     "t": 6.71
+    },
+    {
+     "w": "que",
+     "t": 7.11
+    },
+    {
+     "w": "todo",
+     "t": 7.398
+    },
+    {
+     "w": "mundo",
+     "t": 7.643
+    },
+    {
+     "w": "faz",
+     "t": 7.99
+    },
+    {
+     "w": "pra",
+     "t": 8.27
+    },
+    {
+     "w": "limpar",
+     "t": 8.43
+    },
+    {
+     "w": "a",
+     "t": 8.83
+    },
+    {
+     "w": "esponja",
+     "t": 8.923
+    },
+    {
+     "w": "e",
+     "t": 9.71
+    },
+    {
+     "w": "por",
+     "t": 9.81
+    },
+    {
+     "w": "que",
+     "t": 10.05
+    },
+    {
+     "w": "ele",
+     "t": 10.29
+    },
+    {
+     "w": "não",
+     "t": 10.55
+    },
+    {
+     "w": "resolve",
+     "t": 10.87
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 11.9,
+   "fim": 19.26,
+   "texto": "Um centímetro. Por dentro, a esponja é um labirinto de cavernas: úmidas, quentes, perfeitas.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 11.9
+    },
+    {
+     "w": "centímetro",
+     "t": 12.06
+    },
+    {
+     "w": "Por",
+     "t": 13.02
+    },
+    {
+     "w": "dentro",
+     "t": 13.557
+    },
+    {
+     "w": "a",
+     "t": 14.18
+    },
+    {
+     "w": "esponja",
+     "t": 14.3
+    },
+    {
+     "w": "é",
+     "t": 14.74
+    },
+    {
+     "w": "um",
+     "t": 14.807
+    },
+    {
+     "w": "labirinto",
+     "t": 14.92
+    },
+    {
+     "w": "de",
+     "t": 15.447
+    },
+    {
+     "w": "cavernas",
+     "t": 15.569
+    },
+    {
+     "w": "úmidas",
+     "t": 16.62
+    },
+    {
+     "w": "quentes",
+     "t": 17.367
+    },
+    {
+     "w": "perfeitas",
+     "t": 18.38
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 19.41,
+   "fim": 26.13,
+   "texto": "Um milímetro. Restos do almoço grudados nas paredes. Comida de graça... pra alguém.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 19.41
+    },
+    {
+     "w": "milímetro",
+     "t": 19.57
+    },
+    {
+     "w": "Restos",
+     "t": 20.53
+    },
+    {
+     "w": "do",
+     "t": 21.277
+    },
+    {
+     "w": "almoço",
+     "t": 21.41
+    },
+    {
+     "w": "grudados",
+     "t": 21.943
+    },
+    {
+     "w": "nas",
+     "t": 22.57
+    },
+    {
+     "w": "paredes",
+     "t": 22.757
+    },
+    {
+     "w": "Comida",
+     "t": 23.55
+    },
+    {
+     "w": "de",
+     "t": 24.183
+    },
+    {
+     "w": "graça",
+     "t": 24.37
+    },
+    {
+     "w": "pra",
+     "t": 25.37
+    },
+    {
+     "w": "alguém",
+     "t": 25.57
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.28,
+   "fim": 35.88,
+   "texto": "Um décimo de milímetro. Essa gosma é biofilme, uma camada que elas constroem pra se proteger. Elas? Quem? Elas.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 26.28
+    },
+    {
+     "w": "décimo",
+     "t": 26.48
+    },
+    {
+     "w": "de",
+     "t": 27.027
+    },
+    {
+     "w": "milímetro",
+     "t": 27.14
+    },
+    {
+     "w": "Essa",
+     "t": 27.88
+    },
+    {
+     "w": "gosma",
+     "t": 28.52
+    },
+    {
+     "w": "é",
+     "t": 28.96
+    },
+    {
+     "w": "biofilme",
+     "t": 29.1
+    },
+    {
+     "w": "uma",
+     "t": 30.08
+    },
+    {
+     "w": "camada",
+     "t": 30.26
+    },
+    {
+     "w": "que",
+     "t": 30.72
+    },
+    {
+     "w": "elas",
+     "t": 30.867
+    },
+    {
+     "w": "constroem",
+     "t": 31.067
+    },
+    {
+     "w": "pra",
+     "t": 31.68
+    },
+    {
+     "w": "se",
+     "t": 31.853
+    },
+    {
+     "w": "proteger",
+     "t": 32.013
+    },
+    {
+     "w": "Elas",
+     "t": 32.867
+    },
+    {
+     "w": "Quem",
+     "t": 34.173
+    },
+    {
+     "w": "Elas",
+     "t": 35.213
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 36.03,
+   "fim": 43.55,
+   "texto": "Até cinquenta e quatro bilhões de bactérias num único centímetro cúbico. Quase sete vezes a população da Terra.",
+   "palavras": [
+    {
+     "w": "Até",
+     "t": 36.03
+    },
+    {
+     "w": "cinquenta",
+     "t": 36.41
+    },
+    {
+     "w": "e",
+     "t": 36.95
+    },
+    {
+     "w": "quatro",
+     "t": 37.017
+    },
+    {
+     "w": "bilhões",
+     "t": 37.41
+    },
+    {
+     "w": "de",
+     "t": 37.977
+    },
+    {
+     "w": "bactérias",
+     "t": 38.07
+    },
+    {
+     "w": "num",
+     "t": 38.81
+    },
+    {
+     "w": "único",
+     "t": 39.057
+    },
+    {
+     "w": "centímetro",
+     "t": 39.438
+    },
+    {
+     "w": "cúbico",
+     "t": 39.95
+    },
+    {
+     "w": "Quase",
+     "t": 40.67
+    },
+    {
+     "w": "sete",
+     "t": 41.33
+    },
+    {
+     "w": "vezes",
+     "t": 41.79
+    },
+    {
+     "w": "a",
+     "t": 42.23
+    },
+    {
+     "w": "população",
+     "t": 42.33
+    },
+    {
+     "w": "da",
+     "t": 42.937
+    },
+    {
+     "w": "Terra",
+     "t": 43.07
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 43.7,
+   "fim": 50.26,
+   "texto": "E pesquisadores já mostraram: a cozinha pode ter mais micróbios que o banheiro. E a culpada é ela.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 43.7
+    },
+    {
+     "w": "pesquisadores",
+     "t": 43.86
+    },
+    {
+     "w": "já",
+     "t": 44.713
+    },
+    {
+     "w": "mostraram",
+     "t": 44.887
+    },
+    {
+     "w": "a",
+     "t": 45.82
+    },
+    {
+     "w": "cozinha",
+     "t": 46
+    },
+    {
+     "w": "pode",
+     "t": 46.484
+    },
+    {
+     "w": "ter",
+     "t": 46.8
+    },
+    {
+     "w": "mais",
+     "t": 47.06
+    },
+    {
+     "w": "micróbios",
+     "t": 47.44
+    },
+    {
+     "w": "que",
+     "t": 47.96
+    },
+    {
+     "w": "o",
+     "t": 48.06
+    },
+    {
+     "w": "banheiro",
+     "t": 48.14
+    },
+    {
+     "w": "E",
+     "t": 48.74
+    },
+    {
+     "w": "a",
+     "t": 48.94
+    },
+    {
+     "w": "culpada",
+     "t": 49.044
+    },
+    {
+     "w": "é",
+     "t": 49.74
+    },
+    {
+     "w": "ela",
+     "t": 49.94
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.41,
+   "fim": 64.01,
+   "texto": "Então é só pôr no micro-ondas, né? Mais ou menos. No estudo, as esponjas que o pessoal limpava sempre não tinham menos bactérias. A cada louça lavada, chega comida e água nova, e a cidade volta.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 50.41
+    },
+    {
+     "w": "é",
+     "t": 50.89
+    },
+    {
+     "w": "só",
+     "t": 51.023
+    },
+    {
+     "w": "pôr",
+     "t": 51.21
+    },
+    {
+     "w": "no",
+     "t": 51.397
+    },
+    {
+     "w": "micro-ondas",
+     "t": 51.49
+    },
+    {
+     "w": "né",
+     "t": 52.143
+    },
+    {
+     "w": "Mais",
+     "t": 52.826
+    },
+    {
+     "w": "ou",
+     "t": 53.263
+    },
+    {
+     "w": "menos",
+     "t": 53.437
+    },
+    {
+     "w": "No",
+     "t": 54.037
+    },
+    {
+     "w": "estudo",
+     "t": 54.31
+    },
+    {
+     "w": "as",
+     "t": 55.023
+    },
+    {
+     "w": "esponjas",
+     "t": 55.183
+    },
+    {
+     "w": "que",
+     "t": 55.71
+    },
+    {
+     "w": "o",
+     "t": 55.81
+    },
+    {
+     "w": "pessoal",
+     "t": 55.89
+    },
+    {
+     "w": "limpava",
+     "t": 56.218
+    },
+    {
+     "w": "sempre",
+     "t": 56.719
+    },
+    {
+     "w": "não",
+     "t": 57.21
+    },
+    {
+     "w": "tinham",
+     "t": 57.49
+    },
+    {
+     "w": "menos",
+     "t": 57.823
+    },
+    {
+     "w": "bactérias",
+     "t": 58.13
+    },
+    {
+     "w": "A",
+     "t": 59.13
+    },
+    {
+     "w": "cada",
+     "t": 59.45
+    },
+    {
+     "w": "louça",
+     "t": 59.83
+    },
+    {
+     "w": "lavada",
+     "t": 60.15
+    },
+    {
+     "w": "chega",
+     "t": 60.73
+    },
+    {
+     "w": "comida",
+     "t": 61.141
+    },
+    {
+     "w": "e",
+     "t": 61.81
+    },
+    {
+     "w": "água",
+     "t": 61.97
+    },
+    {
+     "w": "nova",
+     "t": 62.25
+    },
+    {
+     "w": "e",
+     "t": 62.87
+    },
+    {
+     "w": "a",
+     "t": 63.01
+    },
+    {
+     "w": "cidade",
+     "t": 63.119
+    },
+    {
+     "w": "volta",
+     "t": 63.583
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 64.16,
+   "fim": 74,
+   "texto": "Por isso, os pesquisadores recomendam: troque a esponja toda semana. Manda pra quem usa a mesma esponja há um mês. E a sua, tá com quantos dias?",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 64.16
+    },
+    {
+     "w": "isso",
+     "t": 64.368
+    },
+    {
+     "w": "os",
+     "t": 64.667
+    },
+    {
+     "w": "pesquisadores",
+     "t": 64.78
+    },
+    {
+     "w": "recomendam",
+     "t": 65.493
+    },
+    {
+     "w": "troque",
+     "t": 66.48
+    },
+    {
+     "w": "a",
+     "t": 66.94
+    },
+    {
+     "w": "esponja",
+     "t": 67.04
+    },
+    {
+     "w": "toda",
+     "t": 67.52
+    },
+    {
+     "w": "semana",
+     "t": 67.909
+    },
+    {
+     "w": "Manda",
+     "t": 68.8
+    },
+    {
+     "w": "pra",
+     "t": 69.4
+    },
+    {
+     "w": "quem",
+     "t": 69.568
+    },
+    {
+     "w": "usa",
+     "t": 69.82
+    },
+    {
+     "w": "a",
+     "t": 70.12
+    },
+    {
+     "w": "mesma",
+     "t": 70.28
+    },
+    {
+     "w": "esponja",
+     "t": 70.533
+    },
+    {
+     "w": "há",
+     "t": 70.987
+    },
+    {
+     "w": "um",
+     "t": 71.067
+    },
+    {
+     "w": "mês",
+     "t": 71.2
+    },
+    {
+     "w": "E",
+     "t": 71.8
+    },
+    {
+     "w": "a",
+     "t": 72.04
+    },
+    {
+     "w": "sua",
+     "t": 72.18
+    },
+    {
+     "w": "tá",
+     "t": 72.747
+    },
+    {
+     "w": "com",
+     "t": 72.92
+    },
+    {
+     "w": "quantos",
+     "t": 73.093
+    },
+    {
+     "w": "dias",
+     "t": 73.584
+    }
+   ]
+  }
+ ]
+}

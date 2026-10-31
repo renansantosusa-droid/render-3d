@@ -1,0 +1,82 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "O que vive dentro da esponja de cozinha" — cópia do Reel do Mundo em Camadas (DfH2TkKiR4L), pedido do Renan 31/10.
+// Números conferidos: até 5,4 x 10^10 células/cm³ e "cozinha tem mais micróbios que o banheiro" (Cardinale et al., Sci Rep 2017).
+// Micro-ondas: no estudo, esponjas "limpas sempre" não tinham menos bactérias; recomendação = troca semanal.
+import { motion } from "/kitmotion.js";
+const K = await motion("esponja", { fundo: "#0c1a14", fundo2: "#14281c", padrao: "pontos", destaque: "#ffd23a", alerta: "#ff4d4d", rotulo: "CURIOSIDADE", rotuloCor: "#2f9e5a", sub: "• COZINHA", tag: "ENTENDA", legenda: "contorno", transicao: "zoom" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, txtCabe, pilula, pop, carimbo, conta } = K;
+function esponja(x, y, s) { g.save(); g.translate(x, y); g.scale(s, s); rr(-200, -60, 400, 200, 26, "#f4c430"); rr(-200, -120, 400, 80, 22, "#2f9e5a"); for (let i = 0; i < 14; i++) circ(-170 + (i * 53) % 340, -10 + (i * 37) % 130, 8 + (i % 3) * 4, "#d9a520"); g.restore(); }
+function bact(x, y, r, t, i, cor = "#5fbf4a") { const b = Math.sin(t * 4 + i) * 3; g.fillStyle = cor; g.beginPath(); g.ellipse(x, y, r * 1.5 + b, r, Math.sin(i) * 1.2, 0, 6.2832); g.fill(); circ(x - r * .4, y - r * .2, r * .22, "#fff"); circ(x + r * .4, y - r * .2, r * .22, "#fff"); circ(x - r * .4, y - r * .2, r * .1, "#000"); circ(x + r * .4, y - r * .2, r * .1, "#000"); }
+function escala(s, t) { pilula("ZOOM: " + s, W / 2, 330, 40, "#ffffff", "#000"); }
+function cavernas(t, k) { rr(60, 420, 960, 760, 40, "#e2b228"); g.save(); g.beginPath(); g.roundRect(60, 420, 960, 760, 40); g.clip(); for (let i = 0; i < 16; i++) { const x = 120 + (i * 211) % 860, y = 470 + (i * 157) % 680, r = (50 + (i * 29) % 70) * ease(k); g.fillStyle = "#3a2a08"; g.beginPath(); g.ellipse(x, y, r * 1.3, r, i, 0, 6.2832); g.fill(); g.fillStyle = "rgba(120,200,255,.25)"; g.beginPath(); g.ellipse(x - r * .2, y - r * .2, r * .5, r * .3, i, 0, 6.2832); g.fill(); } g.restore(); }
+const RAND = Array.from({ length: 60 }, (_, i) => [120 + (i * 173) % 840, 460 + (i * 97) % 700]);
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 700, () => esponja(W / 2, 700, 1.6 + .05 * Math.sin(t * 2)));
+    pop(ap(t, P(1, "nunca") - .2), W / 2, 420, () => txt("NUNCA VIU POR DENTRO", W / 2, 420, 84, C.AM, { contorno: 10 }));
+    const kz = clamp((t - P(1, "entrar")) / .8); if (kz > 0) { g.strokeStyle = "#fff"; g.lineWidth = 14; g.beginPath(); g.arc(W / 2, 700, 60 + 300 * ease(kz), 0, 6.2832); g.stroke(); }
+    pop(ap(t, P(1, "truque") - .3), W / 2, 1060, () => pilula("O TRUQUE QUE TODO MUNDO FAZ", W / 2, 1060, 50, "#fff", "#000"));
+    carimbo("NÃO RESOLVE?", W / 2, 1220, ap(t, P(1, "resolve") - .1), C.VM, -.06, 90);
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 330, () => escala("1 CENTÍMETRO", t));
+    cavernas(t, clamp((t - P(2, "labirinto") + .6) / 1.2));
+    pop(ap(t, P(2, "labirinto") - .2), W / 2, 800, () => txt("LABIRINTO DE CAVERNAS", W / 2, 800, 80, "#fff", { contorno: 10 }));
+    [["ÚMIDAS", "umidas", "#4fb3c9"], ["QUENTES", "quentes", "#ff8a3a"], ["PERFEITAS", "perfeitas", "#32d26f"]].forEach(([s, w, c], i) => pop(ap(t, P(2, w) - .2), 230 + i * 310, 1280, () => pilula(s, 230 + i * 310, 1280, 46, c, "#000")));
+  },
+  (t) => {
+    pop(ap(t, ini(3)), W / 2, 330, () => escala("1 MILÍMETRO", t));
+    rr(60, 420, 960, 760, 40, "#c99a1e"); g.fillStyle = "#3a2a08"; g.beginPath(); g.ellipse(W / 2, 800, 380, 280, 0, 0, 6.2832); g.fill();
+    for (let i = 0; i < 12; i++) { const a = i / 12 * 6.2832; pop(ap(t, P(3, "restos") - .3 + i * .08), W / 2 + Math.cos(a) * 360, 800 + Math.sin(a) * 260, () => { g.fillStyle = i % 3 ? "#f4f1ea" : "#b0652a"; g.beginPath(); g.ellipse(W / 2 + Math.cos(a) * 360, 800 + Math.sin(a) * 260, 34, 18, a, 0, 6.2832); g.fill(); }); }
+    pop(ap(t, P(3, "almoco") - .2), W / 2, 800, () => txt("RESTOS DO ALMOÇO", W / 2, 800, 76, "#fff", { contorno: 10 }));
+    pop(ap(t, P(3, "comida") - .3), W / 2, 1270, () => pilula("COMIDA DE GRAÇA...", W / 2, 1270, 54, C.AM, "#000"));
+    pop(ap(t, P(3, "alguem") - .2), W / 2, 1380, () => txt("...PRA ALGUÉM?", W / 2, 1380, 70, C.VM, { contorno: 8 }));
+  },
+  (t) => {
+    pop(ap(t, ini(4)), W / 2, 330, () => escala("0,1 MILÍMETRO", t));
+    const kg = clamp((t - P(4, "gosma") + .4) / 1);
+    g.save(); g.globalAlpha *= kg; g.fillStyle = "rgba(120,200,90,.55)"; g.beginPath(); g.moveTo(60, 1180); for (let x = 60; x <= 1020; x += 20) g.lineTo(x, 760 + Math.sin(x / 70 + t * 2) * 40); g.lineTo(1020, 1180); g.fill(); g.restore();
+    pop(ap(t, P(4, "biofilme") - .3), W / 2, 520, () => txt("BIOFILME", W / 2, 520, 140, "#7fe36a", { contorno: 12, sombra: true }));
+    pop(ap(t, P(4, "proteger") - .3), W / 2, 660, () => pilula("UMA CAMADA PRA SE PROTEGER", W / 2, 660, 46, "#fff", "#000"));
+    pop(ap(t, P(4, "quem") - .2), W / 2, 1300, () => txt("QUEM?", W / 2, 1300, 110, C.AM, { contorno: 10 }));
+    const kb = clamp((t - P(4, "elas", 2) + .2) / .8); for (let i = 0; i < 18; i++) if (kb * 18 > i) bact(RAND[i][0], 820 + (RAND[i][1] % 300), 30, t, i);
+  },
+  (t) => {
+    const n = conta(t, P(5, "cinquenta") - .2, 54, 1.4);
+    pop(ap(t, ini(5)), W / 2, 380, () => txt("ATÉ", W / 2, 380, 70, "#fff", { contorno: 8 }));
+    pop(ap(t, P(5, "cinquenta") - .3), W / 2, 560, () => { txt(String(n), W / 2 - 150, 560, 240, C.AM, { contorno: 12, sombra: true }); txt("BILHÕES", W / 2 + 170, 520, 72, "#fff", { contorno: 8 }); txt("de bactérias", W / 2 + 170, 600, 46, "#c9d1dc", { peso: 500 }); });
+    pop(ap(t, P(5, "centimetro") - .3), W / 2, 820, () => { g.save(); g.translate(W / 2, 820); rr(-110, -110, 220, 220, 10, "#f4c430"); g.fillStyle = "#d9a520"; g.beginPath(); g.moveTo(-110, -110); g.lineTo(-60, -160); g.lineTo(160, -160); g.lineTo(110, -110); g.fill(); g.fillStyle = "#b8871a"; g.beginPath(); g.moveTo(110, -110); g.lineTo(160, -160); g.lineTo(160, 60); g.lineTo(110, 110); g.fill(); for (let i = 0; i < 20; i++) bact(-90 + (i * 47) % 180, -90 + (i * 31) % 180, 9, t, i); g.restore(); txt("EM 1 CM³", W / 2, 990, 60, "#fff", { contorno: 8 }); });
+    pop(ap(t, P(5, "sete") - .3), W / 2, 1220, () => { circ(220, 1220, 80, "#2b6fb3"); circ(195, 1200, 30, "#2f9e5a"); circ(245, 1245, 22, "#2f9e5a"); txt("≈ 7× A POPULAÇÃO", 620, 1185, 60, C.AM, { contorno: 8 }); txt("DA TERRA", 620, 1260, 60, "#fff", { contorno: 8 }); });
+  },
+  (t) => {
+    pop(ap(t, P(6, "pesquisadores") - .3), W / 2, 400, () => pilula("PESQUISADORES MOSTRARAM", W / 2, 400, 50, "#fff", "#000"));
+    const kb = clamp((t - P(6, "micróbios") + .2) / 1);
+    pop(ap(t, P(6, "cozinha") - .3), 330, 800, () => { rr(170, 1080 - 520 * ease(kb), 320, 520 * ease(kb) + 20, 20, C.VM); txt("COZINHA", 330, 1150, 60, "#fff", { contorno: 8 }); });
+    pop(ap(t, P(6, "banheiro") - .3), 750, 800, () => { rr(590, 1080 - 300 * ease(kb), 320, 300 * ease(kb) + 20, 20, "#4fb3c9"); txt("BANHEIRO", 750, 1150, 60, "#fff", { contorno: 8 }); });
+    pop(ap(t, P(6, "mais") - .3), W / 2, 490, () => txt("MAIS MICRÓBIOS NA...", W / 2, 490, 70, C.AM, { contorno: 8 }));
+    pop(ap(t, P(6, "culpada") - .3), W / 2, 1290, () => { esponja(200, 1300, .35); carimbo("A CULPADA É ELA", W / 2 + 80, 1290, 1, C.VM, -.04, 70); });
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 640, () => { rr(240, 480, 600, 340, 30, "#d6dce8"); rr(280, 520, 380, 260, 18, "#1b2436"); const on = t > P(7, "microondas") ? .5 + .5 * Math.sin(t * 6) : 0; g.fillStyle = `rgba(255,200,80,${on * .5})`; g.fillRect(280, 520, 380, 260); esponja(470, 690, .45); for (let i = 0; i < 3; i++) circ(750, 560 + i * 70, 20, "#8a96ab"); });
+    pop(ap(t, P(7, "microondas") - .3), W / 2, 400, () => txt("SÓ PÔR NO MICRO-ONDAS?", W / 2, 400, 72, C.AM, { contorno: 8 }));
+    carimbo("MAIS OU MENOS", W / 2, 940, ap(t, P(7, "menos") - .1), C.VM, -.05, 84);
+    pop(ap(t, P(7, "estudo") - .3), W / 2, 1100, () => { rr(90, 1040, 900, 140, 26, "#22262e"); txtCabe("LIMPAVAM SEMPRE = NÃO TINHAM MENOS", W / 2, 1090, 46, "#fff", 860); txt("BACTÉRIAS", W / 2, 1145, 46, C.AM); });
+    const kv = clamp((t - P(7, "cidade") + .4) / 1); for (let i = 0; i < 10; i++) if (kv * 10 > i) bact(140 + i * 88, 1290 + Math.sin(i) * 30, 26, t, i);
+    pop(ap(t, P(7, "volta") - .2), W / 2, 1390, () => txt("E A CIDADE VOLTA", W / 2, 1390, 64, "#7fe36a", { contorno: 8 }));
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 560, () => { rr(260, 400, 560, 320, 26, "#f4f1ea"); rr(260, 400, 560, 80, 26, C.VM); txt("A CADA", W / 2, 442, 48, "#fff"); txt("7 DIAS", W / 2, 600, 150, "#1b2436"); });
+    pop(ap(t, P(8, "troque") - .3), W / 2, 820, () => txt("TROQUE A ESPONJA", W / 2, 820, 90, C.AM, { contorno: 10 }));
+    pop(ap(t, P(8, "manda") - .3), W / 2, 1000, () => pilula("MANDA PRA QUEM USA A MESMA HÁ 1 MÊS", W / 2, 1000, 38, "#fff", "#000"));
+    pop(ap(t, P(8, "quantos") - .3), W / 2, 1160, () => pilula("E A SUA, TÁ COM QUANTOS DIAS?", W / 2, 1160, 48, C.AM, "#000"));
+    pop(ap(t, ini(8) + .5), W / 2, 1360, () => txtCabe("FONTE: CARDINALE ET AL., SCIENTIFIC REPORTS 7:5791 (2017)", W / 2, 1360, 28, "rgba(255,255,255,.6)", 900, { peso: 500 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
