@@ -1,0 +1,885 @@
+{
+ "total": 74.04,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 10.23,
+   "texto": "Dezessete e vinte, horário de Brasília. Uma transação aparece na rede Ethereum. Ela não move um centavo. Ela muda quem manda numa carteira da Binance.",
+   "palavras": [
+    {
+     "w": "Dezessete",
+     "t": 0.15
+    },
+    {
+     "w": "e",
+     "t": 0.71
+    },
+    {
+     "w": "vinte",
+     "t": 0.83
+    },
+    {
+     "w": "horário",
+     "t": 1.26
+    },
+    {
+     "w": "de",
+     "t": 1.537
+    },
+    {
+     "w": "Brasília",
+     "t": 1.654
+    },
+    {
+     "w": "Uma",
+     "t": 2.39
+    },
+    {
+     "w": "transação",
+     "t": 2.91
+    },
+    {
+     "w": "aparece",
+     "t": 3.577
+    },
+    {
+     "w": "na",
+     "t": 4.043
+    },
+    {
+     "w": "rede",
+     "t": 4.198
+    },
+    {
+     "w": "Ethereum",
+     "t": 4.452
+    },
+    {
+     "w": "Ela",
+     "t": 5.457
+    },
+    {
+     "w": "não",
+     "t": 5.63
+    },
+    {
+     "w": "move",
+     "t": 5.814
+    },
+    {
+     "w": "um",
+     "t": 6.123
+    },
+    {
+     "w": "centavo",
+     "t": 6.294
+    },
+    {
+     "w": "Ela",
+     "t": 7.377
+    },
+    {
+     "w": "muda",
+     "t": 7.71
+    },
+    {
+     "w": "quem",
+     "t": 7.974
+    },
+    {
+     "w": "manda",
+     "t": 8.27
+    },
+    {
+     "w": "numa",
+     "t": 8.694
+    },
+    {
+     "w": "carteira",
+     "t": 9.003
+    },
+    {
+     "w": "da",
+     "t": 9.457
+    },
+    {
+     "w": "Binance",
+     "t": 9.59
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 10.38,
+   "fim": 16.94,
+   "texto": "Na prática, é uma procuração. A carteira assina e diz: a partir de agora, esse programa aqui fala por mim.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 10.38
+    },
+    {
+     "w": "prática",
+     "t": 10.54
+    },
+    {
+     "w": "é",
+     "t": 11.06
+    },
+    {
+     "w": "uma",
+     "t": 11.14
+    },
+    {
+     "w": "procuração",
+     "t": 11.317
+    },
+    {
+     "w": "A",
+     "t": 12.46
+    },
+    {
+     "w": "carteira",
+     "t": 12.673
+    },
+    {
+     "w": "assina",
+     "t": 13.14
+    },
+    {
+     "w": "e",
+     "t": 13.46
+    },
+    {
+     "w": "diz",
+     "t": 13.58
+    },
+    {
+     "w": "a",
+     "t": 14.06
+    },
+    {
+     "w": "partir",
+     "t": 14.254
+    },
+    {
+     "w": "de",
+     "t": 14.487
+    },
+    {
+     "w": "agora",
+     "t": 14.607
+    },
+    {
+     "w": "esse",
+     "t": 15.228
+    },
+    {
+     "w": "programa",
+     "t": 15.464
+    },
+    {
+     "w": "aqui",
+     "t": 15.884
+    },
+    {
+     "w": "fala",
+     "t": 16.18
+    },
+    {
+     "w": "por",
+     "t": 16.44
+    },
+    {
+     "w": "mim",
+     "t": 16.66
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 17.09,
+   "fim": 26.21,
+   "texto": "O pacote veio com cinquenta procurações. Quarenta e nove não valiam nada. Uma valia. E o programa que passou a mandar na carteira era do atacante.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 17.09
+    },
+    {
+     "w": "pacote",
+     "t": 17.23
+    },
+    {
+     "w": "veio",
+     "t": 17.703
+    },
+    {
+     "w": "com",
+     "t": 17.93
+    },
+    {
+     "w": "cinquenta",
+     "t": 18.13
+    },
+    {
+     "w": "procurações",
+     "t": 18.667
+    },
+    {
+     "w": "Quarenta",
+     "t": 19.917
+    },
+    {
+     "w": "e",
+     "t": 20.33
+    },
+    {
+     "w": "nove",
+     "t": 20.397
+    },
+    {
+     "w": "não",
+     "t": 20.59
+    },
+    {
+     "w": "valiam",
+     "t": 20.81
+    },
+    {
+     "w": "nada",
+     "t": 21.154
+    },
+    {
+     "w": "Uma",
+     "t": 21.89
+    },
+    {
+     "w": "valia",
+     "t": 22.19
+    },
+    {
+     "w": "E",
+     "t": 22.85
+    },
+    {
+     "w": "o",
+     "t": 23.13
+    },
+    {
+     "w": "programa",
+     "t": 23.214
+    },
+    {
+     "w": "que",
+     "t": 23.61
+    },
+    {
+     "w": "passou",
+     "t": 23.778
+    },
+    {
+     "w": "a",
+     "t": 24.09
+    },
+    {
+     "w": "mandar",
+     "t": 24.162
+    },
+    {
+     "w": "na",
+     "t": 24.503
+    },
+    {
+     "w": "carteira",
+     "t": 24.663
+    },
+    {
+     "w": "era",
+     "t": 25.21
+    },
+    {
+     "w": "do",
+     "t": 25.383
+    },
+    {
+     "w": "atacante",
+     "t": 25.517
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.36,
+   "fim": 34.76,
+   "texto": "Em uns vinte minutos, saíram cerca de seis vírgula três bilhões de dólares, segundo a própria Binance, espalhados por dez redes diferentes.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 26.36
+    },
+    {
+     "w": "uns",
+     "t": 26.48
+    },
+    {
+     "w": "vinte",
+     "t": 26.64
+    },
+    {
+     "w": "minutos",
+     "t": 26.91
+    },
+    {
+     "w": "saíram",
+     "t": 27.613
+    },
+    {
+     "w": "cerca",
+     "t": 28.013
+    },
+    {
+     "w": "de",
+     "t": 28.333
+    },
+    {
+     "w": "seis",
+     "t": 28.488
+    },
+    {
+     "w": "vírgula",
+     "t": 28.733
+    },
+    {
+     "w": "três",
+     "t": 29.144
+    },
+    {
+     "w": "bilhões",
+     "t": 29.48
+    },
+    {
+     "w": "de",
+     "t": 29.987
+    },
+    {
+     "w": "dólares",
+     "t": 30.12
+    },
+    {
+     "w": "segundo",
+     "t": 30.73
+    },
+    {
+     "w": "a",
+     "t": 31.12
+    },
+    {
+     "w": "própria",
+     "t": 31.192
+    },
+    {
+     "w": "Binance",
+     "t": 31.56
+    },
+    {
+     "w": "espalhados",
+     "t": 32.34
+    },
+    {
+     "w": "por",
+     "t": 32.96
+    },
+    {
+     "w": "dez",
+     "t": 33.18
+    },
+    {
+     "w": "redes",
+     "t": 33.547
+    },
+    {
+     "w": "diferentes",
+     "t": 33.953
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 34.91,
+   "fim": 44.03,
+   "texto": "Faz a conta comigo. Com o dólar a cinco e quarenta e dois, isso dá uns trinta e quatro bilhões de reais. Mais de vinte e oito milhões de reais por segundo.",
+   "palavras": [
+    {
+     "w": "Faz",
+     "t": 34.91
+    },
+    {
+     "w": "a",
+     "t": 35.11
+    },
+    {
+     "w": "conta",
+     "t": 35.203
+    },
+    {
+     "w": "comigo",
+     "t": 35.51
+    },
+    {
+     "w": "Com",
+     "t": 36.27
+    },
+    {
+     "w": "o",
+     "t": 36.55
+    },
+    {
+     "w": "dólar",
+     "t": 36.643
+    },
+    {
+     "w": "a",
+     "t": 36.99
+    },
+    {
+     "w": "cinco",
+     "t": 37.097
+    },
+    {
+     "w": "e",
+     "t": 37.31
+    },
+    {
+     "w": "quarenta",
+     "t": 37.417
+    },
+    {
+     "w": "e",
+     "t": 37.77
+    },
+    {
+     "w": "dois",
+     "t": 37.822
+    },
+    {
+     "w": "isso",
+     "t": 38.462
+    },
+    {
+     "w": "dá",
+     "t": 38.643
+    },
+    {
+     "w": "uns",
+     "t": 38.79
+    },
+    {
+     "w": "trinta",
+     "t": 38.963
+    },
+    {
+     "w": "e",
+     "t": 39.35
+    },
+    {
+     "w": "quatro",
+     "t": 39.417
+    },
+    {
+     "w": "bilhões",
+     "t": 39.79
+    },
+    {
+     "w": "de",
+     "t": 40.377
+    },
+    {
+     "w": "reais",
+     "t": 40.483
+    },
+    {
+     "w": "Mais",
+     "t": 41.422
+    },
+    {
+     "w": "de",
+     "t": 41.603
+    },
+    {
+     "w": "vinte",
+     "t": 41.75
+    },
+    {
+     "w": "e",
+     "t": 41.99
+    },
+    {
+     "w": "oito",
+     "t": 42.07
+    },
+    {
+     "w": "milhões",
+     "t": 42.25
+    },
+    {
+     "w": "de",
+     "t": 42.723
+    },
+    {
+     "w": "reais",
+     "t": 42.883
+    },
+    {
+     "w": "por",
+     "t": 43.19
+    },
+    {
+     "w": "segundo",
+     "t": 43.38
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 44.18,
+   "fim": 55.3,
+   "texto": "Em dois mil e cinco, uma quadrilha cavou um túnel de quase oitenta metros por baixo do Banco Central em Fortaleza. Passou meses cavando. Saiu com cento e sessenta e quatro milhões de reais.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 44.18
+    },
+    {
+     "w": "dois",
+     "t": 44.292
+    },
+    {
+     "w": "mil",
+     "t": 44.46
+    },
+    {
+     "w": "e",
+     "t": 44.62
+    },
+    {
+     "w": "cinco",
+     "t": 44.713
+    },
+    {
+     "w": "uma",
+     "t": 45.12
+    },
+    {
+     "w": "quadrilha",
+     "t": 45.353
+    },
+    {
+     "w": "cavou",
+     "t": 45.84
+    },
+    {
+     "w": "um",
+     "t": 46.127
+    },
+    {
+     "w": "túnel",
+     "t": 46.26
+    },
+    {
+     "w": "de",
+     "t": 46.553
+    },
+    {
+     "w": "quase",
+     "t": 46.687
+    },
+    {
+     "w": "oitenta",
+     "t": 47.02
+    },
+    {
+     "w": "metros",
+     "t": 47.517
+    },
+    {
+     "w": "por",
+     "t": 47.9
+    },
+    {
+     "w": "baixo",
+     "t": 48.1
+    },
+    {
+     "w": "do",
+     "t": 48.447
+    },
+    {
+     "w": "Banco",
+     "t": 48.553
+    },
+    {
+     "w": "Central",
+     "t": 48.88
+    },
+    {
+     "w": "em",
+     "t": 49.327
+    },
+    {
+     "w": "Fortaleza",
+     "t": 49.428
+    },
+    {
+     "w": "Passou",
+     "t": 50.356
+    },
+    {
+     "w": "meses",
+     "t": 50.82
+    },
+    {
+     "w": "cavando",
+     "t": 51.28
+    },
+    {
+     "w": "Saiu",
+     "t": 52.18
+    },
+    {
+     "w": "com",
+     "t": 52.54
+    },
+    {
+     "w": "cento",
+     "t": 52.724
+    },
+    {
+     "w": "e",
+     "t": 53.04
+    },
+    {
+     "w": "sessenta",
+     "t": 53.108
+    },
+    {
+     "w": "e",
+     "t": 53.5
+    },
+    {
+     "w": "quatro",
+     "t": 53.567
+    },
+    {
+     "w": "milhões",
+     "t": 53.86
+    },
+    {
+     "w": "de",
+     "t": 54.313
+    },
+    {
+     "w": "reais",
+     "t": 54.473
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 55.45,
+   "fim": 63.29,
+   "texto": "Nesse ritmo, a Binance perdia um Banco Central de Fortaleza a cada seis segundos. E ninguém cavou nada.",
+   "palavras": [
+    {
+     "w": "Nesse",
+     "t": 55.45
+    },
+    {
+     "w": "ritmo",
+     "t": 55.77
+    },
+    {
+     "w": "a",
+     "t": 56.29
+    },
+    {
+     "w": "Binance",
+     "t": 56.41
+    },
+    {
+     "w": "perdia",
+     "t": 56.85
+    },
+    {
+     "w": "um",
+     "t": 57.423
+    },
+    {
+     "w": "Banco",
+     "t": 57.57
+    },
+    {
+     "w": "Central",
+     "t": 57.83
+    },
+    {
+     "w": "de",
+     "t": 58.277
+    },
+    {
+     "w": "Fortaleza",
+     "t": 58.394
+    },
+    {
+     "w": "a",
+     "t": 59.13
+    },
+    {
+     "w": "cada",
+     "t": 59.274
+    },
+    {
+     "w": "seis",
+     "t": 59.594
+    },
+    {
+     "w": "segundos",
+     "t": 59.93
+    },
+    {
+     "w": "E",
+     "t": 60.93
+    },
+    {
+     "w": "ninguém",
+     "t": 61.25
+    },
+    {
+     "w": "cavou",
+     "t": 61.79
+    },
+    {
+     "w": "nada",
+     "t": 62.33
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 63.44,
+   "fim": 73.44,
+   "texto": "Até agora, uns três bilhões de dólares foram congelados, e a Binance diz que vai cobrir o prejuízo dos clientes. Esse dinheiro volta ou some? Comenta aí.",
+   "palavras": [
+    {
+     "w": "Até",
+     "t": 63.44
+    },
+    {
+     "w": "agora",
+     "t": 63.747
+    },
+    {
+     "w": "uns",
+     "t": 64.28
+    },
+    {
+     "w": "três",
+     "t": 64.464
+    },
+    {
+     "w": "bilhões",
+     "t": 64.78
+    },
+    {
+     "w": "de",
+     "t": 65.227
+    },
+    {
+     "w": "dólares",
+     "t": 65.333
+    },
+    {
+     "w": "foram",
+     "t": 65.733
+    },
+    {
+     "w": "congelados",
+     "t": 66.06
+    },
+    {
+     "w": "e",
+     "t": 66.92
+    },
+    {
+     "w": "a",
+     "t": 67
+    },
+    {
+     "w": "Binance",
+     "t": 67.12
+    },
+    {
+     "w": "diz",
+     "t": 67.66
+    },
+    {
+     "w": "que",
+     "t": 67.86
+    },
+    {
+     "w": "vai",
+     "t": 67.96
+    },
+    {
+     "w": "cobrir",
+     "t": 68.14
+    },
+    {
+     "w": "o",
+     "t": 68.52
+    },
+    {
+     "w": "prejuízo",
+     "t": 68.62
+    },
+    {
+     "w": "dos",
+     "t": 69.16
+    },
+    {
+     "w": "clientes",
+     "t": 69.351
+    },
+    {
+     "w": "Esse",
+     "t": 70.213
+    },
+    {
+     "w": "dinheiro",
+     "t": 70.764
+    },
+    {
+     "w": "volta",
+     "t": 71.2
+    },
+    {
+     "w": "ou",
+     "t": 71.68
+    },
+    {
+     "w": "some",
+     "t": 71.952
+    },
+    {
+     "w": "Comenta",
+     "t": 72.7
+    },
+    {
+     "w": "aí",
+     "t": 73.12
+    }
+   ]
+  }
+ ]
+}

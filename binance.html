@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Roubo da Binance: um Banco Central de Fortaleza a cada 6 segundos" — cópia do Reel do Mapa Paralelo (DfHsobwlZCM), pedido do Renan 30/10.
+// Números trocados pelos verificados: US$ 6,3 bi (Binance), ~20 min (Wikipedia/crypto.news), 10 redes, PTAX 30/10 R$ 5,4212.
+// Conta: 6,3 bi x 5,4212 = R$ 34,15 bi / 1.200 s = R$ 28,5 mi/s; R$ 164,7 mi / 28,5 mi = 5,8 s.
+import { motion } from "/kitmotion.js";
+const K = await motion("binance", { fundo: "#0d0d0f", fundo2: "#1a1608", padrao: "grade", destaque: "#f0b90b", alerta: "#ff4d4d", rotulo: "CRIPTO", rotuloCor: "#c8323a", sub: "• 29/10", tag: "ENTENDA", legenda: "contorno", transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, txtCabe, pilula, pop, carimbo, digital, papel, seta } = K;
+function carteira(x, y, s, cor = "#3a3f4a") { g.save(); g.translate(x, y); g.scale(s, s); rr(-150, -100, 300, 200, 26, cor); rr(-150, -100, 300, 50, 26, "rgba(255,255,255,.08)"); rr(60, -30, 110, 70, 20, "#22262e"); circ(100, 5, 14, C.AM); g.restore(); }
+function doc(x, y, w, h, cor = "#f4f1ea", linha = "#c9c2b0") { rr(x - w / 2, y - h / 2, w, h, 6, cor); for (let i = 0; i < 3; i++) rr(x - w / 2 + 8, y - h / 2 + 12 + i * (h / 4), (w - 16) * (i === 2 ? .6 : 1), 4, 2, linha); }
+function selo(x, y, r, cor = C.VM) { g.strokeStyle = cor; g.lineWidth = 6; g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.stroke(); g.beginPath(); g.arc(x, y, r * .6, 0, 6.2832); g.stroke(); }
+function predio(x, y, s, cor = "#e9edf3") { g.save(); g.translate(x, y); g.scale(s, s); rr(-130, -40, 260, 140, 4, cor); g.fillStyle = cor; g.beginPath(); g.moveTo(-150, -40); g.lineTo(0, -110); g.lineTo(150, -40); g.fill(); for (let i = 0; i < 5; i++) rr(-105 + i * 48, -20, 18, 110, 4, "#b8c0cc"); rr(-150, 100, 300, 14, 4, "#b8c0cc"); g.restore(); }
+function moeda(x, y, r, cor = C.AM) { circ(x, y, r, "#a87f05"); circ(x, y - 4, r, cor); txt("$", x, y - 2, r * 1.2, "#5a4300", { peso: 700 }); }
+const CENA = [null,
+  (t) => {
+    pop(ap(t, ini(1)), W / 2, 460, () => digital(W / 2, 460, 17.34, C.AM));
+    pop(ap(t, P(1, "brasilia") - .3), W / 2, 640, () => pilula("HORÁRIO DE BRASÍLIA", W / 2, 640, 44, "#fff", "#000"));
+    pop(ap(t, P(1, "transacao") - .3), W / 2, 800, () => pilula("1 TRANSAÇÃO NA REDE ETHEREUM", W / 2, 800, 50, C.AM, "#000"));
+    carimbo("MOVE R$ 0,00", W / 2, 960, ap(t, P(1, "centavo") - .1), "#32d26f", -.06, 80);
+    pop(ap(t, P(1, "muda") - .3), W / 2, 1200, () => { carteira(W / 2 - 170, 1200, 1); txt("QUEM", W / 2 + 170, 1160, 80, "#fff", { contorno: 8 }); txt("MANDA?", W / 2 + 170, 1250, 80, C.VM, { contorno: 8 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(2)), W / 2, 400, () => txt("NA PRÁTICA, UMA", W / 2, 400, 72, "#fff", { contorno: 8 }));
+    pop(ap(t, P(2, "procuracao") - .3), W / 2, 500, () => txt("PROCURAÇÃO", W / 2, 510, 130, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(2, "carteira") - .3), W / 2, 900, () => { g.save(); g.translate(W / 2, 900); g.rotate(-.04); g.translate(-W / 2, -900); papel(220, 640, 640, 560); g.restore(); });
+    pop(ap(t, P(2, "partir") - .3), W / 2, 760, () => { txt("“A PARTIR DE AGORA,", W / 2, 720, 52, "#1b2436"); txt("ESTE PROGRAMA", W / 2, 790, 52, "#1b2436"); txt("FALA POR MIM”", W / 2, 860, 52, "#c8323a"); });
+    pop(ap(t, P(2, "fala") - .2), 760, 1090, () => selo(760, 1090, 70));
+  },
+  (t) => {
+    const k = clamp((t - P(3, "cinquenta") + .3) / 1.2), n = Math.round(50 * ease(k)), apaga = clamp((t - P(3, "quarenta")) / .5), acende = clamp((t - P(3, "uma")) / .4), red = clamp((t - P(3, "atacante") + .4) / .4);
+    pop(ap(t, ini(3)), W / 2, 380, () => txt(`${n} PROCURAÇÕES`, W / 2, 380, 96, C.AM, { contorno: 10 }));
+    for (let i = 0; i < n; i++) { const x = 170 + (i % 10) * 82, y = 540 + Math.floor(i / 10) * 112; const certa = i === 36; g.save(); g.globalAlpha *= certa ? 1 : 1 - apaga * .7; doc(x, y, 62, 88, certa && red > 0 ? (red > .5 ? C.VM : "#f4f1ea") : certa && acende > 0 ? C.AM : "#f4f1ea", certa && acende > 0 ? "#5a4300" : "#c9c2b0"); g.restore(); if (certa && acende > 0) { g.strokeStyle = red > .5 ? C.VM : C.AM; g.lineWidth = 6; g.globalAlpha = acende; g.beginPath(); g.roundRect(x - 44, y - 56, 88, 112, 10); g.stroke(); g.globalAlpha = 1; } }
+    pop(ap(t, P(3, "quarenta") - .2), W / 2, 1150, () => pilula("49 NÃO VALIAM NADA", W / 2, 1150, 50, "#3a3f4a", "#fff"));
+    pop(ap(t, P(3, "valia") - .2), W / 2, 1250, () => pilula("1 VALIA", W / 2, 1250, 56, C.AM, "#000"));
+    carimbo("CONTRATO DO ATACANTE", W / 2, 1360, ap(t, P(3, "atacante") - .1), C.VM, -.05, 66);
+  },
+  (t) => {
+    const k = clamp((t - P(4, "seis") + .2) / 1.4), v = 6.3 * ease(k);
+    pop(ap(t, ini(4)), W / 2, 420, () => { rr(W / 2 - 230, 360, 460, 120, 60, "#22262e"); txt(`~${Math.round(20 * clamp((t - ini(4)) / 3))} MINUTOS`, W / 2, 424, 70, "#fff"); });
+    pop(ap(t, P(4, "seis") - .3), W / 2, 640, () => { txt("US$", 190, 640, 90, C.AM, { al: "left", contorno: 8 }); txt(v.toFixed(1).replace(".", ","), 380, 640, 230, C.AM, { al: "left", contorno: 12, sombra: true }); txt("BILHÕES", 380 + 330, 620, 64, "#fff", { al: "left", contorno: 6 }); });
+    for (let i = 0; i < 8; i++) { const kk = clamp((t - P(4, "saíram") - i * .3) / 1.6); if (kk > 0 && kk < 1) moeda(W / 2 + Math.sin(i * 2.1) * 300 * kk, 820 + kk * 300, 34); }
+    pop(ap(t, P(4, "binance") - .3), W / 2, 840, () => pilula("SEGUNDO A PRÓPRIA BINANCE", W / 2, 840, 48, "#fff", "#000"));
+    const kr = clamp((t - P(4, "dez") + .2) / 1.0);
+    if (kr > 0) { for (let i = 0; i < 10; i++) { const ki = clamp(kr * 2 - i * .1); const x = 170 + (i % 5) * 185, y = 1060 + Math.floor(i / 5) * 160; pop(ki, x, y, () => { circ(x, y, 58, "#22262e"); circ(x, y, 42, i % 2 ? "#4fb3c9" : C.AM); txt(String(i + 1), x, y + 3, 44, "#000"); }); } }
+    pop(ap(t, P(4, "redes") - .2), W / 2, 1350, () => pilula("10 REDES DIFERENTES", W / 2, 1350, 46, C.VM, "#fff"));
+  },
+  (t) => {
+    pop(ap(t, ini(5)), W / 2, 380, () => txt("FAZ A CONTA", W / 2, 380, 110, C.AM, { contorno: 10 }));
+    pop(ap(t, P(5, "dolar") - .3), W / 2, 560, () => { rr(120, 490, 840, 140, 26, "#22262e"); txt("US$ 6,3 BI  ×  R$ 5,42", W / 2, 562, 72, "#fff"); });
+    pop(ap(t, P(5, "trinta") - .3), W / 2, 720, () => txt("= R$ 34 BILHÕES", W / 2, 720, 96, C.AM, { contorno: 10 }));
+    pop(ap(t, P(5, "mais") - .4), W / 2, 870, () => pilula("÷ 1.200 SEGUNDOS (20 MIN)", W / 2, 870, 50, "#fff", "#000"));
+    pop(ap(t, P(5, "milhoes") - .3), W / 2, 1110, () => { rr(100, 990, 880, 260, 34, "#3a1220"); txt("R$ 28 MILHÕES", W / 2, 1080, 120, C.VM, { contorno: 10 }); txt("POR SEGUNDO", W / 2, 1185, 76, "#fff", { contorno: 8 }); });
+  },
+  (t) => {
+    pop(ap(t, ini(6)), W / 2, 380, () => pilula("2005 • FORTALEZA", W / 2, 380, 60, "#c8323a", "#fff"));
+    const solo = 760;
+    pop(ap(t, P(6, "tunel") - .5), W / 2, 900, () => { rr(0, solo, W, 520, 0, "#5a3e24"); for (let i = 0; i < 40; i++) circ((i * 137) % W, solo + 40 + (i * 71) % 460, 6, "#4a321c"); });
+    pop(ap(t, P(6, "banco") - .3), 820, 640, () => { predio(820, 650, .9); txt("BANCO CENTRAL", 820, 500, 40, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(6, "quadrilha") - .3), 200, 690, () => { rr(140, 640, 120, 120, 8, "#8a96ab"); txt("CASA", 200, 610, 36, "#fff", { contorno: 5 }); });
+    const kt = clamp((t - P(6, "tunel")) / 4.5);
+    if (kt > 0) { rr(180, solo + 20, 40, 240, 12, "#1a1008"); rr(180, solo + 220, 640 * ease(kt) + 40, 56, 28, "#1a1008"); rr(780, solo + 20, 40, 240 * clamp(kt * 2 - 1), 12, "#1a1008"); }
+    pop(ap(t, P(6, "oitenta") - .3), W / 2, 1110, () => pilula("QUASE 80 METROS", W / 2, 1110, 50, C.AM, "#000"));
+    pop(ap(t, P(6, "meses") - .3), W / 2, 1210, () => pilula("MESES CAVANDO", W / 2, 1210, 46, "#fff", "#000"));
+    pop(ap(t, P(6, "milhoes") - .3), W / 2, 1330, () => txt("R$ 164 MILHÕES", W / 2, 1330, 92, "#32d26f", { contorno: 10, sombra: true }));
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 400, () => txt("NESSE RITMO...", W / 2, 400, 90, "#fff", { contorno: 10 }));
+    const k0 = P(7, "fortaleza");
+    for (let i = 0; i < 6; i++) { const x = 220 + (i % 3) * 320, y = 600 + Math.floor(i / 3) * 230; pop(ap(t, k0 - .6 + i * .35), x, y, () => { predio(x, y, .6, i === 0 ? C.AM : "#e9edf3"); }); }
+    pop(ap(t, P(7, "seis") - .3), W / 2, 1050, () => { rr(90, 960, 900, 190, 30, "#22262e"); txt("1 FORTALEZA", W / 2, 1015, 78, C.AM); txt("A CADA 6 SEGUNDOS", W / 2, 1100, 66, "#fff"); });
+    carimbo("NINGUÉM CAVOU NADA", W / 2, 1300, ap(t, P(7, "ninguem") - .1), C.VM, -.06, 80);
+  },
+  (t) => {
+    pop(ap(t, ini(8)), W / 2, 380, () => txt("E AGORA?", W / 2, 380, 110, C.AM, { contorno: 10 }));
+    const kb = clamp((t - P(8, "congelados") + .4) / 1.0);
+    pop(ap(t, P(8, "tres") - .3), W / 2, 560, () => { rr(120, 520, 840, 90, 45, "#3a1220"); rr(120, 520, 840 * (3 / 6.3) * ease(kb), 90, 45, "#7fd3ff"); txt("US$ 3 BI CONGELADOS", W / 2, 566, 50, "#fff", { contorno: 6 }); txt("de US$ 6,3 bi", W / 2, 650, 40, "#c9d1dc", { peso: 500 }); });
+    pop(ap(t, P(8, "cobrir") - .3), W / 2, 790, () => pilula("BINANCE DIZ QUE COBRE OS CLIENTES", W / 2, 790, 44, "#32d26f", "#000"));
+    pop(ap(t, P(8, "volta") - .3), W / 2, 1010, () => { rr(110, 940, 400, 140, 30, "#123a26"); txt("A) VOLTA", 310, 1012, 70, "#32d26f"); rr(570, 940, 400, 140, 30, "#3a1220"); txt("B) SOME", 770, 1012, 70, C.VM); });
+    pop(ap(t, P(8, "comenta") - .3), W / 2, 1180, () => pilula("COMENTA A OU B", W / 2, 1180, 52, C.AM, "#000"));
+    pop(ap(t, ini(8) + .5), W / 2, 1360, () => { txtCabe("FONTES: BINANCE, CRYPTO.NEWS, BLOCKAID (29-30/10/2026)", W / 2, 1340, 26, "rgba(255,255,255,.6)", 900, { peso: 500 }); txtCabe("DÓLAR: PTAX BANCO CENTRAL 30/10 • FORTALEZA: 2005, R$ 164,7 MI", W / 2, 1380, 26, "rgba(255,255,255,.6)", 900, { peso: 500 }); });
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
