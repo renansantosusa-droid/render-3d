@@ -1,0 +1,333 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#080e26;position:relative}canvas{display:block}
+#escuro{position:absolute;inset:0;background:rgba(5,9,26,.62);pointer-events:none}#flash{position:absolute;inset:0;background:#fff;pointer-events:none}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from "three";
+const ID = "brasilturma3d";
+// Parte comum dos vídeos do Brasil da Turma (2D e 3D): tempos, tomadas, textos na tela e legenda.
+// É colada dentro de brasilturma2d.html / brasilturma3d.html pelo montar-turma.mjs (marcador //@@COMUM@@).
+const TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json();
+const W = 1080, H = 1920;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const pop = (t, a, d = .28) => { const k = clamp((t - a) / d, 0, 1); return k <= 0 ? 0 : k >= 1 ? 1 : (1 - Math.pow(1 - k, 3)) + .25 * Math.sin(k * Math.PI); };
+const entre = (t, a, b) => t >= a && t < b;
+const CENA = (n) => TEMPOS.cenas[n - 1];
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, palavra, ocorr = 1) {
+  let k = 0;
+  for (const p of CENA(n).palavras) if (norm(p.w) === norm(palavra) && ++k === ocorr) return p.t;
+  console.error("palavra nao achada", n, palavra); return CENA(n).ini;
+}
+const FIM = TEMPOS.total;
+
+// ---------- estados (bloco = coluna, linha) ----------
+const UFS = [
+  ["RR", 2, 0], ["AP", 4, 0], ["AM", 1, 1], ["PA", 3, 1], ["MA", 4, 1], ["CE", 5, 1], ["RN", 6, 1],
+  ["AC", 0, 2], ["RO", 1, 2], ["MT", 2, 2], ["TO", 3, 2], ["PI", 4, 2], ["PE", 5, 2], ["PB", 6, 2],
+  ["MS", 2, 3], ["GO", 3, 3], ["DF", 4, 3], ["BA", 5, 3], ["AL", 6, 3],
+  ["SP", 3, 4], ["MG", 4, 4], ["ES", 5, 4], ["SE", 6, 4], ["PR", 3, 5], ["RJ", 4, 5], ["SC", 3, 6], ["RS", 2, 7],
+].map(([uf, c, r]) => ({ uf, c, r }));
+// quando cada estado acende (SP pisca na cena 1; onda na cena 3; mais uma onda no "dia um")
+const ACENDE = {};
+const ONDA_A = ["PE", "AM", "PR", "RJ", "BA", "MG", "CE", "RS"];
+const ONDA_B = ["GO", "PA", "SC", "MA", "ES", "PB", "RN", "MT", "AL", "DF"];
+ONDA_A.forEach((u, i) => ACENDE[u] = P(3, "cidade") + .05 + i * .11);
+ONDA_B.forEach((u, i) => ACENDE[u] = P(6, "Hoje") + .1 + i * .09);
+ACENDE.SP = P(1, "cidade");
+const APAGADOS = ["RR", "AP", "AC", "RO", "TO", "PI", "SE", "MS"];
+// brilho 0..1 de um estado no tempo t
+function brilho(uf, t) {
+  if (uf === "SP") {
+    const a = P(1, "acender");
+    if (t < a) return 0;
+    if (t < ACENDE.SP) return [1, 0, 1, 0, 0, 1, 0, 1][Math.floor((t - a) * 14) % 8] * .8;
+    return 1;
+  }
+  const a = ACENDE[uf];
+  return a === undefined ? 0 : prog(t, a, a + .3);
+}
+
+// ---------- tomadas (cortes a cada ~2 s) ----------
+// mapa: x,y em blocos (coluna, linha), z = zoom (1 = Brasil inteiro). cidade: x em casas, y = altura do foco, z = zoom.
+const SHOTS = [
+  { a: 0, tipo: "mapa", de: [3, 3.8, 1.0], ate: [3, 3.6, 1.1] },
+  { a: P(1, "so") - .15, tipo: "mapa", de: [3, 4.1, 1.7], ate: [3, 4.0, 2.4] },
+  { a: CENA(2).ini, tipo: "mapaescuro", de: [3, 3.8, 1.1], ate: [3.2, 3.6, 1.2] },
+  { a: P(2, "nome") - .1, tipo: "mapaescuro", de: [2.6, 3.4, 1.25], ate: [2.8, 3.6, 1.35] },
+  { a: CENA(3).ini, tipo: "cidade", de: [-3, 1.0, 2.1], ate: [-3, 1.0, 2.6] },
+  { a: P(3, "sua", 1) - .25, tipo: "mapa", de: [3.6, 3.2, 1.3], ate: [3.2, 3.6, 1.05] },
+  { a: CENA(4).ini, tipo: "cidade", de: [-2, 2.2, 1.6], ate: [-2.4, 2.1, 1.8] },
+  { a: P(4, "vira") - .3, tipo: "cidade", de: [-3, .7, 2.3], ate: [-3, .8, 2.7] },
+  { a: CENA(5).ini, tipo: "cidade", de: [-1.6, 3.1, 1.5], ate: [-1, 3.3, 1.35] },
+  { a: P(5, "mais", 2) - .1, tipo: "cidade", de: [-1, 3.4, 1.2], ate: [-1, 4.4, 1.0] },
+  { a: P(5, "metropole") - .1, tipo: "cidade", de: [-1, 4.9, .95], ate: [-.8, 5.1, .9] },
+  { a: CENA(6).ini, tipo: "mapa", de: [3, 3.8, 1.35], ate: [3, 3.7, .98] },
+  { a: P(6, "Qual") - .1, tipo: "mapa", de: [1.4, 2.2, 1.55], ate: [2.2, 4.4, 1.55] },
+  { a: P(6, "Comenta") - .1, tipo: "mapa", de: [3, 4.3, 1.02], ate: [3, 4.1, 1.1] },
+];
+SHOTS.forEach((s, i) => s.b = i + 1 < SHOTS.length ? SHOTS[i + 1].a : FIM);
+function tomada(t) {
+  const s = SHOTS.findLast((x) => t >= x.a) || SHOTS[0];
+  const k = ease(clamp((t - s.a) / (s.b - s.a), 0, 1));
+  const v = s.de.map((d, i) => d + (s.ate[i] - d) * k);
+  return { tipo: s.tipo, x: v[0], y: v[1], z: v[2], i: SHOTS.indexOf(s), dt: t - s.a };
+}
+
+// ---------- cidade ----------
+const CASAS = [
+  { x: -3, a: P(3, "arroba"), h: "@seu.arroba", cor: "#ff7a45" },
+  { x: -4.5, a: P(5, "gente"), h: "@ana.tatui", cor: "#4cc3ff" },
+  { x: -1.5, a: P(5, "da"), h: "@lucas_sp", cor: "#ffd23f" },
+  { x: 0, a: P(5, "sua"), h: "@bia.oficial", cor: "#7ee081" },
+  { x: 1.5, a: P(5, "cidade"), h: "@joao.123", cor: "#ff6fa8" },
+  { x: 3, a: P(5, "entrar"), h: "@mari_s2", cor: "#b18cff" },
+  { x: 4.5, a: P(5, "entrar") + .2, h: "@pedrinho", cor: "#4cc3ff" },
+  { x: -6, a: P(5, "entrar") + .35, h: "@carol.f", cor: "#ffd23f" },
+  { x: 6, a: P(5, "entrar") + .45, h: "@zeca_tt", cor: "#ff7a45" },
+];
+const PREDIOS = [
+  { x: -5.2, alt: 3.2, a: P(5, "ate") }, { x: -2.3, alt: 4.4, a: P(5, "ate") + .1 }, { x: .7, alt: 5.6, a: P(5, "ate") + .2 },
+  { x: 3.6, alt: 3.8, a: P(5, "ate") + .3 }, { x: -.8, alt: 7.2, a: P(5, "metropole") - .1 }, { x: 2.2, alt: 8.4, a: P(5, "metropole") },
+  { x: -3.8, alt: 6.4, a: P(5, "metropole") + .1 }, { x: 5.2, alt: 6.0, a: P(5, "metropole") + .15 },
+];
+const T_FUNDADOR = P(4, "fundador"), T_SEMPRE = P(4, "Pra");
+
+// ---------- textos na tela (DOM por cima do canvas) ----------
+const css = document.createElement("style");
+css.textContent = `
+.ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
+#marca{top:70px;left:50%;transform:translateX(-50%);background:#ffd23f;color:#14204a;font-size:44px;padding:14px 34px;border-radius:99px;border:6px solid #14204a;box-shadow:0 8px 0 #14204a;white-space:nowrap;letter-spacing:1px}
+#marca b{color:#2b59c3}
+#cidadeTag{top:190px;left:50%;transform:translateX(-50%);background:#fff;color:#14204a;font-size:40px;padding:8px 26px;border-radius:18px;border:5px solid #14204a;white-space:nowrap}
+#chip{top:300px;left:50%;white-space:nowrap;background:rgba(8,14,40,.84);border-radius:34px;padding:8px 40px 20px;text-align:center;font-size:88px;color:#fff;-webkit-text-stroke:5px #14204a;paint-order:stroke fill;text-shadow:0 10px 0 #14204a;line-height:1.05}
+#chip.amarelo{color:#ffd23f}
+#legenda{top:1650px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}
+#legenda.am{color:#ffd23f}
+#coments{left:70px;right:70px;top:720px}
+.cm{display:flex;align-items:center;gap:22px;background:#fff;border-radius:34px;padding:22px 28px;margin-bottom:26px;box-shadow:0 10px 0 rgba(0,0,0,.35);transform-origin:left center}
+.cm .av{width:92px;height:92px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:48px;border:5px solid #fff;box-shadow:0 0 0 5px #e1306c}
+.cm .tx{font-size:34px;color:#8a8fa8;line-height:1.15}
+.cm .tx b{display:block;color:#14204a;font-size:50px}
+#cta{left:60px;right:60px;top:1180px;background:#ffd23f;border:8px solid #14204a;border-radius:44px;box-shadow:0 12px 0 #14204a;text-align:center;padding:30px 20px 34px;color:#14204a}
+#cta .l1{font-size:70px;line-height:1.05}
+#cta .l2{font-size:46px;color:#2b59c3;margin-top:8px}
+#seta{left:50%;top:1500px;width:0;height:0;margin-left:-70px;border-left:70px solid transparent;border-right:70px solid transparent;border-top:90px solid #ffd23f;filter:drop-shadow(0 8px 0 #14204a)}
+`;
+document.head.appendChild(css);
+const mk = (id, cls = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov " + cls; document.body.appendChild(d); return d; };
+const elMarca = mk("marca"); elMarca.innerHTML = "BRASIL DA <b>TURMA</b>";
+const elCidade = mk("cidadeTag"); elCidade.textContent = "TATUÍ · SP";
+const elComents = mk("coments");
+const COMENTS = [
+  ["A", "#e1306c", "@ana.recife", "Recife PE", P(2, "comenta")],
+  ["L", "#2b59c3", "@lucas_tatui", "Tatuí SP", P(2, "embaixo")],
+  ["B", "#0a8f5a", "@bia.manaus", "Manaus AM", P(2, "nome")],
+  ["J", "#ff7a45", "@joao.cwb", "Curitiba PR", P(2, "cidade")],
+];
+const cmEls = COMENTS.map(([ini, cor, h, txt]) => {
+  const d = document.createElement("div"); d.className = "cm";
+  d.innerHTML = `<div class="av" style="background:${cor}">${ini}</div><div class="tx">${h}<b>${txt}</b></div>`;
+  elComents.appendChild(d); return d;
+});
+const elChip = mk("chip");
+const elCta = mk("cta"); elCta.innerHTML = `<div class="l1">COMENTA SUA CIDADE<br>+ ESTADO</div><div class="l2">e acende o seu arroba no mapa</div>`;
+const elSeta = mk("seta");
+const elLeg = mk("legenda");
+const CHIPS = [
+  [P(2, "estado"), CENA(3).ini, "CIDADE + ESTADO", true],
+  [P(3, "morador"), P(3, "sua", 1) - .25, "VIROU MORADOR!", false],
+  [P(5, "vila"), P(5, "metropole") - .1, "VILA...", false],
+  [P(5, "metropole"), CENA(6).ini, "METRÓPOLE!", true],
+  [P(6, "dia"), P(6, "Qual") - .1, "DIA 1", true],
+  [P(6, "Qual"), P(6, "Comenta") - .1, "QUAL CIDADE<br>ACENDE PRIMEIRO?", false],
+];
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = new Set(["apagado", "acender", "cidade", "estado", "arroba", "morador", "acende", "fundador", "sempre", "vila", "metropole", "um", "turma", "comenta"]);
+const escala = (el, k) => el.style.transform = (el.id === "marca" || el.id === "cidadeTag" || el.id === "chip" ? "translateX(-50%) " : "") + `scale(${k})`;
+
+function textos(t, tipo) {
+  // marca sempre; tag da cidade nas tomadas da cidade
+  escala(elMarca, 1 + .06 * pulse(t, P(6, "Turma") - .1, .5));
+  elCidade.style.opacity = tipo === "cidade" ? 1 : 0;
+  // comentários (cena 2)
+  const emComent = entre(t, CENA(2).ini, CENA(3).ini + .25);
+  elComents.style.opacity = emComent ? 1 - lin(t, CENA(3).ini, CENA(3).ini + .25) : 0;
+  cmEls.forEach((d, i) => { const a = COMENTS[i][4]; const k = prog(t, a - .05, a + .22); d.style.opacity = k; d.style.transform = `translateX(${(1 - k) * -120}px) scale(${.7 + .3 * k + .06 * pulse(t, a + .1, .3)})`; });
+  // chip grande
+  const c = CHIPS.find(([a, b]) => entre(t, a, b));
+  if (c) { elChip.innerHTML = c[2]; elChip.className = "ov" + (c[3] ? " amarelo" : ""); elChip.style.opacity = 1; escala(elChip, .55 + .45 * prog(t, c[0], c[0] + .16) + .12 * pulse(t, c[0] + .08, .3)); elChip.style.fontSize = c[2].includes("<br>") ? "72px" : "88px"; }
+  else elChip.style.opacity = 0;
+  // CTA final
+  const tc = P(6, "Comenta") - .1, kc = prog(t, tc, tc + .25);
+  elCta.style.opacity = kc; escala(elCta, .6 + .4 * kc + .04 * Math.sin(t * 9) * kc);
+  elSeta.style.opacity = kc; elSeta.style.transform = `translateY(${18 * Math.abs(Math.sin(t * 5))}px)`;
+  // legenda: uma palavra por vez (some no CTA)
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual || t > tc || (c && norm(c[2]).startsWith(norm(atual.w)))) { elLeg.textContent = ""; return; }
+  elLeg.textContent = atual.w.toUpperCase();
+  elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : "");
+  escala(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09));
+}
+
+// ================= visual 3D (three.js) =================
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H); renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const escuro = document.createElement("div"); escuro.id = "escuro"; document.body.insertBefore(escuro, renderer.domElement.nextSibling);
+const flash = document.createElement("div"); flash.id = "flash"; document.body.insertBefore(flash, escuro.nextSibling);
+const camera = new THREE.PerspectiveCamera(38, W / H, .1, 400);
+
+function canvasTex(w, h, draw) { const c = document.createElement("canvas"); c.width = w; c.height = h; draw(c.getContext("2d"), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t; }
+const rrc = (g, x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+function etiqueta(txt, { bg = "#fff", fg = "#14204a", alt = .5, borda = "#14204a" } = {}) {
+  const tam = 64, pad = 34;
+  const c0 = document.createElement("canvas").getContext("2d"); c0.font = `900 ${tam}px Nunito`;
+  const w = Math.ceil(c0.measureText(txt).width + pad * 2), h = Math.ceil(tam * 1.55);
+  const tex = canvasTex(w + 12, h + 12, (g) => { rrc(g, 6, 6, w, h, h / 2); g.fillStyle = bg; g.fill(); g.lineWidth = 9; g.strokeStyle = borda; g.stroke(); g.fillStyle = fg; g.font = `900 ${tam}px Nunito`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(txt, (w + 12) / 2, (h + 12) / 2 + 3); });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
+  s.scale.set(alt * (w + 12) / (h + 12), alt, 1); s.renderOrder = 10; s.userData.base = s.scale.clone(); return s;
+}
+const brilhoTex = canvasTex(128, 128, (g, s) => { const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, "rgba(255,214,80,1)"); gr.addColorStop(1, "rgba(255,214,80,0)"); g.fillStyle = gr; g.fillRect(0, 0, s, s); });
+
+// ---------------- cena do MAPA ----------------
+const mapaCena = new THREE.Scene();
+mapaCena.background = new THREE.Color(0x080e26); mapaCena.fog = new THREE.Fog(0x080e26, 18, 46);
+mapaCena.add(new THREE.HemisphereLight(0x9fb2ff, 0x1a2350, 1.1));
+const lua = new THREE.DirectionalLight(0xdfe6ff, 1.4); lua.position.set(-6, 12, 8); mapaCena.add(lua);
+const estrelasGeo = new THREE.BufferGeometry(); const pos = [];
+for (let i = 0; i < 900; i++) { const a = (i * 2.399) % (Math.PI * 2), r = 30 + (i * 13 % 40); pos.push(Math.cos(a) * r, -6 - (i * 7 % 10), Math.sin(a) * r - 10); }
+estrelasGeo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+mapaCena.add(new THREE.Points(estrelasGeo, new THREE.PointsMaterial({ color: 0xffffff, size: .09 })));
+const chaoMapa = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshStandardMaterial({ color: 0x0d1638, roughness: 1 }));
+chaoMapa.rotation.x = -Math.PI / 2; chaoMapa.position.y = -.01; mapaCena.add(chaoMapa);
+const MX = (c) => (c - 3) * 1.5, MZ = (r) => (r - 3.5) * 1.5;
+const corApagado = new THREE.Color(0x1e2a52), corAceso = new THREE.Color(0xffd23f);
+const casinhaGeo = new THREE.BoxGeometry(.2, .18, .2), telhadoGeo = new THREE.ConeGeometry(.17, .16, 4);
+const blocos = UFS.map((s) => {
+  const grp = new THREE.Group(); grp.position.set(MX(s.c), 0, MZ(s.r));
+  const mat = new THREE.MeshStandardMaterial({ color: corApagado.clone(), roughness: .55, emissive: new THREE.Color(0xffb020), emissiveIntensity: 0 });
+  const caixa = new THREE.Mesh(new THREE.BoxGeometry(1.3, 1, 1.0), mat); caixa.position.y = .5; grp.add(caixa);
+  const borda = new THREE.LineSegments(new THREE.EdgesGeometry(caixa.geometry), new THREE.LineBasicMaterial({ color: 0x3b4b84 })); caixa.add(borda);
+  const texUF = (cor) => canvasTex(256, 192, (g) => { g.fillStyle = cor; g.font = "900 120px Nunito"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(s.uf, 128, 100); });
+  const topo = new THREE.Mesh(new THREE.PlaneGeometry(1.2, .9), new THREE.MeshBasicMaterial({ map: texUF("#6f7fb8"), transparent: true }));
+  topo.rotation.x = -Math.PI / 2; grp.add(topo);
+  const topoAceso = new THREE.Mesh(new THREE.PlaneGeometry(1.2, .9), new THREE.MeshBasicMaterial({ map: texUF("#14204a"), transparent: true, opacity: 0 }));
+  topoAceso.rotation.x = -Math.PI / 2; grp.add(topoAceso);
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: brilhoTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0 }));
+  glow.scale.set(3.4, 3.4, 1); grp.add(glow);
+  const casinhas = [];
+  for (let k = 0; k < 3; k++) { const h = new THREE.Group(); const b = new THREE.Mesh(casinhaGeo, new THREE.MeshStandardMaterial({ color: 0xfff6c8, emissive: 0xffd23f, emissiveIntensity: .5 })); b.position.y = .09; const tt = new THREE.Mesh(telhadoGeo, new THREE.MeshStandardMaterial({ color: 0xff7a45 })); tt.position.y = .26; tt.rotation.y = Math.PI / 4; h.add(b, tt); h.position.set(-.38 + k * .38, 0, -.25); grp.add(h); casinhas.push(h); }
+  const interr = etiqueta("?", { bg: "#ffd23f", alt: .7 }); interr.visible = false; grp.add(interr);
+  mapaCena.add(grp);
+  return { s, grp, caixa, mat, borda, topo, topoAceso, glow, casinhas, interr };
+});
+function atualizaMapa(t) {
+  for (const b of blocos) {
+    const k = brilho(b.s.uf, t), alt = .28 + .7 * k;
+    b.caixa.scale.y = alt; b.caixa.position.y = alt / 2;
+    b.topo.position.y = b.topoAceso.position.y = alt + .005;
+    b.topo.material.opacity = 1 - k; b.topoAceso.material.opacity = k;
+    b.mat.color.copy(corApagado).lerp(corAceso, k); b.mat.emissiveIntensity = .55 * k;
+    b.borda.material.color.set(k > .3 ? 0x14204a : 0x3b4b84);
+    b.glow.material.opacity = .9 * k; b.glow.position.y = alt * .5;
+    b.casinhas.forEach((h, i) => { const kk = clamp((k - .5) * 2 - i * .15, 0, 1); h.visible = kk > 0; h.scale.setScalar(Math.max(.01, kk)); h.position.y = alt; });
+    const q = APAGADOS.includes(b.s.uf) && entre(t, P(6, "Qual") - .1, P(6, "Comenta") - .1);
+    b.interr.visible = q; if (q) { const kk = .8 + .4 * pulse(t, P(6, "Qual") + APAGADOS.indexOf(b.s.uf) * .08, .6); b.interr.scale.set(b.interr.userData.base.x * kk, b.interr.userData.base.y * kk, 1); b.interr.position.y = 1.0 + .1 * Math.sin(t * 5 + b.s.c); }
+  }
+}
+
+// ---------------- cena da CIDADE ----------------
+const cidadeCena = new THREE.Scene();
+cidadeCena.background = new THREE.Color(0x1b2c66); cidadeCena.fog = new THREE.Fog(0x1b2c66, 16, 40);
+cidadeCena.add(new THREE.HemisphereLight(0xaab8ff, 0x24346e, 1.25));
+const lua2 = new THREE.DirectionalLight(0xe6ecff, 1.6); lua2.position.set(-5, 10, 9); cidadeCena.add(lua2);
+{ const est = new THREE.Points(estrelasGeo, new THREE.PointsMaterial({ color: 0xffffff, size: .12 })); est.position.set(0, 26, -20); cidadeCena.add(est); }
+const grama = new THREE.Mesh(new THREE.PlaneGeometry(120, 60), new THREE.MeshStandardMaterial({ color: 0x3f8f4a, roughness: 1 }));
+grama.rotation.x = -Math.PI / 2; cidadeCena.add(grama);
+const rua = new THREE.Mesh(new THREE.PlaneGeometry(120, 1.6), new THREE.MeshStandardMaterial({ color: 0x59607a, roughness: .9 }));
+rua.rotation.x = -Math.PI / 2; rua.position.set(0, .01, 2.2); cidadeCena.add(rua);
+for (let x = -40; x < 40; x += 1.6) { const f = new THREE.Mesh(new THREE.PlaneGeometry(.8, .1), new THREE.MeshBasicMaterial({ color: 0xffd23f })); f.rotation.x = -Math.PI / 2; f.position.set(x, .02, 2.2); cidadeCena.add(f); }
+for (const [x, z, r, c] of [[-9, -14, 9, 0x24346e], [8, -16, 10, 0x2c3f80]]) { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: c })); m.position.set(x, -2, z); cidadeCena.add(m); }
+function novaCasa(cor, k = 1) {
+  const h = new THREE.Group();
+  const corpo = new THREE.Mesh(new THREE.BoxGeometry(1.0, .85, .9), new THREE.MeshStandardMaterial({ color: 0xfff6e0, roughness: .7 })); corpo.position.y = .425;
+  const tel = new THREE.Mesh(new THREE.ConeGeometry(.86, .62, 4), new THREE.MeshStandardMaterial({ color: cor, roughness: .6 })); tel.position.y = 1.16; tel.rotation.y = Math.PI / 4;
+  const jan = new THREE.Mesh(new THREE.PlaneGeometry(.26, .24), new THREE.MeshStandardMaterial({ color: 0xffd23f, emissive: 0xffc020, emissiveIntensity: 1.2 })); jan.position.set(-.22, .5, .452);
+  const porta = new THREE.Mesh(new THREE.PlaneGeometry(.24, .48), new THREE.MeshStandardMaterial({ color: 0x2b59c3 })); porta.position.set(.2, .24, .452);
+  const luz = new THREE.Sprite(new THREE.SpriteMaterial({ map: brilhoTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: .55 })); luz.scale.set(1.2, 1.2, 1); luz.position.set(-.22, .5, .5);
+  h.add(corpo, tel, jan, porta, luz); return h;
+}
+const casas3d = CASAS.map((c, i) => {
+  const h = novaCasa(c.cor); h.position.set(c.x, 0, 0); cidadeCena.add(h);
+  const prim = i === 0;
+  const et = etiqueta(c.h, { bg: prim ? "#ffd23f" : "#fff", alt: prim ? .42 : .3 }); et.position.set(c.x, -.05, 1.15 + (!prim && i % 2 ? .35 : 0)); cidadeCena.add(et);
+  let fundo = null; if (!prim) { fundo = novaCasa(0x8a6fd1); fundo.position.set(c.x + .75, 0, -1.4); fundo.scale.setScalar(.8); cidadeCena.add(fundo); }
+  return { c, h, et, fundo };
+});
+// coroa do fundador
+const coroa = new THREE.Group();
+const ouro = new THREE.MeshStandardMaterial({ color: 0xffd23f, emissive: 0xffa000, emissiveIntensity: .35, metalness: .3, roughness: .35 });
+const aro = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .22, 24, 1, true), ouro); coroa.add(aro);
+for (let k = 0; k < 5; k++) { const p = new THREE.Mesh(new THREE.ConeGeometry(.12, .34, 8), ouro); const a = k / 5 * Math.PI * 2; p.position.set(Math.cos(a) * .4, .26, Math.sin(a) * .4); coroa.add(p); }
+const joia = new THREE.Mesh(new THREE.SphereGeometry(.08, 12, 8), new THREE.MeshStandardMaterial({ color: 0xe4573a, emissive: 0xe4573a, emissiveIntensity: .4 })); joia.position.set(0, 0, .43); coroa.add(joia);
+coroa.position.set(CASAS[0].x, 1.62, 0); cidadeCena.add(coroa);
+const etFund = etiqueta("1º · FUNDADOR", { bg: "#14204a", fg: "#ffd23f", alt: .36 }); etFund.position.set(CASAS[0].x, 2.15, 0); cidadeCena.add(etFund);
+const carimbo = etiqueta("PRA SEMPRE", { bg: "rgba(255,255,255,.9)", fg: "#e4573a", borda: "#e4573a", alt: .4 }); carimbo.material.rotation = .22; carimbo.position.set(CASAS[0].x, .8, 1.0); cidadeCena.add(carimbo);
+// prédios com janelas acesas
+const texJan = canvasTex(128, 256, (g) => { g.fillStyle = "#e9eefc"; g.fillRect(0, 0, 128, 256); for (let y = 12; y < 250; y += 28) for (let x = 12; x < 116; x += 28) { g.fillStyle = ((x * 7 + y) % 5) < 3 ? "#ffd23f" : "#7ad3f7"; g.fillRect(x, y, 16, 18); } });
+const predios3d = PREDIOS.map((p) => {
+  const t = texJan.clone(); t.needsUpdate = true; t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, p.alt / 2);
+  const m = new THREE.Mesh(new THREE.BoxGeometry(1.15, 1, 1.0), new THREE.MeshStandardMaterial({ map: t, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: .45, roughness: .6 }));
+  m.position.set(p.x, 0, -3.2); cidadeCena.add(m); return { p, m };
+});
+function atualizaCidade(t) {
+  for (const o of casas3d) {
+    const k = clamp(pop(t, o.c.a), 0, 1.25); o.h.visible = k > 0; o.h.scale.setScalar(Math.max(.01, k));
+    o.et.visible = k > 0; o.et.scale.set(o.et.userData.base.x * Math.max(.01, k), o.et.userData.base.y * Math.max(.01, k), 1);
+    if (o.fundo) { const kf = clamp(pop(t, o.c.a + .12), 0, 1.25); o.fundo.visible = kf > 0; o.fundo.scale.setScalar(Math.max(.01, kf * .8)); }
+  }
+  const kc = clamp(pop(t, T_FUNDADOR, .35), 0, 1.3); coroa.visible = kc > 0; coroa.scale.setScalar(Math.max(.01, kc)); coroa.rotation.y = t * 1.6; coroa.position.y = 1.62 + .08 * Math.sin(t * 4);
+  const kf = clamp(pop(t, T_FUNDADOR + .1, .3), 0, 1.2); etFund.visible = kf > 0; etFund.scale.set(etFund.userData.base.x * Math.max(.01, kf), etFund.userData.base.y * Math.max(.01, kf), 1);
+  const ks = entre(t, T_SEMPRE, CENA(5).ini) ? clamp(pop(t, T_SEMPRE, .3), 0, 1.2) : 0; carimbo.visible = ks > 0; carimbo.scale.set(carimbo.userData.base.x * Math.max(.01, ks), carimbo.userData.base.y * Math.max(.01, ks), 1);
+  for (const o of predios3d) { const k = prog(t, o.p.a, o.p.a + .5); o.m.visible = k > 0; const h = Math.max(.01, o.p.alt * k); o.m.scale.y = h; o.m.position.y = h / 2; }
+}
+
+function quadro(t) {
+  const cam = tomada(t);
+  let cena;
+  if (cam.tipo === "cidade") {
+    atualizaCidade(t);
+    const d = 15 / cam.z, gira = .14 * Math.sin(t * .35 + cam.i);
+    const ly = cam.z > 2 ? .75 : .9 + .55 * Math.max(0, cam.y - 3);
+    camera.position.set(cam.x + d * Math.sin(gira), ly + d * .22, d * Math.cos(gira));
+    camera.lookAt(cam.x, ly, 0);
+    cena = cidadeCena;
+  } else {
+    atualizaMapa(t);
+    const d = 15.5 / cam.z, gira = .1 * Math.sin(t * .3 + cam.i * 1.7);
+    const tx = MX(cam.x), tz = MZ(cam.y);
+    camera.position.set(tx + d * .5 * Math.sin(gira), d * .92, tz + d * .5 * Math.cos(gira));
+    camera.lookAt(tx, 0, tz);
+    cena = mapaCena;
+  }
+  escuro.style.opacity = cam.tipo === "mapaescuro" ? 1 : 0;
+  const f = clamp(1 - cam.dt / .12, 0, 1); flash.style.opacity = cam.i > 0 ? .35 * f : 0;
+  renderer.render(cena, camera);
+  textos(t, cam.tipo);
+}
+window.renderFrame = quadro;
+await document.fonts.load("900 40px Nunito"); await document.fonts.ready;
+quadro(0);
+window.pronto = true;
+</script>
+</body></html>
