@@ -1,0 +1,39 @@
+name: Montar clone (Como funciona tal coisa)
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "id do projeto (pasta em projetos/)"
+        required: true
+      voz:
+        description: "voz do Edge"
+        required: false
+        default: pt-BR-AntonioNeural
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: ffmpeg (pacote npm)
+        run: |
+          npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0
+          echo "FFMPEG=$(node -p 'require("ffmpeg-static")')" >> "$GITHUB_ENV"
+      - run: node montar-gh.mjs "${{ inputs.id }}" "${{ inputs.voz }}"
+        env:
+          PIXABAY_KEY: ${{ secrets.PIXABAY_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clone-${{ inputs.id }}
+          path: |
+            projetos/${{ inputs.id }}/final.mp4
+            projetos/${{ inputs.id }}/final.json
+            projetos/${{ inputs.id }}/tts/*.wav
+            projetos/${{ inputs.id }}/tts/*.txt
+          retention-days: 3
