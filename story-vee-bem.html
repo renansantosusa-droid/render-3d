@@ -2,84 +2,138 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<!-- Story da Vee (03/11) pra quem respondeu "Vendendo bem!" na enquete -> link do Protocolo de Vendas 24 Horas.
-     Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s. Faixa de baixo (y>1560) livre pro link. -->
+<!-- Story da Vee (03/11, v2) pra quem respondeu "Vendendo bem!" -> link do Protocolo de Vendas 24 Horas.
+     SEM EMOJI (pedido da Vee). Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s.
+     Faixa de baixo (y>1700) livre pro adesivo de link. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root { --nude:#fbece3; --rosa:#fad6dc; --coral:#ee7d6b; --creme:#fff8f3; --tinta:#2b1a17; --verde:#1f4d36; }
+  :root { --rosa:#fde3ec; --lilas:#ebe2fb; --pessego:#ffe4d3; --forte:#e8457c; --tinta:#43304a; --suave:rgba(67,48,74,.6); }
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { width:1080px; height:1920px; overflow:hidden; }
-  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta);
-    background-color:var(--nude); background-image:linear-gradient(rgba(238,125,107,.13) 2px,transparent 2px),linear-gradient(90deg,rgba(238,125,107,.13) 2px,transparent 2px); background-size:54px 54px; }
+  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta); background:linear-gradient(160deg,var(--rosa) 0%,var(--lilas) 52%,var(--pessego) 100%); }
   .abs { position:absolute; }
-  .tag { left:0; right:0; top:150px; text-align:center; }
-  .tag span { display:inline-block; background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.14em; padding:12px 28px; border-radius:40px; }
-  h1 { left:70px; right:70px; top:240px; text-align:center; font-size:84px; line-height:1.02; font-weight:600; }
-  h1 em { font-style:normal; display:inline-block; background:var(--coral); color:#fff; padding:0 20px 8px; border-radius:18px; transform:rotate(-2deg); }
+  .bri { position:absolute; }
+  .rot { left:0; right:0; top:105px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:32px; letter-spacing:.2em; color:var(--suave); }
+  .card { background:rgba(255,255,255,.88); border-radius:42px; box-shadow:0 18px 40px rgba(120,70,120,.14); }
+  .poll { left:110px; right:110px; top:165px; padding:30px 34px 34px; }
+  .poll .q { text-align:center; font-size:44px; margin-bottom:8px; }
+  .op { position:relative; height:88px; border-radius:28px; background:#f4eef6; margin-top:16px; overflow:hidden; }
+  .op .fill { position:absolute; left:0; top:0; bottom:0; width:0; background:var(--forte); border-radius:28px; }
+  .op .txt { position:absolute; left:96px; top:0; bottom:0; display:flex; align-items:center; font-family:'Nunito'; font-weight:900; font-size:36px; }
+  .op .ck { position:absolute; left:24px; top:16px; width:56px; height:56px; }
+  h1 { left:60px; right:60px; top:515px; text-align:center; font-size:62px; line-height:1.08; font-weight:600; }
+  h1 b { font-weight:700; color:var(--forte); }
 
-  .card { left:70px; right:70px; top:500px; height:640px; background:#fff; border-radius:40px; box-shadow:0 20px 40px rgba(74,38,32,.15); }
-  .card .tit { position:absolute; left:50px; top:40px; font-family:'Nunito'; font-weight:900; font-size:32px; letter-spacing:.06em; color:rgba(43,26,23,.55); }
-  .eixo { position:absolute; left:60px; right:60px; bottom:130px; height:4px; background:rgba(43,26,23,.15); border-radius:4px; }
-  .bar { position:absolute; bottom:134px; width:250px; border-radius:26px 26px 6px 6px; }
-  .b1 { left:120px; background:var(--rosa); }
-  .b2 { left:570px; background:var(--coral); }
-  .val { position:absolute; width:250px; text-align:center; font-size:96px; font-weight:700; }
-  .lab { position:absolute; bottom:26px; width:250px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:34px; color:rgba(43,26,23,.7); }
-  .seta { position:absolute; left:400px; top:290px; font-size:110px; color:var(--coral); }
+  .bars { left:80px; right:80px; top:675px; height:400px; }
+  .eixo { position:absolute; left:50px; right:50px; bottom:96px; height:4px; background:rgba(67,48,74,.14); border-radius:4px; }
+  .bar { position:absolute; bottom:100px; width:220px; border-radius:30px 30px 8px 8px; transform-origin:bottom; }
+  .b1 { left:110px; background:#f7b8cd; }
+  .b2 { left:590px; background:var(--forte); }
+  .val { position:absolute; width:220px; text-align:center; font-size:84px; font-weight:700; }
+  .lab { position:absolute; bottom:22px; width:220px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--suave); line-height:1.15; }
+  .seta { position:absolute; left:365px; top:160px; width:190px; height:80px; }
 
-  .mes { left:70px; right:70px; top:1170px; text-align:center; font-size:56px; line-height:1.1; }
-  .mes b { font-weight:700; color:var(--coral); }
-  .chips { left:40px; right:40px; top:1275px; display:flex; justify-content:center; gap:16px; }
-  .chip { background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:800; font-size:31px; padding:14px 24px; border-radius:40px; white-space:nowrap; }
-  .final { left:60px; right:60px; top:1380px; background:var(--tinta); color:#fff; border-radius:34px; text-align:center; padding:26px 20px 30px; }
-  .final small { display:block; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--rosa); letter-spacing:.04em; }
-  .final strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:6px; }
-  .link { left:0; right:0; top:1650px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:40px; }
+  .linha { left:80px; right:80px; top:1090px; height:330px; }
+  .linha .tit { position:absolute; left:46px; top:30px; font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.12em; color:var(--suave); }
+  .linha .num { position:absolute; left:46px; top:70px; font-size:64px; font-weight:700; }
+  .linha .num b { color:var(--forte); font-weight:700; }
+  .linha svg { position:absolute; left:40px; top:150px; }
+
+  .botao { left:90px; right:90px; top:1455px; background:var(--forte); color:#fff; border-radius:40px; text-align:center; padding:22px 20px 26px; box-shadow:0 16px 34px rgba(232,69,124,.35); }
+  .botao small { display:block; font-family:'Nunito'; font-weight:800; font-size:29px; opacity:.92; }
+  .botao strong { display:block; font-size:58px; font-weight:700; line-height:1.05; margin-top:6px; }
+  .link { left:0; right:0; top:1700px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; color:var(--tinta); }
+  .link svg { vertical-align:middle; margin-left:10px; }
 </style>
 </head>
 <body>
-  <div class="abs tag" id="tag"><span>🔥 VENDENDO BEM</span></div>
-  <h1 class="abs" id="h1">Você vendeu <em>4 pedidos</em> hoje 😍</h1>
+  <div id="brilhos"></div>
+  <div class="abs rot" id="rot">SE VOCÊ RESPONDEU</div>
+  <div class="abs card poll" id="poll">
+    <div class="q">Como estão as vendas?</div>
+    <div class="op" id="opA"><div class="fill" id="fA"></div>
+      <svg class="ck" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#fff" stroke="#e8457c" stroke-width="4"/><path id="ckA" d="M16 29 L25 38 L41 20" fill="none" stroke="#e8457c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg>
+      <div class="txt" id="tA">Vendendo bem!</div></div>
+    <div class="op"><svg class="ck" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#fff" stroke="rgba(67,48,74,.25)" stroke-width="4"/></svg><div class="txt" style="color:var(--suave)">Preciso vender mais!</div></div>
+  </div>
+  <h1 class="abs" id="h1">Você vendeu <b>4 pedidos</b> hoje.<br>E se fossem <b>8</b>?</h1>
 
-  <div class="abs card" id="card">
-    <div class="tit">E SE FOSSEM 8? 👀</div>
+  <div class="abs card bars" id="bars">
     <div class="eixo"></div>
     <div class="bar b1" id="b1"></div><div class="bar b2" id="b2"></div>
-    <div class="val" id="v1" style="left:120px">4</div><div class="val" id="v2" style="left:570px;color:var(--coral)">8</div>
-    <div class="lab" style="left:120px">pedidos/dia<br>hoje</div><div class="lab" style="left:570px">pedidos/dia<br>em novembro</div>
-    <div class="seta" id="seta">➜</div>
+    <div class="val" id="v1" style="left:110px">4</div><div class="val" id="v2" style="left:590px;color:var(--forte)">4</div>
+    <div class="lab" style="left:110px">pedidos por dia<br>hoje</div><div class="lab" style="left:590px">pedidos por dia<br>em novembro</div>
+    <svg class="seta" id="seta" viewBox="0 0 190 80"><path id="setaP" d="M10 55 Q95 0 165 40" fill="none" stroke="#e8457c" stroke-width="8" stroke-linecap="round" stroke-dasharray="190" stroke-dashoffset="190"/><path id="setaC" d="M142 22 L168 42 L138 56" fill="none" stroke="#e8457c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg>
   </div>
 
-  <div class="abs mes" id="mes">No mês: <span id="m1">120</span> ➜ <b id="m2">120</b> pedidos</div>
-  <div class="abs chips" id="chips"><div class="chip">🎁 Presentes</div><div class="chip">🥂 Confraternizações</div><div class="chip">🎄 Natal</div></div>
-  <div class="abs final" id="final"><small>Não é postar por postar. É estratégia 🚀</small><strong>PROTOCOLO DE<br>VENDAS 24 HORAS</strong></div>
-  <div class="abs link" id="link">toca no link 👇</div>
+  <div class="abs card linha" id="linha">
+    <div class="tit">NO MÊS</div>
+    <div class="num"><span>120</span> → <b id="m2">120</b> pedidos</div>
+    <svg width="840" height="160" viewBox="0 0 840 160">
+      <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8457c" stop-opacity=".28"/><stop offset="1" stop-color="#e8457c" stop-opacity="0"/></linearGradient></defs>
+      <path id="area" fill="url(#ar)"/>
+      <polyline id="base" fill="none" stroke="#f7b8cd" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round"/>
+      <polyline id="lin" fill="none" stroke="#e8457c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle id="ponto" r="15" fill="#fff" stroke="#e8457c" stroke-width="7"/>
+    </svg>
+  </div>
+
+  <div class="abs botao" id="botao"><small>Não é postar por postar. É estratégia.</small><strong>PROTOCOLO DE<br>VENDAS 24 HORAS</strong></div>
+  <div class="abs link" id="link">toca no link<svg width="44" height="50" viewBox="0 0 44 50"><path d="M22 4 V40 M8 28 L22 44 L36 28" fill="none" stroke="#e8457c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <script>
 const $ = (id) => document.getElementById(id);
 const cl = (x) => Math.max(0, Math.min(1, x));
 const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
 const back = (x) => { x = cl(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const mola = (x) => { x = Math.max(0, x); return x >= 3 ? 1 : 1 - Math.exp(-5 * x) * Math.cos(9 * x); }; // pula e assenta
 const p = (t, a, d) => (t - a) / d;
 function pop(el, k, dy = 40) { el.style.opacity = cl(k * 3); el.style.transform = `translateY(${(1 - eo(k)) * dy}px) scale(${0.85 + 0.15 * back(k)})`; }
-const H = 340; // altura maxima da barra
+
+// brilhos desenhados (estrelinhas de 4 pontas) que piscam
+const estrela = (c) => `<svg viewBox="0 0 40 40" width="100%" height="100%"><path d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0Z" fill="${c}"/></svg>`;
+const BR = [[70,60,46,'#e8457c'],[960,150,40,'#c9a7f0'],[40,560,34,'#f7a98a'],[1000,620,50,'#e8457c'],[30,1120,40,'#c9a7f0'],[1010,1080,34,'#f7a98a'],[60,1500,50,'#c9a7f0'],[1000,1440,44,'#f7a98a'],[180,1650,30,'#e8457c'],[880,1690,36,'#e8457c'],[520,30,30,'#f7a98a'],[960,880,26,'#c9a7f0']];
+$('brilhos').innerHTML = BR.map(([x,y,s,c],i) => `<div class="bri" id="br${i}" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px">${estrela(c)}</div>`).join('');
+
+// linha do mes: 30 dias, ritmo de 4/dia (tracejada) x 8/dia (rosa forte)
+const W = 760, Hh = 140, X0 = 20;
+const ptsBase = [], ptsLin = [];
+for (let d = 0; d <= 30; d++) { const x = X0 + W * d / 30; ptsBase.push([x, Hh - (Hh - 10) * (4 * d) / 240]); ptsLin.push([x, Hh - (Hh - 10) * (8 * d) / 240]); }
+$('base').setAttribute('points', ptsBase.map(q => q.join(',')).join(' '));
+
 window.renderFrame = (t) => {
-  pop($('tag'), p(t, 0, .5)); pop($('h1'), p(t, .25, .6));
-  pop($('card'), p(t, 1.6, .6));
-  const g1 = eo(p(t, 2.2, .8)), g2 = eo(p(t, 3.3, 1.4));
-  $('b1').style.height = (H / 2) * g1 + 'px'; $('b2').style.height = H * g2 + 'px';
-  $('v1').style.bottom = 134 + (H / 2) * g1 + 10 + 'px'; $('v2').style.bottom = 134 + H * g2 + 10 + 'px';
-  $('v1').style.opacity = g1; $('v2').style.opacity = cl(g2 * 3);
-  $('v2').textContent = Math.max(4, Math.round(4 + 4 * g2));
-  $('seta').style.opacity = cl(p(t, 3.2, .4)); $('seta').style.transform = `translateX(${(1 - eo(p(t, 3.2, .6))) * -40}px)`;
-  pop($('mes'), p(t, 5.2, .5));
-  $('m2').textContent = Math.round(120 + 120 * eo(p(t, 5.6, 1.6)));
-  pop($('chips'), p(t, 7.4, .6));
-  const k = p(t, 9, .7); pop($('final'), k, 60);
-  const pulso = t > 10 ? 1 + 0.035 * Math.sin((t - 10) * 6) : 1;
-  $('final').style.transform += ` scale(${pulso})`;
-  pop($('link'), p(t, 10, .5));
-  $('link').style.transform += ` translateY(${t > 10.5 ? Math.abs(Math.sin((t - 10.5) * 4)) * 12 : 0}px)`;
+  $('brilhos').querySelectorAll('.bri').forEach((el, i) => {
+    const s = 0.55 + 0.45 * Math.abs(Math.sin(t * 2.2 + i * 1.3));
+    el.style.opacity = cl(t * 2) * (0.35 + 0.65 * s); el.style.transform = `scale(${s}) rotate(${t * 25 + i * 30}deg)`;
+  });
+  pop($('rot'), p(t, 0, .4)); pop($('poll'), p(t, .1, .5));
+  const m = eo(p(t, .8, .45));
+  $('fA').style.width = 100 * m + '%'; $('tA').style.color = m > .5 ? '#fff' : '';
+  $('ckA').style.strokeDashoffset = 40 * (1 - eo(p(t, 1.1, .35)));
+  $('opA').style.transform = `scale(${1 + 0.05 * Math.sin(cl(p(t, .8, .5)) * Math.PI)})`;
+
+  pop($('h1'), p(t, 1.7, .5));
+  pop($('bars'), p(t, 2.3, .5));
+  const H = 200, g1 = mola(p(t, 2.7, 1)), g2 = mola(p(t, 3.4, 1));
+  $('b1').style.height = (H / 2) * Math.max(0, g1) + 'px'; $('b2').style.height = H * Math.max(0, g2) + 'px';
+  $('v1').style.bottom = 100 + (H / 2) * g1 + 8 + 'px'; $('v2').style.bottom = 100 + H * g2 + 8 + 'px';
+  $('v1').style.opacity = cl(p(t, 2.7, .3)); $('v2').style.opacity = cl(p(t, 3.4, .3));
+  $('v2').textContent = Math.round(4 + 4 * cl(p(t, 3.4, .8)));
+  $('setaP').style.strokeDashoffset = 190 * (1 - eo(p(t, 3.2, .5))); $('setaC').style.opacity = cl(p(t, 3.6, .2));
+
+  pop($('linha'), p(t, 5, .5));
+  const lk = eo(p(t, 5.4, 2.2)), n = Math.max(1, Math.round(30 * lk));
+  const vis = ptsLin.slice(0, n + 1);
+  $('lin').setAttribute('points', vis.map(q => q.join(',')).join(' '));
+  const ult = vis[vis.length - 1];
+  $('area').setAttribute('d', `M${X0},${Hh} L` + vis.map(q => q.join(',')).join(' L') + ` L${ult[0]},${Hh} Z`);
+  $('ponto').setAttribute('cx', ult[0]); $('ponto').setAttribute('cy', ult[1]);
+  $('m2').textContent = Math.round(120 + 120 * lk);
+
+  pop($('botao'), p(t, 8.4, .6), 60);
+  if (t > 9.2) $('botao').style.transform += ` scale(${1 + 0.03 * Math.sin((t - 9.2) * 6)})`;
+  pop($('link'), p(t, 9.2, .5));
+  $('link').style.transform += ` translateY(${t > 9.7 ? Math.abs(Math.sin((t - 9.7) * 4)) * 12 : 0}px)`;
 };
 window.renderFrame(0);
 document.fonts.ready.then(() => { window.renderFrame(0); window.pronto = true; });
