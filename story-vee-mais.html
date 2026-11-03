@@ -2,60 +2,77 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<!-- Story da Vee (03/11) pra quem respondeu "Preciso vender mais!" na enquete -> link das ferramentas.
-     Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s. Faixa de baixo (y>1560) livre pro link. -->
+<!-- Story da Vee (03/11, v2) pra quem respondeu "Preciso vender mais!" -> link das ferramentas.
+     SEM EMOJI (pedido da Vee). Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s.
+     Faixa de baixo (y>1700) livre pro adesivo de link. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root { --nude:#fbece3; --rosa:#fad6dc; --coral:#ee7d6b; --creme:#fff8f3; --tinta:#2b1a17; --verde:#1f4d36; }
+  :root { --rosa:#fde3ec; --lilas:#ebe2fb; --pessego:#ffe4d3; --forte:#e8457c; --tinta:#43304a; --suave:rgba(67,48,74,.6); }
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { width:1080px; height:1920px; overflow:hidden; }
-  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta);
-    background-color:var(--nude); background-image:linear-gradient(rgba(238,125,107,.13) 2px,transparent 2px),linear-gradient(90deg,rgba(238,125,107,.13) 2px,transparent 2px); background-size:54px 54px; }
+  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta); background:linear-gradient(160deg,var(--rosa) 0%,var(--lilas) 52%,var(--pessego) 100%); }
   .abs { position:absolute; }
-  .tag { left:0; right:0; top:140px; text-align:center; }
-  .tag span { display:inline-block; background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.14em; padding:12px 28px; border-radius:40px; }
+  .bri { position:absolute; }
+  .rot { left:0; right:0; top:105px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:32px; letter-spacing:.2em; color:var(--suave); }
+  .card { background:rgba(255,255,255,.88); border-radius:42px; box-shadow:0 18px 40px rgba(120,70,120,.14); }
+  .poll { left:110px; right:110px; top:165px; padding:30px 34px 34px; }
+  .poll .q { text-align:center; font-size:44px; margin-bottom:8px; }
+  .op { position:relative; height:88px; border-radius:28px; background:#f4eef6; margin-top:16px; overflow:hidden; }
+  .op .fill { position:absolute; left:0; top:0; bottom:0; width:0; border-radius:28px; }
+  .op .txt { position:absolute; left:96px; top:0; bottom:0; display:flex; align-items:center; font-family:'Nunito'; font-weight:900; font-size:36px; }
+  .op .pc { position:absolute; right:28px; top:0; bottom:0; display:flex; align-items:center; font-size:48px; font-weight:700; }
+  .op .ck { position:absolute; left:24px; top:16px; width:56px; height:56px; }
+  #fA { background:#f7b8cd; } #fB { background:var(--forte); }
 
-  .poll { left:90px; right:90px; top:230px; background:#fff; border-radius:40px; padding:36px 36px 30px; box-shadow:0 20px 40px rgba(74,38,32,.15); }
-  .poll .q { text-align:center; font-size:46px; margin-bottom:24px; }
-  .op { position:relative; height:104px; border-radius:30px; background:#f3ece8; overflow:hidden; margin-top:18px; }
-  .op .fill { position:absolute; left:0; top:0; bottom:0; border-radius:30px; }
-  .op .txt { position:absolute; left:30px; top:0; bottom:0; display:flex; align-items:center; font-family:'Nunito'; font-weight:900; font-size:38px; }
-  .op .pc { position:absolute; right:30px; top:0; bottom:0; display:flex; align-items:center; font-size:58px; font-weight:700; }
-  .o1 .fill { background:var(--rosa); }
-  .o2 .fill { background:var(--coral); } .o2 .txt { color:#fff; }
+  h1 { left:60px; right:60px; top:500px; text-align:center; font-size:72px; line-height:1.05; font-weight:700; }
+  .sub { left:60px; right:60px; top:582px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:34px; color:var(--suave); }
+  .gente { left:80px; right:80px; top:640px; height:250px; }
+  .gente .fila { position:absolute; left:40px; right:40px; top:34px; display:flex; justify-content:space-between; }
+  .gente .leg { position:absolute; left:0; right:0; bottom:22px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--suave); }
+  .gente .leg b { color:var(--forte); font-weight:900; }
 
-  .sozinha { left:60px; right:60px; top:690px; text-align:center; font-size:66px; line-height:1.05; }
-  .sozinha small { display:block; font-family:'Nunito'; font-weight:800; font-size:36px; color:rgba(43,26,23,.65); margin-top:10px; }
-
-  .cal { left:70px; right:70px; top:880px; height:400px; background:#fff; border-radius:40px; box-shadow:0 20px 40px rgba(74,38,32,.15); padding:28px 30px; }
-  .cal .meses { display:flex; gap:30px; }
+  .cal { left:80px; right:80px; top:920px; height:420px; padding:26px 28px; }
+  .cal .meses { display:flex; gap:26px; }
   .cal .m { flex:1; }
-  .cal .m h3 { font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.1em; text-align:center; margin-bottom:10px; }
+  .cal h3 { font-family:'Nunito'; font-weight:900; font-size:28px; letter-spacing:.12em; text-align:center; margin-bottom:10px; color:var(--suave); }
   .cal .g { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
-  .cal .d { height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Nunito'; font-weight:800; font-size:22px; color:rgba(43,26,23,.35); }
-  .cal .d.on { background:var(--coral); color:#fff; }
-  .cal .d.natal { background:var(--verde); color:#fff; font-size:26px; }
-  .faltam { left:40px; right:40px; top:1305px; text-align:center; font-size:46px; line-height:1.1; }
-  .faltam b { font-weight:700; color:var(--coral); }
+  .cal .d { height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Nunito'; font-weight:800; font-size:21px; color:rgba(67,48,74,.3); }
+  .cal .d.on { background:#f7b8cd; color:#fff; }
+  .cal .d.on.novo { background:var(--forte); }
+  .cal .d.natal { background:var(--forte); }
+  .cal .d svg { width:30px; height:30px; }
+  .cal .conta { position:absolute; left:0; right:0; bottom:26px; text-align:center; font-size:44px; }
+  .cal .conta b { color:var(--forte); font-weight:700; }
 
-  .final { left:60px; right:60px; top:1410px; background:var(--tinta); color:#fff; border-radius:34px; text-align:center; padding:22px 20px 26px; }
-  .final small { display:block; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--rosa); }
-  .final strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:4px; }
-  .link { left:0; right:0; top:1610px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:40px; }
+  .botao { left:90px; right:90px; top:1385px; background:var(--forte); color:#fff; border-radius:40px; text-align:center; padding:24px 20px 28px; box-shadow:0 16px 34px rgba(232,69,124,.35); }
+  .botao small { display:block; font-family:'Nunito'; font-weight:800; font-size:29px; opacity:.92; }
+  .botao strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:6px; }
+  .link { left:0; right:0; top:1590px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; }
+  .link svg { vertical-align:middle; margin-left:10px; }
 </style>
 </head>
 <body>
-  <div class="abs tag" id="tag"><span>🥺 PRECISO VENDER MAIS</span></div>
-  <div class="abs poll" id="poll">
-    <div class="q">Como estão as vendas? 👀</div>
-    <div class="op o1"><div class="fill" id="f1"></div><div class="txt">🔥 Vendendo bem!</div><div class="pc" id="p1">0%</div></div>
-    <div class="op o2"><div class="fill" id="f2"></div><div class="txt">🥺 Preciso vender mais!</div><div class="pc" id="p2">0%</div></div>
+  <div id="brilhos"></div>
+  <div class="abs rot" id="rot">SE VOCÊ RESPONDEU</div>
+  <div class="abs card poll" id="poll">
+    <div class="q">Como estão as vendas?</div>
+    <div class="op"><div class="fill" id="fA"></div><svg class="ck" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#fff" stroke="rgba(67,48,74,.25)" stroke-width="4"/></svg><div class="txt" style="color:var(--suave)">Vendendo bem!</div><div class="pc" id="pA" style="color:var(--suave)"></div></div>
+    <div class="op" id="opB"><div class="fill" id="fB"></div>
+      <svg class="ck" viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="#fff" stroke="#e8457c" stroke-width="4"/><path id="ckB" d="M16 29 L25 38 L41 20" fill="none" stroke="#e8457c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg>
+      <div class="txt" id="tB">Preciso vender mais!</div><div class="pc" id="pB" style="color:#fff;right:calc(11% + 24px)"></div></div>
   </div>
-  <div class="abs sozinha" id="soz">Você não tá sozinha 💗<small>9 em cada 10 meninas responderam igual a você</small></div>
-  <div class="abs cal" id="cal"><div class="meses"><div class="m"><h3>NOVEMBRO</h3><div class="g" id="gn"></div></div><div class="m"><h3>DEZEMBRO</h3><div class="g" id="gd"></div></div></div></div>
-  <div class="abs faltam" id="falt"><b id="dias">0</b> dias de venda de presente até o Natal 🎄</div>
-  <div class="abs final" id="final"><small>Com as ferramentas certas, você chega lá ✨</small><strong>MINHAS FERRAMENTAS</strong></div>
-  <div class="abs link" id="link">toca no link 👇</div>
+  <h1 class="abs" id="h1">Você não está sozinha</h1>
+  <div class="abs sub" id="sub">a maioria respondeu igual a você</div>
+
+  <div class="abs card gente" id="gente"><div class="fila" id="fila"></div><div class="leg" id="leg"><b>9 em cada 10</b> meninas querem vender mais</div></div>
+
+  <div class="abs card cal" id="cal">
+    <div class="meses"><div class="m"><h3>NOVEMBRO</h3><div class="g" id="gn"></div></div><div class="m"><h3>DEZEMBRO</h3><div class="g" id="gd"></div></div></div>
+    <div class="conta" id="conta"><b id="dias">0</b> dias de venda de presente até o Natal</div>
+  </div>
+
+  <div class="abs botao" id="botao"><small>Com as ferramentas certas, você chega lá.</small><strong>MINHAS FERRAMENTAS</strong></div>
+  <div class="abs link" id="link">toca no link<svg width="44" height="50" viewBox="0 0 44 50"><path d="M22 4 V40 M8 28 L22 44 L36 28" fill="none" stroke="#e8457c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <script>
 const $ = (id) => document.getElementById(id);
@@ -65,36 +82,60 @@ const back = (x) => { x = cl(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x 
 const p = (t, a, d) => (t - a) / d;
 function pop(el, k, dy = 40) { el.style.opacity = cl(k * 3); el.style.transform = `translateY(${(1 - eo(k)) * dy}px) scale(${0.85 + 0.15 * back(k)})`; }
 
-// calendario: dias de 03/11 ate 24/12 acendem em sequencia; 25/12 = arvore
+const estrela = (c) => `<svg viewBox="0 0 40 40" width="100%" height="100%"><path d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0Z" fill="${c}"/></svg>`;
+const BR = [[70,60,46,'#e8457c'],[960,150,40,'#c9a7f0'],[40,560,34,'#f7a98a'],[1000,520,46,'#e8457c'],[30,1000,40,'#c9a7f0'],[1010,960,34,'#f7a98a'],[50,1400,46,'#c9a7f0'],[1000,1360,40,'#f7a98a'],[180,1640,30,'#e8457c'],[880,1650,36,'#e8457c'],[520,30,30,'#f7a98a'],[1010,1240,26,'#c9a7f0']];
+$('brilhos').innerHTML = BR.map(([x,y,s,c],i) => `<div class="bri" id="br${i}" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px">${estrela(c)}</div>`).join('');
+
+// 10 bonequinhas: 9 acendem em rosa forte
+const pessoa = `<svg width="64" height="110" viewBox="0 0 64 110"><circle cx="32" cy="22" r="18"/><path d="M6 106 C6 66 16 48 32 48 C48 48 58 66 58 106 Z"/></svg>`;
+$('fila').innerHTML = Array.from({ length: 10 }, (_, i) => `<div id="ps${i}" style="fill:#e7dceb">${pessoa}</div>`).join('');
+
+// calendario: 03/11 a 24/12 acendem; 25/12 = estrela
 const acesos = [];
 function mes(el, m, total) {
   const ini = new Date(2026, m, 1).getDay();
   for (let i = 0; i < ini; i++) el.appendChild(document.createElement('div'));
   for (let d = 1; d <= total; d++) {
     const c = document.createElement('div'); c.className = 'd'; c.textContent = d;
-    if (m === 11 && d === 25) { c.textContent = '🎄'; c.dataset.natal = 1; }
+    if (m === 11 && d === 25) { c.innerHTML = estrela('#fff'); c.dataset.natal = 1; }
     if ((m === 10 && d >= 3) || (m === 11 && d <= 25)) acesos.push(c);
     el.appendChild(c);
   }
 }
 mes($('gn'), 10, 30); mes($('gd'), 11, 31);
-const DIAS = acesos.length - 1; // 03/11 a 24/12 = 52
+const DIAS = acesos.length - 1; // 52
 
 window.renderFrame = (t) => {
-  pop($('tag'), p(t, 0, .5)); pop($('poll'), p(t, .2, .6));
-  const g = eo(p(t, .9, 1.4));
-  $('f1').style.width = 11 * g + '%'; $('f2').style.width = 89 * g + '%';
-  $('p1').textContent = Math.round(11 * g) + '%'; $('p2').textContent = Math.round(89 * g) + '%';
-  pop($('soz'), p(t, 2.8, .6));
-  pop($('cal'), p(t, 4.6, .6));
-  const n = Math.floor(acesos.length * cl(p(t, 5.2, 2.6)));
-  acesos.forEach((c, i) => { c.className = 'd' + (i < n ? (c.dataset.natal ? ' natal' : ' on') : ''); });
-  pop($('falt'), p(t, 5.2, .5));
+  $('brilhos').querySelectorAll('.bri').forEach((el, i) => {
+    const s = 0.55 + 0.45 * Math.abs(Math.sin(t * 2.2 + i * 1.3));
+    el.style.opacity = cl(t * 2) * (0.35 + 0.65 * s); el.style.transform = `scale(${s}) rotate(${t * 25 + i * 30}deg)`;
+  });
+  pop($('rot'), p(t, 0, .4)); pop($('poll'), p(t, .1, .5));
+  $('ckB').style.strokeDashoffset = 40 * (1 - eo(p(t, .8, .35)));
+  $('opB').style.transform = `scale(${1 + 0.05 * Math.sin(cl(p(t, .8, .5)) * Math.PI)})`;
+  const g = eo(p(t, 1.2, 1.2));
+  $('fA').style.width = 11 * g + '%'; $('fB').style.width = 89 * g + '%';
+  $('tB').style.color = g > .35 ? '#fff' : '';
+  $('pA').textContent = t > 1.2 ? Math.round(11 * g) + '%' : ''; $('pB').textContent = t > 1.2 ? Math.round(89 * g) + '%' : '';
+
+  pop($('h1'), p(t, 2.5, .5)); pop($('sub'), p(t, 2.8, .5));
+  pop($('gente'), p(t, 3.1, .5));
+  for (let i = 0; i < 10; i++) {
+    const k = p(t, 3.5 + i * 0.16, .3), el = $('ps' + i);
+    if (i < 9 && k > 0) { el.style.fill = k > .4 ? '#e8457c' : '#f7b8cd'; el.style.transform = `translateY(${-24 * Math.sin(cl(k) * Math.PI)}px)`; }
+    else { el.style.fill = '#e7dceb'; el.style.transform = ''; }
+  }
+  pop($('leg'), p(t, 5, .4), 20);
+
+  pop($('cal'), p(t, 5.4, .5));
+  const n = Math.floor(acesos.length * cl(p(t, 5.9, 2.4)));
+  acesos.forEach((c, i) => { c.className = 'd' + (i < n ? (c.dataset.natal ? ' natal' : (i > n - 4 ? ' on novo' : ' on')) : ''); });
   $('dias').textContent = Math.min(DIAS, n);
-  pop($('final'), p(t, 8.6, .7), 60);
-  if (t > 9.6) $('final').style.transform += ` scale(${1 + 0.035 * Math.sin((t - 9.6) * 6)})`;
-  pop($('link'), p(t, 9.6, .5));
-  $('link').style.transform += ` translateY(${t > 10.1 ? Math.abs(Math.sin((t - 10.1) * 4)) * 12 : 0}px)`;
+
+  pop($('botao'), p(t, 8.6, .6), 60);
+  if (t > 9.4) $('botao').style.transform += ` scale(${1 + 0.03 * Math.sin((t - 9.4) * 6)})`;
+  pop($('link'), p(t, 9.4, .5));
+  $('link').style.transform += ` translateY(${t > 9.9 ? Math.abs(Math.sin((t - 9.9) * 4)) * 12 : 0}px)`;
 };
 window.renderFrame(0);
 document.fonts.ready.then(() => { window.renderFrame(0); window.pronto = true; });
