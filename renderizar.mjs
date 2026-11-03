@@ -20,7 +20,7 @@ const SAIDA = path.join(RAIZ, "saida");
 fs.mkdirSync(SAIDA, { recursive: true });
 const TOTAL = Math.round(Number(segStr) * FPS), NPARTES = Math.ceil(TOTAL / POR_PARTE);
 const nomeParte = (k) => path.join(SAIDA, `parte-${String(k).padStart(3, "0")}.mp4`);
-const tipos = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json" };
+const tipos = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".jpg": "image/jpeg" };
 
 function servidor() {
   const srv = http.createServer((q, r) => {
@@ -64,6 +64,27 @@ async function renderParte(k, porta) {
   throw new Error(`parte ${k + 1} falhou 3 vezes`);
 }
 
+// Video com gente filmada: <video>/fonte.json = { arquivo, trechos: [[de,ate],...] }.
+// Corta os trechos do bruto, vira 1080x1920 SDR 30fps e salva so os quadros da parte em <video>/quadros/q-NNNNN.jpg
+// (a pagina carrega o quadro do tempo t). Bruto HDR do iPhone vira SDR; se o ffmpeg nao tiver zscale, vai sem.
+const HDR_PARA_SDR = "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p";
+function extrairQuadros(k) {
+  const fonte = path.join(RAIZ, video, "fonte.json");
+  if (!fs.existsSync(fonte)) return;
+  const { arquivo, trechos } = JSON.parse(fs.readFileSync(fonte, "utf8"));
+  const ini = k * POR_PARTE, fim = Math.min(TOTAL, ini + POR_PARTE);
+  const pasta = path.join(RAIZ, video, "quadros"); fs.mkdirSync(pasta, { recursive: true });
+  const cortes = trechos.map(([a, b], i) => `[0:v]trim=${a}:${b},setpts=PTS-STARTPTS[v${i}];`).join("") +
+    trechos.map((_, i) => `[v${i}]`).join("") + `concat=n=${trechos.length}:v=1:a=0,fps=${FPS}`;
+  for (const cor of [HDR_PARA_SDR, "format=yuv420p"]) {
+    const r = spawnSync(FFMPEG, ["-y", "-v", "error", "-i", path.join(RAIZ, video, arquivo), "-filter_complex",
+      `${cortes},${cor},scale=1080:1920,select='between(n\\,${ini}\\,${fim - 1})'[o]`, "-map", "[o]", "-vsync", "0",
+      "-start_number", String(ini), "-q:v", "3", path.join(pasta, "q-%05d.jpg")], { stdio: "inherit" });
+    if (r.status === 0) return console.log(`quadros ${ini}-${fim - 1} extraidos`);
+  }
+  throw new Error("ffmpeg falhou ao extrair os quadros do bruto");
+}
+
 function juntar() {
   const partes = fs.readdirSync(SAIDA).filter((f) => /^parte-\d+\.mp4$/.test(f)).sort();
   const lista = path.join(SAIDA, "lista.txt");
@@ -96,6 +117,7 @@ if (modo === "quadro") { // prévia: node renderizar.mjs quadro <video> <t1,t2,.
 } else if (modo === "partes") {
   console.log(JSON.stringify(Array.from({ length: NPARTES }, (_, k) => k)));
 } else if (modo === "parte") {
+  extrairQuadros(Number(kStr));
   const srv = servidor(); await renderParte(Number(kStr), srv.address().port); srv.close();
 } else if (modo === "juntar") {
   juntar();

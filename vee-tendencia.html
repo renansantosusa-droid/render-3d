@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Fala da Vee (IMG_8228) editada no estilo do Reel do Cauhi Jr (modelagem 31/10 10h01), com o verde trocado pelo rosa da Vee.
+     Os quadros do bruto vem de vee-tendencia/quadros/q-NNNNN.jpg (extraidos no GitHub pelo renderizar.mjs a partir do fonte.json). -->
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;800;900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
+<style>
+:root { --rosa: #ff4f9a; --rosa2: #ffd1e4; --claro: #fff7fb; --tinta: #22161d; --vinho: #3d0b25; --escuro: #1a0610; --cinza: #8a7a83; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; font-family: "Inter Tight", sans-serif; color: var(--tinta); }
+.cena { position: absolute; inset: 0; display: none; overflow: hidden; }
+.claro { background: var(--claro); background-image: radial-gradient(circle, rgba(255,79,154,.22) 2.4px, transparent 2.6px); background-size: 44px 44px; }
+.escuro { background: radial-gradient(ellipse 80% 60% at 50% 45%, #5a1236 0%, var(--vinho) 45%, var(--escuro) 100%); color: #fff; }
+.abs { position: absolute; }
+.vid { position: absolute; overflow: hidden; background: #000; }
+.vid img { position: absolute; display: block; }
+.card { border-radius: 56px; border: 8px solid var(--rosa); box-shadow: 0 24px 60px rgba(120,20,70,.28); }
+.circ { border-radius: 50%; border: 8px solid var(--rosa); box-shadow: 0 0 0 10px rgba(255,79,154,.18), 0 20px 50px rgba(0,0,0,.35); }
+.cheia { inset: 0; }
+.sans { font-weight: 800; }
+.black { font-weight: 900; letter-spacing: -0.03em; }
+.serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+.mono { font-family: "JetBrains Mono", monospace; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza); font-size: 30px; }
+.chip { display: inline-flex; align-items: center; gap: 18px; background: var(--rosa); color: #fff; font-weight: 800; border-radius: 999px; padding: 18px 36px 18px 20px; font-size: 46px; box-shadow: 0 14px 34px rgba(255,79,154,.45); white-space: nowrap; }
+.chip .ok, .linha .ok { width: 58px; height: 58px; border-radius: 50%; background: #fff; display: grid; place-items: center; flex: none; }
+.chip .ok svg, .linha .ok svg { width: 34px; height: 34px; }
+.linha { display: flex; align-items: center; gap: 26px; background: #fff; border-radius: 34px; padding: 26px 34px; font-size: 52px; font-weight: 800; box-shadow: 0 14px 36px rgba(120,20,70,.14); border: 3px solid var(--rosa2); }
+.linha .ok { background: var(--rosa); }
+.legenda { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; font-size: 86px; letter-spacing: -0.02em; line-height: 1; pointer-events: none; z-index: 50; }
+.legenda span { display: inline-block; margin: 0 12px; }
+.legenda.branca { color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.4); }
+.legenda.preta { color: var(--tinta); }
+.legenda .rosa { color: var(--rosa); text-shadow: 0 0 28px rgba(255,79,154,.75), 0 4px 14px rgba(0,0,0,.35); }
+.legenda.preta .rosa { text-shadow: 0 0 26px rgba(255,79,154,.45); }
+.legenda .enf { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; font-size: 1.32em; letter-spacing: 0; text-transform: uppercase; }
+.risco { position: absolute; height: 12px; background: #ff3b3b; border-radius: 6px; transform-origin: left center; box-shadow: 0 4px 12px rgba(255,59,59,.4); }
+</style></head>
+<body>
+
+<!-- 1. GANCHO (0-5.25): card claro, titulo em 3 tamanhos, rosto no card -->
+<div class="cena claro" data-de="0" data-ate="5.25">
+  <div class="abs" style="left:0;right:0;top:150px;text-align:center">
+    <div class="sans" data-in="0.05" data-anim="sobe" style="font-size:66px">Olha só essa</div>
+    <div class="black" data-in="1.1" data-anim="pop" style="font-size:158px;line-height:1.02;margin-top:4px">TENDÊNCIA</div>
+    <div class="serif" data-in="2.85" data-anim="sobe" style="font-size:104px;color:var(--rosa);line-height:1">pra renda extra</div>
+  </div>
+  <div class="abs" data-in="3.9" data-anim="pop" style="left:0;right:0;top:620px;text-align:center;--r:-4deg">
+    <span class="chip" style="padding-left:36px">nesse final de ano</span>
+  </div>
+  <div class="vid card" data-in="0" data-anim="sobeCard" data-cx="540" data-cy="1080" data-s="0.95" style="left:70px;top:760px;width:940px;height:1090px"><img></div>
+</div>
+
+<!-- 2. TELA CHEIA (5.25-10.54): os 3 produtos entrando em chips -->
+<div class="cena" data-de="5.25" data-ate="10.54">
+  <div class="vid cheia" data-cx="540" data-cy="960" data-s="1.04"><img></div>
+  <div class="abs" style="right:44px;top:1010px;display:flex;flex-direction:column;align-items:flex-end;gap:24px">
+    <div class="mono" data-in="5.3" data-anim="fade" style="color:#fff;background:rgba(34,22,29,.72);padding:10px 20px;border-radius:12px;font-size:28px">tem aqui</div>
+    <div class="chip" data-in="6.0" data-anim="pop"><span class="ok">#OK#</span>foto ímã</div>
+    <div class="chip" data-in="7.1" data-anim="pop"><span class="ok">#OK#</span>polaroides</div>
+    <div class="chip" data-in="8.56" data-anim="pop"><span class="ok">#OK#</span>calendário</div>
+  </div>
+</div>
+
+<!-- 3. ESCURO COM CIRCULO (10.54-15.43): diversidade, grana, em alta (grafico subindo) -->
+<div class="cena escuro" data-de="10.54" data-ate="15.43">
+  <div class="vid circ" data-in="10.54" data-anim="pop" data-cx="430" data-cy="860" data-s="0.62" style="left:70px;top:150px;width:400px;height:400px"><img></div>
+  <div class="abs" style="left:510px;top:205px;width:540px">
+    <div class="sans" data-in="10.54" data-anim="sobe" style="font-size:76px;line-height:1">muita</div>
+    <div class="serif" data-in="10.9" data-anim="sobe" style="font-size:112px;color:var(--rosa);line-height:1">diversidade</div>
+  </div>
+  <div class="abs" data-in="11.9" data-anim="pop" style="left:70px;top:640px;width:940px;height:760px;border-radius:44px;background:rgba(255,255,255,.06);border:2px solid rgba(255,79,154,.35)">
+    <div class="mono" style="position:absolute;left:44px;top:36px;color:#d9b3c6">procura por foto ímã · fim de ano</div>
+    <svg class="abs" style="left:0;top:0" width="940" height="760" viewBox="0 0 940 760">
+      <g stroke="rgba(255,255,255,.08)" stroke-width="2"><line x1="60" y1="220" x2="880" y2="220"/><line x1="60" y1="380" x2="880" y2="380"/><line x1="60" y1="540" x2="880" y2="540"/></g>
+      <path id="area" d="M60 600 C 220 590, 300 560, 420 500 S 640 330, 720 250 S 840 140, 880 120 L 880 660 L 60 660 Z" fill="rgba(255,79,154,.16)"/>
+      <path id="curva" data-traco="12.3:15.0" d="M60 600 C 220 590, 300 560, 420 500 S 640 330, 720 250 S 840 140, 880 120" fill="none" stroke="#ff4f9a" stroke-width="12" stroke-linecap="round" style="filter:drop-shadow(0 0 14px rgba(255,79,154,.8))"/>
+      <g font-family="JetBrains Mono" font-size="28" fill="#d9b3c6" text-anchor="middle"><text x="130" y="715">SET</text><text x="360" y="715">OUT</text><text x="590" y="715">NOV</text><text x="820" y="715">DEZ</text></g>
+    </svg>
+    <div class="abs" data-in="14.85" data-anim="pop" style="right:40px;top:150px;--r:3deg"><span class="chip" style="padding-left:36px;font-size:50px">em alta ↑</span></div>
+  </div>
+</div>
+
+<!-- 4. CARD CLARO (15.43-19.9): mesmo SEM a maquina -->
+<div class="cena claro" data-de="15.43" data-ate="19.9">
+  <div class="abs" style="left:0;right:0;top:150px;text-align:center">
+    <div class="mono" data-in="15.5" data-anim="fade">você consegue fazer</div>
+    <div data-in="17.1" data-anim="pop" style="margin-top:10px"><span class="serif" style="font-size:120px">mesmo </span><span class="black" style="font-size:150px;color:var(--rosa)">SEM</span></div>
+  </div>
+  <div class="abs" data-in="18.25" data-anim="pop" style="left:150px;top:470px;width:780px;height:190px;background:#fff;border-radius:40px;box-shadow:0 18px 44px rgba(120,20,70,.16);display:flex;align-items:center;gap:30px;padding:0 40px;--r:-2deg">
+    <svg width="120" height="120" viewBox="0 0 120 120"><rect x="20" y="88" width="80" height="18" rx="6" fill="#22161d"/><rect x="52" y="22" width="16" height="66" rx="5" fill="#ff4f9a"/><rect x="26" y="14" width="68" height="18" rx="8" fill="#ff4f9a"/><rect x="38" y="66" width="44" height="22" rx="5" fill="#ffd1e4" stroke="#ff4f9a" stroke-width="3"/></svg>
+    <div class="sans" style="font-size:54px;line-height:1.05">a máquina de<br>foto ímã</div>
+    <div class="risco" data-in="18.85" data-anim="risca" style="left:30px;right:30px;top:89px"></div>
+  </div>
+  <div class="vid card" data-in="15.43" data-anim="sobeCard" data-cx="540" data-cy="1060" data-s="0.95" style="left:70px;top:760px;width:940px;height:1090px"><img></div>
+</div>
+
+<!-- 5. AVATAR + LISTA (19.9-23.4): ja tem a maquina? as 3 opcoes -->
+<div class="cena claro" data-de="19.9" data-ate="23.4">
+  <div class="vid circ" data-in="19.9" data-anim="pop" data-cx="430" data-cy="860" data-s="0.62" style="left:340px;top:130px;width:400px;height:400px"><img></div>
+  <div class="abs" style="left:0;right:0;top:590px;text-align:center">
+    <div class="black" data-in="20.5" data-anim="sobe" style="font-size:90px">Já tem a <span style="color:var(--rosa)">máquina?</span></div>
+    <div class="serif" data-in="22.1" data-anim="sobe" style="font-size:84px;margin-top:6px">essas 3 opções</div>
+  </div>
+  <div class="abs" style="left:110px;right:110px;top:860px;display:flex;flex-direction:column;gap:26px">
+    <div class="linha" data-in="22.15" data-anim="pop"><span class="ok">#OKB#</span>foto ímã</div>
+    <div class="linha" data-in="22.45" data-anim="pop"><span class="ok">#OKB#</span>polaroides</div>
+    <div class="linha" data-in="22.75" data-anim="pop"><span class="ok">#OKB#</span>calendário de foto ímã</div>
+  </div>
+</div>
+
+<!-- 6. TELA CHEIA (23.4-26.04): "nao tenho a maquina" -> NAO TEM PROBLEMA -->
+<div class="cena" data-de="23.4" data-ate="26.04">
+  <div class="vid cheia" data-cx="540" data-cy="960" data-s="1.08"><img></div>
+  <div class="abs" data-in="23.45" data-anim="pop" style="left:90px;top:170px;width:900px;background:#fff;border-radius:46px;padding:40px 48px;box-shadow:0 20px 50px rgba(0,0,0,.25);--r:-2deg">
+    <div class="mono" style="font-size:26px">e se eu</div>
+    <div class="sans" style="font-size:66px;line-height:1.08">não tenho a máquina?</div>
+    <svg class="abs" style="left:110px;bottom:-44px" width="70" height="50" viewBox="0 0 70 50"><path d="M0 0 L70 0 L14 50 Z" fill="#fff"/></svg>
+  </div>
+  <div class="abs" data-in="25.1" data-anim="pop" style="left:0;right:0;top:470px;text-align:center;--r:-4deg">
+    <span class="serif" style="display:inline-block;background:var(--rosa);color:#fff;font-size:104px;padding:6px 44px 14px;border-radius:30px;box-shadow:0 16px 40px rgba(255,79,154,.5);text-transform:uppercase">não tem problema</span>
+  </div>
+</div>
+
+<!-- 7. ESCURO COM CARD (26.04-30.95): calendario de polaroide -->
+<div class="cena escuro" data-de="26.04" data-ate="30.95">
+  <div class="abs" style="left:0;right:0;top:110px;text-align:center">
+    <div class="mono" data-in="26.1" data-anim="fade" style="color:#d9b3c6">tem o</div>
+    <div class="serif" data-in="26.3" data-anim="sobe" style="font-size:94px;line-height:1;color:#fff">calendário de <span style="color:var(--rosa)">polaroide</span></div>
+  </div>
+  <div class="abs" id="cal" style="left:150px;top:330px;width:780px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px"></div>
+  <div class="abs" data-in="28.75" data-anim="pop" style="left:60px;top:640px;--r:-5deg"><span class="chip" style="padding-left:36px">super lindo</span></div>
+  <div class="abs" data-in="29.9" data-anim="pop" style="right:60px;top:640px;--r:4deg"><span class="chip" style="padding-left:36px;background:#fff;color:var(--rosa)">saindo bastante</span></div>
+  <div class="vid card" data-in="26.04" data-anim="sobeCard" data-cx="540" data-cy="1060" data-s="0.95" style="left:70px;top:790px;width:940px;height:1060px"><img></div>
+</div>
+
+<!-- 8. CTA (30.95-fim): caixa de comentario digitando 2027 -->
+<div class="cena claro" data-de="30.95" data-ate="99">
+  <div class="vid circ" data-in="30.95" data-anim="pop" data-cx="430" data-cy="860" data-s="0.7" style="left:300px;top:150px;width:480px;height:480px"><img></div>
+  <div class="abs" data-in="31.2" data-anim="pop" style="left:110px;right:110px;top:720px;background:#fff;border:6px solid var(--rosa);border-radius:40px;padding:34px 44px;box-shadow:0 20px 50px rgba(255,79,154,.25)">
+    <div class="mono" style="color:var(--rosa);font-weight:700">comenta</div>
+    <div class="black" style="font-size:150px;color:var(--rosa);line-height:1.05"><span data-digita="2027" data-in="31.5" data-cps="7"></span><span id="cursor" style="font-weight:400;color:var(--tinta)">|</span></div>
+  </div>
+  <div class="abs" data-in="32.15" data-anim="sobe" style="left:0;right:0;top:1060px;text-align:center"><span class="serif" style="font-size:86px">que eu te mando o <span style="color:var(--rosa)">link</span></span></div>
+</div>
+
+<div class="legenda" id="leg"></div>
+
+<script>
+const FPS = 30, ULTIMO = 995;
+// palavras do whisper ja no tempo do video cortado: [texto, inicio, fim]
+const P = [["E",0.03,0.18],["olha",0.18,0.5],["só",0.5,0.7],["essa",0.7,1.14],["tendência",1.14,1.99],["para",1.99,2.11],["você",2.11,2.22],["que",2.22,2.34],["quer",2.34,2.48],["fazer",2.48,2.62],["uma",2.62,2.9],["renda",2.9,3.36],["extra",3.36,3.96],["nesse",3.96,4.51],["final",4.51,4.62],["de",4.62,4.86],["ano",4.86,5.25],["Tem",5.25,5.54],["aqui",5.54,6.02],["fotoima",6.02,7.1],["polaróides",7.1,8.56],["calendários",8.56,9.56],["de",9.56,9.74],["fotoima",9.74,10.54],["muita",10.54,10.91],["diversidade",10.91,11.74],["para",11.74,11.82],["você",11.82,11.96],["conseguir",11.96,12.38],["fazer",12.38,12.86],["muita",12.86,13.39],["grana",13.39,14.07],["está",14.07,14.37],["muito",14.37,14.87],["em",14.87,15.05],["alta",15.05,15.43],["e",15.43,15.52],["você",15.52,15.9],["consegue",15.9,16.67],["fazer",16.67,17.14],["mesmo",17.14,17.63],["sem",17.63,18.1],["ter",18.1,18.26],["a",18.26,18.3],["máquina",18.3,18.85],["de",18.85,18.9],["fotoima",18.9,19.9],["Então",19.9,20.22],["se",20.22,20.34],["você",20.34,20.61],["já",20.61,20.71],["tem",20.71,20.91],["a",20.91,21.04],["máquina",21.04,21.34],["você",21.34,21.52],["pode",21.52,21.78],["fazer",21.78,22.14],["essas",22.14,22.42],["três",22.42,22.67],["opções",22.67,23.33],["Ah",23.42,23.63],["eu",23.63,23.78],["não",23.78,24.03],["tenho",24.03,24.37],["a",24.37,24.47],["máquina",24.47,25.12],["não",25.12,25.32],["tem",25.32,25.56],["problema",25.56,26.04],["tem",26.04,26.23],["o",26.23,26.29],["calendário",26.29,27.05],["de",27.05,27.2],["polaróide",27.2,27.86],["que",27.86,28.08],["fica",28.08,28.75],["super",28.75,29.19],["lindo",29.19,29.55],["e",29.55,29.62],["está",29.62,29.9],["saindo",29.9,30.33],["bastante",30.33,30.95],["Se",30.95,31.03],["você",31.03,31.18],["tem",31.18,31.34],["interesse",31.34,31.97],["eu",31.97,32.03],["vou",32.03,32.19],["deixar",32.19,32.54],["o",32.54,32.56],["link",32.56,32.77],["aqui",32.77,33.17]];
+const TROCA = { fotoima: "foto ímã", "polaróides": "polaroides", "polaróide": "polaroide", para: "pra", "está": "tá", E: "e", Tem: "tem", "Então": "então", Ah: "ah", Se: "se" };
+const ROSA = /^(tendência|renda|extra|foto ímã|polaroides|calendários|grana|alta|máquina|calendário|polaroide|lindo|link)$/;
+const ENF = { "ano": 1, "muita@30": 1, "mesmo": 1, "sem": 1, "três": 1, "problema": 1, "super": 1, "bastante": 1 };
+// legenda branca sobre o video, preta no claro sem rosto; altura (topo) por cena
+const POS = [[0, 1440, "branca"], [5.25, 1560, "branca"], [10.54, 1530, "branca"], [15.43, 1440, "branca"], [19.9, 1500, "preta"], [23.4, 1560, "branca"], [26.04, 1460, "branca"], [30.95, 1330, "preta"]];
+
+// grupos de 1-2 palavras (junta palavrinha curta com a vizinha)
+const W = P.map(([w, a, b], i) => ({ w: TROCA[w] || w, a: Math.max(0, a + 0.04), b, i }));
+const G = [];
+for (let i = 0; i < W.length; i++) {
+  const x = W[i], y = W[i + 1];
+  if (y && (x.w.length <= 3 || y.w.length <= 2) && (x.w + y.w).length <= 11 && !ENF[y.w] && !ENF[x.w]) { G.push([x, y]); i++; }
+  else G.push([x]);
+}
+const ehEnf = (p) => ENF[p.w] || ENF[p.w + "@" + p.i];
+
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+const back = (k) => { const c = 1.9; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+const OK = (cor) => `<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="${cor}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+document.querySelectorAll(".ok").forEach((s) => { s.innerHTML = OK(s.closest(".linha") ? "#fff" : "#ff4f9a"); });
+
+// calendario de polaroide: 12 mesinhos entrando um a um
+const MESES = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+document.getElementById("cal").innerHTML = MESES.map((m, i) => `<div data-in="${(26.35 + i * 0.09).toFixed(2)}" data-anim="pop" style="--r:${(i % 2 ? 2 : -2)}deg;background:#fff;border-radius:10px;padding:9px 9px 6px;box-shadow:0 8px 20px rgba(0,0,0,.3)">
+  <div style="height:78px;border-radius:5px;background:linear-gradient(${140 + i * 17}deg,#ffd1e4,#ff8fbd 60%,#ff4f9a)"></div>
+  <div style="font:700 16px 'JetBrains Mono';color:#22161d;text-align:center;margin-top:5px">${m} 27</div></div>`).join("");
+
+const cenas = [...document.querySelectorAll(".cena")];
+const anims = [...document.querySelectorAll("[data-in]")];
+const vids = [...document.querySelectorAll(".vid")];
+const leg = document.getElementById("leg");
+const cache = new Map();
+function quadro(n) {
+  n = Math.max(0, Math.min(ULTIMO, n));
+  if (!cache.has(n)) {
+    const im = new Image(); im.src = `vee-tendencia/quadros/q-${String(n).padStart(5, "0")}.jpg`;
+    cache.set(n, im.decode().catch(() => {}).then(() => im.src));
+    if (cache.size > 6) cache.delete(cache.keys().next().value);
+  }
+  return cache.get(n);
+}
+
+function animar(el, t) {
+  const t0 = +el.dataset.in, k = clamp((t - t0) / 0.38), r = getComputedStyle(el).getPropertyValue("--r") || "0deg";
+  const tipo = el.dataset.anim;
+  if (el.dataset.digita != null) {
+    const n = Math.floor(clamp((t - t0) * +el.dataset.cps, 0, el.dataset.digita.length));
+    el.textContent = t < t0 ? "" : el.dataset.digita.slice(0, n); return;
+  }
+  if (t < t0) { el.style.opacity = 0; return; }
+  if (tipo === "pop") { el.style.opacity = clamp(k * 3); el.style.transform = `rotate(${r}) scale(${0.82 + 0.18 * back(k)})`; }
+  else if (tipo === "sobe") { el.style.opacity = clamp(k * 2); el.style.transform = `translateY(${(1 - easeOut(k)) * 50}px)`; el.style.filter = `blur(${(1 - easeOut(k)) * 10}px)`; }
+  else if (tipo === "sobeCard") { el.style.opacity = 1; el.style.transform = `translateY(${(1 - easeOut(clamp((t - t0) / 0.45))) * 260}px)`; }
+  else if (tipo === "fade") { el.style.opacity = clamp(k * 2); }
+  else if (tipo === "risca") { el.style.opacity = 1; el.style.transform = `rotate(-4deg) scaleX(${easeOut(clamp((t - t0) / 0.3))})`; }
+}
+
+function legenda(t) {
+  let g = null;
+  for (let i = 0; i < G.length; i++) if (G[i][0].a <= t && (!G[i + 1] || t < G[i + 1][0].a) && t < G[i][G[i].length - 1].b + 0.7) g = G[i];
+  const pos = POS.filter((p) => p[0] <= t).pop();
+  leg.className = "legenda " + pos[2]; leg.style.top = pos[1] + "px";
+  if (!g) { leg.innerHTML = ""; return; }
+  leg.innerHTML = g.map((p) => {
+    const k = clamp((t - p.a) / 0.14);
+    if (t < p.a) return `<span style="opacity:0">${p.w}</span>`;
+    const cls = [ROSA.test(p.w) ? "rosa" : "", ehEnf(p) ? "enf" : ""].join(" ");
+    return `<span class="${cls}" style="opacity:${k};filter:blur(${(1 - k) * 8}px);transform:translateY(${(1 - k) * 16}px)">${p.w}</span>`;
+  }).join("");
+}
+
+window.renderFrame = async (t) => {
+  const src = await quadro(Math.round(t * FPS));
+  for (const c of cenas) c.style.display = t >= +c.dataset.de && t < +c.dataset.ate ? "block" : "none";
+  for (const v of vids) {
+    if (v.closest(".cena").style.display === "none") continue;
+    const im = v.firstElementChild, s = +v.dataset.s, w = v.clientWidth, h = v.clientHeight;
+    im.style.width = 1080 * s + "px"; im.style.height = 1920 * s + "px";
+    im.style.left = w / 2 - +v.dataset.cx * s + "px"; im.style.top = h / 2 - +v.dataset.cy * s + "px";
+    if (im.getAttribute("src") !== src) im.src = src;
+  }
+  for (const el of anims) if (el.closest(".cena")?.style.display !== "none") animar(el, t);
+  document.getElementById("cursor").style.opacity = Math.floor(t * 2.5) % 2 ? 0 : 1;
+  for (const p of document.querySelectorAll("[data-traco]")) {
+    const [a, b] = p.dataset.traco.split(":").map(Number), L = p.getTotalLength();
+    p.style.strokeDasharray = L; p.style.strokeDashoffset = L * (1 - easeOut(clamp((t - a) / (b - a))));
+    document.getElementById("area").style.opacity = clamp((t - b + 0.6) / 0.6);
+  }
+  legenda(t);
+  await Promise.all(vids.filter((v) => v.closest(".cena").style.display !== "none").map((v) => v.firstElementChild.decode().catch(() => {})));
+};
+document.fonts.load('900 80px "Inter Tight"').then(() => document.fonts.load('italic 80px "Instrument Serif"')).then(() => document.fonts.load('500 30px "JetBrains Mono"'))
+  .then(() => document.fonts.ready).then(() => window.renderFrame(0)).then(() => { window.pronto = true; });
+</script>
+</body></html>
