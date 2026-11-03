@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<!-- Story da Vee (03/11, v2) pra quem respondeu "Vendendo bem!" -> link do Protocolo de Vendas 24 Horas.
+<!-- Story da Vee (03/11, v2) pra quem respondeu "Vendendo bem!" -> link do Diagnóstico Magnético (sem botão, faixa y>1530 livre).
      SEM EMOJI (pedido da Vee). Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s.
      Faixa de baixo (y>1700) livre pro adesivo de link. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
@@ -21,28 +21,28 @@
   .op .fill { position:absolute; left:0; top:0; bottom:0; width:0; background:var(--forte); border-radius:28px; }
   .op .txt { position:absolute; left:96px; top:0; bottom:0; display:flex; align-items:center; font-family:'Nunito'; font-weight:900; font-size:36px; }
   .op .ck { position:absolute; left:24px; top:16px; width:56px; height:56px; }
-  h1 { left:60px; right:60px; top:515px; text-align:center; font-size:62px; line-height:1.08; font-weight:600; }
+  h1 { left:60px; right:60px; top:510px; text-align:center; font-size:56px; line-height:1.08; font-weight:600; }
   h1 b { font-weight:700; color:var(--forte); }
 
-  .bars { left:80px; right:80px; top:675px; height:400px; }
-  .eixo { position:absolute; left:50px; right:50px; bottom:96px; height:4px; background:rgba(67,48,74,.14); border-radius:4px; }
-  .bar { position:absolute; bottom:100px; width:220px; border-radius:30px 30px 8px 8px; transform-origin:bottom; }
+  .bars { left:80px; right:80px; top:655px; height:330px; }
+  .eixo { position:absolute; left:50px; right:50px; bottom:86px; height:4px; background:rgba(67,48,74,.14); border-radius:4px; }
+  .bar { position:absolute; bottom:90px; width:220px; border-radius:30px 30px 8px 8px; transform-origin:bottom; }
   .b1 { left:110px; background:#f7b8cd; }
   .b2 { left:590px; background:var(--forte); }
-  .val { position:absolute; width:220px; text-align:center; font-size:84px; font-weight:700; }
-  .lab { position:absolute; bottom:22px; width:220px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--suave); line-height:1.15; }
-  .seta { position:absolute; left:365px; top:160px; width:190px; height:80px; }
+  .val { position:absolute; width:220px; text-align:center; font-size:70px; font-weight:700; }
+  .lab { position:absolute; bottom:14px; width:220px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:27px; color:var(--suave); line-height:1.15; }
+  .seta { position:absolute; left:365px; top:120px; width:190px; height:80px; }
 
-  .linha { left:80px; right:80px; top:1090px; height:330px; }
-  .linha .tit { position:absolute; left:46px; top:30px; font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.12em; color:var(--suave); }
-  .linha .num { position:absolute; left:46px; top:70px; font-size:64px; font-weight:700; }
+  .linha { left:80px; right:80px; top:1005px; height:265px; }
+  .linha .tit { position:absolute; left:46px; top:24px; font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.12em; color:var(--suave); }
+  .linha .num { position:absolute; left:46px; top:58px; font-size:56px; font-weight:700; }
   .linha .num b { color:var(--forte); font-weight:700; }
-  .linha svg { position:absolute; left:40px; top:150px; }
+  .linha svg { position:absolute; left:40px; top:135px; }
 
-  .botao { left:90px; right:90px; top:1455px; background:var(--forte); color:#fff; border-radius:40px; text-align:center; padding:22px 20px 26px; box-shadow:0 16px 34px rgba(232,69,124,.35); }
-  .botao small { display:block; font-family:'Nunito'; font-weight:800; font-size:29px; opacity:.92; }
-  .botao strong { display:block; font-size:58px; font-weight:700; line-height:1.05; margin-top:6px; }
-  .link { left:0; right:0; top:1700px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; color:var(--tinta); }
+  .botao { left:60px; right:60px; top:1300px; text-align:center; }
+  .botao small { display:block; font-family:'Nunito'; font-weight:800; font-size:34px; color:var(--suave); }
+  .botao strong { display:block; font-size:70px; font-weight:700; line-height:1.05; margin-top:8px; color:var(--forte); }
+  .link { left:0; right:0; top:1460px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; color:var(--tinta); }
   .link svg { vertical-align:middle; margin-left:10px; }
 </style>
 </head>
@@ -69,7 +69,7 @@
   <div class="abs card linha" id="linha">
     <div class="tit">NO MÊS</div>
     <div class="num"><span>120</span> → <b id="m2">120</b> pedidos</div>
-    <svg width="840" height="160" viewBox="0 0 840 160">
+    <svg width="840" height="115" viewBox="0 0 840 115">
       <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8457c" stop-opacity=".28"/><stop offset="1" stop-color="#e8457c" stop-opacity="0"/></linearGradient></defs>
       <path id="area" fill="url(#ar)"/>
       <polyline id="base" fill="none" stroke="#f7b8cd" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round"/>
@@ -78,7 +78,7 @@
     </svg>
   </div>
 
-  <div class="abs botao" id="botao"><small>Não é postar por postar. É estratégia.</small><strong>PROTOCOLO DE<br>VENDAS 24 HORAS</strong></div>
+  <div class="abs botao" id="botao"><small>Não é postar por postar. É estratégia.</small><strong>DIAGNÓSTICO MAGNÉTICO</strong></div>
   <div class="abs link" id="link">toca no link<svg width="44" height="50" viewBox="0 0 44 50"><path d="M22 4 V40 M8 28 L22 44 L36 28" fill="none" stroke="#e8457c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <script>
@@ -96,7 +96,7 @@ const BR = [[70,60,46,'#e8457c'],[960,150,40,'#c9a7f0'],[40,560,34,'#f7a98a'],[1
 $('brilhos').innerHTML = BR.map(([x,y,s,c],i) => `<div class="bri" id="br${i}" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px">${estrela(c)}</div>`).join('');
 
 // linha do mes: 30 dias, ritmo de 4/dia (tracejada) x 8/dia (rosa forte)
-const W = 760, Hh = 140, X0 = 20;
+const W = 760, Hh = 100, X0 = 20;
 const ptsBase = [], ptsLin = [];
 for (let d = 0; d <= 30; d++) { const x = X0 + W * d / 30; ptsBase.push([x, Hh - (Hh - 10) * (4 * d) / 240]); ptsLin.push([x, Hh - (Hh - 10) * (8 * d) / 240]); }
 $('base').setAttribute('points', ptsBase.map(q => q.join(',')).join(' '));
@@ -114,9 +114,9 @@ window.renderFrame = (t) => {
 
   pop($('h1'), p(t, 1.7, .5));
   pop($('bars'), p(t, 2.3, .5));
-  const H = 200, g1 = mola(p(t, 2.7, 1)), g2 = mola(p(t, 3.4, 1));
+  const H = 150, g1 = mola(p(t, 2.7, 1)), g2 = mola(p(t, 3.4, 1));
   $('b1').style.height = (H / 2) * Math.max(0, g1) + 'px'; $('b2').style.height = H * Math.max(0, g2) + 'px';
-  $('v1').style.bottom = 100 + (H / 2) * g1 + 8 + 'px'; $('v2').style.bottom = 100 + H * g2 + 8 + 'px';
+  $('v1').style.bottom = 90 + (H / 2) * g1 + 6 + 'px'; $('v2').style.bottom = 90 + H * g2 + 6 + 'px';
   $('v1').style.opacity = cl(p(t, 2.7, .3)); $('v2').style.opacity = cl(p(t, 3.4, .3));
   $('v2').textContent = Math.round(4 + 4 * cl(p(t, 3.4, .8)));
   $('setaP').style.strokeDashoffset = 190 * (1 - eo(p(t, 3.2, .5))); $('setaC').style.opacity = cl(p(t, 3.6, .2));
