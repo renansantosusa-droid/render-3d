@@ -1,0 +1,111 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "Como um jato cai 8 mil metros em 1 minuto?" — cópia em PT-BR do Reel do Modo Absurdo (DfN2a58CcQn), pedido do Renan 02/11.
+// Conferido: Learjet 60 N722BD, Austin → North Eleuthera, caiu em Greenacres (Palm Beach, FL) 01/11/2026, 9 mortos;
+// FAA: de 35.250 para 8.750 pés em ~1 min (≈ 8.080 m); tripulação relatou turbulência e gelo; NTSB: pode ter se partido no ar, causa em aberto.
+// Air Transat 236 (2001): planou ~19 min sem combustível, 306 a bordo sobreviveram. Perda de controle (LOC-I) = 1ª causa de acidentes fatais.
+import { motion } from "/kitmotion.js";
+const K = await motion("jato", { fundo: "#0b1626", fundo2: "#1b2b3f", padrao: "pontos", destaque: "#ffd23a", alerta: "#ff4d4d", rotulo: "AVIAÇÃO", rotuloCor: "#c8323a", sub: "• 01/11", tag: "RECRIAÇÃO", legenda: "contorno", transicao: "zoom" });
+const { W, g, P, ini, ap, ease, clamp, C, rr, circ, txt, txtCabe, pilula, pop, carimbo, conta, jato, seta } = K;
+const AZ = "#4fb3c9", VD = "#32d26f";
+function nuvemBola(x, y, s, a = .18) { g.fillStyle = `rgba(255,255,255,${a})`; [[0, 0, 70], [-70, 20, 50], [70, 20, 55], [30, -30, 50]].forEach(([dx, dy, r]) => { g.beginPath(); g.arc(x + dx * s, y + dy * s, r * s, 0, 6.2832); g.fill(); }); }
+function ceu(t, vel = 1) { for (let i = 0; i < 9; i++) { const y = ((i * 260 + t * 420 * vel) % 1500) + 300; nuvemBola(120 + (i * 337) % 860, 1800 - y, .9 + (i % 3) * .3); } }
+function tracejado(x0, y0, x1, y1, cor, k = 1, larg = 8) { g.save(); g.setLineDash([26, 18]); g.strokeStyle = cor; g.lineWidth = larg; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + (x1 - x0) * clamp(k), y0 + (y1 - y0) * clamp(k)); g.stroke(); g.restore(); }
+function linha(x0, y0, x1, y1, cor, k = 1, larg = 10) { g.strokeStyle = cor; g.lineWidth = larg; g.lineCap = "round"; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + (x1 - x0) * clamp(k), y0 + (y1 - y0) * clamp(k)); g.stroke(); }
+function pino(x, y, cor, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = cor; g.beginPath(); g.moveTo(0, 0); g.bezierCurveTo(-40, -50, -40, -100, 0, -100); g.bezierCurveTo(40, -100, 40, -50, 0, 0); g.fill(); circ(0, -68, 14, "#fff"); g.restore(); }
+function caixa(rot, val, x, y, w, cor = "#fff") { rr(x - w / 2, y - 60, w, 120, 18, "rgba(0,0,0,.55)"); g.strokeStyle = cor; g.lineWidth = 4; g.beginPath(); g.roundRect(x - w / 2, y - 60, w, 120, 18); g.stroke(); txt(rot, x, y - 30, 28, "#c9d1dc", { peso: 500 }); txt(val, x, y + 20, 58, cor); }
+function motorTopo(x, y, s, estado) { // jato visto de cima, nariz pra cima, motores atrás
+  g.save(); g.translate(x, y); g.scale(s, s);
+  g.fillStyle = "#dfe5ee"; g.beginPath(); g.ellipse(0, 0, 46, 300, 0, 0, 6.2832); g.fill();
+  g.beginPath(); g.moveTo(-30, -20); g.lineTo(-330, 90); g.lineTo(-330, 125); g.lineTo(-30, 70); g.moveTo(30, -20); g.lineTo(330, 90); g.lineTo(330, 125); g.lineTo(30, 70); g.fill();
+  g.beginPath(); g.moveTo(-20, 230); g.lineTo(-140, 290); g.lineTo(-140, 310); g.lineTo(-20, 290); g.moveTo(20, 230); g.lineTo(140, 290); g.lineTo(140, 310); g.lineTo(20, 290); g.fill();
+  rr(-24, -230, 48, 40, 14, "#2a3958");
+  estado.forEach((e, i) => { const mx = i ? 78 : -78; rr(mx - 26, 120, 52, 120, 22, e === "ok" ? "#8a96ab" : e === "fogo" ? C.VM : "#4a5266"); if (e === "ok") { circ(mx, 250, 18, "rgba(255,160,60,.8)"); } if (e === "fogo") { circ(mx, 252, 26, "rgba(255,120,40,.9)"); } });
+  g.restore();
+}
+function passaro(x, y, s) { g.strokeStyle = "#1b2436"; g.lineWidth = 10 * s; g.lineCap = "round"; g.beginPath(); g.moveTo(x - 50 * s, y - 16 * s); g.quadraticCurveTo(x - 20 * s, y - 40 * s, x, y); g.quadraticCurveTo(x + 20 * s, y - 40 * s, x + 50 * s, y - 16 * s); g.stroke(); }
+function raio(x, y) { g.fillStyle = C.AM; g.beginPath(); g.moveTo(x + 10, y); g.lineTo(x - 30, y + 80); g.lineTo(x, y + 80); g.lineTo(x - 20, y + 150); g.lineTo(x + 40, y + 60); g.lineTo(x + 10, y + 60); g.lineTo(x + 30, y); g.fill(); }
+function floco(x, y, r) { g.strokeStyle = "#bfe8ff"; g.lineWidth = 10; g.lineCap = "round"; for (let i = 0; i < 3; i++) { const a = i * Math.PI / 3; g.beginPath(); g.moveTo(x - Math.cos(a) * r, y - Math.sin(a) * r); g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r); g.stroke(); } }
+const CENA = [null,
+  (t) => {
+    ceu(t, 1.4);
+    const k = clamp((t - .1) / 8), m = Math.round(8000 * k / 10) * 10;
+    pop(ap(t, ini(1)), 330, 430, () => caixa("JÁ CAIU", m.toLocaleString("pt-BR") + " m", 330, 430, 340, k > .7 ? C.VM : "#fff"));
+    pop(ap(t, ini(1)), 750, 430, () => caixa("TEMPO", "0:" + String(Math.round(60 * k)).padStart(2, "0"), 750, 430, 260));
+    const kd = clamp((t - P(1, "motor") + .2) / .8);
+    if (t < P(1, "mesmo") - .3) { jato(W / 2, 880 + Math.sin(t * 9) * 6, 2.6, 1.25 + Math.sin(t * 3) * .05); }
+    else { tracejado(120, 700, 980, 760, AZ, kd); pop(kd, 300, 660, () => pilula("PLANEIO", 300, 660, 40, AZ, "#000")); linha(620, 600, 820, 1300, C.VM, kd, 12); jato(620 + 200 * kd, 600 + 700 * kd, .9, 1.29); pop(kd, 860, 1000, () => pilula("ESTE JATO", 860, 1000, 40, C.VM, "#fff")); }
+    pop(ap(t, P(1, "oito") - .2), W / 2, 610, () => txt("8.000 METROS", W / 2, 610, 104, C.AM, { contorno: 12, sombra: true }));
+    pop(ap(t, P(1, "minuto") - .2), W / 2, 720, () => txt("EM 1 MINUTO", W / 2, 720, 72, "#fff", { contorno: 10 }));
+    if (t < P(1, "mesmo") - .3) carimbo("RARÍSSIMO", W / 2, 1280, ap(t, P(1, "rarissimo") - .1), C.VM, -.06, 90);
+  },
+  (t) => {
+    rr(0, 300, W, 1200, 0, "#123a5c");
+    g.fillStyle = "#2f6b3d"; g.beginPath(); g.moveTo(0, 520); g.lineTo(520, 560); g.lineTo(700, 640); g.lineTo(760, 760); g.lineTo(820, 1000); g.lineTo(780, 1080); g.lineTo(700, 900); g.lineTo(560, 760); g.lineTo(320, 780); g.lineTo(0, 860); g.fill();
+    for (let i = 0; i < 5; i++) circ(900 + (i * 31) % 70, 1060 + i * 34, 12, "#2f6b3d");
+    pop(ap(t, ini(2)), W / 2, 400, () => { txt("FLÓRIDA", W / 2, 400, 110, C.AM, { contorno: 12 }); txt("1º NOV 2026", W / 2, 500, 54, "#fff", { contorno: 8 }); });
+    const kr = clamp((t - P(2, "texas") + .3) / 1.2);
+    pop(ap(t, P(2, "texas") - .3), 170, 700, () => { pino(170, 700, AZ, .9); pilula("TEXAS", 170, 740, 34, "#fff", "#000"); });
+    linha(170, 680, 880, 1080, "rgba(255,255,255,.9)", kr, 7);
+    pop(ap(t, P(2, "florida") - .3), 760, 960, () => pino(760, 960, C.VM, 1.3));
+    pop(ap(t, P(2, "bahamas") - .3), 920, 1090, () => { pino(920, 1090, AZ, .9); pilula("BAHAMAS", 880, 1140, 34, "#fff", "#000"); });
+    pop(ap(t, P(2, "learjet") - .3), W / 2, 1300, () => { jato(330, 1300, .9, 0); pilula("LEARJET 60", 620, 1300, 56, "#fff", "#000"); });
+  },
+  (t) => {
+    const f1 = t > P(3, "falha") - .2, f2 = t > P(3, "apagarem") - .2;
+    const est = f2 ? ["off", "off"] : f1 ? ["fogo", "ok"] : ["ok", "ok"];
+    pop(ap(t, ini(3)), W / 2, 860, () => motorTopo(W / 2, 860 + Math.sin(t * 2) * 6, 1.25, est));
+    pop(ap(t, P(3, "dois") - .3), W / 2, 380, () => txt("2 MOTORES, LÁ ATRÁS", W / 2, 380, 78, C.AM, { contorno: 10 }));
+    if (!f2) { pop(ap(t, P(3, "outro") - .3), W / 2, 1300, () => pilula("VOA COM O OUTRO ✓", W / 2, 1300, 54, VD, "#000")); }
+    const kp = clamp((t - P(3, "passaro") + .3) / .6); if (kp > 0 && !f2) { passaro(W / 2 - 400 + 300 * kp, 1080 - 40 * kp, 1.2); pop(ap(t, P(3, "estoura") - .1), 250, 1180, () => pilula("PÁSSARO", 250, 1180, 40, "#fff", "#000")); }
+    if (f2) { pop(ap(t, P(3, "apagarem") - .1), W / 2, 1180, () => pilula("OS DOIS APAGADOS", W / 2, 1180, 48, "#4a5266", "#fff")); carimbo("AINDA PLANA", W / 2, 1310, ap(t, P(3, "plana") - .2), AZ, -.05, 90); }
+  },
+  (t) => {
+    rr(0, 300, W, 1200, 0, "#0f3354");
+    const kg = clamp((t - P(4, "planou") + .4) / 2.4);
+    tracejado(80, 520, 820, 980, AZ, kg, 8); jato(80 + 740 * kg, 520 + 460 * kg, .8, .55);
+    pop(ap(t, P(4, "atlantico") - .3), 860, 1000, () => { pino(860, 1040, VD, 1.1); });
+    pop(ap(t, ini(4)), W / 2, 400, () => txt("2001 • SEM COMBUSTÍVEL", W / 2, 400, 64, "#fff", { contorno: 8 }));
+    pop(ap(t, P(4, "dezenove") - .3), 330, 1180, () => { txt(String(conta(t, P(4, "dezenove") - .3, 19, .8)) + " MIN", 330, 1170, 110, C.AM, { contorno: 10 }); txt("PLANANDO", 330, 1260, 48, "#fff", { contorno: 6 }); });
+    pop(ap(t, P(4, "trezentas") - .3), 760, 1180, () => { txt(String(conta(t, P(4, "trezentas") - .3, 306, 1)), 760, 1170, 130, VD, { contorno: 10 }); txt("TODOS VIVOS", 760, 1270, 52, "#fff", { contorno: 6 }); });
+  },
+  (t) => {
+    g.fillStyle = "#c9a690"; g.beginPath(); g.moveTo(80, 1400); g.lineTo(470, 460); g.lineTo(900, 1400); g.fill();
+    g.fillStyle = "#7f8aa3"; g.beginPath(); g.moveTo(470, 460); g.lineTo(900, 1400); g.lineTo(640, 1400); g.fill();
+    g.fillStyle = "#fff"; g.beginPath(); g.moveTo(470, 460); g.lineTo(410, 610); g.lineTo(470, 580); g.lineTo(540, 620); g.fill();
+    const kb = clamp((t - P(5, "desceu") + .3) / 2);
+    rr(960, 460, 14, 940, 6, "rgba(255,255,255,.35)"); rr(960, 460, 14, 860 * ease(kb), 6, C.VM);
+    pop(ap(t, P(5, "everest") - .3), 820, 410, () => pilula("EVEREST 8.849 m", 820, 410, 40, "#fff", "#000"));
+    jato(930, 470 + 860 * ease(kb), .6, 1.4);
+    pop(ap(t, P(5, "minuto") - .3), 720, 1180, () => { pilula("−8.000 m", 760, 1180, 54, C.VM, "#fff"); pilula("EM 1 MINUTO", 760, 1270, 38, "#000", "#fff"); });
+    pop(ap(t, P(5, "entao") - .2), W / 2, 420, () => { rr(70, 300, 940, 440, 30, "rgba(11,22,38,.92)"); txt("O QUE DERRUBA", W / 2, 440, 94, "#fff", { contorno: 10 }); txt("UM AVIÃO ASSIM?", W / 2, 560, 94, C.AM, { contorno: 10 }); });
+  },
+  (t) => {
+    ceu(t, .6);
+    pop(ap(t, P(6, "perda") - .3), W / 2, 400, () => txt("PERDA DE CONTROLE", W / 2, 400, 92, C.VM, { contorno: 12, sombra: true }));
+    const kt = clamp((t - P(6, "tomba") + .2) / 1.2), kr = clamp((t - P(6, "treinam") + .2) / 1.6);
+    const giro = kt * 1.25 * (1 - kr), rol = Math.sin(t * 5) * .15 * kt * (1 - kr);
+    jato(W / 2, 860, 2.4, giro + rol);
+    pop(ap(t, P(6, "chao") - .3), W / 2, 1180, () => { if (kr < .3) pilula("NARIZ PRO CHÃO", W / 2, 1180, 50, "#fff", "#000"); });
+    if (t > P(6, "principal") - .3 && kr < .2) carimbo("Nº 1 EM ACIDENTES FATAIS", W / 2, 600, ap(t, P(6, "principal") - .3), C.AM, -.04, 64);
+    pop(ap(t, P(6, "asas") - .3), 290, 1200, () => pilula("ASAS RETAS", 290, 1200, 48, VD, "#000"));
+    pop(ap(t, P(6, "puxar") - .3), 730, 1200, () => pilula("PUXAR SUAVE", 730, 1200, 48, VD, "#000"));
+    pop(ap(t, P(6, "treinam") - .3), W / 2, 560, () => txt("PILOTOS TREINAM PRA SAIR", W / 2, 560, 58, "#fff", { contorno: 8 }));
+  },
+  (t) => {
+    pop(ap(t, ini(7)), W / 2, 400, () => pilula("NESSE VOO", W / 2, 400, 50, "#fff", "#000"));
+    pop(ap(t, P(7, "turbulencia") - .3), 330, 620, () => { nuvemBola(330, 580, 1.4, .55); raio(320, 620); txt("TURBULÊNCIA", 330, 840, 56, "#fff", { contorno: 8 }); });
+    pop(ap(t, P(7, "gelo") - .3), 760, 620, () => { floco(760, 620, 90); txt("GELO", 760, 840, 56, "#bfe8ff", { contorno: 8 }); });
+    pop(ap(t, P(7, "partido") - .3), W / 2, 1000, () => { rr(90, 930, 900, 140, 26, "#22262e"); txtCabe("PODE TER SE PARTIDO NO AR", W / 2, 985, 52, "#fff", 860); txt("SEGUNDO O NTSB", W / 2, 1040, 36, C.AM, { peso: 500 }); });
+    carimbo("CAUSA EM INVESTIGAÇÃO", W / 2, 1190, ap(t, P(7, "causa") - .1), C.VM, -.04, 66);
+    pop(ap(t, P(7, "nove") - .3), W / 2, 1340, () => { rr(260, 1280, 560, 120, 20, "#000"); txt("9 VIDAS", W / 2, 1345, 80, "#fff"); });
+    pop(ap(t, ini(7) + .6), W / 2, 1720, () => txtCabe("FONTES: FAA, NTSB (01-02/11/2026) • RECRIAÇÃO ILUSTRATIVA", W / 2, 1440, 26, "rgba(255,255,255,.6)", 900, { peso: 500 }));
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>

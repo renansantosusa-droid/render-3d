@@ -1,0 +1,801 @@
+{
+ "total": 63.41,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 8.31,
+   "texto": "Como um jato particular cai oito mil metros em um minuto? Isso é raríssimo. Um avião, mesmo sem motor, não cai desse jeito.",
+   "palavras": [
+    {
+     "w": "Como",
+     "t": 0.15
+    },
+    {
+     "w": "um",
+     "t": 0.337
+    },
+    {
+     "w": "jato",
+     "t": 0.47
+    },
+    {
+     "w": "particular",
+     "t": 0.848
+    },
+    {
+     "w": "cai",
+     "t": 1.47
+    },
+    {
+     "w": "oito",
+     "t": 1.75
+    },
+    {
+     "w": "mil",
+     "t": 2.05
+    },
+    {
+     "w": "metros",
+     "t": 2.299
+    },
+    {
+     "w": "em",
+     "t": 2.763
+    },
+    {
+     "w": "um",
+     "t": 2.897
+    },
+    {
+     "w": "minuto",
+     "t": 3.01
+    },
+    {
+     "w": "Isso",
+     "t": 3.697
+    },
+    {
+     "w": "é",
+     "t": 4.19
+    },
+    {
+     "w": "raríssimo",
+     "t": 4.27
+    },
+    {
+     "w": "Um",
+     "t": 5.003
+    },
+    {
+     "w": "avião",
+     "t": 5.35
+    },
+    {
+     "w": "mesmo",
+     "t": 5.817
+    },
+    {
+     "w": "sem",
+     "t": 6.19
+    },
+    {
+     "w": "motor",
+     "t": 6.377
+    },
+    {
+     "w": "não",
+     "t": 6.93
+    },
+    {
+     "w": "cai",
+     "t": 7.19
+    },
+    {
+     "w": "desse",
+     "t": 7.39
+    },
+    {
+     "w": "jeito",
+     "t": 7.67
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 8.46,
+   "fim": 13.98,
+   "texto": "Aconteceu no domingo, na Flórida, com um Learjet sessenta que saiu do Texas rumo às Bahamas.",
+   "palavras": [
+    {
+     "w": "Aconteceu",
+     "t": 8.46
+    },
+    {
+     "w": "no",
+     "t": 9.047
+    },
+    {
+     "w": "domingo",
+     "t": 9.15
+    },
+    {
+     "w": "na",
+     "t": 9.553
+    },
+    {
+     "w": "Flórida",
+     "t": 9.687
+    },
+    {
+     "w": "com",
+     "t": 10.42
+    },
+    {
+     "w": "um",
+     "t": 10.567
+    },
+    {
+     "w": "Learjet",
+     "t": 10.684
+    },
+    {
+     "w": "sessenta",
+     "t": 11.308
+    },
+    {
+     "w": "que",
+     "t": 11.78
+    },
+    {
+     "w": "saiu",
+     "t": 11.953
+    },
+    {
+     "w": "do",
+     "t": 12.167
+    },
+    {
+     "w": "Texas",
+     "t": 12.313
+    },
+    {
+     "w": "rumo",
+     "t": 12.86
+    },
+    {
+     "w": "às",
+     "t": 13.207
+    },
+    {
+     "w": "Bahamas",
+     "t": 13.34
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.13,
+   "fim": 23.33,
+   "texto": "Ele tem dois motores, lá atrás. Se um falha, voa com o outro. Se um pássaro estoura um motor, também. E mesmo se os dois apagarem, ele ainda plana.",
+   "palavras": [
+    {
+     "w": "Ele",
+     "t": 14.13
+    },
+    {
+     "w": "tem",
+     "t": 14.27
+    },
+    {
+     "w": "dois",
+     "t": 14.482
+    },
+    {
+     "w": "motores",
+     "t": 14.674
+    },
+    {
+     "w": "lá",
+     "t": 15.197
+    },
+    {
+     "w": "atrás",
+     "t": 15.29
+    },
+    {
+     "w": "Se",
+     "t": 15.81
+    },
+    {
+     "w": "um",
+     "t": 16.183
+    },
+    {
+     "w": "falha",
+     "t": 16.35
+    },
+    {
+     "w": "voa",
+     "t": 16.903
+    },
+    {
+     "w": "com",
+     "t": 17.15
+    },
+    {
+     "w": "o",
+     "t": 17.43
+    },
+    {
+     "w": "outro",
+     "t": 17.563
+    },
+    {
+     "w": "Se",
+     "t": 18.103
+    },
+    {
+     "w": "um",
+     "t": 18.317
+    },
+    {
+     "w": "pássaro",
+     "t": 18.45
+    },
+    {
+     "w": "estoura",
+     "t": 18.81
+    },
+    {
+     "w": "um",
+     "t": 19.143
+    },
+    {
+     "w": "motor",
+     "t": 19.237
+    },
+    {
+     "w": "também",
+     "t": 19.776
+    },
+    {
+     "w": "E",
+     "t": 20.47
+    },
+    {
+     "w": "mesmo",
+     "t": 20.663
+    },
+    {
+     "w": "se",
+     "t": 20.983
+    },
+    {
+     "w": "os",
+     "t": 21.117
+    },
+    {
+     "w": "dois",
+     "t": 21.234
+    },
+    {
+     "w": "apagarem",
+     "t": 21.57
+    },
+    {
+     "w": "ele",
+     "t": 22.33
+    },
+    {
+     "w": "ainda",
+     "t": 22.503
+    },
+    {
+     "w": "plana",
+     "t": 22.834
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 23.48,
+   "fim": 32.12,
+   "texto": "Em dois mil e um, um avião sem combustível planou dezenove minutos sobre o Atlântico. E as trezentas e seis pessoas a bordo se salvaram.",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 23.48
+    },
+    {
+     "w": "dois",
+     "t": 23.592
+    },
+    {
+     "w": "mil",
+     "t": 23.78
+    },
+    {
+     "w": "e",
+     "t": 24
+    },
+    {
+     "w": "um",
+     "t": 24.093
+    },
+    {
+     "w": "um",
+     "t": 24.467
+    },
+    {
+     "w": "avião",
+     "t": 24.573
+    },
+    {
+     "w": "sem",
+     "t": 24.96
+    },
+    {
+     "w": "combustível",
+     "t": 25.14
+    },
+    {
+     "w": "planou",
+     "t": 25.944
+    },
+    {
+     "w": "dezenove",
+     "t": 26.36
+    },
+    {
+     "w": "minutos",
+     "t": 26.99
+    },
+    {
+     "w": "sobre",
+     "t": 27.533
+    },
+    {
+     "w": "o",
+     "t": 27.88
+    },
+    {
+     "w": "Atlântico",
+     "t": 28
+    },
+    {
+     "w": "E",
+     "t": 28.8
+    },
+    {
+     "w": "as",
+     "t": 28.893
+    },
+    {
+     "w": "trezentas",
+     "t": 29.04
+    },
+    {
+     "w": "e",
+     "t": 29.64
+    },
+    {
+     "w": "seis",
+     "t": 29.752
+    },
+    {
+     "w": "pessoas",
+     "t": 29.95
+    },
+    {
+     "w": "a",
+     "t": 30.48
+    },
+    {
+     "w": "bordo",
+     "t": 30.6
+    },
+    {
+     "w": "se",
+     "t": 31.053
+    },
+    {
+     "w": "salvaram",
+     "t": 31.208
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 32.27,
+   "fim": 38.03,
+   "texto": "Esse jato desceu quase a altura do Everest em um minuto. Então, o que derruba um avião assim?",
+   "palavras": [
+    {
+     "w": "Esse",
+     "t": 32.27
+    },
+    {
+     "w": "jato",
+     "t": 32.59
+    },
+    {
+     "w": "desceu",
+     "t": 32.89
+    },
+    {
+     "w": "quase",
+     "t": 33.257
+    },
+    {
+     "w": "a",
+     "t": 33.59
+    },
+    {
+     "w": "altura",
+     "t": 33.676
+    },
+    {
+     "w": "do",
+     "t": 34.003
+    },
+    {
+     "w": "Everest",
+     "t": 34.18
+    },
+    {
+     "w": "em",
+     "t": 34.75
+    },
+    {
+     "w": "um",
+     "t": 34.937
+    },
+    {
+     "w": "minuto",
+     "t": 35.05
+    },
+    {
+     "w": "Então",
+     "t": 35.83
+    },
+    {
+     "w": "o",
+     "t": 36.31
+    },
+    {
+     "w": "que",
+     "t": 36.39
+    },
+    {
+     "w": "derruba",
+     "t": 36.55
+    },
+    {
+     "w": "um",
+     "t": 37.017
+    },
+    {
+     "w": "avião",
+     "t": 37.123
+    },
+    {
+     "w": "assim",
+     "t": 37.443
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 38.18,
+   "fim": 50.82,
+   "texto": "Uma das coisas é a perda de controle. O avião tomba e aponta o nariz pro chão. É a principal causa de acidentes fatais na aviação. Por isso, os pilotos treinam pra sair: asas retas e puxar com suavidade.",
+   "palavras": [
+    {
+     "w": "Uma",
+     "t": 38.18
+    },
+    {
+     "w": "das",
+     "t": 38.41
+    },
+    {
+     "w": "coisas",
+     "t": 38.553
+    },
+    {
+     "w": "é",
+     "t": 38.94
+    },
+    {
+     "w": "a",
+     "t": 39.06
+    },
+    {
+     "w": "perda",
+     "t": 39.18
+    },
+    {
+     "w": "de",
+     "t": 39.513
+    },
+    {
+     "w": "controle",
+     "t": 39.664
+    },
+    {
+     "w": "O",
+     "t": 40.46
+    },
+    {
+     "w": "avião",
+     "t": 40.553
+    },
+    {
+     "w": "tomba",
+     "t": 40.82
+    },
+    {
+     "w": "e",
+     "t": 41.3
+    },
+    {
+     "w": "aponta",
+     "t": 41.433
+    },
+    {
+     "w": "o",
+     "t": 41.82
+    },
+    {
+     "w": "nariz",
+     "t": 41.9
+    },
+    {
+     "w": "pro",
+     "t": 42.14
+    },
+    {
+     "w": "chão",
+     "t": 42.313
+    },
+    {
+     "w": "É",
+     "t": 42.86
+    },
+    {
+     "w": "a",
+     "t": 43.2
+    },
+    {
+     "w": "principal",
+     "t": 43.368
+    },
+    {
+     "w": "causa",
+     "t": 43.687
+    },
+    {
+     "w": "de",
+     "t": 44.047
+    },
+    {
+     "w": "acidentes",
+     "t": 44.153
+    },
+    {
+     "w": "fatais",
+     "t": 44.7
+    },
+    {
+     "w": "na",
+     "t": 45.167
+    },
+    {
+     "w": "aviação",
+     "t": 45.247
+    },
+    {
+     "w": "Por",
+     "t": 45.9
+    },
+    {
+     "w": "isso",
+     "t": 46.292
+    },
+    {
+     "w": "os",
+     "t": 46.713
+    },
+    {
+     "w": "pilotos",
+     "t": 46.86
+    },
+    {
+     "w": "treinam",
+     "t": 47.26
+    },
+    {
+     "w": "pra",
+     "t": 47.64
+    },
+    {
+     "w": "sair",
+     "t": 47.78
+    },
+    {
+     "w": "asas",
+     "t": 48.5
+    },
+    {
+     "w": "retas",
+     "t": 48.8
+    },
+    {
+     "w": "e",
+     "t": 49.22
+    },
+    {
+     "w": "puxar",
+     "t": 49.38
+    },
+    {
+     "w": "com",
+     "t": 49.82
+    },
+    {
+     "w": "suavidade",
+     "t": 50.02
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.97,
+   "fim": 62.81,
+   "texto": "Nesse voo, a tripulação avisou turbulência e gelo minutos antes. Os investigadores dizem que ele pode ter se partido ainda no ar. Mas a causa ainda não se sabe. As nove pessoas a bordo morreram.",
+   "palavras": [
+    {
+     "w": "Nesse",
+     "t": 50.97
+    },
+    {
+     "w": "voo",
+     "t": 51.29
+    },
+    {
+     "w": "a",
+     "t": 51.65
+    },
+    {
+     "w": "tripulação",
+     "t": 51.818
+    },
+    {
+     "w": "avisou",
+     "t": 52.394
+    },
+    {
+     "w": "turbulência",
+     "t": 52.794
+    },
+    {
+     "w": "e",
+     "t": 53.49
+    },
+    {
+     "w": "gelo",
+     "t": 53.61
+    },
+    {
+     "w": "minutos",
+     "t": 53.99
+    },
+    {
+     "w": "antes",
+     "t": 54.477
+    },
+    {
+     "w": "Os",
+     "t": 55.183
+    },
+    {
+     "w": "investigadores",
+     "t": 55.406
+    },
+    {
+     "w": "dizem",
+     "t": 56.13
+    },
+    {
+     "w": "que",
+     "t": 56.43
+    },
+    {
+     "w": "ele",
+     "t": 56.53
+    },
+    {
+     "w": "pode",
+     "t": 56.698
+    },
+    {
+     "w": "ter",
+     "t": 56.93
+    },
+    {
+     "w": "se",
+     "t": 57.103
+    },
+    {
+     "w": "partido",
+     "t": 57.27
+    },
+    {
+     "w": "ainda",
+     "t": 57.743
+    },
+    {
+     "w": "no",
+     "t": 58.063
+    },
+    {
+     "w": "ar",
+     "t": 58.223
+    },
+    {
+     "w": "Mas",
+     "t": 58.73
+    },
+    {
+     "w": "a",
+     "t": 59.01
+    },
+    {
+     "w": "causa",
+     "t": 59.13
+    },
+    {
+     "w": "ainda",
+     "t": 59.583
+    },
+    {
+     "w": "não",
+     "t": 59.87
+    },
+    {
+     "w": "se",
+     "t": 59.983
+    },
+    {
+     "w": "sabe",
+     "t": 60.17
+    },
+    {
+     "w": "As",
+     "t": 60.863
+    },
+    {
+     "w": "nove",
+     "t": 61.077
+    },
+    {
+     "w": "pessoas",
+     "t": 61.27
+    },
+    {
+     "w": "a",
+     "t": 61.73
+    },
+    {
+     "w": "bordo",
+     "t": 61.834
+    },
+    {
+     "w": "morreram",
+     "t": 62.19
+    }
+   ]
+  }
+ ]
+}
