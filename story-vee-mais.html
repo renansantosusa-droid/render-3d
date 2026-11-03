@@ -26,12 +26,12 @@
 
   h1 { left:60px; right:60px; top:500px; text-align:center; font-size:72px; line-height:1.05; font-weight:700; }
   .sub { left:60px; right:60px; top:582px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:34px; color:var(--suave); }
-  .gente { left:80px; right:80px; top:640px; height:250px; }
-  .gente .fila { position:absolute; left:40px; right:40px; top:34px; display:flex; justify-content:space-between; }
-  .gente .leg { position:absolute; left:0; right:0; bottom:22px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--suave); }
+  .gente { left:80px; right:80px; top:640px; height:215px; }
+  .gente .fila { position:absolute; left:40px; right:40px; top:22px; display:flex; justify-content:space-between; }
+  .gente .leg { position:absolute; left:0; right:0; bottom:18px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--suave); }
   .gente .leg b { color:var(--forte); font-weight:900; }
 
-  .cal { left:80px; right:80px; top:920px; height:420px; padding:26px 28px; }
+  .cal { left:80px; right:80px; top:875px; height:405px; padding:26px 28px; }
   .cal .meses { display:flex; gap:26px; }
   .cal .m { flex:1; }
   .cal h3 { font-family:'Nunito'; font-weight:900; font-size:28px; letter-spacing:.12em; text-align:center; margin-bottom:10px; color:var(--suave); }
@@ -44,10 +44,10 @@
   .cal .conta { position:absolute; left:0; right:0; bottom:26px; text-align:center; font-size:44px; }
   .cal .conta b { color:var(--forte); font-weight:700; }
 
-  .botao { left:90px; right:90px; top:1385px; background:var(--forte); color:#fff; border-radius:40px; text-align:center; padding:24px 20px 28px; box-shadow:0 16px 34px rgba(232,69,124,.35); }
-  .botao small { display:block; font-family:'Nunito'; font-weight:800; font-size:29px; opacity:.92; }
-  .botao strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:6px; }
-  .link { left:0; right:0; top:1590px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; }
+  .botao { left:40px; right:40px; top:1305px; text-align:center; }
+  .botao small { display:block; font-size:52px; font-weight:700; line-height:1.1; color:var(--forte); }
+  
+  .link { left:0; right:0; top:1460px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:38px; }
   .link svg { vertical-align:middle; margin-left:10px; }
 </style>
 </head>
@@ -71,7 +71,7 @@
     <div class="conta" id="conta"><b id="dias">0</b> dias de venda de presente até o Natal</div>
   </div>
 
-  <div class="abs botao" id="botao"><small>Com as ferramentas certas, você chega lá.</small><strong>MINHAS FERRAMENTAS</strong></div>
+  <div class="abs botao" id="botao"><small>Com as ferramentas certas,<br>você chega lá.</small></div>
   <div class="abs link" id="link">toca no link<svg width="44" height="50" viewBox="0 0 44 50"><path d="M22 4 V40 M8 28 L22 44 L36 28" fill="none" stroke="#e8457c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <script>
