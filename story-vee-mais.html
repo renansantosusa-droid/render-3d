@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Story da Vee (03/11) pra quem respondeu "Preciso vender mais!" na enquete -> link das ferramentas.
+     Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s. Faixa de baixo (y>1560) livre pro link. -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --nude:#fbece3; --rosa:#fad6dc; --coral:#ee7d6b; --creme:#fff8f3; --tinta:#2b1a17; --verde:#1f4d36; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; }
+  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta);
+    background-color:var(--nude); background-image:linear-gradient(rgba(238,125,107,.13) 2px,transparent 2px),linear-gradient(90deg,rgba(238,125,107,.13) 2px,transparent 2px); background-size:54px 54px; }
+  .abs { position:absolute; }
+  .tag { left:0; right:0; top:140px; text-align:center; }
+  .tag span { display:inline-block; background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.14em; padding:12px 28px; border-radius:40px; }
+
+  .poll { left:90px; right:90px; top:230px; background:#fff; border-radius:40px; padding:36px 36px 30px; box-shadow:0 20px 40px rgba(74,38,32,.15); }
+  .poll .q { text-align:center; font-size:46px; margin-bottom:24px; }
+  .op { position:relative; height:104px; border-radius:30px; background:#f3ece8; overflow:hidden; margin-top:18px; }
+  .op .fill { position:absolute; left:0; top:0; bottom:0; border-radius:30px; }
+  .op .txt { position:absolute; left:30px; top:0; bottom:0; display:flex; align-items:center; font-family:'Nunito'; font-weight:900; font-size:38px; }
+  .op .pc { position:absolute; right:30px; top:0; bottom:0; display:flex; align-items:center; font-size:58px; font-weight:700; }
+  .o1 .fill { background:var(--rosa); }
+  .o2 .fill { background:var(--coral); } .o2 .txt { color:#fff; }
+
+  .sozinha { left:60px; right:60px; top:690px; text-align:center; font-size:66px; line-height:1.05; }
+  .sozinha small { display:block; font-family:'Nunito'; font-weight:800; font-size:36px; color:rgba(43,26,23,.65); margin-top:10px; }
+
+  .cal { left:70px; right:70px; top:880px; height:400px; background:#fff; border-radius:40px; box-shadow:0 20px 40px rgba(74,38,32,.15); padding:28px 30px; }
+  .cal .meses { display:flex; gap:30px; }
+  .cal .m { flex:1; }
+  .cal .m h3 { font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.1em; text-align:center; margin-bottom:10px; }
+  .cal .g { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+  .cal .d { height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Nunito'; font-weight:800; font-size:22px; color:rgba(43,26,23,.35); }
+  .cal .d.on { background:var(--coral); color:#fff; }
+  .cal .d.natal { background:var(--verde); color:#fff; font-size:26px; }
+  .faltam { left:40px; right:40px; top:1305px; text-align:center; font-size:46px; line-height:1.1; }
+  .faltam b { font-weight:700; color:var(--coral); }
+
+  .final { left:60px; right:60px; top:1410px; background:var(--tinta); color:#fff; border-radius:34px; text-align:center; padding:22px 20px 26px; }
+  .final small { display:block; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--rosa); }
+  .final strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:4px; }
+  .link { left:0; right:0; top:1610px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:40px; }
+</style>
+</head>
+<body>
+  <div class="abs tag" id="tag"><span>🥺 PRECISO VENDER MAIS</span></div>
+  <div class="abs poll" id="poll">
+    <div class="q">Como estão as vendas? 👀</div>
+    <div class="op o1"><div class="fill" id="f1"></div><div class="txt">🔥 Vendendo bem!</div><div class="pc" id="p1">0%</div></div>
+    <div class="op o2"><div class="fill" id="f2"></div><div class="txt">🥺 Preciso vender mais!</div><div class="pc" id="p2">0%</div></div>
+  </div>
+  <div class="abs sozinha" id="soz">Você não tá sozinha 💗<small>9 em cada 10 meninas responderam igual a você</small></div>
+  <div class="abs cal" id="cal"><div class="meses"><div class="m"><h3>NOVEMBRO</h3><div class="g" id="gn"></div></div><div class="m"><h3>DEZEMBRO</h3><div class="g" id="gd"></div></div></div></div>
+  <div class="abs faltam" id="falt"><b id="dias">0</b> dias de venda de presente até o Natal 🎄</div>
+  <div class="abs final" id="final"><small>Com as ferramentas certas, você chega lá ✨</small><strong>MINHAS FERRAMENTAS</strong></div>
+  <div class="abs link" id="link">toca no link 👇</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x));
+const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
+const back = (x) => { x = cl(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const p = (t, a, d) => (t - a) / d;
+function pop(el, k, dy = 40) { el.style.opacity = cl(k * 3); el.style.transform = `translateY(${(1 - eo(k)) * dy}px) scale(${0.85 + 0.15 * back(k)})`; }
+
+// calendario: dias de 03/11 ate 24/12 acendem em sequencia; 25/12 = arvore
+const acesos = [];
+function mes(el, m, total) {
+  const ini = new Date(2026, m, 1).getDay();
+  for (let i = 0; i < ini; i++) el.appendChild(document.createElement('div'));
+  for (let d = 1; d <= total; d++) {
+    const c = document.createElement('div'); c.className = 'd'; c.textContent = d;
+    if (m === 11 && d === 25) { c.textContent = '🎄'; c.dataset.natal = 1; }
+    if ((m === 10 && d >= 3) || (m === 11 && d <= 25)) acesos.push(c);
+    el.appendChild(c);
+  }
+}
+mes($('gn'), 10, 30); mes($('gd'), 11, 31);
+const DIAS = acesos.length - 1; // 03/11 a 24/12 = 52
+
+window.renderFrame = (t) => {
+  pop($('tag'), p(t, 0, .5)); pop($('poll'), p(t, .2, .6));
+  const g = eo(p(t, .9, 1.4));
+  $('f1').style.width = 11 * g + '%'; $('f2').style.width = 89 * g + '%';
+  $('p1').textContent = Math.round(11 * g) + '%'; $('p2').textContent = Math.round(89 * g) + '%';
+  pop($('soz'), p(t, 2.8, .6));
+  pop($('cal'), p(t, 4.6, .6));
+  const n = Math.floor(acesos.length * cl(p(t, 5.2, 2.6)));
+  acesos.forEach((c, i) => { c.className = 'd' + (i < n ? (c.dataset.natal ? ' natal' : ' on') : ''); });
+  pop($('falt'), p(t, 5.2, .5));
+  $('dias').textContent = Math.min(DIAS, n);
+  pop($('final'), p(t, 8.6, .7), 60);
+  if (t > 9.6) $('final').style.transform += ` scale(${1 + 0.035 * Math.sin((t - 9.6) * 6)})`;
+  pop($('link'), p(t, 9.6, .5));
+  $('link').style.transform += ` translateY(${t > 10.1 ? Math.abs(Math.sin((t - 10.1) * 4)) * 12 : 0}px)`;
+};
+window.renderFrame(0);
+document.fonts.ready.then(() => { window.renderFrame(0); window.pronto = true; });
+</script>
+</body>
+</html>
