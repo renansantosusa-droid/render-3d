@@ -1,0 +1,29 @@
+{
+ "nome": "radar05-pov-terapia",
+ "obs": "03/11 radar de virais #5: @mora.magnets (POV terapia) + @heartprinted (balão do hater). IMG_7726 ciclo contínuo inteiro. Mudo (Renan escolhe música). CTA MÉTODO na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7726_0_8.2.MOV",
+   "inicio": 0,
+   "duracao": 8.2
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "vai arrumar um emprego de verdade 🙄",
+   "usuario": "anonima.123",
+   "y": 0.5
+  },
+  {
+   "texto": "POV: eu, no meu \"emprego de verdade\" 😌",
+   "y": 0.64,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.74,
+   "de": 5.5
+  }
+ ]
+}

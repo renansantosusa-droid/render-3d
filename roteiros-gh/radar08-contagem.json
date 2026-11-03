@@ -1,0 +1,53 @@
+{
+ "nome": "radar08-contagem",
+ "obs": "03/11 radar de virais #8: modelo @ojeancarlo.s (contagem do fim do ano, palavras gigantes 1 por vez). IMG_3559 2,5-11 (sorri pra câmera). Sem número de dias (vale o mês todo). Mudo. CTA 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3559_2.5_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "FALTAM",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 0,
+   "ate": 1.2
+  },
+  {
+   "texto": "MENOS DE\n2 MESES",
+   "y": 0.38,
+   "tamanho": 120,
+   "de": 1.2,
+   "ate": 2.6
+  },
+  {
+   "texto": "NOVEMBRO",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 2.6,
+   "ate": 3.6
+  },
+  {
+   "texto": "DEZEMBRO",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 3.6,
+   "ate": 4.6
+  },
+  {
+   "texto": "E 2027\nCHEGA",
+   "y": 0.38,
+   "tamanho": 120,
+   "de": 4.6,
+   "ate": 6
+  },
+  {
+   "texto": "Quem já tem o CALENDÁRIO 2027\npra vender sai na frente\nComenta 2027 👇",
+   "y": 0.6,
+   "de": 6
+  }
+ ]
+}

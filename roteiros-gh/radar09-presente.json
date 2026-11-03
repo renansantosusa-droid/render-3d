@@ -1,0 +1,22 @@
+{
+ "nome": "radar09-presente",
+ "obs": "03/11 radar de virais #9: modelo @feito.dememorias (caixa de presente, 7 s). IMG_3034 6,5-13,5 (fecha a cinta rosa e levanta a caixa). Mudo. CTA NATAL → Kit Natal.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3034_6.5_7.MOV",
+   "inicio": 0,
+   "duracao": 7
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Olha que amor esse presente 😍🎁\nfeito com FOTO ÍMÃS",
+   "y": 0.1
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit de Natal",
+   "y": 0.7,
+   "de": 4
+  }
+ ]
+}
