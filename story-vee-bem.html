@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Story da Vee (03/11) pra quem respondeu "Vendendo bem!" na enquete -> link do Protocolo de Vendas 24 Horas.
+     Contrato do renderizar.mjs: window.pronto + window.renderFrame(t). 12 s. Faixa de baixo (y>1560) livre pro link. -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --nude:#fbece3; --rosa:#fad6dc; --coral:#ee7d6b; --creme:#fff8f3; --tinta:#2b1a17; --verde:#1f4d36; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; }
+  body { font-family:'Fredoka',sans-serif; font-weight:600; color:var(--tinta);
+    background-color:var(--nude); background-image:linear-gradient(rgba(238,125,107,.13) 2px,transparent 2px),linear-gradient(90deg,rgba(238,125,107,.13) 2px,transparent 2px); background-size:54px 54px; }
+  .abs { position:absolute; }
+  .tag { left:0; right:0; top:150px; text-align:center; }
+  .tag span { display:inline-block; background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:900; font-size:30px; letter-spacing:.14em; padding:12px 28px; border-radius:40px; }
+  h1 { left:70px; right:70px; top:240px; text-align:center; font-size:84px; line-height:1.02; font-weight:600; }
+  h1 em { font-style:normal; display:inline-block; background:var(--coral); color:#fff; padding:0 20px 8px; border-radius:18px; transform:rotate(-2deg); }
+
+  .card { left:70px; right:70px; top:500px; height:640px; background:#fff; border-radius:40px; box-shadow:0 20px 40px rgba(74,38,32,.15); }
+  .card .tit { position:absolute; left:50px; top:40px; font-family:'Nunito'; font-weight:900; font-size:32px; letter-spacing:.06em; color:rgba(43,26,23,.55); }
+  .eixo { position:absolute; left:60px; right:60px; bottom:130px; height:4px; background:rgba(43,26,23,.15); border-radius:4px; }
+  .bar { position:absolute; bottom:134px; width:250px; border-radius:26px 26px 6px 6px; }
+  .b1 { left:120px; background:var(--rosa); }
+  .b2 { left:570px; background:var(--coral); }
+  .val { position:absolute; width:250px; text-align:center; font-size:96px; font-weight:700; }
+  .lab { position:absolute; bottom:26px; width:250px; text-align:center; font-family:'Nunito'; font-weight:800; font-size:34px; color:rgba(43,26,23,.7); }
+  .seta { position:absolute; left:400px; top:290px; font-size:110px; color:var(--coral); }
+
+  .mes { left:70px; right:70px; top:1170px; text-align:center; font-size:56px; line-height:1.1; }
+  .mes b { font-weight:700; color:var(--coral); }
+  .chips { left:40px; right:40px; top:1275px; display:flex; justify-content:center; gap:16px; }
+  .chip { background:var(--verde); color:var(--creme); font-family:'Nunito'; font-weight:800; font-size:31px; padding:14px 24px; border-radius:40px; white-space:nowrap; }
+  .final { left:60px; right:60px; top:1380px; background:var(--tinta); color:#fff; border-radius:34px; text-align:center; padding:26px 20px 30px; }
+  .final small { display:block; font-family:'Nunito'; font-weight:800; font-size:30px; color:var(--rosa); letter-spacing:.04em; }
+  .final strong { display:block; font-size:62px; font-weight:700; line-height:1.05; margin-top:6px; }
+  .link { left:0; right:0; top:1650px; text-align:center; font-family:'Nunito'; font-weight:900; font-size:40px; }
+</style>
+</head>
+<body>
+  <div class="abs tag" id="tag"><span>🔥 VENDENDO BEM</span></div>
+  <h1 class="abs" id="h1">Você vendeu <em>4 pedidos</em> hoje 😍</h1>
+
+  <div class="abs card" id="card">
+    <div class="tit">E SE FOSSEM 8? 👀</div>
+    <div class="eixo"></div>
+    <div class="bar b1" id="b1"></div><div class="bar b2" id="b2"></div>
+    <div class="val" id="v1" style="left:120px">4</div><div class="val" id="v2" style="left:570px;color:var(--coral)">8</div>
+    <div class="lab" style="left:120px">pedidos/dia<br>hoje</div><div class="lab" style="left:570px">pedidos/dia<br>em novembro</div>
+    <div class="seta" id="seta">➜</div>
+  </div>
+
+  <div class="abs mes" id="mes">No mês: <span id="m1">120</span> ➜ <b id="m2">120</b> pedidos</div>
+  <div class="abs chips" id="chips"><div class="chip">🎁 Presentes</div><div class="chip">🥂 Confraternizações</div><div class="chip">🎄 Natal</div></div>
+  <div class="abs final" id="final"><small>Não é postar por postar. É estratégia 🚀</small><strong>PROTOCOLO DE<br>VENDAS 24 HORAS</strong></div>
+  <div class="abs link" id="link">toca no link 👇</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x));
+const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
+const back = (x) => { x = cl(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const p = (t, a, d) => (t - a) / d;
+function pop(el, k, dy = 40) { el.style.opacity = cl(k * 3); el.style.transform = `translateY(${(1 - eo(k)) * dy}px) scale(${0.85 + 0.15 * back(k)})`; }
+const H = 340; // altura maxima da barra
+window.renderFrame = (t) => {
+  pop($('tag'), p(t, 0, .5)); pop($('h1'), p(t, .25, .6));
+  pop($('card'), p(t, 1.6, .6));
+  const g1 = eo(p(t, 2.2, .8)), g2 = eo(p(t, 3.3, 1.4));
+  $('b1').style.height = (H / 2) * g1 + 'px'; $('b2').style.height = H * g2 + 'px';
+  $('v1').style.bottom = 134 + (H / 2) * g1 + 10 + 'px'; $('v2').style.bottom = 134 + H * g2 + 10 + 'px';
+  $('v1').style.opacity = g1; $('v2').style.opacity = cl(g2 * 3);
+  $('v2').textContent = Math.max(4, Math.round(4 + 4 * g2));
+  $('seta').style.opacity = cl(p(t, 3.2, .4)); $('seta').style.transform = `translateX(${(1 - eo(p(t, 3.2, .6))) * -40}px)`;
+  pop($('mes'), p(t, 5.2, .5));
+  $('m2').textContent = Math.round(120 + 120 * eo(p(t, 5.6, 1.6)));
+  pop($('chips'), p(t, 7.4, .6));
+  const k = p(t, 9, .7); pop($('final'), k, 60);
+  const pulso = t > 10 ? 1 + 0.035 * Math.sin((t - 10) * 6) : 1;
+  $('final').style.transform += ` scale(${pulso})`;
+  pop($('link'), p(t, 10, .5));
+  $('link').style.transform += ` translateY(${t > 10.5 ? Math.abs(Math.sin((t - 10.5) * 4)) * 12 : 0}px)`;
+};
+window.renderFrame(0);
+document.fonts.ready.then(() => { window.renderFrame(0); window.pronto = true; });
+</script>
+</body>
+</html>
