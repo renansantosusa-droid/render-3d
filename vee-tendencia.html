@@ -132,14 +132,17 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
   <div class="vid card" data-in="26.04" data-anim="sobeCard" data-cx="540" data-cy="1060" data-s="0.95" style="left:70px;top:790px;width:940px;height:1060px"><img></div>
 </div>
 
-<!-- 8. CTA (30.95-fim): caixa de comentario digitando 2027 -->
+<!-- 8. CTA de ANUNCIO (30.95-fim): seta pro botao do anuncio, sem "comenta" -->
 <div class="cena claro" data-de="30.95" data-ate="99">
   <div class="vid circ" data-in="30.95" data-anim="pop" data-cx="430" data-cy="860" data-s="0.7" style="left:300px;top:150px;width:480px;height:480px"><img></div>
-  <div class="abs" data-in="31.2" data-anim="pop" style="left:110px;right:110px;top:720px;background:#fff;border:6px solid var(--rosa);border-radius:40px;padding:34px 44px;box-shadow:0 20px 50px rgba(255,79,154,.25)">
-    <div class="mono" style="color:var(--rosa);font-weight:700">comenta</div>
-    <div class="black" style="font-size:150px;color:var(--rosa);line-height:1.05"><span data-digita="2027" data-in="31.5" data-cps="7"></span><span id="cursor" style="font-weight:400;color:var(--tinta)">|</span></div>
+  <div class="abs" style="left:0;right:0;top:720px;text-align:center">
+    <div class="mono" data-in="31.0" data-anim="fade">se você tem interesse</div>
+    <div data-in="32.2" data-anim="pop" style="margin-top:14px"><span class="serif" style="font-size:110px">o </span><span class="black" style="font-size:130px;color:var(--rosa)">link</span><span class="serif" style="font-size:110px"> tá aqui</span></div>
+    <div class="serif" data-in="32.5" data-anim="sobe" style="font-size:96px;line-height:1">embaixo</div>
   </div>
-  <div class="abs" data-in="32.15" data-anim="sobe" style="left:0;right:0;top:1060px;text-align:center"><span class="serif" style="font-size:86px">que eu te mando o <span style="color:var(--rosa)">link</span></span></div>
+  <div class="abs" id="seta" data-in="32.6" data-anim="pop" style="left:440px;top:1560px;width:200px;height:200px;border-radius:50%;background:var(--rosa);display:grid;place-items:center;box-shadow:0 0 0 18px rgba(255,79,154,.18),0 18px 44px rgba(255,79,154,.5)">
+    <svg width="110" height="110" viewBox="0 0 24 24"><path d="M12 4v15M5 12.5l7 7 7-7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
 </div>
 
 <div class="legenda" id="leg"></div>
@@ -231,7 +234,6 @@ window.renderFrame = async (t) => {
     if (im.getAttribute("src") !== src) im.src = src;
   }
   for (const el of anims) if (el.closest(".cena")?.style.display !== "none") animar(el, t);
-  document.getElementById("cursor").style.opacity = Math.floor(t * 2.5) % 2 ? 0 : 1;
   for (const p of document.querySelectorAll("[data-traco]")) {
     const [a, b] = p.dataset.traco.split(":").map(Number), L = p.getTotalLength();
     p.style.strokeDasharray = L; p.style.strokeDashoffset = L * (1 - easeOut(clamp((t - a) / (b - a))));
