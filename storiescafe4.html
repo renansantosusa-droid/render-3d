@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:#faf6ea; }
+  #palco { position:relative; width:1080px; height:1920px; overflow:hidden; background:#faf6ea; font-family:Nunito,sans-serif; color:#2b2320; }
+  .c { position:absolute; left:50px; width:980px; text-align:center; opacity:0; }
+  .it { font-family:'Playfair Display',serif; font-style:italic; font-weight:500; }
+  .rosa { color:#c9548f; }
+  .tag { display:inline-block; background:#f9d6e7; color:#b03f7a; font:900 32px Nunito; padding:11px 28px; border-radius:99px; letter-spacing:.05em; }
+  #tres { display:inline-block; font:900 136px Nunito; color:#e0558f; font-style:normal; }
+  .card { position:absolute; top:800px; width:470px; height:510px; background:#fff; border-radius:40px; padding:24px 20px 24px; box-shadow:0 24px 50px rgba(160,60,110,.15); text-align:center; opacity:0; }
+  #c1 { left:50px; } #c2 { left:560px; }
+  .pil { display:inline-block; background:#e0558f; color:#fff; font:900 30px Nunito; padding:9px 24px; border-radius:99px; }
+  .vis { height:284px; margin-top:16px; display:flex; align-items:center; justify-content:center; }
+  .ct { font:italic 500 39px/1.16 'Playfair Display',serif; margin-top:14px; }
+  .cal { width:330px; height:270px; border-radius:20px; overflow:hidden; background:#fff; box-shadow:0 0 0 3px #f3dce7; }
+  .cal-top { height:68px; background:linear-gradient(90deg,#ff7fc2,#e0558f); color:#fff; font:900 38px Nunito; display:flex; align-items:center; justify-content:center; letter-spacing:.06em; }
+  .cal-grade { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:16px 18px; }
+  .mes { height:48px; border-radius:10px; background:#faf1f5; display:flex; align-items:center; justify-content:center; font:800 18px Nunito; color:#c7a9b7; }
+  #arroba { position:absolute; left:0; top:1790px; width:1080px; text-align:center; color:#b9ada2; font-weight:800; font-size:34px; opacity:0; }
+</style></head><body><div id="palco">
+  <div class="c" id="a" style="top:205px"><span class="tag">ESPECIAL BLACK FRIDAY</span></div>
+  <div class="c it" id="b" style="top:290px;font-size:68px">Pensando em você, eu abri as</div>
+  <div class="c it" id="d" style="top:372px;font-size:112px;line-height:1.05"><span id="tres">3</span> últimas vagas</div>
+  <div class="c" id="e" style="top:532px;font:900 32px Nunito;letter-spacing:.14em">MÉTODO</div>
+  <div class="c it rosa" id="f" style="top:568px;font-size:80px">Renda Magnética</div>
+  <div class="c it" id="p" style="top:700px;font-size:60px">E você ainda leva <span class="rosa">2 presentes</span>:</div>
+  <div class="card" id="c1"><div class="pil">🎁 Presente 1</div><div class="vis"><div class="cal"><div class="cal-top">2027</div><div class="cal-grade"><div class="mes" id="m0">JAN</div><div class="mes" id="m1">FEV</div><div class="mes" id="m2">MAR</div><div class="mes" id="m3">ABR</div><div class="mes" id="m4">MAI</div><div class="mes" id="m5">JUN</div><div class="mes" id="m6">JUL</div><div class="mes" id="m7">AGO</div><div class="mes" id="m8">SET</div><div class="mes" id="m9">OUT</div><div class="mes" id="m10">NOV</div><div class="mes" id="m11">DEZ</div></div></div></div><div class="ct">Moldes do Calendário<br><span class="rosa">Personalizado 2027</span></div></div>
+  <div class="card" id="c2"><div class="pil">🎁 Presente 2</div><div class="vis"><svg class="gab" width="330" height="270" viewBox="0 0 330 270" fill="none" stroke="#e0558f" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+  <path id="g1" pathLength="1" d="M45 20 H130 Q150 20 150 40 V105 Q150 125 130 125 H45 Q25 125 25 105 V40 Q25 20 45 20Z"/>
+  <circle id="g2" pathLength="1" cx="240" cy="72" r="54" transform="rotate(-90 240 72)"/>
+  <path id="g3" pathLength="1" d="M165 262 C105 218 92 190 92 168 C92 146 110 132 130 132 C146 132 158 141 165 154 C172 141 184 132 200 132 C220 132 238 146 238 168 C238 190 225 218 165 262Z"/>
+</svg></div><div class="ct">Gabaritos<br><span class="rosa">de moldes</span></div></div>
+  <div class="c it" id="fim" style="top:1335px;font-size:56px;line-height:1.15">Talvez esse seja o seu<br>momento de <span class="rosa">começar</span>. <span style="font-style:normal">💗</span></div>
+  <div id="arroba">@veecriativos</div>
+</div>
+<script>
+const $ = (i) => document.getElementById(i);
+const lim = (x) => Math.max(0, Math.min(1, x));
+const sai = (t, a, d) => { const x = lim((t - a) / d); return 1 - Math.pow(1 - x, 3); };
+const mola = (t, a, d) => { const x = lim((t - a) / d); const c = 1.5; return x === 0 ? 0 : 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const entra = (id, t, a) => { const el = $(id); el.style.opacity = sai(t, a, 0.4); el.style.transform = 'translateY(' + (1 - sai(t, a, 0.5)) * 24 + 'px)'; };
+const MES = [...Array(12).keys()].map((i) => $('m' + i));
+const desenha = (id, t, a, d) => {
+  const k = sai(t, a, d), el = $(id);
+  if (k >= 1) { el.style.strokeDasharray = '0.045 0.03'; el.style.strokeDashoffset = '0'; }
+  else { el.style.strokeDasharray = '1'; el.style.strokeDashoffset = String(1 - k); }
+  el.style.opacity = t < a ? 0 : 1;
+};
+window.renderFrame = (t) => {
+  entra('a', t, 0.1); entra('b', t, 0.4); entra('d', t, 0.8); entra('e', t, 1.3); entra('f', t, 1.5); entra('p', t, 2.1);
+  $('tres').style.transform = 'scale(' + (t < 0.8 ? 0 : mola(t, 0.8, 0.6)) + ')';
+  // Cartões entram e depois flutuam de leve
+  [['c1', 2.6, 0], ['c2', 3.0, 1.4]].forEach(([id, a, fase]) => {
+    const el = $(id), fl = Math.sin(t * 1.7 + fase) * 7 * lim((t - 6.4) / 1);
+    el.style.opacity = lim((t - a) / 0.2);
+    el.style.transform = 'translateY(' + ((1 - sai(t, a, 0.6)) * 80 + fl) + 'px) scale(' + (t < a ? 0.9 : 0.9 + 0.1 * mola(t, a, 0.6)) + ')';
+  });
+  // Meses acendem um por um; depois o destaque fica passeando
+  const volta = t > 7 ? Math.floor(((t - 7) * 3.2) % 12) : -1;
+  MES.forEach((m, i) => {
+    const a = 3.4 + i * 0.2, on = t >= a;
+    const novo = sai(t, a, 0.25);
+    const foco = volta === i;
+    m.style.background = foco ? '#e0558f' : on ? '#f9d6e7' : '#faf1f5';
+    m.style.color = foco ? '#fff' : on ? '#b03f7a' : '#c7a9b7';
+    m.style.transform = 'scale(' + (on ? 1 + (1 - novo) * 0.22 : 1) + ')';
+  });
+  // Contornos dos gabaritos se desenham
+  desenha('g1', t, 3.6, 1.0); desenha('g2', t, 4.5, 1.0); desenha('g3', t, 5.4, 1.1);
+  // Frase final
+  entra('fim', t, 6.4);
+  $('arroba').style.opacity = sai(t, 6.9, 0.6);
+};
+Promise.all([document.fonts.load('italic 500 80px "Playfair Display"'), document.fonts.load('900 40px Nunito'), document.fonts.load('800 20px Nunito')]).then(() => document.fonts.ready).then(() => {
+  window.renderFrame(0); window.pronto = true;
+});
+</script></body></html>
