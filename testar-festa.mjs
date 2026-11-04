@@ -9,7 +9,7 @@ const CHAVE = randomBytes(8).toString("hex"), PORTA_WS = 4301, PORTA_WEB = 4302,
 fs.mkdirSync("fotos-festa", { recursive: true });
 const sv = spawn(process.execPath, ["festa-server.mjs"], { env: { ...process.env, PORT: String(PORTA_WS), TESTE_CHAVE: CHAVE }, stdio: "inherit" });
 const web = http.createServer(async (q, r) => {
-  if (q.url.startsWith("/festa/config.js")) { r.setHeader("content-type", "application/javascript"); return r.end(`window.FESTA={servidor:${JSON.stringify(WS)},playlist:""};`); }
+  if (q.url.startsWith("/festa/config.js")) { r.setHeader("content-type", "application/javascript"); return r.end(`window.FESTA={servidor:${JSON.stringify(WS)},musicas:[{nome:"🤠 Sertanejo",id:"YrvU5E-iF_s"},{nome:"🥁 Pagode",id:"Vxl-SEI02wE"}]};`); }
   try {
     const u = await fetch(SITE + q.url), b = Buffer.from(await u.arrayBuffer());
     r.statusCode = u.status; r.setHeader("content-type", u.headers.get("content-type") || "application/octet-stream"); r.end(b);
@@ -56,6 +56,14 @@ await new Promise((r) => setTimeout(r, 800)); chute.send(JSON.stringify({ t: "an
 chute.send(JSON.stringify({ t: "chute", x: 1, z: 0 })); await new Promise((r) => setTimeout(r, 1500));
 console.log("bola:", JSON.stringify(bolas[0]), "->", JSON.stringify(bolas.at(-1)));
 await g.screenshot({ path: "fotos-festa/8-chute.png", timeout: 180000 });
+// música: escolhe cada gênero, vê o player e o que ele mostra
+for (const n of [1, 2]) {
+  await g.click("#btn-som"); await g.waitForTimeout(300); await g.click(`#musicas button:nth-child(${n})`); await g.waitForTimeout(7000);
+  const fr = g.frames().find((f) => f.url().includes("youtube.com/embed"));
+  const txt = fr ? (await fr.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").slice(0, 160) : "(sem player)";
+  console.log("música", n, await g.locator("#btn-som").innerText(), "| player:", txt);
+  await g.screenshot({ path: `fotos-festa/9-musica${n}.png`, timeout: 180000 });
+}
 console.log("ERROS:", erros.length ? "\n" + [...new Set(erros)].join("\n") : "nenhum");
 clearInterval(passeio); bots.forEach((w) => w.close()); chute.close(); await nav.close(); web.close(); sv.kill();
 process.exit(0);

@@ -6,7 +6,8 @@ import fs from "node:fs";
 import { WebSocketServer } from "ws";
 
 const PORT = +(process.env.PORT || 3295);
-const MAX_SALA = +(process.env.MAX_SALA || 150);
+const LOTACAO = +(process.env.LOTACAO || 1000); // mais que isso espera na fila
+const VER = +(process.env.VER || 150), VER_RAIO = +(process.env.VER_RAIO || 34); // cada celular recebe no máximo VER bonecos, os mais perto
 const RAIO = 56, TICK_MS = 150, N_EMOJIS = 6, N_FRASES = 6;
 const INI = Date.parse(process.env.FESTA_INI || "2026-11-05T21:00:00-03:00");
 const FIM = Date.parse(process.env.FESTA_FIM || "2026-11-05T22:00:00-03:00");
@@ -52,47 +53,70 @@ async function pagarPontos() {
 }
 setInterval(() => { for (const p of todos()) somarPresenca(p); salvar(); pagarPontos(); }, 60e3);
 
-// ---------- salas ----------
-const salas = [];
-const todos = () => salas.flatMap((s) => [...s.pessoas.values()]);
-const porUsuario = new Map();
-let proxId = 1;
-function acharSala() {
-  const s = salas.find((x) => x.pessoas.size < MAX_SALA);
-  if (s) return s;
-  const nova = { n: salas.length + 1, pessoas: new Map(), fila: [], bola: { x: 38, z: 0, vx: 0, vz: 0, a: 0, b: 0, mudou: true } };
-  salas.push(nova);
-  return nova;
+// ---------- uma festa só: todo mundo no mesmo lugar ----------
+const pessoas = new Map(), porUsuario = new Map();
+const todos = () => [...pessoas.values()];
+const bola = { x: 38, z: 0, vx: 0, vz: 0, a: 0, b: 0, mudou: true };
+let eventos = []; // emoji/frase do tique: [tipo, id, i]
+// fila de espera: quem chega com a festa lotada fica na tela de entrada e entra sozinho quando abre vaga
+const fila = [];
+function liberarFila() {
+  while (fila.length && pessoas.size < LOTACAO) { const f = fila.shift(); if (f.ws.readyState !== 1 || porUsuario.has(f.k)) continue; admitir(f.ws, f.casa, f.k, false); }
 }
+function avisarFila() { for (let i = fila.length - 1; i >= 0; i--) if (fila[i].ws.readyState !== 1) fila.splice(i, 1); fila.forEach((f, i) => manda(f.ws, { t: "fila", pos: i + 1, total: fila.length })); }
+setInterval(avisarFila, 5000);
+// espera antes de abrir: a posição é do @ (quem cai e volta não perde o lugar); às INI todo mundo entra na ordem de chegada
+const espera = new Map(); // @ -> { ts, ws, casa, k }
+const listaEspera = () => [...espera.values()].filter((e) => e.ws?.readyState === 1).sort((a, b) => a.ts - b.ts);
+function esperar(ws, casa, k) {
+  const e = espera.get(k);
+  if (e) { if (e.ws && e.ws !== ws && e.ws.readyState === 1) { manda(e.ws, { t: "fora", motivo: "outro" }); e.ws.close(); } e.ws = ws; }
+  else espera.set(k, { ts: Date.now(), ws, casa, k });
+  ws.esperaK = k;
+  const l = listaEspera(); manda(ws, { t: "espera", pos: l.findIndex((x) => x.ws === ws) + 1, total: l.length, abre: INI });
+}
+setInterval(() => { const l = listaEspera(); l.forEach((e, i) => manda(e.ws, { t: "espera", pos: i + 1, total: l.length, abre: INI })); }, 5000);
+setInterval(() => {
+  if (Date.now() < INI || !espera.size) return;
+  const l = listaEspera(); espera.clear();
+  for (const e of l) { delete e.ws.esperaK; if (porUsuario.has(e.k)) continue; if (pessoas.size < LOTACAO) admitir(e.ws, e.casa, e.k, false); else fila.push({ ws: e.ws, casa: e.casa, k: e.k }); }
+  avisarFila();
+  console.log(`festa aberta: ${pessoas.size} entraram, ${fila.length} na fila`);
+}, 1000);
+let proxId = 1;
 const manda = (ws, o) => { if (ws.readyState === 1) ws.send(JSON.stringify(o)); };
 const lugar = () => { const a = Math.random() * Math.PI * 2, r = 3 + Math.random() * 8; return [+(Math.cos(a) * r).toFixed(1), +(Math.sin(a) * r + 2).toFixed(1)]; };
 const naPraca = (x, z) => { const d = Math.hypot(x, z); const k = d > RAIO ? RAIO / d : 1; return [+(x * k).toFixed(1), +(z * k).toFixed(1)]; };
+const bolaArr = () => [+bola.x.toFixed(2), +bola.z.toFixed(2), bola.a, bola.b];
 function sair(p, avisoOutro) {
-  if (!p.sala) return;
+  if (!pessoas.has(p.id)) return;
   somarPresenca(p);
-  p.sala.pessoas.delete(p.id);
-  p.sala.fila.push(["s", p.id]);
+  pessoas.delete(p.id);
   if (porUsuario.get(norm(p.u)) === p) porUsuario.delete(norm(p.u));
-  p.sala = null;
+  liberarFila();
   if (avisoOutro) { manda(p.ws, { t: "fora", motivo: "outro" }); p.ws.close(); }
 }
 
 function entrar(ws, m) {
   const teste = Boolean(CHAVE && m.chave === CHAVE);
   const agora = Date.now();
-  if (!teste && agora < INI) return manda(ws, { t: "fechado", abre: INI });
   if (!teste && agora >= FIM) return manda(ws, { t: "acabou" });
   const k = norm(m.u);
   let casa = casas.get(k);
   if (!casa && teste) casa = { u: String(m.u).replace(/^@/, "").slice(0, 30), cid: +m.cid || 3550308 };
   if (!casa) return manda(ws, { t: "semcasa" });
+  if (!teste && agora < INI) return esperar(ws, casa, k);
   const velho = porUsuario.get(k);
   if (velho) sair(velho, true);
-  const sala = acharSala(), [x, z] = lugar();
-  const p = { id: proxId++, u: casa.u, cid: casa.cid, x, z, ws, sala, teste, cor: Math.floor(Math.random() * 8), contaDesde: agora, t: [] };
-  sala.pessoas.set(p.id, p); porUsuario.set(k, p); ws.pessoa = p;
-  const b = sala.bola; manda(ws, { t: "ok", id: p.id, sala: sala.n, fim: FIM, b: [+b.x.toFixed(2), +b.z.toFixed(2), b.a, b.b], pessoas: [...sala.pessoas.values()].map((q) => [q.id, q.u, q.cid, q.x, q.z, q.cor]) });
-  sala.fila.push(["e", p.id, p.u, p.cid, p.x, p.z, p.cor]);
+  else if (!teste && pessoas.size >= LOTACAO) { if (!fila.some((f) => f.ws === ws)) fila.push({ ws, casa, k }); return manda(ws, { t: "fila", pos: fila.findIndex((f) => f.ws === ws) + 1, total: fila.length }); }
+  admitir(ws, casa, k, teste);
+}
+function admitir(ws, casa, k, teste) {
+  const agora = Date.now();
+  const [x, z] = lugar();
+  const p = { id: proxId++, u: casa.u, cid: casa.cid, x, z, ws, teste, cor: Math.floor(Math.random() * 8), contaDesde: agora, t: [], vis: new Set() };
+  pessoas.set(p.id, p); porUsuario.set(k, p); ws.pessoa = p;
+  manda(ws, { t: "ok", id: p.id, sala: 1, fim: FIM, b: bolaArr(), pessoas: [[p.id, p.u, p.cid, p.x, p.z, p.cor]] });
 }
 
 // limite por pessoa: nada de encher a praça de emoji (por tipo: andar 4/s, emoji 1/s, frase 1 a cada 3 s)
@@ -101,17 +125,17 @@ function mensagem(ws, txt) {
   let m; try { m = JSON.parse(txt); } catch { return; }
   ws.msgs = (ws.msgs || 0) + 1;
   if (m.t === "entrar") { if (!ws.pessoa) entrar(ws, m); return; }
-  const p = ws.pessoa; if (!p?.sala) return;
+  const p = ws.pessoa; if (!p || !pessoas.has(p.id)) return;
   if (m.t === "andar" && pode(p, 0, 240)) { const [x, z] = naPraca(+m.x || 0, +m.z || 0); p.x = x; p.z = z; p.mudou = true; }
-  else if (m.t === "chute" && pode(p, 3, 250)) { const d = Math.hypot(+m.x || 0, +m.z || 0) || 1, b = p.sala.bola; if (Math.hypot(p.x - b.x, p.z - b.z) < 9) { b.vx = (+m.x || 0) / d * 9; b.vz = (+m.z || 0) / d * 9; b.mudou = true; } }
-  else if (m.t === "emoji" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_EMOJIS && pode(p, 1, 1000)) p.sala.fila.push(["j", p.id, m.i]);
-  else if (m.t === "frase" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_FRASES && pode(p, 2, 3000)) p.sala.fila.push(["f", p.id, m.i]);
+  else if (m.t === "chute" && pode(p, 3, 250)) { const d = Math.hypot(+m.x || 0, +m.z || 0) || 1, b = bola; if (Math.hypot(p.x - b.x, p.z - b.z) < 9) { b.vx = (+m.x || 0) / d * 9; b.vz = (+m.z || 0) / d * 9; b.mudou = true; } }
+  else if (m.t === "emoji" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_EMOJIS && pode(p, 1, 1000)) eventos.push(["j", p.id, m.i]);
+  else if (m.t === "frase" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_FRASES && pode(p, 2, 3000)) eventos.push(["f", p.id, m.i]);
 }
 
 // ---------- bola do campinho: o servidor é o juiz, todo mundo vê igual ----------
 const CAMPO = { x0: 26, x1: 50, z0: -8, z1: 8, gol: 2.5 };
-function moverBola(s) {
-  const b = s.bola; if (!b.vx && !b.vz) return;
+function moverBola() {
+  const b = bola; if (!b.vx && !b.vz) return;
   const dt = TICK_MS / 1000;
   b.x += b.vx * dt; b.z += b.vz * dt; b.vx *= .9; b.vz *= .9; b.mudou = true;
   if (Math.hypot(b.vx, b.vz) < .15) b.vx = b.vz = 0;
@@ -122,29 +146,45 @@ function moverBola(s) {
   }
 }
 
-// ---------- ritmo: junta o que mudou e manda de uma vez ----------
+// ---------- ritmo: cada um recebe só o que acontece perto dele ----------
+// grade de 10 m pra achar os vizinhos sem comparar todo mundo com todo mundo
+const CEL = 10, chave = (cx, cz) => cx * 1000 + cz;
 let tiques = 0;
 setInterval(() => {
   tiques++;
-  const total = porUsuario.size;
-  for (const s of salas) {
-    moverBola(s);
-    const andou = [];
-    for (const p of s.pessoas.values()) if (p.mudou) { andou.push([p.id, p.x, p.z]); p.mudou = false; }
-    const mostrar = tiques % 13 === 0;
-    const bolaMudou = s.bola.mudou; s.bola.mudou = false;
-    if (!andou.length && !s.fila.length && !mostrar && !bolaMudou) continue;
-    const txt = JSON.stringify({ t: "q", a: andou, f: s.fila, ...(mostrar ? { n: s.pessoas.size, total } : {}), ...(bolaMudou ? { b: [+s.bola.x.toFixed(2), +s.bola.z.toFixed(2), s.bola.a, s.bola.b] } : {}) });
-    s.fila = [];
-    for (const p of s.pessoas.values()) if (p.ws.readyState === 1 && p.ws.bufferedAmount < 256e3) p.ws.send(txt);
+  moverBola();
+  const grade = new Map();
+  for (const p of pessoas.values()) { const k = chave(Math.floor(p.x / CEL), Math.floor(p.z / CEL)); if (!grade.has(k)) grade.set(k, []); grade.get(k).push(p); }
+  const porId = new Map(eventos.map((e) => [e[1], true])), evs = eventos; eventos = [];
+  const mostrar = tiques % 13 === 0, total = porUsuario.size, bolaMudou = bola.mudou; bola.mudou = false;
+  const alc = Math.ceil(VER_RAIO / CEL);
+  for (const p of pessoas.values()) {
+    if (p.ws.readyState !== 1 || p.ws.bufferedAmount > 256e3) continue;
+    // quem está perto: até VER pessoas dentro de VER_RAIO, as mais próximas primeiro
+    const cx = Math.floor(p.x / CEL), cz = Math.floor(p.z / CEL), perto = [];
+    for (let i = -alc; i <= alc; i++) for (let j = -alc; j <= alc; j++) for (const q of grade.get(chave(cx + i, cz + j)) || []) { if (q === p) continue; const d = (q.x - p.x) ** 2 + (q.z - p.z) ** 2; if (d <= VER_RAIO * VER_RAIO) perto.push([d, q]); }
+    // fica quem já estava na tela (até 25% além do raio); vaga que sobrar vai pros mais perto
+    const fica = [], novos = [], lim = (VER_RAIO * 1.25) ** 2;
+    for (const id of p.vis) { const q = pessoas.get(id); if (q) { const d = (q.x - p.x) ** 2 + (q.z - p.z) ** 2; if (d <= lim) fica.push([d, q]); } }
+    if (fica.length > VER) fica.sort((x, y) => x[0] - y[0]).length = VER;
+    if (fica.length < VER) { for (const par of perto) if (!p.vis.has(par[1].id)) novos.push(par); if (novos.length > VER - fica.length) novos.sort((x, y) => x[0] - y[0]).length = VER - fica.length; }
+    perto.length = 0; perto.push(...fica, ...novos);
+    const agora = new Set(perto.map(([, q]) => q.id)), f = [], a = [];
+    for (const id of p.vis) if (!agora.has(id)) f.push(["s", id]);
+    for (const [, q] of perto) { if (!p.vis.has(q.id)) f.push(["e", q.id, q.u, q.cid, q.x, q.z, q.cor]); else if (q.mudou) a.push([q.id, q.x, q.z]); }
+    for (const e of evs) if (e[1] === p.id || agora.has(e[1])) f.push(e);
+    p.vis = agora;
+    if (!f.length && !a.length && !mostrar && !bolaMudou) continue;
+    p.ws.send(JSON.stringify({ t: "q", a, f, ...(mostrar ? { total, fila: fila.length } : {}), ...(bolaMudou || mostrar ? { b: bolaArr() } : {}) }));
   }
+  for (const p of pessoas.values()) p.mudou = false;
 }, TICK_MS);
 
 // ---------- servidor ----------
 const server = http.createServer((req, res) => {
   res.setHeader("access-control-allow-origin", "*");
   if (req.url === "/saude") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ok: true })); }
-  if (req.url === "/status") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ online: porUsuario.size, salas: salas.filter((s) => s.pessoas.size).length, ini: INI, fim: FIM, casas: casas.size, ramMB: Math.round(process.memoryUsage().rss / 1048576) })); }
+  if (req.url === "/status") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ online: porUsuario.size, fila: fila.length, espera: listaEspera().length, lotacao: LOTACAO, salas: 1, ini: INI, fim: FIM, casas: casas.size, ramMB: Math.round(process.memoryUsage().rss / 1048576) })); }
   res.statusCode = 404; res.end();
 });
 const wss = new WebSocketServer({ server, path: "/ws", maxPayload: 512, perMessageDeflate: false });
@@ -152,10 +192,10 @@ wss.on("connection", (ws) => {
   ws.vivo = true;
   ws.on("pong", () => { ws.vivo = true; });
   ws.on("message", (b) => mensagem(ws, b.toString()));
-  ws.on("close", () => { if (ws.pessoa) sair(ws.pessoa); });
+  ws.on("close", () => { if (ws.esperaK) { const e = espera.get(ws.esperaK); if (e?.ws === ws) e.ws = null; } const i = fila.findIndex((f) => f.ws === ws); if (i >= 0) fila.splice(i, 1); if (ws.pessoa) sair(ws.pessoa); });
   ws.on("error", () => {});
 });
 setInterval(() => { for (const ws of wss.clients) { if (!ws.vivo) { ws.terminate(); continue; } ws.vivo = false; ws.ping(); } }, 30e3);
 // a festa acabou: avisa quem ainda está lá
-setInterval(() => { if (Date.now() >= FIM) for (const p of todos()) if (!p.teste) { manda(p.ws, { t: "acabou" }); sair(p); p.ws.close(); } }, 10e3);
-server.listen(PORT, () => console.log(`Festa da Turma na porta ${PORT}, salas de ${MAX_SALA}`));
+setInterval(() => { if (Date.now() < FIM) return; for (const f of fila.splice(0)) { manda(f.ws, { t: "acabou" }); f.ws.close(); } for (const p of todos()) if (!p.teste) { manda(p.ws, { t: "acabou" }); sair(p); p.ws.close(); } }, 10e3);
+server.listen(PORT, () => console.log(`Festa da Turma na porta ${PORT}, sala única (cada um vê até ${VER})`));
