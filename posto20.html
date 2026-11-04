@@ -430,7 +430,7 @@ const T = {
   acende(t, k) { fundo("#040404"); g.save(); camera(k, { z0: 1.0, z1: 1.3, cy: 860 }); isqueiro(540, 1030, 2.4, t, 1); maoSegura(540, 1300, 1.8, COMANDANTE.pele, COMANDANTE.roupa); g.restore(); vinheta(.7); txt("TSC", 540, 300, 100, "#ffd23a", 900, "center", "Nunito"); },
   explosaoGrande(t, k) { g.save(); trm(); fundo("#080402"); explosao(t, k); g.restore(); if (k < .2) tinta("#fff", 1 - k / .2); txt("BOOM!", 540, 340, 210, "#fff", 900, "center", "Nunito"); vinheta(.5); },
   chaoTreme(t, k) { g.save(); g.translate((Math.random() - .5) * 40, (Math.random() - .5) * 40); mataNoite(t, 0, 0); fileira(1900, 2.2, "#050806", 5, 0); explosao(t, .5 + k * .3, 540, 900, .55); g.restore(); tinta("#ff6a1a", .16); vinheta(.75); },
-  caiMato(t, k) { g.save(); g.translate(540, 960); g.rotate(.9 * prog(k, 0, .6)); g.translate(-540, -960); mataNoite(t, 0, 0); g.restore(); tinta("#000", .45 * k + .1); cacos(t, 0); vinheta(.9); },
+  caiMato(t, k) { g.save(); g.translate(540, 960); g.rotate(.9 * prog(k, 0, .6)); g.translate(-540, -960); mataNoite(t, 0, 0); g.restore(); tinta("#000", .45 * k + .1); vinheta(.9); },
   levanta(t, k) { g.save(); g.translate(0, 300 - 300 * prog(k, 0, 1)); mataNoite(t, 0, .1); g.restore(); fogo(540, 1240, .6, t); frenteFolhas(t, 0); vinheta(.8); },
   semHangar(t, k) { g.save(); camera(k, { z0: 1.0, z1: 1.1, cy: 1100 }); aeroFogo(t); g.restore(); chip("SEM HANGAR", 540, 300, 1); vinheta(.75); },
   semCom(t, k) { fundo("#0a0806"); g.save(); camera(k, { z0: 1.0, z1: 1.14, cy: 860 }); fotoMeninos(540, 860, 1.2, t); fogo(540, 1800, .9, t); g.restore(); vinheta(.85); },
