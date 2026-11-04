@@ -65,7 +65,7 @@ function montarCenario(cena) {
   for (const a of AREAS.slice(1)) {
     const d = Math.hypot(a.x, a.z), c = new THREE.Mesh(new THREE.PlaneGeometry(5, d), mat(0x77819a)); c.rotation.x = -Math.PI / 2; c.rotation.z = Math.atan2(-a.x, -a.z);
     c.position.set(a.x / 2, .012, a.z / 2); fundo.add(c);
-    rotulo(fundo, a.nome, a.x * .46, 3, a.z * .46, 1.7);
+    rotulo(fundo, a.nome, a.x * .46, 2.4, a.z * .46, 1);
   }
   const r0 = semente(77), estrelas = []; for (let i = 0; i < 500; i++) estrelas.push((r0() - .5) * 260, 34 + r0() * 50, -30 - r0() * 110);
   fundo.add(new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(estrelas, 3)), new THREE.PointsMaterial({ color: 0xffffff, size: .4, fog: false })));
@@ -109,7 +109,7 @@ function montarCenario(cena) {
   const luzA = pontos(luzes[0], 0xffd23f), luzB = pontos(luzes[1], 0xff4d4d);
   // pinheirinhos com luz nos caminhos
   const nt = 16, conePeq = new THREE.ConeGeometry(1.2, 3.2, 8), pinhos = new THREE.InstancedMesh(conePeq, mat(0x1c8a3c, 0x0b4a1e, .5), nt), topos = new THREE.InstancedMesh(new THREE.OctahedronGeometry(.28), new THREE.MeshBasicMaterial({ color: 0xffd23f }), nt);
-  AREAS.slice(1).forEach((a, i) => [.58, .78, .68].forEach((f, k) => { const n = i * 3 + k; if (n >= nt) return; const d = Math.hypot(a.x, a.z), lado = k % 2 ? 4.5 : -4.5, x = a.x * f + (a.z / d) * lado, z = a.z * f - (a.x / d) * lado; m4.makeTranslation(x, 1.7, z); pinhos.setMatrixAt(n, m4); m4.makeTranslation(x, 3.5, z); topos.setMatrixAt(n, m4); }));
+  AREAS.slice(1).forEach((a, i) => [.46, .52, .49].forEach((f, k) => { const n = i * 3 + k; if (n >= nt) return; const d = Math.hypot(a.x, a.z), lado = k % 2 ? 4.5 : -4.5, x = a.x * f + (a.z / d) * lado, z = a.z * f - (a.x / d) * lado; m4.makeTranslation(x, 1.7, z); pinhos.setMatrixAt(n, m4); m4.makeTranslation(x, 3.5, z); topos.setMatrixAt(n, m4); }));
   fundo.add(pinhos, topos);
   const neve = chuva(520, [0xffffff, 0xeaf3ff], .3, 95, 26, 0, 0, 11); fundo.add(neve.g);
 
@@ -200,11 +200,11 @@ function montarCenario(cena) {
   });
 
   // nome de cada ambiente
-  rotulo(G.palco, "🎤 PALCO PRINCIPAL", 0, 15.2, -41, 2.3, "#ffd23f");
-  rotulo(G.campinho, "⚽ CAMPINHO", cx, 11.6, CAMPO.z0 - 4.5, 2);
-  rotulo(G.prefeitura, "🏛️ PREFEITURA", pfx, 13.6, -6, 2);
-  rotulo(G.feirinha, "🛍️ FEIRINHA", fx, 8.2, fz - 2, 2);
-  rotulo(G.estados, "🇧🇷 PRAÇA DOS ESTADOS", ex, 7.8, ez, 2);
+  rotulo(G.palco, "🎤 PALCO PRINCIPAL", 0, 15.2, -41, 1.6, "#ffd23f");
+  rotulo(G.campinho, "⚽ CAMPINHO", cx, 11.6, CAMPO.z0 - 4.5, 1.4);
+  rotulo(G.prefeitura, "🏛️ PREFEITURA", pfx, 13.6, -6, 1.4);
+  rotulo(G.feirinha, "🛍️ FEIRINHA", fx, 8.2, fz - 10, 1.4);
+  rotulo(G.estados, "🇧🇷 PRAÇA DOS ESTADOS", ex, 7.8, ez - 3, 1.4);
 
   let passoPista = -1;
   function atualizar(t, fcx, fcz, verTudo = false) {
@@ -276,7 +276,7 @@ const T = [
   [18, "🏛️ Prefeitura", -38, -1, 21, 14, 19, 11],
   [23, "🛍️ Feirinha", -26, 34, 19, 16, 16, 13],
   [27, "🇧🇷 Praça dos Estados", 26, 34, 21, 18, 17, 14],
-  [31, "🗺️ A festa inteira", 0, 8, 96, 70, 84, 66],
+  [31, "🗺️ A festa inteira", 0, -2, 78, 74, 70, 68],
 ];
 const FIM = 36, elNome = document.getElementById("nome");
 function renderFrame(t) {
@@ -293,6 +293,7 @@ function renderFrame(t) {
   }
   bonecos.fim(n);
   mundo.bola.position.x = 38 + Math.sin(t * 1.1) * 8; mundo.bola.position.z = Math.sin(t * 1.9) * 5; mundo.bola.rotation.z = -t * 5;
+  cena.fog.far = i === T.length - 1 ? 500 : 110; cena.fog.near = i === T.length - 1 ? 300 : 48;
   mundo.atualizar(t, s[2], s[3], i === T.length - 1);
   renderer.render(cena, cam);
 }

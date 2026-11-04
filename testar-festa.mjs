@@ -41,7 +41,7 @@ for (let i = 0; i < nomes.length; i++) {
 }
 // feirinha: tocar numa barraca abre o produto
 await g.click("#btn-mapa"); await g.waitForTimeout(300); await g.click("#ambientes button:nth-child(5)"); await g.waitForTimeout(4000);
-await g.evaluate(() => { const c = document.getElementById("palco"); const e = (t) => c.dispatchEvent(new PointerEvent(t, { clientX: innerWidth / 2, clientY: innerHeight * .4, bubbles: true })); e("pointerdown"); e("pointerup"); });
+await g.evaluate(() => { const c = document.getElementById("palco"); const e = (t) => c.dispatchEvent(new PointerEvent(t, { clientX: innerWidth * .78, clientY: innerHeight * .44, bubbles: true })); e("pointerdown"); e("pointerup"); });
 await g.waitForTimeout(1500);
 const barraca = await g.locator("#barraca").isVisible();
 console.log("barraca abriu:", barraca, barraca ? (await g.locator("#barraca").innerText()).replace(/\n+/g, " | ") : "");
