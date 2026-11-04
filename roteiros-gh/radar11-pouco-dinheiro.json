@@ -1,0 +1,77 @@
+{
+ "nome": "radar11-pouco-dinheiro",
+ "obs": "03/11 radar: modelo @danielyrochaa #2 + rótulos por item da @lizatelier. Sem preço (não inventar); impressora não tem take, vai na legenda. Mudo. CTA LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4168_12_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_2666_1.5_2.48.MOV",
+   "inicio": 0,
+   "duracao": 2.48
+  },
+  {
+   "arquivo": "IMG_4767_4_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3757_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_4711_6_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3427_37_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Como eu começaria HOJE\ncom POUCO DINHEIRO",
+   "y": 0.05
+  },
+  {
+   "texto": "1. A máquina",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "2. Papel fotográfico 115 g",
+   "y": 0.68,
+   "de": 3,
+   "ate": 5.48
+  },
+  {
+   "texto": "3. Uma tesoura boa",
+   "y": 0.68,
+   "de": 5.48,
+   "ate": 7.98
+  },
+  {
+   "texto": "4. Os insumos da máquina",
+   "y": 0.68,
+   "de": 7.98,
+   "ate": 10.48
+  },
+  {
+   "texto": "5. O gabarito certo",
+   "y": 0.68,
+   "de": 10.48,
+   "ate": 12.98
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 12.98
+  }
+ ]
+}
