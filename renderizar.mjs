@@ -16,6 +16,7 @@ const RAIZ = path.dirname(fileURLToPath(import.meta.url));
 const FFMPEG = process.env.FFMPEG || "ffmpeg";
 const FPS = 30, POR_PARTE = 300;
 const [modo, video, segStr, kStr] = process.argv.slice(2);
+const HQ = /^stories/.test(video || ""); // stories da Vee: qualidade alta (png + crf 12)
 const SAIDA = path.join(RAIZ, "saida");
 fs.mkdirSync(SAIDA, { recursive: true });
 const TOTAL = Math.round(Number(segStr) * FPS), NPARTES = Math.ceil(TOTAL / POR_PARTE);
@@ -43,11 +44,11 @@ async function renderParte(k, porta) {
       await pg.goto(`http://localhost:${porta}/${video}.html`);
       await pg.waitForFunction(() => window.pronto === true, null, { timeout: 90000 });
       const ff = spawn(FFMPEG, ["-y", "-v", "error", "-f", "image2pipe", "-framerate", String(FPS), "-i", "-",
-        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-preset", "medium", tmp], { stdio: ["pipe", "ignore", "inherit"] });
+        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", HQ ? "12" : "18", "-preset", HQ ? "slow" : "medium", tmp], { stdio: ["pipe", "ignore", "inherit"] });
       const fechou = new Promise((ok) => ff.on("close", ok));
       for (let i = ini; i < fim; i++) {
         await pg.evaluate((t) => window.renderFrame(t), i / FPS);
-        const buf = await pg.screenshot({ type: "jpeg", quality: 94 });
+        const buf = await pg.screenshot(HQ ? { type: "png" } : { type: "jpeg", quality: 94 });
         if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once("drain", r));
         if (i % 30 === 0) console.log(`parte ${k + 1}/${NPARTES} | quadro ${i}/${TOTAL} | ${Math.floor(i / TOTAL * 100)}%`);
       }
