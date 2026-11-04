@@ -1,0 +1,30 @@
+{
+ "nome": "radar12-bebe",
+ "obs": "03/11 radar: mesmo balão do emprego de verdade (@heartprinted). IMG_7808 inteiro (bebê no sling, termina olhando pra câmera). Mudo. CTA MÉTODO na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_0_10.2.MOV",
+   "inicio": 0,
+   "duracao": 10.2
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "com bebê pequeno não dá pra trabalhar 🙄",
+   "usuario": "ju.pmoraes",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-jupmoraes.jpg",
+   "y": 0.02
+  },
+  {
+   "texto": "POV: eu, com ela no colo 🤍",
+   "y": 0.63,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.68,
+   "de": 7.5
+  }
+ ]
+}

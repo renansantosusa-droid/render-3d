@@ -1,0 +1,53 @@
+{
+ "nome": "radar10-mentira",
+ "obs": "03/11 radar: modelo @danielyrochaa #3 (maior mentira + virada). Áudio viral 11/08: 0,05-6,8 + 12,18-21,12 (pula a frase da gravidez). Cenas do compilado21. CTA MÉTODO.",
+ "audio": "dados/veecriativos/audios/radar10-mentira-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_7726_0_4.16.MOV",
+   "inicio": 0,
+   "duracao": 4.16
+  },
+  {
+   "arquivo": "IMG_7727_0.5_2.59.MOV",
+   "inicio": 0,
+   "duracao": 2.59
+  },
+  {
+   "arquivo": "IMG_2663_0.5_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3
+  },
+  {
+   "arquivo": "IMG_4178_1.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3482_0_3.14.MOV",
+   "inicio": 0,
+   "duracao": 3.14,
+   "zoom": 1.18,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "A maior MENTIRA que\nme contaram sobre\nessa MÁQUINA",
+   "y": 0.64,
+   "de": 0,
+   "ate": 6.75
+  },
+  {
+   "texto": "Só nos primeiros TESTES",
+   "y": 0.68,
+   "de": 6.75,
+   "ate": 12.55
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\nque eu te mostro como",
+   "y": 0.68,
+   "de": 12.55
+  }
+ ]
+}
