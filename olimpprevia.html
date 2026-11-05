@@ -1,0 +1,311 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0a1633;position:relative}canvas{display:block}
+#nome{position:absolute;top:90px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;color:#14204a;font:900 66px Nunito,sans-serif;padding:14px 40px 20px;border:7px solid #14204a;border-radius:99px;box-shadow:0 10px 0 #14204a}
+#aviso{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);color:#fff;font:900 34px Nunito,sans-serif;background:rgba(10,22,51,.75);padding:6px 24px;border-radius:99px;white-space:nowrap}
+#grande{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font:900 210px Nunito,sans-serif;color:#ffd23f;-webkit-text-stroke:8px #14204a;white-space:nowrap}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<div id="nome"></div><div id="grande"></div><div id="aviso">prévia das Olimpíadas · bonecos de exemplo</div>
+<script type="module">
+import * as THREE from "three";
+
+// Cenário da Festa da Turma: praça de Natal no meio e 5 ambientes em volta. Tudo em função do tempo t, sem sorteio:
+// a mesma função desenha a página ao vivo e a prévia em vídeo (animacoes-3d/festaprevia).
+const LIMITE = 56;
+const AREAS = [
+  { id: "praca", nome: "🎄 Praça de Natal", x: 0, z: 0, r: 15 },
+  { id: "palco", nome: "🏆 Pódio", x: 0, z: -36, r: 21 },
+  { id: "campinho", nome: "⚽ Pênaltis", x: 38, z: 0, r: 17 },
+  { id: "prefeitura", nome: "🏅 Quadro de medalhas", x: -38, z: 0, r: 16 },
+  { id: "corrida", nome: "🏃 Corrida", x: -26, z: 32, r: 16 },
+  { id: "volei", nome: "🏐 Vôlei", x: 26, z: 34, r: 15 },
+];
+const CAMPO = { x0: 26, x1: 50, z0: -8, z1: 8, gol: 2.5 };
+const PISTA_C = { x0: -38, x1: -12, z0: 28, z1: 36, lx0: -43 }; // corrida: largada entre lx0 e x0, chegada em x1
+const QV = { x0: 16, x1: 36, z0: 28, z1: 40, rede: 26 }; // quadra de vôlei
+const PISTA = 9, TAM = 1.6, PISTA_Z = -27;
+const naPista = (x, z) => Math.abs(x) < PISTA * TAM / 2 && Math.abs(z - PISTA_Z) < PISTA * TAM / 2;
+const areaDe = (x, z) => AREAS.filter((a) => Math.hypot(x - a.x, z - a.z) <= a.r).sort((a, b) => Math.hypot(x - a.x, z - a.z) - Math.hypot(x - b.x, z - b.z))[0] || null;
+const CORES = [0xe4573a, 0x2b59c3, 0xffb020, 0x8e5cd9, 0xff6fa8, 0x18a39a, 0xff7a45, 0x4cc26a].map((c) => new THREE.Color(c));
+const CORES_PISTA = [0x7a1f6b, 0x1c3f8f, 0x0f6f6a, 0x8a3f12, 0x4b2a8a, 0x8a1f3a].map((c) => new THREE.Color(c));
+const PELES = [0xffdfc4, 0xf0c29a, 0xd99a6c, 0xa86b42, 0x7a4a2c].map((c) => new THREE.Color(c));
+const UFS = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+
+// sorteio com semente: o cenário sai igual em todo aparelho
+const semente = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const mats = new Map();
+const mat = (cor, emis = 0, forca = .6) => { const k = `${cor}-${emis}-${forca}`; if (!mats.has(k)) mats.set(k, new THREE.MeshLambertMaterial({ color: cor, ...(emis ? { emissive: emis, emissiveIntensity: forca } : {}) })); return mats.get(k); };
+function caixa(g, w, h, d, cor, x, y, z, emis) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(cor, emis)); m.position.set(x, y, z); g.add(m); return m; }
+function textura(w, h, pinta) { const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d"); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const refaz = (...a) => { pinta(g, w, h, ...a); t.needsUpdate = true; }; refaz(); return { t, refaz }; }
+function placa(g, w, h, px, py, pinta, x, y, z) { const tx = textura(px, py, pinta), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tx.t, fog: false, toneMapped: false })); m.position.set(x, y, z); g.add(m); return tx; }
+const letra = (g, txt, x, y, tam, cor = "#fff", al = "center") => { g.fillStyle = cor; g.font = `900 ${tam}px Nunito, sans-serif`; g.textAlign = al; g.textBaseline = "middle"; g.fillText(txt, x, y); };
+function rotulo(g, txt, x, y, z, alt = 2.2, fundo = "#fff", cor = "#14204a") {
+  const m = document.createElement("canvas").getContext("2d"); m.font = "900 56px Nunito, sans-serif"; const w = Math.ceil(m.measureText(txt).width) + 60;
+  const tx = textura(w, 88, (c, W, H) => { c.fillStyle = fundo; c.beginPath(); c.roundRect(3, 3, W - 6, H - 6, 40); c.fill(); c.lineWidth = 6; c.strokeStyle = "#14204a"; c.stroke(); letra(c, txt, W / 2, H / 2 + 3, 56, cor); });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx.t, depthTest: false, fog: false })); s.scale.set(alt * w / 88, alt, 1); s.position.set(x, y, z); s.renderOrder = 5; g.add(s); return s;
+}
+function chuva(n, cores, tamanho, raio, alt, cx, cz, s0) { // nuvem de pontos que desce em dois blocos emendados, sem recalcular ponto a ponto
+  const r = semente(s0), pos = [], cor = [], c = new THREE.Color();
+  for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()) * raio; pos.push(cx + Math.cos(a) * d, r() * alt, cz + Math.sin(a) * d); c.setHex(cores[i % cores.length]); cor.push(c.r, c.g, c.b); }
+  const geo = new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)).setAttribute("color", new THREE.Float32BufferAttribute(cor, 3));
+  const material = new THREE.PointsMaterial({ size: tamanho, vertexColors: true, fog: false, transparent: true, depthWrite: false });
+  const a = new THREE.Points(geo, material), b = new THREE.Points(geo, material), g = new THREE.Group(); a.frustumCulled = b.frustumCulled = false; b.position.y = alt; g.add(a, b);
+  return { g, passo: (t, vel) => { g.position.y = -((t * vel) % alt); } };
+}
+
+function montarCenario(cena) {
+  cena.background = new THREE.Color(0x0a1633); cena.fog = new THREE.Fog(0x0a1633, 48, 110);
+  cena.add(new THREE.HemisphereLight(0xffffff, 0x8088a8, 2.6));
+  const lua = new THREE.DirectionalLight(0xffffff, 1.2); lua.position.set(-8, 20, 10); cena.add(lua);
+  const fundo = new THREE.Group(); cena.add(fundo);
+  const G = Object.fromEntries(AREAS.map((a) => { const g = new THREE.Group(); cena.add(g); return [a.id, g]; }));
+
+  // ---------- chão, caminhos, fundo ----------
+  const chao = new THREE.Mesh(new THREE.CircleGeometry(120, 48), mat(0x1f6b35)); chao.rotation.x = -Math.PI / 2; fundo.add(chao);
+  for (const a of AREAS.slice(1)) {
+    const d = Math.hypot(a.x, a.z), c = new THREE.Mesh(new THREE.PlaneGeometry(5, d), mat(0x77819a)); c.rotation.x = -Math.PI / 2; c.rotation.z = Math.atan2(-a.x, -a.z);
+    c.position.set(a.x / 2, .012, a.z / 2); fundo.add(c);
+    rotulo(fundo, a.nome, a.x * .46, 2.4, a.z * .46, 1);
+  }
+  const r0 = semente(77), estrelas = []; for (let i = 0; i < 500; i++) estrelas.push((r0() - .5) * 260, 34 + r0() * 50, -30 - r0() * 110);
+  fundo.add(new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(estrelas, 3)), new THREE.PointsMaterial({ color: 0xffffff, size: .4, fog: false })));
+  const luaBola = new THREE.Mesh(new THREE.SphereGeometry(5, 24, 16), new THREE.MeshBasicMaterial({ color: 0xfff4cf, fog: false })); luaBola.position.set(38, 44, -92); fundo.add(luaBola);
+  // bairro em volta, no estilo do mapa, com as janelas acesas
+  const casaGeo = new THREE.BoxGeometry(3.2, 2.6, 3), telGeo = new THREE.ConeGeometry(2.9, 2, 4); telGeo.rotateY(Math.PI / 4);
+  const nc = 34, casas = new THREE.InstancedMesh(casaGeo, mat(0xfffaf0, 0xffb54d, .55), nc), tels = new THREE.InstancedMesh(telGeo, mat(0xffffff), nc), m4 = new THREE.Matrix4();
+  for (let i = 0; i < nc; i++) { const a = i / nc * 6.283, r = 62 + (i % 3) * 5, x = Math.cos(a) * r, z = Math.sin(a) * r; m4.makeTranslation(x, 1.3, z); casas.setMatrixAt(i, m4); m4.makeTranslation(x, 3.6, z); tels.setMatrixAt(i, m4); tels.setColorAt(i, CORES[i % 8]); }
+  fundo.add(casas, tels);
+
+  // ---------- praça de Natal ----------
+  const pr = G.praca;
+  const calcada = new THREE.Mesh(new THREE.CircleGeometry(15, 40), mat(0x8d97ad)); calcada.rotation.x = -Math.PI / 2; calcada.position.y = .02; pr.add(calcada);
+  const tronco = new THREE.Mesh(new THREE.CylinderGeometry(.6, .8, 2, 10), mat(0x6b4a2b)); tronco.position.y = 1; pr.add(tronco);
+  [[4.2, 4, 3.6], [3.3, 3.6, 6], [2.3, 3.2, 8.2], [1.3, 2.6, 10.2]].forEach(([r, h, y]) => { const c = new THREE.Mesh(new THREE.ConeGeometry(r, h, 16), mat(0x1c8a3c, 0x0b4a1e, .5)); c.position.y = y; pr.add(c); });
+  const estrela = new THREE.Mesh(new THREE.OctahedronGeometry(.9), new THREE.MeshBasicMaterial({ color: 0xffd23f, fog: false })); estrela.position.y = 12.1; pr.add(estrela);
+  // bolas da árvore: dois grupos que piscam alternados
+  const rb = semente(31), bolaGeo = new THREE.SphereGeometry(.24, 8, 6);
+  const bolasA = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22), bolasB = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22);
+  [bolasA, bolasB].forEach((b, k) => { for (let i = 0; i < 22; i++) { const y = 2.6 + rb() * 8.4, r = (11.4 - y) * .44, a = rb() * 6.283; m4.makeTranslation(Math.cos(a) * r, y, Math.sin(a) * r); b.setMatrixAt(i, m4); b.setColorAt(i, new THREE.Color([0xff3b3b, 0xffd23f, 0x4fa8ff, 0xffffff][(i + k) % 4])); } pr.add(b); });
+  // presentes em volta da árvore
+  for (let i = 0; i < 10; i++) { const a = i * .63 + .3, r = 4.6 + (i % 3) * .5, s = .7 + (i % 3) * .25, x = Math.cos(a) * r, z = Math.sin(a) * r; caixa(pr, s, s, s, CORES[i % 8].getHex(), x, s / 2, z); caixa(pr, s + .04, s * .18, s + .04, 0xffffff, x, s / 2, z); }
+  // Papai Noel acenando
+  const noel = new THREE.Group(); noel.position.set(6.4, 0, 5.2); pr.add(noel);
+  const noelCorpo = new THREE.Mesh(new THREE.CapsuleGeometry(.72, 1.1, 3, 10), mat(0xd92b2b)); noelCorpo.position.y = 1.4; noel.add(noelCorpo);
+  const cinto = new THREE.Mesh(new THREE.CylinderGeometry(.76, .76, .2, 14), mat(0x1a1a1a)); cinto.position.y = 1.35; noel.add(cinto);
+  const noelCab = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffdfc4)); noelCab.position.y = 2.95; noel.add(noelCab);
+  const barba = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffffff)); barba.position.set(0, 2.68, .2); barba.scale.set(.95, .8, .8); noel.add(barba);
+  const gorroN = new THREE.Mesh(new THREE.ConeGeometry(.58, 1, 12), mat(0xd92b2b)); gorroN.position.y = 3.72; noel.add(gorroN);
+  const abaN = new THREE.Mesh(new THREE.CylinderGeometry(.6, .6, .2, 14), mat(0xffffff)); abaN.position.y = 3.25; noel.add(abaN);
+  const braco = new THREE.Mesh(new THREE.CapsuleGeometry(.2, .9, 2, 8), mat(0xd92b2b)); braco.geometry.translate(0, .55, 0); braco.position.set(.72, 2, 0); noel.add(braco);
+  rotulo(pr, "🎅 Feliz Natal, turma!", 6.4, 5, 5.2, 1.5, "#ffd23f");
+  // cordões de luz em volta da praça
+  const postes = 12, luzes = [[], []];
+  for (let i = 0; i < postes; i++) {
+    const a = i / postes * 6.283, b = (i + 1) / postes * 6.283, r = 14.6;
+    caixa(pr, .22, 5.4, .22, 0x2a2f55, Math.cos(a) * r, 2.7, Math.sin(a) * r);
+    for (let k = 0; k < 12; k++) { const f = k / 12, ang = a + (b - a) * f; luzes[k % 2].push(Math.cos(ang) * r, 5.3 - Math.sin(f * Math.PI) * 1.1, Math.sin(ang) * r); }
+  }
+  const pontos = (lista, cor) => { const p = new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(lista, 3)), new THREE.PointsMaterial({ color: cor, size: .42, fog: false })); pr.add(p); return p; };
+  const luzA = pontos(luzes[0], 0xffd23f), luzB = pontos(luzes[1], 0xff4d4d);
+  // pinheirinhos com luz nos caminhos
+  const nt = 16, conePeq = new THREE.ConeGeometry(1.2, 3.2, 8), pinhos = new THREE.InstancedMesh(conePeq, mat(0x1c8a3c, 0x0b4a1e, .5), nt), topos = new THREE.InstancedMesh(new THREE.OctahedronGeometry(.28), new THREE.MeshBasicMaterial({ color: 0xffd23f }), nt);
+  AREAS.slice(1).forEach((a, i) => [.46, .52, .49].forEach((f, k) => { const n = i * 3 + k; if (n >= nt) return; const d = Math.hypot(a.x, a.z), lado = k % 2 ? 4.5 : -4.5, x = a.x * f + (a.z / d) * lado, z = a.z * f - (a.x / d) * lado; m4.makeTranslation(x, 1.7, z); pinhos.setMatrixAt(n, m4); m4.makeTranslation(x, 3.5, z); topos.setMatrixAt(n, m4); }));
+  fundo.add(pinhos, topos);
+  const neve = chuva(520, [0xffffff, 0xeaf3ff], .3, 95, 26, 0, 0, 11); fundo.add(neve.g);
+
+  // ---------- palco principal ----------
+  const pc = G.palco;
+  const pisoShow = new THREE.Mesh(new THREE.CircleGeometry(21, 36), mat(0x4a5068)); pisoShow.rotation.x = -Math.PI / 2; pisoShow.position.set(0, .02, -36); pc.add(pisoShow);
+  const tileGeo = new THREE.BoxGeometry(TAM - .06, .06, TAM - .06), pista = new THREE.InstancedMesh(tileGeo, new THREE.MeshBasicMaterial(), PISTA * PISTA);
+  for (let i = 0; i < PISTA * PISTA; i++) { m4.makeTranslation((i % PISTA - 4) * TAM, .06, (Math.floor(i / PISTA) - 4) * TAM + PISTA_Z); pista.setMatrixAt(i, m4); pista.setColorAt(i, CORES_PISTA[i % 6]); } pc.add(pista);
+  caixa(pc, 24, 1.6, 8, 0x20254a, 0, .8, -41);
+  caixa(pc, 24.4, .2, 8.4, 0xffd23f, 0, 1.6, -41, 0xffa000);
+  placa(pc, 22, 8, 1024, 372, (g, w, h) => { const d = g.createLinearGradient(0, 0, w, h); d.addColorStop(0, "#2b1a6b"); d.addColorStop(.5, "#b81f6b"); d.addColorStop(1, "#ff7a2a"); g.fillStyle = d; g.fillRect(0, 0, w, h); letra(g, "OLIMPÍADAS DA TURMA", w / 2, h * .36, 92, "#ffd23f"); letra(g, "🥇 🥈 🥉  BORA, BRASIL!", w / 2, h * .7, 56); }, 0, 7.2, -44.7);
+  for (const x of [-11.6, 11.6]) { caixa(pc, .5, 13, .5, 0x333a66, x, 6.5, -44.6); caixa(pc, 2.4, 4.2, 1.8, 0x14141c, x + (x < 0 ? -1.2 : 1.2) * 0, 3.7, -39.2); }
+  caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -44.6); caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -37.6);
+  // barras de equalizador na frente do telão
+  const NEQ = 26, eq = new THREE.InstancedMesh(new THREE.BoxGeometry(.56, 1, .3), new THREE.MeshBasicMaterial({ color: 0xffffff }), NEQ); eq.frustumCulled = false;
+  for (let i = 0; i < NEQ; i++) eq.setColorAt(i, CORES[i % 8]); pc.add(eq);
+  // artista e dançarinos no palco
+  const banda = [[0, 0xffd23f, 1.35], [-5, 0xff6fa8, 1], [5, 0x4fd1ff, 1], [-8.5, 0x8e5cd9, 1], [8.5, 0x4cc26a, 1]].map(([x, cor, s], i) => { const b = new THREE.Group(); const c = new THREE.Mesh(new THREE.CapsuleGeometry(.34 * s, .7 * s, 3, 10), mat(cor)), h = new THREE.Mesh(new THREE.SphereGeometry(.32 * s, 12, 10), mat(PELES[i % 5].getHex())); c.position.y = .68 * s; h.position.y = 1.5 * s; b.add(c, h); b.position.set(x, 1.7, -40); pc.add(b); return b; });
+  const mic = new THREE.Mesh(new THREE.CylinderGeometry(.04, .04, 1.5, 6), mat(0x222222)); mic.position.set(.55, 2.45, -39.4); pc.add(mic);
+  // canhões de luz
+  const canhoes = [-9, -5.4, -1.8, 1.8, 5.4, 9].map((x, i) => { const g = new THREE.ConeGeometry(2.6, 15, 16, 1, true); g.translate(0, -7.5, 0); const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: [0xff4dd2, 0x4fd1ff, 0xffd23f][i % 3], transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false })); m.position.set(x, 12.8, -37.8); pc.add(m); return m; });
+  const confete = chuva(220, [0xffd23f, 0xff4dd2, 0x4fd1ff, 0xff4d4d, 0x4cc26a], .32, 15, 16, 0, -30, 23); pc.add(confete.g);
+
+  // ---------- campinho ----------
+  const cp = G.campinho, cx = (CAMPO.x0 + CAMPO.x1) / 2, W = CAMPO.x1 - CAMPO.x0, H = CAMPO.z1 - CAMPO.z0;
+  const gr = textura(512, 340, (g, w, h) => { for (let i = 0; i < 8; i++) { g.fillStyle = i % 2 ? "#3d9e45" : "#34903d"; g.fillRect(i * w / 8, 0, w / 8 + 1, h); } g.strokeStyle = "#fff"; g.lineWidth = 5; g.strokeRect(5, 5, w - 10, h - 10); g.beginPath(); g.moveTo(w / 2, 5); g.lineTo(w / 2, h - 5); g.stroke(); g.beginPath(); g.arc(w / 2, h / 2, 46, 0, 6.3); g.stroke(); g.strokeRect(5, h / 2 - 90, 60, 180); g.strokeRect(w - 65, h / 2 - 90, 60, 180); });
+  const gramado = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: gr.t })); gramado.rotation.x = -Math.PI / 2; gramado.position.set(cx, .03, 0); cp.add(gramado);
+  for (const [x, s] of [[CAMPO.x0, -1], [CAMPO.x1, 1]]) { caixa(cp, .18, 2, .18, 0xffffff, x, 1, -CAMPO.gol); caixa(cp, .18, 2, .18, 0xffffff, x, 1, CAMPO.gol); caixa(cp, .18, .18, CAMPO.gol * 2, 0xffffff, x, 2, 0); caixa(cp, .1, .1, CAMPO.gol * 2, 0xdddddd, x + s, .05, 0); }
+  // arquibancada e refletores
+  for (let i = 0; i < 3; i++) caixa(cp, W, .6, 1.1, 0x56607f, cx, .3 + i * .6, CAMPO.z0 - 1.2 - i * 1.1);
+  for (const x of [CAMPO.x0 - 1.5, CAMPO.x1 + 1.5]) { caixa(cp, .3, 11, .3, 0x333a66, x, 5.5, CAMPO.z0 - 2); caixa(cp, 2.2, .7, .3, 0xffffff, x, 11, CAMPO.z0 - 2, 0xffffff); }
+  const placar = placa(cp, 8, 3, 512, 192, (g, w, h, a = 0, b = 0) => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, "⚽ CAMPINHO DA TURMA", w / 2, 40, 34, "#ffd23f"); letra(g, `${a}  x  ${b}`, w / 2, 124, 92); }, cx, 7.4, CAMPO.z0 - 4.4);
+  caixa(cp, 8.4, 3.4, .2, 0x333a66, cx, 7.4, CAMPO.z0 - 4.55); caixa(cp, .3, 6, .3, 0x333a66, cx, 3, CAMPO.z0 - 4.55);
+  const bolaT = textura(128, 64, (g, w, h) => { g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.fillStyle = "#111"; for (let i = 0; i < 8; i++) { g.beginPath(); g.arc((i + .5) * w / 8, i % 2 ? h * .3 : h * .7, 6, 0, 6.3); g.fill(); } });
+  const bola = new THREE.Mesh(new THREE.SphereGeometry(.42, 16, 12), new THREE.MeshLambertMaterial({ map: bolaT.t })); bola.position.set(cx, .42, 0); cp.add(bola);
+
+  // ---------- prefeitura ----------
+  const pf = G.prefeitura, pfx = -38;
+  const pisoP = new THREE.Mesh(new THREE.CircleGeometry(16, 32), mat(0x8d97ad)); pisoP.rotation.x = -Math.PI / 2; pisoP.position.set(pfx, .02, 0); pf.add(pisoP);
+  caixa(pf, 19, 8, 7, 0xf4efe0, pfx, 4, -9);
+  caixa(pf, 21, .7, 8, 0xd8cfb5, pfx, 8.3, -9);
+  for (let i = 0; i < 6; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(.42, .5, 7.6, 10), mat(0xffffff)); c.position.set(pfx - 8 + i * 3.2, 3.8, -5.2); pf.add(c); }
+  caixa(pf, 21, .8, 1.6, 0xd8cfb5, pfx, .4, -5);
+  caixa(pf, 3, 5, .2, 0x4a2f1c, pfx, 2.5, -5.5);
+  const frontao = new THREE.Mesh(new THREE.ConeGeometry(11, 3.2, 4), mat(0xe9e0c8)); frontao.rotation.y = Math.PI / 4; frontao.scale.z = .45; frontao.position.set(pfx, 10.2, -9); pf.add(frontao);
+  placa(pf, 9, 1.6, 512, 92, (g, w, h) => { g.fillStyle = "#14204a"; g.fillRect(0, 0, w, h); letra(g, "PREFEITURA DA TURMA", w / 2, h / 2 + 3, 44, "#ffd23f"); }, pfx, 7.5, -5.3);
+  caixa(pf, .16, 9, .16, 0x888888, pfx + 11.5, 4.5, -3); const bandeira = placa(pf, 3, 2, 96, 64, (g, w, h) => { g.fillStyle = "#1a9c3e"; g.fillRect(0, 0, w, h); g.fillStyle = "#ffd23f"; g.beginPath(); g.moveTo(w / 2, 8); g.lineTo(w - 8, h / 2); g.lineTo(w / 2, h - 8); g.lineTo(8, h / 2); g.fill(); g.fillStyle = "#14418f"; g.beginPath(); g.arc(w / 2, h / 2, 13, 0, 6.3); g.fill(); }, pfx + 13.1, 7.9, -3);
+  const quadro = placa(pf, 8, 5.4, 512, 340, (g, w, h, tit = "OS 3 DA SEMANA", linhas = []) => { g.fillStyle = "#14204a"; g.fillRect(0, 0, w, h); letra(g, tit, w / 2, 40, 38, "#ffd23f"); linhas.slice(0, 5).forEach((l, i) => letra(g, l, 24, 100 + i * 52, 32, "#fff", "left")); }, pfx - 9.5, 3.6, -2);
+  caixa(pf, 8.4, 5.8, .2, 0x333a66, pfx - 9.5, 3.6, -2.15);
+
+  // ---------- corrida ----------
+  const fr = G.corrida, P0 = PISTA_C, cxP = (P0.lx0 + P0.x1) / 2, wP = P0.x1 - P0.lx0, hP = P0.z1 - P0.z0;
+  const tpista = textura(1024, 256, (g, w, h) => { g.fillStyle = "#b8492f"; g.fillRect(0, 0, w, h); g.strokeStyle = "#fff"; g.lineWidth = 4; for (let k = 1; k < 4; k++) { g.beginPath(); g.moveTo(0, k * h / 4); g.lineTo(w, k * h / 4); g.stroke(); }
+    const xl = (P0.x0 - P0.lx0) / wP * w; g.fillStyle = "rgba(255,255,255,.18)"; g.fillRect(0, 0, xl, h); g.fillStyle = "#fff"; g.fillRect(xl - 4, 0, 8, h); letra(g, "LARGADA", xl / 2, h / 2, 46, "#fff");
+    for (let a = 0; a < 8; a++) for (let b = 0; b < 2; b++) { g.fillStyle = (a + b) % 2 ? "#111" : "#fff"; g.fillRect(w - 28 + b * 14, a * h / 8, 14, h / 8); } });
+  const chaoP = new THREE.Mesh(new THREE.PlaneGeometry(wP, hP), new THREE.MeshLambertMaterial({ map: tpista.t })); chaoP.rotation.x = -Math.PI / 2; chaoP.position.set(cxP, .04, (P0.z0 + P0.z1) / 2); fr.add(chaoP);
+  for (const [x, txt, cor] of [[P0.x0, "🏃 LARGADA", "#ffffff"], [P0.x1, "🏁 CHEGADA", "#ffd23f"]]) { caixa(fr, .3, 5, .3, 0x333a66, x, 2.5, P0.z0 - .4); caixa(fr, .3, 5, .3, 0x333a66, x, 2.5, P0.z1 + .4); caixa(fr, .3, .5, hP + 1, 0xffffff, x, 5, (P0.z0 + P0.z1) / 2); rotulo(fr, txt, x, 6.3, (P0.z0 + P0.z1) / 2, 1.3, cor); }
+  for (let i = 0; i < 3; i++) caixa(fr, wP * .7, .6, 1.1, 0x56607f, cxP + 3, .3 + i * .6, P0.z0 - 1.6 - i * 1.1);
+  const placaCorrida = placa(fr, 9, 2.4, 512, 136, (g, w, h, txt = "🏃 CORRIDA DA TURMA") => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, txt, w / 2, h / 2 + 2, txt.length > 22 ? 34 : 48, "#ffd23f"); }, cxP + 3, 6.4, P0.z0 - 5.2);
+  caixa(fr, .3, 5.2, .3, 0x333a66, cxP + 3, 2.6, P0.z0 - 5.35);
+
+  // ---------- vôlei ----------
+  const es = G.volei, Q0 = QV, qcx = (Q0.x0 + Q0.x1) / 2, qcz = (Q0.z0 + Q0.z1) / 2, qw = Q0.x1 - Q0.x0, qh = Q0.z1 - Q0.z0;
+  const tq = textura(512, 320, (g, w, h) => { g.fillStyle = "#e8c98a"; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(160,120,60,.25)"; for (let k = 0; k < 400; k++) g.fillRect((k * 97) % w, (k * 53) % h, 3, 3); g.strokeStyle = "#2b59c3"; g.lineWidth = 7; g.strokeRect(5, 5, w - 10, h - 10); g.beginPath(); g.moveTo(w / 2, 5); g.lineTo(w / 2, h - 5); g.stroke(); });
+  const areia = new THREE.Mesh(new THREE.PlaneGeometry(qw, qh), new THREE.MeshLambertMaterial({ map: tq.t })); areia.rotation.x = -Math.PI / 2; areia.position.set(qcx, .04, qcz); es.add(areia);
+  caixa(es, .2, 3, .2, 0xdddddd, Q0.rede, 1.5, Q0.z0 - .3); caixa(es, .2, 3, .2, 0xdddddd, Q0.rede, 1.5, Q0.z1 + .3);
+  const rede = new THREE.Mesh(new THREE.BoxGeometry(.06, 1, qh + .6), new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: .55 })); rede.position.set(Q0.rede, 2.4, qcz); es.add(rede); caixa(es, .1, .12, qh + .6, 0xffffff, Q0.rede, 2.92, qcz);
+  const placarV = placa(es, 7, 2.6, 512, 192, (g, w, h, a = 0, b = 0) => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, "🏐 VÔLEI DA TURMA", w / 2, 40, 34, "#ffd23f"); letra(g, `${b}  x  ${a}`, w / 2, 124, 92); }, qcx, 6.6, Q0.z0 - 3.4);
+  caixa(es, .3, 5.4, .3, 0x333a66, qcx, 2.7, Q0.z0 - 3.55);
+  const bolaV = new THREE.Mesh(new THREE.SphereGeometry(.5, 16, 12), mat(0xfff1a8)); bolaV.position.set(21, .5, qcz); es.add(bolaV);
+  const faixa = new THREE.Mesh(new THREE.TorusGeometry(.5, .06, 6, 20), mat(0x2b59c3)); bolaV.add(faixa);
+
+  // ---------- pódio na frente do palco ----------
+  const podioG = new THREE.Group(); G.palco.add(podioG);
+  const podioRot = [[0, 1.5, 0xffd23f, "1"], [-3, 1, 0xd9dde8, "2"], [3, .7, 0xd98a4a, "3"]].map(([x, h, cor, n]) => { caixa(podioG, 2.8, h, 2.2, cor, x, h / 2, -35.4); const s2 = rotulo(podioG, n + "º", x, h + .6, -34.2, .9); return { x, h, s: null }; });
+  function setPodio(lista) {
+    podioRot.forEach((p, i) => { if (p.s) { podioG.remove(p.s); p.s.material.map.dispose(); p.s.material.dispose(); } const l = lista[i]; p.s = l ? rotulo(podioG, `${["🥇", "🥈", "🥉"][i]} @${l[0]}`, p.x, p.h + 3 + (i ? 0 : .5), -35.4, 1.1, i ? "#ffffff" : "#ffd23f") : null; });
+  }
+  const barracas = [];
+  function nomeNaBarraca() {}
+
+  // nome de cada ambiente
+  rotulo(G.palco, "🏆 PÓDIO DAS OLIMPÍADAS", 0, 15.2, -41, 1.6, "#ffd23f");
+  rotulo(G.campinho, "⚽ PÊNALTIS", cx, 11.6, CAMPO.z0 - 4.5, 1.4);
+  rotulo(G.prefeitura, "🏅 QUADRO DE MEDALHAS", pfx, 13.6, -6, 1.4);
+  rotulo(G.corrida, "🏃 CORRIDA", cxP + 3, 10.4, P0.z0 - 5.2, 1.4);
+  rotulo(G.volei, "🏐 VÔLEI", qcx, 9.6, Q0.z0 - 3.4, 1.4);
+
+  let passoPista = -1;
+  function atualizar(t, fcx, fcz, verTudo = false) {
+    // ambiente longe não é desenhado: poupa o celular
+    for (const a of AREAS) G[a.id].visible = verTudo || Math.hypot(a.x - fcx, a.z - fcz) < a.r + 46;
+    neve.passo(t, 1.3);
+    estrela.rotation.y = t; const pisca = Math.floor(t * 2) % 2 === 0;
+    bolasA.visible = pisca; bolasB.visible = !pisca; luzA.visible = pisca; luzB.visible = !pisca;
+    braco.rotation.z = -1.9 + Math.sin(t * 5) * .5;
+    if (!G.palco.visible) return;
+    const f = Math.floor(t * 2.2);
+    if (f !== passoPista) { passoPista = f; for (let i = 0; i < PISTA * PISTA; i++) { const col = i % PISTA, lin = Math.floor(i / PISTA); pista.setColorAt(i, CORES_PISTA[(col * 5 + lin * 3 + f * (1 + (col + lin) % 2)) % 6]); } pista.instanceColor.needsUpdate = true; }
+    for (let i = 0; i < NEQ; i++) { const h = 1 + 3.2 * Math.abs(Math.sin(t * 4.3 + i * .7) * Math.sin(t * 2.1 + i * .31)); m4.makeScale(1, h, 1); m4.setPosition((i - NEQ / 2 + .5) * .84, 1.7 + h / 2, -44.3); eq.setMatrixAt(i, m4); }
+    eq.instanceMatrix.needsUpdate = true;
+    banda.forEach((b, i) => { b.position.y = 1.7 + Math.abs(Math.sin(t * (i ? 6 : 4.4) + i)) * (i ? .55 : .3); b.rotation.z = Math.sin(t * 3 + i) * .1; });
+    canhoes.forEach((c, i) => { c.rotation.x = -.42 + Math.sin(t * .9 + i) * .28; c.rotation.z = Math.sin(t * 1.3 + i * 1.6) * .42; });
+    confete.passo(t, 2.4);
+  }
+  const alvosBarraca = barracas.map((b) => b.alvo);
+  return { atualizar, bola, bolaV, setPodio, setPlacarV: (a, b) => placarV.refaz(a, b), setCorrida: (txt) => placaCorrida.refaz(txt), setPlacar: (a, b) => placar.refaz(a, b), setQuadro: (tit, linhas) => quadro.refaz(tit, linhas), nomeNaBarraca, alvosBarraca };
+}
+
+// ---------- bonecos da turma: tudo instanciado, com gorro de Natal ----------
+function montarBonecos(cena, MAX) {
+  const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
+  const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.27, .46, 10), mat(0xd92b2b), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.29, .29, .1, 10), mat(0xffffff), MAX);
+  const todos = [corpos, cabecas, gorros, abas]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
+  const o = new THREE.Object3D();
+  const coloca = (m, n, x, y, z, rz) => { o.position.set(x, y, z); o.rotation.set(0, 0, rz); o.updateMatrix(); m.setMatrixAt(n, o.matrix); };
+  return {
+    poe(n, x, pulo, z, rz, cor, id) {
+      coloca(corpos, n, x, .58 + pulo, z, rz); corpos.setColorAt(n, CORES[cor % 8]);
+      coloca(cabecas, n, x, 1.28 + pulo, z, 0); cabecas.setColorAt(n, PELES[id % 5]);
+      coloca(gorros, n, x, 1.68 + pulo, z, .12); coloca(abas, n, x, 1.47 + pulo, z, 0);
+    },
+    fim(n) { todos.forEach((m) => { m.count = n; m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; }); },
+  };
+}
+
+// Prévia/tomadas das Olimpíadas da Turma: mesmo cenário da página, bonecos de exemplo correndo, chutando e jogando vôlei.
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+const W = 1080, H = 1920, Q = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); renderer.setSize(W, H); renderer.setPixelRatio(1); renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
+const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
+if (window.SEM_AVISO) document.getElementById("aviso").remove();
+mundo.setQuadro("🏅 MEDALHAS", ["🥇 São Paulo: 42", "🥈 Bahia: 37", "🥉 Pernambuco: 31", "4º Minas Gerais: 25", "5º Rio Grande do Sul: 19"]);
+mundo.setPodio([["turma.sp", 18], ["turma.ba", 15], ["turma.pe", 12]]); mundo.setPlacar(3, 2); mundo.setPlacarV(7, 6); mundo.setCorrida("🏃 VALENDO!");
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v)), ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(4242);
+const PC = PISTA_C, GENTE = [];
+// corredores: 8 raias na largada; cada um com velocidade e reação diferentes
+const LARGA = 6.6;
+for (let i = 0; i < 8; i++) GENTE.push({ a: "corre", x: PC.lx0 + 1.5 + r() * 2.5, z: PC.z0 + .6 + i * (PC.z1 - PC.z0 - 1.2) / 7, vel: 6.4 + r() * 1.6, reacao: r() * .5, cor: i % 8, id: GENTE.length, fase: r() * 6 });
+for (const [a, n] of [["palco", 40], ["praca", 24], ["campinho", 14], ["prefeitura", 10], ["volei", 12], ["torcida", 22]]) {
+  const area = AREAS.find((x) => x.id === a) || AREAS.find((x) => x.id === "corrida");
+  for (let i = 0; i < n; i++) {
+    const ang = r() * 6.283, d = Math.sqrt(r()) * area.r * .8; let x = area.x + Math.cos(ang) * d, z = area.z + Math.sin(ang) * d;
+    if (a === "palco") { x = (r() - .5) * 15; z = -27 + (r() - .5) * 12; }
+    if (a === "praca" && Math.hypot(x, z) < 5.6) { x *= 2; z *= 2; }
+    if (a === "campinho") { x = 30 + r() * 16; z = (r() - .5) * 12; }
+    if (a === "volei") { const lado = i % 2 ? 1 : -1; x = QV.rede + lado * (2 + r() * 7.5); z = QV.z0 + 1.5 + r() * (QV.z1 - QV.z0 - 3); }
+    if (a === "torcida") { x = PC.lx0 + 4 + r() * 26; z = PC.z0 - 1.8 - (i % 3) * 1.1; }
+    GENTE.push({ a, x, z, cor: Math.floor(r() * 8), id: GENTE.length, fase: r() * 6.28, gx: a === "torcida" ? 0 : r() * 2.2, gz: a === "torcida" ? 0 : r() * 2.2 });
+  }
+}
+// tomadas: [início, nome, x, z, dist0, alt0, dist1, alt1]
+const T = window.TOMADAS || [
+  [0, "🏅 OLIMPÍADAS DA TURMA", 0, -32, 30, 18, 22, 12],
+  [5, "🏃 Corrida", -26, 31, 18, 10, 16, 9],
+  [13, "⚽ Pênaltis", 38, 0, 22, 14, 18, 12],
+  [18, "🏐 Vôlei", 26, 34, 19, 12, 16, 10],
+  [23, "🏆 Pódio", 0, -35.5, 12, 6, 10, 5],
+  [27, "🏅 Quadro de medalhas", -38, -2, 18, 9, 15, 8],
+  [31, "🗺️ Hoje, 21h", 0, 0, 80, 74, 72, 68],
+];
+const FIM = window.FIM_PREVIA || 35, elNome = document.getElementById("nome"), elG = document.getElementById("grande");
+const T_LARGADA = window.T_LARGADA ?? 8;
+function renderFrame(t) {
+  const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
+  const dist = s[4] + (s[6] - s[4]) * k, alt = s[5] + (s[7] - s[5]) * k, giro = (k - .5) * 5;
+  let lookX = s[2];
+  if (s[1].includes("Corrida")) { const lider = Math.max(...GENTE.filter((p) => p.a === "corre").map((p) => Math.min(PC.x1 + 2, p.x + Math.max(0, t - T_LARGADA - p.reacao) * p.vel))); lookX = clamp(lider - 4, -34, -16); }
+  cam.position.set(lookX + giro, alt, s[3] + dist); cam.lookAt(lookX, 1.5, s[3] - 2); cam.updateMatrixWorld();
+  elNome.textContent = s[1]; elNome.style.opacity = window.SEM_NOME ? 0 : clamp((t - s[0]) * 6, 0, 1);
+  const dl = t - T_LARGADA; elG.textContent = dl > -3 && dl < 0 ? String(Math.ceil(-dl)) : dl >= 0 && dl < 1.2 ? "VAI!" : ""; if (!s[1].includes("Corrida")) elG.textContent = "";
+  let n = 0;
+  for (const p of GENTE) {
+    let x, z, pulo, rz = 0;
+    if (p.a === "corre") { const c = Math.max(0, t - T_LARGADA - p.reacao); x = Math.min(PC.x1 + 2.5, p.x + c * p.vel); z = p.z; const corre = c > 0 && x < PC.x1 + 2.5; pulo = corre ? Math.abs(Math.sin(t * 13 + p.fase)) * .3 : 0; rz = corre ? -.2 : 0; }
+    else if (p.a === "torcida") { x = p.x; z = p.z; pulo = Math.abs(Math.sin(t * 8 + p.fase)) * .45; }
+    else { const dancando = p.a === "palco" && naPista(p.x, p.z); x = p.x + (dancando ? 0 : Math.sin(t * .5 + p.fase) * p.gx); z = p.z + (dancando ? 0 : Math.cos(t * .4 + p.fase) * p.gz); pulo = dancando ? Math.abs(Math.sin(t * 6 + p.fase)) * .38 : Math.abs(Math.sin(t * 7 + p.fase)) * .08; rz = dancando ? Math.sin(t * 6 + p.fase) * .13 : 0; }
+    bonecos.poe(n++, x, pulo, z, rz, p.cor, p.id);
+  }
+  bonecos.fim(n);
+  // pênalti: a bola vai pro gol em ciclos de 2,5 s
+  const ck = (t % 2.5) / 2.5; mundo.bola.position.x = 44 + ck * 7; mundo.bola.position.z = Math.sin(t) * 1.2; mundo.bola.position.y = .42 + Math.sin(ck * Math.PI) * 1.2; mundo.bola.rotation.z = -t * 6;
+  // vôlei: bola cruza a rede em arco
+  const cv = (t % 2) / 2, ida = Math.floor(t / 2) % 2 ? 1 : -1; mundo.bolaV.position.set(QV.rede + ida * (-7 + cv * 14), 1 + Math.sin(cv * Math.PI) * 5, 34 + Math.sin(t * .7) * 3);
+  cena.fog.far = i === T.length - 1 ? 500 : 110; cena.fog.near = i === T.length - 1 ? 300 : 48;
+  mundo.atualizar(t, s[2], s[3], i === T.length - 1);
+  renderer.render(cena, cam);
+}
+window.renderFrame = renderFrame;
+renderFrame(0);
+window.pronto = true;
+</script>
+</body></html>
