@@ -189,7 +189,7 @@ function textos(t) {
   // contador e data: sobem junto com as casas nascendo, na ordem real
   const kn = clamp((t - T_OLHA) / (T_CASAS - T_OLHA), 0, 1), nv = entre(t, T_UMA - .05, C(3)), idx = Math.min(N - 1, Math.round(kn * (N - 1)));
   elCont.style.opacity = nv ? 1 : 0;
-  if (nv) { const dt = new Date((TS[idx] - 3 * 3600) * 1e3), dia = String(dt.getUTCDate()).padStart(2, "0"), hr = String(dt.getUTCHours()).padStart(2, "0"); elCont.innerHTML = `${fmt(t < T_OLHA ? 1 : Math.max(1, idx + 1))}<small>${idx + 1 > 1 || t >= T_UMA ? "CASAS · dia " + dia + "/11, " + hr + "h" : ""}</small>`; esc(elCont, 1); }
+  if (nv) { const dt = new Date((TS[idx] - 3 * 3600) * 1e3), dia = String(dt.getUTCDate()).padStart(2, "0"), hr = String(dt.getUTCHours()).padStart(2, "0"); elCont.innerHTML = `${kn >= 1 ? "+10 MIL" : fmt(t < T_OLHA ? 1 : Math.max(1, Math.round((idx + 1) * 10000 / N)))}<small>${idx + 1 > 1 || t >= T_UMA ? "CASAS · dia " + dia + "/11, " + hr + "h" : ""}</small>`; esc(elCont, 1); }
   // chip grande
   const c = CHIPS.find(([a, b]) => entre(t, a, b));
   if (c) { elChip.innerHTML = c[2]; elChip.className = "ov" + (c[3] ? " amarelo" : ""); elChip.style.opacity = 1; elChip.style.fontSize = c[2] === "DIA 3" ? "150px" : "70px"; esc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16) + .12 * pulse(t, c[0] + .08, .3)); }
