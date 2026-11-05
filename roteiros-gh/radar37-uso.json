@@ -1,0 +1,77 @@
+{
+ "nome": "radar37-uso",
+ "obs": "05/11 radar: @fabiindicou #3 / @lizatelier, lista sem preço. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4168_12_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_4176_0_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4
+  },
+  {
+   "arquivo": "IMG_4767_4_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_4178_0.5_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_4711_6_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3235_23_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "TUDO QUE EU USO\npra fazer FOTO ÍMÃ",
+   "y": 0.05
+  },
+  {
+   "texto": "1. A máquina",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "2. Papel fotográfico 115 g",
+   "y": 0.68,
+   "de": 3,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Uma tesoura boa",
+   "y": 0.68,
+   "de": 5.4,
+   "ate": 7.9
+  },
+  {
+   "texto": "4. Os insumos da máquina",
+   "y": 0.68,
+   "de": 7.9,
+   "ate": 10.9
+  },
+  {
+   "texto": "5. O gabarito certo",
+   "y": 0.68,
+   "de": 10.9,
+   "ate": 13.4
+  },
+  {
+   "texto": "Comenta LISTA 👇",
+   "y": 0.68,
+   "de": 13.4
+  }
+ ]
+}
