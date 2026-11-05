@@ -1,0 +1,34 @@
+{
+ "nome": "radar47-pra-que-serve",
+ "obs": "05/11 radar: @click_e_pins #3 (você sabe pra que serve?). Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3238_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_3759_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_3235_23_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Você sabe pra que\nserve ISSO AQUI?",
+   "y": 0.05,
+   "de": 0,
+   "ate": 6
+  },
+  {
+   "texto": "Vira FOTO ÍMÃ 😍",
+   "y": 0.05,
+   "de": 6
+  }
+ ]
+}
