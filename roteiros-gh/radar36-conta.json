@@ -1,0 +1,39 @@
+{
+ "nome": "radar36-conta",
+ "obs": "05/11 radar: @labcriativoaline #3 (conta), exemplo e não resultado da Vê. Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3256_0_6.3.MOV",
+   "inicio": 0,
+   "duracao": 6.3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "30 FOTO\nÍMÃS",
+   "y": 0.4,
+   "de": 0,
+   "ate": 1.3,
+   "tamanho": 120
+  },
+  {
+   "texto": "A R$ 12",
+   "y": 0.4,
+   "de": 1.3,
+   "ate": 2.5,
+   "tamanho": 120
+  },
+  {
+   "texto": "R$ 360",
+   "y": 0.4,
+   "de": 2.5,
+   "ate": 3.7,
+   "tamanho": 120
+  },
+  {
+   "texto": "Faz a SUA conta 👇\nComenta SIMULADOR",
+   "y": 0.64,
+   "de": 3.7
+  }
+ ]
+}

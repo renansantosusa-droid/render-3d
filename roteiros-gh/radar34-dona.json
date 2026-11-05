@@ -1,0 +1,55 @@
+{
+ "nome": "radar34-dona",
+ "obs": "05/11 radar: @gifts_imagine #3 (palavras uma a uma). Mudo.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3038_0_9.5.MOV",
+   "inicio": 0,
+   "duracao": 9.5,
+   "zoom": 1.2,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "DONA DE\nNEGÓCIO",
+   "y": 0.4,
+   "de": 0,
+   "ate": 1.7,
+   "tamanho": 120
+  },
+  {
+   "texto": "MAS\nTAMBÉM",
+   "y": 0.4,
+   "de": 1.7,
+   "ate": 3,
+   "tamanho": 120
+  },
+  {
+   "texto": "SOCIAL\nMEDIA",
+   "y": 0.4,
+   "de": 3,
+   "ate": 4.3,
+   "tamanho": 120
+  },
+  {
+   "texto": "EDITORA",
+   "y": 0.4,
+   "de": 4.3,
+   "ate": 5.4,
+   "tamanho": 120
+  },
+  {
+   "texto": "VENDEDORA",
+   "y": 0.4,
+   "de": 5.4,
+   "ate": 6.5,
+   "tamanho": 120
+  },
+  {
+   "texto": "E ainda faz o foto ímã 😅\nLeia a legenda 👇",
+   "y": 0.62,
+   "de": 6.5
+  }
+ ]
+}

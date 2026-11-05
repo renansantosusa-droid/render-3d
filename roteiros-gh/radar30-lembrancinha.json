@@ -1,0 +1,22 @@
+{
+ "nome": "radar30-lembrancinha",
+ "obs": "05/11 radar: @fmcraft_ca + @amoremimapersonalizados. Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2210_3_8.MOV",
+   "inicio": 0,
+   "duracao": 8
+  }
+ ],
+ "textos": [
+  {
+   "texto": "A lembrancinha que\nNINGUÉM joga fora",
+   "y": 0.05
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 5.5
+  }
+ ]
+}

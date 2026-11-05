@@ -1,0 +1,39 @@
+{
+ "nome": "radar35-natal50",
+ "obs": "05/11 radar: @ojeancarlo.s (contagem) para o Natal. Vale até 11/11. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3042_0_8.MOV",
+   "inicio": 0,
+   "duracao": 8
+  }
+ ],
+ "textos": [
+  {
+   "texto": "MENOS DE\n50 DIAS",
+   "y": 0.4,
+   "de": 0,
+   "ate": 1.8,
+   "tamanho": 120
+  },
+  {
+   "texto": "PRO\nNATAL",
+   "y": 0.4,
+   "de": 1.8,
+   "ate": 3.2,
+   "tamanho": 120
+  },
+  {
+   "texto": "E O SEU\nFOTO ÍMÃ?",
+   "y": 0.4,
+   "de": 3.2,
+   "ate": 5,
+   "tamanho": 120
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit",
+   "y": 0.64,
+   "de": 5
+  }
+ ]
+}

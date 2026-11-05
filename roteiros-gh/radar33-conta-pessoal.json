@@ -1,0 +1,29 @@
+{
+ "nome": "radar33-conta-pessoal",
+ "obs": "05/11 radar: @ima_eafeto #1 (humor), comemoração no lugar do meme. Mudo.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4168_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_3249_2_5.5.MOV",
+   "inicio": 0,
+   "duracao": 5.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "\"Ninguém liga pros posts\ndo seu pequeno negócio\"",
+   "y": 0.05,
+   "de": 0,
+   "ate": 3.5
+  },
+  {
+   "texto": "Eu, da minha conta pessoal:",
+   "y": 0.66,
+   "de": 3.5
+  }
+ ]
+}
