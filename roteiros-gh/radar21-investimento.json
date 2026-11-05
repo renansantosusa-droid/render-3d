@@ -1,0 +1,25 @@
+{
+ "nome": "radar21-investimento",
+ "obs": "05/11 radar: @lizatelier (investimento). Fala real IMG_7773. SIMULADOR.",
+ "audio": "dados/veecriativos/audios/radar21-investimento-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_6353_0.7_6.24.MOV",
+   "inicio": 0,
+   "duracao": 6.24
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto ímã precisa de\nINVESTIMENTO ALTO?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 3.8
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇",
+   "y": 0.68,
+   "de": 3.8
+  }
+ ]
+}

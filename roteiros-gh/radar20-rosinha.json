@@ -1,0 +1,30 @@
+{
+ "nome": "radar20-rosinha",
+ "obs": "05/11 radar: @empreende.duda (vale a pena?). Fala real IMG_7781. SIMULADOR.",
+ "audio": "dados/veecriativos/audios/radar20-rosinha-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3559_2.5_4.MOV",
+   "inicio": 0,
+   "duracao": 4
+  },
+  {
+   "arquivo": "IMG_7726_0_3.62.MOV",
+   "inicio": 0,
+   "duracao": 3.62
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Vale a pena essa máquina\npra COMEÇAR?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 5
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\nque eu te mostro a conta",
+   "y": 0.66,
+   "de": 5
+  }
+ ]
+}
