@@ -1,0 +1,22 @@
+{
+ "nome": "radar27-nao-compre",
+ "obs": "05/11 radar: @afonsomolina (frase-tese). Mudo. SIMULADOR na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7726_0_8.2.MOV",
+   "inicio": 0,
+   "duracao": 8.2
+  }
+ ],
+ "textos": [
+  {
+   "texto": "NÃO COMPRE máquina\nde foto ímã agora.",
+   "y": 0.66
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.74,
+   "de": 5.7
+  }
+ ]
+}

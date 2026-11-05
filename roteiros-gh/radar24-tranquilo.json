@@ -1,0 +1,22 @@
+{
+ "nome": "radar24-tranquilo",
+ "obs": "05/11 radar: @mora.magnets #3, sem balão. Mudo. MÉTODO na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3431_0_7.MOV",
+   "inicio": 0,
+   "duracao": 7
+  }
+ ],
+ "textos": [
+  {
+   "texto": "POV: seu trabalho virou o\nmomento mais TRANQUILO do dia",
+   "y": 0.66
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.74,
+   "de": 5
+  }
+ ]
+}

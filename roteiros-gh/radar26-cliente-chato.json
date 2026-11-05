@@ -1,0 +1,22 @@
+{
+ "nome": "radar26-cliente-chato",
+ "obs": "05/11 radar: @soucelie #2 (isca de comentário). Mudo.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7727_0_9.5.MOV",
+   "inicio": 0,
+   "duracao": 9.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Por favor, finge que é um\nCLIENTE CHATO nos comentários 😂",
+   "y": 0.62
+  },
+  {
+   "texto": "Quero ver o mais criativo 👇",
+   "y": 0.72,
+   "de": 4
+  }
+ ]
+}

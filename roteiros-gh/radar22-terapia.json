@@ -1,0 +1,22 @@
+{
+ "nome": "radar22-terapia",
+ "obs": "05/11 radar: @giftsdaamanda (diálogo-meme + máquina). Mudo. MÉTODO na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4168_60.5_8.MOV",
+   "inicio": 0,
+   "duracao": 8
+  }
+ ],
+ "textos": [
+  {
+   "texto": "\"Você faz terapia?\"\nEu: faço. Foto ímã.",
+   "y": 0.05
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 5.5
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "nome": "radar23-simples",
+ "obs": "05/11 radar: @imaginegifts_ #2. Mudo. MÉTODO na legenda.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3477_0_10.MOV",
+   "inicio": 0,
+   "duracao": 10
+  }
+ ],
+ "textos": [
+  {
+   "texto": "POV: você descobriu uma forma de\nganhar dinheiro com algo SIMPLES 🤫",
+   "y": 0.66
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.74,
+   "de": 7.5
+  }
+ ]
+}
