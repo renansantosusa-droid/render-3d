@@ -1,0 +1,32 @@
+{
+ "nome": "radar17-nao-colou",
+ "obs": "05/11 radar: @comlaisla (comprei e não consegui). Fala real 11/08. MÉTODO.",
+ "audio": "dados/veecriativos/audios/radar17-nao-colou-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3482_0_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3042_6_4.46.MOV",
+   "inicio": 0,
+   "duracao": 4.46
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Comprei essa máquina e\nELA NÃO COLOU minhas fotos",
+   "y": 0.66,
+   "de": 0,
+   "ate": 6.2
+  },
+  {
+   "texto": "Comenta MÉTODO 👇",
+   "y": 0.68,
+   "de": 6.2
+  }
+ ]
+}

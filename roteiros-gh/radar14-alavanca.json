@@ -1,0 +1,40 @@
+{
+ "nome": "radar14-alavanca",
+ "obs": "05/11 radar: @giftsdalee + @byjugifts. Fala real 11/08, 1o erro. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar14-alavanca-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_4168_12_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_2186_26_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_3264_13_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_3235_5_3.44.MOV",
+   "inicio": 0,
+   "duracao": 3.44
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Seu foto ímã ABRE\ndepois de pronto?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 10
+  },
+  {
+   "texto": "Comenta GABARITO 👇",
+   "y": 0.68,
+   "de": 10
+  }
+ ]
+}

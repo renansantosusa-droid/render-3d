@@ -1,0 +1,30 @@
+{
+ "nome": "radar15-papel",
+ "obs": "05/11 radar: @danielyrochaa. Fala real 11/08, 2o erro. LISTA.",
+ "audio": "dados/veecriativos/audios/radar15-papel-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_2666_0.5_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_4767_0_4.46.MOV",
+   "inicio": 0,
+   "duracao": 4.46
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O erro pode estar\nno seu PAPEL",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.6
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando os materiais",
+   "y": 0.68,
+   "de": 4.6
+  }
+ ]
+}

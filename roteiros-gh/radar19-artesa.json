@@ -1,0 +1,32 @@
+{
+ "nome": "radar19-artesa",
+ "obs": "05/11 radar: @aline.delamare (sem saber nada de X). Fala real IMG_7778. MÉTODO.",
+ "audio": "dados/veecriativos/audios/radar19-artesa-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_2732_0_4.MOV",
+   "inicio": 0,
+   "duracao": 4
+  },
+  {
+   "arquivo": "IMG_4716_14.5_5.84.MOV",
+   "inicio": 0,
+   "duracao": 5.84,
+   "zoom": 1.12,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Precisa saber ARTESANATO\npra fazer foto ímã?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 7
+  },
+  {
+   "texto": "Comenta MÉTODO 👇",
+   "y": 0.68,
+   "de": 7
+  }
+ ]
+}

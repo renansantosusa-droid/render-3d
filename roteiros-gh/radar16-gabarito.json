@@ -1,0 +1,35 @@
+{
+ "nome": "radar16-gabarito",
+ "obs": "05/11 radar: @giftsdalee (o último é o mais importante). Fala real 11/08. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar16-gabarito-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_4711_0.6_4.MOV",
+   "inicio": 0,
+   "duracao": 4
+  },
+  {
+   "arquivo": "IMG_3427_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_3235_22.36_2.54.MOV",
+   "inicio": 0,
+   "duracao": 2.54
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O erro que mais faz\nseu foto ímã ABRIR",
+   "y": 0.05,
+   "de": 0,
+   "ate": 7.5
+  },
+  {
+   "texto": "Comenta GABARITO 👇",
+   "y": 0.68,
+   "de": 7.5
+  }
+ ]
+}
