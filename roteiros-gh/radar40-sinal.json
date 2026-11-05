@@ -1,0 +1,22 @@
+{
+ "nome": "radar40-sinal",
+ "obs": "05/11 radar: @gifts_imagine #2. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3256_0_6.3.MOV",
+   "inicio": 0,
+   "duracao": 6.3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Esse é um SINAL pra você\ntransformar suas memórias\nem FOTO ÍMÃ",
+   "y": 0.08
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 4.3
+  }
+ ]
+}

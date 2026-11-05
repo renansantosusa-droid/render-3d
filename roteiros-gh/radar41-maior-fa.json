@@ -1,0 +1,26 @@
+{
+ "nome": "radar41-maior-fa",
+ "obs": "05/11 radar: @gifts_da_mah #3 (frase pra empreendedora). Mudo.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4716_5_9.MOV",
+   "inicio": 0,
+   "duracao": 9,
+   "zoom": 1.12,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Não postou nada hoje?\nUsa essa frase:",
+   "y": 0.64,
+   "de": 0,
+   "ate": 3.5
+  },
+  {
+   "texto": "SEJA SEU MAIOR FÃ.\nNinguém conhece\nos seus bastidores 🤍",
+   "y": 0.62,
+   "de": 3.5
+  }
+ ]
+}

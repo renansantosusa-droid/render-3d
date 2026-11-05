@@ -1,0 +1,32 @@
+{
+ "nome": "radar42-emocione",
+ "obs": "05/11 radar: @giftsdalu_ #2. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3038_0_9.5.MOV",
+   "inicio": 0,
+   "duracao": 9.5,
+   "zoom": 1.2,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "\"Preciso de um presente\nque EMOCIONE\"",
+   "y": 0.62,
+   "de": 0,
+   "ate": 4
+  },
+  {
+   "texto": "Talvez você precise\nde um FOTO ÍMÃ 🎁",
+   "y": 0.62,
+   "de": 4,
+   "ate": 7.5
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.62,
+   "de": 7.5
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "nome": "radar46-simples",
+ "obs": "05/11 radar: @fmcraft_ca #2 (simpler than it looks). Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2396_12_9.MOV",
+   "inicio": 0,
+   "duracao": 9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "É mais SIMPLES\ndo que parece",
+   "y": 0.05
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 6.5
+  }
+ ]
+}

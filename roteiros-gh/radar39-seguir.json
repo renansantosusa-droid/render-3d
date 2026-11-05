@@ -1,0 +1,30 @@
+{
+ "nome": "radar39-seguir",
+ "obs": "05/11 radar: Fala real IMG_7794 (CTA de seguir). @gifts_da_mah ('todos os dias trago dicas, me segue'). LISTA na legenda.",
+ "audio": "dados/veecriativos/audios/radar39-seguir-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3559_2.5_4.MOV",
+   "inicio": 0,
+   "duracao": 4
+  },
+  {
+   "arquivo": "IMG_7808_6.4_3.6.MOV",
+   "inicio": 0,
+   "duracao": 3.6
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Quer começar com\nFOTO ÍMÃ?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.4
+  },
+  {
+   "texto": "SEGUE o perfil 💗",
+   "y": 0.66,
+   "de": 4.4
+  }
+ ]
+}
