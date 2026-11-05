@@ -1,0 +1,43 @@
+{
+ "nome": "radar18-tempo",
+ "obs": "05/11 radar: @danielyrochaa (objeção). Fala real IMG_7792 sem o Mito. MÉTODO.",
+ "audio": "dados/veecriativos/audios/radar18-tempo-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_7807_0_4.MOV",
+   "inicio": 0,
+   "duracao": 4,
+   "zoom": 1.35,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_7751_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_7808_4.05_6.19.MOV",
+   "inicio": 0,
+   "duracao": 6.19
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto ímã leva um\nTEMPÃO do seu dia?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 5.4
+  },
+  {
+   "texto": "Com 1 a 2 HORAS\njá dá",
+   "y": 0.66,
+   "de": 5.4,
+   "ate": 10.4
+  },
+  {
+   "texto": "Comenta MÉTODO 👇",
+   "y": 0.66,
+   "de": 10.4
+  }
+ ]
+}
