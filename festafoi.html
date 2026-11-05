@@ -1,0 +1,314 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0a1633;position:relative}canvas{display:block}
+.ov{position:absolute;font-family:'Nunito',sans-serif;font-weight:900;pointer-events:none}
+#marca{top:70px;left:50%;background:#fff;color:#1d5e2a;font-size:46px;padding:14px 36px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap}#marca b{color:#2fa34a}
+#chip{top:240px;left:50%;white-space:nowrap;background:rgba(18,52,24,.92);border-radius:34px;padding:10px 40px 22px;text-align:center;font-size:76px;color:#ffd23f;line-height:1.05}#chip small{display:block;font-size:48px;color:#fff}
+#legenda{top:1640px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}#legenda.am{color:#ffd23f}
+#cta{left:60px;right:60px;top:1160px;background:#fff;border:8px solid #14204a;border-radius:44px;box-shadow:0 12px 0 #14204a;text-align:center;padding:30px 20px 34px;color:#14204a}#cta .l1{font-size:72px;line-height:1.05}#cta .l2{font-size:46px;color:#1d5e2a;margin-top:10px}
+.et{left:0;top:0;background:#fff;color:#14204a;border:4px solid #14204a;border-radius:99px;padding:1px 16px 3px;font-size:30px;white-space:nowrap}
+.bal{left:0;top:0;background:#fff;color:#14204a;border:6px solid #14204a;border-radius:30px;padding:8px 22px;font-size:38px;text-align:center;max-width:560px;z-index:3;line-height:1.1}.bal.gr{background:none;border:0;font-size:84px;padding:0}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from "three";
+
+// Cenário da Festa da Turma: praça de Natal no meio e 5 ambientes em volta. Tudo em função do tempo t, sem sorteio:
+// a mesma função desenha a página ao vivo e a prévia em vídeo (animacoes-3d/festaprevia).
+const LIMITE = 56;
+const AREAS = [
+  { id: "praca", nome: "🎄 Praça de Natal", x: 0, z: 0, r: 15 },
+  { id: "palco", nome: "🎤 Palco principal", x: 0, z: -36, r: 21 },
+  { id: "campinho", nome: "⚽ Campinho", x: 38, z: 0, r: 17 },
+  { id: "prefeitura", nome: "🏛️ Prefeitura", x: -38, z: 0, r: 16 },
+  { id: "feirinha", nome: "🛍️ Feirinha", x: -26, z: 34, r: 15 },
+  { id: "estados", nome: "🇧🇷 Praça dos Estados", x: 26, z: 34, r: 15 },
+];
+const CAMPO = { x0: 26, x1: 50, z0: -8, z1: 8, gol: 2.5 };
+const PISTA = 9, TAM = 1.6, PISTA_Z = -27;
+const naPista = (x, z) => Math.abs(x) < PISTA * TAM / 2 && Math.abs(z - PISTA_Z) < PISTA * TAM / 2;
+const areaDe = (x, z) => AREAS.filter((a) => Math.hypot(x - a.x, z - a.z) <= a.r).sort((a, b) => Math.hypot(x - a.x, z - a.z) - Math.hypot(x - b.x, z - b.z))[0] || null;
+const CORES = [0xe4573a, 0x2b59c3, 0xffb020, 0x8e5cd9, 0xff6fa8, 0x18a39a, 0xff7a45, 0x4cc26a].map((c) => new THREE.Color(c));
+const CORES_PISTA = [0x7a1f6b, 0x1c3f8f, 0x0f6f6a, 0x8a3f12, 0x4b2a8a, 0x8a1f3a].map((c) => new THREE.Color(c));
+const PELES = [0xffdfc4, 0xf0c29a, 0xd99a6c, 0xa86b42, 0x7a4a2c].map((c) => new THREE.Color(c));
+const UFS = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+
+// sorteio com semente: o cenário sai igual em todo aparelho
+const semente = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const mats = new Map();
+const mat = (cor, emis = 0, forca = .6) => { const k = `${cor}-${emis}-${forca}`; if (!mats.has(k)) mats.set(k, new THREE.MeshLambertMaterial({ color: cor, ...(emis ? { emissive: emis, emissiveIntensity: forca } : {}) })); return mats.get(k); };
+function caixa(g, w, h, d, cor, x, y, z, emis) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(cor, emis)); m.position.set(x, y, z); g.add(m); return m; }
+function textura(w, h, pinta) { const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d"); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const refaz = (...a) => { pinta(g, w, h, ...a); t.needsUpdate = true; }; refaz(); return { t, refaz }; }
+function placa(g, w, h, px, py, pinta, x, y, z) { const tx = textura(px, py, pinta), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tx.t, fog: false, toneMapped: false })); m.position.set(x, y, z); g.add(m); return tx; }
+const letra = (g, txt, x, y, tam, cor = "#fff", al = "center") => { g.fillStyle = cor; g.font = `900 ${tam}px Nunito, sans-serif`; g.textAlign = al; g.textBaseline = "middle"; g.fillText(txt, x, y); };
+function rotulo(g, txt, x, y, z, alt = 2.2, fundo = "#fff", cor = "#14204a") {
+  const m = document.createElement("canvas").getContext("2d"); m.font = "900 56px Nunito, sans-serif"; const w = Math.ceil(m.measureText(txt).width) + 60;
+  const tx = textura(w, 88, (c, W, H) => { c.fillStyle = fundo; c.beginPath(); c.roundRect(3, 3, W - 6, H - 6, 40); c.fill(); c.lineWidth = 6; c.strokeStyle = "#14204a"; c.stroke(); letra(c, txt, W / 2, H / 2 + 3, 56, cor); });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx.t, depthTest: false, fog: false })); s.scale.set(alt * w / 88, alt, 1); s.position.set(x, y, z); s.renderOrder = 5; g.add(s); return s;
+}
+function chuva(n, cores, tamanho, raio, alt, cx, cz, s0) { // nuvem de pontos que desce em dois blocos emendados, sem recalcular ponto a ponto
+  const r = semente(s0), pos = [], cor = [], c = new THREE.Color();
+  for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()) * raio; pos.push(cx + Math.cos(a) * d, r() * alt, cz + Math.sin(a) * d); c.setHex(cores[i % cores.length]); cor.push(c.r, c.g, c.b); }
+  const geo = new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)).setAttribute("color", new THREE.Float32BufferAttribute(cor, 3));
+  const material = new THREE.PointsMaterial({ size: tamanho, vertexColors: true, fog: false, transparent: true, depthWrite: false });
+  const a = new THREE.Points(geo, material), b = new THREE.Points(geo, material), g = new THREE.Group(); a.frustumCulled = b.frustumCulled = false; b.position.y = alt; g.add(a, b);
+  return { g, passo: (t, vel) => { g.position.y = -((t * vel) % alt); } };
+}
+
+function montarCenario(cena) {
+  cena.background = new THREE.Color(0x0a1633); cena.fog = new THREE.Fog(0x0a1633, 48, 110);
+  cena.add(new THREE.HemisphereLight(0xffffff, 0x8088a8, 2.6));
+  const lua = new THREE.DirectionalLight(0xffffff, 1.2); lua.position.set(-8, 20, 10); cena.add(lua);
+  const fundo = new THREE.Group(); cena.add(fundo);
+  const G = Object.fromEntries(AREAS.map((a) => { const g = new THREE.Group(); cena.add(g); return [a.id, g]; }));
+
+  // ---------- chão, caminhos, fundo ----------
+  const chao = new THREE.Mesh(new THREE.CircleGeometry(120, 48), mat(0x1f6b35)); chao.rotation.x = -Math.PI / 2; fundo.add(chao);
+  for (const a of AREAS.slice(1)) {
+    const d = Math.hypot(a.x, a.z), c = new THREE.Mesh(new THREE.PlaneGeometry(5, d), mat(0x77819a)); c.rotation.x = -Math.PI / 2; c.rotation.z = Math.atan2(-a.x, -a.z);
+    c.position.set(a.x / 2, .012, a.z / 2); fundo.add(c);
+    rotulo(fundo, a.nome, a.x * .46, 2.4, a.z * .46, 1);
+  }
+  const r0 = semente(77), estrelas = []; for (let i = 0; i < 500; i++) estrelas.push((r0() - .5) * 260, 34 + r0() * 50, -30 - r0() * 110);
+  fundo.add(new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(estrelas, 3)), new THREE.PointsMaterial({ color: 0xffffff, size: .4, fog: false })));
+  const luaBola = new THREE.Mesh(new THREE.SphereGeometry(5, 24, 16), new THREE.MeshBasicMaterial({ color: 0xfff4cf, fog: false })); luaBola.position.set(38, 44, -92); fundo.add(luaBola);
+  // bairro em volta, no estilo do mapa, com as janelas acesas
+  const casaGeo = new THREE.BoxGeometry(3.2, 2.6, 3), telGeo = new THREE.ConeGeometry(2.9, 2, 4); telGeo.rotateY(Math.PI / 4);
+  const nc = 34, casas = new THREE.InstancedMesh(casaGeo, mat(0xfffaf0, 0xffb54d, .55), nc), tels = new THREE.InstancedMesh(telGeo, mat(0xffffff), nc), m4 = new THREE.Matrix4();
+  for (let i = 0; i < nc; i++) { const a = i / nc * 6.283, r = 62 + (i % 3) * 5, x = Math.cos(a) * r, z = Math.sin(a) * r; m4.makeTranslation(x, 1.3, z); casas.setMatrixAt(i, m4); m4.makeTranslation(x, 3.6, z); tels.setMatrixAt(i, m4); tels.setColorAt(i, CORES[i % 8]); }
+  fundo.add(casas, tels);
+
+  // ---------- praça de Natal ----------
+  const pr = G.praca;
+  const calcada = new THREE.Mesh(new THREE.CircleGeometry(15, 40), mat(0x8d97ad)); calcada.rotation.x = -Math.PI / 2; calcada.position.y = .02; pr.add(calcada);
+  const tronco = new THREE.Mesh(new THREE.CylinderGeometry(.6, .8, 2, 10), mat(0x6b4a2b)); tronco.position.y = 1; pr.add(tronco);
+  [[4.2, 4, 3.6], [3.3, 3.6, 6], [2.3, 3.2, 8.2], [1.3, 2.6, 10.2]].forEach(([r, h, y]) => { const c = new THREE.Mesh(new THREE.ConeGeometry(r, h, 16), mat(0x1c8a3c, 0x0b4a1e, .5)); c.position.y = y; pr.add(c); });
+  const estrela = new THREE.Mesh(new THREE.OctahedronGeometry(.9), new THREE.MeshBasicMaterial({ color: 0xffd23f, fog: false })); estrela.position.y = 12.1; pr.add(estrela);
+  // bolas da árvore: dois grupos que piscam alternados
+  const rb = semente(31), bolaGeo = new THREE.SphereGeometry(.24, 8, 6);
+  const bolasA = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22), bolasB = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22);
+  [bolasA, bolasB].forEach((b, k) => { for (let i = 0; i < 22; i++) { const y = 2.6 + rb() * 8.4, r = (11.4 - y) * .44, a = rb() * 6.283; m4.makeTranslation(Math.cos(a) * r, y, Math.sin(a) * r); b.setMatrixAt(i, m4); b.setColorAt(i, new THREE.Color([0xff3b3b, 0xffd23f, 0x4fa8ff, 0xffffff][(i + k) % 4])); } pr.add(b); });
+  // presentes em volta da árvore
+  for (let i = 0; i < 10; i++) { const a = i * .63 + .3, r = 4.6 + (i % 3) * .5, s = .7 + (i % 3) * .25, x = Math.cos(a) * r, z = Math.sin(a) * r; caixa(pr, s, s, s, CORES[i % 8].getHex(), x, s / 2, z); caixa(pr, s + .04, s * .18, s + .04, 0xffffff, x, s / 2, z); }
+  // Papai Noel acenando
+  const noel = new THREE.Group(); noel.position.set(6.4, 0, 5.2); pr.add(noel);
+  const noelCorpo = new THREE.Mesh(new THREE.CapsuleGeometry(.72, 1.1, 3, 10), mat(0xd92b2b)); noelCorpo.position.y = 1.4; noel.add(noelCorpo);
+  const cinto = new THREE.Mesh(new THREE.CylinderGeometry(.76, .76, .2, 14), mat(0x1a1a1a)); cinto.position.y = 1.35; noel.add(cinto);
+  const noelCab = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffdfc4)); noelCab.position.y = 2.95; noel.add(noelCab);
+  const barba = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffffff)); barba.position.set(0, 2.68, .2); barba.scale.set(.95, .8, .8); noel.add(barba);
+  const gorroN = new THREE.Mesh(new THREE.ConeGeometry(.58, 1, 12), mat(0xd92b2b)); gorroN.position.y = 3.72; noel.add(gorroN);
+  const abaN = new THREE.Mesh(new THREE.CylinderGeometry(.6, .6, .2, 14), mat(0xffffff)); abaN.position.y = 3.25; noel.add(abaN);
+  const braco = new THREE.Mesh(new THREE.CapsuleGeometry(.2, .9, 2, 8), mat(0xd92b2b)); braco.geometry.translate(0, .55, 0); braco.position.set(.72, 2, 0); noel.add(braco);
+  rotulo(pr, "🎅 Feliz Natal, turma!", 6.4, 5, 5.2, 1.5, "#ffd23f");
+  // cordões de luz em volta da praça
+  const postes = 12, luzes = [[], []];
+  for (let i = 0; i < postes; i++) {
+    const a = i / postes * 6.283, b = (i + 1) / postes * 6.283, r = 14.6;
+    caixa(pr, .22, 5.4, .22, 0x2a2f55, Math.cos(a) * r, 2.7, Math.sin(a) * r);
+    for (let k = 0; k < 12; k++) { const f = k / 12, ang = a + (b - a) * f; luzes[k % 2].push(Math.cos(ang) * r, 5.3 - Math.sin(f * Math.PI) * 1.1, Math.sin(ang) * r); }
+  }
+  const pontos = (lista, cor) => { const p = new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(lista, 3)), new THREE.PointsMaterial({ color: cor, size: .42, fog: false })); pr.add(p); return p; };
+  const luzA = pontos(luzes[0], 0xffd23f), luzB = pontos(luzes[1], 0xff4d4d);
+  // pinheirinhos com luz nos caminhos
+  const nt = 16, conePeq = new THREE.ConeGeometry(1.2, 3.2, 8), pinhos = new THREE.InstancedMesh(conePeq, mat(0x1c8a3c, 0x0b4a1e, .5), nt), topos = new THREE.InstancedMesh(new THREE.OctahedronGeometry(.28), new THREE.MeshBasicMaterial({ color: 0xffd23f }), nt);
+  AREAS.slice(1).forEach((a, i) => [.46, .52, .49].forEach((f, k) => { const n = i * 3 + k; if (n >= nt) return; const d = Math.hypot(a.x, a.z), lado = k % 2 ? 4.5 : -4.5, x = a.x * f + (a.z / d) * lado, z = a.z * f - (a.x / d) * lado; m4.makeTranslation(x, 1.7, z); pinhos.setMatrixAt(n, m4); m4.makeTranslation(x, 3.5, z); topos.setMatrixAt(n, m4); }));
+  fundo.add(pinhos, topos);
+  const neve = chuva(520, [0xffffff, 0xeaf3ff], .3, 95, 26, 0, 0, 11); fundo.add(neve.g);
+
+  // ---------- palco principal ----------
+  const pc = G.palco;
+  const pisoShow = new THREE.Mesh(new THREE.CircleGeometry(21, 36), mat(0x4a5068)); pisoShow.rotation.x = -Math.PI / 2; pisoShow.position.set(0, .02, -36); pc.add(pisoShow);
+  const tileGeo = new THREE.BoxGeometry(TAM - .06, .06, TAM - .06), pista = new THREE.InstancedMesh(tileGeo, new THREE.MeshBasicMaterial(), PISTA * PISTA);
+  for (let i = 0; i < PISTA * PISTA; i++) { m4.makeTranslation((i % PISTA - 4) * TAM, .06, (Math.floor(i / PISTA) - 4) * TAM + PISTA_Z); pista.setMatrixAt(i, m4); pista.setColorAt(i, CORES_PISTA[i % 6]); } pc.add(pista);
+  caixa(pc, 24, 1.6, 8, 0x20254a, 0, .8, -41);
+  caixa(pc, 24.4, .2, 8.4, 0xffd23f, 0, 1.6, -41, 0xffa000);
+  placa(pc, 22, 8, 1024, 372, (g, w, h) => { const d = g.createLinearGradient(0, 0, w, h); d.addColorStop(0, "#2b1a6b"); d.addColorStop(.5, "#b81f6b"); d.addColorStop(1, "#ff7a2a"); g.fillStyle = d; g.fillRect(0, 0, w, h); letra(g, "A TURMA DO BRASIL", w / 2, h * .36, 96, "#ffd23f"); letra(g, "🎄 FESTA DE NATAL 🎄", w / 2, h * .7, 56); }, 0, 7.2, -44.7);
+  for (const x of [-11.6, 11.6]) { caixa(pc, .5, 13, .5, 0x333a66, x, 6.5, -44.6); caixa(pc, 2.4, 4.2, 1.8, 0x14141c, x + (x < 0 ? -1.2 : 1.2) * 0, 3.7, -39.2); }
+  caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -44.6); caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -37.6);
+  // barras de equalizador na frente do telão
+  const NEQ = 26, eq = new THREE.InstancedMesh(new THREE.BoxGeometry(.56, 1, .3), new THREE.MeshBasicMaterial({ color: 0xffffff }), NEQ); eq.frustumCulled = false;
+  for (let i = 0; i < NEQ; i++) eq.setColorAt(i, CORES[i % 8]); pc.add(eq);
+  // artista e dançarinos no palco
+  const banda = [[0, 0xffd23f, 1.35], [-5, 0xff6fa8, 1], [5, 0x4fd1ff, 1], [-8.5, 0x8e5cd9, 1], [8.5, 0x4cc26a, 1]].map(([x, cor, s], i) => { const b = new THREE.Group(); const c = new THREE.Mesh(new THREE.CapsuleGeometry(.34 * s, .7 * s, 3, 10), mat(cor)), h = new THREE.Mesh(new THREE.SphereGeometry(.32 * s, 12, 10), mat(PELES[i % 5].getHex())); c.position.y = .68 * s; h.position.y = 1.5 * s; b.add(c, h); b.position.set(x, 1.7, -40); pc.add(b); return b; });
+  const mic = new THREE.Mesh(new THREE.CylinderGeometry(.04, .04, 1.5, 6), mat(0x222222)); mic.position.set(.55, 2.45, -39.4); pc.add(mic);
+  // canhões de luz
+  const canhoes = [-9, -5.4, -1.8, 1.8, 5.4, 9].map((x, i) => { const g = new THREE.ConeGeometry(2.6, 15, 16, 1, true); g.translate(0, -7.5, 0); const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: [0xff4dd2, 0x4fd1ff, 0xffd23f][i % 3], transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false })); m.position.set(x, 12.8, -37.8); pc.add(m); return m; });
+  const confete = chuva(220, [0xffd23f, 0xff4dd2, 0x4fd1ff, 0xff4d4d, 0x4cc26a], .32, 15, 16, 0, -30, 23); pc.add(confete.g);
+
+  // ---------- campinho ----------
+  const cp = G.campinho, cx = (CAMPO.x0 + CAMPO.x1) / 2, W = CAMPO.x1 - CAMPO.x0, H = CAMPO.z1 - CAMPO.z0;
+  const gr = textura(512, 340, (g, w, h) => { for (let i = 0; i < 8; i++) { g.fillStyle = i % 2 ? "#3d9e45" : "#34903d"; g.fillRect(i * w / 8, 0, w / 8 + 1, h); } g.strokeStyle = "#fff"; g.lineWidth = 5; g.strokeRect(5, 5, w - 10, h - 10); g.beginPath(); g.moveTo(w / 2, 5); g.lineTo(w / 2, h - 5); g.stroke(); g.beginPath(); g.arc(w / 2, h / 2, 46, 0, 6.3); g.stroke(); g.strokeRect(5, h / 2 - 90, 60, 180); g.strokeRect(w - 65, h / 2 - 90, 60, 180); });
+  const gramado = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: gr.t })); gramado.rotation.x = -Math.PI / 2; gramado.position.set(cx, .03, 0); cp.add(gramado);
+  for (const [x, s] of [[CAMPO.x0, -1], [CAMPO.x1, 1]]) { caixa(cp, .18, 2, .18, 0xffffff, x, 1, -CAMPO.gol); caixa(cp, .18, 2, .18, 0xffffff, x, 1, CAMPO.gol); caixa(cp, .18, .18, CAMPO.gol * 2, 0xffffff, x, 2, 0); caixa(cp, .1, .1, CAMPO.gol * 2, 0xdddddd, x + s, .05, 0); }
+  // arquibancada e refletores
+  for (let i = 0; i < 3; i++) caixa(cp, W, .6, 1.1, 0x56607f, cx, .3 + i * .6, CAMPO.z0 - 1.2 - i * 1.1);
+  for (const x of [CAMPO.x0 - 1.5, CAMPO.x1 + 1.5]) { caixa(cp, .3, 11, .3, 0x333a66, x, 5.5, CAMPO.z0 - 2); caixa(cp, 2.2, .7, .3, 0xffffff, x, 11, CAMPO.z0 - 2, 0xffffff); }
+  const placar = placa(cp, 8, 3, 512, 192, (g, w, h, a = 0, b = 0) => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, "⚽ CAMPINHO DA TURMA", w / 2, 40, 34, "#ffd23f"); letra(g, `${a}  x  ${b}`, w / 2, 124, 92); }, cx, 7.4, CAMPO.z0 - 4.4);
+  caixa(cp, 8.4, 3.4, .2, 0x333a66, cx, 7.4, CAMPO.z0 - 4.55); caixa(cp, .3, 6, .3, 0x333a66, cx, 3, CAMPO.z0 - 4.55);
+  const bolaT = textura(128, 64, (g, w, h) => { g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.fillStyle = "#111"; for (let i = 0; i < 8; i++) { g.beginPath(); g.arc((i + .5) * w / 8, i % 2 ? h * .3 : h * .7, 6, 0, 6.3); g.fill(); } });
+  const bola = new THREE.Mesh(new THREE.SphereGeometry(.42, 16, 12), new THREE.MeshLambertMaterial({ map: bolaT.t })); bola.position.set(cx, .42, 0); cp.add(bola);
+
+  // ---------- prefeitura ----------
+  const pf = G.prefeitura, pfx = -38;
+  const pisoP = new THREE.Mesh(new THREE.CircleGeometry(16, 32), mat(0x8d97ad)); pisoP.rotation.x = -Math.PI / 2; pisoP.position.set(pfx, .02, 0); pf.add(pisoP);
+  caixa(pf, 19, 8, 7, 0xf4efe0, pfx, 4, -9);
+  caixa(pf, 21, .7, 8, 0xd8cfb5, pfx, 8.3, -9);
+  for (let i = 0; i < 6; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(.42, .5, 7.6, 10), mat(0xffffff)); c.position.set(pfx - 8 + i * 3.2, 3.8, -5.2); pf.add(c); }
+  caixa(pf, 21, .8, 1.6, 0xd8cfb5, pfx, .4, -5);
+  caixa(pf, 3, 5, .2, 0x4a2f1c, pfx, 2.5, -5.5);
+  const frontao = new THREE.Mesh(new THREE.ConeGeometry(11, 3.2, 4), mat(0xe9e0c8)); frontao.rotation.y = Math.PI / 4; frontao.scale.z = .45; frontao.position.set(pfx, 10.2, -9); pf.add(frontao);
+  placa(pf, 9, 1.6, 512, 92, (g, w, h) => { g.fillStyle = "#14204a"; g.fillRect(0, 0, w, h); letra(g, "PREFEITURA DA TURMA", w / 2, h / 2 + 3, 44, "#ffd23f"); }, pfx, 7.5, -5.3);
+  caixa(pf, .16, 9, .16, 0x888888, pfx + 11.5, 4.5, -3); const bandeira = placa(pf, 3, 2, 96, 64, (g, w, h) => { g.fillStyle = "#1a9c3e"; g.fillRect(0, 0, w, h); g.fillStyle = "#ffd23f"; g.beginPath(); g.moveTo(w / 2, 8); g.lineTo(w - 8, h / 2); g.lineTo(w / 2, h - 8); g.lineTo(8, h / 2); g.fill(); g.fillStyle = "#14418f"; g.beginPath(); g.arc(w / 2, h / 2, 13, 0, 6.3); g.fill(); }, pfx + 13.1, 7.9, -3);
+  const quadro = placa(pf, 8, 5.4, 512, 340, (g, w, h, tit = "OS 3 DA SEMANA", linhas = []) => { g.fillStyle = "#14204a"; g.fillRect(0, 0, w, h); letra(g, tit, w / 2, 40, 38, "#ffd23f"); linhas.slice(0, 5).forEach((l, i) => letra(g, l, 24, 100 + i * 52, 32, "#fff", "left")); }, pfx - 9.5, 3.6, -2);
+  caixa(pf, 8.4, 5.8, .2, 0x333a66, pfx - 9.5, 3.6, -2.15);
+
+  // ---------- feirinha ----------
+  const fr = G.feirinha, fx = -26, fz = 34;
+  const pisoF = new THREE.Mesh(new THREE.CircleGeometry(15, 32), mat(0xb4986a)); pisoF.rotation.x = -Math.PI / 2; pisoF.position.set(fx, .02, fz); fr.add(pisoF);
+  const barracas = [[-7, -5], [0, -5], [7, -5], [-7, 4], [0, 4], [7, 4]].map(([dx, dz], i) => {
+    const x = fx + dx, z = fz + dz, g = new THREE.Group(); fr.add(g);
+    const balcao = caixa(g, 5, 1.2, 1.8, 0x8a5a2c, x, .6, z);
+    caixa(g, .2, 3.8, .2, 0x5b3a1c, x - 2.3, 1.9, z - .8); caixa(g, .2, 3.8, .2, 0x5b3a1c, x + 2.3, 1.9, z - .8); caixa(g, .2, 3.8, .2, 0x5b3a1c, x - 2.3, 1.9, z + .8); caixa(g, .2, 3.8, .2, 0x5b3a1c, x + 2.3, 1.9, z + .8);
+    const lona = textura(128, 64, (c, w, h) => { for (let k = 0; k < 8; k++) { c.fillStyle = k % 2 ? "#fff" : ["#e4573a", "#2b59c3", "#18a39a", "#8e5cd9", "#ff7a45", "#e4417a"][i]; c.fillRect(k * w / 8, 0, w / 8 + 1, h); } });
+    const teto = new THREE.Mesh(new THREE.BoxGeometry(5.6, .2, 2.8), new THREE.MeshLambertMaterial({ map: lona.t })); teto.position.set(x, 4, z); teto.rotation.x = .16; g.add(teto);
+    for (let k = 0; k < 4; k++) caixa(g, .7, .7, .7, CORES[(i + k) % 8].getHex(), x - 1.65 + k * 1.1, 1.55, z);
+    const et = new THREE.Sprite(new THREE.SpriteMaterial({ depthTest: false, fog: false, transparent: true })); et.position.set(x, 5.2, z); et.renderOrder = 5; et.visible = false; g.add(et);
+    const alvo = new THREE.Mesh(new THREE.BoxGeometry(6, 6, 4), new THREE.MeshBasicMaterial({ visible: false })); alvo.position.set(x, 2.5, z); alvo.userData.i = i; g.add(alvo);
+    return { x, z, et, alvo };
+  });
+  function nomeNaBarraca(i, txt) {
+    const m = document.createElement("canvas").getContext("2d"); m.font = "900 40px Nunito, sans-serif"; const w = Math.ceil(m.measureText(txt).width) + 40;
+    const tx = textura(w, 64, (c, W2, H2) => { c.fillStyle = "#ffd23f"; c.beginPath(); c.roundRect(3, 3, W2 - 6, H2 - 6, 26); c.fill(); c.lineWidth = 5; c.strokeStyle = "#14204a"; c.stroke(); letra(c, txt, W2 / 2, H2 / 2 + 2, 40, "#14204a"); });
+    barracas[i].et.material.map = tx.t; barracas[i].et.material.needsUpdate = true; barracas[i].et.scale.set(1.2 * w / 64, 1.2, 1); barracas[i].et.visible = true;
+  }
+
+  // ---------- praça dos estados ----------
+  const es = G.estados, ex = 26, ez = 34;
+  const pisoE = new THREE.Mesh(new THREE.CircleGeometry(15, 32), mat(0x6b7c9a)); pisoE.rotation.x = -Math.PI / 2; pisoE.position.set(ex, .02, ez); es.add(pisoE);
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.8, 1, 24), mat(0x2a2f55)); base.position.set(ex, .5, ez); es.add(base);
+  const globo = new THREE.Mesh(new THREE.SphereGeometry(2, 20, 16), mat(0x2fa34a, 0x0b4a1e, .4)); globo.position.set(ex, 3, ez); es.add(globo);
+  UFS.forEach((uf, i) => {
+    const a = i / UFS.length * 6.283 + .1, r = i % 2 ? 12.6 : 9.4, x = ex + Math.cos(a) * r, z = ez + Math.sin(a) * r, cor = CORES[i % 8].getHexString();
+    caixa(es, .14, 4.2, .14, 0xdddddd, x, 2.1, z);
+    placa(es, 2.1, 1.3, 96, 60, (g, w, h) => { g.fillStyle = "#" + cor; g.fillRect(0, 0, w, h); letra(g, uf, w / 2, h / 2 + 3, 42); }, x + 1.1, 3.6, z);
+  });
+
+  // nome de cada ambiente
+  rotulo(G.palco, "🎤 PALCO PRINCIPAL", 0, 15.2, -41, 1.6, "#ffd23f");
+  rotulo(G.campinho, "⚽ CAMPINHO", cx, 11.6, CAMPO.z0 - 4.5, 1.4);
+  rotulo(G.prefeitura, "🏛️ PREFEITURA", pfx, 13.6, -6, 1.4);
+  rotulo(G.feirinha, "🛍️ FEIRINHA", fx, 8.2, fz - 10, 1.4);
+  rotulo(G.estados, "🇧🇷 PRAÇA DOS ESTADOS", ex, 7.8, ez - 3, 1.4);
+
+  let passoPista = -1;
+  function atualizar(t, fcx, fcz, verTudo = false) {
+    // ambiente longe não é desenhado: poupa o celular
+    for (const a of AREAS) G[a.id].visible = verTudo || Math.hypot(a.x - fcx, a.z - fcz) < a.r + 46;
+    neve.passo(t, 1.3);
+    estrela.rotation.y = t; const pisca = Math.floor(t * 2) % 2 === 0;
+    bolasA.visible = pisca; bolasB.visible = !pisca; luzA.visible = pisca; luzB.visible = !pisca;
+    braco.rotation.z = -1.9 + Math.sin(t * 5) * .5;
+    if (!G.palco.visible) return;
+    const f = Math.floor(t * 2.2);
+    if (f !== passoPista) { passoPista = f; for (let i = 0; i < PISTA * PISTA; i++) { const col = i % PISTA, lin = Math.floor(i / PISTA); pista.setColorAt(i, CORES_PISTA[(col * 5 + lin * 3 + f * (1 + (col + lin) % 2)) % 6]); } pista.instanceColor.needsUpdate = true; }
+    for (let i = 0; i < NEQ; i++) { const h = 1 + 3.2 * Math.abs(Math.sin(t * 4.3 + i * .7) * Math.sin(t * 2.1 + i * .31)); m4.makeScale(1, h, 1); m4.setPosition((i - NEQ / 2 + .5) * .84, 1.7 + h / 2, -44.3); eq.setMatrixAt(i, m4); }
+    eq.instanceMatrix.needsUpdate = true;
+    banda.forEach((b, i) => { b.position.y = 1.7 + Math.abs(Math.sin(t * (i ? 6 : 4.4) + i)) * (i ? .55 : .3); b.rotation.z = Math.sin(t * 3 + i) * .1; });
+    canhoes.forEach((c, i) => { c.rotation.x = -.42 + Math.sin(t * .9 + i) * .28; c.rotation.z = Math.sin(t * 1.3 + i * 1.6) * .42; });
+    confete.passo(t, 2.4);
+  }
+  const alvosBarraca = barracas.map((b) => b.alvo);
+  return { atualizar, bola, setPlacar: (a, b) => placar.refaz(a, b), setQuadro: (tit, linhas) => quadro.refaz(tit, linhas), nomeNaBarraca, alvosBarraca };
+}
+
+// ---------- bonecos da turma: tudo instanciado, com gorro de Natal ----------
+function montarBonecos(cena, MAX) {
+  const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
+  const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.27, .46, 10), mat(0xd92b2b), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.29, .29, .1, 10), mat(0xffffff), MAX);
+  const todos = [corpos, cabecas, gorros, abas]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
+  const o = new THREE.Object3D();
+  const coloca = (m, n, x, y, z, rz) => { o.position.set(x, y, z); o.rotation.set(0, 0, rz); o.updateMatrix(); m.setMatrixAt(n, o.matrix); };
+  return {
+    poe(n, x, pulo, z, rz, cor, id) {
+      coloca(corpos, n, x, .58 + pulo, z, rz); corpos.setColorAt(n, CORES[cor % 8]);
+      coloca(cabecas, n, x, 1.28 + pulo, z, 0); cabecas.setColorAt(n, PELES[id % 5]);
+      coloca(gorros, n, x, 1.68 + pulo, z, .12); coloca(abas, n, x, 1.47 + pulo, z, 0);
+    },
+    fim(n) { todos.forEach((m) => { m.count = n; m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; }); },
+  };
+}
+
+const DADOS = {"inicio":[[2,"nardo.com6",-1.1,-5.5,2,"Rio Grande do Sul"],[19,"_bazote",2.2,-21.3,6,"Goiás"],[33,"fakedseh",-0.9,-33.4,4,"São Paulo"],[38,"guitxz_11",31.5,-46.3,0,"Pernambuco"],[1,"gt2_sa",8.5,7.5,0,"Rio Grande do Sul"],[32,"matteusalvesof",-4.5,-29.6,6,"Goiás"],[3,"a__kethelly",-7,-7.2,3,"Ceará"],[15,"eh_a_nardes",0.3,-27.6,3,"Santa Catarina"],[36,"alisson.correa.967",-2.5,-35.8,6,"Rio Grande do Sul"],[13,"pedhenrique9377",-2.4,-45.9,6,"São Paulo"],[6,"pereira.nunes_",-4.6,-25.5,2,"Mato Grosso"],[9,"leticiagom15",-0.7,-26.5,1,"Rondônia"],[34,"isaacamaral071",2.8,-28.2,0,"Bahia"],[42,"hey.itsgrosgi",1.5,-29.3,2,"Paraná"],[17,"nicolliribeiro___",-0.7,-26.7,2,"Santa Catarina"],[26,"karol_paludo_",-4.4,-32.4,1,"Rio Grande do Sul"],[43,"lk_davy2011",-1.6,-24.3,3,"Bahia"],[44,"luiztomazmota",18.7,-24.6,1,"Santa Catarina"],[5,"kayky_prado15",31,-3.2,7,"Rio de Janeiro"],[20,"joso.eff",0.4,-23.7,4,"Goiás"],[10,"jv_0312louc2",5.2,-40.8,7,"São Paulo"],[22,"jhenifer_santtoss",0.3,-34,3,"Bahia"],[45,"pvd.leleu_san",18.9,-0.3,4,"Pernambuco"],[35,"caykesantos04",33.4,-8.6,2,"Paraná"],[4,"e.rauane_",30.1,-7.1,4,"Alagoas"],[29,"jeff.xz_019",35.9,-11.5,0,"São Paulo"],[8,"detoni__",-22.9,34.3,2,"Rio Grande do Sul"],[7,"1berto_filho",41.7,5.3,5,"Goiás"],[12,"j.victor_84",39.6,1.8,6,"Paraíba"],[28,"pvmarcosofc",40.9,-0.9,1,"Piauí"],[25,"priv.da.learte",48,-0.6,5,"Amazonas"]],"ev":[[0.07,"a",7,41.4,3.7],[0.07,"a",7,41.4,3.7],[0.21,"a",35,37.9,-6.5],[0.21,"a",4,33.4,-1.8],[0.22,"a",15,-2.4,-28.1],[0.22,"a",35,37.9,-6.5],[0.22,"a",4,33.4,-1.8],[0.22,"a",15,-2.4,-28.1],[0.22,"a",35,37.9,-6.5],[0.22,"a",4,33.4,-1.8],[0.36,"a",7,41.3,1.6],[0.36,"a",5,35.9,1],[0.37,"a",7,41.3,1.6],[0.37,"a",5,35.9,1],[0.37,"a",34,3.8,-43.5],[0.37,"a",5,35.9,1],[0.52,"a",4,32.9,0.1],[0.52,"a",4,32.9,0.1],[0.52,"j",9,0],[0.52,"a",4,32.9,0.1],[0.66,"a",35,36.4,-1.2],[0.67,"a",35,36.4,-1.2],[0.67,"a",35,36.4,-1.2],[0.82,"a",15,-2.8,-22.6],[0.82,"a",43,-3.4,-17],[0.82,"a",15,-2.8,-22.6],[0.82,"a",43,-3.4,-17],[1.11,"a",35,37.3,0],[1.12,"a",35,37.3,0],[1.12,"a",10,5.2,-34.4],[1.12,"a",35,37.3,0],[1.26,"j",44,1],[1.42,"a",15,-4.3,-19.5],[1.44,"a",15,-4.3,-19.5],[1.56,"a",35,42.2,-8.2],[1.56,"a",45,10.2,-1.9],[1.57,"a",35,42.2,-8.2],[1.57,"a",45,10.2,-1.9],[1.57,"e",27,"luisa_moreira1005",13.3,36.9,4,"São Paulo"],[1.59,"a",10,2.6,-32.7],[1.59,"a",45,10.2,-1.9],[1.59,"a",35,42.2,-8.2],[1.72,"f",20,3],[2.02,"a",7,37.6,7.4],[2.02,"a",35,43.2,-5.6],[2.02,"a",27,19.7,47.3],[2.02,"a",35,43.2,-5.6],[2.02,"a",7,37.6,7.4],[2.02,"a",35,43.2,-5.6],[2.21,"a",15,-5,-20.6],[2.21,"a",35,43.9,-4.1],[2.21,"a",5,37,-7.7],[2.21,"a",4,34.3,3.8],[2.21,"a",35,43.9,-4.1],[2.21,"a",4,34.3,3.8],[2.21,"a",5,37,-7.7],[2.32,"a",7,37.1,7.2],[2.32,"a",7,37.1,7.2],[2.33,"a",15,-5,-20.6],[2.33,"a",5,37,-7.7],[2.33,"a",35,43.9,-4.1],[2.33,"a",4,34.3,3.8],[2.47,"a",19,1,-22.2],[2.47,"a",43,1,-23.5],[2.47,"a",27,21.3,46.3],[2.47,"a",19,1,-22.2],[2.47,"a",43,1,-23.5],[2.72,"a",20,3.8,-25.4],[2.72,"a",35,45.8,-4.9],[2.72,"a",4,36.9,4.3],[2.72,"a",35,45.8,-4.9],[2.72,"a",4,36.9,4.3],[2.72,"a",34,-0.3,-41.8],[2.72,"a",20,3.8,-25.4],[2.72,"a",35,45.8,-4.9],[2.72,"a",4,36.9,4.3],[2.77,"a",7,42.3,0.9],[2.77,"a",7,42.3,0.9],[2.77,"a",27,23.6,46.4],[2.77,"a",33,6.9,-55.6],[2.92,"a",35,40.5,-4.1],[2.92,"a",15,-5.4,-17],[2.92,"a",35,40.5,-4.1],[2.92,"a",15,-5.4,-17],[2.92,"a",35,40.5,-4.1],[3.08,"a",4,36.8,-1.2],[3.08,"a",5,42.1,-6.7],[3.08,"a",19,4,-26.2],[3.08,"a",34,-0.9,-40.8],[3.08,"a",5,42.1,-6.7],[3.08,"a",20,0.8,-22.8],[3.08,"a",45,2.5,-29.6],[3.08,"a",4,36.8,-1.2],[3.08,"a",19,4,-26.2],[3.08,"a",20,0.8,-22.8],[3.08,"a",5,42.1,-6.7],[3.08,"a",45,2.5,-29.6],[3.08,"a",4,36.8,-1.2],[3.21,"a",35,40.1,-4.1],[3.21,"a",7,43.1,-0.7],[3.22,"a",7,43.1,-0.7],[3.22,"a",35,40.1,-4.1],[3.22,"a",35,40.1,-4.1],[3.37,"a",20,-1.8,-22.6],[3.38,"a",34,-0.3,-39.3],[3.38,"a",20,-1.8,-22.6],[3.52,"a",4,39.5,-3.7],[3.52,"a",4,39.5,-3.7],[3.52,"a",4,39.5,-3.7],[3.67,"a",35,47.3,-10.7],[3.67,"a",7,43.8,-0.3],[3.67,"a",5,43.6,-5.1],[3.67,"a",19,8.5,-26],[3.67,"a",7,43.8,-0.3],[3.67,"a",35,47.3,-10.7],[3.67,"a",5,43.6,-5.1],[3.67,"a",19,8.5,-26],[3.67,"a",34,4.7,-37.5],[3.67,"a",5,43.6,-5.1],[3.67,"a",35,47.3,-10.7],[3.82,"a",4,42.1,-5.4],[3.82,"a",19,3.8,-20.9],[3.82,"a",20,2.1,-21],[3.82,"a",4,42.1,-5.4],[3.82,"a",19,3.8,-20.9],[3.82,"a",20,2.1,-21],[3.82,"a",4,42.1,-5.4],[4.05,"a",7,38.2,4],[4.05,"a",5,44.7,-3.7],[4.05,"a",7,38.2,4],[4.05,"a",5,44.7,-3.7],[4.05,"a",5,44.7,-3.7],[4.12,"a",35,45,-1.8],[4.12,"a",19,0.5,-18.3],[4.12,"a",35,45,-1.8],[4.12,"a",19,0.5,-18.3],[4.12,"a",37,-16.2,-28.1],[4.12,"a",34,-2.4,-38.3],[4.12,"a",35,45,-1.8],[4.27,"a",20,4.9,-23.1],[4.27,"a",20,4.9,-23.1],[4.42,"a",19,-1.4,-18.2],[4.42,"a",20,4,-21.3],[4.42,"a",19,-1.4,-18.2],[4.42,"a",33,4,-38.7],[4.42,"a",20,4,-21.3],[4.57,"a",35,45.5,0.8],[4.57,"a",4,43.4,-2.3],[4.57,"a",35,45.5,0.8],[4.57,"a",4,43.4,-2.3],[4.57,"a",34,-5.2,-38.9],[4.57,"a",4,43.4,-2.3],[4.72,"a",19,-2.5,-15.8],[4.72,"a",20,-0.4,-23.1],[4.72,"a",17,-2.1,-26.7],[4.72,"a",19,-2.5,-15.8],[4.72,"a",37,-19.5,-38.1],[4.72,"a",17,-2.1,-26.7],[4.72,"a",20,-0.4,-23.1],[4.97,"j",19,0],[4.97,"a",25,51,-3.5],[5.01,"a",4,45.8,-0.7],[5.01,"a",27,38.3,40.9],[5.02,"a",4,45.8,-0.7],[5.02,"a",34,-6.8,-40.4],[5.17,"a",35,45.8,3.7],[5.17,"a",25,51.7,-4.7],[5.17,"a",20,-2.5,-24.2],[5.17,"a",35,45.8,3.7],[5.17,"a",20,-2.5,-24.2],[5.38,"a",34,3,-39.9],[5.47,"a",4,46.7,1.4],[5.47,"a",5,47.3,0.8],[5.47,"a",27,39.9,39.3],[5.47,"a",20,-3.9,-25.4],[5.47,"a",5,47.3,0.8],[5.47,"a",4,46.7,1.4],[5.47,"a",20,-3.9,-25.4],[5.69,"a",15,-7.1,-22.6],[5.69,"a",34,-4.5,-41],[5.69,"a",15,-7.1,-22.6],[5.69,"a",7,34.5,7.7],[5.69,"a",7,34.5,7.7],[5.76,"a",27,42.4,36.5],[5.77,"a",20,-1,-30.6],[5.77,"a",20,-1,-30.6],[6,"a",19,-2.4,-12.7],[6,"a",5,42.9,-8.3],[6,"a",4,49.5,-0.3],[6,"a",19,-2.4,-12.7],[6,"a",37,-17.6,-28.9],[6,"a",33,5,-33.1],[6,"a",4,49.5,-0.3],[6,"a",5,42.9,-8.3],[6.07,"a",35,43.4,-16.4],[6.07,"a",4,51.3,-2.1],[6.07,"a",27,44.6,33.9],[6.07,"a",20,1,-32.3],[6.07,"a",35,43.4,-16.4],[6.07,"a",34,-0.2,-33.8],[6.07,"a",20,1,-32.3],[6.41,"a",19,-0.7,-11.5],[6.41,"a",19,-0.7,-11.5],[6.41,"a",25,48.8,-7.6],[6.52,"a",7,37.7,4.2],[6.52,"a",4,51.4,-6.5],[6.52,"a",5,41,-9.8],[6.52,"a",27,46.1,31.8],[6.52,"a",20,3.6,-29],[6.52,"a",7,37.7,4.2],[6.52,"a",5,41,-9.8],[6.52,"a",37,-12.4,-30],[6.52,"a",20,3.6,-29],[6.68,"a",44,34.2,3],[6.68,"a",35,46.8,-11.3],[6.68,"a",44,34.2,3],[6.68,"a",35,46.8,-11.3],[6.68,"a",44,34.2,3],[6.82,"a",35,48,-15.7],[6.82,"a",25,47.8,-10],[6.82,"a",27,47.4,29.9],[6.82,"a",20,4.4,-24.9],[6.82,"a",20,4.4,-24.9],[6.97,"a",4,48.5,-7.8],[6.97,"a",19,1.3,-9.9],[6.98,"a",19,1.3,-9.9],[7.12,"a",35,47.7,-15.9],[7.12,"a",7,38.7,3.2],[7.12,"a",5,46.5,-0.5],[7.12,"a",20,3.5,-23.3],[7.12,"a",7,38.7,3.2],[7.12,"a",5,46.5,-0.5],[7.12,"a",37,-7.4,-31.7],[7.12,"a",20,3.5,-23.3],[7.27,"a",4,46.3,-7.3],[7.27,"a",25,48.6,-14.2],[7.27,"a",27,38.6,25.3],[7.28,"a",34,-2,-30.6],[7.42,"a",19,5.4,-9.9],[7.42,"a",19,5.4,-9.9],[7.42,"a",34,-2.2,-30.7],[7.57,"a",35,47.4,-9.1],[7.57,"a",7,40.7,0.7],[7.57,"a",20,2.3,-21],[7.57,"a",7,40.7,0.7],[7.72,"a",35,49.3,-13.4],[7.72,"a",5,41.5,-12.1],[7.72,"a",27,37.1,23.6],[7.72,"a",5,41.5,-12.1],[7.73,"a",20,2.3,-21],[7.73,"a",34,-2.1,-29.8],[7.73,"a",22,1.8,-28.1],[7.94,"a",20,-2.2,-23.2],[7.94,"a",7,42.2,-0.8],[7.94,"a",20,-2.2,-23.2],[7.94,"a",7,42.2,-0.8],[8.02,"a",27,46.4,27],[8.02,"a",19,6.7,-14.5],[8.02,"a",27,46.4,27],[8.02,"j",17,2],[8.02,"a",19,6.7,-14.5],[8.02,"a",34,-2.7,-30.2],[8.17,"a",19,4,-18.1],[8.17,"a",8,14.4,23.7],[8.17,"a",35,44.6,-7.3],[8.17,"a",8,14.4,23.7],[8.18,"a",19,4,-18.1],[8.32,"a",20,-3.7,-27.1],[8.32,"a",5,39.1,-5.1],[8.32,"a",5,39.1,-5.1],[8.32,"a",25,44.3,-9.8],[8.51,"a",27,46.7,25.1],[8.51,"a",35,44.3,-5.1],[8.51,"a",27,46.7,25.1],[8.6,"a",34,-3.2,-31.8],[8.6,"a",20,-3.7,-27.1],[8.6,"a",5,39.1,-5.1],[8.6,"a",33,5.9,-32.9],[8.64,"a",34,-3.5,-32.7],[8.64,"a",25,45.4,-9.8],[8.77,"a",35,43.5,-4.1],[8.77,"a",27,48.2,24.9],[8.77,"a",8,14.8,26.8],[8.79,"a",20,-0.9,-30.5],[8.79,"a",8,14.8,26.8],[8.79,"a",37,-10.3,-45.7],[8.79,"a",20,-0.9,-30.5],[8.96,"a",19,-1.1,-30.4],[8.96,"a",5,44,-1.9],[8.96,"a",19,-1.1,-30.4],[8.96,"a",5,44,-1.9],[8.96,"a",5,44,-1.9],[9.08,"a",34,2.4,-26.9],[9.22,"a",35,43.7,0.1],[9.22,"a",27,39.4,21.1],[9.22,"a",8,14.1,32.8],[9.22,"a",19,5.3,-32.3],[9.22,"a",20,3,-29.4],[9.22,"a",8,14.1,32.8],[9.23,"a",19,5.3,-32.3],[9.23,"a",20,3,-29.4],[9.38,"a",34,4.5,-30.7],[9.38,"a",22,3.4,-21.7],[9.52,"a",35,43.2,1.4],[9.52,"a",19,5.6,-28.5],[9.53,"a",19,5.6,-28.5],[9.53,"a",34,4.6,-28.6],[9.71,"a",20,4.6,-25.9],[9.71,"a",20,4.6,-25.9],[9.71,"a",25,47.2,-4.4],[9.88,"a",19,-3.9,-20.5],[9.88,"a",27,37.8,9.6],[9.88,"a",19,-3.9,-20.5],[9.88,"a",34,4.2,-25.9],[9.88,"a",35,42.6,3.2],[9.88,"a",27,37.8,9.6],[9.99,"a",20,4.5,-23.6],[9.99,"a",20,4.5,-23.6],[9.99,"a",35,41.9,4.8],[9.99,"a",35,41.9,4.8],[10.12,"a",5,46.3,3.6],[10.13,"a",5,46.3,3.6],[10.13,"a",34,3,-23.4],[10.13,"j",20,2],[10.13,"a",34,3,-23.4],[10.27,"a",27,35.7,4.1],[10.27,"a",27,35.7,4.1],[10.42,"a",35,40.7,7.4],[10.42,"a",20,1.4,-21.9],[10.42,"a",34,2.1,-23.3],[10.42,"a",35,40.7,7.4],[10.43,"a",34,2.1,-23.3],[10.43,"a",20,1.4,-21.9],[10.57,"a",5,47.3,5],[10.57,"a",19,2,-26.9],[10.57,"a",5,47.3,5],[10.58,"a",19,2,-26.9],[10.74,"a",34,1.2,-21.1],[10.74,"a",27,34.7,0.4],[10.74,"a",8,20.5,28.3],[10.74,"a",8,20.5,28.3],[10.74,"a",27,34.7,0.4],[10.74,"a",34,1.2,-21.1],[10.88,"a",20,-1.8,-23.4],[10.88,"a",33,1.4,-28.3],[10.88,"a",20,-1.8,-23.4],[11.06,"a",5,45.9,-5.5],[11.06,"a",34,3.5,-25.1],[11.06,"a",34,3.5,-25.1],[11.06,"a",5,45.9,-5.5],[11.18,"a",22,5.2,-14.5],[11.18,"a",34,4.4,-29.6],[11.18,"a",34,4.4,-29.6],[11.18,"a",22,5.2,-14.5],[11.33,"a",27,42.3,12.9],[11.33,"a",20,-1.1,-27.7],[11.33,"a",27,42.3,12.9],[11.33,"a",36,1.2,-35.1],[11.33,"a",20,-1.1,-27.7],[11.48,"a",5,50.4,-1.4],[11.48,"a",34,3.2,-24.3],[11.48,"a",5,50.4,-1.4],[11.48,"a",25,47.2,0],[11.48,"a",34,3.2,-24.3],[11.63,"a",27,43.1,10.8],[11.63,"a",8,25,24.7],[11.63,"a",8,25,24.7],[11.63,"a",27,43.1,10.8],[11.63,"a",37,-9.4,-44.4],[11.8,"a",20,3.2,-25.8],[11.8,"a",20,3.2,-25.8],[11.93,"a",35,43.8,11.2],[11.93,"a",26,-1.3,-25.8],[11.93,"a",34,-2,-24.9],[11.93,"a",35,43.8,11.2],[11.93,"f",42,5],[11.93,"a",34,-2,-24.9],[11.93,"a",26,-1.3,-25.8],[12.08,"a",27,36.6,5.1],[12.08,"a",27,36.6,5.1],[12.08,"a",34,-2.8,-23.2],[12.08,"a",34,-2.8,-23.2],[12.24,"a",20,4.4,-23.2],[12.24,"a",35,42.7,11.7],[12.24,"a",35,42.7,11.7],[12.24,"a",20,4.4,-23.2],[12.38,"a",34,-4.2,-30.6],[12.38,"a",34,-4.2,-30.6],[12.53,"a",27,35.4,0.5],[12.53,"a",20,4.9,-22.3],[12.53,"a",27,35.4,0.5],[12.53,"a",37,-8.7,-41.5],[12.53,"a",20,4.9,-22.3],[12.69,"a",5,45.5,-2.2],[12.69,"a",27,34.2,-2.1],[12.69,"a",34,-1.9,-22],[12.69,"a",35,35.8,11.1],[12.69,"a",35,35.8,11.1],[12.69,"a",5,45.5,-2.2],[12.69,"a",27,34.2,-2.1],[12.69,"a",36,0.1,-33.6],[12.69,"a",34,-1.9,-22],[12.83,"a",20,0.1,-21.8],[12.83,"a",22,6.3,-7.2],[12.83,"a",35,35.5,11.9],[12.83,"a",33,-0.8,-23.1],[12.83,"a",20,0.1,-21.8],[12.83,"a",22,6.3,-7.2],[12.83,"a",35,35.5,11.9],[12.98,"a",5,44.3,-2.2],[12.98,"a",8,31.3,19.6],[12.98,"a",5,44.3,-2.2],[12.98,"a",8,31.3,19.6],[12.98,"a",34,-3.7,-29.2],[12.98,"a",34,-3.7,-29.2],[13.13,"a",20,-2,-22.5],[13.13,"a",27,43.1,6.4],[13.13,"a",27,43.1,6.4],[13.13,"a",20,-2,-22.5],[13.28,"a",5,42.3,-2.3],[13.28,"a",5,42.3,-2.3],[13.28,"a",34,-1.5,-21.1],[13.28,"j",26,5],[13.28,"a",34,-1.5,-21.1],[13.43,"a",35,32.2,8.3],[13.43,"a",27,45.2,3.3],[13.43,"a",20,-3.6,-23.7],[13.43,"a",27,45.2,3.3],[13.43,"a",34,-3,-28.4],[13.43,"a",35,32.2,8.3],[13.43,"a",34,-3,-28.4],[13.43,"a",20,-3.6,-23.7],[13.73,"a",35,30.2,6],[13.73,"a",5,39.6,-2.6],[13.73,"a",5,39.6,-2.6],[13.73,"a",34,-1.6,-21.3],[13.73,"a",35,30.2,6],[13.73,"a",38,28.3,-40.4],[13.73,"a",34,-1.6,-21.3],[13.88,"a",27,37.1,-0.4],[13.88,"a",27,37.1,-0.4],[13.88,"a",37,-6.8,-40.8],[14.03,"a",5,36.5,-4.3],[14.03,"a",20,-0.7,-29.5],[14.03,"a",5,36.5,-4.3],[14.03,"a",34,-3.4,-26.3],[14.04,"a",34,-3.4,-26.3],[14.04,"a",20,-0.7,-29.5],[14.18,"a",35,28.1,3.7],[14.18,"a",25,46.2,2.7],[14.18,"a",27,37.5,-3.3],[14.18,"a",27,37.5,-3.3],[14.18,"a",35,28.1,3.7],[14.39,"a",20,1.4,-30.8],[14.39,"a",5,34.2,-3.3],[14.39,"a",22,8,-0.4],[14.39,"a",34,-2,-22.3],[14.39,"a",5,34.2,-3.3],[14.39,"a",34,-2,-22.3],[14.39,"a",20,1.4,-30.8],[14.39,"a",22,8,-0.4],[14.39,"a",5,34.2,-3.3],[14.48,"a",27,35.6,-1.7],[14.48,"a",27,35.6,-1.7],[14.78,"a",35,39.3,-2.3],[14.78,"a",5,39.4,2.2],[14.78,"a",27,44.5,-0.1],[14.79,"a",20,3.8,-30.1],[14.79,"a",5,39.4,2.2],[14.79,"a",27,44.5,-0.1],[14.79,"a",34,1.9,-29.4],[14.79,"a",35,39.3,-2.3],[14.79,"a",37,-4,-40.6],[14.79,"a",34,1.9,-29.4],[14.79,"a",20,3.8,-30.1],[14.79,"a",5,39.4,2.2],[14.79,"a",35,39.3,-2.3],[14.79,"a",27,44.5,-0.1],[15.08,"a",20,5.1,-26.1],[15.08,"a",34,1.2,-27.8],[15.08,"f",17,3],[15.09,"a",36,-1.9,-32.1],[15.09,"a",34,1.2,-27.8],[15.09,"a",20,5.1,-26.1],[15.23,"a",5,39.7,3.9],[15.23,"a",35,36.4,1.4],[15.23,"a",35,36.4,1.4],[15.23,"a",5,39.7,3.9],[15.24,"a",5,39.7,3.9],[15.24,"a",35,36.4,1.4],[15.38,"a",34,0.9,-23.1],[15.38,"a",34,0.9,-23.1],[15.53,"a",27,35.6,-3],[15.53,"a",8,38,13.2],[15.53,"a",20,4.7,-22.1],[15.53,"a",8,38,13.2],[15.53,"a",27,35.6,-3],[15.54,"a",20,4.7,-22.1],[15.54,"a",27,35.6,-3],[15.68,"a",35,39,1.9],[15.68,"a",5,33.7,-0.3],[15.68,"a",25,46.1,6.7],[15.68,"a",5,33.7,-0.3],[15.68,"a",34,3.8,-28.3],[15.68,"a",35,39,1.9],[15.69,"a",37,-1.7,-39.6],[15.69,"a",34,3.8,-28.3],[15.69,"a",5,33.7,-0.3],[15.69,"a",35,39,1.9],[15.83,"a",42,4.5,-27.3],[15.83,"a",34,2.5,-23.9],[15.84,"a",34,2.5,-23.9],[15.84,"a",42,4.5,-27.3],[15.98,"a",5,32.5,0.6],[15.98,"a",25,46.8,7],[15.98,"a",27,35.1,-3.2],[15.98,"a",20,2,-20.7],[15.98,"a",5,32.5,0.6],[15.98,"a",27,35.1,-3.2],[15.99,"a",20,2,-20.7],[15.99,"a",5,32.5,0.6],[15.99,"a",27,35.1,-3.2],[16.13,"a",22,9.6,7],[16.13,"a",34,2.4,-27.3],[16.13,"a",35,37.1,9.9],[16.13,"a",35,37.1,9.9],[16.13,"a",22,9.6,7],[16.14,"a",34,2.4,-27.3],[16.14,"a",22,9.6,7],[16.43,"a",35,38.2,11.3],[16.43,"a",5,38.1,7.9],[16.43,"a",27,32.7,-1.8],[16.43,"a",20,-2.1,-22],[16.43,"a",5,38.1,7.9],[16.43,"a",27,32.7,-1.8],[16.43,"a",34,1.6,-22.6],[16.43,"a",35,38.2,11.3],[16.44,"a",37,-1.2,-38.1],[16.44,"a",34,1.6,-22.6],[16.44,"a",20,-2.1,-22],[16.44,"a",5,38.1,7.9],[16.44,"a",27,32.7,-1.8],[16.58,"f",9,0],[16.73,"a",5,37.6,8.7],[16.73,"a",27,40.8,-0.3],[16.73,"a",5,37.6,8.7],[16.73,"a",27,40.8,-0.3],[16.73,"a",34,3.6,-28.6],[16.74,"a",34,3.6,-28.6],[16.74,"a",5,37.6,8.7],[16.74,"a",27,40.8,-0.3],[16.88,"a",8,43.1,12.7],[16.89,"a",20,-3.2,-26.5],[16.89,"a",8,43.1,12.7],[16.89,"a",20,-3.2,-26.5],[17.03,"a",25,44.7,0.3],[17.05,"a",34,2.1,-23],[17.05,"a",37,-0.7,-35.3],[17.05,"a",34,2.1,-23],[17.18,"a",5,38.7,10.5],[17.18,"a",27,40.1,3.2],[17.18,"a",35,43.8,5.8],[17.18,"a",35,43.8,5.8],[17.18,"a",5,38.7,10.5],[17.18,"a",27,40.1,3.2],[17.22,"a",27,40.1,3.2],[17.34,"a",15,-2.7,-22.7],[17.34,"a",34,3.3,-28.5],[17.34,"a",20,0.2,-29.8],[17.34,"j",26,0],[17.34,"a",20,0.2,-29.8],[17.34,"a",15,-2.7,-22.7],[17.34,"a",34,3.3,-28.5],[17.48,"a",35,44.8,7.3],[17.48,"a",27,41.4,5.7],[17.49,"a",27,41.4,5.7],[17.49,"a",35,44.8,7.3],[17.5,"a",37,-0.2,-32.9],[17.63,"a",5,42.9,9.3],[17.63,"a",5,42.9,9.3],[17.63,"a",34,1.5,-24.1],[17.64,"a",34,1.5,-24.1],[17.78,"a",20,3,-28.1],[17.79,"a",20,3,-28.1],[17.93,"a",34,1.8,-23],[17.93,"a",35,47,6.6],[17.93,"a",35,47,6.6],[17.94,"a",34,1.8,-23],[18.18,"a",5,38.1,-1.8],[18.18,"a",27,33.8,2.9],[18.18,"a",5,38.1,-1.8],[18.18,"a",27,33.8,2.9],[18.23,"a",34,3.7,-27.6],[18.24,"a",34,3.7,-27.6],[18.38,"a",35,49,6.3],[18.38,"a",27,46.1,3.3],[18.38,"a",27,46.1,3.3],[18.38,"a",35,49,6.3],[18.39,"a",37,0.7,-29.8],[18.58,"a",22,10.8,14.4],[18.58,"a",34,2.3,-22.4],[18.58,"a",22,10.8,14.4],[18.58,"a",34,2.3,-22.4],[18.58,"a",22,10.8,14.4],[18.68,"a",35,50.3,6.5],[18.68,"a",5,45.7,3],[18.68,"a",25,46.4,1.3],[18.68,"a",5,45.7,3],[18.68,"a",35,50.3,6.5],[18.83,"a",27,48.9,-0.6],[18.83,"a",27,48.9,-0.6],[18.84,"a",38,25.1,-32],[18.98,"a",20,5.2,-24.2],[18.98,"a",34,-3.9,-23.9],[18.99,"a",34,-3.9,-23.9],[18.99,"a",20,5.2,-24.2],[18.99,"j",36,3],[19.13,"a",5,46.9,2.6],[19.13,"a",27,37.8,-1.2],[19.13,"a",5,46.9,2.6],[19.13,"a",27,37.8,-1.2],[19.13,"j",33,0],[19.28,"a",25,48.1,1.8],[19.29,"a",34,-3.9,-24],[19.29,"a",38,24,-31.7],[19.29,"a",34,-3.9,-24],[19.43,"a",5,41.1,-9.2],[19.43,"a",5,41.1,-9.2],[19.43,"a",34,-4.3,-24.9],[19.44,"a",34,-4.3,-24.9],[19.58,"a",44,35.4,2.3],[19.58,"a",27,36.9,-5.5],[19.58,"a",35,46.6,12.6],[19.59,"a",35,46.6,12.6],[19.59,"a",25,44.2,-2.6],[19.59,"a",44,35.4,2.3],[19.59,"a",27,36.9,-5.5],[19.59,"a",37,11.5,-54.3],[19.59,"a",38,22.8,-30.1],[19.59,"a",44,35.4,2.3],[19.73,"a",35,46.1,13.1],[19.73,"a",27,48.3,-2.6],[19.73,"a",42,5.3,-31.4],[19.73,"a",27,48.3,-2.6],[19.73,"a",34,-4.2,-24.3],[19.73,"a",35,46.1,13.1],[19.74,"a",34,-4.2,-24.3],[19.74,"a",42,5.3,-31.4],[19.88,"a",25,45.4,-5.6],[20.03,"a",25,44.7,-8.2],[20.03,"a",22,13,21],[20.04,"a",22,13,21],[20.04,"a",38,27.5,-26.5],[20.18,"a",27,49.5,-5.1],[20.19,"a",27,49.5,-5.1],[20.19,"a",34,-5.3,-23.7],[20.19,"a",34,-5.3,-23.7],[20.33,"a",35,43.8,14.7],[20.33,"a",4,44.6,-1.1],[20.33,"a",5,48.4,0.3],[20.33,"a",5,48.4,0.3],[20.33,"a",35,43.8,14.7],[20.48,"a",25,44.6,-9.5],[20.49,"a",38,23.3,-23.8],[20.63,"a",27,51.9,-9.9],[20.63,"a",8,30.9,38.3],[20.64,"a",8,30.9,38.3],[20.64,"a",34,1.5,-26.4],[20.64,"a",34,1.5,-26.4],[20.79,"a",5,42.2,-15.1],[20.79,"a",4,47.6,-1.4],[20.79,"a",5,42.2,-15.1]],"bolas":[[0.07,37.18,-7.55,3,5],[0.21,37.72,-8,3,5],[0.36,38.21,-7.48,3,5],[0.52,38.65,-7.02,3,5],[0.66,39.04,-6.6,3,5],[0.82,39.4,-6.22,3,5],[0.96,39.72,-5.88,3,5],[1.11,40.01,-5.58,3,5],[1.26,40.27,-5.3,3,5],[1.44,40.5,-5.05,3,5],[1.56,40.71,-4.83,3,5],[1.72,40.9,-4.63,3,5],[1.9,41.07,-4.45,3,5],[2.02,41.22,-4.29,3,5],[2.21,41.77,-5.52,3,5],[2.32,42.26,-6.63,3,5],[2.46,42.71,-7.63,3,5],[2.72,43.1,-8,3,5],[2.77,43.46,-7.43,3,5],[2.92,43.79,-6.92,3,5],[3.08,44.08,-6.46,3,5],[3.21,44.34,-6.05,3,5],[3.37,44.57,-5.68,3,5],[3.52,44.79,-5.34,3,5],[3.67,44.98,-5.04,3,5],[3.82,45.15,-4.77,3,5],[4.05,45.3,-4.53,3,5],[4.12,45.12,-3.19,3,5],[4.27,45.91,-4.28,3,5],[4.42,46.5,-5.49,3,5],[4.57,47.76,-5.98,3,5],[4.72,48.9,-6.42,3,5],[4.97,49.92,-6.81,3,5],[5.01,50,-7.16,3,5],[5.17,49.42,-7.48,3,5],[5.38,48.9,-7.77,3,5],[5.47,48.43,-8,3,5],[5.69,48.01,-7.84,3,5],[5.76,47.63,-7.69,3,5],[6,47.29,-7.56,3,5],[6.07,46.98,-7.44,3,5],[6.22,46.7,-7.33,3,5],[6.41,46.46,-7.24,3,5],[6.52,46.23,-7.15,3,5],[6.68,46.03,-7.08,3,5],[6.82,45.85,-7.01,3,5],[6.97,45.68,-6.94,3,5],[7.12,45.54,-6.89,3,5],[7.27,45.41,-6.83,3,5],[7.42,45.29,-6.79,3,5],[7.57,44.07,-6.21,3,5],[7.72,42.97,-5.69,3,5],[7.94,44.32,-5.64,3,5],[8.02,43.47,-6.69,3,5],[8.17,42.71,-7.64,3,5],[8.32,44.02,-7.97,3,5],[8.51,45.2,-8,3,5],[8.64,46.25,-7.81,3,5],[8.77,47.21,-7.64,3,5],[8.96,47.53,-8,3,5],[9.08,47.81,-7.17,3,5],[9.22,48.07,-6.43,3,5],[9.38,48.31,-5.76,3,5],[9.52,48.51,-5.16,3,5],[9.71,48.7,-4.62,3,5],[9.88,48.87,-4.13,3,5],[9.99,49.03,-3.69,3,5],[10.12,49.16,-3.29,3,5],[10.27,49.29,-2.94,3,5],[10.42,49.4,-2.62,3,5],[10.57,49.5,-2.33,3,5],[10.74,49.59,-2.07,3,5],[10.88,49.67,-1.84,3,5],[11.06,49.74,-1.63,3,5],[11.17,49.81,-1.44,3,5],[11.33,49.87,-1.27,3,5],[11.48,49.92,-1.11,3,5],[11.63,49.97,-0.98,3,5],[11.8,38,0,4,5],[12.53,38,0,4,5],[14.48,38,0,4,5],[14.78,36.66,0.15,4,5],[14.93,35.45,0.29,4,5],[15.08,35.7,1.61,4,5],[15.23,35.93,2.81,4,5],[15.38,36.13,3.88,4,5],[15.53,37.44,3.57,4,5],[15.68,38.63,3.3,4,5],[15.83,39.69,3.05,4,5],[15.98,40.65,2.83,4,5],[16.13,41.51,2.62,4,5],[16.28,41.67,3.97,4,5],[16.43,41.8,5.17,4,5],[16.58,41.93,6.26,4,5],[16.73,42.04,7.24,4,5],[16.88,42.14,8,4,5],[17.03,42.23,7.45,4,5],[17.18,42.31,6.95,4,5],[17.33,42.39,6.5,4,5],[17.48,42.45,6.09,4,5],[17.63,42.84,4.8,4,5],[17.78,43.18,3.63,4,5],[17.93,43.5,2.59,4,5],[18.18,43.78,1.64,4,5],[18.23,44.03,0.79,4,5],[18.38,44.25,0.03,4,5],[18.58,44.46,-0.66,4,5],[18.68,44.64,-1.28,4,5],[18.83,44.81,-1.83,4,5],[18.98,44.96,-2.34,4,5],[19.13,45.09,-2.79,4,5],[19.28,45.21,-3.19,4,5],[19.43,45.32,-3.56,4,5],[19.59,45.42,-3.89,4,5],[19.73,45.51,-4.18,4,5],[19.88,45.59,-4.45,4,5],[20.03,45.66,-4.69,4,5],[20.18,45.72,-4.91,4,5],[20.33,45.22,-6.16,4,5],[20.48,46.18,-5.21,4,5],[20.63,46.4,-3.87,4,5],[20.79,46.6,-2.68,4,5]]};
+// Reels "como foi a festa": bonecos, @, emojis, frases e bola são os da gravação real de 04/11.
+const ID = "festafoi", TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json(), FIM = TEMPOS.total;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v)), ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const C = (n) => TEMPOS.cenas[n - 1].ini, entre = (t, a, b) => t >= a && t < b;
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, w, o = 1) { let k = 0; for (const p of TEMPOS.cenas[n - 1].palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra", n, w); return C(n); }
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+const W = 1080, H = 1920, FPS = 30, N = Math.ceil(FIM * FPS);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); renderer.setSize(W, H); renderer.setPixelRatio(1); renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
+const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
+mundo.setQuadro("FESTA DA TURMA", ["🎉 142 pessoas", "⚽ 121 gols", "🏅 Amanhã: Olimpíadas"]);
+cena.traverse((o) => { if (o.material?.blending === THREE.AdditiveBlending) o.material.opacity = .05; if (o.isSprite && o.position.y === 2.4) o.visible = false; });
+const EMOJIS = ["💃", "😂", "🔥", "👏", "🎉", "❤️"];
+const FRASES = [() => "Pode me seguir no insta?", () => "Tô seguindo!", () => "Não", (e) => `Tem alguém de ${e || "do meu estado"} aqui?`, () => "Essa festa tá boa demais!", () => "Vem, me acompanha!"];
+// simula a gravação quadro a quadro
+const G = new Map(), Q = [], BAL = []; let k = 0, kb = 0, bola = DADOS.bolas[0] || [0, 38, 0, 0, 0], bx = bola[1], bz = bola[2]; const BQ = [];
+for (const [id, u, x, z, cor, est] of DADOS.inicio) G.set(id, { id, u, x, z, tx: x, tz: z, cor, est, fase: id * 1.7 });
+for (let f = 0; f < N; f++) {
+  const t = f / FPS;
+  while (k < DADOS.ev.length && DADOS.ev[k][0] <= t) {
+    const e = DADOS.ev[k++];
+    if (e[1] === "a") { const p = G.get(e[2]); if (p) { p.tx = e[3]; p.tz = e[4]; } }
+    else if (e[1] === "e") { const [, , id, u, x, z, cor, est] = e; G.set(id, { id, u, x, z, tx: x, tz: z, cor, est, fase: id * 1.7 }); }
+    else if (G.has(e[2])) { const gr = e[1] === "j"; BAL.push({ a: t, b: t + (gr ? 1.8 : 3.5), id: e[2], txt: gr ? EMOJIS[e[3]] : FRASES[e[3]]?.(G.get(e[2]).est) || "", gr }); }
+  }
+  while (kb < DADOS.bolas.length && DADOS.bolas[kb][0] <= t) bola = DADOS.bolas[kb++];
+  bx += (bola[1] - bx) * .25; bz += (bola[2] - bz) * .25; BQ.push([bx, bz, bola[3], bola[4]]);
+  const fr = [];
+  for (const p of G.values()) { const dx = p.tx - p.x, dz = p.tz - p.z, d = Math.hypot(dx, dz), anda = d > .03; if (d > 26) { p.x = p.tx; p.z = p.tz; } else if (anda) { const c = Math.min(1, 7.5 / FPS / d); p.x += dx * c; p.z += dz * c; } fr.push([p.id, p.u, p.x, p.z, p.cor, anda, p.fase]); }
+  Q.push(fr);
+}
+const mk = (id, html) => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
+const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip", ""), elLeg = mk("legenda", ""), elCta = mk("cta", '<div class="l1">COMENTA AQUI 👇<br>CIDADE + ESTADO</div><div class="l2">ganha tua casa e entra nas Olimpíadas 🏅</div>');
+const etiq = Array.from({ length: 20 }, () => { const d = document.createElement("div"); d.className = "ov et"; d.style.display = "none"; document.body.appendChild(d); return d; });
+const balPool = Array.from({ length: 12 }, () => { const d = document.createElement("div"); d.className = "ov bal"; d.style.display = "none"; document.body.appendChild(d); return d; });
+const v = new THREE.Vector3(), tela = (x, y, z) => { v.set(x, y, z).project(cam); return [(v.x + 1) / 2 * W, (1 - v.y) / 2 * H, v.z < 1]; };
+const CHIPS = [[0, C(2), "A 1ª FESTA FOI UM ARRASO 🎉"], [C(2), C(3), "142 PESSOAS<small>passaram pela praça</small>"], [C(3), C(4), "⚽ 2.778 CHUTES<small>121 gols no campinho</small>"], [C(4), C(5), "🏅 AMANHÃ: OLIMPÍADAS<small>com mais jogos</small>"], [C(5), FIM + 1, "AINDA NÃO TEM CASA? 🏠"]];
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras), DESTAQUE = new Set(["festa", "arraso", "praca", "pista", "chutes", "gols", "campinho", "olimpiadas", "jogos", "casa", "cidade", "estado", "video", "amanha"]);
+const tc = (el, s, x = true) => el.style.transform = (x ? "translateX(-50%) " : "") + `scale(${s})`;
+let golAtual = "";
+function renderFrame(t) {
+  const f = Math.min(N - 1, Math.max(0, Math.floor(t * FPS))), fr = Q[f], campo = entre(t, C(3), C(4)), geral = t >= C(4), palco = !campo && !geral;
+  let foco = [0, -30];
+  if (palco) { cam.position.set(Math.sin(t * .22) * 4, 4.8, -36.5); cam.lookAt(0, 1.2, -18); }
+  else if (campo) { foco = [38, 0]; cam.position.set(38 + Math.sin(t * .4) * 4, 7, 15); cam.lookAt(38, 0, -1); }
+  else { const k2 = prog(t, C(4), FIM); foco = [0, 0]; cam.position.set(Math.sin(t * .2) * 6, 78 - 12 * k2, 76 - 10 * k2); cam.lookAt(0, 0, -4); }
+  cam.updateMatrixWorld(); cena.fog.far = geral ? 500 : 110; cena.fog.near = geral ? 300 : 48;
+  let n = 0; const pos = new Map();
+  for (const [id, , x, z, cor, anda, fase] of fr) { const danca = naPista(x, z) && !anda, pulo = anda ? Math.abs(Math.sin(t * 11 + fase)) * .12 : danca ? Math.abs(Math.sin(t * 6 + fase)) * .35 : 0; bonecos.poe(n++, x, pulo, z, danca ? Math.sin(t * 6 + fase) * .12 : 0, cor, id); pos.set(id, [x, pulo, z]); }
+  bonecos.fim(n);
+  const b = BQ[f]; mundo.bola.position.x = b[0]; mundo.bola.position.z = b[1]; mundo.bola.rotation.z = -b[0] * 1.2; mundo.bola.rotation.x = b[1] * 1.2;
+  const pl = `${b[2]}x${b[3]}`; if (pl !== golAtual) { golAtual = pl; mundo.setPlacar(b[2], b[3]); }
+  mundo.atualizar(t, foco[0], foco[1], geral);
+  renderer.render(cena, cam);
+  const perto = geral ? [] : fr.map((p) => [Math.hypot(p[2] - cam.position.x, p[3] - cam.position.z), p]).filter(([d, p]) => (palco ? p[3] > -36 : p[3] < 15) && d < 34).sort((x, y) => x[0] - y[0]).slice(0, etiq.length).map((x) => x[1]);
+  etiq.forEach((d, i) => { const p = perto[i]; if (!p) { d.style.display = "none"; return; } const [x, y, ok] = tela(p[2], 1.8 + pos.get(p[0])[1], p[3]); if (!ok) { d.style.display = "none"; return; } d.textContent = "@" + p[1]; d.style.display = "block"; d.style.transform = `translate(${x}px,${y}px) translate(-50%,-100%)`; });
+  const ativos = geral ? [] : BAL.filter((x) => t >= x.a && t < x.b && pos.has(x.id) && Math.hypot(pos.get(x.id)[0] - cam.position.x, pos.get(x.id)[2] - cam.position.z) < 36 && (palco ? pos.get(x.id)[2] > -36 : pos.get(x.id)[2] < 15)).slice(-balPool.length);
+  balPool.forEach((d, i) => { const q = ativos[i]; if (!q) { d.style.display = "none"; return; } const p = pos.get(q.id), [x, y] = tela(p[0], 2.6 + p[1], p[2]); d.textContent = q.txt; d.className = "ov bal" + (q.gr ? " gr" : ""); d.style.display = "block"; d.style.transform = `translate(${x}px,${y}px) translate(-50%,-100%)`; });
+  tc(elMarca, 1);
+  const c = CHIPS.find(([a, z]) => entre(t, a, z)); if (c) { elChip.innerHTML = c[2]; elChip.style.opacity = 1; elChip.style.fontSize = c[2].length > 24 && !c[2].includes("<small>") ? "60px" : "72px"; tc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16)); } else elChip.style.opacity = 0;
+  const kc = prog(t, P(5, "Comenta") - .1, P(5, "Comenta") + .2); elCta.style.opacity = kc; tc(elCta, .6 + .4 * kc + .03 * Math.sin(t * 9) * kc, false);
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual) elLeg.textContent = ""; else { elLeg.textContent = atual.w.toUpperCase(); elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : ""); tc(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09), false); }
+}
+window.renderFrame = renderFrame;
+renderFrame(0);
+window.pronto = true;
+</script>
+</body></html>
