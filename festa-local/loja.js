@@ -36,8 +36,8 @@ export function criarLoja(ctx) {
     const g = l.querySelector(".grade");
     catalogo.forEach((s, i) => {
       const tem = minhas.includes(i), d = document.createElement("div");
-      d.className = "sk" + (tem ? " tem" : "") + (tem && vestida === i ? " vest" : "");
-      d.innerHTML = `<div class="ic">${s.icone}</div><div class="nm">${limpa(s.nome)}</div><button></button>`;
+      d.className = "sk" + (s.lendaria ? " lend" : "") + (tem ? " tem" : "") + (tem && vestida === i ? " vest" : "");
+      d.innerHTML = `${s.lendaria ? `<div class="selo">⭐ LENDÁRIA</div>` : ""}<div class="ic">${s.icone}</div><div class="nm">${limpa(s.nome)}</div><button></button>`;
       const b = d.querySelector("button");
       if (tem) {
         b.textContent = !eu ? "✅ É tua" : vestida === i ? "Tirar" : "Vestir";
@@ -56,12 +56,11 @@ export function criarLoja(ctx) {
     if (!u) { msg("Escreve teu @ primeiro (na tela de entrada)."); return; }
     let mail = ""; try { mail = localStorage.getItem("festa-email") || ""; } catch {}
     l.innerHTML = `<button class="fechar" aria-label="Voltar">×</button><div class="ic" style="font-size:54px">${s.icone}</div><h2>${limpa(s.nome)}</h2><p class="sub">Pro @<b>${limpa(u)}</b> · ${real(s.preco)} no Pix</p>
-<input type="email" id="lojaMail" placeholder="teu e-mail (pro comprovante)" autocomplete="email"><label><input type="checkbox" id="lojaMaior"> Tenho 18 anos ou mais. Sei que a skin só muda o visual do boneco e não dá ponto.</label><button class="ok">Gerar Pix</button><p class="msgL"></p>`;
+<input type="email" id="lojaMail" placeholder="teu e-mail (pro comprovante)" autocomplete="email"><p class="sub">A skin só muda o visual do boneco e não dá ponto.</p><button class="ok">Gerar Pix</button><p class="msgL"></p>`;
     $("lojaMail").value = mail;
     l.querySelector(".fechar").onclick = montar;
     l.querySelector(".ok").onclick = async (ev) => {
-      const email = $("lojaMail").value.trim(), maior = $("lojaMaior").checked;
-      if (!maior) { msg("A compra é só pra maiores de 18 anos."); return; }
+      const email = $("lojaMail").value.trim(), maior = true;
       ev.target.disabled = true; msg("Gerando o Pix…");
       try {
         const r = await fetch(ROBO + "/skins/pix", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ arroba: u, skin: s.id, email, maior }) });

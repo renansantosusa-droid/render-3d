@@ -48,7 +48,7 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 #loja h2{margin:2px 0 4px;font-size:22px;color:#5b2fa8}#loja .sub{font-size:13px;color:#47604c;margin:0 0 8px}
 #loja .grade{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 #loja .sk{border:3px solid #d9cdf2;border-radius:14px;padding:8px 4px;background:#f6f1ff}#loja .sk.tem{border-color:#2fa34a;background:#e6f6df}
-#loja .ic{font-size:38px;line-height:1.1}#loja .nm{font-size:14px;margin:2px 0 6px}
+#loja .ic{font-size:38px;line-height:1.1}#loja .sk.lend{grid-column:1/-1;border-color:#ffb020;background:linear-gradient(135deg,#fff6d6,#f1e2ff);box-shadow:0 0 14px #ffd23f}#loja .sk.lend .ic{font-size:50px}#loja .sk.lend button{background:linear-gradient(90deg,#ff9f1a,#b36bff)}#loja .selo{display:inline-block;background:#14204a;color:#ffd23f;border-radius:99px;padding:2px 10px;font-size:12px}#loja .nm{font-size:14px;margin:2px 0 6px}
 #loja .sk button{width:100%;min-height:40px;border:0;border-radius:10px;font-size:14px;cursor:pointer;background:#8e5cd9;color:#fff}#loja .sk.tem button{background:#2fa34a}#loja .sk.vest button{background:#14204a}#loja .sk button:disabled{opacity:.6}
 #loja input[type=email]{width:100%;border:3px solid #14204a;border-radius:12px;padding:10px;font-size:16px;margin:6px 0;text-align:center}
 #loja .ok{width:100%;background:#2fa34a;color:#fff;border:0;border-radius:12px;padding:12px;font-size:17px;cursor:pointer;margin-top:6px}#loja .ok.cinza{background:#9aa3b8}
@@ -77,8 +77,8 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 <p style="font-size:13px;color:#47604c">Fica até o fim? Quem ficar 15 minutos ou mais ganha <b>+20 pontos</b>.</p></form></div>
 <script type="module">
 import * as THREE from "three";
-import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=5";
-import { criarLoja } from "./loja.js?v=1";
+import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=6";
+import { criarLoja } from "./loja.js?v=3";
 const CFG = window.FESTA || {}, Q = new URLSearchParams(location.search), CHAVE = Q.get("chave") || "", VISAO = Q.get("visao"); // visao=palco: câmera no palco olhando a turma, sem botões, pra gravar a tela
 const $ = (i) => document.getElementById(i);
 const EMOJIS = ["🏅", "😂", "🔥", "👏", "🎉", "❤️"];

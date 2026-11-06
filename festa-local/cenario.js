@@ -218,7 +218,7 @@ export function montarCenario(cena) {
 
 // ---------- bonecos da turma: tudo instanciado, com gorro de Natal; a skin comprada troca o chapéu ou põe acessório ----------
 // skins (MESMA ordem do robô, skins.js): 0 coroa · 1 óculos escuros · 2 capa de herói · 3 camisa do Brasil · 4 chapéu de cowboy · 5 asas de anjo
-export const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"]];
+export const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"], ["✨", "Farmador de Aura"]]; // 6 = LENDÁRIA
 export function montarBonecos(cena, MAX) {
   const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
   const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.27, .46, 10), mat(0xd92b2b), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.29, .29, .1, 10), mat(0xffffff), MAX);
@@ -231,6 +231,11 @@ export function montarBonecos(cena, MAX) {
     gola: new THREE.InstancedMesh(new THREE.TorusGeometry(.22, .06, 6, 14), mat(0x1a9c3e), MAX), short: new THREE.InstancedMesh(new THREE.CylinderGeometry(.315, .315, .26, 12), mat(0x2b59c3), MAX),
     cowboy: new THREE.InstancedMesh(new THREE.CylinderGeometry(.2, .26, .32, 12), mat(0x8a5a2b), MAX), aba2: new THREE.InstancedMesh(new THREE.CylinderGeometry(.54, .54, .05, 16), mat(0x8a5a2b), MAX),
     asa: new THREE.InstancedMesh(new THREE.SphereGeometry(.36, 10, 8), asaM, MAX * 2),
+    // Farmador de Aura (lendária): duas camadas de brilho, anel no chão e faíscas subindo
+    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0xb36bff, transparent: true, opacity: .32, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffd23f, transparent: true, opacity: .16, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    faisca: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: 0xfff3b0, fog: false }), MAX * 6),
   };
   const todos = [corpos, cabecas, gorros, abas, ...Object.values(acess)]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
   const cont = Object.fromEntries(Object.keys(acess).map((k) => [k, 0]));
@@ -249,6 +254,12 @@ export function montarBonecos(cena, MAX) {
       else if (sk === 2) ac("capa", x, .78 + pulo, z - .32, rz, 1, 1, 1, 1, .14 + Math.sin(t * 4 + id) * .07);
       else if (sk === 3) { ac("gola", x, 1.0 + pulo, z, 0, 1, 1, 1, 1, Math.PI / 2); ac("short", x, .36 + pulo, z, rz); }
       else if (sk === 4) { ac("cowboy", x, 1.66 + pulo, z, .08); ac("aba2", x, 1.52 + pulo, z, .08); }
+      else if (sk === 6) {
+        const pz = 1 + Math.sin(t * 4 + id) * .07;
+        ac("aura", x, .95 + pulo, z, 0, pz); ac("aura2", x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
+        ac("anel", x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
+        for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
+      }
       else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
     },
     fim(n) {

@@ -35,7 +35,7 @@ lerCasas(); setInterval(lerCasas, 60e3);
 let donos = {};
 async function lerSkins() { try { const r = await fetch((process.env.ROBO_URL || "https://brasildaturma-renan.squareweb.app") + "/skins/donos", { signal: AbortSignal.timeout(15000) }); if (r.ok) donos = await r.json(); } catch {} }
 lerSkins(); setInterval(lerSkins, 20e3);
-const N_SKINS = 6;
+const N_SKINS = 7;
 const minhas = (u) => donos[norm(u)] || [];
 
 // ---------- presença (vale pontos no fim) ----------

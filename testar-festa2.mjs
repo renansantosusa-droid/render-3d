@@ -8,9 +8,9 @@ import { chromium } from "playwright";
 const CHAVE = randomBytes(8).toString("hex"), PORTA_WS = 4301, PORTA_WEB = 4302, PORTA_ROBO = 4303, WS = `ws://localhost:${PORTA_WS}/ws`, SITE = "https://brasildaturma.online";
 fs.mkdirSync("fotos-festa", { recursive: true });
 // robô falso: donos das skins (bots de 1 a 6 vestem uma cada) + loja
-const donos = { teste_github: [0], turma_1: [0], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [0], turma_8: [2], turma_9: [5] };
+const donos = { teste_github: [0], turma_1: [6], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [6], turma_8: [2], turma_9: [5] };
 let consultas = 0;
-const CATALOGO = [["coroa", "Coroa dourada", "👑", 4.9], ["oculos", "Óculos escuros", "🕶️", 2.9], ["capa", "Capa de herói", "🦸", 3.9], ["brasil", "Camisa do Brasil", "🇧🇷", 2.9], ["cowboy", "Chapéu de cowboy", "🤠", 2.9], ["asas", "Asas de anjo", "👼", 4.9]].map(([id, nome, icone, preco]) => ({ id, nome, icone, preco }));
+const CATALOGO = [["coroa", "Coroa dourada", "👑", 4.9], ["oculos", "Óculos escuros", "🕶️", 2.9], ["capa", "Capa de herói", "🦸", 3.9], ["brasil", "Camisa do Brasil", "🇧🇷", 2.9], ["cowboy", "Chapéu de cowboy", "🤠", 2.9], ["asas", "Asas de anjo", "👼", 4.9], ["aura", "Farmador de Aura", "✨", 9.9]].map(([id, nome, icone, preco]) => ({ id, nome, icone, preco, lendaria: id === "aura" }));
 http.createServer((q, r) => { r.setHeader("content-type", "application/json"); if (q.url.startsWith("/skins/donos")) return r.end(JSON.stringify(donos)); r.statusCode = 404; r.end("{}"); }).listen(PORTA_ROBO);
 const sv = spawn(process.execPath, ["festa-server.mjs"], { env: { ...process.env, PORT: String(PORTA_WS), TESTE_CHAVE: CHAVE, CICLO_TESTE: "1", ROBO_URL: `http://localhost:${PORTA_ROBO}` }, stdio: "inherit" });
 const web = http.createServer(async (q, r) => {
