@@ -54,13 +54,17 @@ export function criarLoja(ctx) {
     const nomes = [pS, pA].filter((k) => k >= 0 && catalogo[k]).map((k) => `${catalogo[k].icone} ${catalogo[k].nome}`);
     const n = l.querySelector(".provNome"); if (n) n.textContent = nomes.length ? nomes.join(" + ") : "sem skin";
     l.querySelectorAll(".sk").forEach((d) => d.classList.toggle("provando", d.dataset.g === "aura" ? pA >= 6 : +d.dataset.i === pS));
+    // escolheu uma skin + uma aura que ainda não tem: um botão só, um Pix só, com o preço somado
+    const cb = l.querySelector(".combo"); if (!cb) return;
+    const faltam = [pS, pA].filter((k) => k >= 0 && catalogo[k] && !minhas.includes(k));
+    if (venda && faltam.length === 2) { cb.hidden = false; cb.textContent = `🛒 Comprar os dois · ${real(catalogo[pS].preco + catalogo[pA].preco)}`; cb.onclick = () => pedirDados([pS, pA]); } else cb.hidden = true;
   }
 
   function montar() {
     if (l.hidden || compra || !catalogo) return;
     const eu = ctx.eu(), u = ctx.arroba();
     l.innerHTML = `<button class="fechar" aria-label="Fechar">×</button><h2>👕 Loja de skins</h2>
-<div class="prov"><canvas width="360" height="360" aria-label="Teu boneco com a skin escolhida"></canvas><div class="provNome"></div><div class="provDica">toca numa skin pra provar · dá pra juntar aura + outra 👇</div></div>
+<div class="prov"><canvas width="360" height="360" aria-label="Teu boneco com a skin escolhida"></canvas><div class="provNome"></div><div class="provDica">toca numa skin pra provar · dá pra juntar aura + outra 👇</div><button class="ok combo" hidden></button></div>
 <div class="grade"></div><p class="sub">✨ Dá pra usar a aura lendária junto com outra skin. É do teu @ pra sempre, em todas as festas. Só muda o visual: não dá ponto.</p><p class="msgL"></p>`;
     l.querySelector(".fechar").onclick = fechar;
     const g = l.querySelector(".grade");
@@ -87,23 +91,24 @@ export function criarLoja(ctx) {
   }
 
   function pedirDados(i) {
-    const s = catalogo[i], u = ctx.arroba();
+    const lista = Array.isArray(i) ? i : [i], it = lista.map((k) => catalogo[k]);
+    const s = { id: it[0].id, nome: it.map((x) => x.nome).join(" + "), icone: it.map((x) => x.icone).join(""), preco: Math.round(it.reduce((a, x) => a + x.preco, 0) * 100) / 100 }, u = ctx.arroba();
     if (!u) { msg("Escreve teu @ primeiro (na tela de entrada)."); return; }
     ctx.provador?.desligar();
     let mail = ""; try { mail = localStorage.getItem("festa-email") || ""; } catch {}
     l.innerHTML = `<button class="fechar" aria-label="Voltar">×</button><div class="ic" style="font-size:54px">${s.icone}</div><h2>${limpa(s.nome)}</h2><p class="sub">Pro @<b>${limpa(u)}</b> · ${real(s.preco)} no Pix</p>
-<input type="email" id="lojaMail" placeholder="teu e-mail (pro comprovante)" autocomplete="email"><p class="sub">A skin só muda o visual do boneco e não dá ponto.</p><button class="ok">Gerar Pix</button><p class="msgL"></p>`;
+<input type="email" id="lojaMail" placeholder="teu e-mail (pro comprovante)" autocomplete="email"><p class="sub">${lista.length > 1 ? "As duas num Pix só. " : ""}A skin só muda o visual do boneco e não dá ponto.</p><button class="ok">Gerar Pix</button><p class="msgL"></p>`;
     $("lojaMail").value = mail;
     l.querySelector(".fechar").onclick = montar;
     l.querySelector(".ok").onclick = async (ev) => {
       const email = $("lojaMail").value.trim();
       ev.target.disabled = true; msg("Gerando o Pix…");
       try {
-        const r = await fetch(ROBO + "/skins/pix", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ arroba: u, skin: s.id, email, maior: true }) });
+        const r = await fetch(ROBO + "/skins/pix", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ arroba: u, skins: it.map((x) => x.id), email, maior: true }) });
         const d = await r.json();
         if (!r.ok) { msg(d.erro || "Não deu certo. Tenta de novo."); ev.target.disabled = false; return; }
         try { localStorage.setItem("festa-email", email); } catch {}
-        compra = { ...d, i, nome: s.nome, icone: s.icone }; mostrarCompra();
+        compra = { ...d, i: lista, nome: s.nome, icone: s.icone }; mostrarCompra();
         clearInterval(timer); timer = setInterval(conferir, 4000);
       } catch { msg("Sem conexão. Tenta de novo."); ev.target.disabled = false; }
     };
@@ -125,10 +130,10 @@ export function criarLoja(ctx) {
       const d = await (await fetch(`${ROBO}/skins/situacao?id=${compra.id}&segredo=${compra.segredo}`, { cache: "no-store" })).json();
       if (d.status !== "pago") return;
       clearInterval(timer); const c = compra; compra = null;
-      if (!minhas.includes(c.i)) minhas.push(c.i);
-      const eu = ctx.eu(); if (eu) vestir(c.i);
+      const novas = Array.isArray(c.i) ? c.i : [c.i]; for (const k of novas) if (!minhas.includes(k)) minhas.push(k);
+      const eu = ctx.eu(); if (eu) for (const k of novas) vestir(k);
       l.hidden = false;
-      l.innerHTML = `<div class="ic" style="font-size:64px">${c.icone}</div><h2>Skin liberada! 🎉</h2><p class="sub">${eu ? "Já está no teu boneco." : "Ela aparece no teu boneco quando você entrar na festa."}</p><button class="ok">Fechar</button>`;
+      l.innerHTML = `<div class="ic" style="font-size:64px">${c.icone}</div><h2>${Array.isArray(c.i) && c.i.length > 1 ? "Skins liberadas! 🎉" : "Skin liberada! 🎉"}</h2><p class="sub">${eu ? "Já está no teu boneco." : "Ela aparece no teu boneco quando você entrar na festa."}</p><button class="ok">Fechar</button>`;
       l.querySelector(".ok").onclick = fechar;
     } catch {}
   }

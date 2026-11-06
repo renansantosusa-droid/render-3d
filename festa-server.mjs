@@ -154,7 +154,7 @@ function passoPinta() {
   if (top.length && (aberto() || todos().some((p) => p.teste))) {
     const [uf, n] = top[0];
     if (!(todos().every((p) => p.teste) && !process.env.CICLO_TESTE)) { OL.est[uf] = (OL.est[uf] || 0) + PREMIO; olMudou = true; }
-    ptMsg = `🎨 ${uf} pintou mais o chão (${n} pisos)! +${PREMIO} pro estado`; olMsg = ptMsg;
+    ptMsg = `🎨 ${uf} pintou mais o chão (${n} pisos)!`; olMsg = ptMsg;
   }
   PT.fill(0); ptMud = []; ptZerou = true; olMudou = true;
 }
@@ -171,23 +171,19 @@ function vestir(p, i) {
 const simpatico = () => { const c = Object.entries(OL.conv || {}).sort((a, b) => b[1] - a[1]).slice(0, 3); return c.length ? "\n\n😄 *Mais simpáticos da noite* (quem mais puxou conversa):\n" + c.map(([u, n], i) => `${["🥇", "🥈", "🥉"][i]} @${u} · ${n} conversas`).join("\n") : ""; };
 // no fim: resultado no grupo da Turma (pela Feirinha) e campeão gravado
 async function anunciarResultado() {
-  if (OL.anunciado || Date.now() < FIM + 30e3 || !process.env.FEIRINHA_SENHA || !Object.keys(OL.est).length) return;
-  const md = ["🥇", "🥈", "🥉"], t = topEst(3), pd = podio();
-  OL.campeao = t[0]?.[0] || null;
+  // 06/11: é FESTA, não Olimpíadas: sem estados campeões, pódio nem medalha no mapa
+  const gente = Math.max(unicos.size, ult?.unicos || 0);
+  if (OL.anunciado || Date.now() < FIM + 30e3 || !process.env.FEIRINHA_SENHA || !gente) return;
+  OL.campeao = null;
   const NOME = process.env.FESTA_NOME || "FESTA DA TURMA";
-  const texto = `🏆 *RESULTADO DA ${NOME}!* 🇧🇷
+  const texto = `🎉 *VALEU, TURMA! A ${NOME} FOI DEMAIS!* 🇧🇷
 
-*Estados campeões:*
-${t.map(([uf, pts], i) => `${md[i]} ${uf} · ${pts} pts`).join("\n")}
+👥 ${gente} pessoas passaram pela festa
+⚽ ${OL.gols || 0} gols nos pênaltis · 🏃 ${OL.corridas || 0} corridas · 🏐 ${OL.volei || 0} pontos no vôlei${simpatico()}
 
-*Pódio da turma:*
-${pd.map(([u, pts, uf], i) => `${md[i]} @${u}${uf ? " (" + uf + ")" : ""} · ${pts} pts`).join("\n")}
+⭐ Quem ficou 15 minutos já ganhou +20 pontos na casa
 
-🗺️ ${OL.campeao} ganhou a medalha de ouro no mapa: brasildaturma.online
-🎨 Pinta o Chão: o estado que pintou mais em cada rodada levou +5${simpatico()}
-👑 Quem ficou 15 minutos já ganhou +20 pontos na casa
-
-Valeu demais, turma! Vem mais jogo por aí 🔥`;
+Valeu demais! Vem mais festa por aí 🔥`;
   try {
     const r = await fetch("https://feirinhaturma-renan.squareweb.app/api/grupo/mensagem", { method: "POST", headers: { Authorization: "Basic " + Buffer.from("x:" + process.env.FEIRINHA_SENHA).toString("base64"), "Content-Type": "application/json" }, body: JSON.stringify({ texto }), signal: AbortSignal.timeout(120e3) });
     if (!r.ok) throw new Error("HTTP " + r.status);
@@ -203,7 +199,7 @@ const AVISOS = [
 
 🕘 Hoje, das *21h às 22h*
 👕 Já escolhe tua skin (dá pra usar a ✨ aura lendária junto com outra!)
-🎨 Pinta o Chão, ⚽ pênaltis, 🏃 corrida e 🏐 vôlei valem ponto pro teu estado
+🎨 Pinta o Chão, ⚽ pênaltis, 🏃 corrida e 🏐 vôlei pra curtir com a turma
 ⭐ Ficou 15 minutos = +20 pontos
 
 👉 Entra e já fica na fila: brasildaturma.online/festa/`],
@@ -218,7 +214,7 @@ Corre que já tem gente pintando o chão! 🎨
   [30 * 60e3, "meio", `🔥 *AINDA DÁ TEMPO!* A festa vai até as 22h
 
 Entrando agora ainda dá pra ficar os 15 minutos e ganhar +20 pontos ⭐
-No fim sai o resultado dos estados e os mais simpáticos da noite 😄
+No fim sai o resumo da festa e os mais simpáticos da noite 😄
 
 👉 brasildaturma.online/festa/`],
 ];
@@ -437,7 +433,7 @@ const server = http.createServer((req, res) => {
     res.setHeader("content-type", "application/x-ndjson"); return fs.createReadStream(ARQ_GRAV).pipe(res);
   }
   if (req.url === "/saude") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ok: true })); }
-  if (req.url === "/status") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ult, tempo: [...tempo.values()], pico: picoOnline, picoEm, online: porUsuario.size, fila: fila.length, espera: listaEspera().length, lotacao: LOTACAO, salas: 1, ini: INI, fim: FIM, casas: casas.size, ramMB: Math.round(process.memoryUsage().rss / 1048576), ol: { est: topEst(), pod: podio(), campeao: Date.now() >= FIM ? (OL.campeao || topEst(1)[0]?.[0] || null) : null, corridas: OL.corridas, gols: OL.gols, volei: OL.volei } })); }
+  if (req.url === "/status") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ult, tempo: [...tempo.values()], pico: picoOnline, picoEm, online: porUsuario.size, fila: fila.length, espera: listaEspera().length, lotacao: LOTACAO, salas: 1, ini: INI, fim: FIM, casas: casas.size, ramMB: Math.round(process.memoryUsage().rss / 1048576), ol: { est: topEst(), pod: podio(), campeao: null, corridas: OL.corridas, gols: OL.gols, volei: OL.volei } })); }
   res.statusCode = 404; res.end();
 });
 const wss = new WebSocketServer({ server, path: "/ws", maxPayload: 512, perMessageDeflate: false });

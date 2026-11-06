@@ -4,7 +4,7 @@ import * as THREE from "three";
 export const LIMITE = 56;
 export const AREAS = [
   { id: "praca", nome: "🎄 Praça de Natal", x: 0, z: 0, r: 15 },
-  { id: "palco", nome: "🏆 Pódio", x: 0, z: -36, r: 21 },
+  { id: "palco", nome: "🎤 Palco", x: 0, z: -36, r: 21 },
   { id: "campinho", nome: "⚽ Pênaltis", x: 38, z: 0, r: 17 },
   { id: "pinta", nome: "🎨 Pinta o Chão", x: -38, z: 0, r: 17 },
   { id: "corrida", nome: "🏃 Corrida", x: -26, z: 32, r: 16 },
@@ -180,7 +180,7 @@ export function montarCenario(cena) {
   const faixa = new THREE.Mesh(new THREE.TorusGeometry(.5, .06, 6, 20), mat(0x2b59c3)); bolaV.add(faixa);
 
   // ---------- pódio na frente do palco ----------
-  const podioG = new THREE.Group(); G.palco.add(podioG);
+  const podioG = new THREE.Group(); podioG.visible = false; G.palco.add(podioG); // sem pódio (06/11: festa, não Olimpíadas)
   const podioRot = [[0, 1.5, 0xffd23f, "1"], [-3, 1, 0xd9dde8, "2"], [3, .7, 0xd98a4a, "3"]].map(([x, h, cor, n]) => { caixa(podioG, 2.8, h, 2.2, cor, x, h / 2, -35.4); const s2 = rotulo(podioG, n + "º", x, h + .6, -34.2, .9); return { x, h, s: null }; });
   function setPodio(lista) {
     podioRot.forEach((p, i) => { if (p.s) { podioG.remove(p.s); p.s.material.map.dispose(); p.s.material.dispose(); } const l = lista[i]; p.s = l ? rotulo(podioG, `${["🥇", "🥈", "🥉"][i]} @${l[0]}`, p.x, p.h + 3 + (i ? 0 : .5), -35.4, 1.1, i ? "#ffffff" : "#ffd23f") : null; });
@@ -189,7 +189,7 @@ export function montarCenario(cena) {
   function nomeNaBarraca() {}
 
   // nome de cada ambiente
-  rotulo(G.palco, "🏆 PÓDIO DA FESTA", 0, 15.2, -41, 1.6, "#ffd23f");
+  rotulo(G.palco, "🎤 PALCO DA FESTA", 0, 15.2, -41, 1.6, "#ffd23f");
   rotulo(G.campinho, "⚽ PÊNALTIS", cx, 11.6, CAMPO.z0 - 4.5, 1.4);
   rotulo(G.pinta, "🎨 PINTA O CHÃO", pfx, 10.6, PG.cz - LADO / 2 - 3.2, 1.4);
   rotulo(G.corrida, "🏃 CORRIDA", cxP + 3, 10.4, P0.z0 - 5.2, 1.4);

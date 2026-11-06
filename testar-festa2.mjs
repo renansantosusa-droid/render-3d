@@ -58,6 +58,8 @@ console.log("loja (entrada):", (await g.locator("#loja").innerText()).replace(/\
 await g.screenshot({ path: "fotos-festa/01-loja-entrada.png" });
 await g.click("#loja .sk.lend"); await g.waitForTimeout(1200); console.log("provador (coroa + aura):", await g.locator("#loja .provNome").innerText()); await g.screenshot({ path: "fotos-festa/01b-provador-junto.png" });
 await g.locator("#loja .cores .cor").nth(2).click(); await g.waitForTimeout(1200); console.log("provador (cor verde):", await g.locator("#loja .provNome").innerText()); await g.screenshot({ path: "fotos-festa/01c-provador-verde.png" });
+await g.locator("#loja .sk").nth(3).click(); await g.waitForTimeout(1200); console.log("combo:", await g.locator("#loja .combo").isVisible() ? await g.locator("#loja .combo").innerText() : "NÃO APARECEU"); await g.screenshot({ path: "fotos-festa/01d-combo.png" });
+if (await g.locator("#loja .combo").isVisible()) { await g.click("#loja .combo"); await g.waitForTimeout(800); await g.screenshot({ path: "fotos-festa/01e-combo-dados.png" }); console.log("tela combo:", (await g.locator("#loja").innerText()).replace(/\s+/g, " ")); await g.click("#loja .fechar"); await g.waitForTimeout(500); }
 await g.click("#loja .fechar");
 await g.click("#entrar");
 await g.waitForFunction(() => document.getElementById("entrada").hidden, null, { timeout: 60000 });
