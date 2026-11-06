@@ -13,8 +13,10 @@ await pg.tap('[data-uf="SC"]'); await pg.waitForTimeout(800); await pg.screensho
 await pg.tap('[data-a="acess"]'); await pg.tap('[data-ac="coroa"]'); await pg.tap('[data-ac="oculos"]'); await pg.tap('[data-ac="colar"]'); await pg.waitForTimeout(800);
 await pg.screenshot({ path: `${OUT}/3-acessorios.png` });
 await pg.tap('[data-ac="asas"]'); await pg.tap("#girar"); await pg.waitForTimeout(2600); await pg.screenshot({ path: `${OUT}/4-costas-asas.png` });
-await pg.tap('[data-a="kit"]'); await pg.tap('[data-kit="PE,festa"]'); await pg.waitForTimeout(1500); await pg.screenshot({ path: `${OUT}/5-kit.png` });
-await pg.tap('[data-kit="RS,capa"]'); await pg.waitForTimeout(2000); await pg.screenshot({ path: `${OUT}/6-capa.png` });
-await pg.tap("#comprar"); await pg.waitForTimeout(500); await pg.screenshot({ path: `${OUT}/7-pix.png` });
+await pg.tap('[data-a="aura"]'); await pg.tap('[data-aura="ouro"]'); await pg.waitForTimeout(1200); await pg.screenshot({ path:  });
+await pg.tap('[data-aura="fogo"]'); await pg.waitForTimeout(1700); await pg.screenshot({ path:  });
+await pg.tap('[data-a="kit"]'); await pg.tap('[data-kit="BA,asas,arco"]'); await pg.waitForTimeout(1300); await pg.screenshot({ path:  });
+await pg.tap('[data-kit="RS,capa,"]'); await pg.tap("#girar"); await pg.waitForTimeout(2600); await pg.screenshot({ path:  });
+await pg.tap("#comprar"); await pg.waitForTimeout(500); await pg.screenshot({ path: `${OUT}/9-pix.png` });
 console.log(erros.length ? "ERROS: " + erros.join(" | ") : "sem erro de JavaScript");
 await nav.close();
