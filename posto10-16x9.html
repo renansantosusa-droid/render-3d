@@ -15,6 +15,8 @@ const SW = 1920, SH = 1080, ESC = .7, CYV = 1150, PAD = 1600;
 const _fr = g.fillRect.bind(g);
 g.fillRect = (x, y, w, h) => { if (x <= 1 && x + w >= W - 1) { x -= PAD; w += 2 * PAD; } if (y <= 1 && y + h >= H - 1) { y -= PAD; h += 2 * PAD; } _fr(x, y, w, h); };
 const TELA = () => g.setTransform(1, 0, 0, 1, 0, 0);
+// texto grande que cairia acima do topo da tela 16:9 (onomatopeia, números): empurra pra dentro
+for (const fn of ["fillText", "strokeText"]) { const o = g[fn].bind(g); g[fn] = (s, x, y, ...r) => { const m = g.getTransform(); const px = parseFloat((g.font.match(/([\d.]+)px/) || [0, 0])[1]) * m.d; const top = m.d * y + m.f - px / 2; if (px >= 14 && m.d > 0 && top < 24 && top > -900) y += (24 - top) / m.d; o(s, x, y, ...r); }; }
 const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa } = K;
 const ease = K.ease, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
 const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
@@ -92,9 +94,9 @@ function cartazes(x, y, w, h, q, t) { const cols = 3, rows = 4, n = cols * rows,
 function freezer(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = "rgba(0,0,0,.25)"; g.beginPath(); g.ellipse(0, 0, 220, 26, 0, 0, 6.283); g.fill(); rr(-200, -280, 400, 280, 16, "#f2f4f6"); rr(-200, -280, 400, 70, 16, "#3a8ad6"); txt("SORVETES", 0, -245, 44, "#fff", 900, "center", "Nunito"); rr(-180, -200, 360, 120, 10, "#cfe6f4"); rr(-150, -60, 300, 30, 6, "#d8dce0"); g.restore(); }
 function monitor(t, x, y, w, h, liga = 1, so3 = 0) {
   rr(x - 24, y - 24, w + 48, h + 48, 18, "#18191e"); rect(x, y, w, h, "#05070a"); if (liga <= 0) return;
-  g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); g.globalAlpha = liga;
+  g.save(); g.beginPath(); g.rect(so3 ? x - PAD : x, y, so3 ? w + 2 * PAD : w, h); g.clip(); g.globalAlpha = liga;
   const cams = so3 ? [[3, x, y, w, h]] : [[1, x, y, w / 2, h / 2], [2, x + w / 2, y, w / 2, h / 2], [3, x, y + h / 2, w / 2, h / 2], [4, x + w / 2, y + h / 2, w / 2, h / 2]];
-  for (const [n, cx, cy, cw, ch] of cams) { g.save(); g.beginPath(); g.rect(cx + 2, cy + 2, cw - 4, ch - 4); g.clip(); g.translate(cx, cy); g.scale(cw / W, ch / H); camCena(n, t); g.restore(); txt(`CAM ${n}${n === 3 ? " · BOMBA 3" : ""}`, cx + 18, cy + 30, so3 ? 40 : 22, "#e8ffe8", 700, "left", "Oswald"); if ((t % 1) < .5) circ(cx + cw - 26, cy + 26, so3 ? 12 : 7, "#e23"); }
+  for (const [n, cx, cy, cw, ch] of cams) { g.save(); g.beginPath(); g.rect(so3 ? cx - PAD : cx + 2, cy + 2, so3 ? cw + 2 * PAD : cw - 4, ch - 4); g.clip(); g.translate(cx, cy); g.scale(cw / W, ch / H); camCena(n, t); g.restore(); txt(`CAM ${n}${n === 3 ? " · BOMBA 3" : ""}`, cx + 18, cy + 30, so3 ? 40 : 22, "#e8ffe8", 700, "left", "Oswald"); if ((t % 1) < .5) circ(cx + cw - 26, cy + 26, so3 ? 12 : 7, "#e23"); }
   g.globalCompositeOperation = "saturation"; g.fillStyle = "#808080"; g.fillRect(x, y, w, h); g.globalCompositeOperation = "multiply"; g.fillStyle = "#9fe0b0"; g.fillRect(x, y, w, h); g.globalCompositeOperation = "source-over";
   for (let i = 0; i < h; i += 6) rect(x, y + i, w, 2, "rgba(0,0,0,.18)"); g.restore(); g.globalAlpha = 1;
 }
