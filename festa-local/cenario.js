@@ -232,9 +232,10 @@ export function montarBonecos(cena, MAX) {
     cowboy: new THREE.InstancedMesh(new THREE.CylinderGeometry(.2, .26, .32, 12), mat(0x8a5a2b), MAX), aba2: new THREE.InstancedMesh(new THREE.CylinderGeometry(.54, .54, .05, 16), mat(0x8a5a2b), MAX),
     asa: new THREE.InstancedMesh(new THREE.SphereGeometry(.36, 10, 8), asaM, MAX * 2),
     // Farmador de Aura (lendária): duas camadas de brilho, anel no chão e faíscas subindo
-    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0xb36bff, transparent: true, opacity: .32, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
-    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffd23f, transparent: true, opacity: .16, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0x9b3dff, transparent: true, opacity: .55, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffb300, transparent: true, opacity: .3, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
     anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    raio: new THREE.InstancedMesh(new THREE.CylinderGeometry(.32, .62, 7, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xd9a3ff, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }), MAX),
     faisca: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: 0xfff3b0, fog: false }), MAX * 6),
   };
   const todos = [corpos, cabecas, gorros, abas, ...Object.values(acess)]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
@@ -257,7 +258,7 @@ export function montarBonecos(cena, MAX) {
       else if (sk === 6) {
         const pz = 1 + Math.sin(t * 4 + id) * .07;
         ac("aura", x, .95 + pulo, z, 0, pz); ac("aura2", x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
-        ac("anel", x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
+        ac("raio", x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); ac("anel", x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
         for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
       }
       else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }

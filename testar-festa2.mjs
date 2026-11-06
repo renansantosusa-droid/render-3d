@@ -66,7 +66,7 @@ await g.screenshot({ path: "fotos-festa/02-chegada-skins.png", timeout: 180000 }
 await g.click("#btn-loja"); await g.waitForTimeout(1500);
 await g.screenshot({ path: "fotos-festa/03-loja.png" });
 await g.locator("#loja .sk").nth(2).locator("button").click(); await g.waitForTimeout(500);
-await g.fill("#lojaMail", "teste@exemplo.com"); await g.check("#lojaMaior");
+await g.fill("#lojaMail", "teste@exemplo.com");
 await g.screenshot({ path: "fotos-festa/04-dados.png" });
 await g.click("#loja .ok"); await g.waitForTimeout(1200);
 await g.screenshot({ path: "fotos-festa/05-pix.png" });
