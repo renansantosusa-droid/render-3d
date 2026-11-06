@@ -16,7 +16,9 @@ const _fr = g.fillRect.bind(g);
 g.fillRect = (x, y, w, h) => { if (x <= 1 && x + w >= W - 1) { x -= PAD; w += 2 * PAD; } if (y <= 1 && y + h >= H - 1) { y -= PAD; h += 2 * PAD; } _fr(x, y, w, h); };
 const TELA = () => g.setTransform(1, 0, 0, 1, 0, 0);
 // texto grande que cairia acima do topo da tela 16:9 (onomatopeia, números): empurra pra dentro
-for (const fn of ["fillText", "strokeText"]) { const o = g[fn].bind(g); g[fn] = (s, x, y, ...r) => { const m = g.getTransform(); const px = parseFloat((g.font.match(/([\d.]+)px/) || [0, 0])[1]) * m.d; const top = m.d * y + m.f - px / 2; if (px >= 28 && m.d > 0 && top < 24 && top > -900) y += (24 - top) / m.d; o(s, x, y, ...r); }; }
+// linhas logo abaixo de um texto empurrado levam o mesmo empurrão (senão se sobrepõem); _empurrados zera a cada quadro
+const _empurrados = [];
+for (const fn of ["fillText", "strokeText"]) { const o = g[fn].bind(g); g[fn] = (s, x, y, ...r) => { const m = g.getTransform(); const px = parseFloat((g.font.match(/([\d.]+)px/) || [0, 0])[1]) * m.d; if (px >= 28 && m.d > 0) { const top = m.d * y + m.f - px / 2; let d = top < 24 && top > -900 ? 24 - top : 0; if (!d) { const q = _empurrados.find(e => top >= e.top && top - e.top < 300 && Math.abs(m.d - e.sc) < .01); if (q) d = q.d; } if (d) { if (!_empurrados.some(e => e.top === top)) _empurrados.push({ top, d, sc: m.d }); y += d / m.d; } } o(s, x, y, ...r); }; }
 const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa } = K;
 const ease = K.ease, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
 const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
@@ -293,7 +295,7 @@ const T = {
 // tremores nos impactos
 const IMPACTOS = () => [P(2, "zumbis"), P(3, "mas"), P(4, "grita"), P(6, "rapidos"), P(10, "abertos"), P(11, "para"), P(11, "entra"), P(12, "entram"), P(12, "seis")];
 window.renderFrame = (t) => {
-  TELA(); _fr.call(g, 0, 0, 0, 0); g.fillStyle = "#000"; _fr(0, 0, SW, SH); g.setTransform(ESC, 0, 0, ESC, SW / 2 - 540 * ESC, SH / 2 - CYV * ESC); tremor = 0; treme(t, IMPACTOS());
+  _empurrados.length = 0; TELA(); _fr.call(g, 0, 0, 0, 0); g.fillStyle = "#000"; _fr(0, 0, SW, SH); g.setTransform(ESC, 0, 0, ESC, SW / 2 - 540 * ESC, SH / 2 - CYV * ESC); tremor = 0; treme(t, IMPACTOS());
   const s = tomadaEm(t); (T[s.nome] || T.ext)(t, s.k);
   legenda(t);
   TELA(); txt("@historiascomclaudio", SW - 40, SH - 36, 26, "rgba(255,255,255,.28)", 700, "right", "Nunito"); if (0) txt("", 0, 0, 30, "rgba(255,255,255,.28)", 700, "center", "Nunito");
