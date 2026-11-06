@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="robots" content="noindex">
+<title>Festa da Turma · A Turma do Brasil</title><meta name="theme-color" content="#0a1633"><link rel="icon" href="../assets/icone.png">
+<script type="importmap">{"imports":{"three":"../assets/lib/three.module.min.js"}}</script>
+<script src="config.js?v=3"></script>
+<style>
+@font-face{font-family:Nunito;font-weight:900;font-display:swap;src:url(../assets/nunito-900.woff2) format("woff2")}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#0a1633;font-family:Nunito,system-ui,sans-serif;font-weight:900;color:#14204a;touch-action:none;user-select:none;-webkit-user-select:none}
+button,input{font:inherit}:focus-visible{outline:3px solid #ffd23f;outline-offset:2px}
+#palco{position:fixed;inset:0;width:100%;height:100%;display:block}
+#camadas{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.et{position:absolute;left:0;top:0;transform:translate(-50%,-100%);background:#fff;border:2px solid #14204a;border-radius:99px;padding:0 7px 1px;font-size:11px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.et.eu{background:#ffd23f;font-size:13px;border-width:3px;z-index:2}
+.bal{position:absolute;left:0;top:0;transform:translate(-50%,-100%);background:#fff;border:3px solid #14204a;border-radius:16px;padding:3px 10px;font-size:14px;max-width:190px;text-align:center;z-index:3;line-height:1.15}
+.bal.grande{font-size:30px;background:transparent;border:0;padding:0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+#topo{position:fixed;left:8px;right:8px;top:calc(8px + env(safe-area-inset-top));display:flex;gap:6px;justify-content:space-between;align-items:center;pointer-events:none}
+#topo>*{pointer-events:auto;background:#fff;border:3px solid #1d5e2a;border-radius:99px;padding:5px 12px;font-size:13px;color:#1d5e2a;white-space:nowrap}
+#btn-som{background:#ffd23f;border-color:#14204a;color:#14204a;cursor:pointer;min-height:36px}
+#videoCaixa{position:fixed;right:8px;top:calc(50px + env(safe-area-inset-top));width:200px;z-index:5}#videoAlca{background:#ffd23f;color:#14204a;border:3px solid #14204a;border-bottom:0;border-radius:12px 12px 0 0;font-size:13px;text-align:center;height:32px;line-height:26px;cursor:grab;touch-action:none}#video{display:block;width:200px;height:200px;border:3px solid #14204a;border-top:0;border-radius:0 0 12px 12px;background:#000;box-sizing:border-box}
+#baixo{position:fixed;left:6px;right:6px;bottom:calc(8px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:6px;align-items:center}
+#emojis{display:flex;gap:5px;justify-content:center}
+#emojis button{background:#fff;border:3px solid #1d5e2a;box-shadow:0 3px 0 #1d5e2a;border-radius:14px;cursor:pointer;min-width:46px;min-height:46px;font-size:23px;padding:0 4px;color:#1d5e2a}
+#acoes{display:flex;gap:6px;width:min(100%,340px)}#btn-frases,#btn-mapa{flex:1;font-size:14px;padding:0 10px;background:#fff;border:3px solid #1d5e2a;box-shadow:0 3px 0 #1d5e2a;border-radius:14px;cursor:pointer;min-height:46px;color:#1d5e2a}#btn-mapa{background:#ffd23f;border-color:#14204a;box-shadow:0 3px 0 #14204a;color:#14204a}
+#ambientes,#frases,#musicas{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(122px + env(safe-area-inset-bottom));width:min(94vw,360px);background:#fff;border:3px solid #14204a;border-radius:16px;padding:6px;display:grid;gap:4px}
+#ambientes button,#frases button,#musicas button{background:#e6f6df;border:0;border-radius:10px;min-height:42px;font-size:15px;cursor:pointer;color:#14204a}
+#entrada{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(circle at 50% 25%,#1c3a78,#0a1633 70%);touch-action:auto;user-select:text;-webkit-user-select:text;overflow:auto}
+#caixa{background:#fff;border:4px solid #14204a;box-shadow:0 8px 0 #14204a;border-radius:24px;padding:22px 18px;width:min(100%,380px);text-align:center}
+#caixa h1{margin:4px 0;font-size:30px;color:#1d5e2a;line-height:1.05}#caixa p{margin:8px 0;font-size:15px;line-height:1.3}
+#arroba{width:100%;border:3px solid #14204a;border-radius:14px;padding:12px;font-size:18px;text-align:center;margin:8px 0;color:#14204a;background:#fff}
+#entrar{width:100%;background:#2fa34a;color:#fff;border:0;border-radius:14px;padding:14px;font-size:19px;cursor:pointer}#entrar:disabled{opacity:.6}
+#msg{min-height:20px;color:#b42318}#msg a{color:#1d5e2a}
+.falta{font-size:32px;color:#14204a}
+#gol{position:fixed;left:50%;top:32%;transform:translate(-50%,-50%);font-size:46px;color:#ffd23f;-webkit-text-stroke:2px #14204a;pointer-events:none;white-space:nowrap}
+#barraca{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(122px + env(safe-area-inset-bottom));width:min(92vw,340px);background:#fff;border:3px solid #14204a;box-shadow:0 5px 0 #14204a;border-radius:18px;padding:12px;text-align:center;font-size:15px}
+#barraca img{width:96px;height:96px;object-fit:cover;border-radius:12px}#barraca a{display:block;background:#ee4d2d;color:#fff;border-radius:12px;padding:11px;text-decoration:none;margin-top:8px}#barraca button{position:absolute;right:4px;top:0;background:none;border:0;font-size:26px;width:40px;height:40px;cursor:pointer;color:#14204a}
+body.limpo #topo,body.limpo #baixo{display:none!important}
+#regra{background:#fff3d6;border:3px solid #e4573a;border-radius:14px;padding:9px 11px;font-size:14px;line-height:1.3;margin:8px 0;color:#14204a;text-align:left}#regra a{color:#b42318}
+#olimp{position:fixed;left:50%;transform:translateX(-50%);top:calc(52px + env(safe-area-inset-top));width:min(94vw,380px);background:#14204a;color:#fff;border:3px solid #ffd23f;border-radius:16px;padding:7px 10px;text-align:center;font-size:14px;line-height:1.25;pointer-events:auto}
+#olimp button{margin-top:5px;background:#ffd23f;color:#14204a;border:0;border-radius:10px;min-height:38px;padding:0 14px;font-size:15px;cursor:pointer}
+#olimpMsg{color:#ffd23f}
+#grande{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);font-size:84px;color:#ffd23f;-webkit-text-stroke:3px #14204a;pointer-events:none;white-space:nowrap}
+#medalhas{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(122px + env(safe-area-inset-bottom));width:min(94vw,360px);background:#fff;border:3px solid #14204a;box-shadow:0 5px 0 #14204a;border-radius:16px;padding:10px 12px;font-size:15px;line-height:1.5;color:#14204a}
+#medalhas h3{margin:0 0 4px;font-size:16px;color:#1d5e2a}
+#btn-medalhas{flex:1;font-size:14px;padding:0 10px;background:#ffd23f;border:3px solid #14204a;box-shadow:0 3px 0 #14204a;border-radius:14px;cursor:pointer;min-height:46px;color:#14204a}
+.btn-loja{background:#8e5cd9;color:#fff;border:3px solid #14204a;box-shadow:0 3px 0 #14204a;border-radius:14px;cursor:pointer}
+#btn-loja{flex:1;min-height:46px;font-size:14px;padding:0 10px}#btn-loja-entrada{width:100%;min-height:44px;font-size:16px;margin:6px 0}
+#loja{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(94vw,380px);max-height:88vh;overflow:auto;background:#fff;border:4px solid #14204a;box-shadow:0 6px 0 #14204a;border-radius:20px;padding:14px;z-index:20;text-align:center;touch-action:auto;user-select:text;-webkit-user-select:text}
+#loja h2{margin:2px 0 4px;font-size:22px;color:#5b2fa8}#loja .sub{font-size:13px;color:#47604c;margin:0 0 8px}
+#loja .grade{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#loja .sk{border:3px solid #d9cdf2;border-radius:14px;padding:8px 4px;background:#f6f1ff}#loja .sk.tem{border-color:#2fa34a;background:#e6f6df}
+#loja .ic{font-size:38px;line-height:1.1}#loja .nm{font-size:14px;margin:2px 0 6px}
+#loja .sk button{width:100%;min-height:40px;border:0;border-radius:10px;font-size:14px;cursor:pointer;background:#8e5cd9;color:#fff}#loja .sk.tem button{background:#2fa34a}#loja .sk.vest button{background:#14204a}#loja .sk button:disabled{opacity:.6}
+#loja input[type=email]{width:100%;border:3px solid #14204a;border-radius:12px;padding:10px;font-size:16px;margin:6px 0;text-align:center}
+#loja .ok{width:100%;background:#2fa34a;color:#fff;border:0;border-radius:12px;padding:12px;font-size:17px;cursor:pointer;margin-top:6px}#loja .ok.cinza{background:#9aa3b8}
+#loja .fechar{position:absolute;right:6px;top:2px;background:none;border:0;font-size:28px;width:44px;height:44px;cursor:pointer;color:#14204a}
+#loja .qr{width:200px;height:200px}#loja textarea{width:100%;height:70px;font-size:11px;border:2px solid #14204a;border-radius:10px;padding:6px}
+#loja .msgL{color:#b42318;min-height:18px;font-size:14px}#loja label{display:flex;gap:8px;align-items:flex-start;text-align:left;font-size:13px;margin:6px 0}
+[hidden]{display:none!important}
+</style></head><body>
+<canvas id="palco" aria-label="Praça da festa em 3D com os bonecos da turma"></canvas>
+<div id="camadas" aria-hidden="true"></div>
+<div id="topo" hidden><span id="quantos">🎉 Festa da Turma</span><button id="btn-som" hidden>🎵 Ligar a música</button></div>
+<div id="videoCaixa" hidden><div id="videoAlca">⠿ arrasta aqui</div><iframe id="video" title="Música da festa" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<div id="frases" hidden></div>
+<div id="ambientes" hidden></div>
+<div id="musicas" hidden></div>
+<div id="gol" hidden>⚽ GOOOL!</div><div id="olimp" hidden><div id="olimpTxt"></div><div id="olimpMsg"></div><button id="btn-largada" hidden>🏃 Ir pra LARGADA</button></div><div id="grande" hidden></div><div id="medalhas" hidden></div>
+<div id="barraca" hidden></div>
+<div id="loja" role="dialog" aria-label="Loja de skins" hidden></div>
+<div id="baixo" hidden><div id="emojis"></div><div id="acoes"><button id="btn-frases">💬 Frase</button><button id="btn-medalhas">🏅 Placar</button><button id="btn-loja" class="btn-loja">👕 Skins</button><button id="btn-mapa">🗺️ Ir para</button></div></div>
+<div id="entrada"><form id="caixa" autocomplete="off"><div style="font-size:44px;line-height:1">🎉🇧🇷</div><h1>FESTA DA TURMA</h1><p>Show, pênaltis, corrida, vôlei e o novo <b>Pinta o Chão</b>. Cada ponto teu vai pro teu estado. Teu boneco, teu @.</p>
+<button type="button" id="btn-loja-entrada" class="btn-loja">👕 Ver as skins da festa</button>
+<div id="regra">🎉 <b>Todo mundo entra!</b> É só colocar teu @.<br>🏠 Quem tem casa no mapa joga pelo <b>estado</b> dela. Ainda não tem? <a href="https://www.instagram.com/aturmadobrasil/" target="_blank" rel="noopener">Comenta tua cidade + estado num post do @aturmadobrasil</a> (ex: Recife PE).</div>
+<div id="contagem" class="falta" hidden></div>
+<label for="arroba" style="position:absolute;left:-9999px">Teu @</label><input id="arroba" placeholder="teu @ do Instagram" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+<button id="entrar" type="submit">Entrar na festa</button><p id="msg" role="status"></p>
+<p style="font-size:13px;color:#47604c">Fica até o fim? Quem ficar 15 minutos ou mais ganha <b>+20 pontos</b>.</p></form></div>
+<script type="module">
+import * as THREE from "three";
+import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=5";
+import { criarLoja } from "./loja.js?v=1";
+const CFG = window.FESTA || {}, Q = new URLSearchParams(location.search), CHAVE = Q.get("chave") || "", VISAO = Q.get("visao"); // visao=palco: câmera no palco olhando a turma, sem botões, pra gravar a tela
+const $ = (i) => document.getElementById(i);
+const EMOJIS = ["🏅", "😂", "🔥", "👏", "🎉", "❤️"];
+let cidades = new Map();
+fetch("../assets/cidades.json").then((r) => r.json()).then((l) => { cidades = new Map(l.map((c) => [c.id, c])); }).catch(() => {});
+const cidadeDe = (cid) => cidades.get(cid)?.n || "minha cidade";
+const ESTADOS = { AC: "Acre", AL: "Alagoas", AP: "Amapá", AM: "Amazonas", BA: "Bahia", CE: "Ceará", DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão", MT: "Mato Grosso", MS: "Mato Grosso do Sul", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba", PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "Rio Grande do Norte", RS: "Rio Grande do Sul", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo", SE: "Sergipe", TO: "Tocantins" };
+const estadoDe = (cid) => ESTADOS[cidades.get(cid)?.uf] || "do meu estado";
+// a ordem importa: o servidor só repassa o número da frase (0 a 5)
+const FRASES = [() => "Pode me seguir no insta?", () => "Tô seguindo!", () => "Não", (p) => `Tem alguém de ${estadoDe(p?.cid)} aqui?`, (p) => `Bora, ${ESTADOS[cidades.get(p?.cid)?.uf] || "turma"}! 🏅`, () => "Vem, me acompanha!"];
+
+// ---------- cenário ----------
+const render = new THREE.WebGLRenderer({ canvas: $("palco"), antialias: true });
+render.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5)); render.outputColorSpace = THREE.SRGBColorSpace;
+const cena = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(50, 1, .1, 320);
+await document.fonts?.load("900 92px Nunito").catch(() => {});
+const mundo = montarCenario(cena);
+const MAX = 220, bonecos = montarBonecos(cena, MAX);
+const P = new Map(); let meuId = null;
+function novo(id, u, cid, x, z, cor, sk) { if (P.size >= MAX && !P.has(id)) return; P.set(id, { id, u, cid, x, z, tx: x, tz: z, cor, sk: sk ?? -1, fase: id * 1.7 }); }
+
+// ---------- etiquetas e balões (só perto da câmera: celular não aguenta 150 textos) ----------
+const camadas = $("camadas"), etiquetas = Array.from({ length: 16 }, () => { const d = document.createElement("div"); d.className = "et"; d.style.display = "none"; camadas.appendChild(d); return d; });
+const baloes = []; const v = new THREE.Vector3();
+const tela = (x, y, z) => { v.set(x, y, z).project(cam); return [(v.x + 1) / 2 * innerWidth, (1 - v.y) / 2 * innerHeight, v.z < 1]; };
+function balao(id, txt, grande) {
+  const p = P.get(id); if (!p || baloes.length > 14) return;
+  for (const b of baloes) if (b.id === id) { b.fim = 0; }
+  const d = document.createElement("div"); d.className = "bal" + (grande ? " grande" : ""); d.textContent = txt; camadas.appendChild(d);
+  baloes.push({ id, d, fim: performance.now() + (grande ? 1800 : 3500) });
+}
+
+// ---------- rede ----------
+let tentativasCasa = 0, novaTentativa = null, naEspera = false, ws = null, meuArroba = "", tentativas = 0, entrouAlgumaVez = false;
+function conectar() {
+  ws = new WebSocket(CFG.servidor);
+  ws.onopen = () => { tentativas = 0; ws.send(JSON.stringify({ t: "entrar", u: meuArroba, chave: CHAVE })); };
+  ws.onmessage = (e) => { let m; try { m = JSON.parse(e.data); } catch { return; } receber(m); };
+  ws.onclose = () => { if (ws?.semVolta) return; if (naEspera && !entrouAlgumaVez) { $("msg").textContent = "⏳ Reconectando na fila…"; setTimeout(conectar, 3000); return; } if (entrouAlgumaVez) { $("quantos").textContent = "⚠️ Reconectando…"; setTimeout(conectar, 1500 + 1000 * Math.min(tentativas++, 5)); } else { $("entrar").disabled = false; $("msg").textContent = "Não consegui entrar. Tenta de novo."; } };
+}
+const fala = (t) => { $("msg").textContent = t; $("entrar").disabled = false; };
+function encerrar() { naEspera = false; if (ws) ws.semVolta = true; ws?.close(); }
+function receber(m) {
+  if (m.t === "fechado") { encerrar(); $("entrar").disabled = false; contagem(m.abre); return; }
+  if (m.t === "acabou") { encerrar(); voltarEntrada("A festa acabou! Valeu, turma 🎉 O resultado sai no grupo e os pontos entram em instantes."); return; }
+  if (m.t === "sks") { loja.setMinhas(m.sks); return; }
+  if (m.t === "espera") { naEspera = true; $("entrar").disabled = true; contagem(m.abre); $("msg").textContent = `⏳ Você está na fila: nº ${m.pos} de ${m.total}. Deixa esta tela aberta: na hora da festa você entra sozinho!`; return; }
+  if (m.t === "fila") { $("entrar").disabled = true; $("msg").textContent = `🎟️ A festa lotou! Você é o nº ${m.pos} de ${m.total || m.pos} na fila. Fica nesta tela: você entra sozinho quando abrir vaga.`; return; }
+  if (m.t === "semcasa") {
+    encerrar(); $("entrar").disabled = false;
+    // acabou de comentar? a casa leva até 2 min pra valer aqui: tenta de novo sozinho por 4 min
+    if (tentativasCasa++ < 8) { $("msg").textContent = `Ainda não achei casa do @${meuArroba}. Confere se escreveu igual ao Instagram. Acabou de comentar? Fica nesta tela, que tento de novo sozinho.`; clearTimeout(novaTentativa); novaTentativa = setTimeout(() => { if (!$("entrada").hidden) { $("entrar").disabled = true; conectar(); } }, 30000); }
+    else $("msg").textContent = `Não achei casa do @${meuArroba}. Comenta tua cidade + estado num post do @aturmadobrasil (ex: Recife PE). Só o nome da cidade pode não bastar.`;
+    return;
+  }
+  if (m.t === "fora") { encerrar(); voltarEntrada("Teu @ entrou em outro aparelho, então saímos daqui."); return; }
+  if (m.t === "ok") {
+    naEspera = false; clearInterval(relogio); $("contagem").hidden = true; entrouAlgumaVez = true; meuId = m.id; P.clear();
+    for (const a of m.pessoas) novo(...a);
+    if (m.pt0) mundo.pintarTudo(m.pt0.split(",").map(Number)); if (m.sks) loja.setMinhas(m.sks); loja.aoEntrar();
+    $("entrada").hidden = true; $("topo").hidden = false; $("baixo").hidden = false; $("btn-som").hidden = !CFG.musicas?.length;
+    const eu = P.get(meuId); salaAtual = m.sala; mostrarTopo(); if (VISAO === "palco" || VISAO === "campinho") { const e = P.get(meuId), [vx, vz] = VISAO === "palco" ? [0, -40] : [38, 17]; if (e) { e.x = e.tx = vx; e.z = e.tz = vz; camX = vx; camZ = vz; enviar({ t: "andar", x: vx, z: vz }); } document.body.classList.add("limpo"); } if (m.b) { bolaAlvo = m.b; golA = m.b[2]; golB = m.b[3]; mundo.setPlacar(golA, golB); } if (m.v) { voleiAlvo = m.v; vA = m.v[2]; vB = m.v[3]; mundo.setPlacarV(vA, vB); } $("olimp").hidden = !!VISAO; if (eu) { camX = eu.x; camZ = eu.z; }
+    return;
+  }
+  if (m.t === "q") {
+    for (const [id, x, z] of m.a || []) { const p = P.get(id); if (p && id !== meuId) { p.tx = x; p.tz = z; } }
+    for (const f of m.f || []) {
+      if (f[0] === "e") novo(f[1], f[2], f[3], f[4], f[5], f[6]);
+      else if (f[0] === "s") P.delete(f[1]);
+      else if (f[0] === "j") balao(f[1], EMOJIS[f[2]], true);
+      else if (f[0] === "f") balao(f[1], FRASES[f[2]]?.(P.get(f[1])) || "", false);
+      else if (f[0] === "k") { const p = P.get(f[1]); if (p && f[1] !== meuId) { p.sk = f[2]; if (f[2] >= 0) balao(f[1], SKINS[f[2]][0], true); } }
+    }
+    if (m.total) { totalFesta = m.total; filaN = m.fila || 0; mostrarTopo(); }
+    if (m.v) { voleiAlvo = m.v; if (m.v[2] !== vA || m.v[3] !== vB) { vA = m.v[2]; vB = m.v[3]; mundo.setPlacarV(vA, vB); } }
+    if (m.o) olimpiada(m.o);
+    if (m.pt0) mundo.pintarTudo(m.pt0.split(",").map(Number)); else if (m.pt) mundo.pintar(m.pt);
+    if (m.b) { bolaAlvo = m.b; if (m.b[2] !== golA || m.b[3] !== golB) { if (golA + golB < m.b[2] + m.b[3]) $("gol").hidden = false, setTimeout(() => $("gol").hidden = true, 1800); golA = m.b[2]; golB = m.b[3]; mundo.setPlacar(golA, golB); } }
+  }
+}
+let voleiAlvo = null, vA = 0, vB = 0, vx = 21, vz = 34, ultToque = 0, OLI = null, olRecebido = 0, faseAnt = "";
+function olimpiada(o) {
+  OLI = o; olRecebido = performance.now();
+  if (o.f !== faseAnt) { if (o.f === "vai" && o.eu) grande("VAI! 🏃", 1500); faseAnt = o.f; }
+  mundo.setPodio(o.pod || []);
+  if (o.pc) { pcAte = performance.now() + o.pc.ate; pcTop = o.pc.top || []; pcSeg = -1; }
+  mundo.setQuadro("🏅 MEDALHAS", (o.est || []).length ? o.est.slice(0, 5).map(([uf, pts], i) => `${["🥇", "🥈", "🥉", "4º", "5º"][i]} ${ESTADOS[uf] || uf}: ${pts}`) : ["Ninguém pontuou ainda", "🏃 Corrida: 5/3/1 pts", "⚽ Gol: 1 pt", "🏐 Ponto no vôlei: 1 pt"]);
+  if (!$("medalhas").hidden) montarMedalhas();
+  mostrarOlimp();
+}
+function grande(t, ms) { const g = $("grande"); if (!t) { g.hidden = true; return; } g.textContent = t; g.hidden = false; clearTimeout(grande.t); grande.t = setTimeout(() => { g.hidden = true; }, ms); }
+function mostrarOlimp() {
+  const o = OLI; if (!o) return;
+  const falta = Math.max(0, Math.ceil((o.ate - (performance.now() - olRecebido)) / 1000)), eu = P.get(meuId);
+  const naLarg = eu && eu.x >= PISTA_C.lx0 && eu.x <= PISTA_C.x0 && eu.z >= PISTA_C.z0 && eu.z <= PISTA_C.z1;
+  let t = "";
+  if (o.f === "espera") t = `🏃 Próxima corrida em ${falta}s · teus pontos: ${o.pts}`;
+  else if (o.f === "chamada") t = naLarg ? `✅ Tá na LARGADA! Espera o <b>VAI!</b> e toca na CHEGADA 🏁 (${falta}s)` : `🏃 CORRIDA em ${falta}s! Vai pra LARGADA`;
+  else if (o.f === "pronto") { t = naLarg ? "Prepara…" : "🏃 Vai largar!"; if (naLarg) grande(String(Math.max(1, falta)), 900); }
+  else if (o.f === "vai") t = o.eu ? "🏃 CORRE! Toca lá na CHEGADA 🏁 →" : `🏃 Corrida rolando: ${o.n} correndo`;
+  else if (o.f === "fim") t = "🏁 Resultado da corrida";
+  $("olimpTxt").innerHTML = t; $("olimpMsg").textContent = o.msg || "";
+  $("btn-largada").hidden = !(o.f === "chamada" || o.f === "espera") || naLarg;
+  mundo.setCorrida(o.f === "vai" ? "🏃 VALENDO!" : o.f === "chamada" ? `LARGADA EM ${falta}s` : o.f === "fim" ? "🏁 CHEGARAM!" : "🏃 CORRIDA DA TURMA");
+}
+setInterval(mostrarOlimp, 500);
+// placa do Pinta o Chão: segundos da rodada + 3 estados com mais piso
+let pcAte = 0, pcTop = [], pcSeg = -1;
+setInterval(() => { if (!pcAte) return; const s = Math.max(0, Math.ceil((pcAte - performance.now()) / 1000)); if (s !== pcSeg) { pcSeg = s; mundo.setPinta(s, pcTop); } }, 500);
+function montarMedalhas() {
+  const o = OLI || {}, md = ["🥇", "🥈", "🥉"], c = $("medalhas"); c.replaceChildren();
+  const h = (t) => { const e = document.createElement("h3"); e.textContent = t; c.appendChild(e); }, l = (t) => { const e = document.createElement("div"); e.textContent = t; c.appendChild(e); };
+  h("🏅 Estados"); (o.est || []).slice(0, 6).forEach(([uf, pts], i) => l(`${md[i] || i + 1 + "º"} ${ESTADOS[uf] || uf} · ${pts} pts`)); if (!(o.est || []).length) l("Ninguém pontuou ainda. Bora!");
+  h("🏆 Pódio da turma"); (o.pod || []).forEach(([u, pts, uf], i) => l(`${md[i]} @${u}${uf ? " (" + uf + ")" : ""} · ${pts} pts`));
+  l(`⭐ Teus pontos: ${o.pts || 0}`);
+  const eu = P.get(meuId); if (eu && !ESTADOS[cidades.get(eu.cid)?.uf]) l("🏠 Sem casa no mapa: teus pontos não vão pra estado. Comenta tua cidade num post do @aturmadobrasil!");
+}
+function irLargada() { const eu = P.get(meuId); if (!eu) return; const x = PISTA_C.lx0 + 1 + Math.random() * (PISTA_C.x0 - PISTA_C.lx0 - 1.5), z = PISTA_C.z0 + .8 + Math.random() * (PISTA_C.z1 - PISTA_C.z0 - 1.6); eu.tx = eu.x = x; eu.tz = eu.z = z; camX = x; camZ = z; enviar({ t: "andar", x, z }); }
+$("btn-largada").onclick = () => { irLargada(); $("btn-largada").hidden = true; };
+$("btn-medalhas").onclick = () => { $("frases").hidden = true; $("ambientes").hidden = true; const c = $("medalhas"); if (c.hidden) montarMedalhas(); c.hidden = !c.hidden; };
+let salaAtual = 1, filaN = 0, totalFesta = 0, bolaAlvo = null, golA = 0, golB = 0, areaAtual = null;
+function mostrarTopo() { const a = areaAtual; let extra = ""; if (a?.id === "estados") { const c = {}; for (const p of P.values()) { const uf = cidades.get(p.cid)?.uf; if (uf && areaDe(p.x, p.z)?.id === "estados") c[uf] = (c[uf] || 0) + 1; } extra = Object.entries(c).sort((x, y) => y[1] - x[1]).slice(0, 2).map(([u, n]) => ` ${u} ${n}`).join(" ·"); } $("quantos").textContent = `🎉 ${totalFesta || P.size} na festa${filaN ? ` · ⏳ ${filaN} na fila` : ""} · ${a ? a.nome : "🎉"}${extra ? " ·" + extra : ""}`; }
+function voltarEntrada(t) { loja.fechar(); $("entrada").hidden = false; $("olimp").hidden = true; $("medalhas").hidden = true; $("grande").hidden = true; $("topo").hidden = true; $("baixo").hidden = true; $("frases").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("videoCaixa").hidden = true; $("video").src = "about:blank"; P.clear(); entrouAlgumaVez = false; fala(t); }
+let relogio = null;
+function contagem(abre) {
+  $("msg").textContent = ""; clearInterval(relogio); const el = $("contagem"); el.hidden = false;
+  const conta = () => { const f = abre - Date.now(); if (f <= 0) { el.hidden = true; clearInterval(relogio); $("msg").textContent = naEspera ? "Abrindo… 🎉" : "Abriu! Toca em Entrar 🎉"; return; } const h = Math.floor(f / 36e5), m = Math.floor(f % 36e5 / 6e4), s = Math.floor(f % 6e4 / 1e3); el.textContent = `Abre em ${h}h ${String(m).padStart(2, "0")}min ${String(s).padStart(2, "0")}s`; el.style.fontSize = "22px"; };
+  conta(); relogio = setInterval(conta, 1000);
+}
+$("caixa").addEventListener("submit", (e) => {
+  e.preventDefault(); const bruto = $("arroba").value.trim(), url = bruto.match(/instagram\.com\/([\w.]+)/i), u = (url ? url[1] : bruto).replace(/[@\s]/g, "");
+  tentativasCasa = 0; clearTimeout(novaTentativa);
+  if (!u) { $("msg").textContent = "Escreve teu @ primeiro."; return; }
+  meuArroba = u; $("msg").textContent = ""; $("entrar").disabled = true; try { localStorage.setItem("festa-arroba", u); } catch {}
+  conectar();
+});
+try { $("arroba").value = Q.get("u") || localStorage.getItem("festa-arroba") || ""; } catch {}
+const enviar = (o) => { if (ws?.readyState === 1) ws.send(JSON.stringify(o)); };
+
+// ---------- botões ----------
+EMOJIS.forEach((e, i) => { const b = document.createElement("button"); b.textContent = e; b.setAttribute("aria-label", "Mandar " + e); b.onclick = () => enviar({ t: "emoji", i }); $("emojis").appendChild(b); });
+function montarFrases() { $("frases").replaceChildren(...FRASES.map((f, i) => { const b = document.createElement("button"); b.textContent = f(P.get(meuId)); b.onclick = () => { enviar({ t: "frase", i }); $("frases").hidden = true; }; return b; })); }
+$("btn-frases").onclick = () => { montarFrases(); $("medalhas").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("frases").hidden = !$("frases").hidden; };
+$("ambientes").replaceChildren(...AREAS.map((a) => { const b = document.createElement("button"); b.textContent = a.nome; b.onclick = () => { $("ambientes").hidden = true; if (a.id === "corrida") return irLargada(); const eu = P.get(meuId); if (!eu) return; const k = Math.random() * 6.283, x = a.x + Math.cos(k) * 5, z = a.z + 5 + Math.sin(k) * 3; eu.tx = eu.x = x; eu.tz = eu.z = z; camX = x; camZ = z; enviar({ t: "andar", x, z }); }; return b; }));
+$("btn-mapa").onclick = () => { $("medalhas").hidden = true; $("frases").hidden = true; $("barraca").hidden = true; $("ambientes").hidden = !$("ambientes").hidden; };
+// feirinha: produtos aprovados (feirinha.json); tocar na barraca abre o link. Clique aqui nunca dá ponto.
+let produtos = [];
+
+function abrirBarraca(i) {
+  const p = produtos[i]; if (!p) return; const c = $("barraca"); c.replaceChildren();
+  const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Fechar"); x.onclick = () => { c.hidden = true; };
+  const img = document.createElement("img"); img.src = p.imagem; img.alt = "";
+  const t = document.createElement("div"); t.textContent = p.titulo; const v = document.createElement("div"); v.textContent = p.preco; v.style.cssText = "color:#ee4d2d;font-size:19px";
+  const a = document.createElement("a"); a.href = p.link; a.target = "_blank"; a.rel = "noopener"; a.textContent = "🛍️ Ver na Shopee";
+  c.append(x, img, t, v, a); c.hidden = false;
+}
+// prefeitura: os 3 da semana no pódio e os números da turma no quadro
+async function lerPrefeitura() {
+  try {
+    const d = await (await fetch("https://brasildaturma-renan.squareweb.app/dados/placar.json", { cache: "no-store" })).json();
+    const top = (d.topSemana || []).filter((x) => x.u !== "renansantone").slice(0, 3);
+    const gov = (d.governadores || []).slice(0, 3).map((g) => `🏛️ ${g.uf}: @${g.u}`);
+    mundo.setQuadro(gov.length ? "GOVERNADORES" : "A TURMA HOJE", gov.length ? gov : [`🏠 ${Number(d.placar.casas).toLocaleString("pt-BR")} casas`, `🏙️ ${Number(d.placar.cidades).toLocaleString("pt-BR")} cidades`, `🇧🇷 ${d.placar.estados} estados`, "⏰ Cargos: domingo 21h"]);
+  } catch {}
+}
+mundo.setQuadro("🏅 MEDALHAS", ["Ninguém pontuou ainda", "🏃 Corrida: 5/3/1 pts", "⚽ Gol: 1 pt", "🏐 Ponto no vôlei: 1 pt"]);
+// música: cada gênero é um vídeo do YouTube; o player fica sempre à vista (regra do YouTube)
+function tocar(m) {
+  const vd = $("video"); $("musicas").hidden = true;
+  $("videoCaixa").hidden = !m; vd.src = m ? `https://www.youtube.com/embed/${encodeURIComponent(m.id)}?autoplay=1&playsinline=1` : "about:blank";
+  $("btn-som").textContent = m ? m.nome : "🎵 Ligar a música"; musicaAtual = m;
+}
+let musicaAtual = null;
+// arrastar o player pela alça (o vídeo em si não recebe o toque); nunca sai da tela
+const caixaV = $("videoCaixa"), alca = $("videoAlca"); let arrasto = null;
+function porVideo(x, y) { const X = Math.max(4, Math.min(innerWidth - caixaV.offsetWidth - 4, x)), Y = Math.max(4, Math.min(innerHeight - caixaV.offsetHeight - 4, y)); caixaV.style.left = X + "px"; caixaV.style.top = Y + "px"; caixaV.style.right = "auto"; return [X, Y]; }
+alca.addEventListener("pointerdown", (e) => { e.preventDefault(); const r = caixaV.getBoundingClientRect(); arrasto = [e.clientX - r.left, e.clientY - r.top]; alca.setPointerCapture(e.pointerId); });
+alca.addEventListener("pointermove", (e) => { if (arrasto) porVideo(e.clientX - arrasto[0], e.clientY - arrasto[1]); });
+const soltar = () => { if (!arrasto) return; arrasto = null; const r = caixaV.getBoundingClientRect(); try { localStorage.setItem("festa-video", JSON.stringify([r.left, r.top])); } catch {} };
+alca.addEventListener("pointerup", soltar); alca.addEventListener("pointercancel", soltar);
+addEventListener("resize", () => { if (caixaV.style.left) { const r = caixaV.getBoundingClientRect(); porVideo(r.left, r.top); } });
+try { const g = JSON.parse(localStorage.getItem("festa-video") || "null"); if (g) requestAnimationFrame(() => { caixaV.style.left = g[0] + "px"; caixaV.style.top = g[1] + "px"; caixaV.style.right = "auto"; }); } catch {}
+$("musicas").replaceChildren(...(CFG.musicas || []).map((m) => { const b = document.createElement("button"); b.textContent = m.nome; b.onclick = () => tocar(m); return b; }), Object.assign(document.createElement("button"), { textContent: "🔇 Tirar a música", onclick: () => tocar(null) }));
+$("btn-som").onclick = () => { $("frases").hidden = true; $("ambientes").hidden = true; $("musicas").hidden = !$("musicas").hidden; };
+
+// ---------- loja de skins (loja.js) ----------
+const loja = criarLoja({
+  $, eu: () => P.get(meuId) || null,
+  arroba: () => { const b = $("arroba").value.trim(), url = b.match(/instagram\.com\/([\w.]+)/i); return meuArroba || (url ? url[1] : b).replace(/[@\s]/g, ""); },
+  enviar: (o) => enviar(o),
+  fecharOutros: () => { for (const id of ["frases", "ambientes", "medalhas", "barraca", "musicas"]) $(id).hidden = true; },
+});
+$("btn-loja").onclick = () => { if (!$("loja").hidden) return loja.fechar(); loja.abrir(); };
+$("btn-loja-entrada").onclick = () => loja.abrir();
+
+// ---------- andar: toca no chão e o boneco vai ----------
+const rc = new THREE.Raycaster(), plano = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), alvo = new THREE.Vector3(), pt = new THREE.Vector2();
+let ini = null;
+$("palco").addEventListener("pointerdown", (e) => { ini = [e.clientX, e.clientY]; loja.fechar(); $("medalhas").hidden = true; $("frases").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("musicas").hidden = true; });
+$("palco").addEventListener("pointerup", (e) => {
+  if (!ini || Math.hypot(e.clientX - ini[0], e.clientY - ini[1]) > 14) return;
+  pt.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); rc.setFromCamera(pt, cam);
+    if (!rc.ray.intersectPlane(plano, alvo)) return;
+  const d = Math.hypot(alvo.x, alvo.z), k = d > LIMITE ? LIMITE / d : 1, eu = P.get(meuId); if (!eu) return;
+  eu.tx = alvo.x * k; eu.tz = alvo.z * k; enviar({ t: "andar", x: eu.tx, z: eu.tz });
+});
+
+// ---------- quadro ----------
+function medir() { render.setSize(innerWidth, innerHeight, false); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
+addEventListener("resize", medir); medir();
+let camX = 0, camZ = 4, ultimo = 0, ultimoChute = 0, bx = 38, bz = 0;
+function quadro(agora) {
+  requestAnimationFrame(quadro);
+  if (agora - ultimo < 30) return; // no máximo ~30 quadros por segundo: poupa a bateria
+  const dt = Math.min(.1, (agora - ultimo) / 1000); ultimo = agora; const t = agora / 1000;
+  let n = 0;
+  for (const p of P.values()) {
+    const dx = p.tx - p.x, dz = p.tz - p.z, d = Math.hypot(dx, dz), anda = d > .03;
+    if (d > 26) { p.x = p.tx; p.z = p.tz; } // usou o botão "Ir para"
+    else if (anda) { const k = Math.min(1, 7.5 * dt / d); p.x += dx * k; p.z += dz * k; }
+    const danca = naPista(p.x, p.z) && !anda, pulo = anda ? Math.abs(Math.sin(t * 11 + p.fase)) * .12 : danca ? Math.abs(Math.sin(t * 6 + p.fase)) * .35 : 0;
+    bonecos.poe(n, p.x, pulo, p.z, danca ? Math.sin(t * 6 + p.fase) * .12 : 0, p.cor, p.id, p.sk, t);
+    p.y = pulo; n++;
+  }
+  bonecos.fim(n);
+  const eu = P.get(meuId), ax = eu ? eu.x : 0, az = eu ? eu.z : 2; camX += (ax - camX) * .1; camZ += (az - camZ) * .1;
+  if (VISAO === "palco") { cam.position.set(Math.sin(t * .15) * 4, 4.6, -36.5); cam.lookAt(0, 1.2, -18); } else if (VISAO === "campinho") { cam.position.set(38 + Math.sin(t * .15) * 5, 7, 15); cam.lookAt(38, 0, -1); } else { cam.position.set(camX, 20, camZ + 22); cam.lookAt(camX, 0, camZ - 3); } cam.updateMatrixWorld();
+  mundo.atualizar(t, camX, camZ);
+  // bola: segue o servidor; encostou nela e está andando, chuta
+  if (bolaAlvo) { bx += (bolaAlvo[0] - bx) * .25; bz += (bolaAlvo[1] - bz) * .25; mundo.bola.position.x = bx; mundo.bola.position.z = bz; mundo.bola.rotation.z = -bx * 1.2; mundo.bola.rotation.x = bz * 1.2; }
+  if (eu && agora - ultimoChute > 350 && Math.hypot(eu.x - bx, eu.z - bz) < 1.15) { const dx = bx - eu.x, dz = bz - eu.z, d = Math.hypot(dx, dz) || 1; ultimoChute = agora; enviar({ t: "chute", x: dx / d, z: dz / d }); }
+  if (voleiAlvo) { vx += (voleiAlvo[0] - vx) * .25; vz += (voleiAlvo[1] - vz) * .25; const vel = voleiAlvo[4] || 0; mundo.bolaV.position.set(vx, .5 + Math.min(4.5, vel * .7) * Math.abs(Math.sin(t * 3)), vz); mundo.bolaV.rotation.x += vel * .02; }
+  if (eu && agora - ultToque > 450 && Math.hypot(eu.x - vx, eu.z - vz) < 1.6) { ultToque = agora; enviar({ t: "toque" }); }
+  const a = eu ? areaDe(eu.x, eu.z) : null; if (a !== areaAtual) { areaAtual = a; mostrarTopo(); }
+  render.render(cena, cam);
+  // etiquetas: eu + os mais perto de mim
+  const perto = [...P.values()].filter((p) => !(VISAO && p.id === meuId)).sort((a, b) => (a.id === meuId ? -1 : b.id === meuId ? 1 : Math.hypot(a.x - ax, a.z - az) - Math.hypot(b.x - ax, b.z - az))).slice(0, etiquetas.length);
+  etiquetas.forEach((d, i) => {
+    const p = perto[i]; if (!p) { d.style.display = "none"; return; }
+    const [sx, sy, ok] = tela(p.x, 1.75 + p.y, p.z); if (!ok) { d.style.display = "none"; return; }
+    if (d.dataset.u !== p.u) { d.textContent = "@" + p.u; d.dataset.u = p.u; }
+    d.className = "et" + (p.id === meuId ? " eu" : ""); d.style.display = "block"; d.style.transform = `translate(${sx}px,${sy}px) translate(-50%,-100%)`;
+  });
+  for (let i = baloes.length - 1; i >= 0; i--) {
+    const b = baloes[i], p = P.get(b.id);
+    if (!p || agora > b.fim) { b.d.remove(); baloes.splice(i, 1); continue; }
+    const [sx, sy] = tela(p.x, 2.4 + p.y, p.z); b.d.style.transform = `translate(${sx}px,${sy}px) translate(-50%,-100%)`;
+  }
+}
+requestAnimationFrame(quadro);
+window.__festa = { P, get meuId() { return meuId; }, AREAS, CAMPO };
+</script></body></html>
