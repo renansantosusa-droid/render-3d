@@ -101,7 +101,8 @@ export function criarLoja(ctx) {
   return {
     abrir, fechar, montar,
     get minhas() { return minhas; },
-    setMinhas(v) { minhas = v || []; montar(); },
+    // só redesenha se a lista estiver aberta (não apaga a tela do Pix nem a de "Skin liberada")
+    setMinhas(v) { minhas = v || []; if (l.querySelector(".grade")) montar(); },
     // ao entrar: veste a skin escolhida da última vez (se for dele); senão a que o servidor pôs
     aoEntrar() {
       const eu = ctx.eu(); if (!eu) return;
