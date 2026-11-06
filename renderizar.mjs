@@ -16,7 +16,8 @@ const RAIZ = path.dirname(fileURLToPath(import.meta.url));
 const FFMPEG = process.env.FFMPEG || "ffmpeg";
 const FPS = 30, POR_PARTE = 300;
 const [modo, video, segStr, kStr] = process.argv.slice(2);
-const HQ = /^stories/.test(video || ""); // stories da Vee: qualidade alta (png + crf 12)
+const HQ = /^stories/.test(video || "");
+const VP = /-16x9$/.test(video || "") ? { width: 1920, height: 1080 } : { width: 1080, height: 1920 }; // série na horizontal (horizontal.mjs) // stories da Vee: qualidade alta (png + crf 12)
 const SAIDA = path.join(RAIZ, "saida");
 fs.mkdirSync(SAIDA, { recursive: true });
 const TOTAL = Math.round(Number(segStr) * FPS), NPARTES = Math.ceil(TOTAL / POR_PARTE);
@@ -39,7 +40,7 @@ async function renderParte(k, porta) {
     const nav = await (await carregarChromium()).launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });
     const tmp = nomeParte(k).replace(".mp4", ".tmp.mp4");
     try {
-      const pg = await nav.newPage({ viewport: { width: 1080, height: 1920 } });
+      const pg = await nav.newPage({ viewport: VP });
       pg.on("pageerror", (e) => console.error("ERRO NA PAGINA:", e.message));
       await pg.goto(`http://localhost:${porta}/${video}.html`);
       await pg.waitForFunction(() => window.pronto === true, null, { timeout: 90000 });
@@ -100,7 +101,7 @@ function juntar() {
 if (modo === "quadro") { // prévia: node renderizar.mjs quadro <video> <t1,t2,...> -> saida/previa.jpg (tira com os quadros)
   const srv = servidor();
   const nav = await (await carregarChromium()).launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });
-  const pg = await nav.newPage({ viewport: { width: 1080, height: 1920 } });
+  const pg = await nav.newPage({ viewport: VP });
   pg.on("pageerror", (e) => console.error("ERRO NA PAGINA:", e.message));
   pg.on("console", (m) => { if (m.type() === "error") console.error("console:", m.text()); });
   await pg.goto(`http://localhost:${srv.address().port}/${video}.html`);
