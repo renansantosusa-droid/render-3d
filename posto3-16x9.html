@@ -1,0 +1,227 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Nunito:wght@600;800;900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script type="module">
+// O Posto — Parte 3 (@historiascomclaudio). Caminho CRACHÁ (sem votos na Pt.2). Mesmo formato novo:
+// tomada <= 2 s, close em toda virada, legenda de UMA palavra, técnica grande, termina seco em "PARTE 3".
+import { kit2d } from "/cena2d.js";
+const TEMPOS = await (await fetch("/posto3-16x9/tempos.json")).json();
+const W = 1080, H = 1920, cv = document.getElementById("c"), g = cv.getContext("2d");
+const K = kit2d(g, W, H);
+const SW = 1920, SH = 1080, ESC = .7, CYV = 1150, PAD = 1600;
+const _fr = g.fillRect.bind(g);
+g.fillRect = (x, y, w, h) => { if (x <= 1 && x + w >= W - 1) { x -= PAD; w += 2 * PAD; } if (y <= 1 && y + h >= H - 1) { y -= PAD; h += 2 * PAD; } _fr(x, y, w, h); };
+const TELA = () => g.setTransform(1, 0, 0, 1, 0, 0);
+const { clamp, rr, rect, circ, txt, glow, vinheta, tinta, camera, pessoa } = K;
+const ease = K.ease, prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1)), lin = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const CENA = (n) => TEMPOS.cenas[n - 1];
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return CENA(n).ini; }
+const FALA = TEMPOS.fala, TOTAL = TEMPOS.total;
+const piscar = (t, f = 0) => ((t + f) % 3.1) < .11 ? .1 : 1;
+const fundo = (c) => { g.fillStyle = c; g.fillRect(0, 0, W, H); };
+
+// ---------- elenco ----------
+const EU = { sexo: "m", pele: "#c98d60", cabelo: "#20140c", roupa: "#2f6fb0", calca: "#26304a" };
+const NILSON = { sexo: "m", pele: "#d9a47c", cabelo: "#8a8a8a", roupa: "#b8322a", calca: "#2a2a30", bigode: true };
+const ZUMBI = [
+  { sexo: "m", pele: "#8fae6a", cabelo: "#2a2a1a", roupa: "#5a4a6a", calca: "#2a2a34" },
+  { sexo: "f", pele: "#9ab474", cabelo: "#3a2a1a", roupa: "#7a3a3a", calca: "#33333a" },
+  { sexo: "m", pele: "#86a466", cabelo: "#111", roupa: "#3a5a4a", calca: "#2a2a2a" },
+];
+
+// ---------- TOMADAS: [cena, palavra, ocorrencia, nome, som]  (o mixar-sons.mjs lê esta lista) ----------
+const TOMADAS = [
+  [1, "voce", 1, "acredita", "whoosh"],
+  [1, "e", 1, "levaDeposito", "arrasta"],
+  [1, "deposito", 1, "portaDeposito", "batida"],
+  [2, "mas", 1, "semTranca", "whoosh"],
+  [2, "nao", 1, "macaneta", "impacto"],
+  [3, "entao", 1, "rodo", "whoosh"],
+  [3, "macaneta", 1, "rodoEncaixa", "batida"],
+  [3, "essa", 1, "trava", "tecnica"],
+  [4, "mas", 1, "bateDeposito", "batida"],
+  [4, "e", 1, "gritoPorta", "impacto"],
+  [4, "zumbis", 1, "zumbisVidro", "vidro"],
+  [5, "entao", 1, "desligaFalante", "whoosh"],
+  [5, "monitor", 1, "monitorApaga", "queda"],
+  [5, "esse", 1, "silencio", "tecnica"],
+  [6, "no", 1, "escuro", "whoosh"],
+  [6, "respira", 1, "respira", "coracao"],
+  [7, "e", 1, "homemSuando", "whoosh"],
+  [7, "suando", 1, "tremendo", "coracao"],
+  [8, "entao", 1, "celular", "whoosh"],
+  [8, "virada", 1, "luzChao", "whoosh"],
+  [8, "essa", 1, "luzBaixa", "tecnica"],
+  [9, "e", 1, "luzAnda", "whoosh"],
+  [9, "uma", 1, "mordida", "impacto"],
+  [10, "voce", 1, "crachaPerto", "whoosh"],
+  [10, "ta", 1, "arranhada", "papel"],
+  [10, "bigode", 1, "bigode", "impacto"],
+  [11, "e", 1, "portaDep2", "batida"],
+  [11, "o", 1, "nilsonGrita", "whoosh"],
+  [11, "esse", 1, "eMeu", "impacto"],
+  [12, "o", 1, "nilsonTrancado", "whoosh"],
+  [12, "trancado", 1, "trava2", "batida"],
+  [12, "e", 1, "mordidoLado", "susto"],
+  [13, "segue", 1, "mordidoClose", "whoosh"],
+];
+const INI = TOMADAS.map(([c, w, o], i) => i === 0 ? 0 : P(c, w, o) - .1);
+function tomadaEm(t) { let i = 0; while (i + 1 < INI.length && t >= INI[i + 1]) i++; const a = INI[i], b = i + 1 < INI.length ? INI[i + 1] : TOTAL; return { i, nome: TOMADAS[i][3], k: lin(t, a, b), a, b }; }
+// ---------- peças ----------
+function ceuNoite(t) { const gr = g.createLinearGradient(0, 0, 0, 1100); gr.addColorStop(0, "#070a18"); gr.addColorStop(1, "#1a2038"); g.fillStyle = gr; g.fillRect(0, 0, W, H); for (let i = 0; i < 60; i++) circ((i * 137) % W, (i * 71) % 700, 2, `rgba(255,255,255,${.3 + .3 * Math.sin(t * 2 + i)})`); }
+function chaoPosto(y) { rect(0, y, W, H - y, "#2a2c32"); for (let i = 0; i < 9; i++) rect(0, y + 40 + i * 70, W, 3, "rgba(255,255,255,.04)"); }
+function bomba(x, y, n, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-70, -330, 140, 330, 14, "#e8e4da"); rr(-70, -330, 140, 60, 14, "#b8322a"); txt(String(n), 0, -300, 44, "#fff", 700, "center", "Oswald"); rr(-50, -240, 100, 70, 6, "#111"); txt("88,8", 0, -205, 30, "#6f6", 700, "center", "Oswald"); rr(48, -170, 30, 90, 8, "#333"); g.restore(); }
+function cobertura(t, luz = 1) { rect(-40, 380, W + 80, 110, "#d8d4ca"); rect(-40, 470, W + 80, 26, "#b8322a"); for (let x = 120; x < W; x += 280) { rr(x - 70, 494, 140, 18, 6, luz ? "#fffbe8" : "#333"); if (luz) glow(x, 620, 380, "rgba(255,250,220,A)", .22); } rect(150, 496, 40, 900, "#c8c4ba"); rect(890, 496, 40, 900, "#c8c4ba"); }
+function lojaFachada(x, y, s = 1, luz = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-300, -520, 600, 520, 8, "#e2ded4"); rr(-300, -600, 600, 90, 8, "#1e5a9a"); txt("CONVENIÊNCIA 24H", 0, -555, 46, "#fff", 800, "center", "Nunito"); rr(-120, -380, 240, 380, 6, luz ? "#bfe2f2" : "#20303a"); if (luz) glow(0, -200, 300, "rgba(200,240,255,A)", .35); rect(-2, -380, 4, 380, "#7a8a94"); rr(-260, -360, 110, 160, 6, luz ? "#bfe2f2" : "#20303a"); rr(150, -360, 110, 160, 6, luz ? "#bfe2f2" : "#20303a"); g.restore(); }
+function zumbi(x, y, s, t, v = 0, o = {}) {
+  const bob = Math.abs(Math.sin(t * 9 + v)) * 14 * s; const z = ZUMBI[v % 3];
+  pessoa(x, y - bob, s, { ...z, expr: "bravo", braco: 2.2 + .2 * Math.sin(t * 7 + v), braco2: 2.0 + .2 * Math.sin(t * 8 + v), cabeca: .18 * Math.sin(t * 3 + v), ...o });
+  const hy = y - bob - 420 * s, rot = .18 * Math.sin(t * 3 + v);
+  g.save(); g.translate(x, hy); g.rotate(rot); for (const ex of [-20, 20]) { glow(ex * s, 0, 26 * s, "rgba(255,40,30,A)", .8); circ(ex * s, 0, 6 * s, "#ff3a2a"); } g.fillStyle = "rgba(90,20,20,.6)"; g.fillRect(-30 * s, 30 * s, 22 * s, 6 * s); g.restore();
+}
+function loja(t, luz = 1) { // interior visto de lado: prateleiras, caixa, porta de vidro na esquerda
+  fundo(luz ? "#d9d4c6" : "#0c0d12"); rect(0, 1380, W, 540, luz ? "#b9b4a6" : "#101116"); for (let i = 0; i < 12; i++) rect(i * 100, 1380, 3, 540, "rgba(0,0,0,.08)");
+  for (let r = 0; r < 4; r++) { rect(520, 560 + r * 200, 540, 18, luz ? "#8a8478" : "#1e1f26"); for (let c = 0; c < 9; c++) rr(530 + c * 58, 470 + r * 200, 48, 88, 4, luz ? ["#d6453a", "#e0a83a", "#3a8ad6", "#4fae5a", "#a85ad6"][(r + c) % 5] : "#191a22"); }
+  if (luz) for (let x = 200; x < W; x += 320) { rr(x - 80, 140, 160, 16, 6, "#fff"); glow(x, 300, 400, "rgba(255,255,240,A)", .2); }
+}
+function portaVidro(t, x, y, w, h, fora = 1, cobre = 0) { // porta vista de dentro, com a noite e os zumbis atrás
+  g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); ceuNoite(t); rect(x, y + h * .72, w, h, "#22242a");
+  if (fora) for (let i = 0; i < 4; i++) { const zx = x + 60 + i * (w / 4) + Math.sin(t * 2 + i) * 20; zumbi(zx, y + h + 60, 1.05, t, i); }
+  g.fillStyle = "rgba(170,220,240,.18)"; g.fillRect(x, y, w, h); g.strokeStyle = "rgba(255,255,255,.25)"; g.lineWidth = 10; g.beginPath(); g.moveTo(x + 40, y + 120); g.lineTo(x + 200, y - 40); g.moveTo(x + 40, y + 300); g.lineTo(x + 380, y - 40); g.stroke();
+  if (cobre > 0) cartazes(x, y, w, h, cobre, t);
+  g.restore(); g.lineWidth = 22; g.strokeStyle = "#5a6670"; g.strokeRect(x, y, w, h); rect(x + w / 2 - 4, y, 8, h, "#5a6670");
+}
+function cartazes(x, y, w, h, q, t) { const cols = 3, rows = 4, n = cols * rows, tot = Math.floor(q * n + .001);
+  for (let i = 0; i < tot; i++) { const c = i % cols, r = Math.floor(i / cols), cx = x + c * (w / cols), cy = y + r * (h / rows); g.save(); g.translate(cx + w / cols / 2, cy + h / rows / 2); g.rotate(((i * 37) % 7 - 3) * .012); rr(-w / cols / 2 - 6, -h / rows / 2 - 6, w / cols + 12, h / rows + 12, 4, i % 2 ? "#ffd84a" : "#fff3c0"); const fs1 = Math.min(48, w / cols * .2); txt(["OFERTA", "LEVE 3", "PROMO", "R$ 9,99"][i % 4], 0, -fs1 * .4, fs1, "#d6453a", 900, "center", "Nunito"); txt(["PAGUE 2", "SÓ HOJE", "50%", "GELADA"][i % 4], 0, fs1 * .75, fs1 * .7, "#1d2129", 800, "center", "Nunito"); g.restore(); } }
+function freezer(x, y, s = 1) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = "rgba(0,0,0,.25)"; g.beginPath(); g.ellipse(0, 0, 220, 26, 0, 0, 6.283); g.fill(); rr(-200, -280, 400, 280, 16, "#f2f4f6"); rr(-200, -280, 400, 70, 16, "#3a8ad6"); txt("SORVETES", 0, -245, 44, "#fff", 900, "center", "Nunito"); rr(-180, -200, 360, 120, 10, "#cfe6f4"); rr(-150, -60, 300, 30, 6, "#d8dce0"); g.restore(); }
+function monitor(t, x, y, w, h, liga = 1, so3 = 0) {
+  rr(x - 24, y - 24, w + 48, h + 48, 18, "#18191e"); rect(x, y, w, h, "#05070a"); if (liga <= 0) return;
+  g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); g.globalAlpha = liga;
+  const cams = so3 ? [[3, x, y, w, h]] : [[1, x, y, w / 2, h / 2], [2, x + w / 2, y, w / 2, h / 2], [3, x, y + h / 2, w / 2, h / 2], [4, x + w / 2, y + h / 2, w / 2, h / 2]];
+  for (const [n, cx, cy, cw, ch] of cams) { g.save(); g.beginPath(); g.rect(cx + 2, cy + 2, cw - 4, ch - 4); g.clip(); g.translate(cx, cy); g.scale(cw / W, ch / H); camCena(n, t); g.restore(); txt(`CAM ${n}${n === 3 ? " · BOMBA 3" : ""}`, cx + 18, cy + 30, so3 ? 40 : 22, "#e8ffe8", 700, "left", "Oswald"); if ((t % 1) < .5) circ(cx + cw - 26, cy + 26, so3 ? 12 : 7, "#e23"); }
+  g.globalCompositeOperation = "saturation"; g.fillStyle = "#808080"; g.fillRect(x, y, w, h); g.globalCompositeOperation = "multiply"; g.fillStyle = "#9fe0b0"; g.fillRect(x, y, w, h); g.globalCompositeOperation = "source-over";
+  for (let i = 0; i < h; i += 6) rect(x, y + i, w, 2, "rgba(0,0,0,.18)"); g.restore(); g.globalAlpha = 1;
+}
+function camCena(n, t) { // o que cada câmera mostra (desenhado em 1080x1920 e encolhido)
+  ceuNoite(t); chaoPosto(1200); cobertura(t, 1);
+  if (n === 1) { bomba(380, 1350, 1, 1.3); for (let i = 0; i < 3; i++) zumbi(200 + i * 300 + Math.sin(t + i) * 60, 1700, 1.5, t, i); }
+  if (n === 2) { lojaFachada(540, 1500, 1.3, 1); for (let i = 0; i < 5; i++) zumbi(150 + i * 200, 1800, 1.3, t, i); }
+  if (n === 3) { bomba(300, 1300, 3, 1.3); K.carro(640, 1250, "#7a7a80", 1.5); g.fillStyle = "rgba(0,0,0,.75)"; g.fillRect(300, 1250, 680, 90); circ(560, 1290, 40, "#d9a47c"); g.fillStyle = "#2a1a10"; g.beginPath(); g.arc(560, 1280, 41, Math.PI, 0); g.fill(); for (const ex of [-15, 15]) { circ(560 + ex, 1290, 8, "#fff"); circ(560 + ex, 1291, 4, "#111"); } rr(610, 1300, 90, 22, 10, "#d9a47c"); zumbi(150 + Math.sin(t * .7) * 40, 1800, 1.3, t, 2); }
+  if (n === 4) { rect(0, 0, W, H, "#1a1c22"); for (let i = 0; i < 6; i++) zumbi(100 + i * 180, 1500 + (i % 2) * 200, 1.2, t, i); }
+}
+function rosto(o, x, y, s, t, extra = {}) { pessoa(x, y + 420 * s, s, { piscar: piscar(t), ...o, ...extra }); }
+function suor(x, y, s, t) { const d = (t * .6) % 1; g.fillStyle = "#7cc8f2"; g.beginPath(); g.ellipse(x, y + d * 60 * s, 10 * s, 15 * s, 0, 0, 6.283); g.fill(); circ(x - 3 * s, y + d * 60 * s - 4 * s, 3 * s, "#e8f6ff"); }
+function fundoBorrado(c1, c2) { const gr = g.createRadialGradient(540, 900, 100, 540, 900, 1200); gr.addColorStop(0, c1); gr.addColorStop(1, c2); g.fillStyle = gr; g.fillRect(0, 0, W, H); }
+let tremor = 0;
+function treme(t, quando, d = .25, f = 22) { for (const q of quando) if (t >= q && t < q + d) tremor = Math.max(tremor, f * (1 - (t - q) / d)); }
+function palavraGrande(s, t, a0, y = 420, cor = "#ffd23a") { if (t < a0) return; const k = clamp((t - a0) / .18, 0, 1), sc = .6 + .4 * ease(k) + .06 * Math.sin(Math.min(1, (t - a0) / .35) * Math.PI);
+  g.save(); TELA(); g.translate(SW / 2, 175); g.scale(.82, .82); g.rotate(-.04); g.scale(sc, sc); g.font = "900 150px Nunito"; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
+  g.lineWidth = 34; g.strokeStyle = "#2a1a08"; g.strokeText(s, 0, 14); g.fillStyle = "#2a1a08"; g.fillText(s, 0, 14); g.lineWidth = 22; g.strokeStyle = "#3a2410"; g.strokeText(s, 0, 0); g.fillStyle = cor; g.fillText(s, 0, 0); g.restore(); }
+function chip(s, x, y, a = 1) { if (a <= 0) return; g.save(); TELA(); x = SW / 2; y = 70; g.globalAlpha = a; g.font = "800 34px Nunito"; const w = g.measureText(s).width + 70; rr(x - w / 2, y - 30, w, 60, 30, "#fff"); circ(x - w / 2 + 28, y, 8, "#e23a2a"); txt(s, x + 12, y + 1, 34, "#1d2129", 800, "center", "Nunito"); g.restore(); }
+
+// ---------- legenda: UMA palavra por vez ----------
+const PAL = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = { zumbis: "#ff5a4a", trava: "#ffd23a", silencio: "#ffd23a", luz: "#ffd23a", baixa: "#ffd23a", mordida: "#ff5a4a", mordido: "#ff5a4a", bigode: "#ffd23a", meu: "#ff5a4a", nilson: "#ff5a4a", cracha: "#ffd23a", verdadeiro: "#ffd23a" };
+function legenda(t) { if (t > FALA + .05) return; let p = null; for (const x of PAL) if (t >= x.t - .03) p = x; if (!p) return; const w = p.w.replace(/[.,!?;:"]+$/, ""); const k = clamp((t - p.t + .03) / .08, 0, 1);
+  g.save(); TELA(); g.translate(SW / 2, SH - 150); g.scale(.85 + .15 * k, .85 + .15 * k); g.font = "900 92px Nunito"; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round"; g.lineWidth = 18; g.strokeStyle = "rgba(0,0,0,.9)"; const s = w.charAt(0).toUpperCase() + w.slice(1); g.strokeText(s, 0, 0); g.fillStyle = DESTAQUE[norm(w)] || "#fff"; g.fillText(s, 0, 0); g.restore(); }
+
+// ---------- peças novas da Parte 2 ----------
+const HOMEM = { sexo: "m", pele: "#d9a47c", cabelo: "#2a1a10", roupa: "#4e5a3a", calca: "#2a2a30" };
+const FALSO = { ...NILSON, pele: "#b89a82", roupa: "#3a1210", cabelo: "#3a3a3a" };
+function camisa(x, y, s, abre, cracha = 1) { // camisa vermelha por baixo da jaqueta aberta (pessoa em pé em x,y)
+  g.save(); g.translate(x, y); g.scale(s, s); const w = 40 * abre;
+  if (w > 1) { g.fillStyle = "#b8322a"; g.fillRect(-w, -352, 2 * w, 182); g.fillStyle = "rgba(0,0,0,.3)"; g.fillRect(-w - 5, -352, 7, 182); g.fillRect(w - 2, -352, 7, 182); }
+  else { rect(-3, -352, 6, 182, "#2e3622"); }
+  if (cracha && abre > .6) { rr(-34, -322, 30, 40, 4, "#fff"); rect(-34, -322, 30, 10, "#1e5a9a"); rect(-30, -306, 10, 12, "#c9a07a"); rect(-18, -304, 12, 3, "#333"); rect(-18, -298, 12, 3, "#333"); }
+  g.restore(); }
+function altoFalante(x, y, s, on, t) { g.save(); g.translate(x, y); g.scale(s, s); rect(-8, -620, 16, 620, "#6a6e76"); g.save(); g.translate(0, -600); g.rotate(-.35); g.fillStyle = "#d8dce2"; g.beginPath(); g.moveTo(-20, -24); g.lineTo(-150, -80); g.lineTo(-150, 80); g.lineTo(-20, 24); g.closePath(); g.fill(); rr(-30, -30, 40, 60, 8, "#8a8e96");
+  if (on) { g.strokeStyle = "rgba(255,230,120,.85)"; for (let i = 0; i < 4; i++) { const r = 60 + ((t * 260 + i * 70) % 280); g.globalAlpha = 1 - r / 340; g.lineWidth = 10; g.beginPath(); g.arc(-150, 0, r, Math.PI * .75, Math.PI * 1.25); g.stroke(); } g.globalAlpha = 1; } g.restore(); g.restore(); }
+function camPoste(x, y, s, ang, t) { g.save(); g.translate(x, y); g.scale(s, s); rect(-14, 0, 28, 1400, "#6a6e76"); rr(-40, -30, 80, 60, 10, "#9a9ea6"); g.translate(0, -10); g.rotate(ang); rr(-200, -60, 240, 120, 22, "#e8eaee"); rr(-232, -46, 50, 92, 14, "#2a2c32"); circ(-210, 0, 30, "#0a0c12"); circ(-214, -6, 9, "rgba(140,200,255,.8)"); if ((t % .6) < .3) { circ(20, -34, 10, "#e23"); glow(20, -34, 40, "rgba(255,40,40,A)", .6); } g.restore(); }
+function homemSob(x, y, s, t, olho = 0) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = "rgba(0,0,0,.8)"; g.fillRect(-200, -70, 400, 70); circ(0, -34, 30, "#d9a47c"); g.fillStyle = "#2a1a10"; g.beginPath(); g.arc(0, -40, 31, Math.PI, 0); g.fill(); for (const ex of [-11, 11]) { circ(ex, -32, 7, "#fff"); circ(ex + olho * 3, -31, 3.5, "#111"); } rr(34, -22, 70, 18, 9, "#d9a47c"); g.restore(); }
+function exterior(t, falante = 0) { ceuNoite(t); chaoPosto(1200); cobertura(t, 0); lojaFachada(170, 1300, .55, 0); bomba(820, 1380, 3, .75); K.carro(560, 1440, "#7a7a80", .9); altoFalante(1010, 1330, .8, falante, t); g.fillStyle = "rgba(10,14,30,.25)"; g.fillRect(0, 0, W, H); }
+function lojaEscura(t) { loja(t, 0); glow(700, 900, 700, "rgba(140,255,180,A)", .12); }
+function portaHomem(t, x, y, w, h, q, hx, hy, hs, extraZ = 0) { // porta de vidro com cartazes em cima e o homem agachado no vão de baixo
+  g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); ceuNoite(t); rect(x, y + h * .72, w, h, "#22242a");
+  if (extraZ) zumbi(x + w * .8 + Math.sin(t) * 30, y + h + 260, 1.6, t, 1);
+  rosto(HOMEM, hx, hy, hs, t, { expr: "choque", olhar: 0, braco: 2.6, braco2: 2.6 });
+  g.fillStyle = "rgba(170,220,240,.16)"; g.fillRect(x, y, w, h); cartazes(x, y, w, h, q, t);
+  g.restore(); g.lineWidth = 22; g.strokeStyle = "#5a6670"; g.strokeRect(x, y, w, h); rect(x + w / 2 - 4, y, 8, h, "#5a6670"); }
+function cracha(t, k, z0, z1) { fundoBorrado("#3a1410", "#060202"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0, z1, cy: 900 });
+  g.save(); g.translate(540, 900); g.rotate(-.05); rr(-380, -250, 760, 500, 30, "#f4f4f0"); rr(-380, -250, 760, 110, 30, "#1e5a9a"); rect(-380, -170, 760, 30, "#1e5a9a"); txt("AUTO POSTO 24H", 0, -190, 56, "#fff", 900, "center", "Nunito");
+  rr(-330, -100, 220, 270, 14, "#c9d4dc"); circ(-220, -10, 62, "#d9a47c"); g.fillStyle = "#2a1a10"; g.beginPath(); g.arc(-220, -22, 64, Math.PI, 0); g.fill(); rr(-300, 70, 160, 100, 40, "#b8322a");
+  const nome = "NILSON", n = Math.floor(prog(t, P(12, "escrito"), P(12, "nilson") + .15) * nome.length + .001); txt(nome.slice(0, n), -70, -10, 120, "#1d2129", 700, "left", "Oswald");
+  if (t > P(12, "frentista") - .05) txt("FRENTISTA", -66, 110, 62, "#b8322a", 900, "left", "Nunito"); rect(170, -240, 40, 30, "#888"); g.restore(); g.restore(); vinheta(.6); }
+
+// ---------- peças novas da Parte 3 ----------
+const NIL = { ...NILSON, bone: "#b8322a" };
+function portaDep(x, y, s, t, treme = 0, rodo = 0) { g.save(); g.translate(x + (treme ? (Math.random() - .5) * treme : 0), y); g.scale(s, s); rr(-200, -620, 400, 620, 10, "#6e737c"); rr(-170, -590, 340, 260, 8, "#5e636c"); rr(-170, -300, 340, 260, 8, "#5e636c"); rr(-150, -700, 300, 70, 8, "#ffd23a"); txt("DEPÓSITO", 0, -664, 50, "#1d2129", 900, "center", "Nunito");
+  rr(110, -330, 70, 30, 14, "#c8ccd2"); circ(120, -315, 22, "#d8dce2");
+  if (rodo > 0) { g.save(); g.translate(140, -315); g.rotate(-.55 + (1 - rodo) * -.5); rr(-12, 0, 24, 380, 10, "#c48a3a"); rr(-80, 380, 160, 40, 10, "#2a5aa0"); g.restore(); }
+  g.restore(); }
+function escuroFundo() { fundo("#020203"); }
+function cone(x, y, ang, len, abre, a = .75) { g.save(); g.translate(x, y); g.rotate(ang); const gr = g.createLinearGradient(0, 0, len, 0); gr.addColorStop(0, `rgba(255,250,220,${a})`); gr.addColorStop(1, "rgba(255,250,220,0)"); g.fillStyle = gr; g.beginPath(); g.moveTo(0, -10); g.lineTo(len, -abre); g.lineTo(len, abre); g.lineTo(0, 10); g.fill(); g.restore(); }
+function perna(x, y, s, mord = 1) { g.save(); g.translate(x, y); g.scale(s, s); rr(-90, -900, 180, 760, 40, "#2a2a30"); rr(-80, -150, 160, 120, 20, "#d9a47c"); rr(-90, -180, 180, 50, 16, "#e8e8e8"); rr(-110, -40, 260, 80, 30, "#3a2a22");
+  if (mord) { g.fillStyle = "#8a1a1a"; g.beginPath(); g.ellipse(10, -100, 50, 30, 0, 0, 6.283); g.fill(); for (let i = 0; i < 6; i++) { circ(-30 + i * 14, -122, 6, "#5a0a0a"); circ(-30 + i * 14, -78, 6, "#5a0a0a"); } g.fillStyle = "rgba(80,140,60,.5)"; g.beginPath(); g.ellipse(10, -100, 80, 50, 0, 0, 6.283); g.fill(); } g.restore(); }
+function crachaFoto(t, k, z0, z1, bigodeA, risco = 1, cx = 540, cy = 900) { fundoBorrado("#2a2418", "#050403"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0, z1, cx, cy });
+  g.save(); g.translate(540, 900); g.rotate(-.05); rr(-380, -250, 760, 500, 30, "#f4f4f0"); rr(-380, -250, 760, 110, 30, "#1e5a9a"); rect(-380, -170, 760, 30, "#1e5a9a"); txt("AUTO POSTO 24H", 0, -190, 56, "#fff", 900, "center", "Nunito");
+  rr(-330, -100, 220, 270, 14, "#c9d4dc"); circ(-220, -10, 62, "#d9a47c"); g.fillStyle = "#8a8a8a"; g.beginPath(); g.arc(-220, -22, 64, Math.PI, 0); g.fill(); rr(-300, 70, 160, 100, 40, "#b8322a");
+  if (bigodeA > 0) { g.globalAlpha = bigodeA; g.fillStyle = "#6a6a6a"; g.beginPath(); g.ellipse(-236, 22, 26, 10, .2, 0, 6.283); g.ellipse(-204, 22, 26, 10, -.2, 0, 6.283); g.fill(); g.globalAlpha = 1; }
+  if (risco) { g.strokeStyle = "rgba(255,255,255,.75)"; g.lineWidth = 6; for (let i = 0; i < 9; i++) { g.beginPath(); g.moveTo(-320 + i * 22, -90 + (i * 37) % 60); g.lineTo(-140 + i * 6, 40 + (i * 53) % 120); g.stroke(); } }
+  txt("NILSON", -70, -10, 120, "#1d2129", 700, "left", "Oswald"); txt("FRENTISTA", -66, 110, 62, "#b8322a", 900, "left", "Nunito"); g.fillStyle = "rgba(120,20,20,.6)"; g.beginPath(); g.ellipse(300, 180, 60, 26, .3, 0, 6.283); g.fill(); g.restore(); g.restore(); vinheta(.6); }
+function lojaDep(t, luz = 1) { lojaEscura(t); if (!luz) tinta("#000", .45); }
+
+// ---------- as tomadas ----------
+const T = {
+  acredita(t, k) { g.save(); camera(k, { z0: 1.0, z1: 1.1, cy: 1100 }); lojaEscura(t); portaVidro(t, 40, 420, 380, 960, 1, .75); freezer(400, 1600, 1.15); pessoa(640, 1640, 1.3, { ...EU, expr: "bravo", olhar: 1, piscar: piscar(t) }); pessoa(780, 1620, 1.3, { ...HOMEM, expr: "neutro", olhar: 1 }); camisa(780, 1620, 1.3, 1); pessoa(960, 1640, 1.3, { ...NIL, expr: "choque", olhar: -1, braco: 2.6, braco2: 2.6 }); g.restore(); chip("CRACHÁ", 540, 300, prog(k, 0, .2)); vinheta(.55); },
+  levaDeposito(t, k) { g.save(); camera(k, { z0: 1.05, z1: 1.15, x0: 0, x1: -80, cy: 1100 }); lojaEscura(t); portaDep(860, 1620, 1.1, t); const e = prog(k, 0, .9); pessoa(480 + e * 260, 1640, 1.3, { ...NIL, expr: "bravo", olhar: -1, braco: .4 }); pessoa(300 + e * 260, 1650, 1.3, { ...EU, expr: "bravo", olhar: 1, braco: 1.4, braco2: 1.4 }); g.restore(); vinheta(.55); },
+  portaDeposito(t, k) { g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.25, z1: 1.35, cx: 700, cy: 1200 }); lojaEscura(t); portaDep(760, 1620, 1.1, t); pessoa(420, 1650, 1.3, { ...EU, expr: "bravo", olhar: 1 }); g.restore(); chip("DEPÓSITO DOS FUNDOS", 540, 300, 1); vinheta(.55); },
+  semTranca(t, k) { fundo("#16171c"); g.save(); camera(k, { z0: 1.0, z1: 1.15, cx: 660, cy: 1000 }); portaDep(540, 1500, 2.2, t, 0); g.restore(); vinheta(.6); },
+  macaneta(t, k) { fundo("#16171c"); g.save(); camera(k, { z0: 2.2, z1: 2.4, cx: 540 + 120 * 2.2 * 0, cy: 900 }); g.translate(0, 0); portaDep(330, 1690, 2.4, t, 0); g.restore(); const gira = Math.sin(t * 14) * .25; g.save(); g.translate(560, 980); g.rotate(gira); rr(-30, -40, 260, 80, 40, "#c8ccd2"); g.restore(); circ(560, 980, 70, "#d8dce2"); chip("SEM TRANCA", 540, 300, 1); vinheta(.6); },
+  rodo(t, k) { g.save(); camera(k, { z0: 1.0, z1: 1.12, cy: 1100 }); lojaEscura(t); portaDep(760, 1620, 1.1, t, 0, prog(k, .3, 1) * .7); pessoa(420, 1650, 1.3, { ...EU, expr: "bravo", olhar: 1, braco: 2.0, braco2: 1.2 }); g.restore(); chip("CABO DO RODO", 540, 300, prog(k, 0, .2)); vinheta(.55); },
+  rodoEncaixa(t, k) { fundo("#16171c"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.08, cy: 900 }); portaDep(380, 1900, 2.4, t, 0, .7 + .3 * prog(k, 0, .3)); g.restore(); vinheta(.6); },
+  trava(t, k) { g.save(); camera(k, { z0: 1.12, z1: 1.0, cx: 760, cy: 1200 }); lojaEscura(t); portaDep(760, 1620, 1.1, t, 0, 1); pessoa(420, 1650, 1.3, { ...EU, expr: "neutro", olhar: 1 }); g.restore(); vinheta(.55); palavraGrande("TRAVA", t, P(3, "trava") - .05); },
+  bateDeposito(t, k) { g.save(); camera(k, { z0: 1.2, z1: 1.3, cx: 760, cy: 1100 }); lojaEscura(t); portaDep(760, 1620, 1.1, t, Math.sin(t * 30) > 0 ? 26 : 0, 1); g.restore(); txt("BAM!", 540 + Math.sin(t * 20) * 10, 420, 110, "#ff5a4a", 900, "center", "Nunito"); vinheta(.6); },
+  gritoPorta(t, k) { fundoBorrado("#3a1410", "#060202"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.15, cy: 860 }); rosto(NIL, 540, 900, 5.2, t, { expr: "choque", olhar: 0 }); g.restore(); g.strokeStyle = "rgba(255,90,74,.8)"; for (let i = 0; i < 3; i++) { const r = 200 + ((t * 600 + i * 150) % 450); g.lineWidth = 12; g.beginPath(); g.arc(540, 1150, r, Math.PI * 1.1, Math.PI * 1.9); g.stroke(); } vinheta(.7); },
+  zumbisVidro(t, k) { g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.15 }); portaVidro(t, 0, 0, W, H, 0, .75); g.save(); g.beginPath(); g.rect(0, H * .75, W, H * .25); g.clip(); for (let i = 0; i < 4; i++) zumbi(150 + i * 260, H * .75 + 420 * 2.2 + 300, 2.2, t, i); g.restore(); g.restore(); vinheta(.6); },
+  desligaFalante(t, k) { g.save(); camera(k, { z0: 1.0, z1: 1.12, cx: 640, cy: 1100 }); lojaEscura(t); rr(80, 1180, 920, 420, 16, "#5a3e28"); rr(700, 980, 240, 200, 16, "#1e1f24"); const off = k > .5; circ(760, 1040, 14, off ? "#300" : "#3f6"); if (!off) glow(760, 1040, 80, "rgba(60,255,100,A)", .5); g.strokeStyle = "#222"; g.lineWidth = 12; g.beginPath(); g.moveTo(560, 1180); g.quadraticCurveTo(560, 1000, 640, 940); g.stroke(); rr(620, 900, 70, 50, 20, "#333"); pessoa(330, 1720, 1.5, { ...EU, olhar: 1, braco: 1.9, expr: "bravo" }); g.restore(); chip("ALTO-FALANTE: OFF", 540, 300, prog(k, .5, .6)); vinheta(.6); },
+  monitorApaga(t, k) { fundo("#020203"); g.save(); camera(k, { z0: 1.0, z1: 1.1 }); monitor(t, 60, 560, 960, 760, 1 - prog(k, 0, .3)); g.restore(); vinheta(.8); },
+  silencio(t, k) { fundo("#010101"); for (const [x, y] of [[300, 900], [760, 1000]]) { if (piscar(t + x) > .5) { circ(x - 20, y, 9, "#ddd"); circ(x + 20, y, 9, "#ddd"); } } palavraGrande("SILÊNCIO", t, P(5, "silencio") - .05, 420, "#ffd23a"); vinheta(.8); },
+  escuro(t, k) { fundo("#000"); g.save(); camera(k, { z0: 1.0, z1: 1.2, cy: 900 }); if (piscar(t) > .5) { circ(500, 900, 14, "#eee"); circ(580, 900, 14, "#eee"); circ(504, 902, 6, "#111"); circ(584, 902, 6, "#111"); } g.restore(); vinheta(.9); },
+  respira(t, k) { fundo("#000"); g.save(); camera(k, { z0: 1.0, z1: 1.1, cy: 900 }); const a = .5 + .5 * Math.sin(t * 7); g.fillStyle = `rgba(200,210,220,${.08 + .14 * a})`; for (let i = 0; i < 5; i++) { g.beginPath(); g.ellipse(820 - i * 50 * a, 820 + i * 10, 60 + i * 30 * a, 40 + i * 14, 0, 0, 6.283); g.fill(); } circ(300, 900, 12, "#eee"); circ(360, 900, 12, "#eee"); circ(312, 902, 5, "#111"); circ(372, 902, 5, "#111"); g.restore(); chip("HHH... HHH...", 540, 300, 1); vinheta(.85); },
+  homemSuando(t, k) { fundoBorrado("#14161a", "#000"); g.save(); camera(k, { z0: 1.0, z1: 1.14, cy: 860 }); rosto({ ...HOMEM, pele: "#9a8070" }, 540, 900, 5.2, t, { expr: "triste", olhar: -.5 }); g.restore(); suor(320, 620, 1.6, t); suor(760, 680, 1.3, t + .4); suor(560, 520, 1.1, t + .7); vinheta(.75); },
+  tremendo(t, k) { fundoBorrado("#14161a", "#000"); g.save(); g.translate(Math.sin(t * 70) * 10, Math.cos(t * 63) * 6); camera(k, { z0: 1.1, z1: 1.25, cy: 860 }); rosto({ ...HOMEM, pele: "#8f8a6a" }, 540, 900, 5.2, t, { expr: "triste", olhar: 0 }); g.restore(); suor(320, 620, 1.6, t); vinheta(.75); },
+  celular(t, k) { fundo("#000"); g.save(); camera(k, { z0: 1.0, z1: 1.1, cy: 1000 }); const on = t > P(8, "lanterna") - .05; rr(400, 900, 280, 520, 36, "#1a1a1e"); rr(420, 930, 240, 460, 24, on ? "#f4f0d8" : "#0a0a12"); if (on) { txt("LANTERNA", 540, 1160, 40, "#1d2129", 900, "center", "Nunito"); glow(540, 1100, 500, "rgba(255,250,220,A)", .3); } rr(600, 1300, 130, 90, 45, "#c98d60"); g.restore(); vinheta(.7); },
+  luzChao(t, k) { fundo("#020203"); rect(0, 1300, W, 620, "#0c0c10"); cone(700, 900, 1.95 - .2 * k, 900, 260, .7); g.save(); g.beginPath(); g.ellipse(520 - k * 60, 1650, 280, 90, 0, 0, 6.283); g.fillStyle = "rgba(255,250,220,.35)"; g.fill(); g.restore(); vinheta(.75); },
+  luzBaixa(t, k) { fundo("#020203"); rect(0, 1300, W, 620, "#0c0c10"); cone(700, 900, 1.75, 900, 260, .7); g.beginPath(); g.ellipse(460, 1650, 280, 90, 0, 0, 6.283); g.fillStyle = "rgba(255,250,220,.35)"; g.fill(); vinheta(.75); palavraGrande("LUZ BAIXA", t, P(8, "luz") - .05); },
+  luzAnda(t, k) { fundo("#020203"); rect(0, 1300, W, 620, "#0c0c10"); const lx = 260 + prog(k, 0, .7) * 380; perna(640, 1760, .9, 0); g.save(); g.globalCompositeOperation = "destination-in"; g.restore(); g.fillStyle = "rgba(0,0,0,.75)"; g.fillRect(0, 0, W, H); g.save(); g.beginPath(); g.ellipse(lx, 1600, 300, 200, 0, 0, 6.283); g.clip(); fundo("#2a2620"); rect(0, 1300, W, 620, "#3a352c"); perna(640, 1760, .9, 0); g.restore(); vinheta(.75); },
+  mordida(t, k) { fundo("#000"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.15, cx: 560, cy: 1300 }); g.save(); g.beginPath(); g.ellipse(560, 1300, 520, 380, 0, 0, 6.283); g.clip(); fundo("#2a2620"); perna(560, 1700, 2.6, 1); g.restore(); g.restore(); vinheta(.7); palavraGrande("MORDIDA", t, P(9, "mordida") - .05, 420, "#ff5a4a"); },
+  crachaPerto(t, k) { crachaFoto(t, k, 1.0, 1.3, 0, 1, 540, 900); },
+  arranhada(t, k) { crachaFoto(t, k, 1.8, 2.0, 0, 1, 320, 900); },
+  bigode(t, k) { crachaFoto(t, k, 2.4, 2.6, prog(k, 0, .3), 1, 320, 920); },
+  portaDep2(t, k) { g.save(); camera(k, { z0: 1.2, z1: 1.3, cx: 760, cy: 1100 }); lojaEscura(t); portaDep(760, 1620, 1.1, t, Math.sin(t * 30) > 0 ? 20 : 0, 1); g.restore(); vinheta(.6); },
+  nilsonGrita(t, k) { fundo("#0a0a0c"); g.save(); camera(k, { z0: 1.0, z1: 1.12, cy: 900 }); g.save(); g.beginPath(); g.rect(470, 0, 140, H); g.clip(); fundo("#1a0808"); rosto(NIL, 540, 900, 3.6, t, { expr: "bravo", olhar: 0 }); g.restore(); rect(410, 0, 60, H, "#6e737c"); rect(610, 0, 470, H, "#6e737c"); rect(0, 0, 410, H, "#5e636c"); g.restore(); vinheta(.7); },
+  eMeu(t, k) { fundoBorrado("#3a1410", "#060202"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.18, cy: 860 }); rosto(NIL, 540, 960, 5.2, t, { expr: "choque", olhar: 0 }); g.restore(); vinheta(.7); palavraGrande("É MEU!", t, P(11, "meu") - .05, 380, "#ff5a4a"); },
+  nilsonTrancado(t, k) { g.save(); camera(k, { z0: 1.0, z1: 1.1, cx: 760, cy: 1100 }); lojaEscura(t); tinta("#000", .35); portaDep(760, 1620, 1.1, t, 0, 1); g.restore(); chip("O VERDADEIRO SEU NILSON", 540, 300, prog(k, 0, .2)); vinheta(.7); },
+  trava2(t, k) { fundo("#16171c"); g.save(); const tr = tremor; g.translate((Math.random() - .5) * tr, (Math.random() - .5) * tr); camera(k, { z0: 1.0, z1: 1.1, cy: 900 }); portaDep(380, 1900, 2.4, t, 0, 1); g.restore(); vinheta(.7); },
+  mordidoLado(t, k) { fundo("#000"); g.save(); camera(k, { z0: 1.0, z1: 1.12, cx: 760, cy: 900 }); rosto({ ...HOMEM, pele: "#7a8a5a", roupa: "#2a3020", cabelo: "#1a1008" }, 760, 780, 2.8, t, { expr: "neutro", olhar: -1, piscar: 1 }); rosto({ ...EU, pele: "#8a6a50", roupa: "#14243a" }, 300, 1120, 4.6, t, { expr: "choque", olhar: .3, piscar: 1 }); g.restore(); cone(1000, 1700, -2.4, 700, 200, .35); vinheta(.8); },
+  mordidoClose(t, k) { fundo("#010101"); g.save(); camera(k, { z0: 1.0, z1: 1.22, cy: 860 }); rosto({ ...HOMEM, pele: "#7a8a5a", roupa: "#2a3020", cabelo: "#1a1008" }, 540, 900, 5.6, t, { expr: "neutro", olhar: 0, piscar: 1 }); g.restore();
+    const r = prog(t, P(13, "segue"), P(13, "parte")); for (const ex of [428, 652]) { glow(ex, 890, 70, "rgba(255,40,30,A)", .7 * r); } vinheta(.8);
+    if (t > P(13, "parte") - .1) { const a = prog(t, P(13, "parte") - .1, P(13, "parte") + .15); g.save(); g.globalAlpha = a; palavraGrande("PARTE 4", t, P(13, "parte") - .1, 360); g.restore(); } },
+};
+
+// tremores nos impactos
+const IMPACTOS = () => [P(2, "nao"), P(3, "macaneta"), P(4, "zumbis"), P(9, "mordida"), P(10, "bigode"), P(11, "meu"), P(12, "trancado")];
+window.renderFrame = (t) => {
+  TELA(); _fr.call(g, 0, 0, 0, 0); g.fillStyle = "#000"; _fr(0, 0, SW, SH); g.setTransform(ESC, 0, 0, ESC, SW / 2 - 540 * ESC, SH / 2 - CYV * ESC); tremor = 0; treme(t, IMPACTOS());
+  const s = tomadaEm(t); (T[s.nome] || T.ext)(t, s.k);
+  legenda(t);
+  TELA(); txt("@historiascomclaudio", SW - 40, SH - 36, 26, "rgba(255,255,255,.28)", 700, "right", "Nunito"); if (0) txt("", 0, 0, 30, "rgba(255,255,255,.28)", 700, "center", "Nunito");
+};
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("800 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
