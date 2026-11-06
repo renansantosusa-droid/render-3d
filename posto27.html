@@ -515,11 +515,11 @@ const T = {
   naoVirou(t, k) { convesDia(t); g.save(); camera(k, { z0: 1.2, z1: 1.35, cy: 1400 }); pessoa(540, 1760, 1.4, { ...MARTA, piscar: piscar(t), expr: "sorriso", olhar: 0, lagrima: t }); pessoa(300, 1760, 1.0, { ...LIAB, expr: "sorriso", olhar: 1, braco: 2.5 }); g.restore(); palavraP("E NÃO VIROU", t, P(11, "virou") - .1, 320, "#ffd23a", 130); vinheta(.45); },
   solPoe(t, k) { ceuAbre(t, 1); marDia(t, 1300); relogio(540, 860, 220, 6); chip("O SOL SE PÕE ÀS 6", 540, 300, 1); vinheta(.5); },
   eAi(t, k) { fundo("#1a1008"); g.save(); trm(); relogio(540, 860, 240 + 20 * k, 6); g.restore(); tinta("#ff5a1a", .2); vinheta(.8); },
-  fimTemp(t, k) { convesDia(t); g.save(); camera(k, { z0: 1.0, z1: 1.08, cy: 1300 }); ilha(540, 1080, .5); grupoProa(t, 540, 1760, .85, { olhar: 0, expr: "sorriso" }); g.restore(); tinta("#000", .15 * k); txt("FIM DA TEMPORADA 1", 540, 330, 92, "#fff", 900, "center", "Nunito"); vinheta(.5); },
+  fimTemp(t, k) { convesDia(t); g.save(); camera(k, { z0: 1.0, z1: 1.08, cy: 1300 }); ilha(540, 1080, .5); grupoProa(t, 540, 1760, .85, { olhar: 0, expr: "sorriso" }); g.restore(); tinta("#000", .15 * k); txt("FIM DA TEMPORADA 1", 540, 330, 76, "#fff", 900, "center", "Nunito"); vinheta(.5); },
   comenta(t, k) { convesDia(t); tinta("#000", .4); txt("COMENTA", 540, 860, 150, "#fff", 900, "center", "Oswald"); vinheta(.6); },
   temporada2(t, k) { convesDia(t); tinta("#000", .5); g.save(); trm(); numero("TEMPORADA 2", P(12, "temporada", 2), t, 900, "#ffd23a", 150); g.restore(); vinheta(.6); },
   final(t, k) { const q = 1 - .6 * k; ceuAbre(t, q); tinta("#ff7a3a", .25 * k); marDia(t, 1080); ilha(540, 1080, .5); g.save(); camera(k, { z0: 1.0, z1: 1.08, cy: 1300 }); grupoProa(t, 540, 1760, .85, { olhar: 0, expr: "desconfiada" }); for (let i = 0; i < 4; i++) zumbiDeitado(150 + i * 260, 1880, .6, t, i); g.restore(); tinta("#000", .2 * k); vinheta(.6);
-    palavraGrande("TEMPORADA 2?", t, P(12, "quando") - .1, 360); },
+    numero("TEMPORADA 2?", P(12, "quando") - .1, t, 380, "#ffd23a", 130); },
 };
 
 // tremores nos impactos
