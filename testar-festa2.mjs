@@ -56,6 +56,8 @@ await g.screenshot({ path: "fotos-festa/00-entrada.png" });
 await g.click("#btn-loja-entrada"); await g.waitForTimeout(1500);
 console.log("loja (entrada):", (await g.locator("#loja").innerText()).replace(/\n+/g, " | "));
 await g.screenshot({ path: "fotos-festa/01-loja-entrada.png" });
+await g.click("#loja .sk.lend"); await g.waitForTimeout(1200); console.log("provador (coroa + aura):", await g.locator("#loja .provNome").innerText()); await g.screenshot({ path: "fotos-festa/01b-provador-junto.png" });
+await g.locator("#loja .cores .cor").nth(2).click(); await g.waitForTimeout(1200); console.log("provador (cor verde):", await g.locator("#loja .provNome").innerText()); await g.screenshot({ path: "fotos-festa/01c-provador-verde.png" });
 await g.click("#loja .fechar");
 await g.click("#entrar");
 await g.waitForFunction(() => document.getElementById("entrada").hidden, null, { timeout: 60000 });

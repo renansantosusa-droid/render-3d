@@ -88,7 +88,7 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 <script type="module">
 import * as THREE from "three";
 import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=8";
-import { criarLoja } from "./loja.js?v=5";
+import { criarLoja } from "./loja.js?v=6";
 const CFG = window.FESTA || {}, Q = new URLSearchParams(location.search), CHAVE = Q.get("chave") || "", VISAO = Q.get("visao"); // visao=palco: câmera no palco olhando a turma, sem botões, pra gravar a tela
 const $ = (i) => document.getElementById(i);
 const EMOJIS = ["🏅", "😂", "🔥", "👏", "🎉", "❤️"];
@@ -311,7 +311,7 @@ $("btn-som").onclick = () => { $("frases").hidden = true; $("ambientes").hidden 
 
 // ---------- provador: bonequinho girando com a skin escolhida (só desenha com a loja aberta) ----------
 const provador = (() => {
-  let r = null, sc, cm, bon, sk = 0, on = false, eu = null, cv = null;
+  let r = null, sc, cm, bon, sk = 0, au = -1, on = false, eu = null, cv = null;
   function ligar(canvas, quem) {
     eu = quem; cv = canvas;
     if (!r) {
@@ -327,10 +327,9 @@ const provador = (() => {
     if (!on || !r) return; requestAnimationFrame(passo);
     const tt = ag / 1000, a = Math.sin(tt * .9) * 1.9; // vai e volta: mostra frente e costas (capa, asas)
     cm.position.set(Math.sin(a) * 4.6, 2.1, Math.cos(a) * 4.6); cm.lookAt(0, 1.05, 0);
-    const prAura = sk >= 6, s1 = prAura ? (eu ? eu.sk : -1) : sk, a1 = prAura ? sk : (eu ? eu.au : -1);
-    bon.poe(0, 0, 0, 0, 0, eu ? eu.cor : 1, eu ? eu.id : 3, s1, tt, a1); bon.fim(1); r.render(sc, cm);
+        bon.poe(0, 0, 0, 0, 0, eu ? eu.cor : 1, eu ? eu.id : 3, sk, tt, au); bon.fim(1); r.render(sc, cm);
   }
-  return { ligar, mostrar: (i) => { sk = i; }, desligar: () => { on = false; } };
+  return { ligar, mostrar: (a, b) => { sk = a; au = b; }, desligar: () => { on = false; } };
 })();
 // ---------- loja de skins (loja.js) ----------
 const loja = criarLoja({
