@@ -196,6 +196,47 @@ Valeu demais, turma! Vem mais jogo por aí 🔥`;
 }
 setInterval(anunciarResultado, 60e3);
 
+// ---------- avisos automáticos no grupo da Turma (pela Feirinha): 30 min antes, na abertura e no meio da festa ----------
+// cada aviso sai uma vez só (fica marcado em presenca.json); se o servidor reiniciar depois da hora, não manda atrasado (janela de 10 min)
+const AVISOS = [
+  [-30 * 60e3, "antes", `⏰ *A FESTA DA TURMA COMEÇA EM 30 MINUTOS!* 🎉
+
+🕘 Hoje, das *21h às 22h*
+👕 Já escolhe tua skin (dá pra usar a ✨ aura lendária junto com outra!)
+🎨 Pinta o Chão, ⚽ pênaltis, 🏃 corrida e 🏐 vôlei valem ponto pro teu estado
+⭐ Ficou 15 minutos = +20 pontos
+
+👉 Entra e já fica na fila: brasildaturma.online/festa/`],
+  [0, "abriu", `🎉 *A FESTA DA TURMA ABRIU!* 🇧🇷
+
+Corre que já tem gente pintando o chão! 🎨
+⭐ Fica 15 minutos e ganha +20 pontos
+👕 Lojinha de skins aberta lá dentro (botão 👕 Loja)
+💬 Toca no boneco de alguém pra puxar conversa
+
+👉 brasildaturma.online/festa/`],
+  [30 * 60e3, "meio", `🔥 *AINDA DÁ TEMPO!* A festa vai até as 22h
+
+Entrando agora ainda dá pra ficar os 15 minutos e ganhar +20 pontos ⭐
+No fim sai o resultado dos estados e os mais simpáticos da noite 😄
+
+👉 brasildaturma.online/festa/`],
+];
+async function avisar() {
+  if (!process.env.FEIRINHA_SENHA) return;
+  estado.avisos ||= {};
+  for (const [dt, id, texto] of AVISOS) {
+    const hora = INI + dt; if (estado.avisos[id] || Date.now() < hora) continue;
+    if (Date.now() > hora + 10 * 60e3) { estado.avisos[id] = "perdido"; salvar(); continue; }
+    try {
+      const r = await fetch("https://feirinhaturma-renan.squareweb.app/api/grupo/mensagem", { method: "POST", headers: { Authorization: "Basic " + Buffer.from("x:" + process.env.FEIRINHA_SENHA).toString("base64"), "Content-Type": "application/json" }, body: JSON.stringify({ texto }), signal: AbortSignal.timeout(120e3) });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      estado.avisos[id] = Date.now(); salvar(); console.log("aviso no grupo:", id);
+    } catch (e) { console.log("não mandei o aviso", id, e.message); }
+  }
+}
+setInterval(avisar, 30e3);
+
 // ---------- uma festa só: todo mundo no mesmo lugar ----------
 const pessoas = new Map(), porUsuario = new Map();
 const todos = () => [...pessoas.values()];
@@ -363,13 +404,38 @@ setInterval(() => {
     const txt = JSON.stringify({ t: "q", a, f, ...(mostrar ? { total, fila: fila.length } : {}), ...(bolaMudou || mostrar ? { b: bolaArr() } : {}), ...(vMudou || mostrar ? { v: vbArr() } : {}), ...(oObj ? { o: { ...oObj, eu: !!p.corre, pts: OL.pes[norm(p.u)] || 0 } } : {}), ...(ptEnv || {}) });
     cont.kb += txt.length; p.ws.send(txt);
   }
+  gravar(evs, bolaMudou, vMudou, oObj, ptEnv);
   for (const p of pessoas.values()) p.mudou = false;
   const ms = performance.now() - t0; cont.tickMs += ms; cont.tickN++; if (ms > cont.tickMax) cont.tickMax = ms;
 }, TICK_MS);
 
+// ---------- GRAVAÇÃO da festa (pra vídeo de melhores momentos): o próprio servidor grava tudo, sem câmera e sem o PC do Renan ----------
+// Mesmo formato das câmeras antigas ({ ts, m: { t: "q", a, f, b, v, o, pt } }), só que vendo TODO mundo. De 2 min antes até 1 min depois.
+// Baixar depois: GET /gravacao?senha=ROBO_SENHA
+const ARQ_GRAV = new URL(`./gravacao-${new Date(INI - 3 * 3600e3).toISOString().slice(0, 10)}.jsonl`, import.meta.url);
+let gravVis = new Set(), gravFluxo = null;
+function gravar(evs, bolaMudou, vMudou, oObj, ptEnv) {
+  const ag = Date.now(); if (ag < INI - 120e3 || ag > FIM + 60e3) { if (gravFluxo && ag > FIM + 60e3) { gravFluxo.end(); gravFluxo = null; } return; }
+  try {
+    gravFluxo ||= fs.createWriteStream(ARQ_GRAV, { flags: "a" });
+    const f = [], a = [], ids = new Set();
+    for (const p of pessoas.values()) { if (p.teste && !String(p.u).startsWith("camera")) continue; ids.add(p.id); if (!gravVis.has(p.id)) f.push(["e", p.id, p.u, p.cid, p.x, p.z, p.cor, p.sk, p.au]); else if (p.mudou) a.push([p.id, p.x, p.z]); }
+    for (const id of gravVis) if (!ids.has(id)) f.push(["s", id]);
+    gravVis = ids; for (const e of evs) f.push(e);
+    if (!f.length && !a.length && !bolaMudou && !vMudou && !oObj && !ptEnv) return;
+    gravFluxo.write(JSON.stringify({ ts: ag, m: { t: "q", a, f, ...(bolaMudou ? { b: bolaArr() } : {}), ...(vMudou ? { v: vbArr() } : {}), ...(oObj ? { o: oObj } : {}), ...(ptEnv || {}), total: porUsuario.size } }) + "\n");
+  } catch (e) { console.log("gravação:", e.message); }
+}
+
 // ---------- servidor ----------
 const server = http.createServer((req, res) => {
   res.setHeader("access-control-allow-origin", "*");
+  if (req.url.startsWith("/gravacao")) {
+    const s = new URL(req.url, "http://x").searchParams.get("senha");
+    if (!process.env.ROBO_SENHA || s !== process.env.ROBO_SENHA) { res.statusCode = 401; return res.end(); }
+    if (!fs.existsSync(ARQ_GRAV)) { res.statusCode = 404; return res.end("sem gravação ainda"); }
+    res.setHeader("content-type", "application/x-ndjson"); return fs.createReadStream(ARQ_GRAV).pipe(res);
+  }
   if (req.url === "/saude") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ok: true })); }
   if (req.url === "/status") { res.setHeader("content-type", "application/json"); return res.end(JSON.stringify({ ult, tempo: [...tempo.values()], pico: picoOnline, picoEm, online: porUsuario.size, fila: fila.length, espera: listaEspera().length, lotacao: LOTACAO, salas: 1, ini: INI, fim: FIM, casas: casas.size, ramMB: Math.round(process.memoryUsage().rss / 1048576), ol: { est: topEst(), pod: podio(), campeao: Date.now() >= FIM ? (OL.campeao || topEst(1)[0]?.[0] || null) : null, corridas: OL.corridas, gols: OL.gols, volei: OL.volei } })); }
   res.statusCode = 404; res.end();
