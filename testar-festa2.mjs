@@ -8,9 +8,9 @@ import { chromium } from "playwright";
 const CHAVE = randomBytes(8).toString("hex"), PORTA_WS = 4301, PORTA_WEB = 4302, PORTA_ROBO = 4303, WS = `ws://localhost:${PORTA_WS}/ws`, SITE = "https://brasildaturma.online";
 fs.mkdirSync("fotos-festa", { recursive: true });
 // robô falso: donos das skins (bots de 1 a 6 vestem uma cada) + loja
-const donos = { teste_github: [0], turma_1: [6], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [6], turma_8: [2], turma_9: [5] };
+const donos = { teste_github: [0], turma_1: [6], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [7], turma_10: [8], turma_11: [9], turma_12: [10], turma_13: [11], turma_8: [2], turma_9: [5] };
 let consultas = 0;
-const CATALOGO = [["coroa", "Coroa dourada", "👑", 4.9], ["oculos", "Óculos escuros", "🕶️", 2.9], ["capa", "Capa de herói", "🦸", 3.9], ["brasil", "Camisa do Brasil", "🇧🇷", 2.9], ["cowboy", "Chapéu de cowboy", "🤠", 2.9], ["asas", "Asas de anjo", "👼", 4.9], ["aura", "Farmador de Aura", "✨", 9.9]].map(([id, nome, icone, preco]) => ({ id, nome, icone, preco, lendaria: id === "aura" }));
+const CATALOGO = [["coroa", "Coroa dourada", "👑", 4.9], ["oculos", "Óculos escuros", "🕶️", 2.9], ["capa", "Capa de herói", "🦸", 3.9], ["brasil", "Camisa do Brasil", "🇧🇷", 2.9], ["cowboy", "Chapéu de cowboy", "🤠", 2.9], ["asas", "Asas de anjo", "👼", 4.9], ...[["aura", "#9b3dff"], ["aura_azul", "#2f7bff"], ["aura_verde", "#1fd15a"], ["aura_vermelha", "#ff2a2a"], ["aura_dourada", "#ffb300"], ["aura_rosa", "#ff3fb4"]].map(([id, cor]) => [id, "Farmador de Aura", "✨", 9.9, cor])].map(([id, nome, icone, preco, cor]) => ({ id, nome, icone, preco, lendaria: !!cor, grupo: cor ? "aura" : null, cor: cor || null }));
 http.createServer((q, r) => { r.setHeader("content-type", "application/json"); if (q.url.startsWith("/skins/donos")) return r.end(JSON.stringify(donos)); r.statusCode = 404; r.end("{}"); }).listen(PORTA_ROBO);
 const sv = spawn(process.execPath, ["festa-server.mjs"], { env: { ...process.env, PORT: String(PORTA_WS), TESTE_CHAVE: CHAVE, CICLO_TESTE: "1", ROBO_URL: `http://localhost:${PORTA_ROBO}` }, stdio: "inherit" });
 const web = http.createServer(async (q, r) => {
@@ -65,7 +65,10 @@ await g.screenshot({ path: "fotos-festa/02-chegada-skins.png", timeout: 180000 }
 // compra de skin dentro da festa: capa de herói
 await g.click("#btn-loja"); await g.waitForTimeout(1500);
 await g.screenshot({ path: "fotos-festa/03-loja.png" });
-await g.locator("#loja .sk").nth(2).locator("button").click(); await g.waitForTimeout(500);
+await g.locator("#loja .sk").nth(3).click(); await g.waitForTimeout(1500); await g.screenshot({ path: "fotos-festa/03b-provando-capa.png" });
+await g.locator("#loja .cores .cor").nth(1).click(); await g.waitForTimeout(1500); await g.screenshot({ path: "fotos-festa/03c-aura-azul.png" });
+await g.locator("#loja .cores .cor").nth(3).click(); await g.waitForTimeout(1500); await g.screenshot({ path: "fotos-festa/03d-aura-vermelha.png" });
+await g.locator("#loja .sk").nth(3).locator("button").click(); await g.waitForTimeout(500);
 await g.fill("#lojaMail", "teste@exemplo.com");
 await g.screenshot({ path: "fotos-festa/04-dados.png" });
 await g.click("#loja .ok"); await g.waitForTimeout(1200);
@@ -76,6 +79,12 @@ await g.screenshot({ path: "fotos-festa/06-liberada.png" });
 await g.click("#loja .ok");
 await g.waitForTimeout(2500);
 await g.screenshot({ path: "fotos-festa/07-com-capa.png", timeout: 180000 });
+const meu = await g.evaluate(() => window.__festa.meuId);
+bots[2].send(JSON.stringify({ t: "frase", i: 1, a: meu })); await g.waitForTimeout(1200);
+console.log("resposta rápida:", await g.locator("#resp").isVisible() ? await g.locator("#resp").innerText() : "NÃO APARECEU");
+await g.screenshot({ path: "fotos-festa/08-resposta.png", timeout: 180000 });
+if (await g.locator("#resp").isVisible()) await g.click("#resp");
+await g.click("#btn-frases"); await g.waitForTimeout(500); console.log("frases:", (await g.locator("#frases").innerText()).split("\n").join(" | ")); await g.screenshot({ path: "fotos-festa/09-frases.png" }); await g.click("#btn-frases");
 // áreas
 const nomes = await g.evaluate(() => window.__festa.AREAS.map((a) => a.id));
 for (let i = 0; i < nomes.length; i++) {

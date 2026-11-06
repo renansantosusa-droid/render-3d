@@ -9,7 +9,7 @@ import { monitorEventLoopDelay } from "node:perf_hooks";
 const PORT = +(process.env.PORT || 3295);
 const LOTACAO = +(process.env.LOTACAO || 1000); // mais que isso espera na fila
 const VER = +(process.env.VER || 150), VER_RAIO = +(process.env.VER_RAIO || 34); // cada celular recebe no máximo VER bonecos, os mais perto
-const RAIO = 56, TICK_MS = 150, N_EMOJIS = 6, N_FRASES = 6;
+const RAIO = 56, TICK_MS = 150, N_EMOJIS = 6, N_FRASES = 16;
 const INI = Date.parse(process.env.FESTA_INI || "2026-11-05T21:00:00-03:00");
 const FIM = Date.parse(process.env.FESTA_FIM || "2026-11-05T22:00:00-03:00");
 const CHAVE = process.env.TESTE_CHAVE || ""; // com a chave entra fora do horário e sem casa (só pra teste)
@@ -35,7 +35,7 @@ lerCasas(); setInterval(lerCasas, 60e3);
 let donos = {};
 async function lerSkins() { try { const r = await fetch((process.env.ROBO_URL || "https://brasildaturma-renan.squareweb.app") + "/skins/donos", { signal: AbortSignal.timeout(15000) }); if (r.ok) donos = await r.json(); } catch {} }
 lerSkins(); setInterval(lerSkins, 20e3);
-const N_SKINS = 7;
+const N_SKINS = 12; // 0-5 comuns · 6-11 Farmador de Aura (6 cores)
 const minhas = (u) => donos[norm(u)] || [];
 
 // ---------- presença (vale pontos no fim) ----------
@@ -164,6 +164,7 @@ function vestir(p, i) {
   lerSkins().then(() => { if (minhas(p.u).includes(i) && pessoas.has(p.id)) { p.sk = i; eventos.push(["k", p.id, i]); manda(p.ws, { t: "sks", sks: minhas(p.u) }); } });
 }
 
+const simpatico = () => { const c = Object.entries(OL.conv || {}).sort((a, b) => b[1] - a[1]).slice(0, 3); return c.length ? "\n\n😄 *Mais simpáticos da noite* (quem mais puxou conversa):\n" + c.map(([u, n], i) => `${["🥇", "🥈", "🥉"][i]} @${u} · ${n} conversas`).join("\n") : ""; };
 // no fim: resultado no grupo da Turma (pela Feirinha) e campeão gravado
 async function anunciarResultado() {
   if (OL.anunciado || Date.now() < FIM + 30e3 || !process.env.FEIRINHA_SENHA || !Object.keys(OL.est).length) return;
@@ -179,7 +180,7 @@ ${t.map(([uf, pts], i) => `${md[i]} ${uf} · ${pts} pts`).join("\n")}
 ${pd.map(([u, pts, uf], i) => `${md[i]} @${u}${uf ? " (" + uf + ")" : ""} · ${pts} pts`).join("\n")}
 
 🗺️ ${OL.campeao} ganhou a medalha de ouro no mapa: brasildaturma.online
-🎨 Pinta o Chão: o estado que pintou mais em cada rodada levou +5
+🎨 Pinta o Chão: o estado que pintou mais em cada rodada levou +5${simpatico()}
 👑 Quem ficou 15 minutos já ganhou +20 pontos na casa
 
 Valeu demais, turma! Vem mais jogo por aí 🔥`;
@@ -299,7 +300,12 @@ function mensagem(ws, txt) {
   else if (m.t === "toque" && pode(p, 4, 400)) toque(p);
   else if (m.t === "vestir" && Number.isInteger(m.i) && m.i >= -1 && m.i < N_SKINS && pode(p, 5, 1500)) vestir(p, m.i);
   else if (m.t === "emoji" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_EMOJIS && pode(p, 1, 1000)) { cont.emojis++; eventos.push(["j", p.id, m.i]); }
-  else if (m.t === "frase" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_FRASES && pode(p, 2, 3000)) { cont.frases++; eventos.push(["f", p.id, m.i]); }
+  else if (m.t === "frase" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_FRASES && pode(p, 2, 2500)) {
+    cont.frases++; const a = Number.isInteger(m.a) && m.a !== p.id && pessoas.has(m.a) ? m.a : 0;
+    eventos.push(a ? ["f", p.id, m.i, a] : ["f", p.id, m.i]);
+    // placar do "mais simpático": quem fala e quem recebe conversa (falar COM alguém vale 2)
+    if (!p.teste) { OL.conv ||= {}; const k = norm(p.u); OL.conv[k] = (OL.conv[k] || 0) + (a ? 2 : 1); if (a) { const q = pessoas.get(a), kq = norm(q.u); if (!q.teste) OL.conv[kq] = (OL.conv[kq] || 0) + 2; } }
+  }
 }
 
 // ---------- bola do campinho: o servidor é o juiz, todo mundo vê igual ----------

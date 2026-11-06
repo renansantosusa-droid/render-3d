@@ -1,13 +1,15 @@
 // Loja de skins da Festa da Turma: Pix no robô (Mercado Pago). A skin é do @ pra sempre e só muda o visual do boneco (nunca dá ponto).
-// ctx: { $, eu() -> boneco do jogador ou null, arroba() -> @ digitado, enviar(obj), fecharOutros() }
+// Em cima tem o PROVADOR: um bonequinho girando com a skin escolhida, pra ver como fica antes de comprar.
+// A lendária (Farmador de Aura) aparece num cartão só, com as cores em bolinhas.
+// ctx: { $, eu() -> boneco do jogador ou null, arroba() -> @ digitado, enviar(obj), fecharOutros(), provador: { ligar(canvas, eu), mostrar(sk), desligar() } }
 const ROBO = "https://brasildaturma-renan.squareweb.app";
 const real = (v) => "R$ " + Number(v).toFixed(2).replace(".", ",");
 const limpa = (s) => String(s).replace(/[<>&"]/g, "");
 
 export function criarLoja(ctx) {
   const { $ } = ctx, l = $("loja");
-  let minhas = [], catalogo = null, venda = false, compra = null, timer = null;
-  const fechar = () => { l.hidden = true; };
+  let minhas = [], catalogo = null, venda = false, compra = null, timer = null, provando = -1, corAura = 0;
+  const fechar = () => { l.hidden = true; ctx.provador?.desligar(); };
   const msg = (t) => { const m = l.querySelector(".msgL"); if (m) m.textContent = t; };
 
   async function abrir() {
@@ -19,6 +21,7 @@ export function criarLoja(ctx) {
       const d = await (await fetch(ROBO + "/skins/lista" + (u ? "?u=" + encodeURIComponent(u) : ""), { cache: "no-store" })).json();
       catalogo = d.skins; venda = d.venda; if (u) minhas = d.minhas || [];
     } catch { l.innerHTML = "<p>Não consegui abrir a loja agora. Tenta de novo.</p><button class='ok'>Fechar</button>"; l.querySelector(".ok").onclick = fechar; return; }
+    const eu = ctx.eu(); provando = eu && eu.sk >= 0 ? eu.sk : 0; if (provando >= 6) corAura = provando - 6;
     montar();
   }
 
@@ -28,42 +31,68 @@ export function criarLoja(ctx) {
     try { localStorage.setItem("festa-skin", String(i)); } catch {}
   }
 
+  // botão de cada skin: comprar, vestir, tirar
+  function botao(b, i) {
+    const eu = ctx.eu(), vestida = eu ? eu.sk : -1, s = catalogo[i];
+    if (minhas.includes(i)) {
+      b.textContent = !eu ? "✅ É tua" : vestida === i ? "Tirar" : "Vestir";
+      b.onclick = (e) => { e.stopPropagation(); if (!eu) return; vestir(vestida === i ? -1 : i); montar(); };
+    } else {
+      b.textContent = venda ? `Comprar ${real(s.preco)}` : "Em breve"; b.disabled = !venda;
+      b.onclick = (e) => { e.stopPropagation(); pedirDados(i); };
+    }
+  }
+
+  function provar(i) {
+    provando = i; ctx.provador?.mostrar(i);
+    const n = l.querySelector(".provNome"); if (n) n.textContent = `${catalogo[i].icone} ${catalogo[i].nome}`;
+    l.querySelectorAll(".sk").forEach((d) => d.classList.toggle("prov", d.dataset.g === "aura" ? i >= 6 : +d.dataset.i === i));
+  }
+
   function montar() {
     if (l.hidden || compra || !catalogo) return;
     const eu = ctx.eu(), vestida = eu ? eu.sk : -1, u = ctx.arroba();
-    l.innerHTML = `<button class="fechar" aria-label="Fechar">×</button><h2>👕 Skins da festa</h2><p class="sub">Teu boneco com estilo em todas as festas. É do teu @ pra sempre. Só muda o visual: não dá ponto.</p><div class="grade"></div><p class="msgL"></p>`;
+    l.innerHTML = `<button class="fechar" aria-label="Fechar">×</button><h2>👕 Loja de skins</h2>
+<div class="prov"><canvas width="360" height="360" aria-label="Teu boneco com a skin escolhida"></canvas><div class="provNome"></div><div class="provDica">toca numa skin pra provar 👇</div></div>
+<div class="grade"></div><p class="sub">É do teu @ pra sempre, em todas as festas. Só muda o visual: não dá ponto.</p><p class="msgL"></p>`;
     l.querySelector(".fechar").onclick = fechar;
     const g = l.querySelector(".grade");
+    // lendária primeiro, num cartão só com as cores
+    const auras = catalogo.map((s, i) => [s, i]).filter(([s]) => s.grupo === "aura");
+    if (auras.length) {
+      const i = auras[Math.min(corAura, auras.length - 1)][1], d = document.createElement("div");
+      d.className = "sk lend" + (minhas.includes(i) ? " tem" : "") + (vestida === i ? " vest" : ""); d.dataset.g = "aura";
+      d.innerHTML = `<div class="selo">⭐ LENDÁRIA</div><div class="nm">✨ Farmador de Aura</div><div class="cores"></div><button class="comprar"></button>`;
+      const cs = d.querySelector(".cores");
+      auras.forEach(([s, k], n) => { const c = document.createElement("button"); c.className = "cor" + (k === i ? " on" : "") + (minhas.includes(k) ? " minha" : ""); c.style.background = s.cor; c.setAttribute("aria-label", s.nome); c.onclick = (e) => { e.stopPropagation(); corAura = n; provando = k; montar(); }; cs.appendChild(c); });
+      botao(d.querySelector(".comprar"), i); d.onclick = () => provar(i); g.appendChild(d);
+    }
     catalogo.forEach((s, i) => {
-      const tem = minhas.includes(i), d = document.createElement("div");
-      d.className = "sk" + (s.lendaria ? " lend" : "") + (tem ? " tem" : "") + (tem && vestida === i ? " vest" : "");
-      d.innerHTML = `${s.lendaria ? `<div class="selo">⭐ LENDÁRIA</div>` : ""}<div class="ic">${s.icone}</div><div class="nm">${limpa(s.nome)}</div><button></button>`;
-      const b = d.querySelector("button");
-      if (tem) {
-        b.textContent = !eu ? "✅ É tua" : vestida === i ? "Tirar" : "Vestir";
-        b.onclick = () => { if (!eu) return; vestir(vestida === i ? -1 : i); montar(); };
-      } else {
-        b.textContent = venda ? `Comprar ${real(s.preco)}` : "Em breve"; b.disabled = !venda;
-        b.onclick = () => pedirDados(i);
-      }
-      g.appendChild(d);
+      if (s.grupo === "aura") return;
+      const d = document.createElement("div"); d.dataset.i = i;
+      d.className = "sk" + (minhas.includes(i) ? " tem" : "") + (vestida === i ? " vest" : "");
+      d.innerHTML = `<div class="ic">${s.icone}</div><div class="nm">${limpa(s.nome)}</div><button></button>`;
+      botao(d.querySelector("button"), i); d.onclick = () => provar(i); g.appendChild(d);
     });
+    ctx.provador?.ligar(l.querySelector(".prov canvas"), eu);
+    provar(provando >= 0 && provando < catalogo.length ? provando : 0);
     if (!u) msg("Escreve teu @ na tela de entrada pra comprar e ver as tuas skins.");
   }
 
   function pedirDados(i) {
     const s = catalogo[i], u = ctx.arroba();
     if (!u) { msg("Escreve teu @ primeiro (na tela de entrada)."); return; }
+    ctx.provador?.desligar();
     let mail = ""; try { mail = localStorage.getItem("festa-email") || ""; } catch {}
     l.innerHTML = `<button class="fechar" aria-label="Voltar">×</button><div class="ic" style="font-size:54px">${s.icone}</div><h2>${limpa(s.nome)}</h2><p class="sub">Pro @<b>${limpa(u)}</b> · ${real(s.preco)} no Pix</p>
 <input type="email" id="lojaMail" placeholder="teu e-mail (pro comprovante)" autocomplete="email"><p class="sub">A skin só muda o visual do boneco e não dá ponto.</p><button class="ok">Gerar Pix</button><p class="msgL"></p>`;
     $("lojaMail").value = mail;
     l.querySelector(".fechar").onclick = montar;
     l.querySelector(".ok").onclick = async (ev) => {
-      const email = $("lojaMail").value.trim(), maior = true;
+      const email = $("lojaMail").value.trim();
       ev.target.disabled = true; msg("Gerando o Pix…");
       try {
-        const r = await fetch(ROBO + "/skins/pix", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ arroba: u, skin: s.id, email, maior }) });
+        const r = await fetch(ROBO + "/skins/pix", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ arroba: u, skin: s.id, email, maior: true }) });
         const d = await r.json();
         if (!r.ok) { msg(d.erro || "Não deu certo. Tenta de novo."); ev.target.disabled = false; return; }
         try { localStorage.setItem("festa-email", email); } catch {}
@@ -74,7 +103,7 @@ export function criarLoja(ctx) {
   }
 
   function mostrarCompra() {
-    const c = compra; l.hidden = false;
+    const c = compra; l.hidden = false; ctx.provador?.desligar();
     l.innerHTML = `<button class="fechar" aria-label="Fechar">×</button><h2>${c.icone} Paga o Pix</h2><p class="sub">${limpa(c.nome)} · ${real(c.preco)}. Assim que cair, a skin aparece no teu boneco.</p>${c.qr ? `<img class="qr" alt="QR code do Pix" src="data:image/png;base64,${c.qr}">` : ""}<textarea readonly aria-label="Pix copia e cola"></textarea><button class="ok" id="lojaCopiar">📋 Copiar o Pix copia e cola</button><p class="sub">⏳ Esperando o pagamento…</p><button class="ok cinza" id="lojaCanc">Cancelar</button>`;
     l.querySelector("textarea").value = c.copia;
     l.querySelector(".fechar").onclick = fechar;

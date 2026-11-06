@@ -55,6 +55,15 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 #loja .fechar{position:absolute;right:6px;top:2px;background:none;border:0;font-size:28px;width:44px;height:44px;cursor:pointer;color:#14204a}
 #loja .qr{width:200px;height:200px}#loja textarea{width:100%;height:70px;font-size:11px;border:2px solid #14204a;border-radius:10px;padding:6px}
 #loja .msgL{color:#b42318;min-height:18px;font-size:14px}#loja label{display:flex;gap:8px;align-items:flex-start;text-align:left;font-size:13px;margin:6px 0}
+#loja .prov{background:radial-gradient(circle at 50% 40%,#2a3f7a,#0a1633);border-radius:16px;margin:4px 0 8px;padding:4px 0 8px}#loja .prov canvas{width:180px;height:180px;display:block;margin:0 auto}
+#loja .provNome{color:#ffd23f;font-size:16px}#loja .provDica{color:#cfd8ff;font-size:12px}
+#loja .sk{cursor:pointer}#loja .sk.prov{outline:4px solid #ffd23f;outline-offset:1px}
+#loja .cores{display:flex;gap:8px;justify-content:center;margin:4px 0 8px}#loja .cores .cor{width:32px;height:32px;min-height:0;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #14204a;padding:0;cursor:pointer}#loja .cores .cor.on{box-shadow:0 0 0 3px #ffd23f,0 0 10px #ffd23f;transform:scale(1.15)}#loja .cores .cor.minha::after{content:"✓";color:#fff;font-size:14px}
+#loja .sk.lend .comprar{width:100%}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.08);box-shadow:0 0 16px #b36bff}}#btn-loja.chama{animation:pulsa 1.2s infinite}
+#aviso{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(178px + env(safe-area-inset-bottom));width:min(92vw,340px);background:#8e5cd9;color:#fff;border:3px solid #14204a;box-shadow:0 4px 0 #14204a;border-radius:16px;padding:10px 12px;font-size:15px;text-align:center;cursor:pointer;z-index:6}
+#resp{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(178px + env(safe-area-inset-bottom));max-width:92vw;background:#ffd23f;color:#14204a;border:3px solid #14204a;box-shadow:0 4px 0 #14204a;border-radius:16px;padding:10px 14px;font-size:15px;cursor:pointer;z-index:7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#frases .tit{background:none;font-size:14px;color:#5b2fa8;min-height:28px;cursor:default}
 [hidden]{display:none!important}
 </style></head><body>
 <canvas id="palco" aria-label="Praça da festa em 3D com os bonecos da turma"></canvas>
@@ -67,7 +76,8 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 <div id="gol" hidden>⚽ GOOOL!</div><div id="olimp" hidden><div id="olimpTxt"></div><div id="olimpMsg"></div><button id="btn-largada" hidden>🏃 Ir pra LARGADA</button></div><div id="grande" hidden></div><div id="medalhas" hidden></div>
 <div id="barraca" hidden></div>
 <div id="loja" role="dialog" aria-label="Loja de skins" hidden></div>
-<div id="baixo" hidden><div id="emojis"></div><div id="acoes"><button id="btn-frases">💬 Frase</button><button id="btn-medalhas">🏅 Placar</button><button id="btn-loja" class="btn-loja">👕 Skins</button><button id="btn-mapa">🗺️ Ir para</button></div></div>
+<div id="aviso" role="button" hidden>👀 Gostou das roupas da galera? <b>Toca aqui</b> e escolhe a tua!</div><button id="resp" hidden></button>
+<div id="baixo" hidden><div id="emojis"></div><div id="acoes"><button id="btn-frases">💬 Frase</button><button id="btn-medalhas">🏅 Placar</button><button id="btn-loja" class="btn-loja chama">👕 Loja</button><button id="btn-mapa">🗺️ Ir para</button></div></div>
 <div id="entrada"><form id="caixa" autocomplete="off"><div style="font-size:44px;line-height:1">🎉🇧🇷</div><h1>FESTA DA TURMA</h1><p>Show, pênaltis, corrida, vôlei e o novo <b>Pinta o Chão</b>. Cada ponto teu vai pro teu estado. Teu boneco, teu @.</p>
 <button type="button" id="btn-loja-entrada" class="btn-loja">👕 Ver as skins da festa</button>
 <div id="regra">🎉 <b>Todo mundo entra!</b> É só colocar teu @.<br>🏠 Quem tem casa no mapa joga pelo <b>estado</b> dela. Ainda não tem? <a href="https://www.instagram.com/aturmadobrasil/" target="_blank" rel="noopener">Comenta tua cidade + estado num post do @aturmadobrasil</a> (ex: Recife PE).</div>
@@ -77,8 +87,8 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 <p style="font-size:13px;color:#47604c">Fica até o fim? Quem ficar 15 minutos ou mais ganha <b>+20 pontos</b>.</p></form></div>
 <script type="module">
 import * as THREE from "three";
-import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=6";
-import { criarLoja } from "./loja.js?v=3";
+import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=7";
+import { criarLoja } from "./loja.js?v=4";
 const CFG = window.FESTA || {}, Q = new URLSearchParams(location.search), CHAVE = Q.get("chave") || "", VISAO = Q.get("visao"); // visao=palco: câmera no palco olhando a turma, sem botões, pra gravar a tela
 const $ = (i) => document.getElementById(i);
 const EMOJIS = ["🏅", "😂", "🔥", "👏", "🎉", "❤️"];
@@ -88,7 +98,27 @@ const cidadeDe = (cid) => cidades.get(cid)?.n || "minha cidade";
 const ESTADOS = { AC: "Acre", AL: "Alagoas", AP: "Amapá", AM: "Amazonas", BA: "Bahia", CE: "Ceará", DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão", MT: "Mato Grosso", MS: "Mato Grosso do Sul", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba", PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "Rio Grande do Norte", RS: "Rio Grande do Sul", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo", SE: "Sergipe", TO: "Tocantins" };
 const estadoDe = (cid) => ESTADOS[cidades.get(cid)?.uf] || "do meu estado";
 // a ordem importa: o servidor só repassa o número da frase (0 a 5)
-const FRASES = [() => "Pode me seguir no insta?", () => "Tô seguindo!", () => "Não", (p) => `Tem alguém de ${estadoDe(p?.cid)} aqui?`, (p) => `Bora, ${ESTADOS[cidades.get(p?.cid)?.uf] || "turma"}! 🏅`, () => "Vem, me acompanha!"];
+const ufDe = (p) => cidades.get(p?.cid)?.uf || "", cidDe = (p) => cidades.get(p?.cid)?.n || "";
+const FRASES = [
+  (p) => ufDe(p) ? `Oi! Sou de ${cidDe(p)}-${ufDe(p)} 👋` : "Oi, turma! 👋",
+  () => "De onde você é?",
+  () => "Primeira vez na festa?",
+  (p) => `Tem alguém de ${estadoDe(p?.cid)} aqui?`,
+  () => "Sim! 😄",
+  () => "Não",
+  () => "KKKKKK 😂",
+  () => "Valeu! 🙏",
+  () => "Que skin linda! 😍",
+  (p) => p && p.sk >= 0 ? `Olha minha skin: ${SKINS[p.sk][1]} ${SKINS[p.sk][0]}` : "Olha minha skin ✨",
+  (p) => `Bora pintar o chão, ${ESTADOS[ufDe(p)] || "turma"}! 🎨`,
+  () => "Bora um pênalti? ⚽",
+  () => "Bora dançar no palco! 💃",
+  (p) => ufDe(p) ? `${ufDe(p)} é o melhor estado! 🔥` : "Meu estado é o melhor! 🔥",
+  () => "Me segue no insta?",
+  () => "Segui de volta ✅",
+];
+// resposta rápida: frase recebida -> frase que aparece pronta pra responder
+const RESPOSTA = { 0: 0, 1: 0, 2: 4, 3: 0, 8: 7, 9: 8, 10: 4, 11: 4, 12: 4, 13: 6, 14: 15 };
 
 // ---------- cenário ----------
 const render = new THREE.WebGLRenderer({ canvas: $("palco"), antialias: true });
@@ -105,6 +135,15 @@ function novo(id, u, cid, x, z, cor, sk) { if (P.size >= MAX && !P.has(id)) retu
 const camadas = $("camadas"), etiquetas = Array.from({ length: 16 }, () => { const d = document.createElement("div"); d.className = "et"; d.style.display = "none"; camadas.appendChild(d); return d; });
 const baloes = []; const v = new THREE.Vector3();
 const tela = (x, y, z) => { v.set(x, y, z).project(cam); return [(v.x + 1) / 2 * innerWidth, (1 - v.y) / 2 * innerHeight, v.z < 1]; };
+function recebeuFrase(de, i, para) {
+  const p = P.get(de), alvo = para ? P.get(para) : null, txt = FRASES[i]?.(p) || "";
+  balao(de, (alvo ? "@" + alvo.u + ", " : "") + txt, false);
+  if (de === meuId || RESPOSTA[i] === undefined || !p) return;
+  if (para && para !== meuId) return; // conversa de outros dois
+  const r = $("resp"), j = RESPOSTA[i]; r.textContent = `↩️ Responder @${p.u}: ${FRASES[j](P.get(meuId))}`; r.hidden = false;
+  r.onclick = () => { enviar({ t: "frase", i: j, a: de }); r.hidden = true; };
+  clearTimeout(recebeuFrase.t); recebeuFrase.t = setTimeout(() => { r.hidden = true; }, para === meuId ? 9000 : 6000);
+}
 function balao(id, txt, grande) {
   const p = P.get(id); if (!p || baloes.length > 14) return;
   for (const b of baloes) if (b.id === id) { b.fim = 0; }
@@ -139,7 +178,7 @@ function receber(m) {
   if (m.t === "ok") {
     naEspera = false; clearInterval(relogio); $("contagem").hidden = true; entrouAlgumaVez = true; meuId = m.id; P.clear();
     for (const a of m.pessoas) novo(...a);
-    if (m.pt0) mundo.pintarTudo(m.pt0.split(",").map(Number)); if (m.sks) loja.setMinhas(m.sks); loja.aoEntrar();
+    if (m.pt0) mundo.pintarTudo(m.pt0.split(",").map(Number)); if (m.sks) loja.setMinhas(m.sks); loja.aoEntrar(); convidarLoja();
     $("entrada").hidden = true; $("topo").hidden = false; $("baixo").hidden = false; $("btn-som").hidden = !CFG.musicas?.length;
     const eu = P.get(meuId); salaAtual = m.sala; mostrarTopo(); if (VISAO === "palco" || VISAO === "campinho") { const e = P.get(meuId), [vx, vz] = VISAO === "palco" ? [0, -40] : [38, 17]; if (e) { e.x = e.tx = vx; e.z = e.tz = vz; camX = vx; camZ = vz; enviar({ t: "andar", x: vx, z: vz }); } document.body.classList.add("limpo"); } if (m.b) { bolaAlvo = m.b; golA = m.b[2]; golB = m.b[3]; mundo.setPlacar(golA, golB); } if (m.v) { voleiAlvo = m.v; vA = m.v[2]; vB = m.v[3]; mundo.setPlacarV(vA, vB); } $("olimp").hidden = !!VISAO; if (eu) { camX = eu.x; camZ = eu.z; }
     return;
@@ -150,7 +189,7 @@ function receber(m) {
       if (f[0] === "e") novo(f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
       else if (f[0] === "s") P.delete(f[1]);
       else if (f[0] === "j") balao(f[1], EMOJIS[f[2]], true);
-      else if (f[0] === "f") balao(f[1], FRASES[f[2]]?.(P.get(f[1])) || "", false);
+      else if (f[0] === "f") recebeuFrase(f[1], f[2], f[3]);
       else if (f[0] === "k") { const p = P.get(f[1]); if (p && f[1] !== meuId) { p.sk = f[2]; if (f[2] >= 0) balao(f[1], SKINS[f[2]][0], true); } }
     }
     if (m.total) { totalFesta = m.total; filaN = m.fila || 0; mostrarTopo(); }
@@ -221,8 +260,13 @@ const enviar = (o) => { if (ws?.readyState === 1) ws.send(JSON.stringify(o)); };
 
 // ---------- botões ----------
 EMOJIS.forEach((e, i) => { const b = document.createElement("button"); b.textContent = e; b.setAttribute("aria-label", "Mandar " + e); b.onclick = () => enviar({ t: "emoji", i }); $("emojis").appendChild(b); });
-function montarFrases() { $("frases").replaceChildren(...FRASES.map((f, i) => { const b = document.createElement("button"); b.textContent = f(P.get(meuId)); b.onclick = () => { enviar({ t: "frase", i }); $("frases").hidden = true; }; return b; })); }
-$("btn-frases").onclick = () => { montarFrases(); $("medalhas").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("frases").hidden = !$("frases").hidden; };
+function montarFrases(alvo) {
+  const eu = P.get(meuId), lista = [];
+  if (alvo) { const tt = document.createElement("button"); tt.className = "tit"; tt.textContent = `💬 Falar com @${alvo.u}`; lista.push(tt); }
+  FRASES.forEach((f, i) => { if (i === 9 && !(eu && eu.sk >= 0)) return; const b = document.createElement("button"); b.textContent = f(eu); b.onclick = () => { enviar(alvo ? { t: "frase", i, a: alvo.id } : { t: "frase", i }); $("frases").hidden = true; }; lista.push(b); });
+  $("frases").replaceChildren(...lista); $("frases").style.maxHeight = "52vh"; $("frases").style.overflow = "auto";
+}
+$("btn-frases").onclick = () => { montarFrases(null); $("medalhas").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("frases").hidden = !$("frases").hidden; };
 $("ambientes").replaceChildren(...AREAS.map((a) => { const b = document.createElement("button"); b.textContent = a.nome; b.onclick = () => { $("ambientes").hidden = true; if (a.id === "corrida") return irLargada(); const eu = P.get(meuId); if (!eu) return; const k = Math.random() * 6.283, x = a.x + Math.cos(k) * 5, z = a.z + 5 + Math.sin(k) * 3; eu.tx = eu.x = x; eu.tz = eu.z = z; camX = x; camZ = z; enviar({ t: "andar", x, z }); }; return b; }));
 $("btn-mapa").onclick = () => { $("medalhas").hidden = true; $("frases").hidden = true; $("barraca").hidden = true; $("ambientes").hidden = !$("ambientes").hidden; };
 // feirinha: produtos aprovados (feirinha.json); tocar na barraca abre o link. Clique aqui nunca dá ponto.
@@ -265,13 +309,40 @@ try { const g = JSON.parse(localStorage.getItem("festa-video") || "null"); if (g
 $("musicas").replaceChildren(...(CFG.musicas || []).map((m) => { const b = document.createElement("button"); b.textContent = m.nome; b.onclick = () => tocar(m); return b; }), Object.assign(document.createElement("button"), { textContent: "🔇 Tirar a música", onclick: () => tocar(null) }));
 $("btn-som").onclick = () => { $("frases").hidden = true; $("ambientes").hidden = true; $("musicas").hidden = !$("musicas").hidden; };
 
+// ---------- provador: bonequinho girando com a skin escolhida (só desenha com a loja aberta) ----------
+const provador = (() => {
+  let r = null, sc, cm, bon, sk = 0, on = false, eu = null, cv = null;
+  function ligar(canvas, quem) {
+    eu = quem; cv = canvas;
+    if (!r) {
+      r = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); r.outputColorSpace = THREE.SRGBColorSpace;
+      sc = new THREE.Scene(); sc.add(new THREE.HemisphereLight(0xffffff, 0x8088a8, 2.6)); const lz = new THREE.DirectionalLight(0xffffff, 1.2); lz.position.set(2, 4, 3); sc.add(lz);
+      const chao = new THREE.Mesh(new THREE.CircleGeometry(1.3, 32), new THREE.MeshBasicMaterial({ color: 0x1f6b35 })); chao.rotation.x = -Math.PI / 2; sc.add(chao);
+      cm = new THREE.PerspectiveCamera(32, 1, .1, 50); bon = montarBonecos(sc, 1);
+    } else if (r.domElement !== canvas) { r.dispose(); r = null; return ligar(canvas, quem); }
+    r.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); r.setSize(180, 180, false);
+    if (!on) { on = true; requestAnimationFrame(passo); }
+  }
+  function passo(ag) {
+    if (!on || !r) return; requestAnimationFrame(passo);
+    const tt = ag / 1000, a = Math.sin(tt * .9) * 1.9; // vai e volta: mostra frente e costas (capa, asas)
+    cm.position.set(Math.sin(a) * 4.6, 2.1, Math.cos(a) * 4.6); cm.lookAt(0, 1.05, 0);
+    bon.poe(0, 0, 0, 0, 0, eu ? eu.cor : 1, eu ? eu.id : 3, sk, tt); bon.fim(1); r.render(sc, cm);
+  }
+  return { ligar, mostrar: (i) => { sk = i; }, desligar: () => { on = false; } };
+})();
 // ---------- loja de skins (loja.js) ----------
 const loja = criarLoja({
   $, eu: () => P.get(meuId) || null,
   arroba: () => { const b = $("arroba").value.trim(), url = b.match(/instagram\.com\/([\w.]+)/i); return meuArroba || (url ? url[1] : b).replace(/[@\s]/g, ""); },
   enviar: (o) => enviar(o),
-  fecharOutros: () => { for (const id of ["frases", "ambientes", "medalhas", "barraca", "musicas"]) $(id).hidden = true; },
+  fecharOutros: () => { for (const id of ["frases", "ambientes", "medalhas", "barraca", "musicas", "aviso"]) $(id).hidden = true; $("btn-loja").classList.remove("chama"); lojaAberta = true; },
+  provador,
 });
+// chama pra loja: o botão pulsa até a 1ª vez; 20 s depois de entrar, sem skin, aparece o convite
+let lojaAberta = false;
+function convidarLoja() { setTimeout(() => { const eu = P.get(meuId); if (!eu || lojaAberta || eu.sk >= 0 || !$("entrada").hidden) return; $("aviso").hidden = false; setTimeout(() => { $("aviso").hidden = true; }, 10000); }, 20000); }
+$("aviso").onclick = () => { $("aviso").hidden = true; loja.abrir(); };
 $("btn-loja").onclick = () => { if (!$("loja").hidden) return loja.fechar(); loja.abrir(); };
 $("btn-loja-entrada").onclick = () => loja.abrir();
 
@@ -281,6 +352,9 @@ let ini = null;
 $("palco").addEventListener("pointerdown", (e) => { ini = [e.clientX, e.clientY]; loja.fechar(); $("medalhas").hidden = true; $("frases").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("musicas").hidden = true; });
 $("palco").addEventListener("pointerup", (e) => {
   if (!ini || Math.hypot(e.clientX - ini[0], e.clientY - ini[1]) > 14) return;
+  // tocou num boneco (não o meu)? abre as frases pra falar com ele
+  let perto = null, dm = 34; for (const p of P.values()) { if (p.id === meuId) continue; const [sx, sy, ok] = tela(p.x, 1 + (p.y || 0), p.z); const d = Math.hypot(sx - e.clientX, sy - e.clientY); if (ok && d < dm) { dm = d; perto = p; } }
+  if (perto) { montarFrases(perto); $("frases").hidden = false; return; }
   pt.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); rc.setFromCamera(pt, cam);
     if (!rc.ray.intersectPlane(plano, alvo)) return;
   const d = Math.hypot(alvo.x, alvo.z), k = d > LIMITE ? LIMITE / d : 1, eu = P.get(meuId); if (!eu) return;

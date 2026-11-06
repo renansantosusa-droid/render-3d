@@ -218,7 +218,9 @@ export function montarCenario(cena) {
 
 // ---------- bonecos da turma: tudo instanciado, com gorro de Natal; a skin comprada troca o chapéu ou põe acessório ----------
 // skins (MESMA ordem do robô, skins.js): 0 coroa · 1 óculos escuros · 2 capa de herói · 3 camisa do Brasil · 4 chapéu de cowboy · 5 asas de anjo
-export const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"], ["✨", "Farmador de Aura"]]; // 6 = LENDÁRIA
+export const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"], ["✨", "Farmador de Aura (roxa)"], ["✨", "Farmador de Aura (azul)"], ["✨", "Farmador de Aura (verde)"], ["✨", "Farmador de Aura (vermelha)"], ["✨", "Farmador de Aura (dourada)"], ["✨", "Farmador de Aura (rosa)"]]; // 6..11 = LENDÁRIA em 6 cores
+// cores da aura: [dentro, fora, feixe de luz, anel]
+export const AURAS = [[0x9b3dff, 0xffb300, 0xd9a3ff, 0xffe066], [0x2f7bff, 0x7fe3ff, 0x9fd0ff, 0xbff4ff], [0x1fd15a, 0xc6ff4d, 0xa8ffc4, 0xdcff8a], [0xff2a2a, 0xff9a00, 0xffb0a0, 0xffc04d], [0xffb300, 0xfff07a, 0xfff2b0, 0xffe066], [0xff3fb4, 0xffd0f0, 0xffb3e6, 0xffc2ea]].map((l) => l.map((c) => new THREE.Color(c)));
 export function montarBonecos(cena, MAX) {
   const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
   const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.27, .46, 10), mat(0xd92b2b), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.29, .29, .1, 10), mat(0xffffff), MAX);
@@ -232,17 +234,19 @@ export function montarBonecos(cena, MAX) {
     cowboy: new THREE.InstancedMesh(new THREE.CylinderGeometry(.2, .26, .32, 12), mat(0x8a5a2b), MAX), aba2: new THREE.InstancedMesh(new THREE.CylinderGeometry(.54, .54, .05, 16), mat(0x8a5a2b), MAX),
     asa: new THREE.InstancedMesh(new THREE.SphereGeometry(.36, 10, 8), asaM, MAX * 2),
     // Farmador de Aura (lendária): duas camadas de brilho, anel no chão e faíscas subindo
-    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0x9b3dff, transparent: true, opacity: .55, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
-    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffb300, transparent: true, opacity: .3, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
-    anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
-    raio: new THREE.InstancedMesh(new THREE.CylinderGeometry(.32, .62, 7, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xd9a3ff, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }), MAX),
+    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .55, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .3, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    raio: new THREE.InstancedMesh(new THREE.CylinderGeometry(.32, .62, 7, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }), MAX),
     faisca: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: 0xfff3b0, fog: false }), MAX * 6),
   };
+  const BRANCO = new THREE.Color(0xffffff); for (const k of ["aura", "aura2", "raio", "anel"]) for (let i = 0; i < MAX; i++) acess[k].setColorAt(i, BRANCO); // cor por boneco
   const todos = [corpos, cabecas, gorros, abas, ...Object.values(acess)]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
   const cont = Object.fromEntries(Object.keys(acess).map((k) => [k, 0]));
   const o = new THREE.Object3D(), AMARELO = new THREE.Color(0xffd23f);
   const coloca = (m, n, x, y, z, rz = 0, s = 1, sx = 1, sy = 1, sz = 1, rx = 0) => { o.position.set(x, y, z); o.rotation.set(rx, 0, rz); o.scale.set(s * sx, s * sy, s * sz); o.updateMatrix(); m.setMatrixAt(n, o.matrix); };
-  const ac = (k, ...a) => coloca(acess[k], cont[k]++, ...a);
+  const ac = (k, ...a) => { const i = cont[k]++; coloca(acess[k], i, ...a); return i; };
+  const acCor = (k, c, ...a) => acess[k].setColorAt(ac(k, ...a), c);
   return {
     // sk = skin vestida (-1 = nenhuma); t = tempo, pra capa e asas mexerem
     poe(n, x, pulo, z, rz, cor, id, sk = -1, t = 0) {
@@ -255,10 +259,10 @@ export function montarBonecos(cena, MAX) {
       else if (sk === 2) ac("capa", x, .78 + pulo, z - .32, rz, 1, 1, 1, 1, .14 + Math.sin(t * 4 + id) * .07);
       else if (sk === 3) { ac("gola", x, 1.0 + pulo, z, 0, 1, 1, 1, 1, Math.PI / 2); ac("short", x, .36 + pulo, z, rz); }
       else if (sk === 4) { ac("cowboy", x, 1.66 + pulo, z, .08); ac("aba2", x, 1.52 + pulo, z, .08); }
-      else if (sk === 6) {
-        const pz = 1 + Math.sin(t * 4 + id) * .07;
-        ac("aura", x, .95 + pulo, z, 0, pz); ac("aura2", x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
-        ac("raio", x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); ac("anel", x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
+      else if (sk >= 6 && sk <= 11) {
+        const pz = 1 + Math.sin(t * 4 + id) * .07, C = AURAS[sk - 6];
+        acCor("aura", C[0], x, .95 + pulo, z, 0, pz); acCor("aura2", C[1], x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
+        acCor("raio", C[2], x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); acCor("anel", C[3], x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
         for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
       }
       else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
