@@ -8,7 +8,7 @@ import { chromium } from "playwright";
 const CHAVE = randomBytes(8).toString("hex"), PORTA_WS = 4301, PORTA_WEB = 4302, PORTA_ROBO = 4303, WS = `ws://localhost:${PORTA_WS}/ws`, SITE = "https://brasildaturma.online";
 fs.mkdirSync("fotos-festa", { recursive: true });
 // robô falso: donos das skins (bots de 1 a 6 vestem uma cada) + loja
-const donos = { teste_github: [0], turma_1: [6], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [7], turma_10: [8], turma_11: [9], turma_12: [10], turma_13: [11], turma_8: [2], turma_9: [5] };
+const donos = { teste_github: [0, 6], turma_1: [6], turma_2: [1], turma_3: [2], turma_4: [3], turma_5: [4], turma_6: [5], turma_7: [7], turma_10: [8], turma_11: [9], turma_12: [10], turma_13: [11], turma_8: [2], turma_9: [5] };
 let consultas = 0;
 const CATALOGO = [["coroa", "Coroa dourada", "👑", 4.9], ["oculos", "Óculos escuros", "🕶️", 2.9], ["capa", "Capa de herói", "🦸", 3.9], ["brasil", "Camisa do Brasil", "🇧🇷", 2.9], ["cowboy", "Chapéu de cowboy", "🤠", 2.9], ["asas", "Asas de anjo", "👼", 4.9], ...[["aura", "#9b3dff"], ["aura_azul", "#2f7bff"], ["aura_verde", "#1fd15a"], ["aura_vermelha", "#ff2a2a"], ["aura_dourada", "#ffb300"], ["aura_rosa", "#ff3fb4"]].map(([id, cor]) => [id, "Farmador de Aura", "✨", 9.9, cor])].map(([id, nome, icone, preco, cor]) => ({ id, nome, icone, preco, lendaria: !!cor, grupo: cor ? "aura" : null, cor: cor || null }));
 http.createServer((q, r) => { r.setHeader("content-type", "application/json"); if (q.url.startsWith("/skins/donos")) return r.end(JSON.stringify(donos)); r.statusCode = 404; r.end("{}"); }).listen(PORTA_ROBO);
@@ -45,7 +45,7 @@ await g.route("https://brasildaturma-renan.squareweb.app/skins/**", async (rt) =
   const u = new URL(rt.request().url());
   if (u.pathname === "/skins/lista") return rt.fulfill({ json: { venda: true, skins: CATALOGO, minhas: donos[u.searchParams.get("u")] || [] } });
   if (u.pathname === "/skins/pix") return rt.fulfill({ json: { id: "abc", segredo: "x", copia: "00020126580014BR.GOV.BCB.PIX-TESTE", qr: null, expira: Date.now() + 18e5, preco: 3.9 } });
-  if (u.pathname === "/skins/situacao") { consultas++; if (consultas >= 2) donos.teste_github = [0, 2]; return rt.fulfill({ json: { status: consultas >= 2 ? "pago" : "pendente", n: 2 } }); }
+  if (u.pathname === "/skins/situacao") { consultas++; if (consultas >= 2) donos.teste_github = [0, 2, 6]; return rt.fulfill({ json: { status: consultas >= 2 ? "pago" : "pendente", n: 2 } }); }
   return rt.fulfill({ status: 404, json: {} });
 });
 g.on("pageerror", (e) => erros.push("página: " + e)); g.on("console", (m) => { if (m.type() === "error" && !/favicon|404|CORS|ERR_/.test(m.text())) erros.push("console: " + m.text()); });
@@ -60,7 +60,7 @@ await g.click("#loja .fechar");
 await g.click("#entrar");
 await g.waitForFunction(() => document.getElementById("entrada").hidden, null, { timeout: 60000 });
 await g.waitForTimeout(7000);
-console.log("topo:", await g.locator("#quantos").innerText(), "| bonecos:", await g.evaluate(() => window.__festa.P.size), "| skins vistas:", await g.evaluate(() => [...window.__festa.P.values()].map((p) => p.sk).join(",")));
+console.log("topo:", await g.locator("#quantos").innerText(), "| bonecos:", await g.evaluate(() => window.__festa.P.size), "| skins vistas:", await g.evaluate(() => [...window.__festa.P.values()].map((p) => p.sk + "+" + p.au).join(",")));
 await g.screenshot({ path: "fotos-festa/02-chegada-skins.png", timeout: 180000 });
 // compra de skin dentro da festa: capa de herói
 await g.click("#btn-loja"); await g.waitForTimeout(1500);
@@ -74,7 +74,7 @@ await g.screenshot({ path: "fotos-festa/04-dados.png" });
 await g.click("#loja .ok"); await g.waitForTimeout(1200);
 await g.screenshot({ path: "fotos-festa/05-pix.png" });
 await g.waitForTimeout(9000);
-console.log("depois do Pix:", (await g.locator("#loja").innerText()).replace(/\n+/g, " | "), "| minha skin:", await g.evaluate(() => window.__festa.P.get(window.__festa.meuId)?.sk));
+console.log("depois do Pix:", (await g.locator("#loja").innerText()).replace(/\n+/g, " | "), "| minha skin:", await g.evaluate(() => window.__festa.P.get(window.__festa.meuId)?.sk) + " aura " + (await g.evaluate(() => window.__festa.P.get(window.__festa.meuId)?.au)));
 await g.screenshot({ path: "fotos-festa/06-liberada.png" });
 await g.click("#loja .ok");
 await g.waitForTimeout(2500);

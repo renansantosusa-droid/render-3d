@@ -158,10 +158,14 @@ function passoPinta() {
   }
   PT.fill(0); ptMud = []; ptZerou = true; olMudou = true;
 }
+// dois espaços: sk = skin comum (0-5) · au = aura lendária (6-11). Dá pra usar os dois juntos.
+// i: 0-11 veste · -1 tira a comum · -2 tira a aura
+const AURA = (i) => i >= 6 && i <= 11;
+function poeSkin(p, i) { if (i === -2) p.au = -1; else if (i === -1) p.sk = -1; else if (AURA(i)) p.au = i; else p.sk = i; eventos.push(["k", p.id, p.sk, p.au]); }
 function vestir(p, i) {
-  if (i === -1 || minhas(p.u).includes(i)) { p.sk = i; eventos.push(["k", p.id, i]); return; }
+  if (i < 0 || minhas(p.u).includes(i)) return poeSkin(p, i);
   // acabou de comprar: confere no robô antes de negar
-  lerSkins().then(() => { if (minhas(p.u).includes(i) && pessoas.has(p.id)) { p.sk = i; eventos.push(["k", p.id, i]); manda(p.ws, { t: "sks", sks: minhas(p.u) }); } });
+  lerSkins().then(() => { if (minhas(p.u).includes(i) && pessoas.has(p.id)) { poeSkin(p, i); manda(p.ws, { t: "sks", sks: minhas(p.u) }); } });
 }
 
 const simpatico = () => { const c = Object.entries(OL.conv || {}).sort((a, b) => b[1] - a[1]).slice(0, 3); return c.length ? "\n\n😄 *Mais simpáticos da noite* (quem mais puxou conversa):\n" + c.map(([u, n], i) => `${["🥇", "🥈", "🥉"][i]} @${u} · ${n} conversas`).join("\n") : ""; };
@@ -258,9 +262,9 @@ function admitir(ws, casa, k, teste) {
   const agora = Date.now();
   if (!teste) { cont.entradas++; unicos.add(k); }
   const [x, z] = lugar();
-  const ms = minhas(casa.u), p = { id: proxId++, u: casa.u, cid: casa.cid, x, z, ws, teste, cor: Math.floor(Math.random() * 8), sk: ms.length ? ms[ms.length - 1] : -1, contaDesde: agora, t: [], vis: new Set() };
+  const ms = minhas(casa.u), p = { id: proxId++, u: casa.u, cid: casa.cid, x, z, ws, teste, cor: Math.floor(Math.random() * 8), sk: ms.filter((i) => !AURA(i)).at(-1) ?? -1, au: ms.filter(AURA).at(-1) ?? -1, contaDesde: agora, t: [], vis: new Set() };
   pessoas.set(p.id, p); porUsuario.set(k, p); ws.pessoa = p;
-  manda(ws, { t: "ok", id: p.id, sala: 1, fim: FIM, b: bolaArr(), v: vbArr(), pt0: PT.join(","), sks: ms, pessoas: [[p.id, p.u, p.cid, p.x, p.z, p.cor, p.sk]] });
+  manda(ws, { t: "ok", id: p.id, sala: 1, fim: FIM, b: bolaArr(), v: vbArr(), pt0: PT.join(","), sks: ms, pessoas: [[p.id, p.u, p.cid, p.x, p.z, p.cor, p.sk, p.au]] });
 }
 
 // ---------- métricas: uma linha a cada 15 s em metricas.jsonl (o relatório da festa sai daqui) ----------
@@ -298,7 +302,7 @@ function mensagem(ws, txt) {
   if (m.t === "andar" && pode(p, 0, 240)) { const [x, z] = naPraca(+m.x || 0, +m.z || 0); if (p.corre) { p.ax = x; p.az = z; } else if (COR.fase === "vai" && naLargada(p)) { /* largou atrasado: anda normal, mas não conta */ p.x = x; p.z = z; p.mudou = true; } else { if (Math.hypot(x - p.x, z - p.z) <= 26) pintarCaminho(p, p.x, p.z, x, z); p.x = x; p.z = z; p.mudou = true; } }
   else if (m.t === "chute" && pode(p, 3, 250)) { const d = Math.hypot(+m.x || 0, +m.z || 0) || 1, b = bola; if (Math.hypot(p.x - b.x, p.z - b.z) < 9) { b.vx = (+m.x || 0) / d * 9; b.vz = (+m.z || 0) / d * 9; b.ultP = p; b.mudou = true; cont.chutes++; } }
   else if (m.t === "toque" && pode(p, 4, 400)) toque(p);
-  else if (m.t === "vestir" && Number.isInteger(m.i) && m.i >= -1 && m.i < N_SKINS && pode(p, 5, 1500)) vestir(p, m.i);
+  else if (m.t === "vestir" && Number.isInteger(m.i) && m.i >= -2 && m.i < N_SKINS && pode(p, 5, 800)) vestir(p, m.i);
   else if (m.t === "emoji" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_EMOJIS && pode(p, 1, 1000)) { cont.emojis++; eventos.push(["j", p.id, m.i]); }
   else if (m.t === "frase" && Number.isInteger(m.i) && m.i >= 0 && m.i < N_FRASES && pode(p, 2, 2500)) {
     cont.frases++; const a = Number.isInteger(m.a) && m.a !== p.id && pessoas.has(m.a) ? m.a : 0;
@@ -352,7 +356,7 @@ setInterval(() => {
     perto.length = 0; perto.push(...fica, ...novos);
     const agora = new Set(perto.map(([, q]) => q.id)), f = [], a = [];
     for (const id of p.vis) if (!agora.has(id)) f.push(["s", id]);
-    for (const [, q] of perto) { if (!p.vis.has(q.id)) f.push(["e", q.id, q.u, q.cid, q.x, q.z, q.cor, q.sk]); else if (q.mudou) a.push([q.id, q.x, q.z]); }
+    for (const [, q] of perto) { if (!p.vis.has(q.id)) f.push(["e", q.id, q.u, q.cid, q.x, q.z, q.cor, q.sk, q.au]); else if (q.mudou) a.push([q.id, q.x, q.z]); }
     for (const e of evs) if (e[1] === p.id || agora.has(e[1])) f.push(e);
     p.vis = agora;
     if (!f.length && !a.length && !mostrar && !bolaMudou && !vMudou && !oObj && !ptEnv) continue;

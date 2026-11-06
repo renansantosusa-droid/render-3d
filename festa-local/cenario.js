@@ -249,7 +249,9 @@ export function montarBonecos(cena, MAX) {
   const acCor = (k, c, ...a) => acess[k].setColorAt(ac(k, ...a), c);
   return {
     // sk = skin vestida (-1 = nenhuma); t = tempo, pra capa e asas mexerem
-    poe(n, x, pulo, z, rz, cor, id, sk = -1, t = 0) {
+    // sk = skin comum (0-5), au = aura lendária (6-11): dá pra usar as duas juntas
+    poe(n, x, pulo, z, rz, cor, id, sk = -1, t = 0, au = -1) {
+      if (sk >= 6) { au = sk; sk = -1; } // compatível com quem só manda um número
       coloca(corpos, n, x, .58 + pulo, z, rz); corpos.setColorAt(n, sk === 3 ? AMARELO : CORES[cor % 8]);
       coloca(cabecas, n, x, 1.28 + pulo, z); cabecas.setColorAt(n, PELES[id % 5]);
       const gorro = sk === 0 || sk === 4 ? 0 : 1; // coroa e cowboy tiram o gorro
@@ -259,13 +261,13 @@ export function montarBonecos(cena, MAX) {
       else if (sk === 2) ac("capa", x, .78 + pulo, z - .32, rz, 1, 1, 1, 1, .14 + Math.sin(t * 4 + id) * .07);
       else if (sk === 3) { ac("gola", x, 1.0 + pulo, z, 0, 1, 1, 1, 1, Math.PI / 2); ac("short", x, .36 + pulo, z, rz); }
       else if (sk === 4) { ac("cowboy", x, 1.66 + pulo, z, .08); ac("aba2", x, 1.52 + pulo, z, .08); }
-      else if (sk >= 6 && sk <= 11) {
-        const pz = 1 + Math.sin(t * 4 + id) * .07, C = AURAS[sk - 6];
+      else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
+      if (au >= 6 && au <= 11) {
+        const pz = 1 + Math.sin(t * 4 + id) * .07, C = AURAS[au - 6];
         acCor("aura", C[0], x, .95 + pulo, z, 0, pz); acCor("aura2", C[1], x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
         acCor("raio", C[2], x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); acCor("anel", C[3], x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
         for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
       }
-      else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
     },
     fim(n) {
       for (const m of [corpos, cabecas, gorros, abas]) m.count = n;

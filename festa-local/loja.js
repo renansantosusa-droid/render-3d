@@ -21,22 +21,25 @@ export function criarLoja(ctx) {
       const d = await (await fetch(ROBO + "/skins/lista" + (u ? "?u=" + encodeURIComponent(u) : ""), { cache: "no-store" })).json();
       catalogo = d.skins; venda = d.venda; if (u) minhas = d.minhas || [];
     } catch { l.innerHTML = "<p>Não consegui abrir a loja agora. Tenta de novo.</p><button class='ok'>Fechar</button>"; l.querySelector(".ok").onclick = fechar; return; }
-    const eu = ctx.eu(); provando = eu && eu.sk >= 0 ? eu.sk : 0; if (provando >= 6) corAura = provando - 6;
+    const eu = ctx.eu(); provando = eu && eu.au >= 6 ? eu.au : eu && eu.sk >= 0 ? eu.sk : 0; if (provando >= 6) corAura = provando - 6;
     montar();
   }
 
+  // dois espaços: comum (0-5) e aura (6-11). i = -1 tira a comum, -2 tira a aura
   function vestir(i) {
     const eu = ctx.eu(); if (!eu) return;
-    eu.sk = i; ctx.enviar({ t: "vestir", i });
-    try { localStorage.setItem("festa-skin", String(i)); } catch {}
+    if (i === -2) eu.au = -1; else if (i === -1) eu.sk = -1; else if (i >= 6) eu.au = i; else eu.sk = i;
+    ctx.enviar({ t: "vestir", i });
+    try { localStorage.setItem("festa-skin", String(eu.sk)); localStorage.setItem("festa-aura", String(eu.au ?? -1)); } catch {}
   }
+  const usando = (eu, i) => !!eu && (i >= 6 ? eu.au === i : eu.sk === i);
 
   // botão de cada skin: comprar, vestir, tirar
   function botao(b, i) {
-    const eu = ctx.eu(), vestida = eu ? eu.sk : -1, s = catalogo[i];
+    const eu = ctx.eu(), s = catalogo[i], usa = usando(eu, i);
     if (minhas.includes(i)) {
-      b.textContent = !eu ? "✅ É tua" : vestida === i ? "Tirar" : "Vestir";
-      b.onclick = (e) => { e.stopPropagation(); if (!eu) return; vestir(vestida === i ? -1 : i); montar(); };
+      b.textContent = !eu ? "✅ É tua" : usa ? "Tirar" : "Vestir";
+      b.onclick = (e) => { e.stopPropagation(); if (!eu) return; vestir(usa ? (i >= 6 ? -2 : -1) : i); montar(); };
     } else {
       b.textContent = venda ? `Comprar ${real(s.preco)}` : "Em breve"; b.disabled = !venda;
       b.onclick = (e) => { e.stopPropagation(); pedirDados(i); };
@@ -46,22 +49,22 @@ export function criarLoja(ctx) {
   function provar(i) {
     provando = i; ctx.provador?.mostrar(i);
     const n = l.querySelector(".provNome"); if (n) n.textContent = `${catalogo[i].icone} ${catalogo[i].nome}`;
-    l.querySelectorAll(".sk").forEach((d) => d.classList.toggle("prov", d.dataset.g === "aura" ? i >= 6 : +d.dataset.i === i));
+    l.querySelectorAll(".sk").forEach((d) => d.classList.toggle("provando", d.dataset.g === "aura" ? i >= 6 : +d.dataset.i === i));
   }
 
   function montar() {
     if (l.hidden || compra || !catalogo) return;
-    const eu = ctx.eu(), vestida = eu ? eu.sk : -1, u = ctx.arroba();
+    const eu = ctx.eu(), u = ctx.arroba();
     l.innerHTML = `<button class="fechar" aria-label="Fechar">×</button><h2>👕 Loja de skins</h2>
 <div class="prov"><canvas width="360" height="360" aria-label="Teu boneco com a skin escolhida"></canvas><div class="provNome"></div><div class="provDica">toca numa skin pra provar 👇</div></div>
-<div class="grade"></div><p class="sub">É do teu @ pra sempre, em todas as festas. Só muda o visual: não dá ponto.</p><p class="msgL"></p>`;
+<div class="grade"></div><p class="sub">✨ Dá pra usar a aura lendária junto com outra skin. É do teu @ pra sempre, em todas as festas. Só muda o visual: não dá ponto.</p><p class="msgL"></p>`;
     l.querySelector(".fechar").onclick = fechar;
     const g = l.querySelector(".grade");
     // lendária primeiro, num cartão só com as cores
     const auras = catalogo.map((s, i) => [s, i]).filter(([s]) => s.grupo === "aura");
     if (auras.length) {
       const i = auras[Math.min(corAura, auras.length - 1)][1], d = document.createElement("div");
-      d.className = "sk lend" + (minhas.includes(i) ? " tem" : "") + (vestida === i ? " vest" : ""); d.dataset.g = "aura";
+      d.className = "sk lend" + (minhas.includes(i) ? " tem" : "") + (usando(eu, i) ? " vest" : ""); d.dataset.g = "aura";
       d.innerHTML = `<div class="selo">⭐ LENDÁRIA</div><div class="nm">✨ Farmador de Aura</div><div class="cores"></div><button class="comprar"></button>`;
       const cs = d.querySelector(".cores");
       auras.forEach(([s, k], n) => { const c = document.createElement("button"); c.className = "cor" + (k === i ? " on" : "") + (minhas.includes(k) ? " minha" : ""); c.style.background = s.cor; c.setAttribute("aria-label", s.nome); c.onclick = (e) => { e.stopPropagation(); corAura = n; provando = k; montar(); }; cs.appendChild(c); });
@@ -70,7 +73,7 @@ export function criarLoja(ctx) {
     catalogo.forEach((s, i) => {
       if (s.grupo === "aura") return;
       const d = document.createElement("div"); d.dataset.i = i;
-      d.className = "sk" + (minhas.includes(i) ? " tem" : "") + (vestida === i ? " vest" : "");
+      d.className = "sk" + (minhas.includes(i) ? " tem" : "") + (usando(eu, i) ? " vest" : "");
       d.innerHTML = `<div class="ic">${s.icone}</div><div class="nm">${limpa(s.nome)}</div><button></button>`;
       botao(d.querySelector("button"), i); d.onclick = () => provar(i); g.appendChild(d);
     });
@@ -134,7 +137,11 @@ export function criarLoja(ctx) {
     // ao entrar: veste a skin escolhida da última vez (se for dele); senão a que o servidor pôs
     aoEntrar() {
       const eu = ctx.eu(); if (!eu) return;
-      try { const g = localStorage.getItem("festa-skin"); if (g !== null && (+g === -1 || minhas.includes(+g)) && +g !== eu.sk) vestir(+g); } catch {}
+      try {
+        const g = localStorage.getItem("festa-skin"), a = localStorage.getItem("festa-aura");
+        if (g !== null && +g < 6 && (+g === -1 || minhas.includes(+g)) && +g !== eu.sk) vestir(+g);
+        if (a !== null && (+a === -1 ? eu.au >= 6 : minhas.includes(+a) && +a !== eu.au)) vestir(+a === -1 ? -2 : +a);
+      } catch {}
     },
   };
 }

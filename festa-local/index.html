@@ -57,7 +57,7 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 #loja .msgL{color:#b42318;min-height:18px;font-size:14px}#loja label{display:flex;gap:8px;align-items:flex-start;text-align:left;font-size:13px;margin:6px 0}
 #loja .prov{background:radial-gradient(circle at 50% 40%,#2a3f7a,#0a1633);border-radius:16px;margin:4px 0 8px;padding:4px 0 8px}#loja .prov canvas{width:180px;height:180px;display:block;margin:0 auto}
 #loja .provNome{color:#ffd23f;font-size:16px}#loja .provDica{color:#cfd8ff;font-size:12px}
-#loja .sk{cursor:pointer}#loja .sk.prov{outline:4px solid #ffd23f;outline-offset:1px}
+#loja .sk{cursor:pointer}#loja .sk.provando{outline:4px solid #ffd23f;outline-offset:1px}
 #loja .cores{display:flex;gap:8px;justify-content:center;margin:4px 0 8px}#loja .cores .cor{width:32px;height:32px;min-height:0;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #14204a;padding:0;cursor:pointer}#loja .cores .cor.on{box-shadow:0 0 0 3px #ffd23f,0 0 10px #ffd23f;transform:scale(1.15)}#loja .cores .cor.minha::after{content:"✓";color:#fff;font-size:14px}
 #loja .sk.lend .comprar{width:100%}
 @keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.08);box-shadow:0 0 16px #b36bff}}#btn-loja.chama{animation:pulsa 1.2s infinite}
@@ -87,8 +87,8 @@ body.limpo #topo,body.limpo #baixo{display:none!important}
 <p style="font-size:13px;color:#47604c">Fica até o fim? Quem ficar 15 minutos ou mais ganha <b>+20 pontos</b>.</p></form></div>
 <script type="module">
 import * as THREE from "three";
-import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=7";
-import { criarLoja } from "./loja.js?v=4";
+import { montarCenario, montarBonecos, AREAS, LIMITE, CAMPO, PISTA_C, QV, naPista, areaDe, SKINS } from "./cenario.js?v=8";
+import { criarLoja } from "./loja.js?v=5";
 const CFG = window.FESTA || {}, Q = new URLSearchParams(location.search), CHAVE = Q.get("chave") || "", VISAO = Q.get("visao"); // visao=palco: câmera no palco olhando a turma, sem botões, pra gravar a tela
 const $ = (i) => document.getElementById(i);
 const EMOJIS = ["🏅", "😂", "🔥", "👏", "🎉", "❤️"];
@@ -109,7 +109,7 @@ const FRASES = [
   () => "KKKKKK 😂",
   () => "Valeu! 🙏",
   () => "Que skin linda! 😍",
-  (p) => p && p.sk >= 0 ? `Olha minha skin: ${SKINS[p.sk][1]} ${SKINS[p.sk][0]}` : "Olha minha skin ✨",
+  (p) => { const k = p && p.au >= 6 ? p.au : p?.sk; return k >= 0 ? `Olha minha skin: ${SKINS[k][1]} ${SKINS[k][0]}` : "Olha minha skin ✨"; },
   (p) => `Bora pintar o chão, ${ESTADOS[ufDe(p)] || "turma"}! 🎨`,
   () => "Bora um pênalti? ⚽",
   () => "Bora dançar no palco! 💃",
@@ -129,7 +129,7 @@ await document.fonts?.load("900 92px Nunito").catch(() => {});
 const mundo = montarCenario(cena);
 const MAX = 220, bonecos = montarBonecos(cena, MAX);
 const P = new Map(); let meuId = null;
-function novo(id, u, cid, x, z, cor, sk) { if (P.size >= MAX && !P.has(id)) return; P.set(id, { id, u, cid, x, z, tx: x, tz: z, cor, sk: sk ?? -1, fase: id * 1.7 }); }
+function novo(id, u, cid, x, z, cor, sk, au) { if (P.size >= MAX && !P.has(id)) return; P.set(id, { id, u, cid, x, z, tx: x, tz: z, cor, sk: sk ?? -1, au: au ?? -1, fase: id * 1.7 }); }
 
 // ---------- etiquetas e balões (só perto da câmera: celular não aguenta 150 textos) ----------
 const camadas = $("camadas"), etiquetas = Array.from({ length: 16 }, () => { const d = document.createElement("div"); d.className = "et"; d.style.display = "none"; camadas.appendChild(d); return d; });
@@ -186,11 +186,11 @@ function receber(m) {
   if (m.t === "q") {
     for (const [id, x, z] of m.a || []) { const p = P.get(id); if (p && id !== meuId) { p.tx = x; p.tz = z; } }
     for (const f of m.f || []) {
-      if (f[0] === "e") novo(f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
+      if (f[0] === "e") novo(f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8]);
       else if (f[0] === "s") P.delete(f[1]);
       else if (f[0] === "j") balao(f[1], EMOJIS[f[2]], true);
       else if (f[0] === "f") recebeuFrase(f[1], f[2], f[3]);
-      else if (f[0] === "k") { const p = P.get(f[1]); if (p && f[1] !== meuId) { p.sk = f[2]; if (f[2] >= 0) balao(f[1], SKINS[f[2]][0], true); } }
+      else if (f[0] === "k") { const p = P.get(f[1]); if (p && f[1] !== meuId) { const nova = f[3] >= 6 && f[3] !== p.au ? f[3] : f[2] >= 0 && f[2] !== p.sk ? f[2] : -1; p.sk = f[2]; p.au = f[3] ?? -1; if (nova >= 0) balao(f[1], SKINS[nova][0], true); } }
     }
     if (m.total) { totalFesta = m.total; filaN = m.fila || 0; mostrarTopo(); }
     if (m.v) { voleiAlvo = m.v; if (m.v[2] !== vA || m.v[3] !== vB) { vA = m.v[2]; vB = m.v[3]; mundo.setPlacarV(vA, vB); } }
@@ -263,7 +263,7 @@ EMOJIS.forEach((e, i) => { const b = document.createElement("button"); b.textCon
 function montarFrases(alvo) {
   const eu = P.get(meuId), lista = [];
   if (alvo) { const tt = document.createElement("button"); tt.className = "tit"; tt.textContent = `💬 Falar com @${alvo.u}`; lista.push(tt); }
-  FRASES.forEach((f, i) => { if (i === 9 && !(eu && eu.sk >= 0)) return; const b = document.createElement("button"); b.textContent = f(eu); b.onclick = () => { enviar(alvo ? { t: "frase", i, a: alvo.id } : { t: "frase", i }); $("frases").hidden = true; }; lista.push(b); });
+  FRASES.forEach((f, i) => { if (i === 9 && !(eu && (eu.sk >= 0 || eu.au >= 6))) return; const b = document.createElement("button"); b.textContent = f(eu); b.onclick = () => { enviar(alvo ? { t: "frase", i, a: alvo.id } : { t: "frase", i }); $("frases").hidden = true; }; lista.push(b); });
   $("frases").replaceChildren(...lista); $("frases").style.maxHeight = "52vh"; $("frases").style.overflow = "auto";
 }
 $("btn-frases").onclick = () => { montarFrases(null); $("medalhas").hidden = true; $("ambientes").hidden = true; $("barraca").hidden = true; $("frases").hidden = !$("frases").hidden; };
@@ -327,7 +327,8 @@ const provador = (() => {
     if (!on || !r) return; requestAnimationFrame(passo);
     const tt = ag / 1000, a = Math.sin(tt * .9) * 1.9; // vai e volta: mostra frente e costas (capa, asas)
     cm.position.set(Math.sin(a) * 4.6, 2.1, Math.cos(a) * 4.6); cm.lookAt(0, 1.05, 0);
-    bon.poe(0, 0, 0, 0, 0, eu ? eu.cor : 1, eu ? eu.id : 3, sk, tt); bon.fim(1); r.render(sc, cm);
+    const prAura = sk >= 6, s1 = prAura ? (eu ? eu.sk : -1) : sk, a1 = prAura ? sk : (eu ? eu.au : -1);
+    bon.poe(0, 0, 0, 0, 0, eu ? eu.cor : 1, eu ? eu.id : 3, s1, tt, a1); bon.fim(1); r.render(sc, cm);
   }
   return { ligar, mostrar: (i) => { sk = i; }, desligar: () => { on = false; } };
 })();
@@ -341,7 +342,7 @@ const loja = criarLoja({
 });
 // chama pra loja: o botão pulsa até a 1ª vez; 20 s depois de entrar, sem skin, aparece o convite
 let lojaAberta = false;
-function convidarLoja() { setTimeout(() => { const eu = P.get(meuId); if (!eu || lojaAberta || eu.sk >= 0 || !$("entrada").hidden) return; $("aviso").hidden = false; setTimeout(() => { $("aviso").hidden = true; }, 10000); }, 20000); }
+function convidarLoja() { setTimeout(() => { const eu = P.get(meuId); if (!eu || lojaAberta || eu.sk >= 0 || eu.au >= 6 || !$("entrada").hidden) return; $("aviso").hidden = false; setTimeout(() => { $("aviso").hidden = true; }, 10000); }, 20000); }
 $("aviso").onclick = () => { $("aviso").hidden = true; loja.abrir(); };
 $("btn-loja").onclick = () => { if (!$("loja").hidden) return loja.fechar(); loja.abrir(); };
 $("btn-loja-entrada").onclick = () => loja.abrir();
@@ -375,7 +376,7 @@ function quadro(agora) {
     if (d > 26) { p.x = p.tx; p.z = p.tz; } // usou o botão "Ir para"
     else if (anda) { const k = Math.min(1, 7.5 * dt / d); p.x += dx * k; p.z += dz * k; }
     const danca = naPista(p.x, p.z) && !anda, pulo = anda ? Math.abs(Math.sin(t * 11 + p.fase)) * .12 : danca ? Math.abs(Math.sin(t * 6 + p.fase)) * .35 : 0;
-    bonecos.poe(n, p.x, pulo, p.z, danca ? Math.sin(t * 6 + p.fase) * .12 : 0, p.cor, p.id, p.sk, t);
+    bonecos.poe(n, p.x, pulo, p.z, danca ? Math.sin(t * 6 + p.fase) * .12 : 0, p.cor, p.id, p.sk, t, p.au);
     p.y = pulo; n++;
   }
   bonecos.fim(n);
