@@ -1,0 +1,75 @@
+{
+ "nome": "CAL1 B2 abre top1 toda semana com takes novos",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "reel-top1_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_2186_19_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_3235_23_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_16.6_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_4.2_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_4500_0_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_7807_1_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8,
+   "zoom": 1.35,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3482_1_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "cal1_17.9_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_6353_0.7_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_3477_3_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_21_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "cal1_22.4_1.37.MOV",
+   "inicio": 0,
+   "duracao": 1.37
+  }
+ ]
+}

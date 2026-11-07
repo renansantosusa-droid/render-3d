@@ -1,0 +1,16 @@
+{
+ "nome": "CAL1 A4 gancho o que faco toda semana",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "reel-top1_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "cal1_3_20.77.MOV",
+   "inicio": 0,
+   "duracao": 20.77
+  }
+ ]
+}

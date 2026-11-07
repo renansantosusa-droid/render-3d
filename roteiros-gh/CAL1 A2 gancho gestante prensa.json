@@ -1,0 +1,16 @@
+{
+ "nome": "CAL1 A2 gancho gestante prensa",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "gancho-gestante_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "cal1_3_20.77.MOV",
+   "inicio": 0,
+   "duracao": 20.77
+  }
+ ]
+}

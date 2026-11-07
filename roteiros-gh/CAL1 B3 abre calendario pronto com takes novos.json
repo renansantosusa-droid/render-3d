@@ -1,0 +1,90 @@
+{
+ "nome": "CAL1 B3 abre calendario pronto com takes novos",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "cal1_16.6_1.5.MOV",
+   "inicio": 0,
+   "duracao": 1.5
+  },
+  {
+   "arquivo": "cal1_20_0.75.MOV",
+   "inicio": 0,
+   "duracao": 0.75
+  },
+  {
+   "arquivo": "cal1_2.9_0.75.MOV",
+   "inicio": 0,
+   "duracao": 0.75
+  },
+  {
+   "arquivo": "IMG_4168_12_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_2186_26_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_4713_1_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_3.9_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_6353_0.7_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_3477_3_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_7808_8_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_4500_0_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_17.5_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_4.4_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_21_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "cal1_22.4_1.37.MOV",
+   "inicio": 0,
+   "duracao": 1.37
+  }
+ ],
+ "textos": [
+  {
+   "texto": "ALERTA TENDÊNCIA",
+   "y": 0.06,
+   "tamanho": 58,
+   "de": 0,
+   "ate": 3
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "nome": "CAL1 B1 abre gestante com takes novos",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "gancho-gestante_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_7726_0.4_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_2210_4_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_3.9_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_3731_2.4_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_4167_1.5_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9
+  },
+  {
+   "arquivo": "IMG_7808_8_2.MOV",
+   "inicio": 0,
+   "duracao": 2
+  },
+  {
+   "arquivo": "IMG_3559_2.5_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_16.5_1.7.MOV",
+   "inicio": 0,
+   "duracao": 1.7
+  },
+  {
+   "arquivo": "IMG_4168_20_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "cal1_18_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "cal1_21_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "cal1_22.4_1.37.MOV",
+   "inicio": 0,
+   "duracao": 1.37
+  }
+ ],
+ "textos": [
+  {
+   "texto": "ALERTA TENDÊNCIA",
+   "y": 0.06,
+   "tamanho": 58,
+   "de": 0,
+   "ate": 3
+  }
+ ]
+}

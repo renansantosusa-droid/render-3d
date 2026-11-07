@@ -1,0 +1,16 @@
+{
+ "nome": "CAL1 A3 gancho nao compre maquina",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "gancho-ct06eng_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "cal1_3_20.77.MOV",
+   "inicio": 0,
+   "duracao": 20.77
+  }
+ ]
+}
