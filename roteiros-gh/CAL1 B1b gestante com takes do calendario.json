@@ -1,0 +1,80 @@
+{
+ "nome": "CAL1 B1b gestante com takes do calendario",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "gancho-gestante_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_3319_0.2_1.8.MOV",
+   "inicio": 0,
+   "duracao": 1.8
+  },
+  {
+   "arquivo": "IMG_3319_2.6_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_4.7_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_7.6_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_9.8_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_12.3_1.7.MOV",
+   "inicio": 0,
+   "duracao": 1.7
+  },
+  {
+   "arquivo": "IMG_3319_14.5_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "IMG_3319_15.8_1.5.MOV",
+   "inicio": 0,
+   "duracao": 1.5
+  },
+  {
+   "arquivo": "IMG_3319_17.5_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "IMG_3319_20_1.5.MOV",
+   "inicio": 0,
+   "duracao": 1.5
+  },
+  {
+   "arquivo": "IMG_3319_22_2.3.MOV",
+   "inicio": 0,
+   "duracao": 2.3
+  },
+  {
+   "arquivo": "cal1_21_2.78.MOV",
+   "inicio": 0,
+   "duracao": 2.78
+  }
+ ],
+ "textos": [
+  {
+   "texto": "ALERTA TENDÊNCIA",
+   "y": 0.06,
+   "tamanho": 58,
+   "de": 0,
+   "ate": 3
+  }
+ ]
+}

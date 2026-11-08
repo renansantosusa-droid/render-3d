@@ -1,0 +1,61 @@
+{
+ "nome": "CAL1 CT2 controle com takes novos",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "cal1_0_5.7.MOV",
+   "inicio": 0,
+   "duracao": 5.7
+  },
+  {
+   "arquivo": "IMG_3319_0_2.MOV",
+   "inicio": 0,
+   "duracao": 2
+  },
+  {
+   "arquivo": "IMG_3319_4.6_1.7.MOV",
+   "inicio": 0,
+   "duracao": 1.7
+  },
+  {
+   "arquivo": "IMG_3319_7.6_1.5.MOV",
+   "inicio": 0,
+   "duracao": 1.5
+  },
+  {
+   "arquivo": "IMG_3319_12.2_1.7.MOV",
+   "inicio": 0,
+   "duracao": 1.7
+  },
+  {
+   "arquivo": "IMG_3319_15.6_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_17.5_1.4.MOV",
+   "inicio": 0,
+   "duracao": 1.4
+  },
+  {
+   "arquivo": "IMG_3319_19.6_1.6.MOV",
+   "inicio": 0,
+   "duracao": 1.6
+  },
+  {
+   "arquivo": "IMG_3319_22_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9
+  },
+  {
+   "arquivo": "cal1_20_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9
+  },
+  {
+   "arquivo": "cal1_21_2.78.MOV",
+   "inicio": 0,
+   "duracao": 2.78
+  }
+ ]
+}

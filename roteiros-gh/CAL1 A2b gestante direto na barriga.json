@@ -1,0 +1,16 @@
+{
+ "nome": "CAL1 A2b gestante direto na barriga",
+ "audio": "dados/veecriativos/audios/cal1-audio.m4a",
+ "trechos": [
+  {
+   "arquivo": "gancho-gestante_1.5_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7
+  },
+  {
+   "arquivo": "cal1_2.7_21.08.MOV",
+   "inicio": 0,
+   "duracao": 21.08
+  }
+ ]
+}
