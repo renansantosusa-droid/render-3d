@@ -822,7 +822,7 @@ const T = {
   sozinho(t, k) { g.save(); camera(k, { z0: 1.1, z1: 1.25, cy: 900 }); sinalEsc(t, 0); g.restore(); tinta("#000", .4); vinheta(.8); },
   regra4(t, k) { cartelaRegra(t, k, 4, "ELES VÃO ATRÁS", "DO SOM MAIS ALTO"); vinheta(.6); },
   kaiqueSorri(t, k) { rostoLant(KAIQ, t, k, { expr: "sorriso" }, 1.1); vinheta(.85); },
-  fuga(t, k) { rostoLant(KAIQ, t, k, { expr: "sorriso" }, 1.2); balao("A NOSSA FUGA", 540, 320, 1); g.save(); trm(); palavraP("FUGA", t, P(15, "fuga") - .05, 1650, "#ffd23a", 150); g.restore(); vinheta(.85); },
+  fuga(t, k) { rostoLant(KAIQ, t, k, { expr: "sorriso" }, 1.2); g.save(); trm(); palavraP("NOSSA FUGA", t, P(15, "fuga") - .05, 330, "#ffd23a", 130); g.restore(); vinheta(.85); },
 };
 
 // tremores nos impactos
