@@ -192,7 +192,7 @@ LBL.forEach((l) => {
   l.fs = fs_; l.w = Math.ceil(w);
 });
 const REG_L = REGS.map((_, r) => LBL.filter((l) => l.reg === r).sort((a, b) => POS[a.i][0] - POS[b.i][0]));
-REG_L.forEach((L, r) => L.forEach((l, k) => { l.t0 = tR[r] + .1 + k * Math.min(.07, .6 / L.length); l.t1 = tRfim[r]; }));
+REG_L.forEach((L, r) => L.forEach((l, k) => { l.t0 = tR[r] + .05 + k * Math.min(.04, .3 / L.length); l.t1 = tRfim[r]; }));
 function desenhaLabels(t) {
   g2.clearRect(0, 0, W, H); lab.style.display = (t >= tR[0] && t < C(3)) ? "block" : "none";
   const r = tR.findLastIndex((a) => t >= a); if (r < 0 || t >= C(3)) return;
@@ -239,11 +239,11 @@ const CHIPS = [
   ...REGS.map((nome, r) => [tR[r], tRfim[r], `👑 GOVERNADORES · ${nome.toUpperCase()}`, true]),
   [C(3), P(3, "E") - .1, `👑 OS ${DADOS.extra.governadores} GOVERNADORES`, true],
   [P(3, "E") - .1, C(4), `⭐ PONTOS ZERADOS<small>nova semana começou</small>`, true],
-  [C(4), C(5), `🔥 AMANHÃ: EVENTOS NOVOS<small>+ jeitos novos de ganhar pontos</small>`, true],
+  [C(4), C(5), `🔥 A PARTIR DE HOJE<small>eventos novos + jeitos novos de ganhar pontos</small>`, true],
   [C(5), 99, `💬 COMENTA TUA CIDADE + ESTADO`, true],
 ];
 const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
-const DESTAQUE = new Set(["saiu", "primeiros", "governadores", "governador", "turma", "brasil", "norte", "nordeste", "centrooeste", "sudeste", "sul", "parabens", "pontos", "zeraram", "novo", "novos", "eventos", "amanha", "ganhar", "casa", "mapa", "comenta", "cidade", "estado", "tua", "teu"]);
+const DESTAQUE = new Set(["saiu", "primeiros", "governadores", "governador", "turma", "brasil", "norte", "nordeste", "centrooeste", "sudeste", "sul", "parabens", "pontos", "zeraram", "novo", "novos", "eventos", "hoje", "ganhar", "casa", "mapa", "comenta", "cidade", "estado", "tua", "teu"]);
 const esc = (el, k, centro = true) => el.style.transform = (centro ? "translateX(-50%) " : "") + `scale(${k})`;
 let chipChave = "";
 function textos(t) {
