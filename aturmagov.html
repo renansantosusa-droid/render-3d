@@ -163,11 +163,11 @@ const ENQ = REGS.map((_, r) => enquadra(r));
 console.log("enquadramento", JSON.stringify(ENQ));
 const GERAL = pll(-53, -15.5);
 const SHOTS = [
-  S(0, GERAL, [52, -8, 62], [45, 2, 58]),
+  S(0, GERAL, [60, -8, 62], [54, 2, 58]),
   ...ENQ.map((e, r) => S(tR[r], [e.cx, e.cz], [e.d * 1.1, -5 + r * 2, EL], [e.d, 5 - r * 2, EL])),
-  S(C(3), pll(-53, -16), [54, 4, 60], [49, -4, 58]),
-  S(C(4), pll(-53, -16), [49, -4, 58], [45, 6, 56]),
-  S(C(5), pll(-53, -16), [50, 4, 60], [47, -4, 58]),
+  S(C(3), pll(-53, -16), [60, 4, 60], [56, -4, 58]),
+  S(C(4), pll(-53, -16), [56, -4, 58], [52, 6, 56]),
+  S(C(5), pll(-53, -16), [58, 4, 60], [54, -4, 58]),
 ];
 SHOTS.forEach((s, i) => s.b = i + 1 < SHOTS.length ? SHOTS[i + 1].a : FIM);
 const alvo = new THREE.Vector3();
