@@ -6,7 +6,7 @@
 .ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
 #marca{top:70px;left:50%;background:#fff;color:#1d5e2a;font-size:46px;padding:14px 36px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap;letter-spacing:1px}
 #marca b{color:#2fa34a}
-#chip{top:250px;left:50%;white-space:nowrap;background:rgba(18,52,24,.88);border-radius:34px;padding:8px 40px 20px;text-align:center;font-size:88px;color:#fff;line-height:1.05}
+#chip{top:250px;left:50%;white-space:normal;width:max-content;max-width:900px;box-sizing:border-box;background:rgba(18,52,24,.88);border-radius:34px;padding:8px 40px 20px;text-align:center;font-size:88px;color:#fff;line-height:1.05}
 #chip.amarelo{color:#ffd23f}
 #chip small{display:block;font-size:.6em;color:#fff}
 #cont{top:300px;left:50%;white-space:nowrap;text-align:center;color:#ffd23f;font-size:200px;line-height:1;-webkit-text-stroke:7px #10251a;paint-order:stroke fill;text-shadow:0 10px 0 rgba(16,37,26,.6)}
@@ -155,7 +155,7 @@ function enquadra(r) {
     const er = EL * Math.PI / 180; camT.position.set(cx, ALT + d * Math.sin(er), cz + d * Math.cos(er)); camT.lookAt(cx, ALT, cz); camT.updateMatrixWorld(); camT.updateProjectionMatrix();
     let ok = true;
     for (const l of L) { pv.set(POS[l.i][0], topoY(l, d), POS[l.i][1]).project(camT); const sx = (pv.x + 1) / 2 * W, sy = (1 - pv.y) / 2 * H; if (sx < 190 || sx > 890 || sy < 640 || sy > 1380) { ok = false; break; } }
-    if (ok) return { cx, cz, d: d * 1.1 };
+    if (ok) return { cx, cz, d: Math.max(d * 1.1, 26) };
   }
   return { cx, cz, d: 60 };
 }
@@ -163,11 +163,11 @@ const ENQ = REGS.map((_, r) => enquadra(r));
 console.log("enquadramento", JSON.stringify(ENQ));
 const GERAL = pll(-53, -15.5);
 const SHOTS = [
-  S(0, GERAL, [58, -8, 62], [50, 2, 58]),
+  S(0, GERAL, [52, -8, 62], [45, 2, 58]),
   ...ENQ.map((e, r) => S(tR[r], [e.cx, e.cz], [e.d * 1.1, -5 + r * 2, EL], [e.d, 5 - r * 2, EL])),
-  S(C(3), pll(-53, -16), [60, 4, 60], [54, -4, 58]),
-  S(C(4), pll(-53, -16), [54, -4, 58], [50, 6, 56]),
-  S(C(5), pll(-53, -16), [56, 4, 60], [52, -4, 58]),
+  S(C(3), pll(-53, -16), [54, 4, 60], [49, -4, 58]),
+  S(C(4), pll(-53, -16), [49, -4, 58], [45, 6, 56]),
+  S(C(5), pll(-53, -16), [50, 4, 60], [47, -4, 58]),
 ];
 SHOTS.forEach((s, i) => s.b = i + 1 < SHOTS.length ? SHOTS[i + 1].a : FIM);
 const alvo = new THREE.Vector3();
@@ -194,7 +194,7 @@ LBL.forEach((l) => {
 const REG_L = REGS.map((_, r) => LBL.filter((l) => l.reg === r).sort((a, b) => POS[a.i][0] - POS[b.i][0]));
 REG_L.forEach((L, r) => L.forEach((l, k) => { l.t0 = tR[r] + .1 + k * Math.min(.07, .6 / L.length); l.t1 = tRfim[r]; }));
 function desenhaLabels(t) {
-  g2.clearRect(0, 0, W, H);
+  g2.clearRect(0, 0, W, H); lab.style.display = (t >= tR[0] && t < C(3)) ? "block" : "none";
   const r = tR.findLastIndex((a) => t >= a); if (r < 0 || t >= C(3)) return;
   const L = REG_L[r].filter((l) => t >= l.t0);
   if (!L.length) return;
@@ -233,7 +233,7 @@ const meio = Math.ceil(GOVS.length / 2);
 elLista.innerHTML = [GOVS.slice(0, meio), GOVS.slice(meio)].map((col) => `<div class="col">${col.map((g) => `<div class="li"><b style="background:${COR_REG[g.regiao]}">${g.uf}</b><span>@${g.u}</span></div>`).join("")}</div>`).join("");
 elLista.style.opacity = 0;
 const LINHAS = [...elLista.querySelectorAll(".li")];
-LINHAS.forEach((li) => { const sp = li.querySelector("span"); let f = 36; sp.style.fontSize = f + "px"; while (sp.offsetWidth > 330 && f > 22) { f--; sp.style.fontSize = f + "px"; } });
+LINHAS.forEach((li) => { const sp = li.querySelector("span"); let f = 36; sp.style.fontSize = f + "px"; while (sp.offsetWidth > 350 && f > 22) { f--; sp.style.fontSize = f + "px"; } });
 const CHIPS = [
   [0, C(2), `👑 GOVERNADORES<small>os primeiros da Turma do Brasil</small>`, true],
   ...REGS.map((nome, r) => [tR[r], tRfim[r], `👑 GOVERNADORES · ${nome.toUpperCase()}`, true]),
@@ -250,7 +250,7 @@ function textos(t) {
   esc(elMarca, 1 + .06 * pulse(t, P(1, "Turma") - .1, .5));
   const c = CHIPS.find(([a, b]) => entre(t, a, b));
   if (c) {
-    if (chipChave !== c[2]) { chipChave = c[2]; elChip.innerHTML = c[2]; elChip.style.fontSize = "78px"; elChip.style.transform = "translateX(-50%)"; const w = elChip.getBoundingClientRect().width - 80; if (w > 780) elChip.style.fontSize = Math.floor(78 * 780 / w) + "px"; }
+    if (chipChave !== c[2]) { chipChave = c[2]; elChip.innerHTML = c[2]; elChip.style.fontSize = c[2].startsWith("👑 GOVERNADORES<") ? "84px" : "70px"; }
     elChip.className = "ov amarelo"; elChip.style.opacity = 1; esc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16) + .05 * pulse(t, c[0] + .08, .3));
   } else elChip.style.opacity = 0;
   // cartão da lista: aparece com "Parabéns", sai quando a cena 4 começa
@@ -279,8 +279,8 @@ function quadro(t) {
   corpos.instanceMatrix.needsUpdate = telhados.instanceMatrix.needsUpdate = true;
   for (const l of LBL) {
     const kp = clamp(pop(t, T_GOV + l.n * .045, .35), 0, 1.3), kh = Math.max(.0001, clamp(pop(t, QUANDO[l.i], .35), 0, 1.3) * kCasa(POS[l.i][2], dist));
-    l.coroa.visible = kp > .01; const cs = Math.max(.001, kp * kh * .9);
-    l.coroa.scale.setScalar(cs); l.coroa.rotation.y = t * 1.8 + l.n; l.coroa.position.set(POS[l.i][0], ALT + 1.55 * kh + .25 * cs + .06 * kh * Math.sin(t * 4 + l.n), POS[l.i][1]);
+    l.coroa.visible = kp > .01; const cs = Math.max(.001, kp * kh * 1.7);
+    l.coroa.scale.setScalar(cs); l.coroa.rotation.y = t * 1.8 + l.n; l.coroa.position.set(POS[l.i][0], ALT + 1.5 * kh + .25 * cs + .06 * kh * Math.sin(t * 4 + l.n), POS[l.i][1]);
   }
   flash.style.opacity = cam.i > 0 ? .35 * clamp(1 - cam.dt / .12, 0, 1) : 0;
   renderer.render(scene, camera);
