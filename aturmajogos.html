@@ -1,0 +1,551 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#9fd3ef;position:relative}canvas{display:block}
+.ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
+#marca{top:70px;left:50%;background:#fff;color:#1d5e2a;font-size:46px;padding:14px 36px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap;letter-spacing:1px}
+#marca b{color:#2fa34a}
+#chip{top:222px;left:50%;white-space:nowrap;background:rgba(18,52,24,.9);border-radius:34px;padding:8px 40px 18px;text-align:center;font-size:80px;color:#ffd23f;line-height:1.05}
+#chip small{display:block;font-size:46px;color:#fff}
+#legenda{top:1640px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}
+#legenda.am{color:#ffd23f}
+#cta{left:60px;right:60px;top:1130px;background:#fff;border:8px solid #1d5e2a;border-radius:44px;box-shadow:0 12px 0 #1d5e2a;text-align:center;padding:30px 20px 34px;color:#1d5e2a;transform-origin:center top}
+#cta .l1{font-size:70px;line-height:1.05}
+#cta .l2{font-size:46px;color:#2fa34a;margin-top:8px}
+#seta{left:50%;top:1450px;width:0;height:0;margin-left:-70px;border-left:70px solid transparent;border-right:70px solid transparent;border-top:90px solid #fff;filter:drop-shadow(0 8px 0 #1d5e2a)}
+</style></head><body>
+<canvas id="tela" width="1080" height="1920"></canvas>
+<script type="module">
+const ID = "aturmajogos";
+const TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json();
+const FIM = TEMPOS.total;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = (k) => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pulse = (t, a, d = .35) => { const k = (t - a) / d; return k < 0 || k > 1 ? 0 : Math.sin(k * Math.PI); };
+const pop = (k) => { k = clamp(k, 0, 1); return k <= 0 ? 0 : k >= 1 ? 1 : (1 - Math.pow(1 - k, 3)) + .3 * Math.sin(k * Math.PI); };
+const entre = (t, a, b) => t >= a && t < b;
+const CENA = (n) => TEMPOS.cenas[n - 1], C = (n) => CENA(n).ini;
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, w, o = 1) { let k = 0; for (const p of CENA(n).palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+
+// ================= código dos jogos (copiado do site) =================
+let G; const W = 360, H = 500;
+// ================= DESENHO =================
+const FONTE = "Nunito, system-ui, sans-serif", EMOJI = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+function rr(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); G.beginPath(); G.moveTo(x + r, y); G.arcTo(x + w, y, x + w, y + h, r); G.arcTo(x + w, y + h, x, y + h, r); G.arcTo(x, y + h, x, y, r); G.arcTo(x, y, x + w, y, r); G.closePath(); }
+function caixa(x, y, w, h, r, cor, borda = "#14204a", lw = 2.5) { rr(x, y, w, h, r); G.fillStyle = cor; G.fill(); if (borda) { G.lineWidth = lw; G.strokeStyle = borda; G.stroke(); } }
+function txt(s, x, y, tam, cor = "#14204a", al = "center") { G.font = `900 ${tam}px ${FONTE}`; G.textAlign = al; G.textBaseline = "middle"; G.fillStyle = cor; G.fillText(s, x, y); }
+function emo(s, x, y, tam) { G.font = `${tam}px ${EMOJI}`; G.textAlign = "center"; G.textBaseline = "middle"; G.fillStyle = "#000"; G.fillText(s, x, y); }
+function pilula(s, x, y, al = "left") { G.font = `900 15px ${FONTE}`; const w = G.measureText(s).width + 22, x0 = al === "left" ? x : x - w; caixa(x0, y, w, 28, 14, "rgba(255,255,255,.95)"); txt(s, x0 + w / 2, y + 14.5, 15); }
+const vidas = (perdidas, total = 3) => "❤️".repeat(Math.max(0, total - perdidas)) + "🖤".repeat(Math.min(total, perdidas));
+function hud(esq, dir) { pilula(esq, 10, 10); if (dir) { G.font = `16px ${EMOJI}`; const w = G.measureText(dir).width + 20; caixa(W - 10 - w, 10, w, 28, 14, "rgba(255,255,255,.95)"); emo(dir, W - 10 - w / 2, 25, 16); } }
+function ceu(cima = "#9fd3ef", baixo = "#d8f1ff") { const gr = G.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, cima); gr.addColorStop(1, baixo); G.fillStyle = gr; G.fillRect(0, 0, W, H); }
+const sorte = (a) => a[Math.floor(Math.random() * a.length)];
+const embaralha = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+// efeitos que sobem e somem (+1, 💥…)
+function criarFx() {
+  const l = [];
+  return { add: (s, x, y, cor, tam = 20, emoji = false) => l.push({ s, x, y, cor, tam, emoji, t: 0 }), quadro(dt) {
+    for (let i = l.length - 1; i >= 0; i--) { const f = l[i]; f.t += dt; if (f.t > .9) { l.splice(i, 1); continue; } G.globalAlpha = 1 - f.t / .9; const y = f.y - f.t * 40; f.emoji ? emo(f.s, f.x, y, f.tam) : txt(f.s, f.x, y, f.tam, f.cor); G.globalAlpha = 1; }
+  } };
+}
+
+// ================= 1. CONSERTA O CANO =================
+function jogoCano(g) {
+  const C = 5, L = 5, S = 62, X0 = (W - C * S) / 2, Y0 = 104;
+  const N = 1, E = 2, SU = 4, O = 8, DIR = [[0, -1, N, SU], [1, 0, E, O], [0, 1, SU, N], [-1, 0, O, E]];
+  const gira = (m) => ((m << 1) | (m >> 3)) & 15;
+  // caminho aleatório da caixa d'água (canto de cima) até a casa (canto de baixo)
+  let cam;
+  do {
+    cam = []; const vis = new Set();
+    const dfs = (x, y) => { vis.add(x + "," + y); cam.push([x, y]); if (x === C - 1 && y === L - 1) return true; for (const [dx, dy] of embaralha(DIR.slice())) { const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= C || ny >= L || vis.has(nx + "," + ny)) continue; if (dfs(nx, ny)) return true; } cam.pop(); return false; };
+    dfs(0, 0);
+  } while (cam.length < 11);
+  const m = Array(C * L).fill(0), noCam = new Set();
+  const liga = (a, b) => DIR.find(([dx, dy]) => a[0] + dx === b[0] && a[1] + dy === b[1])[2];
+  cam.forEach((p, i) => { const k = p[1] * C + p[0]; noCam.add(k); if (i > 0) m[k] |= liga(p, cam[i - 1]); if (i < cam.length - 1) m[k] |= liga(p, cam[i + 1]); if (i === 0) m[k] |= N; if (i === cam.length - 1) m[k] |= SU; });
+  for (let k = 0; k < C * L; k++) if (!noCam.has(k)) m[k] = sorte([5, 3, 5, 3, 7]);
+  const ALVO = m.slice();
+  g.bot = () => { if (ganhou >= 0) return null; const p = cam.find(([x, y]) => m[y * C + x] !== ALVO[y * C + x]); return p ? { x: X0 + p[0] * S + S / 2, y: Y0 + p[1] * S + S / 2 } : null; };
+  g.falta = () => cam.reduce((s, [x, y]) => { let mm = m[y * C + x], r = 0; while (mm !== ALVO[y * C + x] && r < 4) { mm = gira(mm); r++; } return s + r; }, 0);
+  for (let k = 0; k < C * L; k++) for (let i = Math.floor(Math.random() * 4); i > 0; i--) m[k] = gira(m[k]);
+  const ang = Array(C * L).fill(0);
+  const encher = () => {
+    const v = new Set(); if (!(m[0] & N)) return v; const fila = [0]; v.add(0);
+    while (fila.length) { const k = fila.shift(), x = k % C, y = (k / C) | 0; for (const [dx, dy, bit, op] of DIR) { if (!(m[k] & bit)) continue; const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= C || ny >= L) continue; const nk = ny * C + nx; if (!v.has(nk) && (m[nk] & op)) { v.add(nk); fila.push(nk); } } }
+    return v;
+  };
+  const resolvido = (v) => v.has(C * L - 1) && (m[C * L - 1] & SU);
+  let cheio = encher();
+  while (resolvido(cheio)) { const p = sorte(cam), k = p[1] * C + p[0]; m[k] = gira(m[k]); cheio = encher(); }
+  let ganhou = -1;
+  const AGUA = "#3fa9f5", SECO = "#a7b1bf";
+  function cano(cx, cy, mask, cor, a) {
+    G.save(); G.translate(cx, cy); G.rotate(-a); G.lineCap = "round";
+    for (const [lw, c] of [[19, "#14204a"], [12, cor]]) { G.lineWidth = lw; G.strokeStyle = c; G.beginPath(); for (const [dx, dy, bit] of DIR) if (mask & bit) { G.moveTo(0, 0); G.lineTo(dx * S / 2, dy * S / 2); } G.stroke(); }
+    G.beginPath(); G.arc(0, 0, 8, 0, 7); G.fillStyle = cor; G.fill(); G.restore();
+  }
+  return { tempo: 45, quadro(dt) {
+    ceu("#bfe6ff", "#c9ecc0");
+    const cx = X0 + S / 2, hx = X0 + (C - 1) * S + S / 2, hy = Y0 + L * S;
+    // caixa d'água
+    G.lineCap = "butt"; G.lineWidth = 19; G.strokeStyle = "#14204a"; G.beginPath(); G.moveTo(cx, 70); G.lineTo(cx, Y0 + 4); G.stroke(); G.lineWidth = 12; G.strokeStyle = AGUA; G.stroke();
+    caixa(cx - 30, 40, 60, 40, 10, AGUA); txt("ÁGUA", cx, 61, 13, "#fff");
+    // casa
+    const chegou = ganhou >= 0;
+    G.lineWidth = 19; G.strokeStyle = "#14204a"; G.beginPath(); G.moveTo(hx, hy - 4); G.lineTo(hx, hy + 22); G.stroke(); G.lineWidth = 12; G.strokeStyle = chegou ? AGUA : SECO; G.stroke();
+    caixa(hx - 34, hy + 20, 68, 50, 6, "#fffaf0"); G.beginPath(); G.moveTo(hx - 42, hy + 22); G.lineTo(hx, hy - 6); G.lineTo(hx + 42, hy + 22); G.closePath(); G.fillStyle = "#e4573a"; G.fill(); G.lineWidth = 2.5; G.strokeStyle = "#14204a"; G.stroke();
+    caixa(hx - 8, hy + 44, 16, 26, 3, "#8a5a3a");
+    for (let k = 0; k < C * L; k++) {
+      const x = k % C, y = (k / C) | 0, px = X0 + x * S, py = Y0 + y * S;
+      ang[k] = Math.max(0, ang[k] - dt * 11);
+      caixa(px + 2, py + 2, S - 4, S - 4, 11, cheio.has(k) ? "#e3f4ff" : "#fff9e8", "#1d5e2a", 2);
+      cano(px + S / 2, py + S / 2, m[k], cheio.has(k) ? AGUA : SECO, ang[k]);
+    }
+    hud("🚰 Leva a água até a casa");
+    if (chegou) { ganhou += dt; emo("💧", hx + 46, hy + 8 - ganhou * 20, 22); if (ganhou > .7) g.vencer(); }
+  }, down(p) {
+    if (ganhou >= 0) return;
+    const x = Math.floor((p.x - X0) / S), y = Math.floor((p.y - Y0) / S); if (x < 0 || y < 0 || x >= C || y >= L) return;
+    const k = y * C + x; m[k] = gira(m[k]); ang[k] = Math.PI / 2; cheio = encher();
+    if (resolvido(cheio)) { ganhou = 0; g.ganhou?.(); }
+  } };
+}
+
+// ================= 2. SOBE A CASA =================
+function jogoCasa(g) {
+  const META = 8, AH = 34, CHAO = 462;
+  const CORES = ["#ff8a65", "#ffd23f", "#7ec8f2", "#a5d86e", "#ff9fc4", "#b9a2ff", "#ffb74d", "#80deea", "#f48fb1"];
+  const torre = [{ x: 105, w: 150 }], caindo = [], fx = criarFx();
+  let mov = { x: 0, w: 150, dir: 1 }, vel = 135, fimT = -1, perdeu = false;
+  const yDo = (i) => CHAO - (i + 1) * AH;
+  function andar(x, y, w, cor, porta) {
+    caixa(x, y, w, AH, 4, cor);
+    for (let wx = x + 9; wx + 12 <= x + w - 7; wx += 22) caixa(wx, y + 9, 12, 14, 2, "#e8f6ff", "#14204a", 1.5);
+    if (porta) caixa(x + w / 2 - 9, y + 12, 18, AH - 12, 2, "#8a5a3a", "#14204a", 1.5);
+  }
+  g.bot = () => fimT < 0 && Math.abs(mov.x - torre[torre.length - 1].x) <= Math.min(4.6, vel / 60 + .3) ? { x: 180, y: 300 } : null;
+  return { tempo: 60, quadro(dt) {
+    ceu(); G.fillStyle = "#fff"; for (const [x, y, r] of [[60, 70, 18], [82, 64, 22], [104, 72, 16], [262, 110, 16], [282, 104, 20]]) { G.beginPath(); G.arc(x, y, r, 0, 7); G.fill(); }
+    G.fillStyle = "#6cc24a"; G.fillRect(0, CHAO, W, H - CHAO); G.fillStyle = "#d9d4c7"; G.fillRect(0, CHAO, W, 6);
+    if (fimT < 0) { mov.x += mov.dir * vel * dt; if (mov.x < 0) { mov.x = 0; mov.dir = 1; } if (mov.x + mov.w > W) { mov.x = W - mov.w; mov.dir = -1; } }
+    torre.forEach((a, i) => andar(a.x, yDo(i), a.w, CORES[i % CORES.length], i === 0));
+    if (fimT < 0) { const y = yDo(torre.length); G.strokeStyle = "#14204a"; G.lineWidth = 2; G.beginPath(); G.moveTo(mov.x + mov.w / 2, 0); G.lineTo(mov.x + mov.w / 2, y - 6); G.stroke(); caixa(mov.x + mov.w / 2 - 7, y - 8, 14, 8, 2, "#ffd23f"); andar(mov.x, y, mov.w, CORES[torre.length % CORES.length]); }
+    for (const d of caindo) { d.vy += 900 * dt; d.y += d.vy * dt; d.r += d.vr * dt; G.save(); G.translate(d.x + d.w / 2, d.y + AH / 2); G.rotate(d.r); andar(-d.w / 2, -AH / 2, d.w, d.cor); G.restore(); }
+    if (fimT >= 0 && !perdeu) { const t = torre[torre.length - 1], y = yDo(torre.length - 1); G.beginPath(); G.moveTo(t.x - 10, y); G.lineTo(t.x + t.w / 2, y - 44); G.lineTo(t.x + t.w + 10, y); G.closePath(); G.fillStyle = "#e4573a"; G.fill(); G.lineWidth = 2.5; G.strokeStyle = "#14204a"; G.stroke(); txt("🏠 Casa pronta!", W / 2, 150, 26, "#1d5e2a"); }
+    fx.quadro(dt);
+    hud(`🏗️ Andar ${Math.min(META, torre.length - 1)}/${META}`);
+    if (fimT >= 0) { fimT += dt; if (fimT > (perdeu ? 1 : .9)) perdeu ? g.perder("O andar caiu! A casa desabou.") : g.vencer(); }
+  }, down() {
+    if (fimT >= 0) return;
+    const topo = torre[torre.length - 1], a = Math.max(mov.x, topo.x), b = Math.min(mov.x + mov.w, topo.x + topo.w), w = b - a, y = yDo(torre.length), cor = CORES[torre.length % CORES.length];
+    if (w < 10) { caindo.push({ x: mov.x, y, w: mov.w, vy: 0, r: 0, vr: mov.dir * 2, cor }); perdeu = true; fimT = 0; return; }
+    if (Math.abs(mov.x - topo.x) < 5) { torre.push({ x: topo.x, w: topo.w }); fx.add("Perfeito!", W / 2, y - 10, "#1d5e2a", 20); }
+    else { torre.push({ x: a, w }); caindo.push({ x: mov.x < topo.x ? mov.x : b, y, w: mov.w - w, vy: 0, r: 0, vr: (mov.x < topo.x ? -1 : 1) * 2.5, cor }); }
+    if (torre.length - 1 >= META) { fimT = 0; g.ganhou?.(); return; }
+    const nw = torre[torre.length - 1].w; mov = { x: mov.dir > 0 ? 0 : W - nw, w: nw, dir: mov.dir }; vel += 20;
+  } };
+}
+
+// ================= 3. ACENDE A RUA =================
+function jogoPostes(g) {
+  const C = 5, L = 6, S = 60, X0 = 30, Y0 = 92;
+  const NIVEIS = [[[0, 0, 3, 3], [4, 0, 4, 5], [1, 2, 3, 4], [2, 2, 1, 4], [0, 5, 3, 5]], [[0, 0, 2, 5], [1, 0, 4, 2], [1, 1, 3, 5], [2, 1, 4, 3], [2, 2, 2, 3]]];
+  const CORES = embaralha(["#ff5a5a", "#ffd23f", "#4cd964", "#4aa8ff", "#ff9f40"]);
+  const fx = Math.random() < .5, fy = Math.random() < .5, k = (x, y) => y * C + x;
+  const pares = sorte(NIVEIS).map(([a, b, c, d], i) => ({ cor: CORES[i], a: k(fx ? C - 1 - a : a, fy ? L - 1 - b : b), b: k(fx ? C - 1 - c : c, fy ? L - 1 - d : d), cam: [], ok: false }));
+  const ponta = new Map(); pares.forEach((p, i) => { ponta.set(p.a, { i, poste: true }); ponta.set(p.b, { i, poste: false }); });
+  let ativo = -1, fimT = -1, t = 0;
+  const celula = (p) => { const x = Math.floor((p.x - X0) / S), y = Math.floor((p.y - Y0) / S); return x < 0 || y < 0 || x >= C || y >= L ? null : [x, y]; };
+  const centro = (kk) => [X0 + (kk % C) * S + S / 2, Y0 + ((kk / C) | 0) * S + S / 2];
+  const ESTRELAS = Array.from({ length: 26 }, () => [Math.random() * W, Math.random() * 84, Math.random() * 1.4 + .6]);
+  function seguir(tx, ty) {
+    const P = pares[ativo];
+    for (let n = 0; n < 14; n++) {
+      const ult = P.cam[P.cam.length - 1], lx = ult % C, ly = (ult / C) | 0; if (lx === tx && ly === ty) return;
+      const dx = tx - lx, dy = ty - ly, [sx, sy] = Math.abs(dx) >= Math.abs(dy) ? [Math.sign(dx), 0] : [0, Math.sign(dy)], nk = k(lx + sx, ly + sy);
+      const idx = P.cam.indexOf(nk);
+      if (idx >= 0) { P.cam.length = idx + 1; P.ok = false; continue; }
+      if (P.ok) return;
+      const pt = ponta.get(nk);
+      if (pt) { if (pt.i !== ativo) return; P.cam.push(nk); P.ok = true; if (pares.every((q) => q.ok)) fimT = 0; return; }
+      const outro = pares.findIndex((q, j) => j !== ativo && q.cam.includes(nk));
+      if (outro >= 0) { const q = pares[outro]; q.cam.length = q.cam.indexOf(nk); q.ok = false; }
+      P.cam.push(nk);
+    }
+  }
+  return { tempo: 75, quadro(dt) {
+    t += dt; const aceso = fimT >= 0;
+    ceu(aceso ? "#2a3f8f" : "#0a1633", aceso ? "#3b5bb5" : "#1b2a5c");
+    for (const [x, y, r] of ESTRELAS) { G.globalAlpha = .5 + .5 * Math.sin(t * 2 + x); G.fillStyle = "#fff"; G.beginPath(); G.arc(x, y + 40, r, 0, 7); G.fill(); } G.globalAlpha = 1;
+    caixa(X0 - 8, Y0 - 8, C * S + 16, L * S + 16, 16, "#1b2a5c", "#5a6aa8", 2.5);
+    for (let kk = 0; kk < C * L; kk++) { const [cx, cy] = centro(kk); caixa(cx - S / 2 + 3, cy - S / 2 + 3, S - 6, S - 6, 9, "#24357a", null); }
+    G.lineCap = "round"; G.lineJoin = "round";
+    for (const P of pares) if (P.cam.length > 1) { G.lineWidth = 16; G.strokeStyle = P.cor; G.globalAlpha = P.ok ? 1 : .8; G.beginPath(); P.cam.forEach((kk, i) => { const [x, y] = centro(kk); i ? G.lineTo(x, y) : G.moveTo(x, y); }); G.stroke(); G.globalAlpha = 1; }
+    for (const P of pares) {
+      const [ax, ay] = centro(P.a), [bx, by] = centro(P.b);
+      // poste: luz acende quando liga
+      if (P.ok) { G.shadowColor = P.cor; G.shadowBlur = 24; }
+      G.beginPath(); G.arc(ax, ay, 18, 0, 7); G.fillStyle = P.ok ? "#fff6c2" : P.cor; G.fill(); G.lineWidth = 4; G.strokeStyle = P.cor; G.stroke(); G.shadowBlur = 0;
+      emo("💡", ax, ay + 1, 20);
+      caixa(bx - 17, by - 17, 34, 34, 7, P.cor, "#14204a", 2.5); txt("⚡", bx, by + 1, 18, "#14204a");
+    }
+    hud(`💡 ${pares.filter((p) => p.ok).length}/${pares.length} acesos`);
+    if (aceso) { txt("A rua acendeu! 🎉", W / 2, Y0 + L * S + 38, 22, "#ffd23f"); fimT += dt; if (fimT > 1) g.vencer(); }
+  }, down(p) {
+    if (fimT >= 0) return; const c = celula(p); if (!c) return; const kk = k(...c);
+    const pt = ponta.get(kk);
+    if (pt) { ativo = pt.i; pares[ativo].cam = [kk]; pares[ativo].ok = false; return; }
+    ativo = pares.findIndex((q) => q.cam.includes(kk));
+    if (ativo >= 0) { const P = pares[ativo]; P.cam.length = P.cam.indexOf(kk) + 1; P.ok = false; }
+  }, move(p) { if (ativo < 0 || fimT >= 0) return; const c = celula(p); if (c) seguir(...c); }, up() { ativo = -1; } };
+}
+
+// ================= 4. TAPA-BURACO =================
+function jogoBuraco(g) {
+  const META = 15, VIDAS = 3, XS = [108, 180, 252], YS = [118, 184, 250, 316, 382, 448];
+  const LUGARES = XS.flatMap((x) => YS.map((y) => [x, y]));
+  let buracos = [], feitos = 0, perdidos = 0, prox = .6, t = 0, fimT = -1, saiu = 0;
+  const fx = criarFx(), remendos = [];
+  g.bot = () => { const b = buracos.find((b) => b.t > .3); return b ? { x: b.x, y: b.y } : null; };
+  return { tempo: 0, quadro(dt) {
+    t += dt;
+    if (fimT < 0) {
+      prox -= dt;
+      if (prox <= 0 && buracos.length < 4 && saiu < META + VIDAS + 2) {
+        const livres = LUGARES.filter(([x, y]) => !buracos.some((b) => b.x === x && b.y === y));
+        const [x, y] = sorte(livres); buracos.push({ x, y, t: 0, dur: Math.max(1.75, 2.7 - feitos * .06) }); saiu++; prox = Math.max(.55, .95 - feitos * .03);
+      }
+      for (let i = buracos.length - 1; i >= 0; i--) { const b = buracos[i]; b.t += dt; if (b.t >= b.dur) { buracos.splice(i, 1); perdidos++; fx.add("💥", b.x, b.y, "", 34, true); if (perdidos >= VIDAS) fimT = 0; } }
+    }
+    G.fillStyle = "#6cc24a"; G.fillRect(0, 0, W, H);
+    G.fillStyle = "#d9d4c7"; G.fillRect(52, 0, 16, H); G.fillRect(W - 68, 0, 16, H);
+    G.fillStyle = "#555b66"; G.fillRect(68, 0, W - 136, H);
+    G.fillStyle = "#fff"; const off = (t * 140) % 50; for (const lx of [144, 216]) for (let y = -50 + off; y < H; y += 50) G.fillRect(lx - 2, y, 4, 26);
+    for (const r of remendos) { G.globalAlpha = .9; G.fillStyle = "#3d424b"; G.beginPath(); G.ellipse(r.x, r.y, 24, 17, 0, 0, 7); G.fill(); G.globalAlpha = 1; }
+    for (const b of buracos) {
+      const k = Math.min(1, b.t / (b.dur * .35)), rx = 12 + 16 * k, ry = rx * .72, resta = 1 - b.t / b.dur;
+      G.fillStyle = "#7a5a3a"; G.beginPath(); G.ellipse(b.x, b.y, rx + 4, ry + 4, 0, 0, 7); G.fill();
+      G.fillStyle = "#1e1f24"; G.beginPath(); G.ellipse(b.x, b.y, rx, ry, 0, 0, 7); G.fill();
+      G.lineWidth = 5; G.lineCap = "round"; G.strokeStyle = resta < .3 ? "#ff3b30" : "#ffd23f"; G.beginPath(); G.arc(b.x, b.y, 34, -Math.PI / 2, -Math.PI / 2 + resta * Math.PI * 2); G.stroke();
+    }
+    fx.quadro(dt);
+    hud(`🕳️ ${feitos}/${META}`, vidas(perdidos, VIDAS));
+    if (fimT >= 0) { fimT += dt; if (fimT > .8) feitos >= META ? g.vencer() : g.perder("Os carros caíram nos buracos!"); }
+  }, down(p) {
+    if (fimT >= 0) return;
+    let melhor = -1, d0 = 40; buracos.forEach((b, i) => { const d = Math.hypot(b.x - p.x, b.y - p.y); if (d < d0) { d0 = d; melhor = i; } });
+    if (melhor < 0) return;
+    const b = buracos.splice(melhor, 1)[0]; feitos++; fx.add("+1", b.x, b.y - 10, "#fff", 22);
+    remendos.push({ x: b.x, y: b.y }); if (remendos.length > 12) remendos.shift();
+    if (feitos >= META) fimT = 0;
+  } };
+}
+
+// ================= 5. CAMINHÃO DO LIXO =================
+function jogoLixo(g) {
+  const META = 12, VIDAS = 3;
+  const LIX = [{ nome: "PAPEL", cor: "#2b59c3" }, { nome: "PLÁSTICO", cor: "#e4573a" }, { nome: "VIDRO", cor: "#2fa34a" }, { nome: "METAL", cor: "#e9a10f" }];
+  const ITENS = [["📰", "jornal", 0], ["📦", "caixa de papelão", 0], ["✉️", "envelope", 0], ["📄", "folha de caderno", 0], ["🧴", "frasco de xampu", 1], ["🥤", "copo plástico", 1], ["🛍️", "sacolinha", 1], ["🍾", "garrafa de vidro", 2], ["🫙", "pote de vidro", 2], ["🥫", "lata de molho", 3], ["🥄", "colher velha", 3], ["🔩", "parafuso", 3]];
+  const BX = (i) => 8 + i * 88, BY = 352, BW = 80, BH = 128;
+  let item = null, voando = null, feitos = 0, erros = 0, fimT = -1, ultimo = -1, aviso = null, ultimoB = 0;
+  const treme = [0, 0, 0, 0], fx = criarFx();
+  const novo = () => { let i; do i = Math.floor(Math.random() * ITENS.length); while (i === ultimo); ultimo = i; const [e, nome, tipo] = ITENS[i]; item = { e, nome, tipo, t: 0, dur: Math.max(2.4, 4.6 - feitos * .18) }; };
+  const errou = (msg) => { erros++; aviso = { s: msg, t: 0 }; if (erros >= VIDAS) { fimT = 0; item = null; } else novo(); };
+  novo();
+  return { tempo: 0, quadro(dt) {
+    ceu("#cdeefc", "#c9ecc0");
+    G.fillStyle = "#555b66"; G.fillRect(0, 70, W, 34); G.fillStyle = "#fff"; for (let x = -40 + (g.t * 60) % 60; x < W; x += 60) G.fillRect(x, 85, 28, 4);
+    emo("🚛", 40 + ((g.t * 50) % (W + 80)) - 40, 82, 40);
+    if (item && !voando && fimT < 0) { item.t += dt; if (item.t >= item.dur) { fx.add("😬", 180, 200, "", 40, true); errou(`Caiu no chão! ${item.nome}: ${LIX[item.tipo].nome}`); } }
+    if (item && !voando) {
+      const resta = 1 - item.t / item.dur;
+      G.beginPath(); G.arc(180, 205, 62, 0, 7); G.fillStyle = "#fff"; G.fill(); G.lineWidth = 3; G.strokeStyle = "#14204a"; G.stroke();
+      G.lineWidth = 7; G.lineCap = "round"; G.strokeStyle = resta < .3 ? "#ff3b30" : "#2fa34a"; G.beginPath(); G.arc(180, 205, 70, -Math.PI / 2, -Math.PI / 2 + resta * Math.PI * 2); G.stroke();
+      emo(item.e, 180, 208, 66); txt(item.nome, 180, 302, 20);
+    }
+    if (voando) {
+      voando.t += dt; const k = Math.min(1, voando.t / .28), x = 180 + (BX(voando.b) + BW / 2 - 180) * k, y = 205 + (BY + 10 - 205) * k - Math.sin(k * Math.PI) * 50;
+      emo(voando.e, x, y, 66 - 36 * k);
+      if (k >= 1) { voando = null; fx.add("+1", BX(ultimoB) + BW / 2, BY - 14, "#1d5e2a", 22); if (feitos >= META) { fimT = 0; item = null; } else novo(); }
+    }
+    LIX.forEach((l, i) => {
+      treme[i] = Math.max(0, treme[i] - dt); const dx = treme[i] ? Math.sin(treme[i] * 60) * 5 : 0, x = BX(i) + dx;
+      caixa(x + 4, BY + 14, BW - 8, BH - 14, 10, l.cor); caixa(x, BY, BW, 18, 6, l.cor); G.fillStyle = "rgba(0,0,0,.18)"; G.fillRect(x + 4, BY + 14, BW - 8, 6);
+      txt("♻", x + BW / 2, BY + 54, 26, "#fff"); txt(l.nome, x + BW / 2, BY + 92, l.nome.length > 6 ? 12.5 : 15, "#fff");
+    });
+    if (aviso) { aviso.t += dt; if (aviso.t > 1.4) aviso = null; else { G.font = `900 15px ${FONTE}`; const w = Math.min(W - 20, G.measureText(aviso.s).width + 24); caixa(W / 2 - w / 2, 318, w, 28, 14, "#fff3d6", "#e4573a"); txt(aviso.s, W / 2, 333, 15, "#b3341f"); } }
+    fx.quadro(dt);
+    hud(`♻️ ${feitos}/${META}`, vidas(erros, VIDAS));
+    if (fimT >= 0) { fimT += dt; if (fimT > .8) feitos >= META ? g.vencer() : g.perder("Errou 3 lixos. A rua ficou suja!"); }
+  }, down(p) {
+    if (!item || voando || fimT >= 0) return;
+    const b = LIX.findIndex((_, i) => p.x >= BX(i) - 4 && p.x <= BX(i) + BW + 4 && p.y >= BY - 30 && p.y <= BY + BH);
+    if (b < 0) return;
+    if (b === item.tipo) { feitos++; ultimoB = b; voando = { e: item.e, b, t: 0 }; item = null; }
+    else { treme[b] = .4; errou(`Errou! ${item.nome}: ${LIX[item.tipo].nome}`); }
+  } };
+}
+
+// ================= 6. SINAL ABERTO =================
+function jogoSinal(g) {
+  const META = 20, CX = 180, CY = 262, R = 34, LEN = 38, LARG = 22;
+  const PARA = { h: CX - R - 8, v: CY - R - 8 }, FIM = { h: W + LEN + 4, v: H + LEN + 4 };
+  const CORES = ["#e4573a", "#2b59c3", "#ffb020", "#8e5cd9", "#18a39a", "#ff6fa8", "#f5f5f5"];
+  let verde = "h", carros = [], passou = 0, sp = { h: .2, v: 1.1 }, fimT = -1, bateu = null, motivo = "", vel = 118, troca = 0;
+  const fila = (d) => carros.filter((c) => c.d === d).sort((a, b) => b.p - a.p);
+  const retH = (c) => [c.p - LEN, CY - LARG / 2, c.p, CY + LARG / 2], retV = (c) => [CX - LARG / 2, c.p - LEN, CX + LARG / 2, c.p];
+  function carro(c) {
+    G.save(); if (c.d === "h") G.translate(c.p - LEN / 2, CY); else { G.translate(CX, c.p - LEN / 2); G.rotate(Math.PI / 2); }
+    G.fillStyle = "#14204a"; for (const [x, y] of [[-12, -12], [8, -12], [-12, 9], [8, 9]]) G.fillRect(x, y, 8, 4);
+    caixa(-LEN / 2, -LARG / 2, LEN, LARG, 6, c.cor, "#14204a", 2); caixa(2, -LARG / 2 + 3, 9, LARG - 6, 2, "#9fd3ef", null);
+    G.restore();
+    if (c.espera > 3) { const [x, y] = c.d === "h" ? [c.p - LEN / 2, CY - 26] : [CX + 26, c.p - LEN / 2]; emo("😡", x, y, 20); }
+  }
+  function semaforo(x, y, aberto, seta) {
+    G.fillStyle = "#14204a"; G.fillRect(x + 11, y + 50, 4, 26);
+    caixa(x, y, 26, 52, 7, "#14204a", null);
+    G.beginPath(); G.arc(x + 13, y + 14, 8, 0, 7); G.fillStyle = aberto ? "#4a1515" : "#ff3b30"; G.fill();
+    G.beginPath(); G.arc(x + 13, y + 38, 8, 0, 7); G.fillStyle = aberto ? "#4cd964" : "#123a1d"; G.fill();
+    txt(seta, x + 13, y - 12, 18, "#fff");
+  }
+  return { tempo: 0, quadro(dt) {
+    G.fillStyle = "#6cc24a"; G.fillRect(0, 0, W, H);
+    G.fillStyle = "#555b66"; G.fillRect(0, CY - R, W, 2 * R); G.fillRect(CX - R, 0, 2 * R, H);
+    G.fillStyle = "#fff"; for (let y = CY - R + 4; y < CY + R - 4; y += 10) { G.fillRect(CX - R - 26, y, 18, 6); G.fillRect(CX + R + 8, y, 18, 6); } for (let x = CX - R + 4; x < CX + R - 4; x += 10) { G.fillRect(x, CY - R - 26, 6, 18); G.fillRect(x, CY + R + 8, 6, 18); }
+    G.fillRect(PARA.h + 4, CY - R, 4, 2 * R); G.fillRect(CX - R, PARA.v + 4, 2 * R, 4);
+    semaforo(CX - R - 64, CY - R - 92, verde === "h", "➡️"); semaforo(CX + R + 16, CY - R - 92, verde === "v", "⬇️");
+    if (fimT < 0) {
+      troca = Math.max(0, troca - dt);
+      for (const d of ["h", "v"]) {
+        let frente = Infinity;
+        for (const c of fila(d)) {
+          let lim = frente - 8; if (verde !== d && c.p <= PARA[d] + .5) lim = Math.min(lim, PARA[d]);
+          const novo = Math.min(c.p + c.vel * dt, lim);
+          c.espera = novo - c.p < c.vel * dt * .3 ? c.espera + dt : 0; c.p = Math.max(c.p, novo); frente = c.p - LEN;
+          if (c.espera > 6) { fimT = 0; motivo = "Engarrafou! O motorista cansou de esperar."; }
+        }
+        sp[d] -= dt;
+        const ult = fila(d).pop();
+        if (sp[d] <= 0 && (!ult || ult.p - LEN > 10)) { carros.push({ d, p: 0, vel: vel + Math.random() * 20, cor: sorte(CORES), espera: 0 }); sp[d] = 1.25 + Math.random() * 1.1 - Math.min(.45, passou * .02); }
+      }
+      for (let i = carros.length - 1; i >= 0; i--) if (carros[i].p > FIM[carros[i].d]) { carros.splice(i, 1); passou++; }
+      const hs = carros.filter((c) => c.d === "h"), vs = carros.filter((c) => c.d === "v");
+      for (const a of hs) for (const b of vs) { const [a0, a1, a2, a3] = retH(a), [b0, b1, b2, b3] = retV(b); if (a0 < b2 - 2 && a2 > b0 + 2 && a1 < b3 - 2 && a3 > b1 + 2) { fimT = 0; bateu = [CX, CY]; motivo = "Bateu! Os carros se encontraram no cruzamento."; } }
+      if (passou >= META) fimT = 0;
+    }
+    carros.forEach(carro);
+    if (bateu) emo("💥", bateu[0], bateu[1], 64);
+    hud(`🚗 ${Math.min(passou, META)}/${META}`);
+    txt(`Toque pra trocar o sinal`, W / 2, H - 22, 15, "#fff");
+    if (fimT >= 0) { fimT += dt; if (fimT > (bateu ? 1.1 : .7)) passou >= META ? g.vencer() : g.perder(motivo); }
+  }, down() { if (fimT < 0 && !troca) { verde = verde === "h" ? "v" : "h"; troca = .15; } } };
+}
+
+// ================= 7. APAGA O FOGO =================
+function jogoFogo(g) {
+  const META = 12, VIDAS = 3, CO = 3, LI = 4, JW = 64, JH = 56, GX = 22, GY = 20;
+  const BW = CO * JW + (CO - 1) * GX + 40, BXp = (W - BW) / 2, BYp = 70;
+  const jan = []; for (let l = 0; l < LI; l++) for (let c = 0; c < CO; c++) jan.push({ x: BXp + 20 + c * (JW + GX), y: BYp + 24 + l * (JH + GY), f: null, queimou: false });
+  let prox = .5, feitos = 0, erros = 0, fimT = -1, dedo = null, t = 0;
+  const fx = criarFx(), BICO = [W / 2, H - 22];
+  const dentro = (j, p) => p && p.x >= j.x - 8 && p.x <= j.x + JW + 8 && p.y >= j.y - 8 && p.y <= j.y + JH + 8;
+  function chama(cx, cy, k) {
+    for (const [cor, s] of [["#ff5a1f", 1], ["#ffa31a", .7], ["#ffe14d", .42]]) {
+      G.fillStyle = cor; G.beginPath();
+      const h = 46 * k * s * (1 + .12 * Math.sin(t * 18 + cx)), w = 26 * k * s;
+      G.moveTo(cx - w, cy); G.quadraticCurveTo(cx - w * 1.1, cy - h * .6, cx + Math.sin(t * 9 + cy) * 4, cy - h); G.quadraticCurveTo(cx + w * 1.1, cy - h * .6, cx + w, cy); G.closePath(); G.fill();
+    }
+  }
+  return { tempo: 0, quadro(dt) {
+    t += dt; ceu("#9fd3ef", "#e8f6ff");
+    G.fillStyle = "#6cc24a"; G.fillRect(0, H - 60, W, 60); G.fillStyle = "#555b66"; G.fillRect(0, H - 44, W, 44);
+    caixa(BXp, BYp, BW, LI * (JH + GY) + 34, 10, "#f0c27b"); caixa(BXp - 8, BYp - 14, BW + 16, 18, 6, "#c98b4a");
+    if (fimT < 0) {
+      prox -= dt;
+      const ativos = jan.filter((j) => j.f).length;
+      if (prox <= 0 && ativos < 4) { const livres = jan.filter((j) => !j.f && !j.queimou); if (livres.length) { sorte(livres).f = { k: .35, cheio: 0 }; prox = Math.max(.7, 1.25 - feitos * .04); } }
+      for (const j of jan) {
+        if (!j.f) continue;
+        if (dentro(j, dedo)) { j.f.k -= 1.9 * dt; if (j.f.k <= 0) { j.f = null; feitos++; fx.add("💨", j.x + JW / 2, j.y + JH / 2, "", 26, true); fx.add("+1", j.x + JW / 2, j.y - 6, "#1d5e2a", 20); if (feitos >= META) fimT = 0; continue; } }
+        else { j.f.k = Math.min(1, j.f.k + .24 * dt); if (j.f.k >= 1) j.f.cheio += dt; }
+        if (j.f.cheio > 2.6) { j.f = null; j.queimou = true; erros++; fx.add("💥", j.x + JW / 2, j.y + JH / 2, "", 34, true); if (erros >= VIDAS) fimT = 0; }
+      }
+    }
+    for (const j of jan) {
+      caixa(j.x, j.y, JW, JH, 5, j.queimou ? "#2b2b2b" : j.f ? "#ffcf8a" : "#bfe6ff");
+      if (!j.queimou && !j.f) { G.fillStyle = "#14204a"; G.fillRect(j.x + JW / 2 - 1, j.y, 2, JH); }
+      if (j.queimou) { G.globalAlpha = .5; G.fillStyle = "#777"; G.beginPath(); G.arc(j.x + JW / 2 + Math.sin(t * 2) * 4, j.y - 6, 10, 0, 7); G.fill(); G.globalAlpha = 1; }
+      if (j.f) { chama(j.x + JW / 2, j.y + JH - 4, .45 + .55 * j.f.k); if (j.f.cheio > 0) { G.lineWidth = 4; G.strokeStyle = Math.sin(t * 16) > 0 ? "#ff3b30" : "#ffd23f"; rr(j.x - 3, j.y - 3, JW + 6, JH + 6, 7); G.stroke(); } }
+    }
+    emo("🚒", 54, H - 28, 46);
+    if (dedo && fimT < 0) {
+      G.lineCap = "round"; G.strokeStyle = "rgba(63,169,245,.85)"; G.lineWidth = 9;
+      G.beginPath(); G.moveTo(...BICO); G.quadraticCurveTo((BICO[0] + dedo.x) / 2, Math.min(BICO[1], dedo.y) - 50, dedo.x, dedo.y); G.stroke();
+      G.fillStyle = "#bfe6ff"; for (let i = 0; i < 6; i++) { const a = t * 7 + i; G.beginPath(); G.arc(dedo.x + Math.cos(a) * 14, dedo.y + Math.sin(a * 1.3) * 12, 3.5, 0, 7); G.fill(); }
+    }
+    caixa(BICO[0] - 10, BICO[1] - 8, 20, 18, 5, "#e4573a");
+    fx.quadro(dt);
+    hud(`🔥 ${feitos}/${META}`, vidas(erros, VIDAS));
+    if (fimT >= 0) { fimT += dt; if (fimT > .8) feitos >= META ? g.vencer() : g.perder("O fogo queimou 3 janelas!"); }
+  }, down(p) { dedo = p; }, move(p) { dedo = p; }, up() { dedo = null; } };
+}
+
+
+// ================= simulação determinística dos clipes =================
+const DT = 1 / 30;
+const semente = (a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const FAZ = { cano: jogoCano, casa: jogoCasa, postes: jogoPostes, buraco: jogoBuraco, lixo: jogoLixo, sinal: jogoSinal, fogo: jogoFogo };
+const NOMES = { cano: "🚰 Conserta o cano", casa: "🏗️ Sobe a casa", postes: "💡 Acende a rua", buraco: "🕳️ Tapa-buraco", lixo: "♻️ Caminhão do lixo", sinal: "🚦 Sinal aberto", fogo: "🚒 Apaga o fogo" };
+const CACHE = {};
+function criar(chave, id, seed, op) {
+  const cv = document.createElement("canvas"); cv.width = 720; cv.height = 1000;
+  const rng = semente(seed); Math.random = rng; G = cv.getContext("2d");
+  const c = { chave, id, cv, rng, sim: 0, toques: [], prox: op.botDe ?? .25, op, ganhouEm: null };
+  c.g = { t: 0, vencer() {}, perder() {}, ganhou: () => { c.ganhouEm ??= c.sim; } };
+  c.jogo = FAZ[id](c.g);
+  c.iv = op.iv || .3;
+  if (op.resolverEm && c.g.falta) c.iv = clamp((op.resolverEm - c.prox) / Math.max(1, c.g.falta()), .06, .32);
+  return CACHE[chave] = c;
+}
+function clipe(chave, id, seed, local, op = {}) {
+  let c = CACHE[chave];
+  if (!c || c.sim > local + 1e-6) c = criar(chave, id, seed, op);
+  Math.random = c.rng; G = c.cv.getContext("2d");
+  while (c.sim + DT <= local + 1e-6) {
+    c.g.t += DT;
+    if (op.bot && c.g.bot && c.sim >= c.prox) { const p = c.g.bot(); if (p) { c.jogo.down?.(p); c.jogo.up?.(p); c.toques.push({ ...p, t: c.sim }); c.prox = c.sim + c.iv; } }
+    G.setTransform(2, 0, 0, 2, 0, 0); G.clearRect(0, 0, W, H); c.jogo.quadro(DT); c.sim += DT;
+  }
+  G.setTransform(2, 0, 0, 2, 0, 0); G.clearRect(0, 0, W, H); c.jogo.quadro(0);
+  // venceu: cartão de +5 por cima do jogo
+  if (c.ganhouEm !== null && c.sim >= c.ganhouEm + .15) {
+    const k = pop((c.sim - c.ganhouEm - .15) / .35);
+    G.fillStyle = `rgba(20,32,74,${.55 * Math.min(1, k)})`; G.fillRect(0, 0, W, H);
+    G.save(); G.translate(W / 2, H / 2); G.scale(k, k); caixa(-130, -70, 260, 140, 24, "#fff", "#14204a", 3);
+    emo("🎉", 0, -28, 40); txt("+5 pontos!", 0, 30, 32, "#1d5e2a"); G.restore();
+  }
+  return c;
+}
+
+// ================= lista de jogos (tela do site) =================
+const LISTA = [["cano", "🚰", "Conserta o cano"], ["casa", "🏗️", "Sobe a casa"], ["postes", "💡", "Acende a rua", "quarta"], ["buraco", "🕳️", "Tapa-buraco", "quinta"], ["lixo", "♻️", "Caminhão do lixo", "sexta"], ["sinal", "🚦", "Sinal aberto", "sábado"], ["fogo", "🚒", "Apaga o fogo", "domingo"]];
+const lcv = document.createElement("canvas"); lcv.width = 700; lcv.height = 1070;
+const LW = 350, LH = 535;
+// abre(i) = 0 fechado … 1 aberto
+function lista(abre, toque) {
+  G = lcv.getContext("2d"); G.setTransform(2, 0, 0, 2, 0, 0);
+  const gr = G.createLinearGradient(0, 0, 0, LH); gr.addColorStop(0, "#9fd3ef"); gr.addColorStop(1, "#c9ecc0"); G.fillStyle = gr; G.fillRect(0, 0, LW, LH);
+  txt("🎮 Jogos da cidade", 16, 30, 24, "#14204a", "left");
+  txt("Cada jogo vencido vale +5 pontos", 16, 56, 14, "#14204a", "left");
+  LISTA.forEach(([id, ic, nome, dia], i) => {
+    const y = 74 + i * 65, k = i < 2 ? 1 : clamp(abre(i), 0, 1), aberto = k >= 1, fechado = k <= 0;
+    const s = k > 0 && k < 1 ? 1 + .06 * Math.sin(k * Math.PI) : 1;
+    G.save(); G.translate(LW / 2, y + 29); G.scale(s, s); G.translate(-LW / 2, -(y + 29));
+    caixa(12, y, LW - 24, 58, 14, fechado ? "#eef1f4" : "#fff", fechado ? "#8793a1" : "#1d5e2a", 3);
+    caixa(22, y + 9, 40, 40, 10, fechado ? "#dfe4ea" : "#e6f6df", null);
+    G.globalAlpha = fechado ? .55 : 1; emo(ic, 42, y + 30, 24); G.globalAlpha = 1;
+    txt(nome, 72, y + 21, 16, fechado ? "#56616f" : "#14204a", "left");
+    txt(fechado ? `🔒 Libera ${dia} às 10h` : "Vale +5 pontos hoje", 72, y + 41, 11.5, fechado ? "#56616f" : "#2fa34a", "left");
+    if (fechado) emo("🔒", LW - 44, y + 29, 26);
+    else { caixa(LW - 98, y + 13, 74, 32, 10, "#2fa34a", null); txt("Jogar", LW - 61, y + 29, 15, "#fff"); }
+    if (k > 0 && k < 1) { G.globalAlpha = 1 - k; emo("🔓", LW - 44, y + 29 - k * 40, 26 + k * 16); G.globalAlpha = 1; }
+    G.restore();
+  });
+  if (toque) { G.globalAlpha = toque.a; G.fillStyle = "rgba(255,255,255,.75)"; G.beginPath(); G.arc(toque.x, toque.y, 16 + 10 * (1 - toque.a), 0, 7); G.fill(); G.lineWidth = 3; G.strokeStyle = "#14204a"; G.stroke(); G.globalAlpha = 1; }
+}
+
+// ================= cena =================
+const tela = document.getElementById("tela"), X = tela.getContext("2d");
+const FX0 = 170, FY0 = 470, FW = 740, FH = 1110, SX0 = 190, SY0 = 490, SW = 700, SH = 1070, GX0 = 198, GY0 = 600, GS = 1.9;
+const MONT = ["cano", "casa", "postes", "buraco", "lixo", "sinal", "fogo"];
+const PRE = { cano: .4, casa: 2.2, postes: .3, buraco: 2.4, lixo: .6, sinal: 3, fogo: 3 };
+const T2 = C(2), T3 = C(3), T3b = P(3, "Sobe") - .05, T4 = C(4), T5 = C(5), TA = P(5, "Ainda") - .05, TC = P(5, "Comenta") - .05;
+const CORTES = [T2, ...MONT.map((_, i) => T2 + i * (T3 - T2) / 7).slice(1), T3, T3b, T4, T5];
+const ABRE = [2, 3, 4, 5, 6].map((i, j) => P(4, "libera") + j * (T5 - .35 - P(4, "libera")) / 5);
+window.__ABRE = ABRE; window.__CORTES = CORTES;
+function fundo(t) {
+  const gr = X.createLinearGradient(0, 0, 0, 1920); gr.addColorStop(0, "#9fd3ef"); gr.addColorStop(.62, "#c9ecc0"); gr.addColorStop(1, "#6cc24a"); X.fillStyle = gr; X.fillRect(0, 0, 1080, 1920);
+  X.globalAlpha = .18; X.font = '70px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; X.textAlign = "center"; X.textBaseline = "middle";
+  const ics = ["🎮", "🏠", "⭐", "🚰", "💡", "🏗️"]; for (let i = 0; i < 18; i++) { const x = (i * 211 + t * 30) % 1240 - 80, y = 420 + ((i * 337) % 1400); X.fillText(ics[i % 6], x, y); } X.globalAlpha = 1;
+}
+function telefone(t) {
+  X.save(); X.fillStyle = "rgba(20,32,74,.25)"; rrX(FX0 + 10, FY0 + 22, FW, FH, 76); X.fill(); X.restore();
+  X.fillStyle = "#14204a"; rrX(FX0, FY0, FW, FH, 76); X.fill();
+  X.save(); rrX(SX0, SY0, SW, SH, 58); X.clip();
+}
+function rrX(x, y, w, h, r) { X.beginPath(); X.moveTo(x + r, y); X.arcTo(x + w, y, x + w, y + h, r); X.arcTo(x + w, y + h, x, y + h, r); X.arcTo(x, y + h, x, y, r); X.arcTo(x, y, x + w, y, r); X.closePath(); }
+function telaJogo(c) {
+  X.fillStyle = "#14204a"; X.fillRect(SX0, SY0, SW, SH);
+  X.font = "900 40px Nunito, sans-serif"; X.textAlign = "left"; X.textBaseline = "middle"; X.fillStyle = "#fff"; X.fillText(NOMES[c.id], SX0 + 26, SY0 + 58);
+  X.fillStyle = "#ffd23f"; rrX(SX0 + SW - 176, SY0 + 34, 150, 50, 25); X.fill(); X.fillStyle = "#14204a"; X.font = "900 28px Nunito, sans-serif"; X.textAlign = "center"; X.fillText("vale +5", SX0 + SW - 101, SY0 + 60);
+  X.save(); rrX(GX0, GY0, 360 * GS, 500 * GS, 30); X.clip(); X.drawImage(c.cv, GX0, GY0, 360 * GS, 500 * GS); X.restore();
+  for (const p of c.toques) { const a = 1 - (c.sim - p.t) / .35; if (a <= 0 || a > 1) continue; X.globalAlpha = a; X.fillStyle = "rgba(255,255,255,.7)"; X.beginPath(); X.arc(GX0 + p.x * GS, GY0 + p.y * GS, 34 + 22 * (1 - a), 0, 7); X.fill(); X.lineWidth = 5; X.strokeStyle = "#14204a"; X.stroke(); X.globalAlpha = 1; }
+}
+function telaLista(abre, toque) { lista(abre, toque); X.drawImage(lcv, SX0, SY0, SW, SH); }
+
+// ---------- textos ----------
+const mk = (id) => { const el = document.createElement("div"); el.id = id; el.className = "ov"; document.body.appendChild(el); return el; };
+const elMarca = mk("marca"); elMarca.innerHTML = "A TURMA DO <b>BRASIL</b>";
+const elChip = mk("chip"), elCta = mk("cta"), elSeta = mk("seta"), elLeg = mk("legenda");
+elCta.innerHTML = '<div class="l1">COMENTA TUA CIDADE<br>+ ESTADO</div><div class="l2">e ganha tua casa no mapa 👇</div>';
+const CHIPS = [
+  [0, T2, "🎮 TEM JOGO<br>NA TURMA!", 92],
+  [T2, P(2, "cinco") - .05, "VENCEU O JOGO?", 84],
+  [P(2, "cinco") - .05, T3, "+5 PONTOS<small>pra eleição de domingo 🗳️</small>", 92],
+  [T3, T3b, "LIBEROU HOJE<small>🚰 Conserta o Cano</small>", 84],
+  [T3b, T4, "LIBEROU HOJE<small>🏗️ Sobe a Casa</small>", 84],
+  [T4, T5, "TODO DIA ÀS 10H<small>🔓 um jogo novo até domingo</small>", 80],
+  [T5, TC, "🎮 LINK DA BIO<small>joga com a tua cidade</small>", 84],
+];
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = new Set(["jogo", "turma", "brasil", "cinco", "pontos", "eleicao", "domingo", "cano", "casa", "dez", "novo", "bio", "cidade", "comenta", "estado"]);
+const esc = (el, k, centro = true) => el.style.transform = (centro ? "translateX(-50%) " : "") + `scale(${k})`;
+function textos(t) {
+  esc(elMarca, 1 + .06 * pulse(t, P(1, "Turma") - .1, .5));
+  const c = CHIPS.find(([a, b]) => entre(t, a, b));
+  if (c) { elChip.innerHTML = c[2]; elChip.style.fontSize = c[3] + "px"; elChip.style.opacity = 1; esc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16) + .12 * pulse(t, c[0] + .08, .3)); } else elChip.style.opacity = 0;
+  const kc = prog(t, TC, TC + .25);
+  elCta.style.opacity = kc; esc(elCta, .6 + .4 * kc + .04 * Math.sin(t * 9) * kc, false);
+  elSeta.style.opacity = kc; elSeta.style.transform = `translateY(${18 * Math.abs(Math.sin(t * 5))}px)`;
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual || t > TC) { elLeg.textContent = ""; return; }
+  elLeg.textContent = atual.w.toUpperCase(); elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : "");
+  esc(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09), false);
+}
+
+function quadro(t) {
+  fundo(t);
+  // celular entra no começo com um pulinho
+  const ke = pop(t / .45);
+  X.save(); X.translate(540, FY0 + FH / 2); X.scale(.7 + .3 * ke, .7 + .3 * ke); X.translate(-540, -(FY0 + FH / 2));
+  telefone(t);
+  if (t < T2) {
+    const tq = T2 - .45, a = t >= tq ? 1 - (t - tq) / .45 : 0;
+    telaLista(() => 0, a > 0 ? { x: LW - 61, y: 74 + 29, a } : null);
+  } else if (t < T3) {
+    const d = (T3 - T2) / 7, i = Math.min(6, Math.floor((t - T2) / d)), id = MONT[i];
+    telaJogo(clipe("m-" + id, id, 11 + i, t - (T2 + i * d) + PRE[id], { bot: id === "casa" || id === "buraco" }));
+  } else if (t < T3b) {
+    telaJogo(clipe("cano", "cano", 7, t - T3 + .1, { bot: true, botDe: .15, resolverEm: (T3b - T3) - .55 }));
+  } else if (t < T4) {
+    telaJogo(clipe("casa", "casa", 5, t - T3b + 4.1, { bot: true, iv: .12 }));
+  } else if (t < T5) {
+    telaLista((i) => (t - ABRE[i - 2]) / .4, null);
+  } else {
+    telaJogo(clipe("buraco", "buraco", 9, t - T5 + 1.2, { bot: true, iv: .28 }));
+  }
+  X.restore(); X.restore();
+  // flash nos cortes
+  const fl = Math.max(0, ...CORTES.map((c) => entre(t, c, c + .12) ? 1 - (t - c) / .12 : 0));
+  if (fl) { X.fillStyle = `rgba(255,255,255,${.4 * fl})`; X.fillRect(0, 0, 1080, 1920); }
+  textos(t);
+}
+window.renderFrame = quadro;
+quadro(0);
+window.pronto = true;
+</script>
+</body></html>
