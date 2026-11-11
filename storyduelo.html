@@ -17,7 +17,7 @@
 #falta{left:80px;top:690px;font-size:66px;padding:26px 40px}
 #linha{left:80px;top:880px;font-size:42px;padding:18px 30px;background:rgba(18,52,24,.88);color:#fff;-webkit-text-stroke:0;text-shadow:none;border-radius:26px;line-height:1.1}
 #vota{left:80px;top:1010px;font-size:150px;line-height:1}
-#seta{left:200px;top:1190px;width:0;height:0;margin-left:-70px;border-left:70px solid transparent;border-right:70px solid transparent;border-top:90px solid #fff;filter:drop-shadow(0 8px 0 #10251a)}
+#seta{left:420px;top:1190px;width:0;height:0;margin-left:-70px;border-left:70px solid transparent;border-right:70px solid transparent;border-top:90px solid #fff;filter:drop-shadow(0 8px 0 #10251a)}
 #marca{left:50%;top:150px;background:#fff;color:#1d5e2a;-webkit-text-stroke:0;text-shadow:none;font-size:44px;padding:12px 34px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap}
 #marca b{color:#2fa34a}
 </style>
@@ -96,7 +96,7 @@ const pino = (c, y) => { const s = etiqueta(c.nome.toUpperCase(), { bg: "#fff", 
 const pinos = [], pinosFinal = [];
 // ---------- camera ----------
 const OFF = .14;
-const [A, B] = CID, mid = [(A.lon + B.lon) / 2 + 1.2, (A.lat + B.lat) / 2 + 0.2];
+const [A, B] = CID, mid = [(A.lon + B.lon) / 2 + 1.2, (A.lat + B.lat) / 2 - 1.4];
 const KF = [
   [0, -51, -27.5, 26, -10, 52], [1.9, -50, -27, 22, -5, 52],
   [3.0, A.lon, A.lat + OFF, 3.1, -6, 50], [6.1, A.lon, A.lat + OFF, 2.8, 8, 52],
