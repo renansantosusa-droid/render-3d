@@ -1,0 +1,234 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@600;800;900&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Black Magnética (11/11/2026) — animação "o que tem na Black". Gerado por montar-storiesblack.mjs a partir de storiesblack.src.html.
+// Versão: storiesblackgrupo · CTA: Fica de olho aqui no grupo, o link chega primeiro pra quem está aqui
+const ID = "storiesblackgrupo", VERSAO = "grupo";
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch(`/${ID}/tempos.json`)).json();
+const CENAS = T.cenas;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const back = (k) => { k = clamp(k); const c = 1.7; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const P = (c, w, k = 0) => { const cn = CENAS[c - 1]; const l = cn.palavras.filter((p) => norm(p.w) === norm(w)); return (l[k] || l[0] || { t: cn.ini + .2 }).t; };
+const ROSA = "#FF2E88", ROSA2 = "#FF7AB6", BR = "#ffffff";
+
+// tomadas (som de cada momento) — lidas pelo mixar-sons.mjs: [cena, "palavra", ocorrência, "nome", "som"]
+const TOMADAS = [
+  [1, "Presta", 1, "abre", "susto"],
+  [2, "curso", 1, "p1", "whoosh"],
+  [2, "Calendarios", 1, "p2", "whoosh"],
+  [2, "Natal", 1, "p3", "whoosh"],
+  [2, "Embalagem", 1, "p4", "whoosh"],
+  [2, "polaroides", 1, "p5", "whoosh"],
+  [2, "bottons", 1, "p6", "whoosh"],
+  [2, "catalogo", 1, "p7", "whoosh"],
+  [2, "Diagnostico", 1, "p8", "whoosh"],
+  [2, "segmentos", 1, "p9", "whoosh"],
+  [2, "protocolo", 1, "p10", "whoosh"],
+  [2, "sistema", 1, "p11", "whoosh"],
+  [3, "Se", 1, "grade", "arrasta"],
+  [3, "mil", 1, "mil", "batida"],
+  [4, "noventa", 1, "preco", "impacto"],
+  [5, "presente", 1, "presente", "faisca"],
+  [6, "Sexta-feira", 1, "data", "batida"],
+  [6, "olho", 1, "cta", "impacto"],
+];
+
+// ---------- imagens ----------
+const URL = "https://veecriativos.com/diagnostico/calendario-2027/img/";
+const PROD = [
+  ["curso", "capa-rm.webp", "Curso Renda Magnética", "Do zero à primeira venda"],
+  ["calendarios", "capa-molde.webp", "Calendários 2027", "Moldes personalizáveis"],
+  ["natal", "capa-natal.webp", "Kit Natal Magnético", "Moldes prontos pro Natal"],
+  ["embalagem", "bm-lacre.png", "Kit Embalagem Fofa", "Lacres, etiquetas e cartão"],
+  ["polaroides", "capa-polaroid.webp", "Gabaritos Polaroids", "e tirinhas"],
+  ["bottons", "capa-bottons.webp", "Gabaritos para Bottons", "Pack profissional"],
+  ["catalogo", "capa-catalogo.webp", "Catálogo para Posts", "e apresentações"],
+  ["diagnostico", "capa-diagnostico.webp", "Diagnóstico Magnético", "Completo"],
+  ["segmentos", "capa-segmentos.webp", "Segmentos Lucrativos", "Pra quem vender"],
+  ["protocolo", "capa-protocolo.webp", "Protocolo Foto Ímã 24h", "Primeira venda em 24h"],
+  ["sistema", null, "Sistema de Mensagens", "Automático, pelo WhatsApp"],
+];
+const IMG = await Promise.all(PROD.map(([, f]) => f ? new Promise((ok) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => ok(null); i.src = URL + f; }) : null));
+
+// ---------- desenho ----------
+const rr = (x, y, w, h, r, c) => { g.fillStyle = c; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+function txt(s, x, y, tam, cor, { peso = 800, fonte = "Poppins", al = "center", glow = 0, esp = 0 } = {}) {
+  g.font = `${peso} ${tam}px ${fonte}`; g.textAlign = al; g.textBaseline = "middle"; g.letterSpacing = esp + "px";
+  if (glow) { g.shadowColor = cor; g.shadowBlur = glow; }
+  g.fillStyle = cor; g.fillText(s, x, y); g.shadowBlur = 0; g.letterSpacing = "0px";
+}
+function contorno(s, x, y, tam, cor, lw = 5, glow = 30) {
+  g.font = `400 ${tam}px Anton`; g.textAlign = "center"; g.textBaseline = "middle"; g.letterSpacing = "4px";
+  g.lineWidth = lw; g.strokeStyle = cor; g.shadowColor = cor; g.shadowBlur = glow; g.strokeText(s, x, y); g.shadowBlur = 0; g.letterSpacing = "0px";
+}
+function capa(img, cx, cy, w, h, rot, sc = 1, alpha = 1) {
+  g.save(); g.globalAlpha = alpha; g.translate(cx, cy); g.rotate(rot); g.scale(sc, sc);
+  g.shadowColor = "rgba(255,46,136,.6)"; g.shadowBlur = 70; rr(-w / 2 - 7, -h / 2 - 7, w + 14, h + 14, 34, ROSA); g.shadowBlur = 0;
+  g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 28); g.clip();
+  if (img) { const s = Math.max(w / img.width, h / img.height); g.drawImage(img, -img.width * s / 2, -img.height * s / 2, img.width * s, img.height * s); }
+  else { rr(-w / 2, -h / 2, w, h, 28, "#1c0b14"); balao(0, -30, w * .5); }
+  g.restore();
+}
+function balao(x, y, s) { // ícone de mensagem (sem emoji)
+  g.save(); g.translate(x, y); rr(-s / 2, -s * .38, s, s * .7, s * .16, ROSA);
+  g.beginPath(); g.moveTo(-s * .22, s * .3); g.lineTo(-s * .34, s * .52); g.lineTo(-s * .04, s * .3); g.fill();
+  for (const d of [-1, 0, 1]) { g.fillStyle = BR; g.beginPath(); g.arc(d * s * .22, -s * .03, s * .06, 0, 6.29); g.fill(); }
+  g.restore();
+}
+function presente(x, y, s, treme) {
+  g.save(); g.translate(x + treme, y); g.shadowColor = ROSA; g.shadowBlur = 60;
+  rr(-s / 2, -s * .15, s, s * .62, 18, ROSA); rr(-s * .58, -s * .38, s * 1.16, s * .26, 16, ROSA2); g.shadowBlur = 0;
+  rr(-s * .08, -s * .38, s * .16, s * .85, 6, BR);
+  g.strokeStyle = BR; g.lineWidth = 16; g.beginPath(); g.ellipse(-s * .17, -s * .5, s * .17, s * .1, -.5, 0, 6.29); g.stroke(); g.beginPath(); g.ellipse(s * .17, -s * .5, s * .17, s * .1, .5, 0, 6.29); g.stroke();
+  // cadeado
+  g.translate(s * .42, s * .36); g.strokeStyle = "#ddd"; g.lineWidth = 14; g.beginPath(); g.arc(0, -s * .1, s * .1, Math.PI, 0); g.stroke();
+  rr(-s * .16, -s * .1, s * .32, s * .26, 12, "#f2f2f2"); rr(-s * .02, -s * .04, s * .04, s * .1, 4, "#222");
+  g.restore();
+}
+function alerta(x, y, s, a) {
+  g.save(); g.globalAlpha = a; g.translate(x, y); g.shadowColor = ROSA; g.shadowBlur = 40; g.strokeStyle = ROSA; g.lineWidth = s * .07; g.lineJoin = "round";
+  g.beginPath(); g.moveTo(0, -s * .45); g.lineTo(s * .5, s * .42); g.lineTo(-s * .5, s * .42); g.closePath(); g.stroke(); g.shadowBlur = 0;
+  rr(-s * .04, -s * .17, s * .08, s * .34, s * .04, BR); g.fillStyle = BR; g.beginPath(); g.arc(0, s * .27, s * .05, 0, 6.29); g.fill(); g.restore();
+}
+
+// ---------- fundo, ruído e legenda ----------
+function fundo(t) {
+  const gr = g.createRadialGradient(W / 2, H * .45, 50, W / 2, H * .45, 1150); gr.addColorStop(0, "#2a0b1b"); gr.addColorStop(1, "#000");
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.fillStyle = "rgba(255,255,255,.035)"; const o = (t * 120) % 6; for (let y = -6 + o; y < H; y += 6) g.fillRect(0, y, W, 2);
+}
+function legenda(t) {
+  let c = 0; for (let i = 0; i < CENAS.length; i++) if (t >= CENAS[i].ini - .05) c = i;
+  const pal = CENAS[c].palavras; if (!pal.length || t > CENAS[c].fim + .25) return;
+  let j = 0; for (let i = 0; i < pal.length; i++) if (t >= pal[i].t - .02) j = i;
+  const g0 = Math.floor(j / 4) * 4, grupo = pal.slice(g0, g0 + 4);
+  g.font = "900 58px Poppins"; const ws = grupo.map((p) => p.w.toUpperCase().replace(/[.,!?;:]+$/, ""));
+  let tam = 58; const larg = () => ws.reduce((a, w) => a + g.measureText(w).width, 0) + 22 * (ws.length - 1);
+  while (larg() > 940 && tam > 34) { tam -= 2; g.font = `900 ${tam}px Poppins`; }
+  let x = W / 2 - larg() / 2; const y = 1640;
+  g.textAlign = "left"; g.textBaseline = "middle";
+  ws.forEach((w, i) => {
+    const on = g0 + i === j, ww = g.measureText(w).width;
+    g.lineWidth = 12; g.strokeStyle = "#000"; g.lineJoin = "round"; g.strokeText(w, x, y);
+    g.fillStyle = on ? ROSA : BR; g.fillText(w, x, y); x += ww + 22;
+  });
+}
+function rodape() { txt("@veecriativos", W / 2, 1830, 34, "rgba(255,255,255,.55)", { peso: 600 }); }
+
+// ---------- cenas ----------
+const CENA = {};
+CENA[1] = (t) => {
+  const t0 = CENAS[0].ini, k = ap(t, t0, .5);
+  const tremor = t - t0 < .9 ? Math.sin(t * 90) * 10 * (1 - (t - t0) / .9) : 0;
+  alerta(W / 2, 420, 170, (Math.sin(t * 9) > -.2 ? 1 : .35) * k);
+  txt("ATENÇÃO", W / 2, 560, 40, BR, { esp: 14, peso: 800 });
+  g.save(); g.translate(tremor, 0); g.globalAlpha = k;
+  g.save(); g.translate(-7, 0); contorno("BLACK", W / 2, 860, 270, "rgba(255,255,255,.25)", 4, 0); g.restore();
+  contorno("BLACK", W / 2 + 6, 860, 270, ROSA, 6, 40);
+  txt("MAGNÉTICA", W / 2, 1080, 128, BR, { fonte: "Anton", peso: 400, esp: 4 });
+  g.restore();
+};
+CENA[2] = (t) => {
+  const tempos = PROD.map(([w]) => P(2, w));
+  let i = 0; for (let k = 0; k < tempos.length; k++) if (t >= tempos[k] - .15) i = k;
+  const k = back((t - (tempos[i] - .15)) / .45);
+  txt("O QUE TEM NA BLACK", 90, 210, 32, BR, { al: "left", esp: 7 }); rr(60, 196, 16, 16, 8, ROSA);
+  txt(String(i + 1).padStart(2, "0"), 900, 215, 78, ROSA, { fonte: "Anton", peso: 400, al: "right" });
+  txt("/11", 905, 225, 44, "rgba(255,255,255,.5)", { fonte: "Anton", peso: 400, al: "left" });
+  if (i > 0) capa(IMG[i - 1], 170, 820, 480, 600, -.12, .85, .22);
+  if (i < 10) capa(IMG[(i + 1) % 11], 910, 820, 480, 600, .12, .85, .16);
+  capa(IMG[i], W / 2, 820, 640, 760, -.05 + (1 - k) * .3, .6 + .4 * k, clamp(k * 1.5));
+  if (i === 3) { g.save(); g.translate(800, 470); g.rotate(.14); g.shadowColor = ROSA; g.shadowBlur = 30; rr(-120, -40, 240, 80, 40, ROSA); g.shadowBlur = 0; txt("NOVO!", 0, 2, 44, BR, { peso: 900 }); g.restore(); }
+  g.globalAlpha = clamp(k * 1.4);
+  txt(PROD[i][2], W / 2, 1300, PROD[i][2].length > 20 ? 66 : 74, BR, { peso: 900 });
+  txt(PROD[i][3], W / 2, 1380, 42, ROSA2, { peso: 700 });
+  g.globalAlpha = 1;
+};
+CENA[3] = (t) => {
+  const t0 = CENAS[2].ini, tm = P(3, "mil");
+  for (let i = 0; i < 11; i++) {
+    const col = i % 4, lin = Math.floor(i / 4), d = ap(t, t0 + i * .05, .4);
+    const x = 175 + col * 243, y = 360 + lin * 300;
+    g.save(); g.globalAlpha = d; g.translate(x, y + (1 - d) * 120);
+    g.beginPath(); g.roundRect(-108, -130, 216, 260, 20); g.save(); g.clip();
+    if (IMG[i]) { const im = IMG[i], s = Math.max(216 / im.width, 260 / im.height); g.drawImage(im, -im.width * s / 2, -im.height * s / 2, im.width * s, im.height * s); }
+    else { rr(-108, -130, 216, 260, 20, "#1c0b14"); balao(0, 0, 120); }
+    g.restore(); g.strokeStyle = "rgba(255,46,136,.7)"; g.lineWidth = 4; g.stroke(); g.restore();
+  }
+  // espaço 12: "+"
+  const d = ap(t, t0 + .6, .4); g.globalAlpha = d; txt("+", 175 + 3 * 243, 360 + 2 * 300, 120, ROSA, { fonte: "Anton", peso: 400 }); g.globalAlpha = 1;
+  const v = Math.round(1000 * ease((t - t0 - .3) / Math.max(.5, tm - t0 - .3)));
+  txt("COMPRANDO SEPARADO", W / 2, 1290, 40, "rgba(255,255,255,.8)", { esp: 4 });
+  txt("+R$" + v.toLocaleString("pt-BR"), W / 2, 1410, 170, BR, { fonte: "Anton", peso: 400, glow: t > tm ? 30 : 0 });
+  const r = ap(t, tm + .5, .3);
+  if (r > 0) { g.save(); g.translate(W / 2, 1415); g.rotate(-.13); g.shadowColor = ROSA; g.shadowBlur = 30; rr(-330 * r - 20, -10, 680 * r, 20, 10, ROSA); g.restore(); }
+};
+CENA[4] = (t) => {
+  const t0 = CENAS[3].ini, tn = P(4, "noventa"), k = back((t - tn + .1) / .45);
+  g.save(); g.translate(W / 2, 1000); g.rotate(t * .15); g.fillStyle = "rgba(255,46,136,.10)";
+  for (let i = 0; i < 20; i++) { g.rotate(Math.PI / 10); g.beginPath(); g.moveTo(0, 0); g.lineTo(-90, -1600); g.lineTo(90, -1600); g.fill(); } g.restore();
+  const tr = t > tn && t < tn + .35 ? Math.sin(t * 120) * 14 : 0;
+  g.save(); g.translate(tr, 0); g.globalAlpha = ap(t, t0, .3);
+  contorno("BLACK", W / 2, 360, 190, ROSA, 5, 30); txt("MAGNÉTICA", W / 2, 520, 92, BR, { fonte: "Anton", peso: 400, esp: 3 });
+  txt("de mais de R$1.000", W / 2, 720, 58, "rgba(255,255,255,.55)", { peso: 700 });
+  rr(W / 2 - 260, 716, 520, 8, 4, "rgba(255,255,255,.55)");
+  g.globalAlpha = clamp(k);
+  txt("TUDO POR", W / 2, 830, 64, BR, { esp: 8, peso: 900 });
+  g.save(); g.translate(W / 2, 1110); g.scale(.4 + .6 * k, .4 + .6 * k); txt("R$97", 0, 0, 340, ROSA, { fonte: "Anton", peso: 400, glow: 70 }); g.restore();
+  g.restore();
+};
+CENA[5] = (t) => {
+  const t0 = CENAS[4].ini, tp = P(5, "presente"), k = back((t - t0) / .5);
+  txt("SÓ NAS PRIMEIRAS 24H", W / 2, 260, 40, BR, { esp: 8 }); rr(W / 2 - 330, 252, 16, 16, 8, ROSA);
+  const tr = t > tp - .1 ? Math.sin(t * 50) * 9 * Math.max(0, 1 - (t - tp) / 1.2) : 0;
+  g.save(); g.translate(W / 2, 760); g.scale(k, k); presente(0, 0, 420, tr); g.restore();
+  g.globalAlpha = ap(t, t0 + .3, .4);
+  g.font = "900 96px Poppins"; const w1 = g.measureText("Presente ").width, w2 = g.measureText("surpresa").width, x0 = W / 2 - (w1 + w2) / 2;
+  txt("Presente ", x0, 1180, 96, BR, { peso: 900, al: "left" }); txt("surpresa", x0 + w1, 1180, 96, ROSA, { peso: 900, al: "left" });
+  txt("pra quem comprar nas primeiras 24 horas", W / 2, 1290, 44, "rgba(255,255,255,.85)", { peso: 700 });
+  g.globalAlpha = 1;
+};
+CENA[6] = (t) => {
+  const t0 = CENAS[5].ini, tc = P(6, "olho"), k = back((t - t0) / .45), kc = back((t - tc + .1) / .45);
+  contorno("BLACK", W / 2, 360, 210, ROSA, 5, 35); txt("MAGNÉTICA", W / 2, 540, 100, BR, { fonte: "Anton", peso: 400, esp: 3 });
+  g.save(); g.translate(W / 2, 800); g.scale(k, k); txt("SEXTA · 13/11 · 12H", 0, 0, 108, BR, { fonte: "Anton", peso: 400 }); g.restore();
+  g.globalAlpha = clamp(kc);
+  if (VERSAO === "reel") {
+    txt("Comenta", W / 2, 1010, 64, BR, { peso: 800 });
+    g.save(); g.translate(W / 2, 1150); const p = 1 + .05 * Math.sin(t * 7); g.scale(kc * p, kc * p);
+    g.shadowColor = ROSA; g.shadowBlur = 50; rr(-260, -95, 520, 190, 40, ROSA); g.shadowBlur = 0; txt("BLACK", 0, 8, 150, BR, { fonte: "Anton", peso: 400, esp: 6 }); g.restore();
+    txt("pra receber o link", W / 2, 1310, 56, BR, { peso: 800 }); txt("antes de todo mundo", W / 2, 1385, 56, ROSA2, { peso: 800 });
+  } else if (VERSAO === "grupo") {
+    txt("Fica de olho", W / 2, 1010, 64, BR, { peso: 800 });
+    g.save(); g.translate(W / 2, 1150); const p = 1 + .05 * Math.sin(t * 7); g.scale(kc * p, kc * p);
+    g.shadowColor = ROSA; g.shadowBlur = 50; rr(-400, -95, 800, 190, 40, ROSA); g.shadowBlur = 0; txt("AQUI NO GRUPO", 0, 8, 116, BR, { fonte: "Anton", peso: 400, esp: 4 }); g.restore();
+    txt("o link chega primeiro", W / 2, 1310, 56, BR, { peso: 800 }); txt("pra quem está aqui", W / 2, 1385, 56, ROSA2, { peso: 800 });
+  } else {
+    txt("Clica no", W / 2, 1010, 64, BR, { peso: 800 });
+    g.save(); g.translate(W / 2, 1150); const p = 1 + .05 * Math.sin(t * 7); g.scale(kc * p, kc * p);
+    g.shadowColor = ROSA; g.shadowBlur = 50; rr(-380, -95, 760, 190, 40, ROSA); g.shadowBlur = 0; txt("LINK DA BIO", 0, 8, 120, BR, { fonte: "Anton", peso: 400, esp: 4 }); g.restore();
+    txt("pra receber", W / 2, 1310, 56, BR, { peso: 800 }); txt("antes de todo mundo", W / 2, 1385, 56, ROSA2, { peso: 800 });
+  }
+  g.globalAlpha = 1;
+};
+function ap(t, t0, d = .35) { return ease((t - t0) / d); }
+
+window.renderFrame = (t) => {
+  fundo(t);
+  let c = 1; for (let i = 0; i < CENAS.length; i++) if (t >= CENAS[i].ini - .1) c = i + 1;
+  const k = ease((t - (CENAS[c - 1].ini - .1)) / .25);
+  g.save(); g.globalAlpha = c === 1 ? 1 : k; CENA[c](t); g.restore();
+  // flash rosa nas viradas de cena
+  if (c > 1 && t - (CENAS[c - 1].ini - .1) < .12) { g.fillStyle = "rgba(255,46,136,.18)"; g.fillRect(0, 0, W, H); }
+  legenda(t); rodape();
+};
+await document.fonts.load("400 40px Anton"); await document.fonts.load("600 40px Poppins"); await document.fonts.load("700 40px Poppins"); await document.fonts.load("800 40px Poppins"); await document.fonts.load("900 40px Poppins"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
