@@ -1,0 +1,505 @@
+{
+ "total": 42.268,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.134,
+   "fim": 4.205,
+   "texto": "Presta atenção, porque eu vou te mostrar tudo o que vai ter na Black Magnética.",
+   "palavras": [
+    {
+     "w": "Presta",
+     "t": 0.134
+    },
+    {
+     "w": "atenção",
+     "t": 0.444
+    },
+    {
+     "w": "porque",
+     "t": 0.879
+    },
+    {
+     "w": "eu",
+     "t": 1.087
+    },
+    {
+     "w": "vou",
+     "t": 1.152
+    },
+    {
+     "w": "te",
+     "t": 1.277
+    },
+    {
+     "w": "mostrar",
+     "t": 1.473
+    },
+    {
+     "w": "tudo",
+     "t": 1.92
+    },
+    {
+     "w": "o",
+     "t": 2.241
+    },
+    {
+     "w": "que",
+     "t": 2.295
+    },
+    {
+     "w": "vai",
+     "t": 2.384
+    },
+    {
+     "w": "ter",
+     "t": 2.563
+    },
+    {
+     "w": "na",
+     "t": 2.848
+    },
+    {
+     "w": "Black",
+     "t": 3.051
+    },
+    {
+     "w": "Magnética",
+     "t": 3.42
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.339,
+   "fim": 26.839,
+   "texto": "O curso Renda Magnética. Os Calendários 2027. O Kit Natal Magnético. O Kit Embalagem Fofa, que é novinho. Os gabaritos de polaroides e tirinhas. Os gabaritos de bottons. O catálogo para posts. O Diagnóstico Magnético. A lista de segmentos lucrativos. O protocolo foto ímã 24 horas. E o sistema automático de mensagens.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 4.339
+    },
+    {
+     "w": "curso",
+     "t": 4.471
+    },
+    {
+     "w": "Renda",
+     "t": 4.804
+    },
+    {
+     "w": "Magnética",
+     "t": 5.125
+    },
+    {
+     "w": "Os",
+     "t": 5.887
+    },
+    {
+     "w": "Calendários",
+     "t": 6.161
+    },
+    {
+     "w": "2027",
+     "t": 6.696
+    },
+    {
+     "w": "O",
+     "t": 7.911
+    },
+    {
+     "w": "Kit",
+     "t": 8.125
+    },
+    {
+     "w": "Natal",
+     "t": 8.411
+    },
+    {
+     "w": "Magnético",
+     "t": 8.854
+    },
+    {
+     "w": "O",
+     "t": 9.732
+    },
+    {
+     "w": "Kit",
+     "t": 9.929
+    },
+    {
+     "w": "Embalagem",
+     "t": 10.268
+    },
+    {
+     "w": "Fofa",
+     "t": 11.018
+    },
+    {
+     "w": "que",
+     "t": 11.571
+    },
+    {
+     "w": "é",
+     "t": 11.661
+    },
+    {
+     "w": "novinho",
+     "t": 11.768
+    },
+    {
+     "w": "Os",
+     "t": 12.601
+    },
+    {
+     "w": "gabaritos",
+     "t": 12.804
+    },
+    {
+     "w": "de",
+     "t": 13.292
+    },
+    {
+     "w": "polaroides",
+     "t": 13.387
+    },
+    {
+     "w": "e",
+     "t": 13.946
+    },
+    {
+     "w": "tirinhas",
+     "t": 14.036
+    },
+    {
+     "w": "Os",
+     "t": 14.672
+    },
+    {
+     "w": "gabaritos",
+     "t": 14.964
+    },
+    {
+     "w": "de",
+     "t": 15.458
+    },
+    {
+     "w": "bottons",
+     "t": 15.643
+    },
+    {
+     "w": "O",
+     "t": 16.339
+    },
+    {
+     "w": "catálogo",
+     "t": 16.536
+    },
+    {
+     "w": "para",
+     "t": 17.025
+    },
+    {
+     "w": "posts",
+     "t": 17.304
+    },
+    {
+     "w": "O",
+     "t": 18.018
+    },
+    {
+     "w": "Diagnóstico",
+     "t": 18.172
+    },
+    {
+     "w": "Magnético",
+     "t": 18.982
+    },
+    {
+     "w": "A",
+     "t": 19.875
+    },
+    {
+     "w": "lista",
+     "t": 20.101
+    },
+    {
+     "w": "de",
+     "t": 20.387
+    },
+    {
+     "w": "segmentos",
+     "t": 20.536
+    },
+    {
+     "w": "lucrativos",
+     "t": 21.036
+    },
+    {
+     "w": "O",
+     "t": 22.018
+    },
+    {
+     "w": "protocolo",
+     "t": 22.252
+    },
+    {
+     "w": "foto",
+     "t": 22.854
+    },
+    {
+     "w": "ímã",
+     "t": 23.268
+    },
+    {
+     "w": "24",
+     "t": 23.554
+    },
+    {
+     "w": "horas",
+     "t": 24.113
+    },
+    {
+     "w": "E",
+     "t": 24.625
+    },
+    {
+     "w": "o",
+     "t": 24.804
+    },
+    {
+     "w": "sistema",
+     "t": 24.884
+    },
+    {
+     "w": "automático",
+     "t": 25.256
+    },
+    {
+     "w": "de",
+     "t": 25.887
+    },
+    {
+     "w": "mensagens",
+     "t": 26.025
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 26.973,
+   "fim": 30.116,
+   "texto": "Se você fosse comprar tudo separado, passava de mil reais.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 26.973
+    },
+    {
+     "w": "você",
+     "t": 27.087
+    },
+    {
+     "w": "fosse",
+     "t": 27.312
+    },
+    {
+     "w": "comprar",
+     "t": 27.58
+    },
+    {
+     "w": "tudo",
+     "t": 27.887
+    },
+    {
+     "w": "separado",
+     "t": 28.163
+    },
+    {
+     "w": "passava",
+     "t": 28.73
+    },
+    {
+     "w": "de",
+     "t": 29.092
+    },
+    {
+     "w": "mil",
+     "t": 29.241
+    },
+    {
+     "w": "reais",
+     "t": 29.473
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 30.25,
+   "fim": 33.179,
+   "texto": "Na Black, você leva tudo por noventa e sete reais.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 30.25
+    },
+    {
+     "w": "Black",
+     "t": 30.381
+    },
+    {
+     "w": "você",
+     "t": 30.793
+    },
+    {
+     "w": "leva",
+     "t": 31.012
+    },
+    {
+     "w": "tudo",
+     "t": 31.25
+    },
+    {
+     "w": "por",
+     "t": 31.571
+    },
+    {
+     "w": "noventa",
+     "t": 31.75
+    },
+    {
+     "w": "e",
+     "t": 32.25
+    },
+    {
+     "w": "sete",
+     "t": 32.357
+    },
+    {
+     "w": "reais",
+     "t": 32.536
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.313,
+   "fim": 36.884,
+   "texto": "E quem comprar nas primeiras vinte e quatro horas ainda ganha um presente.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 33.313
+    },
+    {
+     "w": "quem",
+     "t": 33.427
+    },
+    {
+     "w": "comprar",
+     "t": 33.634
+    },
+    {
+     "w": "nas",
+     "t": 33.937
+    },
+    {
+     "w": "primeiras",
+     "t": 34.134
+    },
+    {
+     "w": "vinte",
+     "t": 34.491
+    },
+    {
+     "w": "e",
+     "t": 34.705
+    },
+    {
+     "w": "quatro",
+     "t": 34.765
+    },
+    {
+     "w": "horas",
+     "t": 35.087
+    },
+    {
+     "w": "ainda",
+     "t": 35.455
+    },
+    {
+     "w": "ganha",
+     "t": 35.848
+    },
+    {
+     "w": "um",
+     "t": 36.122
+    },
+    {
+     "w": "presente",
+     "t": 36.345
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 37.018,
+   "fim": 41.732,
+   "texto": "Sexta-feira, ao meio-dia. Comenta BLACK pra receber o link antes de todo mundo.",
+   "palavras": [
+    {
+     "w": "Sexta-feira",
+     "t": 37.018
+    },
+    {
+     "w": "ao",
+     "t": 37.779
+    },
+    {
+     "w": "meio-dia",
+     "t": 37.932
+    },
+    {
+     "w": "Comenta",
+     "t": 38.589
+    },
+    {
+     "w": "BLACK",
+     "t": 39.101
+    },
+    {
+     "w": "pra",
+     "t": 39.554
+    },
+    {
+     "w": "receber",
+     "t": 39.705
+    },
+    {
+     "w": "o",
+     "t": 40.054
+    },
+    {
+     "w": "link",
+     "t": 40.161
+    },
+    {
+     "w": "antes",
+     "t": 40.482
+    },
+    {
+     "w": "de",
+     "t": 40.708
+    },
+    {
+     "w": "todo",
+     "t": 40.846
+    },
+    {
+     "w": "mundo",
+     "t": 41.065
+    }
+   ]
+  }
+ ]
+}
