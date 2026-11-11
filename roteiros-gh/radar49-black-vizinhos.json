@@ -1,0 +1,35 @@
+{
+ "nome": "radar49-black-vizinhos",
+ "obs": "Black 11/11: modelo radar32-vizinhos (meme). Mudo. BLACK.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4500_0_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5
+  },
+  {
+   "arquivo": "IMG_7727_5_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Eu em casa trabalhando\nfeito DOIDA 🤪",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.5
+  },
+  {
+   "texto": "E os meus vizinhos: 🤨",
+   "y": 0.66,
+   "de": 4.5,
+   "ate": 6
+  },
+  {
+   "texto": "Dia 13/11 tem Black Magnética 🖤\nComenta BLACK 👇",
+   "y": 0.66,
+   "de": 6
+  }
+ ]
+}

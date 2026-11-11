@@ -1,0 +1,46 @@
+{
+ "nome": "radar50-black-palavras",
+ "obs": "Black 11/11: modelo radar08-contagem (palavras gigantes). IMG_3559 2.5-11. Mudo. BLACK.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3559_2.5_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "13/11",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 0,
+   "ate": 1.4
+  },
+  {
+   "texto": "BLACK",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 1.4,
+   "ate": 2.8
+  },
+  {
+   "texto": "MAGNÉTICA",
+   "y": 0.42,
+   "tamanho": 100,
+   "de": 2.8,
+   "ate": 4.4
+  },
+  {
+   "texto": "O MAIOR\nDESCONTO\nQUE EU JÁ FIZ",
+   "y": 0.36,
+   "tamanho": 100,
+   "de": 4.4,
+   "ate": 6.2
+  },
+  {
+   "texto": "Entra na lista VIP\nComenta BLACK 👇",
+   "y": 0.6,
+   "de": 6.2
+  }
+ ]
+}

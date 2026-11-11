@@ -1,0 +1,30 @@
+{
+ "nome": "radar57-black-balao",
+ "obs": "Black 11/11: modelo radar12-bebe (balão + POV). IMG_7808 inteiro. Mudo. BLACK.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_0_10.2.MOV",
+   "inicio": 0,
+   "duracao": 10.2
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "Vê, quando você vai fazer promoção dos materiais? 🙏",
+   "usuario": "marcela.gsilva",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-marcelagsilva.jpg",
+   "y": 0.02
+  },
+  {
+   "texto": "POV: eu, avisando que dia 13/11\ntem Black Magnética 🖤",
+   "y": 0.63,
+   "de": 1
+  },
+  {
+   "texto": "Comenta BLACK 👇",
+   "y": 0.7,
+   "de": 7
+  }
+ ]
+}

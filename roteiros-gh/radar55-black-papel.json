@@ -1,0 +1,29 @@
+{
+ "nome": "radar55-black-papel",
+ "obs": "Black 11/11: modelo radar15-papel. Mudo. BLACK.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2666_0.5_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_4767_0_4.46.MOV",
+   "inicio": 0,
+   "duracao": 4.46
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O erro pode estar\nno seu PAPEL",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.6
+  },
+  {
+   "texto": "Dia 13/11 tem Black Magnética 🖤\nComenta BLACK 👇",
+   "y": 0.66,
+   "de": 4.6
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "nome": "radar54-black-nao-colou",
+ "obs": "Black 11/11: modelo radar17-nao-colou. Mudo. BLACK.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3482_0_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3042_6_4.46.MOV",
+   "inicio": 0,
+   "duracao": 4.46
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Comprei essa máquina e\nELA NÃO COLOU minhas fotos",
+   "y": 0.66,
+   "de": 0,
+   "ate": 6.2
+  },
+  {
+   "texto": "Dia 13/11 tem Black Magnética 🖤\nComenta BLACK 👇",
+   "y": 0.66,
+   "de": 6.2
+  }
+ ]
+}
