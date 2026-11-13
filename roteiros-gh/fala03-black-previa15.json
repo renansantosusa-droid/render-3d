@@ -1,0 +1,93 @@
+{
+ "nome": "fala03-black-previa15",
+ "arquivo": "dados/veecriativos/falas/fala03-black-previa15-bruto.MOV",
+ "palavras": "dados/veecriativos/falas/IMG_8992-15s.palavras.json",
+ "duracao": 15,
+ "legenda": {
+  "y": 0.125,
+  "correcoes": {
+   "fotoimas": "foto ímãs"
+  },
+  "esconder": [
+   [
+    13.1,
+    15
+   ]
+  ]
+ },
+ "zooms": [
+  {
+   "de": 0,
+   "zoom": 1
+  },
+  {
+   "de": 2.4,
+   "zoom": 1.15
+  },
+  {
+   "de": 5.3,
+   "zoom": 1
+  },
+  {
+   "de": 8.68,
+   "zoom": 1.12
+  },
+  {
+   "de": 11.32,
+   "zoom": 1
+  }
+ ],
+ "desfoque": [
+  {
+   "de": 13.1,
+   "ate": 15
+  }
+ ],
+ "elementos": [
+  {
+   "tipo": "cartao",
+   "rotulo": "BLACK MAGNÉTICA",
+   "texto": "13/11 às 12h",
+   "de": 0.1,
+   "ate": 2.35,
+   "y": 0.66
+  },
+  {
+   "tipo": "titulo",
+   "cursiva": "Amanhã",
+   "texto": "a melhor oportunidade",
+   "tamTexto": 62,
+   "de": 2.4,
+   "ate": 5.25,
+   "y": 0.68
+  },
+  {
+   "tipo": "titulo",
+   "cursiva": "Todos",
+   "texto": "os meus produtos",
+   "tamTexto": 70,
+   "de": 9.6,
+   "ate": 11.28,
+   "y": 0.66
+  },
+  {
+   "tipo": "titulo",
+   "cursiva": "Todas",
+   "texto": "as ferramentas",
+   "tamTexto": 70,
+   "de": 11.32,
+   "ate": 12.9,
+   "y": 0.66
+  },
+  {
+   "tipo": "grande",
+   "cursiva": "por apenas",
+   "texto": "R$ 97",
+   "sub": "só nessa Black",
+   "de": 13.1,
+   "ate": 15,
+   "y": 0.5
+  }
+ ],
+ "saida": "dados/veecriativos/videos-novos"
+}

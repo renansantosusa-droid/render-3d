@@ -1,0 +1,7 @@
+{
+ "private": true,
+ "dependencies": {
+  "@napi-rs/canvas": "1.0.9",
+  "ffmpeg-static": "5.2.0"
+ }
+}
