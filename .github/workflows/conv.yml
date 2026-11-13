@@ -1,0 +1,19 @@
+﻿name: Black conv
+on:
+  push:
+    branches: ["vee-black*"]
+jobs:
+  conv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          mkdir -p out
+          ffmpeg -hide_banner -loglevel error -y -i lado.mp4 -c:v libx264 -preset slow -crf 25 -maxrate 2800k -bufsize 5600k -profile:v high -pix_fmt yuv420p -c:a aac -b:a 128k -ac 2 -movflags +faststart out/black-faltam2h-1080.mp4
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: black-faltam2h
+          path: out/*.mp4
+          retention-days: 3
