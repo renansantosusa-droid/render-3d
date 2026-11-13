@@ -1,0 +1,19 @@
+name: Converter orbita grupo
+on:
+  push:
+    branches: ["vee-orbita-*"]
+jobs:
+  conv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          mkdir -p out
+          ffmpeg -hide_banner -loglevel error -i in/orbita.mp4 -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -preset slow -crf 24 -maxrate 1100k -bufsize 2200k -profile:v main -c:a aac -b:a 96k -ac 2 -movflags +faststart out/black-orbita-1080.mp4
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vee-orbita-1080
+          path: out/*.mp4
+          retention-days: 3
