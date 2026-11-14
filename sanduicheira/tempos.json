@@ -1,0 +1,713 @@
+{
+ "total": 66.21,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.67,
+   "texto": "Se você colocar um sanduíche em cima de uma chapa quente, terá um misto quente.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.374
+    },
+    {
+     "w": "colocar",
+     "t": 0.697
+    },
+    {
+     "w": "um",
+     "t": 1.243
+    },
+    {
+     "w": "sanduíche",
+     "t": 1.414
+    },
+    {
+     "w": "em",
+     "t": 2.15
+    },
+    {
+     "w": "cima",
+     "t": 2.35
+    },
+    {
+     "w": "de",
+     "t": 2.577
+    },
+    {
+     "w": "uma",
+     "t": 2.67
+    },
+    {
+     "w": "chapa",
+     "t": 2.87
+    },
+    {
+     "w": "quente",
+     "t": 3.217
+    },
+    {
+     "w": "terá",
+     "t": 3.89
+    },
+    {
+     "w": "um",
+     "t": 4.203
+    },
+    {
+     "w": "misto",
+     "t": 4.406
+    },
+    {
+     "w": "quente",
+     "t": 4.897
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.82,
+   "fim": 17.58,
+   "texto": "Mas só um lado tosta. Você vira, e o queijo escorre. Então, você coloca uma segunda chapa por cima, com resistência também. Agora tosta dos dois lados ao mesmo tempo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.82
+    },
+    {
+     "w": "só",
+     "t": 6.06
+    },
+    {
+     "w": "um",
+     "t": 6.273
+    },
+    {
+     "w": "lado",
+     "t": 6.444
+    },
+    {
+     "w": "tosta",
+     "t": 6.78
+    },
+    {
+     "w": "Você",
+     "t": 7.596
+    },
+    {
+     "w": "vira",
+     "t": 7.86
+    },
+    {
+     "w": "e",
+     "t": 8.5
+    },
+    {
+     "w": "o",
+     "t": 8.66
+    },
+    {
+     "w": "queijo",
+     "t": 8.76
+    },
+    {
+     "w": "escorre",
+     "t": 9.16
+    },
+    {
+     "w": "Então",
+     "t": 9.84
+    },
+    {
+     "w": "você",
+     "t": 10.46
+    },
+    {
+     "w": "coloca",
+     "t": 10.84
+    },
+    {
+     "w": "uma",
+     "t": 11.22
+    },
+    {
+     "w": "segunda",
+     "t": 11.41
+    },
+    {
+     "w": "chapa",
+     "t": 11.953
+    },
+    {
+     "w": "por",
+     "t": 12.28
+    },
+    {
+     "w": "cima",
+     "t": 12.5
+    },
+    {
+     "w": "com",
+     "t": 13.06
+    },
+    {
+     "w": "resistência",
+     "t": 13.249
+    },
+    {
+     "w": "também",
+     "t": 13.957
+    },
+    {
+     "w": "Agora",
+     "t": 14.673
+    },
+    {
+     "w": "tosta",
+     "t": 15.127
+    },
+    {
+     "w": "dos",
+     "t": 15.64
+    },
+    {
+     "w": "dois",
+     "t": 15.884
+    },
+    {
+     "w": "lados",
+     "t": 16.18
+    },
+    {
+     "w": "ao",
+     "t": 16.647
+    },
+    {
+     "w": "mesmo",
+     "t": 16.767
+    },
+    {
+     "w": "tempo",
+     "t": 17.167
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 17.73,
+   "fim": 26.45,
+   "texto": "Mas o queijo derrete, vaza pelas bordas e gruda tudo. Então, você faz a chapa com bordas altas, em forma de triângulo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 17.73
+    },
+    {
+     "w": "o",
+     "t": 18.01
+    },
+    {
+     "w": "queijo",
+     "t": 18.11
+    },
+    {
+     "w": "derrete",
+     "t": 18.51
+    },
+    {
+     "w": "vaza",
+     "t": 19.37
+    },
+    {
+     "w": "pelas",
+     "t": 19.77
+    },
+    {
+     "w": "bordas",
+     "t": 20.13
+    },
+    {
+     "w": "e",
+     "t": 20.57
+    },
+    {
+     "w": "gruda",
+     "t": 20.69
+    },
+    {
+     "w": "tudo",
+     "t": 21.17
+    },
+    {
+     "w": "Então",
+     "t": 21.81
+    },
+    {
+     "w": "você",
+     "t": 22.37
+    },
+    {
+     "w": "faz",
+     "t": 22.77
+    },
+    {
+     "w": "a",
+     "t": 23.05
+    },
+    {
+     "w": "chapa",
+     "t": 23.17
+    },
+    {
+     "w": "com",
+     "t": 23.61
+    },
+    {
+     "w": "bordas",
+     "t": 23.794
+    },
+    {
+     "w": "altas",
+     "t": 24.29
+    },
+    {
+     "w": "em",
+     "t": 24.823
+    },
+    {
+     "w": "forma",
+     "t": 25.01
+    },
+    {
+     "w": "de",
+     "t": 25.463
+    },
+    {
+     "w": "triângulo",
+     "t": 25.63
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 26.6,
+   "fim": 37,
+   "texto": "Quando fecha, a borda aperta o pão até colar uma fatia na outra. O queijo fica preso lá dentro. É por isso que o misto sai em triângulos fechadinhos.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 26.6
+    },
+    {
+     "w": "fecha",
+     "t": 26.92
+    },
+    {
+     "w": "a",
+     "t": 27.6
+    },
+    {
+     "w": "borda",
+     "t": 27.704
+    },
+    {
+     "w": "aperta",
+     "t": 28.12
+    },
+    {
+     "w": "o",
+     "t": 28.56
+    },
+    {
+     "w": "pão",
+     "t": 28.68
+    },
+    {
+     "w": "até",
+     "t": 28.98
+    },
+    {
+     "w": "colar",
+     "t": 29.24
+    },
+    {
+     "w": "uma",
+     "t": 29.68
+    },
+    {
+     "w": "fatia",
+     "t": 29.88
+    },
+    {
+     "w": "na",
+     "t": 30.333
+    },
+    {
+     "w": "outra",
+     "t": 30.507
+    },
+    {
+     "w": "O",
+     "t": 31.24
+    },
+    {
+     "w": "queijo",
+     "t": 31.46
+    },
+    {
+     "w": "fica",
+     "t": 31.928
+    },
+    {
+     "w": "preso",
+     "t": 32.2
+    },
+    {
+     "w": "lá",
+     "t": 32.627
+    },
+    {
+     "w": "dentro",
+     "t": 32.749
+    },
+    {
+     "w": "É",
+     "t": 33.44
+    },
+    {
+     "w": "por",
+     "t": 33.68
+    },
+    {
+     "w": "isso",
+     "t": 33.864
+    },
+    {
+     "w": "que",
+     "t": 34.14
+    },
+    {
+     "w": "o",
+     "t": 34.24
+    },
+    {
+     "w": "misto",
+     "t": 34.344
+    },
+    {
+     "w": "sai",
+     "t": 34.74
+    },
+    {
+     "w": "em",
+     "t": 34.973
+    },
+    {
+     "w": "triângulos",
+     "t": 35.12
+    },
+    {
+     "w": "fechadinhos",
+     "t": 35.8
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 37.15,
+   "fim": 45.63,
+   "texto": "Mas o pão gruda no metal. Então, você cobre a chapa com uma camada antiaderente, onde nada consegue se agarrar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 37.15
+    },
+    {
+     "w": "o",
+     "t": 37.51
+    },
+    {
+     "w": "pão",
+     "t": 37.63
+    },
+    {
+     "w": "gruda",
+     "t": 38.03
+    },
+    {
+     "w": "no",
+     "t": 38.457
+    },
+    {
+     "w": "metal",
+     "t": 38.59
+    },
+    {
+     "w": "Então",
+     "t": 39.19
+    },
+    {
+     "w": "você",
+     "t": 39.806
+    },
+    {
+     "w": "cobre",
+     "t": 40.29
+    },
+    {
+     "w": "a",
+     "t": 40.71
+    },
+    {
+     "w": "chapa",
+     "t": 40.83
+    },
+    {
+     "w": "com",
+     "t": 41.27
+    },
+    {
+     "w": "uma",
+     "t": 41.43
+    },
+    {
+     "w": "camada",
+     "t": 41.61
+    },
+    {
+     "w": "antiaderente",
+     "t": 42.11
+    },
+    {
+     "w": "onde",
+     "t": 43.31
+    },
+    {
+     "w": "nada",
+     "t": 43.726
+    },
+    {
+     "w": "consegue",
+     "t": 44.19
+    },
+    {
+     "w": "se",
+     "t": 44.723
+    },
+    {
+     "w": "agarrar",
+     "t": 44.883
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 45.78,
+   "fim": 56.18,
+   "texto": "E como saber que esquentou? Uma plaquinha de metal entorta com o calor, desliga a resistência e acende a luz verde. Quando esfria, liga de novo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 45.78
+    },
+    {
+     "w": "como",
+     "t": 45.94
+    },
+    {
+     "w": "saber",
+     "t": 46.34
+    },
+    {
+     "w": "que",
+     "t": 46.78
+    },
+    {
+     "w": "esquentou",
+     "t": 46.953
+    },
+    {
+     "w": "Uma",
+     "t": 47.64
+    },
+    {
+     "w": "plaquinha",
+     "t": 48
+    },
+    {
+     "w": "de",
+     "t": 48.527
+    },
+    {
+     "w": "metal",
+     "t": 48.647
+    },
+    {
+     "w": "entorta",
+     "t": 49.06
+    },
+    {
+     "w": "com",
+     "t": 49.66
+    },
+    {
+     "w": "o",
+     "t": 49.82
+    },
+    {
+     "w": "calor",
+     "t": 49.94
+    },
+    {
+     "w": "desliga",
+     "t": 50.6
+    },
+    {
+     "w": "a",
+     "t": 51.18
+    },
+    {
+     "w": "resistência",
+     "t": 51.277
+    },
+    {
+     "w": "e",
+     "t": 52.14
+    },
+    {
+     "w": "acende",
+     "t": 52.447
+    },
+    {
+     "w": "a",
+     "t": 52.94
+    },
+    {
+     "w": "luz",
+     "t": 53.06
+    },
+    {
+     "w": "verde",
+     "t": 53.367
+    },
+    {
+     "w": "Quando",
+     "t": 53.837
+    },
+    {
+     "w": "esfria",
+     "t": 54.26
+    },
+    {
+     "w": "liga",
+     "t": 55.1
+    },
+    {
+     "w": "de",
+     "t": 55.407
+    },
+    {
+     "w": "novo",
+     "t": 55.54
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 56.33,
+   "fim": 65.61,
+   "texto": "Coloque uma trava pra segurar a tampa, pés de borracha e um cabo que não esquenta. Parabéns, você construiu uma sanduicheira.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 56.33
+    },
+    {
+     "w": "uma",
+     "t": 56.77
+    },
+    {
+     "w": "trava",
+     "t": 56.97
+    },
+    {
+     "w": "pra",
+     "t": 57.41
+    },
+    {
+     "w": "segurar",
+     "t": 57.59
+    },
+    {
+     "w": "a",
+     "t": 58.05
+    },
+    {
+     "w": "tampa",
+     "t": 58.17
+    },
+    {
+     "w": "pés",
+     "t": 58.93
+    },
+    {
+     "w": "de",
+     "t": 59.157
+    },
+    {
+     "w": "borracha",
+     "t": 59.258
+    },
+    {
+     "w": "e",
+     "t": 59.97
+    },
+    {
+     "w": "um",
+     "t": 60.17
+    },
+    {
+     "w": "cabo",
+     "t": 60.394
+    },
+    {
+     "w": "que",
+     "t": 60.69
+    },
+    {
+     "w": "não",
+     "t": 60.87
+    },
+    {
+     "w": "esquenta",
+     "t": 61.13
+    },
+    {
+     "w": "Parabéns",
+     "t": 62.15
+    },
+    {
+     "w": "você",
+     "t": 63.37
+    },
+    {
+     "w": "construiu",
+     "t": 63.747
+    },
+    {
+     "w": "uma",
+     "t": 64.33
+    },
+    {
+     "w": "sanduicheira",
+     "t": 64.618
+    }
+   ]
+  }
+ ]
+}

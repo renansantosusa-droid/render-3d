@@ -1,0 +1,165 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("sanduicheira", { fundo: 0xe8e2d8, seed: 1412 });
+const { THREE, scene, add, grupo, mat, vidro, sprite, texMadeira, prog, entre, frac, C, F, P, T, rnd } = K;
+const PI = Math.PI, V = (x, y, z) => new THREE.Vector3(x, y, z);
+
+// ---------- bancada ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b08050", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.BoxGeometry(20, 6, .2), mat(0xdcd6cc), 0, 3, -2.2);
+
+// ---------- base + chapa de baixo ----------
+const corpoM = vidro(.3, 0xf4f4f4);
+add(new THREE.BoxGeometry(1.3, .22, 1.1), corpoM, 0, .15, 0);
+const pes = [[-.5, -.4], [.5, -.4], [-.5, .4], [.5, .4]].map(([x, z]) => add(new THREE.CylinderGeometry(.06, .07, .05, 16), mat(0x111111), x, .02, z));
+const resM = mat(0x5a4a40, { emissive: 0xff3010, emissiveIntensity: 0 });
+const serp = (y, pai) => { const pts = []; for (let i = 0; i <= 8; i++) { const z = -.4 + i * .1; pts.push(V(-.45, y, z), V(.45, y, z)); } add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, "catmullrom", .05), 200, .018, 8), resM, 0, 0, 0, pai); };
+serp(.17, scene);
+const chapaM = mat(0x9aa0a8, { metalness: .7, roughness: .35, emissive: 0xff5020, emissiveIntensity: 0 });
+const chapaB = grupo(0, .27, 0);
+add(new THREE.BoxGeometry(1.1, .04, .95), chapaM, 0, 0, 0, chapaB);
+// bordas em triângulo (aparecem depois)
+const ridgeM = mat(0x9aa0a8, { metalness: .7, roughness: .35 });
+const bordas = (pai, s) => { const g = grupo(0, 0, 0, pai); const h = .08 * s;
+  add(new THREE.BoxGeometry(1.1, .08, .05), ridgeM, 0, h / 2 + .02 * s, -.45, g); add(new THREE.BoxGeometry(1.1, .08, .05), ridgeM, 0, h / 2 + .02 * s, .45, g);
+  add(new THREE.BoxGeometry(.05, .08, .95), ridgeM, -.53, h / 2 + .02 * s, 0, g); add(new THREE.BoxGeometry(.05, .08, .95), ridgeM, .53, h / 2 + .02 * s, 0, g);
+  const d = add(new THREE.BoxGeometry(1.4, .08, .05), ridgeM, 0, h / 2 + .02 * s, 0, g); d.rotation.y = Math.atan2(.9, 1.06); g.visible = false; return g; };
+const bordaB = bordas(chapaB, 1);
+// ---------- tampa (dobradiça atrás) ----------
+const tampa = grupo(0, .3, -.55);
+const tampaIn = grupo(0, 0, .55, tampa);
+add(new THREE.BoxGeometry(1.3, .2, 1.1), corpoM, 0, .14, 0, tampaIn);
+serp(.08, tampaIn);
+const chapaT = grupo(0, .02, 0, tampaIn); add(new THREE.BoxGeometry(1.1, .04, .95), chapaM, 0, 0, 0, chapaT);
+const bordaT = bordas(chapaT, -1);
+const caboM = mat(0x2a2a2e);
+const cabo = add(new THREE.BoxGeometry(.4, .08, .14), caboM, 0, .14, .62, tampaIn);
+const trava = add(new THREE.BoxGeometry(.12, .3, .06), mat(0xe03030), 0, -.05, .72, tampaIn); trava.visible = false;
+const led = add(new THREE.SphereGeometry(.04, 16, 12), mat(0x1a3a1a, { emissive: 0x30ff60, emissiveIntensity: 0 }), .45, .2, .56);
+
+// ---------- sanduíche ----------
+const paoM = (c) => mat(c, { roughness: .9 });
+const sand = grupo(0, .29, 0);
+const pB = add(new THREE.BoxGeometry(.9, .07, .8), paoM(0xf0d8a0), 0, .035, 0, sand);
+const presunto = add(new THREE.BoxGeometry(.84, .025, .74), mat(0xe8a0a0), 0, .082, 0, sand);
+const queijo = add(new THREE.BoxGeometry(.86, .025, .76), mat(0xf2c830), 0, .107, 0, sand);
+const pT = add(new THREE.BoxGeometry(.9, .07, .8), paoM(0xf0d8a0), 0, .155, 0, sand);
+const pinga = Array.from({ length: 26 }, () => ({ s: sprite(0xf2c830), x: (rnd() - .5) * 1.0, lado: rnd() < .5 ? -1 : 1, f: rnd() }));
+const poca = add(new THREE.CylinderGeometry(.62, .62, .012, 32), mat(0xf2c830), 0, .295, 0); poca.visible = false;
+// triângulos prontos
+const tri = new THREE.Shape(); tri.moveTo(-.45, -.4); tri.lineTo(.45, -.4); tri.lineTo(-.45, .4); tri.lineTo(-.45, -.4);
+const triGeo = new THREE.ExtrudeGeometry(tri, { depth: .12, bevelEnabled: true, bevelSize: .03, bevelThickness: .03, bevelSegments: 3 });
+const triM = mat(0xc0843a, { roughness: .8 });
+const tris = [0, PI].map((r) => { const g = grupo(0, .3, 0); const m = add(triGeo, triM, 0, 0, 0, g); m.rotation.x = -PI / 2; g.rotation.y = r; g.visible = false; return g; });
+// migalhas grudadas
+const migalhas = Array.from({ length: 18 }, () => { const m = add(new THREE.BoxGeometry(.05 + rnd() * .05, .02, .05 + rnd() * .04), paoM(0xd09a50), (rnd() - .5) * .95, .3, (rnd() - .5) * .8); m.rotation.y = rnd() * PI; m.visible = false; return m; });
+const calor = Array.from({ length: 24 }, () => ({ s: sprite(0xff6030), x: (rnd() - .5) * 1.1, z: (rnd() - .5) * .9, f: rnd() }));
+
+// ---------- mini set: termostato ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(12, 12), mat(0x2a3240), BX, 0, -1.5); { const pl = new THREE.PointLight(0xffffff, 4, 10); pl.position.set(BX + 1, 2.5, 3); scene.add(pl); }
+const N = 12, L = .1, segs = [];
+let pai = grupo(BX - .65, 1.05, 0);
+add(new THREE.BoxGeometry(.12, .3, .4), mat(0x5a5e66), -.06, 0, 0, pai);
+const cobreM = mat(0xd07840, { metalness: .6, roughness: .35, emissive: 0xff3010, emissiveIntensity: 0 }), acoM = mat(0xaab0b8, { metalness: .6, roughness: .35 });
+for (let i = 0; i < N; i++) { const g = new THREE.Group(); g.position.x = i ? L : 0; pai.add(g); add(new THREE.BoxGeometry(L + .002, .05, .3), cobreM, L / 2, .025, 0, g); add(new THREE.BoxGeometry(L + .002, .05, .3), acoM, L / 2, -.025, 0, g); segs.push(g); pai = g; }
+const contato = add(new THREE.BoxGeometry(.08, .3, .3), mat(0xd8b040, { metalness: .7 }), BX + .55, .87, 0);
+const resMini = mat(0x5a4a40, { emissive: 0xff3010, emissiveIntensity: 0 });
+{ const pts = []; for (let i = 0; i <= 6; i++) pts.push(V(BX - .6 + i * .2, .25 + (i % 2) * .15, 0)); add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 80, .035, 8), resMini, 0, 0, 0); }
+const ledMiniM = mat(0x1a3a1a, { emissive: 0x30ff60, emissiveIntensity: 0 });
+add(new THREE.SphereGeometry(.14, 20, 16), ledMiniM, BX + .2, 1.95, 0);
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70, w: 1024 }), transparent: true })); s.position.set(x, y, .4); s.scale.set(1.0, .25, 1); scene.add(s); return s; };
+const lQ = lb("QUENTE: ENTORTA", "#ffb070", BX - .1, 1.5), lF = lb("FRIO: VOLTA", "#8ac8ff", BX - .1, 1.5);
+
+K.camera_({
+  geral: [V(1.35, 2.3, 3.0), V(0, .5, 0)],
+  close: [V(1.3, 1.55, 2.5), V(0, .42, .05)],
+  mini: [V(BX + .05, 1.15, 4.7), V(BX + .05, 1.15, 0)],
+  fim: [V(-1.35, 2.1, 3.0), V(0, .45, 0)],
+}, [
+  [0, "geral"], [C(2), "geral"], [P(2, "vira") + .2, "close"], [P(2, "segunda") - .3, "geral"], [P(3, "bordas") - .3, "geral"],
+  [P(4, "aperta") - .4, "close"], [P(4, "triangulos") - .3, "geral"], [F(5), "geral"],
+  [C(6), "mini"], [F(6), "mini"], [C(7), "geral"], [T, "fim"],
+]);
+
+const torrado = new THREE.Color(0xb06a28), cru = new THREE.Color(0xf0d8a0), metal = new THREE.Color(0x9aa0a8), anti = new THREE.Color(0x26262a);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const fresco = P(3, "bordas") - .3; // troca por um sanduíche novo
+  // tampa: escondida -> abre/fecha
+  const seg = P(2, "segunda");
+  tampa.visible = t > seg - .4;
+  let ab = 1.9;
+  if (t < seg - .4) ab = 1.9;
+  else if (t < P(3, "bordas") - .3) ab = 1.9 * (1 - prog(t, seg, P(2, "resistencia")));
+  else if (t < P(4, "fecha") - .3) ab = 1.9 * prog(t, P(3, "bordas") - .3, P(3, "bordas") + .3);
+  else if (t < P(4, "triangulos") - .4) ab = 1.9 * (1 - prog(t, P(4, "fecha") - .3, P(4, "fecha") + .3));
+  else if (t < C(7)) ab = 1.9 * prog(t, P(4, "triangulos") - .4, P(4, "triangulos") + .1);
+  else ab = 1.9 * (1 - prog(t, C(7), C(7) + .5));
+  const aperta = t > fresco ? prog(t, P(4, "aperta") - .3, P(4, "colar")) : 0;
+  tampa.position.y = .3 + (t < P(4, "triangulos") - .3 ? .17 * (1 - .35 * aperta) : 0);
+  tampa.rotation.x = -ab;
+  // calor
+  const aquece = t > P(1, "chapa") - .3 && !em(F(5), C(7));
+  const doisLados = t > P(2, "resistencia") - .2;
+  chapaM.emissiveIntensity = aquece ? .1 + .05 * Math.sin(t * 6) : 0;
+  resM.emissiveIntensity = aquece ? .7 : 0;
+  calor.forEach((c) => { const q = frac(t * .5 + c.f); c.s.position.set(c.x, .32 + q * .5, c.z); c.s.scale.setScalar(.06); c.s.material.opacity = aquece && ab > .5 && t < C(3) ? .5 * (1 - q) : 0; });
+  // sanduíche: tosta de um lado, vira, queijo escorre; depois um novo
+  sand.visible = t < P(4, "triangulos") - .3 && !em(fresco, P(4, "fecha") - .9);
+  const vira = prog(t, P(2, "vira") - .2, P(2, "vira") + .4);
+  const usado = t < fresco;
+  sand.rotation.x = usado ? vira * PI : 0; sand.position.y = usado ? .29 + .19 * vira + .25 * Math.sin(vira * PI) : .29 + .6 * (1 - prog(t, P(4, "fecha") - .9, P(4, "fecha") - .4));
+  const t1 = usado ? prog(t, P(2, "lado") - .3, P(2, "tosta") + .8) : prog(t, P(4, "fecha"), P(4, "triangulos"));
+  const t2 = usado ? prog(t, P(2, "dois") - .3, F(2)) : t1;
+  pB.material.color.copy(cru).lerp(torrado, t1); pT.material.color.copy(cru).lerp(torrado, t2);
+  sand.scale.y = 1 - .35 * aperta;
+  const vaza = usado && em(P(2, "escorre") - .3, P(2, "segunda")) || usado && em(P(3, "derrete") - .3, fresco);
+  queijo.scale.set(1 + (vaza ? .1 : 0), 1, 1 + (vaza ? .1 : 0));
+  pinga.forEach((p) => { const q = frac(t * .8 + p.f); p.s.position.set(p.x, .38 - q * .1, p.lado * .42); p.s.scale.setScalar(.05); p.s.material.opacity = vaza ? .95 : 0; });
+  poca.visible = usado && t > P(3, "gruda") - .3; poca.scale.set(prog(t, P(3, "gruda") - .3, P(3, "gruda") + .5) + .01, 1, 1);
+  bordaB.visible = bordaT.visible = t > P(3, "bordas");
+  // triângulos prontos
+  const sai = prog(t, P(4, "triangulos") - .3, P(4, "triangulos") + .5);
+  tris.forEach((g, i) => { g.visible = em(P(4, "triangulos") - .3, F(4)); g.position.y = .3 + sai * .45; g.position.x = (i ? 1 : -1) * sai * .12; g.position.z = (i ? 1 : -1) * sai * .1; g.rotation.x = sai * .5; });
+  // pão gruda / antiaderente
+  migalhas.forEach((m, i) => { m.visible = em(P(5, "gruda") - .3 + i * .03, P(5, "antiaderente") + .4 + i * .04); });
+  const cobre = prog(t, P(5, "antiaderente") - .3, P(5, "antiaderente") + .6);
+  chapaM.color.copy(metal).lerp(anti, cobre); ridgeM.color.copy(metal).lerp(anti, cobre);
+  // termostato (mini set)
+  const dobra = prog(t, P(6, "entorta") - .3, P(6, "entorta") + .5) * (1 - prog(t, P(6, "esfria") - .2, P(6, "esfria") + .5));
+  segs.forEach((g, i) => { g.rotation.z = i ? dobra * .04 : 0; });
+  cobreM.emissiveIntensity = dobra * .5;
+  const ligado = !em(P(6, "desliga") - .1, P(6, "liga", 1) - .1);
+  resMini.emissiveIntensity = em(C(6), F(6)) && ligado ? 1.3 : 0;
+  ledMiniM.emissiveIntensity = em(P(6, "verde") - .2, P(6, "liga") - .1) ? 2 : 0;
+  lQ.visible = em(P(6, "entorta") - .3, P(6, "esfria") - .2); lF.visible = em(P(6, "esfria") - .2, F(6));
+  // acabamentos
+  led.material.emissiveIntensity = t > C(7) || em(C(2), C(3)) ? 1.6 : 0;
+  trava.visible = t > P(7, "trava") - .3; trava.rotation.x = .6 * (1 - prog(t, P(7, "trava") - .3, P(7, "trava") + .3));
+  pes.forEach((p) => { p.material.color.set(t > P(7, "pes") - .3 ? 0x111111 : 0x777777); p.scale.setScalar(t > P(7, "pes") - .3 ? 1 + .4 * K.pulse(t, P(7, "pes") - .3, .5) : 1); });
+  caboM.color.set(t > P(7, "cabo") - .3 ? 0x2a2a2e : 0x999999); cabo.scale.setScalar(1 + .3 * K.pulse(t, P(7, "cabo") - .3, .5));
+  K.cartoes(t, [
+    [P(1, "misto") - .3, F(1), "MISTO QUENTE?", "#ffffff"],
+    [P(2, "lado") - .3, P(2, "vira") - .3, "SÓ UM LADO TOSTA", "#ff7040"],
+    [P(2, "queijo") - .3, P(2, "segunda") - .3, "O QUEIJO ESCORRE", "#ffd23a"],
+    [P(2, "segunda") - .3, F(2), "2ª CHAPA POR CIMA", "#ffffff"],
+    [P(3, "derrete") - .3, P(3, "bordas") - .3, "VAZA E GRUDA TUDO", "#ff4a3a"],
+    [P(3, "bordas") - .3, F(3), "BORDAS EM TRIÂNGULO", "#ffffff"],
+    [P(4, "aperta") - .3, P(4, "preso") - .2, "A BORDA COLA O PÃO", "#ffb070"],
+    [P(4, "preso") - .2, P(4, "triangulos") - .3, "QUEIJO PRESO LÁ DENTRO", "#ffd23a"],
+    [P(5, "gruda") - .3, P(5, "antiaderente") - .3, "O PÃO GRUDA", "#ff4a3a"],
+    [P(5, "antiaderente") - .3, F(5), "ANTIADERENTE", "#8ac8ff"],
+    [P(6, "plaquinha") - .3, P(6, "verde") - .2, "PLAQUINHA DE DOIS METAIS", "#ffb070"],
+    [P(6, "verde") - .2, P(6, "esfria") - .2, "LUZ VERDE: PRONTA", "#5aff8a"],
+    [P(6, "esfria") - .2, F(6), "ESFRIOU: LIGA DE NOVO", "#ff7040"],
+  ]);
+});
+</script>
+</body></html>
