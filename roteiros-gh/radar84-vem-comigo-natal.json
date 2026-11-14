@@ -1,0 +1,22 @@
+{
+ "nome": "radar84-vem-comigo-natal",
+ "obs": "Modelo radar45 versão Natal com IMG_4773 26-34 (só mãos). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4773_26_8.MOV",
+   "inicio": 0,
+   "duracao": 8
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Vem fazer um FOTO ÍMÃ\nde NATAL comigo 🎄",
+   "y": 0.05
+  },
+  {
+   "texto": "Comenta NATAL 👇",
+   "y": 0.72,
+   "de": 5.5
+  }
+ ]
+}

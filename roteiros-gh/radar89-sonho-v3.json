@@ -1,0 +1,24 @@
+{
+ "nome": "radar89-sonho-v3",
+ "obs": "Repete radar43 com IMG_4177 1-9,5 (zoom 1.2, pés fora). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4177_1_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5,
+   "zoom": 1.2,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Se Deus colocou um sonho\nno seu coração, NINGUÉM tira. 🙏",
+   "y": 0.62
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.76,
+   "de": 6
+  }
+ ]
+}

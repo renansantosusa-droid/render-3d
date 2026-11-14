@@ -1,0 +1,24 @@
+{
+ "nome": "radar87-nao-compre-matriz",
+ "obs": "Frase-tese (radar27) sobre medida da matriz (dado da lista). IMG_3255 2-9,2 (zoom 1.15). Mudo. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3255_2_7.2.MOV",
+   "inicio": 0,
+   "duracao": 7.2,
+   "zoom": 1.15,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "NÃO COMPRE insumo sem\nconferir a MATRIZ\nda sua máquina.",
+   "y": 0.62
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.78,
+   "de": 5.4
+  }
+ ]
+}

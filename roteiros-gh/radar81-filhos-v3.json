@@ -1,0 +1,22 @@
+{
+ "nome": "radar81-filhos-v3",
+ "obs": "Repete radar31 com IMG_7808 0-7,6 (vista de cima, texto no meio). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_0_7.6.MOV",
+   "inicio": 0,
+   "duracao": 7.6
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Amiga, você pode ser incrível…\nmas se não tem FILHO PEQUENO,\nnão dá pra me comparar. Desculpa.",
+   "y": 0.4
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.58,
+   "de": 5.2
+  }
+ ]
+}

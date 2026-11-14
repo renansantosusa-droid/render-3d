@@ -1,0 +1,30 @@
+{
+ "nome": "radar83-emocione-v3",
+ "obs": "Repete radar42 (1 mil views) com IMG_3037 1,5-9,4. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3037_1.5_7.9.MOV",
+   "inicio": 0,
+   "duracao": 7.9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "\"Preciso de um presente\nque EMOCIONE\"",
+   "y": 0.62,
+   "de": 0,
+   "ate": 4
+  },
+  {
+   "texto": "Talvez você precise\nde um FOTO ÍMÃ 🎁",
+   "y": 0.62,
+   "de": 4,
+   "ate": 6.4
+  },
+  {
+   "texto": "Comenta NATAL 🎄",
+   "y": 0.62,
+   "de": 6.4
+  }
+ ]
+}

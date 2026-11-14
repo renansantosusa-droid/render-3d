@@ -1,0 +1,29 @@
+{
+ "nome": "radar88-vizinhos-v3",
+ "obs": "Meme radar32 (3ª versão) com IMG_4166 2-6,5 + IMG_4167 1,5-5,3 (sorrindo mostrando os ímãs). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4166_2_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5
+  },
+  {
+   "arquivo": "IMG_4167_1.5_3.8.MOV",
+   "inicio": 0,
+   "duracao": 3.8
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Eu em casa trabalhando\nfeito DOIDA 🤪",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.5
+  },
+  {
+   "texto": "Aí o resultado fica pronto\ne eu: 😍",
+   "y": 0.66,
+   "de": 4.5
+  }
+ ]
+}
