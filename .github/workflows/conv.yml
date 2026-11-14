@@ -1,7 +1,7 @@
-name: Converter orbita grupo
+name: Converter video grupo
 on:
   push:
-    branches: ["vee-orbita-*"]
+    branches: ["vee-protocolo-*"]
 jobs:
   conv:
     runs-on: ubuntu-latest
@@ -10,10 +10,10 @@ jobs:
       - run: |
           sudo apt-get install -y -qq ffmpeg >/dev/null
           mkdir -p out
-          ffmpeg -hide_banner -loglevel error -i in/orbita.mp4 -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -preset slow -crf 24 -maxrate 1100k -bufsize 2200k -profile:v main -c:a aac -b:a 96k -ac 2 -movflags +faststart out/black-orbita-1080.mp4
+          ffmpeg -hide_banner -loglevel error -i in/v.mov -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -preset slow -crf 20 -maxrate 1050k -bufsize 2100k -profile:v high -c:a aac -b:a 96k -ac 2 -movflags +faststart out/protocolo-1080.mp4
           ls -la out
       - uses: actions/upload-artifact@v4
         with:
-          name: vee-orbita-1080
+          name: vee-protocolo-1080
           path: out/*.mp4
           retention-days: 3
