@@ -1,0 +1,173 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("triturador", { fundo: 0xe4e0d8, seed: 1411 });
+const { THREE, scene, sol, add, grupo, mat, vidro, sprite, texMadeira, texRuido, prog, entre, frac, C, F, P, T, rnd } = K;
+const PI = Math.PI, V = (x, y, z) => new THREE.Vector3(x, y, z);
+sol.position.set(3, 6, 10);
+
+// ---------- armário + pia em corte ----------
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#a87850", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.BoxGeometry(20, 6, .2), mat(0xd8d4cc), 0, 3, -.8);
+const balcao = mat(0xffffff, { map: texRuido("#3a3a40", 40, 2) });
+add(new THREE.BoxGeometry(.9, .08, 1.3), balcao, -1.0, 2.12, -.05);
+add(new THREE.BoxGeometry(.9, .08, 1.3), balcao, 1.0, 2.12, -.05);
+add(new THREE.BoxGeometry(1.1, .08, .3), balcao, 0, 2.12, -.55);
+const inox = mat(0xc8ccd2, { metalness: .7, roughness: .3 });
+add(new THREE.BoxGeometry(1.1, .03, .8), inox, 0, 1.78, 0);
+add(new THREE.BoxGeometry(.03, .34, .8), inox, -.55, 1.95, 0);
+add(new THREE.BoxGeometry(.03, .34, .8), inox, .55, 1.95, 0);
+add(new THREE.BoxGeometry(1.1, .34, .03), inox, 0, 1.95, -.4);
+add(new THREE.CircleGeometry(.12, 32), mat(0x222222), 0, 1.797, 0).rotation.x = -PI / 2;
+// torneira
+const curvaTor = new THREE.CatmullRomCurve3([V(0, 2.16, -.55), V(0, 2.6, -.55), V(0, 2.7, -.35), V(0, 2.55, -.2)]);
+add(new THREE.TubeGeometry(curvaTor, 30, .03, 10), inox, 0, 0, 0);
+// garganta + câmara (vidro) + motor
+add(new THREE.CylinderGeometry(.13, .13, .2, 32, 1, true), vidro(.35, 0xdfe8f0), 0, 1.68, 0);
+const corpoM = vidro(.22, 0xdfe8f0);
+add(new THREE.CylinderGeometry(.33, .33, .72, 40, 1, true), corpoM, 0, 1.24, 0);
+add(new THREE.CylinderGeometry(.33, .33, .03, 40), vidro(.25, 0xdfe8f0), 0, 1.6, 0);
+const motorM = mat(0x4a4e56, { metalness: .5, roughness: .4, emissive: 0xff2010, emissiveIntensity: 0 });
+add(new THREE.CylinderGeometry(.33, .3, .42, 40), motorM, 0, .67, 0);
+add(new THREE.CylinderGeometry(.06, .06, .1, 16), mat(0x888c94, { metalness: .8 }), 0, .92, 0);
+const botM = mat(0xd02020, { emissive: 0xff2020, emissiveIntensity: 0 });
+const botao = add(new THREE.CylinderGeometry(.05, .05, .05, 20), botM, .16, .44, .2);
+// anel triturador
+const aco = mat(0x9aa0a8, { metalness: .8, roughness: .3, side: THREE.DoubleSide, emissive: 0xffaa30, emissiveIntensity: 0 });
+add(new THREE.CylinderGeometry(.315, .315, .16, 40, 1, true), aco, 0, 1.02, 0);
+const furosM = mat(0x111111); const furos = [];
+for (let i = 0; i < 22; i++) { const a = i / 22 * PI * 2;
+  const d = add(new THREE.BoxGeometry(.03, .1, .03), aco, Math.cos(a) * .295, 1.02, Math.sin(a) * .295); d.rotation.y = -a;
+  const f = add(new THREE.BoxGeometry(.012, .08, .02), furosM, Math.cos(a + .14) * .312, 1.02, Math.sin(a + .14) * .312); f.rotation.y = -a; f.visible = false; furos.push(f); }
+// lâmina (o "liquidificador")
+const lamina = grupo(0, 1.0, 0);
+const lamM = mat(0xe8eaee, { metalness: .9, roughness: .15 });
+const lam1 = add(new THREE.BoxGeometry(.46, .012, .05), lamM, 0, 0, 0, lamina); lam1.rotation.x = .25;
+const lam2 = add(new THREE.BoxGeometry(.05, .012, .46), lamM, 0, .02, 0, lamina); lam2.rotation.z = .25;
+const cacos = Array.from({ length: 6 }, (_, i) => ({ m: add(new THREE.BoxGeometry(.1, .012, .04), lamM, 0, 1, 0), a: i * 1.05, v: .5 + rnd() * .5 }));
+// prato giratório + martelinhos soltos
+const prato = grupo(0, .97, 0);
+add(new THREE.CylinderGeometry(.28, .28, .035, 40), mat(0x70767e, { metalness: .7, roughness: .35 }), 0, 0, 0, prato);
+const lugs = [-1, 1].map((s) => { const g = grupo(.17 * s, .04, 0, prato); add(new THREE.CylinderGeometry(.02, .02, .06, 10), mat(0x333333), 0, 0, 0, g);
+  add(new THREE.BoxGeometry(.12, .05, .05), mat(0xb8bcc4, { metalness: .8, roughness: .25, emissive: 0x30a0ff, emissiveIntensity: 0 }), .05 * s, 0, 0, g); return g; });
+// saída pro esgoto
+const curvaSai = new THREE.CatmullRomCurve3([V(0, 1.45, 0), V(.12, 1.06, .02), V(.24, .96, .05), V(.4, .88, .04), V(.72, .82, 0), V(.84, .58, 0), V(.84, .28, -.25), V(.84, .26, -.75)]);
+const curvaCano = new THREE.CatmullRomCurve3([V(.33, .88, 0), V(.72, .82, 0), V(.84, .58, 0), V(.84, .28, -.25), V(.84, .26, -.75)]);
+add(new THREE.TubeGeometry(curvaCano, 50, .06, 12), vidro(.3, 0xdfe8f0), 0, 0, 0);
+const aguaTor = K.fluxo(new THREE.CatmullRomCurve3([V(0, 2.55, -.2), V(0, 2.2, -.08), V(0, 1.8, 0), V(0, 1.5, 0)]), 30, 0x3a90ff);
+const aguaSai = K.fluxo(curvaSai, 36, 0x3a90ff), pasta = K.fluxo(curvaSai, 24, 0xa0602a);
+// comida
+const cores = [0x7cc04a, 0xe08a30, 0xc8402a, 0xe0c060, 0x7cc04a, 0xe08a30, 0x8a5a30, 0xc8402a, 0xe0c060, 0x7cc04a];
+const comida = cores.map((c, i) => ({ m: add(new THREE.DodecahedronGeometry(.045), mat(c), 0, 3, 0), a: i / 10 * PI * 2 + rnd() * .4, r: .08 + rnd() * .12, f: rnd() * .5 }));
+const osso = add(new THREE.CylinderGeometry(.025, .025, .2, 12), mat(0xf4efe2), 0, 3, 0); osso.rotation.z = PI / 2;
+const caroco = add(new THREE.SphereGeometry(.06, 16, 12), mat(0x5a3418), 0, 3, 0);
+const spray = Array.from({ length: 34 }, () => ({ s: sprite(0xd08040), a: rnd() * PI * 2, f: rnd() }));
+const calor = Array.from({ length: 18 }, () => ({ s: sprite(0xff5020), a: rnd() * PI * 2, f: rnd() }));
+// acabamentos
+const guarda = add(new THREE.CylinderGeometry(.13, .13, .02, 24), mat(0x161616), 0, 1.81, 0); guarda.visible = false;
+const isolM = mat(0x9a9488, { transparent: true, opacity: 0 });
+const isol = add(new THREE.CylinderGeometry(.37, .37, .78, 40, 1, true), isolM, 0, 1.22, 0); isol.visible = false;
+const inter = grupo(-.9, 1.5, -.69); add(new THREE.BoxGeometry(.16, .24, .03), mat(0xf4f4f4), 0, 0, 0, inter); add(new THREE.BoxGeometry(.06, .1, .03), mat(0xd02020), 0, 0, .02, inter); inter.visible = false;
+
+// ---------- mini set: cano com gordura ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(12, 12), mat(0x2a3240), BX, 0, -1.5); { const pl = new THREE.PointLight(0xffffff, 4, 10); pl.position.set(BX + 1, 2.5, 3); scene.add(pl); }
+const canoQ = add(new THREE.CylinderGeometry(.22, .22, 1.5, 32, 1, true), vidro(.3, 0xdfe8f0), BX, 1.75, 0); canoQ.rotation.z = PI / 2;
+const canoF = add(new THREE.CylinderGeometry(.22, .22, 1.5, 32, 1, true), vidro(.3, 0xdfe8f0), BX, .6, 0); canoF.rotation.z = PI / 2;
+const crostaM = mat(0xf0d050, { transparent: true, opacity: .95 });
+const crosta = add(new THREE.CylinderGeometry(.2, .2, 1.48, 32), crostaM, BX, 1.75, 0); crosta.rotation.z = PI / 2;
+const aguaQ = K.fluxo(new THREE.LineCurve3(V(BX - .75, 1.75, 0), V(BX + .75, 1.75, 0)), 20, 0xff6040);
+const aguaF = K.fluxo(new THREE.LineCurve3(V(BX - .75, .6, 0), V(BX + .75, .6, 0)), 20, 0x3a90ff);
+const cubos = Array.from({ length: 12 }, () => ({ m: add(new THREE.BoxGeometry(.06, .06, .06), mat(0xf0d050), BX, .6, 0), f: rnd(), y: (rnd() - .5) * .2, z: (rnd() - .5) * .2 }));
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70, w: 1024 }), transparent: true })); s.position.set(x, y, .4); s.scale.set(1.0, .25, 1); scene.add(s); return s; };
+const lQ = lb("ÁGUA QUENTE: GRUDA", "#ff8a6a", BX, 2.15), lF = lb("ÁGUA FRIA: PEDACINHO", "#8ac8ff", BX, 1.0);
+
+K.camera_({
+  geral: [V(2.1, 2.55, 4.4), V(.1, 1.3, 0)],
+  camara: [V(1.15, 2.05, 2.45), V(0, 1.08, 0)],
+  motor: [V(1.05, 1.0, 2.1), V(0, .82, 0)],
+  mini: [V(BX, 1.2, 4.6), V(BX, 1.2, 0)],
+  fim: [V(-2.0, 2.5, 4.4), V(0, 1.3, 0)],
+}, [
+  [0, "geral"], [P(1, "comida"), "geral"], [P(2, "lamina") - .2, "camara"], [F(3), "camara"], [P(4, "agua") - .2, "geral"],
+  [C(5), "geral"], [C(5), "mini"], [C(6), "mini"], [C(6), "motor"], [C(7), "motor"], [C(7), "geral"], [T, "fim"],
+]);
+
+// tempo que o prato passou girando até t (função pura de t)
+const giros = [[P(2, "prato"), P(6, "trava")], [P(6, "desviar"), T + 1]];
+const girou = (t) => giros.reduce((s, [a, b]) => s + Math.max(0, Math.min(t, b) - a), 0);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // lâmina gira, osso quebra
+  const quebra = P(2, "quebra"), tira = P(2, "tira");
+  lamina.visible = t < quebra; lamina.rotation.y = t * 14;
+  cacos.forEach((c) => { c.m.visible = em(quebra, tira + .3); const k = Math.max(0, t - quebra);
+    c.m.position.set(Math.cos(c.a) * k * .35 * c.v, 1.0 + k * .5 - k * k * .6, Math.sin(c.a) * k * .35 * c.v); c.m.rotation.set(k * 6, k * 4 * c.v, 0); });
+  // prato e martelinhos
+  prato.visible = t > P(2, "prato") - .3;
+  prato.scale.setScalar(prog(t, P(2, "prato") - .3, P(2, "prato") + .2) || .001);
+  const ang = girou(t) * 11; prato.rotation.y = ang;
+  lugs.forEach((g, i) => { g.visible = t > P(2, "martelinhos") - .2;
+    g.children[1].material.emissiveIntensity = em(P(2, "martelinhos") - .2, F(2)) || em(P(6, "martelinhos") - .2, P(6, "desviar") + .3) ? .8 : 0;
+    g.rotation.y = em(P(6, "soltos") - .3, P(6, "desviar") + .4) ? Math.sin((t - P(6, "soltos")) * 9) * .9 : 0; });
+  // comida: cai, fica no fundo, é jogada pro anel e ralada
+  const cai = P(1, "comida") - .6, forca = P(3, "forca"), ralada = P(3, "ralada");
+  comida.forEach((c) => { const q = prog(t, cai + c.f, cai + c.f + 1.0);
+    let x = Math.cos(c.a) * c.r, z = Math.sin(c.a) * c.r, y = 1.03;
+    if (q < 1) { const yy = 2.5 - q * 1.47; const rr = q > .7 ? c.r * (q - .7) / .3 : 0; x = Math.cos(c.a) * rr; z = Math.sin(c.a) * rr; y = yy; }
+    const fora = prog(t, forca - .1, forca + .5), rr = c.r + (.27 - c.r) * fora, aa = c.a + (t > forca - .1 ? (ang - girou(forca - .1) * 11) : 0);
+    if (t > forca - .1) { x = Math.cos(aa) * rr; z = Math.sin(aa) * rr; }
+    c.m.position.set(x, y, z); c.m.rotation.set(t * 2 + c.f, t, 0);
+    const some = 1 - prog(t, ralada - .3, ralada + .8); c.m.scale.setScalar(Math.max(.001, some)); c.m.visible = t > cai && some > .01; });
+  osso.visible = em(P(2, "osso") - .5, tira); osso.position.set(.05, 2.4 - 1.36 * prog(t, P(2, "osso") - .5, quebra), .05);
+  spray.forEach((s) => { const q = frac(t * 2 + s.f); s.s.position.set(Math.cos(s.a + t * 3) * (.27 + q * .03), 1.0 + (q - .5) * .1, Math.sin(s.a + t * 3) * (.27 + q * .03)); s.s.scale.setScalar(.03); s.s.material.opacity = em(ralada - .3, F(3)) || em(P(4, "agua"), F(4)) ? .9 * (1 - q) : 0; });
+  aco.emissiveIntensity = em(P(3, "anel") - .2, F(3)) ? .12 + .08 * Math.sin(t * 8) : 0;
+  furos.forEach((f) => { f.visible = t > P(4, "furinhos") - .2; });
+  // água e pasta saindo
+  const agua = em(P(4, "agua") - .2, F(4));
+  aguaTor.atualiza(t, agua, .9, .045, .9); aguaSai.atualiza(t, em(P(4, "agua") + .3, F(4)), .5, .045, .85); pasta.atualiza(t, em(P(4, "agua") + .3, F(4)), .5, .04, 1);
+  // mini set da gordura
+  const naMini = em(C(5), F(5));
+  aguaF.atualiza(t, naMini, .35, .05, .8);
+  cubos.forEach((c) => { const k = frac(t * .3 + c.f); c.m.position.set(BX - .75 + k * 1.5, .6 + c.y, c.z); c.m.rotation.set(t * 2, t * 3 + c.f, 0); c.m.visible = naMini && t > P(5, "endurece") - .3; });
+  const gruda = prog(t, P(5, "grudar") - .3, F(5));
+  crosta.visible = naMini && gruda > .01; crosta.scale.set(gruda * .85 + .01, 1, gruda * .85 + .01);
+  aguaQ.atualiza(t, naMini, .35 * (1 - gruda * .8), .05, .8);
+  lQ.visible = naMini && t > P(5, "grudar") - .4; lF.visible = naMini && t > P(5, "endurece") - .4;
+  // caroço trava, motor esquenta, botão desliga
+  caroco.visible = em(P(6, "caroco") - .5, P(6, "desviar") + .3);
+  const cq = prog(t, P(6, "caroco") - .5, P(6, "caroco") + .2), ca = .3 + (ang - girou(P(6, "caroco")) * 11);
+  caroco.position.set(Math.cos(ca) * .2 * cq, 1.6 - .55 * cq, Math.sin(ca) * .2 * cq);
+  if (t > P(6, "desviar")) { const k = prog(t, P(6, "desviar"), P(6, "desviar") + .3); caroco.position.set(Math.cos(ca) * (.2 + k * .08), 1.05, Math.sin(ca) * (.2 + k * .08)); caroco.scale.setScalar(1 - k * .99); } else caroco.scale.setScalar(1);
+  const quente = em(P(6, "esquenta") - .2, P(6, "desliga") + .1);
+  motorM.emissiveIntensity = quente ? .25 + .15 * Math.sin(t * 10) : 0;
+  calor.forEach((c) => { const q = frac(t * .6 + c.f); c.s.position.set(Math.cos(c.a) * .36, .5 + q * .4, Math.sin(c.a) * .36); c.s.scale.setScalar(.07); c.s.material.opacity = quente ? .7 * (1 - q) : 0; });
+  botM.emissiveIntensity = em(P(6, "botao") - .2, F(6)) ? 1 + .5 * Math.sin(t * 12) : 0;
+  botao.position.y = t > P(6, "desliga") - .1 && t < C(7) ? .41 : .44;
+  // acabamentos
+  guarda.visible = t > P(7, "borracha") - .3;
+  isol.visible = t > P(7, "isolante") - .3; isolM.opacity = .92 * prog(t, P(7, "isolante") - .3, P(7, "isolante") + .4);
+  inter.visible = t > P(7, "interruptor") - .3; inter.scale.setScalar(prog(t, P(7, "interruptor") - .3, P(7, "interruptor") + .2) || .001);
+  K.cartoes(t, [
+    [P(1, "liquidificador") - .3, F(1), "LIQUIDIFICADOR NA PIA?", "#ffffff"],
+    [P(2, "lamina") - .3, P(2, "osso") - .3, "LÂMINA CORTA A MÃO", "#ff4a3a"],
+    [P(2, "osso") - .3, P(2, "tira") - .2, "OSSO QUEBRA A LÂMINA", "#ff4a3a"],
+    [P(2, "prato") - .3, F(2), "PRATO + MARTELINHOS SOLTOS", "#8ac8ff"],
+    [P(3, "forca") - .3, P(3, "anel") - .3, "A FORÇA JOGA PRA FORA", "#ffffff"],
+    [P(3, "ralada") - .3, F(3), "RALADA, NÃO CORTADA", "#ffd23a"],
+    [P(4, "furinhos") - .3, P(4, "agua") - .1, "ANEL COM FURINHOS", "#ffffff"],
+    [P(4, "agua") - .1, F(4), "ÁGUA FRIA LEVA TUDO", "#8ac8ff"],
+    [P(6, "caroco") - .3, P(6, "esquenta") - .2, "CAROÇO TRAVA", "#ff4a3a"],
+    [P(6, "esquenta") - .2, P(6, "martelinhos") - .3, "MOTOR ESQUENTA", "#ff7040"],
+    [P(6, "martelinhos") - .3, P(6, "botao") - .3, "MARTELINHOS DESVIAM", "#8ac8ff"],
+    [P(6, "botao") - .3, F(6), "BOTÃO DE PROTEÇÃO", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

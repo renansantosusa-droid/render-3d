@@ -1,0 +1,689 @@
+{
+ "total": 59.73,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.95,
+   "texto": "Se você colocar um liquidificador embaixo da pia, terá um triturador de comida.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "colocar",
+     "t": 0.51
+    },
+    {
+     "w": "um",
+     "t": 0.897
+    },
+    {
+     "w": "liquidificador",
+     "t": 1.007
+    },
+    {
+     "w": "embaixo",
+     "t": 1.883
+    },
+    {
+     "w": "da",
+     "t": 2.337
+    },
+    {
+     "w": "pia",
+     "t": 2.47
+    },
+    {
+     "w": "terá",
+     "t": 3.07
+    },
+    {
+     "w": "um",
+     "t": 3.323
+    },
+    {
+     "w": "triturador",
+     "t": 3.487
+    },
+    {
+     "w": "de",
+     "t": 4.177
+    },
+    {
+     "w": "comida",
+     "t": 4.287
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.1,
+   "fim": 15.9,
+   "texto": "Mas lâmina corta a mão. E osso quebra a lâmina. Então, você tira a faca. No lugar, um prato que gira muito rápido, com dois martelinhos soltos.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.1
+    },
+    {
+     "w": "lâmina",
+     "t": 5.34
+    },
+    {
+     "w": "corta",
+     "t": 5.82
+    },
+    {
+     "w": "a",
+     "t": 6.2
+    },
+    {
+     "w": "mão",
+     "t": 6.3
+    },
+    {
+     "w": "E",
+     "t": 6.86
+    },
+    {
+     "w": "osso",
+     "t": 7.26
+    },
+    {
+     "w": "quebra",
+     "t": 7.68
+    },
+    {
+     "w": "a",
+     "t": 8.18
+    },
+    {
+     "w": "lâmina",
+     "t": 8.26
+    },
+    {
+     "w": "Então",
+     "t": 8.84
+    },
+    {
+     "w": "você",
+     "t": 9.596
+    },
+    {
+     "w": "tira",
+     "t": 10.06
+    },
+    {
+     "w": "a",
+     "t": 10.4
+    },
+    {
+     "w": "faca",
+     "t": 10.55
+    },
+    {
+     "w": "No",
+     "t": 11.153
+    },
+    {
+     "w": "lugar",
+     "t": 11.807
+    },
+    {
+     "w": "um",
+     "t": 12.433
+    },
+    {
+     "w": "prato",
+     "t": 12.593
+    },
+    {
+     "w": "que",
+     "t": 12.98
+    },
+    {
+     "w": "gira",
+     "t": 13.14
+    },
+    {
+     "w": "muito",
+     "t": 13.407
+    },
+    {
+     "w": "rápido",
+     "t": 13.797
+    },
+    {
+     "w": "com",
+     "t": 14.3
+    },
+    {
+     "w": "dois",
+     "t": 14.588
+    },
+    {
+     "w": "martelinhos",
+     "t": 14.828
+    },
+    {
+     "w": "soltos",
+     "t": 15.4
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 16.05,
+   "fim": 25.01,
+   "texto": "A força joga a comida pra fora, contra um anel cheio de dentes na parede. Ela é ralada, não cortada. Esse é o anel triturador.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 16.05
+    },
+    {
+     "w": "força",
+     "t": 16.21
+    },
+    {
+     "w": "joga",
+     "t": 16.65
+    },
+    {
+     "w": "a",
+     "t": 16.81
+    },
+    {
+     "w": "comida",
+     "t": 16.896
+    },
+    {
+     "w": "pra",
+     "t": 17.23
+    },
+    {
+     "w": "fora",
+     "t": 17.506
+    },
+    {
+     "w": "contra",
+     "t": 18.21
+    },
+    {
+     "w": "um",
+     "t": 18.477
+    },
+    {
+     "w": "anel",
+     "t": 18.61
+    },
+    {
+     "w": "cheio",
+     "t": 18.99
+    },
+    {
+     "w": "de",
+     "t": 19.357
+    },
+    {
+     "w": "dentes",
+     "t": 19.474
+    },
+    {
+     "w": "na",
+     "t": 19.837
+    },
+    {
+     "w": "parede",
+     "t": 19.954
+    },
+    {
+     "w": "Ela",
+     "t": 20.717
+    },
+    {
+     "w": "é",
+     "t": 21.21
+    },
+    {
+     "w": "ralada",
+     "t": 21.33
+    },
+    {
+     "w": "não",
+     "t": 22.09
+    },
+    {
+     "w": "cortada",
+     "t": 22.274
+    },
+    {
+     "w": "Esse",
+     "t": 23.143
+    },
+    {
+     "w": "é",
+     "t": 23.85
+    },
+    {
+     "w": "o",
+     "t": 23.93
+    },
+    {
+     "w": "anel",
+     "t": 24.023
+    },
+    {
+     "w": "triturador",
+     "t": 24.347
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.16,
+   "fim": 33.8,
+   "texto": "Mas a pasta precisa sair. Então, o anel tem furinhos, e você liga a água fria. Ela leva tudo pro cano, como um caldo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.16
+    },
+    {
+     "w": "a",
+     "t": 25.4
+    },
+    {
+     "w": "pasta",
+     "t": 25.533
+    },
+    {
+     "w": "precisa",
+     "t": 25.87
+    },
+    {
+     "w": "sair",
+     "t": 26.44
+    },
+    {
+     "w": "Então",
+     "t": 27.02
+    },
+    {
+     "w": "o",
+     "t": 27.96
+    },
+    {
+     "w": "anel",
+     "t": 28.173
+    },
+    {
+     "w": "tem",
+     "t": 28.4
+    },
+    {
+     "w": "furinhos",
+     "t": 28.6
+    },
+    {
+     "w": "e",
+     "t": 29.36
+    },
+    {
+     "w": "você",
+     "t": 29.544
+    },
+    {
+     "w": "liga",
+     "t": 29.84
+    },
+    {
+     "w": "a",
+     "t": 30.08
+    },
+    {
+     "w": "água",
+     "t": 30.16
+    },
+    {
+     "w": "fria",
+     "t": 30.44
+    },
+    {
+     "w": "Ela",
+     "t": 31.08
+    },
+    {
+     "w": "leva",
+     "t": 31.533
+    },
+    {
+     "w": "tudo",
+     "t": 31.816
+    },
+    {
+     "w": "pro",
+     "t": 32.24
+    },
+    {
+     "w": "cano",
+     "t": 32.44
+    },
+    {
+     "w": "como",
+     "t": 32.968
+    },
+    {
+     "w": "um",
+     "t": 33.187
+    },
+    {
+     "w": "caldo",
+     "t": 33.32
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 33.95,
+   "fim": 40.27,
+   "texto": "Fria por quê? Porque a gordura endurece e vira pedacinho, em vez de grudar no cano lá na frente.",
+   "palavras": [
+    {
+     "w": "Fria",
+     "t": 33.95
+    },
+    {
+     "w": "por",
+     "t": 34.25
+    },
+    {
+     "w": "quê",
+     "t": 34.457
+    },
+    {
+     "w": "Porque",
+     "t": 35.12
+    },
+    {
+     "w": "a",
+     "t": 35.51
+    },
+    {
+     "w": "gordura",
+     "t": 35.598
+    },
+    {
+     "w": "endurece",
+     "t": 36.099
+    },
+    {
+     "w": "e",
+     "t": 36.83
+    },
+    {
+     "w": "vira",
+     "t": 36.99
+    },
+    {
+     "w": "pedacinho",
+     "t": 37.21
+    },
+    {
+     "w": "em",
+     "t": 38.163
+    },
+    {
+     "w": "vez",
+     "t": 38.33
+    },
+    {
+     "w": "de",
+     "t": 38.537
+    },
+    {
+     "w": "grudar",
+     "t": 38.643
+    },
+    {
+     "w": "no",
+     "t": 39.043
+    },
+    {
+     "w": "cano",
+     "t": 39.21
+    },
+    {
+     "w": "lá",
+     "t": 39.497
+    },
+    {
+     "w": "na",
+     "t": 39.603
+    },
+    {
+     "w": "frente",
+     "t": 39.767
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.42,
+   "fim": 49.86,
+   "texto": "Mas um caroço trava o prato. E o motor esquenta. Então, os martelinhos giram soltos pra desviar, e um botão embaixo desliga antes de queimar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 40.42
+    },
+    {
+     "w": "um",
+     "t": 40.713
+    },
+    {
+     "w": "caroço",
+     "t": 40.88
+    },
+    {
+     "w": "trava",
+     "t": 41.447
+    },
+    {
+     "w": "o",
+     "t": 41.82
+    },
+    {
+     "w": "prato",
+     "t": 41.913
+    },
+    {
+     "w": "E",
+     "t": 42.58
+    },
+    {
+     "w": "o",
+     "t": 42.9
+    },
+    {
+     "w": "motor",
+     "t": 43.007
+    },
+    {
+     "w": "esquenta",
+     "t": 43.193
+    },
+    {
+     "w": "Então",
+     "t": 43.84
+    },
+    {
+     "w": "os",
+     "t": 44.687
+    },
+    {
+     "w": "martelinhos",
+     "t": 44.868
+    },
+    {
+     "w": "giram",
+     "t": 45.5
+    },
+    {
+     "w": "soltos",
+     "t": 45.8
+    },
+    {
+     "w": "pra",
+     "t": 46.3
+    },
+    {
+     "w": "desviar",
+     "t": 46.46
+    },
+    {
+     "w": "e",
+     "t": 47.26
+    },
+    {
+     "w": "um",
+     "t": 47.327
+    },
+    {
+     "w": "botão",
+     "t": 47.46
+    },
+    {
+     "w": "embaixo",
+     "t": 47.833
+    },
+    {
+     "w": "desliga",
+     "t": 48.42
+    },
+    {
+     "w": "antes",
+     "t": 49.02
+    },
+    {
+     "w": "de",
+     "t": 49.273
+    },
+    {
+     "w": "queimar",
+     "t": 49.4
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.01,
+   "fim": 59.13,
+   "texto": "Coloque uma borracha que segura os respingos, um isolante pro barulho e um interruptor longe do ralo. Parabéns, você construiu um triturador de pia.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 50.01
+    },
+    {
+     "w": "uma",
+     "t": 50.29
+    },
+    {
+     "w": "borracha",
+     "t": 50.474
+    },
+    {
+     "w": "que",
+     "t": 50.93
+    },
+    {
+     "w": "segura",
+     "t": 51.09
+    },
+    {
+     "w": "os",
+     "t": 51.317
+    },
+    {
+     "w": "respingos",
+     "t": 51.434
+    },
+    {
+     "w": "um",
+     "t": 52.437
+    },
+    {
+     "w": "isolante",
+     "t": 52.538
+    },
+    {
+     "w": "pro",
+     "t": 53.01
+    },
+    {
+     "w": "barulho",
+     "t": 53.19
+    },
+    {
+     "w": "e",
+     "t": 53.73
+    },
+    {
+     "w": "um",
+     "t": 53.957
+    },
+    {
+     "w": "interruptor",
+     "t": 54.058
+    },
+    {
+     "w": "longe",
+     "t": 54.65
+    },
+    {
+     "w": "do",
+     "t": 55.077
+    },
+    {
+     "w": "ralo",
+     "t": 55.21
+    },
+    {
+     "w": "Parabéns",
+     "t": 55.67
+    },
+    {
+     "w": "você",
+     "t": 56.858
+    },
+    {
+     "w": "construiu",
+     "t": 57.096
+    },
+    {
+     "w": "um",
+     "t": 57.69
+    },
+    {
+     "w": "triturador",
+     "t": 57.827
+    },
+    {
+     "w": "de",
+     "t": 58.517
+    },
+    {
+     "w": "pia",
+     "t": 58.65
+    }
+   ]
+  }
+ ]
+}
