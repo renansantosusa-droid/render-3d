@@ -1,0 +1,22 @@
+{
+ "nome": "radar79-nao-compre-papel",
+ "obs": "Frase-tese (radar27) sobre papel, dado da própria lista (115 g). IMG_3431 0-7. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3431_0_7.MOV",
+   "inicio": 0,
+   "duracao": 7
+  }
+ ],
+ "textos": [
+  {
+   "texto": "NÃO COMPRE papel qualquer\npra foto ímã.",
+   "y": 0.66
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.76,
+   "de": 4.8
+  }
+ ]
+}

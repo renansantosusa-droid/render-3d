@@ -1,0 +1,24 @@
+{
+ "nome": "radar75-sem-design",
+ "obs": "Gancho do radar 'sem saber nada de X' (aline.delamare). IMG_5135 (tablet com Canva, sem texto). Mudo. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_5135_0_9.9.MOV",
+   "inicio": 0,
+   "duracao": 9.9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Como eu faço FOTO ÍMÃ bonito\nsem saber NADA de design",
+   "y": 0.05,
+   "de": 0,
+   "ate": 6.5
+  },
+  {
+   "texto": "Quer o gabarito pronto?\nComenta GABARITO 👇",
+   "y": 0.7,
+   "de": 6.5
+  }
+ ]
+}

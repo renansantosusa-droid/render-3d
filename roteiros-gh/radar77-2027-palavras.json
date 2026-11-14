@@ -1,0 +1,46 @@
+{
+ "nome": "radar77-2027-palavras",
+ "obs": "Palavras gigantes (radar08) pra 2027. IMG_3427 0-8,5 (close, sem rosto). Mudo. 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3427_0_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "FALTAM",
+   "y": 0.42,
+   "de": 0,
+   "ate": 1.2,
+   "tamanho": 120
+  },
+  {
+   "texto": "POUCAS\nSEMANAS",
+   "y": 0.38,
+   "de": 1.2,
+   "ate": 2.6,
+   "tamanho": 120
+  },
+  {
+   "texto": "PRO FIM\nDO ANO",
+   "y": 0.38,
+   "de": 2.6,
+   "ate": 4,
+   "tamanho": 120
+  },
+  {
+   "texto": "E O 2027\nCHEGA",
+   "y": 0.38,
+   "de": 4,
+   "ate": 5.6,
+   "tamanho": 120
+  },
+  {
+   "texto": "Quem já tem o CALENDÁRIO 2027\npra vender sai na frente\nComenta 2027 👇",
+   "y": 0.6,
+   "de": 5.6
+  }
+ ]
+}

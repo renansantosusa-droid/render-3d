@@ -1,0 +1,22 @@
+{
+ "nome": "radar80-vem-comigo",
+ "obs": "Modelo radar45 (vem fazer comigo) com IMG_3262 13-21,5 (prensa, só mãos). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3262_13_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Vem fazer um\nFOTO ÍMÃ comigo 💗",
+   "y": 0.05
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 6
+  }
+ ]
+}

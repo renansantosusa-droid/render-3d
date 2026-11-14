@@ -1,0 +1,24 @@
+{
+ "nome": "radar73-amiga-v2",
+ "obs": "Repete radar25 (852 views) com IMG_4716 5-12,3. Mudo. Marcar amiga.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4716_5_7.3.MOV",
+   "inicio": 0,
+   "duracao": 7.3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Se eu posto a parede, ela curte.\nSe eu posto um pedido, ela curte.",
+   "y": 0.64,
+   "de": 0,
+   "ate": 4.2
+  },
+  {
+   "texto": "Obrigada, amiga.\nVocê é uma AMIGA! 🤍",
+   "y": 0.66,
+   "de": 4.2
+  }
+ ]
+}

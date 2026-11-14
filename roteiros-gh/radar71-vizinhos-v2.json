@@ -1,0 +1,29 @@
+{
+ "nome": "radar71-vizinhos-v2",
+ "obs": "Meme radar32 (1,4 mil views) com takes novos: 4500 (0-4,5) + 4710 sorrindo. Mudo. Pede comentário.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4500_0_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5
+  },
+  {
+   "arquivo": "IMG_4710_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Eu em casa trabalhando\nfeito DOIDA 🤪",
+   "y": 0.66,
+   "de": 0,
+   "ate": 4.5
+  },
+  {
+   "texto": "E os meus vizinhos: 🤨",
+   "y": 0.66,
+   "de": 4.5
+  }
+ ]
+}
