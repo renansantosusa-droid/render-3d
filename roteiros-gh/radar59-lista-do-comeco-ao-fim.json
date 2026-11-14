@@ -1,0 +1,68 @@
+{
+ "nome": "radar59-lista-do-comeco-ao-fim",
+ "obs": "14/11: modelo radar37-uso/radar11 (lista 1 item por cena) com takes inéditos remessa 5: DNNV9901 impressora, IMG_2729 recorte (zoom 1.3 ancoraY 0, pés), IMG_2182 montagem, IMG_3032 embalagem, IMG_2758 fecho. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "DNNV9901_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_2729_2_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.3,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_2182_3_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3032_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_2758_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "COMO EU FAÇO\nFOTO ÍMÃ do começo ao fim",
+   "y": 0.05
+  },
+  {
+   "texto": "1. Imprimo as fotos",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "2. Recorto",
+   "y": 0.68,
+   "de": 3,
+   "ate": 5.5
+  },
+  {
+   "texto": "3. Monto a peça",
+   "y": 0.68,
+   "de": 5.5,
+   "ate": 8
+  },
+  {
+   "texto": "4. Embalo",
+   "y": 0.68,
+   "de": 8,
+   "ate": 10.5
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando os materiais",
+   "y": 0.68,
+   "de": 10.5
+  }
+ ]
+}

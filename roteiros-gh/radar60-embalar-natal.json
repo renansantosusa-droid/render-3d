@@ -1,0 +1,22 @@
+{
+ "nome": "radar60-embalar-natal",
+ "obs": "14/11: modelo radar44-detalhes/radar09-presente (1 take longo + frase + Leia a legenda). FCUE1620 7-16 (vista de cima, ela encaixa os ímãs na caixa branca; sem rosto). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "FCUE1620_7_9.MOV",
+   "inicio": 0,
+   "duracao": 9
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Presente de NATAL embalado assim\nninguém esquece 🎄",
+   "y": 0.05
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 6
+  }
+ ]
+}
