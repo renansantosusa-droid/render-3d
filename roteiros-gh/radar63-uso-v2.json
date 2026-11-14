@@ -1,0 +1,92 @@
+{
+ "nome": "radar63-uso-v2",
+ "obs": "Modelo radar37 (1,2 mil views, lista sem preço) com takes novos da remessa 5. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "DNNV9901_0_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8
+  },
+  {
+   "arquivo": "IMG_4176_0_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4
+  },
+  {
+   "arquivo": "IMG_2729_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.3,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_2182_2.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3261_16_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3032_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3486_4_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4
+  }
+ ],
+ "textos": [
+  {
+   "texto": "TUDO QUE EU USO\npra fazer FOTO ÍMÃ",
+   "y": 0.05,
+   "de": 0,
+   "ate": 15.6
+  },
+  {
+   "texto": "1. Uma impressora",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.8
+  },
+  {
+   "texto": "2. Papel fotográfico 115 g",
+   "y": 0.68,
+   "de": 2.8,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Uma tesoura boa",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Os insumos da máquina",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. A máquina",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "6. Embalagem pra entregar",
+   "y": 0.68,
+   "de": 13,
+   "ate": 15.6
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 15.6
+  }
+ ]
+}

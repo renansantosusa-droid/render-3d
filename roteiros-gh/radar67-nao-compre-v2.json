@@ -1,0 +1,22 @@
+{
+ "nome": "radar67-nao-compre-v2",
+ "obs": "Repete o gancho radar27 (1,6 mil views) com IMG_3477 3-10,7. Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3477_3_7.7.MOV",
+   "inicio": 0,
+   "duracao": 7.7
+  }
+ ],
+ "textos": [
+  {
+   "texto": "NÃO COMPRE máquina\nde foto ímã agora.",
+   "y": 0.66
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.76,
+   "de": 5.5
+  }
+ ]
+}

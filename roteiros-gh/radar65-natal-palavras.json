@@ -1,0 +1,46 @@
+{
+ "nome": "radar65-natal-palavras",
+ "obs": "Palavras gigantes (radar08) com contagem pro Natal sem número de dias. IMG_2186 0-8,5 (close da máquina, sem rosto). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2186_0_8.5.MOV",
+   "inicio": 0,
+   "duracao": 8.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "FALTAM",
+   "y": 0.42,
+   "de": 0,
+   "ate": 1.2,
+   "tamanho": 120
+  },
+  {
+   "texto": "MENOS DE\n6 SEMANAS",
+   "y": 0.38,
+   "de": 1.2,
+   "ate": 2.8,
+   "tamanho": 120
+  },
+  {
+   "texto": "PRO NATAL",
+   "y": 0.42,
+   "de": 2.8,
+   "ate": 4.2,
+   "tamanho": 120
+  },
+  {
+   "texto": "SEU PRESENTE\nJÁ TÁ PRONTO?",
+   "y": 0.38,
+   "de": 4.2,
+   "ate": 6,
+   "tamanho": 120
+  },
+  {
+   "texto": "Foto ímã é presente\nque emociona 🎁\nComenta NATAL 👇",
+   "y": 0.6,
+   "de": 6
+  }
+ ]
+}

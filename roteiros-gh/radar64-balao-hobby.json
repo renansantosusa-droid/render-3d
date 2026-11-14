@@ -1,0 +1,30 @@
+{
+ "nome": "radar64-balao-hobby",
+ "obs": "Balão + POV (radar05/12). IMG_6353 0,7-7. Avatar ju.pmoraes. Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_6353_0.7_6.3.MOV",
+   "inicio": 0,
+   "duracao": 6.3
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "isso aí é só um hobby, né? 🙄",
+   "usuario": "ju.pmoraes",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-jupmoraes.jpg",
+   "y": 0.46
+  },
+  {
+   "texto": "POV: eu, entregando mais um\npedido de foto ímã 😌",
+   "y": 0.6,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 4.3
+  }
+ ]
+}

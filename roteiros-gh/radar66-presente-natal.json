@@ -1,0 +1,22 @@
+{
+ "nome": "radar66-presente-natal",
+ "obs": "Presente close (radar09) com FCUE1620 7-14 (vista de cima, sem rosto). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "FCUE1620_7_7.MOV",
+   "inicio": 0,
+   "duracao": 7
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Olha que presente lindo\npra dar no Natal 😍🎁\nfeito com FOTO ÍMÃS",
+   "y": 0.08
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit de Natal",
+   "y": 0.7,
+   "de": 4
+  }
+ ]
+}

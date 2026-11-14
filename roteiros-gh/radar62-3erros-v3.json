@@ -1,0 +1,119 @@
+{
+ "nome": "radar62-3erros-v3",
+ "obs": "Repost do vencedor radar04/38 (6,2 mil e 4 mil views) com cenas novas, mesmas durações. Áudio EU QUERO 21,1-66,6. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar62-3erros-v3-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_6353_0.7_4.72.MOV",
+   "inicio": 0,
+   "duracao": 4.72
+  },
+  {
+   "arquivo": "IMG_3255_2_2.33.MOV",
+   "inicio": 0,
+   "duracao": 2.33,
+   "zoom": 1.15,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_4500_0_2.75.MOV",
+   "inicio": 0,
+   "duracao": 2.75
+  },
+  {
+   "arquivo": "IMG_3259_0_4.26.MOV",
+   "inicio": 0,
+   "duracao": 4.26,
+   "zoom": 1.25,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_4177_1_3.26.MOV",
+   "inicio": 0,
+   "duracao": 3.26,
+   "zoom": 1.2,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3262_22_3.12.MOV",
+   "inicio": 0,
+   "duracao": 3.12
+  },
+  {
+   "arquivo": "IMG_2888_0_2.48.MOV",
+   "inicio": 0,
+   "duracao": 2.48
+  },
+  {
+   "arquivo": "IMG_2390_0_2.69.MOV",
+   "inicio": 0,
+   "duracao": 2.69
+  },
+  {
+   "arquivo": "IMG_3543_0_2.79.MOV",
+   "inicio": 0,
+   "duracao": 2.79
+  },
+  {
+   "arquivo": "IMG_5135_0_3.73.MOV",
+   "inicio": 0,
+   "duracao": 3.73
+  },
+  {
+   "arquivo": "IMG_5135_4_2.96.MOV",
+   "inicio": 0,
+   "duracao": 2.96
+  },
+  {
+   "arquivo": "IMG_4767_0_3.35.MOV",
+   "inicio": 0,
+   "duracao": 3.35
+  },
+  {
+   "arquivo": "IMG_3235_9_2.45.MOV",
+   "inicio": 0,
+   "duracao": 2.45
+  },
+  {
+   "arquivo": "IMG_2194_0_2.67.MOV",
+   "inicio": 0,
+   "duracao": 2.67
+  },
+  {
+   "arquivo": "IMG_2210_12_1.96.MOV",
+   "inicio": 0,
+   "duracao": 1.96
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 ERROS que fazem seu\nFOTO ÍMÃ NÃO COLAR\n(o último é o mais importante)",
+   "y": 0.66,
+   "de": 0,
+   "ate": 7.05
+  },
+  {
+   "texto": "ERRO 1: pouca PRESSÃO\nna alavanca",
+   "y": 0.68,
+   "de": 7.05,
+   "ate": 20.44
+  },
+  {
+   "texto": "ERRO 2: PAPEL errado\n(use fotográfico 115 g)",
+   "y": 0.68,
+   "de": 20.44,
+   "ate": 28.4
+  },
+  {
+   "texto": "ERRO 3 (o principal):\no GABARITO",
+   "y": 0.68,
+   "de": 28.4,
+   "ate": 38.44
+  },
+  {
+   "texto": "Comenta GABARITO 👇\nque eu te mando o que eu uso",
+   "y": 0.68,
+   "de": 38.44
+  }
+ ]
+}

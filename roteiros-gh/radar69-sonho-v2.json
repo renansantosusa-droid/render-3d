@@ -1,0 +1,24 @@
+{
+ "nome": "radar69-sonho-v2",
+ "obs": "Repete o gancho radar43 (1,5 mil views) com IMG_3482 (zoom 1.18) e texto embaixo da máquina. Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3482_0_7.8.MOV",
+   "inicio": 0,
+   "duracao": 7.8,
+   "zoom": 1.18,
+   "ancoraY": 0
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Quando Deus coloca um sonho\nno seu coração, NINGUÉM tira. 🙏",
+   "y": 0.62
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.76,
+   "de": 5.5
+  }
+ ]
+}

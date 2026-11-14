@@ -1,0 +1,29 @@
+{
+ "nome": "radar70-geladeira-natal",
+ "obs": "Frase emocional: 3240 geladeira (0,7-6) + 2194 ímã na mão. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3240_0.7_5.3.MOV",
+   "inicio": 0,
+   "duracao": 5.3
+  },
+  {
+   "arquivo": "IMG_2194_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto de quem a gente ama,\nna geladeira o ano inteiro 💗",
+   "y": 0.08,
+   "de": 0,
+   "ate": 5.3
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit",
+   "y": 0.7,
+   "de": 5.3
+  }
+ ]
+}
