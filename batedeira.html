@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("batedeira", { fundo: 0xece4d8, seed: 1504 });
+const { THREE, scene, add, grupo, mat, vidro, sprite, texMadeira, prog, entre, frac, pulse, C, F, P, T, rnd } = K;
+const PI = Math.PI, V = (x, y, z) => new THREE.Vector3(x, y, z);
+
+add(new THREE.PlaneGeometry(20, 20), mat(0xffffff, { map: texMadeira("#b08050", 6) }), 0, 0, 0).rotation.x = -PI / 2;
+add(new THREE.BoxGeometry(20, 6, .2), mat(0xdcd6cc), 0, 3, -2.2);
+// tigela + massa
+const tigela = grupo(0, 0, 0);
+const inox = mat(0xd4d8de, { metalness: .25, roughness: .3, side: THREE.DoubleSide });
+add(new THREE.CylinderGeometry(.55, .32, .5, 40, 1, true), inox, 0, .3, 0, tigela);
+add(new THREE.CylinderGeometry(.32, .32, .02, 40), inox, 0, .06, 0, tigela);
+const massaM = mat(0xf0d890, { roughness: .9 });
+const massa = add(new THREE.CylinderGeometry(.44, .3, .3, 40), massaM, 0, .22, 0, tigela);
+const marca = add(new THREE.BoxGeometry(.3, .01, .04), mat(0xc8a860), .2, .375, 0, tigela);
+const bolhas = Array.from({ length: 40 }, () => ({ s: sprite(0xffffff), a: rnd() * PI * 2, r: rnd() * .4, f: rnd() }));
+// garfo
+const garfo = grupo(0, .55, 0); garfo.rotation.z = .5;
+add(new THREE.BoxGeometry(.04, .55, .02), mat(0xc8ccd2, { metalness: .8 }), 0, .2, 0, garfo);
+for (let i = -1.5; i <= 1.5; i++) add(new THREE.BoxGeometry(.01, .14, .01), mat(0xc8ccd2, { metalness: .8 }), i * .015, -.12, 0, garfo);
+// cabeça (vidro) com motor, rosca e engrenagens
+const cab = grupo(0, 1.55, -.15);
+const casco = add(new THREE.BoxGeometry(.8, .38, 1.15), vidro(.2, 0xf4f0ea), 0, 0, -.1, cab);
+const motor = grupo(0, 0, -.45, cab);
+const motorCasca = add(new THREE.CylinderGeometry(.16, .16, .42, 24, 1, true), mat(0x6a6e76, { metalness: .5, side: THREE.DoubleSide }), 0, 0, 0, motor); motorCasca.rotation.x = PI / 2;
+const rotor = grupo(0, 0, 0, motor); for (let i = 0; i < 3; i++) { const b = add(new THREE.TorusGeometry(.11, .03, 8, 20), mat(0xc87a3a, { metalness: .6 }), 0, 0, -.14 + i * .14, rotor); }
+const eixoM = mat(0xb8bcc4, { metalness: .9 });
+const eixo = grupo(0, 0, 0, cab); add(new THREE.CylinderGeometry(.02, .02, .9, 10), eixoM, 0, 0, -.1, eixo).rotation.x = PI / 2;
+const helice = new THREE.Curve(); helice.getPoint = (k, out = new THREE.Vector3()) => out.set(Math.cos(k * PI * 10) * .045, Math.sin(k * PI * 10) * .045, -.1 + k * .2);
+const rosca = add(new THREE.TubeGeometry(helice, 120, .012, 6), mat(0xe0b040, { metalness: .8, emissive: 0xffb020, emissiveIntensity: 0 }), 0, 0, .1, eixo);
+const engr = (x) => { const g = grupo(x, -.02, .1, cab); add(new THREE.CylinderGeometry(.11, .11, .04, 30), mat(0xe0b040, { metalness: .8 }), 0, 0, 0, g); for (let i = 0; i < 16; i++) { const a = i / 16 * PI * 2; const d = add(new THREE.BoxGeometry(.03, .04, .025), mat(0xe0b040, { metalness: .8 }), Math.cos(a) * .12, 0, Math.sin(a) * .12, g); d.rotation.y = -a; } add(new THREE.BoxGeometry(.02, .05, .2), mat(0x7a5a20), 0, 0, 0, g); return g; };
+const engA = engr(-.17), engB = engr(.17);
+// batedores
+const batedor = (x) => { const g = grupo(x, 1.36, -.05); add(new THREE.CylinderGeometry(.015, .015, .7, 8), eixoM, 0, -.35, 0, g);
+  for (let i = 0; i < 3; i++) { const l = add(new THREE.TorusGeometry(.12, .008, 6, 30), eixoM, 0, -.82, 0, g); l.scale.set(.6, 1.4, 1); l.rotation.y = i * PI / 3; } return g; };
+const batA = batedor(-.17), batB = batedor(.17);
+// suporte
+const supM = mat(0xf2f2f2);
+const base = add(new THREE.BoxGeometry(.9, .06, 1.6), supM, 0, .03, -.3);
+const coluna = add(new THREE.BoxGeometry(.3, 1.6, .25), supM, 0, .85, -.95);
+const botao = add(new THREE.CylinderGeometry(.06, .06, .04, 20), mat(0xd03030), .41, 1.58, -.35); botao.rotation.z = PI / 2;
+const ejetor = add(new THREE.BoxGeometry(.12, .05, .08), mat(0x3a8aff), 0, 1.76, .25);
+const trava = add(new THREE.BoxGeometry(.04, .1, .14), mat(0xffd030), .17, 1.25, -.95);
+
+K.camera_({
+  geral: [V(1.5, 1.85, 3.6), V(0, .95, -.2)],
+  cabeca: [V(1.0, 2.15, 1.6), V(0, 1.55, -.25)],
+  tigela: [V(.9, 1.4, 1.7), V(0, .45, 0)],
+  fim: [V(-1.5, 1.85, 3.6), V(0, .95, -.2)],
+}, [
+  [0, "tigela"], [F(1), "tigela"], [P(2, "motor") - .4, "cabeca"], [F(3), "cabeca"], [C(4), "geral"], [F(4), "geral"], [C(5), "tigela"], [F(5), "tigela"], [C(6), "geral"], [T, "fim"],
+]);
+
+const crema = new THREE.Color(0xf0d890), grossa = new THREE.Color(0xc8964a), neve = new THREE.Color(0xfbfbf6);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // garfo
+  garfo.visible = t < P(2, "motor") - .3;
+  const vel = t < P(2, "cansa") ? 9 : 9 * (1 - prog(t, P(2, "cansa") - .3, P(2, "cansa") + .6)) + 1;
+  const ang = t < P(2, "cansa") ? t * 9 : P(2, "cansa") * 9 + (t - P(2, "cansa")) * vel;
+  garfo.position.set(Math.cos(ang) * .18, .55, Math.sin(ang) * .18); garfo.rotation.y = -ang;
+  // cabeça
+  const temCab = t > P(2, "motor") - .4;
+  cab.visible = temCab; cab.position.y = 1.55 + .5 * (1 - prog(t, P(2, "motor") - .4, P(2, "motor") + .2));
+  const temRosca = t > P(3, "rosca") - .3;
+  rosca.visible = temRosca; engA.visible = t > P(3, "engrenagem") - .3; engB.visible = t > P(4, "dois") - .3;
+  rotor.rotation.z = t * 40; eixo.rotation.z = t * 40;
+  rosca.material.emissiveIntensity = em(P(3, "rosca") - .3, P(3, "engrenagem")) ? .7 : 0;
+  // batedores
+  const travado = em(P(3, "trava") - .2, P(3, "rosca"));
+  const rapido = t < P(3, "rosca") - .2;
+  const giro = rapido ? (travado ? 0 : t * 30) : t * 6;
+  batA.visible = t > P(2, "motor") - .2; batB.visible = t > P(4, "dois") - .3;
+  batA.rotation.y = giro; batB.rotation.y = -giro + PI / 6;
+  engA.rotation.y = rapido ? 0 : t * 6; engB.rotation.y = -t * 6;
+  const desce = prog(t, P(2, "motor") - .4, P(2, "motor") + .2);
+  [batA, batB].forEach((b) => b.position.y = 1.36 + .5 * (1 - desce));
+  // massa: grossa no passo 3, gira junto com 1 batedor, vira neve
+  massaM.color.copy(crema);
+  if (em(P(3, "massa") - .3, F(3))) massaM.color.copy(grossa);
+  const neveK = prog(t, P(5, "bolhinhas") - .3, P(5, "neve") + .3);
+  if (t > C(5)) massaM.color.copy(crema).lerp(neve, neveK);
+  massa.scale.y = 1 + neveK * .6; massa.position.y = .22 + neveK * .09;
+  marca.position.y = .375 + neveK * .18;
+  const umSo = em(P(4, "batedor") - .3, P(4, "dois") - .3);
+  massa.rotation.y = umSo ? t * 6 : em(C(6), T) ? t * .8 : 0; marca.visible = umSo || t > C(6);
+  marca.position.x = .2 * Math.cos(massa.rotation.y); marca.position.z = -.2 * Math.sin(massa.rotation.y); marca.rotation.y = massa.rotation.y;
+  bolhas.forEach((b) => { const q = frac(t * .4 + b.f); b.s.position.set(Math.cos(b.a + t) * b.r, .3 + neveK * .2 + q * .1, Math.sin(b.a + t) * b.r); b.s.scale.setScalar(.035); b.s.material.opacity = em(P(5, "bolhinhas") - .3, F(5)) ? .9 * (1 - q) : 0; });
+  // suporte
+  const sup = t > P(6, "braco") - .3; coluna.visible = base.visible = sup || t > C(7);
+  coluna.scale.y = prog(t, P(6, "braco") - .3, P(6, "braco") + .3) || .001; coluna.position.y = .85 * coluna.scale.y;
+  tigela.rotation.y = 0;
+  botao.visible = t > P(7, "botao") - .3; botao.scale.setScalar(1 + pulse(t, P(7, "botao") - .3, .6) * .6);
+  ejetor.visible = t > P(7, "ejetor") - .3; ejetor.scale.setScalar(1 + pulse(t, P(7, "ejetor") - .3, .6) * .6);
+  trava.visible = t > P(7, "trava") - .3; trava.scale.setScalar(1 + pulse(t, P(7, "trava") - .3, .6) * .8);
+  K.cartoes(t, [
+    [P(1, "garfo") - .3, F(1), "UM GARFO BEM RÁPIDO", "#ffffff"],
+    [P(2, "braco") - .3, P(2, "motor") - .4, "O BRAÇO CANSA", "#ff4a3a"],
+    [P(2, "motor") - .4, F(2), "MOTOR ELÉTRICO", "#ffffff"],
+    [P(3, "rapido") - .3, P(3, "trava") - .2, "RÁPIDO E FRACO", "#ff7040"],
+    [P(3, "trava") - .2, P(3, "rosca") - .3, "TRAVOU!", "#ff4a3a"],
+    [P(3, "rosca") - .3, P(3, "diminui") - .3, "ROSCA SEM FIM", "#ffd23a"],
+    [P(3, "diminui") - .3, F(3), "MAIS DEVAGAR, MAIS FORTE", "#5aff8a"],
+    [P(4, "batedor") - .3, P(4, "dois") - .3, "A MASSA GIRA JUNTO", "#ff7040"],
+    [P(4, "dois") - .3, F(4), "DOIS, UM PRA CADA LADO", "#8ac8ff"],
+    [P(5, "bolhinhas") - .3, F(5), "BOLHINHAS DE AR", "#ffffff"],
+    [P(6, "braco") - .3, F(6), "BRAÇO + TIGELA QUE GIRA", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

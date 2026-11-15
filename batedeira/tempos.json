@@ -1,0 +1,701 @@
+{
+ "total": 58.78,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.99,
+   "texto": "Se você bater a massa com um garfo bem rápido, terá uma batedeira.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.294
+    },
+    {
+     "w": "bater",
+     "t": 0.59
+    },
+    {
+     "w": "a",
+     "t": 0.97
+    },
+    {
+     "w": "massa",
+     "t": 1.103
+    },
+    {
+     "w": "com",
+     "t": 1.31
+    },
+    {
+     "w": "um",
+     "t": 1.457
+    },
+    {
+     "w": "garfo",
+     "t": 1.57
+    },
+    {
+     "w": "bem",
+     "t": 1.95
+    },
+    {
+     "w": "rápido",
+     "t": 2.127
+    },
+    {
+     "w": "terá",
+     "t": 2.75
+    },
+    {
+     "w": "uma",
+     "t": 2.99
+    },
+    {
+     "w": "batedeira",
+     "t": 3.15
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.14,
+   "fim": 11.58,
+   "texto": "Mas o braço cansa em um minuto. Então, você coloca um motor elétrico, que gira milhares de vezes por minuto.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.14
+    },
+    {
+     "w": "o",
+     "t": 4.42
+    },
+    {
+     "w": "braço",
+     "t": 4.52
+    },
+    {
+     "w": "cansa",
+     "t": 5.004
+    },
+    {
+     "w": "em",
+     "t": 5.42
+    },
+    {
+     "w": "um",
+     "t": 5.527
+    },
+    {
+     "w": "minuto",
+     "t": 5.66
+    },
+    {
+     "w": "Então",
+     "t": 6.38
+    },
+    {
+     "w": "você",
+     "t": 7.116
+    },
+    {
+     "w": "coloca",
+     "t": 7.54
+    },
+    {
+     "w": "um",
+     "t": 7.847
+    },
+    {
+     "w": "motor",
+     "t": 7.94
+    },
+    {
+     "w": "elétrico",
+     "t": 8.2
+    },
+    {
+     "w": "que",
+     "t": 8.86
+    },
+    {
+     "w": "gira",
+     "t": 9.18
+    },
+    {
+     "w": "milhares",
+     "t": 9.5
+    },
+    {
+     "w": "de",
+     "t": 10.167
+    },
+    {
+     "w": "vezes",
+     "t": 10.287
+    },
+    {
+     "w": "por",
+     "t": 10.7
+    },
+    {
+     "w": "minuto",
+     "t": 11
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.73,
+   "fim": 25.09,
+   "texto": "Mas é rápido demais e fraco demais. A massa grossa trava o batedor. Então, você coloca uma rosca sem fim, que gira uma engrenagem grande. Ela diminui a velocidade e aumenta a força.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 11.73
+    },
+    {
+     "w": "é",
+     "t": 11.97
+    },
+    {
+     "w": "rápido",
+     "t": 12.119
+    },
+    {
+     "w": "demais",
+     "t": 12.59
+    },
+    {
+     "w": "e",
+     "t": 13.29
+    },
+    {
+     "w": "fraco",
+     "t": 13.517
+    },
+    {
+     "w": "demais",
+     "t": 14.03
+    },
+    {
+     "w": "A",
+     "t": 14.89
+    },
+    {
+     "w": "massa",
+     "t": 15.223
+    },
+    {
+     "w": "grossa",
+     "t": 15.557
+    },
+    {
+     "w": "trava",
+     "t": 16.037
+    },
+    {
+     "w": "o",
+     "t": 16.41
+    },
+    {
+     "w": "batedor",
+     "t": 16.49
+    },
+    {
+     "w": "Então",
+     "t": 17.19
+    },
+    {
+     "w": "você",
+     "t": 17.97
+    },
+    {
+     "w": "coloca",
+     "t": 18.35
+    },
+    {
+     "w": "uma",
+     "t": 18.75
+    },
+    {
+     "w": "rosca",
+     "t": 18.99
+    },
+    {
+     "w": "sem",
+     "t": 19.41
+    },
+    {
+     "w": "fim",
+     "t": 19.71
+    },
+    {
+     "w": "que",
+     "t": 20.07
+    },
+    {
+     "w": "gira",
+     "t": 20.41
+    },
+    {
+     "w": "uma",
+     "t": 20.65
+    },
+    {
+     "w": "engrenagem",
+     "t": 20.81
+    },
+    {
+     "w": "grande",
+     "t": 21.399
+    },
+    {
+     "w": "Ela",
+     "t": 22.103
+    },
+    {
+     "w": "diminui",
+     "t": 22.717
+    },
+    {
+     "w": "a",
+     "t": 23.09
+    },
+    {
+     "w": "velocidade",
+     "t": 23.197
+    },
+    {
+     "w": "e",
+     "t": 23.89
+    },
+    {
+     "w": "aumenta",
+     "t": 24.107
+    },
+    {
+     "w": "a",
+     "t": 24.61
+    },
+    {
+     "w": "força",
+     "t": 24.73
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.24,
+   "fim": 35,
+   "texto": "Mas um batedor só deixa a massa girar junto com ele. Então, você coloca dois, que giram um pra cada lado e se cruzam no meio, sem nunca bater.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.24
+    },
+    {
+     "w": "um",
+     "t": 25.507
+    },
+    {
+     "w": "batedor",
+     "t": 25.6
+    },
+    {
+     "w": "só",
+     "t": 26.2
+    },
+    {
+     "w": "deixa",
+     "t": 26.6
+    },
+    {
+     "w": "a",
+     "t": 26.96
+    },
+    {
+     "w": "massa",
+     "t": 27.053
+    },
+    {
+     "w": "girar",
+     "t": 27.36
+    },
+    {
+     "w": "junto",
+     "t": 27.693
+    },
+    {
+     "w": "com",
+     "t": 28
+    },
+    {
+     "w": "ele",
+     "t": 28.2
+    },
+    {
+     "w": "Então",
+     "t": 28.89
+    },
+    {
+     "w": "você",
+     "t": 29.608
+    },
+    {
+     "w": "coloca",
+     "t": 29.84
+    },
+    {
+     "w": "dois",
+     "t": 30.296
+    },
+    {
+     "w": "que",
+     "t": 30.84
+    },
+    {
+     "w": "giram",
+     "t": 31.14
+    },
+    {
+     "w": "um",
+     "t": 31.507
+    },
+    {
+     "w": "pra",
+     "t": 31.6
+    },
+    {
+     "w": "cada",
+     "t": 31.784
+    },
+    {
+     "w": "lado",
+     "t": 32.104
+    },
+    {
+     "w": "e",
+     "t": 32.52
+    },
+    {
+     "w": "se",
+     "t": 32.707
+    },
+    {
+     "w": "cruzam",
+     "t": 32.824
+    },
+    {
+     "w": "no",
+     "t": 33.213
+    },
+    {
+     "w": "meio",
+     "t": 33.384
+    },
+    {
+     "w": "sem",
+     "t": 33.94
+    },
+    {
+     "w": "nunca",
+     "t": 34.187
+    },
+    {
+     "w": "bater",
+     "t": 34.56
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.15,
+   "fim": 42.04,
+   "texto": "Agora a massa é dobrada e puxada ao mesmo tempo, e enche de bolhinhas de ar. É por isso que a clara vira neve.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 35.15
+    },
+    {
+     "w": "a",
+     "t": 35.53
+    },
+    {
+     "w": "massa",
+     "t": 35.603
+    },
+    {
+     "w": "é",
+     "t": 35.91
+    },
+    {
+     "w": "dobrada",
+     "t": 35.998
+    },
+    {
+     "w": "e",
+     "t": 36.39
+    },
+    {
+     "w": "puxada",
+     "t": 36.47
+    },
+    {
+     "w": "ao",
+     "t": 36.963
+    },
+    {
+     "w": "mesmo",
+     "t": 37.137
+    },
+    {
+     "w": "tempo",
+     "t": 37.523
+    },
+    {
+     "w": "e",
+     "t": 38.11
+    },
+    {
+     "w": "enche",
+     "t": 38.27
+    },
+    {
+     "w": "de",
+     "t": 38.537
+    },
+    {
+     "w": "bolhinhas",
+     "t": 38.67
+    },
+    {
+     "w": "de",
+     "t": 39.177
+    },
+    {
+     "w": "ar",
+     "t": 39.337
+    },
+    {
+     "w": "É",
+     "t": 39.99
+    },
+    {
+     "w": "por",
+     "t": 40.25
+    },
+    {
+     "w": "isso",
+     "t": 40.478
+    },
+    {
+     "w": "que",
+     "t": 40.69
+    },
+    {
+     "w": "a",
+     "t": 40.79
+    },
+    {
+     "w": "clara",
+     "t": 40.883
+    },
+    {
+     "w": "vira",
+     "t": 41.19
+    },
+    {
+     "w": "neve",
+     "t": 41.39
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.19,
+   "fim": 49.87,
+   "texto": "E pra ficar parada? Você prende tudo num braço que segura o motor em cima, e uma tigela que gira devagar embaixo.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 42.19
+    },
+    {
+     "w": "pra",
+     "t": 42.33
+    },
+    {
+     "w": "ficar",
+     "t": 42.55
+    },
+    {
+     "w": "parada",
+     "t": 42.81
+    },
+    {
+     "w": "Você",
+     "t": 43.454
+    },
+    {
+     "w": "prende",
+     "t": 44.07
+    },
+    {
+     "w": "tudo",
+     "t": 44.446
+    },
+    {
+     "w": "num",
+     "t": 44.87
+    },
+    {
+     "w": "braço",
+     "t": 45.05
+    },
+    {
+     "w": "que",
+     "t": 45.43
+    },
+    {
+     "w": "segura",
+     "t": 45.61
+    },
+    {
+     "w": "o",
+     "t": 45.91
+    },
+    {
+     "w": "motor",
+     "t": 46.003
+    },
+    {
+     "w": "em",
+     "t": 46.323
+    },
+    {
+     "w": "cima",
+     "t": 46.47
+    },
+    {
+     "w": "e",
+     "t": 46.99
+    },
+    {
+     "w": "uma",
+     "t": 47.19
+    },
+    {
+     "w": "tigela",
+     "t": 47.39
+    },
+    {
+     "w": "que",
+     "t": 47.91
+    },
+    {
+     "w": "gira",
+     "t": 48.11
+    },
+    {
+     "w": "devagar",
+     "t": 48.45
+    },
+    {
+     "w": "embaixo",
+     "t": 49.123
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 50.02,
+   "fim": 58.18,
+   "texto": "Coloque um botão de velocidade, um ejetor pros batedores e uma trava na cabeça. Parabéns, você construiu uma batedeira.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 50.02
+    },
+    {
+     "w": "um",
+     "t": 50.367
+    },
+    {
+     "w": "botão",
+     "t": 50.46
+    },
+    {
+     "w": "de",
+     "t": 50.767
+    },
+    {
+     "w": "velocidade",
+     "t": 50.873
+    },
+    {
+     "w": "um",
+     "t": 51.887
+    },
+    {
+     "w": "ejetor",
+     "t": 51.98
+    },
+    {
+     "w": "pros",
+     "t": 52.452
+    },
+    {
+     "w": "batedores",
+     "t": 52.62
+    },
+    {
+     "w": "e",
+     "t": 53.42
+    },
+    {
+     "w": "uma",
+     "t": 53.58
+    },
+    {
+     "w": "trava",
+     "t": 53.78
+    },
+    {
+     "w": "na",
+     "t": 54.207
+    },
+    {
+     "w": "cabeça",
+     "t": 54.308
+    },
+    {
+     "w": "Parabéns",
+     "t": 55.16
+    },
+    {
+     "w": "você",
+     "t": 56.308
+    },
+    {
+     "w": "construiu",
+     "t": 56.557
+    },
+    {
+     "w": "uma",
+     "t": 57.16
+    },
+    {
+     "w": "batedeira",
+     "t": 57.3
+    }
+   ]
+  }
+ ]
+}
