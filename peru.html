@@ -1,0 +1,110 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("peru", { fundo: 0x2a2420, seed: 1505 });
+const { THREE, scene, add, grupo, mat, vidro, sprite, prog, entre, frac, pulse, C, F, P, T, rnd } = K;
+const PI = Math.PI, V = (x, y, z) => new THREE.Vector3(x, y, z);
+
+// ---------- forno em corte + peru ----------
+const fornoM = mat(0x3a3a40, { side: THREE.DoubleSide });
+add(new THREE.BoxGeometry(2.6, .08, 2.0), fornoM, 0, 0, 0);
+add(new THREE.BoxGeometry(2.6, .08, 2.0), fornoM, 0, 2.0, 0);
+add(new THREE.BoxGeometry(.08, 2.0, 2.0), fornoM, -1.3, 1, 0); add(new THREE.BoxGeometry(.08, 2.0, 2.0), fornoM, 1.3, 1, 0);
+add(new THREE.BoxGeometry(2.6, 2.0, .08), fornoM, 0, 1, -1);
+const resM = mat(0x5a4a40, { emissive: 0xff3010, emissiveIntensity: 1 });
+for (const y of [.1, 1.92]) { const r = add(new THREE.TorusGeometry(.8, .025, 8, 40), resM, 0, y, -.1); r.rotation.x = PI / 2; r.scale.y = .7; }
+add(new THREE.BoxGeometry(2.0, .03, 1.5), mat(0x8a8e96, { metalness: .6 }), 0, .45, 0);
+add(new THREE.BoxGeometry(1.6, .12, 1.1), mat(0x6a6e76, { metalness: .6 }), 0, .53, 0);
+const peruM = mat(0xe8c8a0, { roughness: .6, transparent: true, opacity: 1 });
+const peru = add(new THREE.SphereGeometry(.55, 32, 24), peruM, 0, .85, 0); peru.scale.set(1.25, .7, .9);
+const coxas = [-1, 1].map((s) => { const c = add(new THREE.CapsuleGeometry(.12, .3, 6, 12), peruM, .55, .78, s * .35); c.rotation.z = -1.0; return c; });
+const nucleoM = mat(0xe86a7a, { emissive: 0x000000 });
+const nucleo = add(new THREE.SphereGeometry(.22, 24, 16), nucleoM, 0, .85, 0); nucleo.scale.set(1.2, .8, .9);
+// pino no peito
+const pino = grupo(-.15, 1.22, 0); pino.rotation.z = .25;
+add(new THREE.CylinderGeometry(.035, .02, .25, 12), mat(0xf4f4f0), 0, -.05, 0, pino);
+const capP = add(new THREE.CylinderGeometry(.05, .05, .1, 12), mat(0xe02020), 0, .05, 0, pino);
+const calor = Array.from({ length: 40 }, () => ({ s: sprite(0xff7030), a: rnd() * PI * 2, f: rnd(), y: rnd() }));
+
+// ---------- mini set: o termômetro gigante (x=100) ----------
+const BX = 100;
+add(new THREE.PlaneGeometry(14, 14), mat(0x2a3240), BX, 0, -1.5); { const pl = new THREE.PointLight(0xffffff, 4, 10); pl.position.set(BX + 1, 2.5, 3); scene.add(pl); }
+const carne = add(new THREE.BoxGeometry(2.4, 1.0, .6), mat(0xd8a080, { transparent: true, opacity: .55 }), BX, .3, -.2);
+const tuboM = vidro(.35, 0xffffff);
+add(new THREE.CylinderGeometry(.16, .16, 1.7, 32, 1, true), tuboM, BX, .95, 0);
+add(new THREE.ConeGeometry(.16, .3, 32), mat(0xf0f0ec, { transparent: true, opacity: .6 }), BX, -.05, 0).rotation.x = PI;
+add(new THREE.CylinderGeometry(.24, .24, .05, 32), mat(0xf0f0ec), BX, 1.8, 0);
+const haste = grupo(BX, 0, 0);
+add(new THREE.CylinderGeometry(.05, .05, 1.6, 16), mat(0xe02020), 0, .95, 0, haste);
+add(new THREE.CylinderGeometry(.13, .13, .14, 24), mat(0xe02020), 0, 1.82, 0, haste);
+const molaG = grupo(BX, .35, 0);
+const espira = new THREE.Curve(); espira.getPoint = (k, o = new THREE.Vector3()) => o.set(Math.cos(k * PI * 16) * .11, k, Math.sin(k * PI * 16) * .11);
+add(new THREE.TubeGeometry(espira, 300, .014, 6), mat(0xb8bcc4, { metalness: .8 }), 0, 0, 0, molaG);
+const gotaM = mat(0xc8ccd4, { metalness: .9, roughness: .15, emissive: 0xffa040, emissiveIntensity: 0 });
+const gota = add(new THREE.SphereGeometry(.13, 24, 16), gotaM, BX, .2, 0);
+const pingos = Array.from({ length: 10 }, () => ({ s: sprite(0xd8dce4), x: (rnd() - .5) * .2, f: rnd() }));
+const calorMini = Array.from({ length: 30 }, () => ({ s: sprite(0xff7030), x: (rnd() < .5 ? -1 : 1) * (.9 + rnd() * .3), y: rnd() * .6, f: rnd() }));
+const lb = (txt, cor, x, y) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: K.rotulo(txt, cor, { tam: 70, w: 1024 }), transparent: true })); s.position.set(x, y, .4); s.scale.set(1.0, .25, 1); scene.add(s); return s; };
+const lbMola = lb("MOLA APERTADA", "#8ac8ff", BX, 2.25), lbGota = lb("GOTA DE METAL", "#dfe6ee", BX, 2.25);
+
+K.camera_({
+  forno: [V(1.4, 1.8, 6.0), V(0, 1.0, 0)],
+  close: [V(.6, 1.7, 3.0), V(-.05, 1.0, 0)],
+  mini: [V(BX, 1.0, 4.4), V(BX, .95, 0)],
+  fim: [V(-1.4, 1.8, 5.8), V(0, 1.0, 0)],
+}, [
+  [0, "forno"], [P(1, "cru") - .4, "close"], [F(2), "close"], [C(3), "mini"], [P(5, "meio") - .3, "mini"], [P(5, "meio") - .3, "close"], [P(5, "liquido") + .1, "close"], [P(5, "liquido") + .1, "mini"],
+  [P(6, "botaozinho") - .4, "mini"], [P(6, "botaozinho") - .4, "close"], [F(6), "close"], [C(7), "forno"], [T, "fim"],
+]);
+
+const pele = new THREE.Color(0xe8c8a0), assado = new THREE.Color(0xb86a28), preto = new THREE.Color(0x2a1408), rosa = new THREE.Color(0xe86a7a), branco = new THREE.Color(0xf4e8dc), azul = new THREE.Color(0x6a9ae8);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // cor do peru
+  let cp = pele.clone();
+  if (t > P(1, "assado") - .2) cp.lerp(assado, prog(t, P(1, "assado") - .2, P(1, "assado") + .5));
+  if (em(P(1, "queimado") - .2, P(1, "cru") - .3)) cp.copy(preto);
+  if (t > C(2)) cp.copy(assado);
+  peruM.color.copy(cp);
+  const ver = em(P(1, "cru") - .3, F(2)) || em(P(5, "meio") - .3, P(5, "liquido") + .1);
+  peruM.opacity = ver ? .35 : 1; peruM.depthWrite = !ver; nucleo.visible = ver;
+  const esquenta = prog(t, P(5, "meio") - .3, P(5, "liquido"));
+  nucleoM.color.copy(t < C(3) ? (t > P(2, "frio") - .3 ? azul : rosa) : rosa).lerp(branco, esquenta);
+  calor.forEach((c) => { const q = frac(t * .5 + c.f); const r = 1.0 - q * .45; c.s.position.set(Math.cos(c.a) * r * 1.2, .85 + (c.y - .5) * .5, Math.sin(c.a) * r * .8); c.s.scale.setScalar(.06); c.s.material.opacity = (t < C(3) || ver) ? .6 * q : 0; });
+  // pino no peito
+  pino.visible = t > P(2, "termometro") - .3;
+  const pulou = t > P(6, "botaozinho") - .4;
+  capP.position.y = pulou ? .05 + .12 * prog(t, P(6, "botaozinho") - .4, P(6, "botaozinho") - .1) : .05;
+  capP.scale.setScalar(1 + (t > C(7) ? pulse(t, P(7, "cor") - .3, .6) * .8 : 0));
+  // mini set
+  const sobe = prog(t, P(6, "empurra") - .2, P(6, "plim") - .1);
+  haste.visible = t > P(3, "haste") - .3; haste.position.y = sobe * .5;
+  molaG.visible = t > P(3, "mola") - .3; molaG.scale.y = .25 + sobe * .5;
+  const liquida = prog(t, P(5, "derrete") - .2, P(5, "liquido") + .2);
+  gota.visible = t > P(4, "gota") - .3; gota.scale.set(1 + liquida * .3, 1 - liquida * .6, 1 + liquida * .3); gota.position.y = .2 - liquida * .08;
+  gotaM.emissiveIntensity = em(P(4, "gota") - .3, F(4)) ? .2 + .15 * Math.sin(t * 6) : liquida * .5;
+  pingos.forEach((p) => { const q = frac(t * 1.2 + p.f); p.s.position.set(BX + p.x, .14 - q * .25, .02); p.s.scale.setScalar(.05); p.s.material.opacity = t > P(5, "liquido") - .2 && t < C(7) ? .9 * (1 - q) : 0; });
+  calorMini.forEach((c) => { const q = frac(t * .5 + c.f); c.s.position.set(BX + c.x * (1 - q * .7), .1 + c.y, .3); c.s.scale.setScalar(.07); c.s.material.opacity = em(P(5, "derrete") - .3, F(5)) ? .7 * q : 0; });
+  lbMola.visible = em(P(3, "apertada") - .3, F(3)); lbGota.visible = em(P(4, "gota") - .3, F(4));
+  K.cartoes(t, [
+    [P(1, "assado") - .3, P(1, "queimado") - .2, "ASSADO?", "#ffd23a"],
+    [P(1, "queimado") - .2, P(1, "cru") - .3, "QUEIMADO?", "#ff4a3a"],
+    [P(1, "cru") - .3, F(1), "CRU POR DENTRO?", "#e86a7a"],
+    [P(2, "frio") - .4, P(2, "termometro") - .3, "O MEIO AINDA ESTÁ FRIO", "#8ac8ff"],
+    [P(2, "termometro") - .3, F(2), "TERMÔMETRO LÁ DENTRO", "#ffffff"],
+    [P(3, "tubinho") - .3, P(3, "haste") - .3, "TUBINHO DE PLÁSTICO", "#ffffff"],
+    [P(3, "haste") - .3, F(3), "HASTE + MOLA", "#ff7040"],
+    [P(4, "solida") - .3, F(4), "SÓLIDA NO FRIO", "#8ac8ff"],
+    [P(5, "oitenta") - .3, P(5, "meio") - .3, "DERRETE A ~80 °C", "#ff7040"],
+    [P(5, "liquido") - .3, F(5), "VIROU LÍQUIDO", "#ffd23a"],
+    [P(6, "plim") - .2, P(6, "botaozinho") - .4, "PLIM!", "#ffd23a"],
+    [P(6, "botaozinho") - .4, F(6), "PRONTO!", "#5aff8a"],
+  ]);
+});
+</script>
+</body></html>

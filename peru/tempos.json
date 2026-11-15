@@ -1,0 +1,693 @@
+{
+ "total": 60.53,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.43,
+   "texto": "Se você colocar o peru no forno e esperar, terá um peru assado. Ou queimado. Ou cru por dentro.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.39
+    },
+    {
+     "w": "colocar",
+     "t": 0.777
+    },
+    {
+     "w": "o",
+     "t": 1.31
+    },
+    {
+     "w": "peru",
+     "t": 1.414
+    },
+    {
+     "w": "no",
+     "t": 1.697
+    },
+    {
+     "w": "forno",
+     "t": 1.85
+    },
+    {
+     "w": "e",
+     "t": 2.43
+    },
+    {
+     "w": "esperar",
+     "t": 2.63
+    },
+    {
+     "w": "terá",
+     "t": 3.41
+    },
+    {
+     "w": "um",
+     "t": 3.723
+    },
+    {
+     "w": "peru",
+     "t": 3.878
+    },
+    {
+     "w": "assado",
+     "t": 4.15
+    },
+    {
+     "w": "Ou",
+     "t": 4.923
+    },
+    {
+     "w": "queimado",
+     "t": 5.25
+    },
+    {
+     "w": "Ou",
+     "t": 6.123
+    },
+    {
+     "w": "cru",
+     "t": 6.31
+    },
+    {
+     "w": "por",
+     "t": 6.61
+    },
+    {
+     "w": "dentro",
+     "t": 6.859
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.58,
+   "fim": 17.5,
+   "texto": "Mas o peru é grande demais. Por fora parece pronto, e o meio ainda está frio. Então, você precisa de um termômetro que fique lá dentro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 7.58
+    },
+    {
+     "w": "o",
+     "t": 7.86
+    },
+    {
+     "w": "peru",
+     "t": 7.98
+    },
+    {
+     "w": "é",
+     "t": 8.38
+    },
+    {
+     "w": "grande",
+     "t": 8.506
+    },
+    {
+     "w": "demais",
+     "t": 8.84
+    },
+    {
+     "w": "Por",
+     "t": 9.58
+    },
+    {
+     "w": "fora",
+     "t": 9.916
+    },
+    {
+     "w": "parece",
+     "t": 10.38
+    },
+    {
+     "w": "pronto",
+     "t": 10.929
+    },
+    {
+     "w": "e",
+     "t": 11.58
+    },
+    {
+     "w": "o",
+     "t": 11.7
+    },
+    {
+     "w": "meio",
+     "t": 11.82
+    },
+    {
+     "w": "ainda",
+     "t": 12.207
+    },
+    {
+     "w": "está",
+     "t": 12.588
+    },
+    {
+     "w": "frio",
+     "t": 12.86
+    },
+    {
+     "w": "Então",
+     "t": 13.4
+    },
+    {
+     "w": "você",
+     "t": 14.22
+    },
+    {
+     "w": "precisa",
+     "t": 14.44
+    },
+    {
+     "w": "de",
+     "t": 14.913
+    },
+    {
+     "w": "um",
+     "t": 15.047
+    },
+    {
+     "w": "termômetro",
+     "t": 15.18
+    },
+    {
+     "w": "que",
+     "t": 15.94
+    },
+    {
+     "w": "fique",
+     "t": 16.14
+    },
+    {
+     "w": "lá",
+     "t": 16.513
+    },
+    {
+     "w": "dentro",
+     "t": 16.7
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 17.65,
+   "fim": 23.57,
+   "texto": "Você faz um tubinho de plástico e coloca uma haste com mola dentro, apertada pra baixo.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 17.65
+    },
+    {
+     "w": "faz",
+     "t": 17.97
+    },
+    {
+     "w": "um",
+     "t": 18.237
+    },
+    {
+     "w": "tubinho",
+     "t": 18.35
+    },
+    {
+     "w": "de",
+     "t": 18.717
+    },
+    {
+     "w": "plástico",
+     "t": 18.85
+    },
+    {
+     "w": "e",
+     "t": 19.57
+    },
+    {
+     "w": "coloca",
+     "t": 19.79
+    },
+    {
+     "w": "uma",
+     "t": 20.25
+    },
+    {
+     "w": "haste",
+     "t": 20.437
+    },
+    {
+     "w": "com",
+     "t": 20.81
+    },
+    {
+     "w": "mola",
+     "t": 20.97
+    },
+    {
+     "w": "dentro",
+     "t": 21.307
+    },
+    {
+     "w": "apertada",
+     "t": 21.943
+    },
+    {
+     "w": "pra",
+     "t": 22.59
+    },
+    {
+     "w": "baixo",
+     "t": 22.823
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 23.72,
+   "fim": 31.64,
+   "texto": "Mas o que segura a mola? Uma gota de metal especial, que cola a haste no fundo do tubo. Ela é sólida no frio.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 23.72
+    },
+    {
+     "w": "o",
+     "t": 24.08
+    },
+    {
+     "w": "que",
+     "t": 24.16
+    },
+    {
+     "w": "segura",
+     "t": 24.36
+    },
+    {
+     "w": "a",
+     "t": 24.8
+    },
+    {
+     "w": "mola",
+     "t": 24.88
+    },
+    {
+     "w": "Uma",
+     "t": 25.46
+    },
+    {
+     "w": "gota",
+     "t": 25.98
+    },
+    {
+     "w": "de",
+     "t": 26.387
+    },
+    {
+     "w": "metal",
+     "t": 26.507
+    },
+    {
+     "w": "especial",
+     "t": 26.911
+    },
+    {
+     "w": "que",
+     "t": 27.68
+    },
+    {
+     "w": "cola",
+     "t": 27.88
+    },
+    {
+     "w": "a",
+     "t": 28.24
+    },
+    {
+     "w": "haste",
+     "t": 28.333
+    },
+    {
+     "w": "no",
+     "t": 28.653
+    },
+    {
+     "w": "fundo",
+     "t": 28.824
+    },
+    {
+     "w": "do",
+     "t": 29.187
+    },
+    {
+     "w": "tubo",
+     "t": 29.3
+    },
+    {
+     "w": "Ela",
+     "t": 29.907
+    },
+    {
+     "w": "é",
+     "t": 30.2
+    },
+    {
+     "w": "sólida",
+     "t": 30.36
+    },
+    {
+     "w": "no",
+     "t": 30.813
+    },
+    {
+     "w": "frio",
+     "t": 30.98
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 31.79,
+   "fim": 39.95,
+   "texto": "Esse metal derrete a uns oitenta graus, a temperatura certa da carne. Quando o meio do peru chega lá, a gota vira líquido.",
+   "palavras": [
+    {
+     "w": "Esse",
+     "t": 31.79
+    },
+    {
+     "w": "metal",
+     "t": 32.11
+    },
+    {
+     "w": "derrete",
+     "t": 32.55
+    },
+    {
+     "w": "a",
+     "t": 33.03
+    },
+    {
+     "w": "uns",
+     "t": 33.11
+    },
+    {
+     "w": "oitenta",
+     "t": 33.27
+    },
+    {
+     "w": "graus",
+     "t": 33.79
+    },
+    {
+     "w": "a",
+     "t": 34.47
+    },
+    {
+     "w": "temperatura",
+     "t": 34.57
+    },
+    {
+     "w": "certa",
+     "t": 35.31
+    },
+    {
+     "w": "da",
+     "t": 35.737
+    },
+    {
+     "w": "carne",
+     "t": 35.87
+    },
+    {
+     "w": "Quando",
+     "t": 36.464
+    },
+    {
+     "w": "o",
+     "t": 36.77
+    },
+    {
+     "w": "meio",
+     "t": 36.91
+    },
+    {
+     "w": "do",
+     "t": 37.097
+    },
+    {
+     "w": "peru",
+     "t": 37.214
+    },
+    {
+     "w": "chega",
+     "t": 37.51
+    },
+    {
+     "w": "lá",
+     "t": 37.87
+    },
+    {
+     "w": "a",
+     "t": 38.31
+    },
+    {
+     "w": "gota",
+     "t": 38.45
+    },
+    {
+     "w": "vira",
+     "t": 38.91
+    },
+    {
+     "w": "líquido",
+     "t": 39.283
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 40.1,
+   "fim": 48.5,
+   "texto": "E a mola, que estava presa o tempo todo, empurra a haste pra fora. Plim! É aquele botãozinho vermelho que pula.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 40.1
+    },
+    {
+     "w": "a",
+     "t": 40.22
+    },
+    {
+     "w": "mola",
+     "t": 40.38
+    },
+    {
+     "w": "que",
+     "t": 40.84
+    },
+    {
+     "w": "estava",
+     "t": 40.957
+    },
+    {
+     "w": "presa",
+     "t": 41.38
+    },
+    {
+     "w": "o",
+     "t": 41.86
+    },
+    {
+     "w": "tempo",
+     "t": 41.993
+    },
+    {
+     "w": "todo",
+     "t": 42.34
+    },
+    {
+     "w": "empurra",
+     "t": 42.98
+    },
+    {
+     "w": "a",
+     "t": 43.5
+    },
+    {
+     "w": "haste",
+     "t": 43.593
+    },
+    {
+     "w": "pra",
+     "t": 43.9
+    },
+    {
+     "w": "fora",
+     "t": 44.116
+    },
+    {
+     "w": "Plim",
+     "t": 44.873
+    },
+    {
+     "w": "É",
+     "t": 45.7
+    },
+    {
+     "w": "aquele",
+     "t": 45.988
+    },
+    {
+     "w": "botãozinho",
+     "t": 46.4
+    },
+    {
+     "w": "vermelho",
+     "t": 47.04
+    },
+    {
+     "w": "que",
+     "t": 47.56
+    },
+    {
+     "w": "pula",
+     "t": 47.74
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.65,
+   "fim": 59.93,
+   "texto": "Coloque uma ponta que fura a carne, um plástico que aguenta o forno e uma cor que dá pra ver de longe. Parabéns, você construiu um termômetro de peru.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 48.65
+    },
+    {
+     "w": "uma",
+     "t": 49.17
+    },
+    {
+     "w": "ponta",
+     "t": 49.37
+    },
+    {
+     "w": "que",
+     "t": 49.81
+    },
+    {
+     "w": "fura",
+     "t": 50.05
+    },
+    {
+     "w": "a",
+     "t": 50.37
+    },
+    {
+     "w": "carne",
+     "t": 50.503
+    },
+    {
+     "w": "um",
+     "t": 51.237
+    },
+    {
+     "w": "plástico",
+     "t": 51.37
+    },
+    {
+     "w": "que",
+     "t": 52.03
+    },
+    {
+     "w": "aguenta",
+     "t": 52.17
+    },
+    {
+     "w": "o",
+     "t": 52.65
+    },
+    {
+     "w": "forno",
+     "t": 52.79
+    },
+    {
+     "w": "e",
+     "t": 53.29
+    },
+    {
+     "w": "uma",
+     "t": 53.51
+    },
+    {
+     "w": "cor",
+     "t": 53.79
+    },
+    {
+     "w": "que",
+     "t": 54.15
+    },
+    {
+     "w": "dá",
+     "t": 54.41
+    },
+    {
+     "w": "pra",
+     "t": 54.61
+    },
+    {
+     "w": "ver",
+     "t": 54.81
+    },
+    {
+     "w": "de",
+     "t": 55.103
+    },
+    {
+     "w": "longe",
+     "t": 55.274
+    },
+    {
+     "w": "Parabéns",
+     "t": 56.04
+    },
+    {
+     "w": "você",
+     "t": 57.146
+    },
+    {
+     "w": "construiu",
+     "t": 57.587
+    },
+    {
+     "w": "um",
+     "t": 58.223
+    },
+    {
+     "w": "termômetro",
+     "t": 58.41
+    },
+    {
+     "w": "de",
+     "t": 59.183
+    },
+    {
+     "w": "peru",
+     "t": 59.37
+    }
+   ]
+  }
+ ]
+}
