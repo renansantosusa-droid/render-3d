@@ -1,0 +1,14 @@
+name: Criativo
+on: { push: { branches: ['cr-*'] } }
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0 && echo "FFMPEG=$(node -p 'require(\"ffmpeg-static\")')" >> "$GITHUB_ENV"
+      - run: for p in v1-feh v2-vicky; do node montar-criativo.mjs $p; done
+      - uses: actions/upload-artifact@v4
+        with: { name: criativos-t1, path: "*/final.mp4", retention-days: 3 }

@@ -1,0 +1,16 @@
+{ "nome": "Criativo 2 - modelo Vicky (maes e bebes)", "dur": 17.2,
+  "voz": { "arq": "voz.mp3", "vel": 1.0, "atraso": 0 }, "musica": { "arq": "musica.mp3", "vol": 0.10 },
+  "segs": [
+    { "de": 0, "ate": 1.7, "pix": { "id": 79155, "ini": 8 } },
+    { "de": 1.7, "ate": 3.4, "pix": { "id": 85336, "ini": 1 } },
+    { "de": 3.4, "ate": 5.1, "pix": { "id": 356998, "ini": 0.5 } },
+    { "de": 5.1, "ate": 7.3, "img": "prod/58254930910.jpg", "modo": "cheio" },
+    { "de": 7.3, "ate": 10.6, "pix": { "id": 33631, "ini": 6 } },
+    { "de": 10.6, "ate": 12.4, "img": "prod/58254930910.jpg", "modo": "cheio" },
+    { "de": 12.4, "ate": 14.2, "pix": { "id": 170134, "ini": 3 } },
+    { "de": 14.2, "ate": 17.2, "pix": { "id": 304230, "ini": 10 } } ],
+  "sobre": [
+    { "png": "pecas/v2-titulo.png", "x": "c", "y": 260, "de": 0.2, "ate": 3.4 },
+    { "png": "pecas/v2-400.png", "x": "c", "y": 1380, "de": 5.6, "ate": 7.3 },
+    { "png": "pecas/v2-msg.png", "w": 860, "x": "c", "y": 320, "de": 7.3, "ate": 10.6, "sobe": true },
+    { "png": "pecas/v2-cta.png", "x": "c", "y": 820, "de": 14.2, "ate": 17.2, "sobe": true } ] }
