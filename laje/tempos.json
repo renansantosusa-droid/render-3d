@@ -1,0 +1,709 @@
+{
+ "total": 58.94,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.47,
+   "texto": "Se você colocar uma placa de concreto em cima de quatro paredes, terá uma laje.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "colocar",
+     "t": 0.51
+    },
+    {
+     "w": "uma",
+     "t": 0.83
+    },
+    {
+     "w": "placa",
+     "t": 1.03
+    },
+    {
+     "w": "de",
+     "t": 1.403
+    },
+    {
+     "w": "concreto",
+     "t": 1.55
+    },
+    {
+     "w": "em",
+     "t": 2.017
+    },
+    {
+     "w": "cima",
+     "t": 2.11
+    },
+    {
+     "w": "de",
+     "t": 2.31
+    },
+    {
+     "w": "quatro",
+     "t": 2.523
+    },
+    {
+     "w": "paredes",
+     "t": 2.79
+    },
+    {
+     "w": "terá",
+     "t": 3.63
+    },
+    {
+     "w": "uma",
+     "t": 3.85
+    },
+    {
+     "w": "laje",
+     "t": 3.99
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.62,
+   "fim": 14.46,
+   "texto": "Mas o concreto é forte pra ser apertado e fraco pra ser puxado. Quando você pisa no meio, a placa enverga, a parte de baixo estica, e racha.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.62
+    },
+    {
+     "w": "o",
+     "t": 4.74
+    },
+    {
+     "w": "concreto",
+     "t": 4.84
+    },
+    {
+     "w": "é",
+     "t": 5.58
+    },
+    {
+     "w": "forte",
+     "t": 5.887
+    },
+    {
+     "w": "pra",
+     "t": 6.24
+    },
+    {
+     "w": "ser",
+     "t": 6.34
+    },
+    {
+     "w": "apertado",
+     "t": 6.513
+    },
+    {
+     "w": "e",
+     "t": 7.26
+    },
+    {
+     "w": "fraco",
+     "t": 7.5
+    },
+    {
+     "w": "pra",
+     "t": 7.92
+    },
+    {
+     "w": "ser",
+     "t": 8.04
+    },
+    {
+     "w": "puxado",
+     "t": 8.26
+    },
+    {
+     "w": "Quando",
+     "t": 8.94
+    },
+    {
+     "w": "você",
+     "t": 9.484
+    },
+    {
+     "w": "pisa",
+     "t": 9.78
+    },
+    {
+     "w": "no",
+     "t": 10.033
+    },
+    {
+     "w": "meio",
+     "t": 10.204
+    },
+    {
+     "w": "a",
+     "t": 10.74
+    },
+    {
+     "w": "placa",
+     "t": 10.86
+    },
+    {
+     "w": "enverga",
+     "t": 11.313
+    },
+    {
+     "w": "a",
+     "t": 12.1
+    },
+    {
+     "w": "parte",
+     "t": 12.207
+    },
+    {
+     "w": "de",
+     "t": 12.567
+    },
+    {
+     "w": "baixo",
+     "t": 12.673
+    },
+    {
+     "w": "estica",
+     "t": 13
+    },
+    {
+     "w": "e",
+     "t": 13.82
+    },
+    {
+     "w": "racha",
+     "t": 13.94
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 14.61,
+   "fim": 25.33,
+   "texto": "Então, você coloca barras de ferro bem embaixo, onde o concreto é puxado. O ferro aguenta o puxão, o concreto aguenta o aperto. Esse é o concreto armado.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 14.61
+    },
+    {
+     "w": "você",
+     "t": 15.266
+    },
+    {
+     "w": "coloca",
+     "t": 15.53
+    },
+    {
+     "w": "barras",
+     "t": 15.954
+    },
+    {
+     "w": "de",
+     "t": 16.397
+    },
+    {
+     "w": "ferro",
+     "t": 16.51
+    },
+    {
+     "w": "bem",
+     "t": 16.85
+    },
+    {
+     "w": "embaixo",
+     "t": 17.17
+    },
+    {
+     "w": "onde",
+     "t": 17.81
+    },
+    {
+     "w": "o",
+     "t": 18.17
+    },
+    {
+     "w": "concreto",
+     "t": 18.25
+    },
+    {
+     "w": "é",
+     "t": 18.65
+    },
+    {
+     "w": "puxado",
+     "t": 18.73
+    },
+    {
+     "w": "O",
+     "t": 19.69
+    },
+    {
+     "w": "ferro",
+     "t": 20.13
+    },
+    {
+     "w": "aguenta",
+     "t": 20.503
+    },
+    {
+     "w": "o",
+     "t": 20.87
+    },
+    {
+     "w": "puxão",
+     "t": 20.91
+    },
+    {
+     "w": "o",
+     "t": 21.63
+    },
+    {
+     "w": "concreto",
+     "t": 21.79
+    },
+    {
+     "w": "aguenta",
+     "t": 22.343
+    },
+    {
+     "w": "o",
+     "t": 22.73
+    },
+    {
+     "w": "aperto",
+     "t": 22.823
+    },
+    {
+     "w": "Esse",
+     "t": 23.597
+    },
+    {
+     "w": "é",
+     "t": 24.25
+    },
+    {
+     "w": "o",
+     "t": 24.35
+    },
+    {
+     "w": "concreto",
+     "t": 24.44
+    },
+    {
+     "w": "armado",
+     "t": 24.81
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 25.48,
+   "fim": 34.92,
+   "texto": "Mas uma placa grossa é pesada demais. Então, você faz vigotas de concreto e enche o espaço entre elas com blocos de isopor ou cerâmica, que são leves.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.48
+    },
+    {
+     "w": "uma",
+     "t": 25.68
+    },
+    {
+     "w": "placa",
+     "t": 25.853
+    },
+    {
+     "w": "grossa",
+     "t": 26.253
+    },
+    {
+     "w": "é",
+     "t": 26.64
+    },
+    {
+     "w": "pesada",
+     "t": 26.74
+    },
+    {
+     "w": "demais",
+     "t": 27.14
+    },
+    {
+     "w": "Então",
+     "t": 27.86
+    },
+    {
+     "w": "você",
+     "t": 28.648
+    },
+    {
+     "w": "faz",
+     "t": 28.9
+    },
+    {
+     "w": "vigotas",
+     "t": 29.14
+    },
+    {
+     "w": "de",
+     "t": 29.667
+    },
+    {
+     "w": "concreto",
+     "t": 29.78
+    },
+    {
+     "w": "e",
+     "t": 30.44
+    },
+    {
+     "w": "enche",
+     "t": 30.6
+    },
+    {
+     "w": "o",
+     "t": 30.96
+    },
+    {
+     "w": "espaço",
+     "t": 31.114
+    },
+    {
+     "w": "entre",
+     "t": 31.36
+    },
+    {
+     "w": "elas",
+     "t": 31.64
+    },
+    {
+     "w": "com",
+     "t": 31.92
+    },
+    {
+     "w": "blocos",
+     "t": 32.104
+    },
+    {
+     "w": "de",
+     "t": 32.467
+    },
+    {
+     "w": "isopor",
+     "t": 32.573
+    },
+    {
+     "w": "ou",
+     "t": 33.213
+    },
+    {
+     "w": "cerâmica",
+     "t": 33.38
+    },
+    {
+     "w": "que",
+     "t": 34.08
+    },
+    {
+     "w": "são",
+     "t": 34.24
+    },
+    {
+     "w": "leves",
+     "t": 34.413
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 35.07,
+   "fim": 42.28,
+   "texto": "Por cima, uma tela de ferro e uma camada fina de concreto que amarra tudo. Essa é a laje pré-moldada.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 35.07
+    },
+    {
+     "w": "cima",
+     "t": 35.27
+    },
+    {
+     "w": "uma",
+     "t": 35.83
+    },
+    {
+     "w": "tela",
+     "t": 36.014
+    },
+    {
+     "w": "de",
+     "t": 36.297
+    },
+    {
+     "w": "ferro",
+     "t": 36.45
+    },
+    {
+     "w": "e",
+     "t": 36.87
+    },
+    {
+     "w": "uma",
+     "t": 36.95
+    },
+    {
+     "w": "camada",
+     "t": 37.13
+    },
+    {
+     "w": "fina",
+     "t": 37.53
+    },
+    {
+     "w": "de",
+     "t": 37.817
+    },
+    {
+     "w": "concreto",
+     "t": 37.93
+    },
+    {
+     "w": "que",
+     "t": 38.45
+    },
+    {
+     "w": "amarra",
+     "t": 38.563
+    },
+    {
+     "w": "tudo",
+     "t": 38.91
+    },
+    {
+     "w": "Essa",
+     "t": 39.61
+    },
+    {
+     "w": "é",
+     "t": 40.63
+    },
+    {
+     "w": "a",
+     "t": 40.71
+    },
+    {
+     "w": "laje",
+     "t": 40.83
+    },
+    {
+     "w": "pré-moldada",
+     "t": 41.21
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 42.43,
+   "fim": 50.99,
+   "texto": "Mas o concreto molhado não se segura sozinho. Então, você coloca escoras embaixo, e espera umas três semanas até ele ficar forte de verdade.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 42.43
+    },
+    {
+     "w": "o",
+     "t": 42.65
+    },
+    {
+     "w": "concreto",
+     "t": 42.74
+    },
+    {
+     "w": "molhado",
+     "t": 43.11
+    },
+    {
+     "w": "não",
+     "t": 43.59
+    },
+    {
+     "w": "se",
+     "t": 43.737
+    },
+    {
+     "w": "segura",
+     "t": 43.85
+    },
+    {
+     "w": "sozinho",
+     "t": 44.243
+    },
+    {
+     "w": "Então",
+     "t": 45.02
+    },
+    {
+     "w": "você",
+     "t": 45.55
+    },
+    {
+     "w": "coloca",
+     "t": 45.75
+    },
+    {
+     "w": "escoras",
+     "t": 46.17
+    },
+    {
+     "w": "embaixo",
+     "t": 46.643
+    },
+    {
+     "w": "e",
+     "t": 47.37
+    },
+    {
+     "w": "espera",
+     "t": 47.516
+    },
+    {
+     "w": "umas",
+     "t": 47.817
+    },
+    {
+     "w": "três",
+     "t": 48.078
+    },
+    {
+     "w": "semanas",
+     "t": 48.36
+    },
+    {
+     "w": "até",
+     "t": 49.05
+    },
+    {
+     "w": "ele",
+     "t": 49.27
+    },
+    {
+     "w": "ficar",
+     "t": 49.43
+    },
+    {
+     "w": "forte",
+     "t": 49.79
+    },
+    {
+     "w": "de",
+     "t": 50.217
+    },
+    {
+     "w": "verdade",
+     "t": 50.34
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 51.14,
+   "fim": 58.34,
+   "texto": "Coloque um furo pra caixa de luz, a impermeabilização e o piso por cima. Parabéns, você construiu uma laje.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 51.14
+    },
+    {
+     "w": "um",
+     "t": 51.513
+    },
+    {
+     "w": "furo",
+     "t": 51.66
+    },
+    {
+     "w": "pra",
+     "t": 51.9
+    },
+    {
+     "w": "caixa",
+     "t": 52.073
+    },
+    {
+     "w": "de",
+     "t": 52.367
+    },
+    {
+     "w": "luz",
+     "t": 52.52
+    },
+    {
+     "w": "a",
+     "t": 53.1
+    },
+    {
+     "w": "impermeabilização",
+     "t": 53.193
+    },
+    {
+     "w": "e",
+     "t": 54.42
+    },
+    {
+     "w": "o",
+     "t": 54.54
+    },
+    {
+     "w": "piso",
+     "t": 54.66
+    },
+    {
+     "w": "por",
+     "t": 54.94
+    },
+    {
+     "w": "cima",
+     "t": 55.14
+    },
+    {
+     "w": "Parabéns",
+     "t": 55.7
+    },
+    {
+     "w": "você",
+     "t": 56.884
+    },
+    {
+     "w": "construiu",
+     "t": 57.186
+    },
+    {
+     "w": "uma",
+     "t": 57.77
+    },
+    {
+     "w": "laje",
+     "t": 57.913
+    }
+   ]
+  }
+ ]
+}
