@@ -1,0 +1,112 @@
+{
+ "nome": "Criativo 2 - modelo Vicky (maes e bebes) v3 so TikTok",
+ "dur": 17.2,
+ "voz": {
+  "arq": "voz.mp3",
+  "vel": 1,
+  "atraso": 0
+ },
+ "musica": {
+  "arq": "musica.mp3",
+  "vol": 0.1
+ },
+ "segs": [
+  {
+   "de": 0,
+   "ate": 1.7,
+   "vid": {
+    "arq": "tiktok/kellymoraiso_7280653302587460870.mp4",
+    "ini": 54
+   }
+  },
+  {
+   "de": 1.7,
+   "ate": 3.4,
+   "vid": {
+    "arq": "tiktok/aryanabezerrashop_7583910369429605639.mp4",
+    "ini": 43
+   }
+  },
+  {
+   "de": 3.4,
+   "ate": 5.1,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 41
+   }
+  },
+  {
+   "de": 5.1,
+   "ate": 7.3,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 1.5
+   }
+  },
+  {
+   "de": 7.3,
+   "ate": 10.6,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 50.5
+   }
+  },
+  {
+   "de": 10.6,
+   "ate": 12.4,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 65.5
+   }
+  },
+  {
+   "de": 12.4,
+   "ate": 14.2,
+   "vid": {
+    "arq": "tiktok/gabiiksantos_7457979003920567557.mp4",
+    "ini": 13.5
+   }
+  },
+  {
+   "de": 14.2,
+   "ate": 17.2,
+   "vid": {
+    "arq": "tiktok/promocao_babyy_7215405887584816389.mp4",
+    "ini": 16
+   }
+  }
+ ],
+ "sobre": [
+  {
+   "png": "pecas/v2-titulo.png",
+   "x": "c",
+   "y": 260,
+   "de": 0.2,
+   "ate": 3.4
+  },
+  {
+   "png": "pecas/v2-400.png",
+   "x": "c",
+   "y": 1380,
+   "de": 5.6,
+   "ate": 7.3
+  },
+  {
+   "png": "pecas/v2-msg.png",
+   "w": 860,
+   "x": "c",
+   "y": 320,
+   "de": 7.3,
+   "ate": 10.6,
+   "sobe": true
+  },
+  {
+   "png": "pecas/v2-cta.png",
+   "x": "c",
+   "y": 820,
+   "de": 14.2,
+   "ate": 17.2,
+   "sobe": true
+  }
+ ]
+}
