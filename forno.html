@@ -1,0 +1,116 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("forno", { fundo: 0x9cc8ea, seed: 1501 });
+const { THREE, scene, add, grupo, mat, sprite, texRuido, tex, prog, entre, frac, pulse, C, F, P, T, rnd } = K;
+const PI = Math.PI, V = (x, y, z) => new THREE.Vector3(x, y, z);
+
+// chão + base de pedra
+add(new THREE.PlaneGeometry(30, 30), mat(0x6a9a4a), 0, 0, 0).rotation.x = -PI / 2;
+const texTijolo = tex(256, (g, s) => { g.fillStyle = "#c8a080"; g.fillRect(0, 0, s, s); for (let y = 0; y < 8; y++) for (let x = 0; x < 5; x++) { g.fillStyle = `hsl(${14 + rnd() * 10},${45 + rnd() * 15}%,${38 + rnd() * 10}%)`; g.fillRect(x * 52 + (y % 2) * 26 - 26 + 3, y * 32 + 3, 46, 26); } }, 3);
+add(new THREE.BoxGeometry(3.0, .6, 2.4), mat(0xffffff, { map: texRuido("#9a948a", 40, 2) }), 0, .3, -.2);
+const pisoM = mat(0xffffff, { map: texTijolo, emissive: 0xff4010, emissiveIntensity: 0 });
+add(new THREE.BoxGeometry(2.2, .06, 1.2), pisoM, 0, .63, -.6);
+// cúpula em corte (só a metade de trás) + boca + chaminé
+const domoM = mat(0xffffff, { map: texTijolo, side: THREE.DoubleSide });
+const domo = grupo(0, .66, 0);
+const d1 = add(new THREE.SphereGeometry(1.0, 40, 20, PI, PI, 0, PI / 2), domoM, 0, 0, 0, domo); d1.scale.set(1.05, .9, 1.15);
+const lintel = add(new THREE.BoxGeometry(.18, .5, 1.1), domoM, 1.0, .58, -.55, domo);
+const chamine = add(new THREE.CylinderGeometry(.14, .16, 1.6, 20), domoM, 1.22, 1.35, -.45, domo);
+const isolM = mat(0x8a8478, { transparent: true, opacity: 0, side: THREE.DoubleSide });
+const isol = add(new THREE.SphereGeometry(1.0, 40, 20, PI, PI, 0, PI / 2), isolM, 0, 0, 0, domo); isol.scale.set(1.22, 1.07, 1.32);
+const porta = add(new THREE.BoxGeometry(.05, .5, .9), mat(0x2a2a2e, { metalness: .6 }), 1.3, .3, -.4, domo);
+const pa = grupo(2.3, .78, .1); add(new THREE.BoxGeometry(1.6, .04, .04), mat(0x9a6a3a), .5, 0, 0, pa); add(new THREE.BoxGeometry(.4, .015, .35), mat(0xb8bcc4, { metalness: .7 }), -.45, 0, 0, pa);
+// fogo
+const fogo = grupo(0, .66, 0);
+const lenhaM = mat(0x5a3418);
+for (let i = 0; i < 4; i++) { const l = add(new THREE.CylinderGeometry(.05, .05, .6, 10), lenhaM, 0, .05 + (i > 1 ? .07 : 0), (i % 2 ? .1 : -.1), fogo); l.rotation.z = PI / 2; l.rotation.y = (i - 1.5) * .4; }
+const chamas = Array.from({ length: 30 }, () => ({ s: sprite(rnd() < .5 ? 0xff7020 : 0xffc040), x: (rnd() - .5) * .4, z: (rnd() - .5) * .3, f: rnd() }));
+const brasas = Array.from({ length: 16 }, () => { const m = add(new THREE.SphereGeometry(.05, 10, 8), mat(0x3a1a0a, { emissive: 0xff5010, emissiveIntensity: 1.5 }), 0, .7, 0); return { m, x: (rnd() - .5) * .5, z: (rnd() - .5) * .4 }; });
+// pizza
+const pizza = grupo(1.0, .62, .55);
+const massaM = mat(0xf0d8a0), topoM = mat(0xd84a2a), queimaM = mat(0xd84a2a);
+add(new THREE.CylinderGeometry(.3, .3, .04, 32), massaM, 0, 0, 0, pizza);
+const topo = add(new THREE.CylinderGeometry(.26, .26, .02, 32, 1, false, 0, PI), topoM, 0, .03, 0, pizza);
+const topo2 = add(new THREE.CylinderGeometry(.26, .26, .02, 32, 1, false, PI, PI), queimaM, 0, .03, 0, pizza);
+const queijos = Array.from({ length: 10 }, () => add(new THREE.SphereGeometry(.035, 8, 6), mat(0xf6e8b0), (rnd() - .5) * .34, .045, (rnd() - .5) * .34, pizza));
+// fluxos
+const vento = Array.from({ length: 24 }, () => ({ s: sprite(0xffffff), y: .8 + rnd() * .8, z: (rnd() - .5) * 1.2, f: rnd() }));
+const calorC = [[V(-.1, .9, -.3), V(-.3, 1.4, -.5), V(.3, 1.55, -.6), V(.7, 1.15, -.4), V(.95, .72, .0)], [V(0, .9, -.3), V(-.6, 1.3, -.7), V(-.9, 1.0, -.4), V(-.5, .8, -.2)], [V(.1, .9, -.3), V(.5, 1.5, -.7), V(.8, 1.2, -.5), V(.6, .75, -.3)]].map((p) => K.fluxo(new THREE.CatmullRomCurve3(p), 14, 0xff5a20));
+const arF = K.fluxo(new THREE.CatmullRomCurve3([V(1.7, .75, -.3), V(1.0, .72, -.3), V(.4, .72, -.4), V(0, .8, -.5)]), 18, 0x5aa8ff);
+const fumC = K.fluxo(new THREE.CatmullRomCurve3([V(0, 1.0, -.5), V(-.2, 1.5, -.6), V(.5, 1.5, -.6), V(.95, 1.1, -.5), V(1.2, 1.25, -.45), V(1.22, 2.3, -.45), V(1.22, 2.9, -.45)]), 26, 0x777777);
+const fumaca = Array.from({ length: 30 }, () => ({ s: sprite(0x6a6a6a), x: (rnd() - .5) * 1.6, y: .8 + rnd() * .8, z: -rnd() * .9, f: rnd() }));
+
+K.camera_({
+  geral: [V(1.6, 1.95, 5.2), V(.35, 1.25, -.2)],
+  pizza: [V(1.6, 1.3, 2.7), V(.5, .8, -.2)],
+  fim: [V(-1.4, 1.95, 5.2), V(.1, 1.25, -.2)],
+}, [
+  [0, "geral"], [P(2, "queima") - .3, "pizza"], [P(2, "cobre") - .2, "geral"], [F(5), "geral"], [P(6, "pizza") - .3, "pizza"], [F(6), "pizza"], [C(7), "geral"], [T, "fim"],
+]);
+
+const cru = new THREE.Color(0xd84a2a), preto = new THREE.Color(0x2a1408), dourado = new THREE.Color(0xc87a3a);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const cup = P(2, "cupula");
+  const domoOn = t > cup - .4; domo.visible = domoOn;
+  domo.position.y = .66 + 2.5 * (1 - prog(t, cup - .4, cup + .3));
+  // fogo: no meio, apaga com fumaça, depois brasa no canto
+  const apaga = em(P(4, "apaga") - .2, P(4, "boca") - .2);
+  const canto = prog(t, P(5, "empurra") - .2, P(5, "empurra") + .6);
+  fogo.position.set(-.75 * canto, .66, -.5 * (t > cup ? 1 : 0));
+  fogo.scale.setScalar(apaga ? .5 : 1);
+  chamas.forEach((c) => { const q = frac(t * 1.4 + c.f); c.s.position.set(fogo.position.x + c.x * (1 - q), .75 + q * (apaga ? .25 : .55), fogo.position.z + c.z * (1 - q)); c.s.scale.setScalar(.12 * (1 - q * .6)); c.s.material.opacity = (apaga ? .3 : .9) * (1 - q); });
+  const vLeva = em(P(2, "vento") - .3, cup);
+  chamas.forEach((c) => { if (vLeva) c.s.position.x += .3 * frac(t * 1.4 + c.f); });
+  vento.forEach((v) => { const q = frac(t * .6 + v.f); v.s.position.set(-2 + q * 4, v.y, v.z); v.s.scale.setScalar(.05); v.s.material.opacity = vLeva ? .8 * Math.sin(q * PI) : 0; });
+  // pizza: ao lado do fogo, queima de um lado; depois entra no forno
+  const dentro = t > P(3, "pizza") - .5;
+  const entra = prog(t, P(6, "pizza") - .5, P(6, "pizza") + .3);
+  if (t < P(3, "pizza") - .5) pizza.position.set(.9, .69, .25);
+  else if (t < F(5)) pizza.position.set(.45, .69, -.35);
+  else pizza.position.set(.45 + 1.5 * (1 - entra), .69 + .09 * (1 - entra), -.35);
+  pizza.visible = !em(F(5), P(6, "pizza") - .5);
+  const lado = prog(t, P(2, "queima") - .3, P(2, "queima") + .8) * (t < P(3, "pizza") - .5 ? 1 : 0);
+  queimaM.color.copy(cru).lerp(preto, lado);
+  const assa = t > F(5) ? prog(t, P(6, "assa"), P(6, "segundos")) : prog(t, P(3, "assa") - .2, F(3)) * .6 * (t < F(3) + .5 ? 1 : 0);
+  topoM.color.copy(cru).lerp(dourado, assa * .5); if (t > P(3, "pizza") - .5) queimaM.color.copy(topoM.color);
+  massaM.color.set(0xf0d8a0).lerp(dourado, assa);
+  // calor rebatendo na cúpula
+  calorC.forEach((f) => f.atualiza(t, em(P(3, "cupula") - .3, F(3)) || em(P(6, "assa") - .3, F(6)), .45, .07, .9));
+  // fumaça e tiragem
+  fumaca.forEach((f) => { f.s.position.set(f.x + Math.sin(t + f.f * 9) * .05, f.y, f.z); f.s.scale.setScalar(.35); f.s.material.opacity = em(P(4, "fumaca") - .3, P(4, "boca") - .2) ? .55 * prog(t, P(4, "fumaca") - .3, P(4, "fumaca") + .8) : 0; });
+  lintel.visible = chamine.visible = t > P(4, "boca") - .3 || t > C(7);
+  chamine.scale.y = prog(t, P(4, "chamine") - .3, P(4, "chamine") + .3) || .001; chamine.position.y = 1.35 - .8 * (1 - chamine.scale.y);
+  arF.atualiza(t, em(P(4, "frio") - .3, F(4)), .5, .06, .9);
+  fumC.atualiza(t, em(P(4, "quente") - .3, F(4)), .4, .12, .7);
+  // piso guarda calor
+  const brasaOn = em(P(5, "brasa") - .5, T);
+  pisoM.emissiveIntensity = Math.max(prog(t, P(5, "chuparem") - .3, P(5, "brasa")) * .35, em(C(6), T) ? .3 + .15 * pulse(t, P(6, "bateria") - .2, 1) : 0);
+  brasas.forEach((b) => { b.m.visible = brasaOn; b.m.position.set(fogo.position.x + b.x * .6, .7, fogo.position.z + b.z); });
+  // acabamentos
+  isol.visible = t > P(7, "isolante") - .3; isolM.opacity = .95 * prog(t, P(7, "isolante") - .3, P(7, "isolante") + .4);
+  porta.visible = t > P(7, "porta") - .3;
+  pa.visible = t > P(7, "pa") - .3; pa.position.x = 1.6 + .7 * (1 - prog(t, P(7, "pa") - .3, P(7, "pa") + .3));
+  K.cartoes(t, [
+    [P(1, "pizza") - .3, F(1), "PIZZA NA FOGUEIRA?", "#ffffff"],
+    [P(2, "vento") - .3, P(2, "queima") - .3, "O VENTO LEVA O CALOR", "#8ac8ff"],
+    [P(2, "queima") - .3, P(2, "cobre") - .2, "UM LADO QUEIMA", "#ff4a3a"],
+    [P(2, "cupula") - .3, F(2), "CÚPULA DE TIJOLO", "#ffb070"],
+    [P(3, "volta") - .3, F(3), "O CALOR VOLTA PRA BAIXO", "#ff7040"],
+    [P(4, "fumaca") - .3, P(4, "boca") - .2, "FUMAÇA APAGA O FOGO", "#bbbbbb"],
+    [P(4, "frio") - .3, P(4, "quente") - .2, "AR FRIO ENTRA EMBAIXO", "#8ac8ff"],
+    [P(4, "quente") - .2, F(4), "FUMAÇA SAI EM CIMA", "#ff7040"],
+    [P(5, "chuparem") - .3, P(5, "empurra") - .3, "O TIJOLO ABSORVE O CALOR", "#ffb070"],
+    [P(5, "empurra") - .3, F(5), "BRASA PRO CANTO", "#ff7040"],
+    [P(6, "quatrocentos") - .3, P(6, "segundos") - .6, "PISO A 400 °C", "#ff4a3a"],
+    [P(6, "segundos") - .6, F(6), "PIZZA EM 90 SEGUNDOS", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

@@ -1,0 +1,765 @@
+{
+ "total": 49.65,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.23,
+   "texto": "Se você fizer uma fogueira e colocar a pizza do lado, terá uma pizza assada.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "fizer",
+     "t": 0.51
+    },
+    {
+     "w": "uma",
+     "t": 0.83
+    },
+    {
+     "w": "fogueira",
+     "t": 1.03
+    },
+    {
+     "w": "e",
+     "t": 1.51
+    },
+    {
+     "w": "colocar",
+     "t": 1.63
+    },
+    {
+     "w": "a",
+     "t": 2.03
+    },
+    {
+     "w": "pizza",
+     "t": 2.137
+    },
+    {
+     "w": "do",
+     "t": 2.497
+    },
+    {
+     "w": "lado",
+     "t": 2.614
+    },
+    {
+     "w": "terá",
+     "t": 2.99
+    },
+    {
+     "w": "uma",
+     "t": 3.23
+    },
+    {
+     "w": "pizza",
+     "t": 3.417
+    },
+    {
+     "w": "assada",
+     "t": 3.79
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.38,
+   "fim": 11.58,
+   "texto": "Mas o vento leva o calor embora. Um lado queima e o outro fica cru. Então, você cobre o fogo com um teto de tijolos, em forma de cúpula.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 4.38
+    },
+    {
+     "w": "o",
+     "t": 4.58
+    },
+    {
+     "w": "vento",
+     "t": 4.684
+    },
+    {
+     "w": "leva",
+     "t": 5.073
+    },
+    {
+     "w": "o",
+     "t": 5.3
+    },
+    {
+     "w": "calor",
+     "t": 5.393
+    },
+    {
+     "w": "embora",
+     "t": 5.7
+    },
+    {
+     "w": "Um",
+     "t": 6.113
+    },
+    {
+     "w": "lado",
+     "t": 6.268
+    },
+    {
+     "w": "queima",
+     "t": 6.52
+    },
+    {
+     "w": "e",
+     "t": 6.94
+    },
+    {
+     "w": "o",
+     "t": 7.06
+    },
+    {
+     "w": "outro",
+     "t": 7.153
+    },
+    {
+     "w": "fica",
+     "t": 7.468
+    },
+    {
+     "w": "cru",
+     "t": 7.74
+    },
+    {
+     "w": "Então",
+     "t": 8.12
+    },
+    {
+     "w": "você",
+     "t": 8.572
+    },
+    {
+     "w": "cobre",
+     "t": 8.76
+    },
+    {
+     "w": "o",
+     "t": 9.06
+    },
+    {
+     "w": "fogo",
+     "t": 9.14
+    },
+    {
+     "w": "com",
+     "t": 9.38
+    },
+    {
+     "w": "um",
+     "t": 9.527
+    },
+    {
+     "w": "teto",
+     "t": 9.62
+    },
+    {
+     "w": "de",
+     "t": 9.873
+    },
+    {
+     "w": "tijolos",
+     "t": 10.02
+    },
+    {
+     "w": "em",
+     "t": 10.567
+    },
+    {
+     "w": "forma",
+     "t": 10.673
+    },
+    {
+     "w": "de",
+     "t": 10.967
+    },
+    {
+     "w": "cúpula",
+     "t": 11.1
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.73,
+   "fim": 17.97,
+   "texto": "A cúpula pega o calor que sobe e joga de volta pra baixo, por todos os lados. Agora a pizza assa por cima também.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 11.73
+    },
+    {
+     "w": "cúpula",
+     "t": 11.89
+    },
+    {
+     "w": "pega",
+     "t": 12.29
+    },
+    {
+     "w": "o",
+     "t": 12.61
+    },
+    {
+     "w": "calor",
+     "t": 12.717
+    },
+    {
+     "w": "que",
+     "t": 12.89
+    },
+    {
+     "w": "sobe",
+     "t": 13.07
+    },
+    {
+     "w": "e",
+     "t": 13.41
+    },
+    {
+     "w": "joga",
+     "t": 13.53
+    },
+    {
+     "w": "de",
+     "t": 13.783
+    },
+    {
+     "w": "volta",
+     "t": 13.93
+    },
+    {
+     "w": "pra",
+     "t": 14.17
+    },
+    {
+     "w": "baixo",
+     "t": 14.343
+    },
+    {
+     "w": "por",
+     "t": 14.73
+    },
+    {
+     "w": "todos",
+     "t": 14.903
+    },
+    {
+     "w": "os",
+     "t": 15.197
+    },
+    {
+     "w": "lados",
+     "t": 15.33
+    },
+    {
+     "w": "Agora",
+     "t": 15.89
+    },
+    {
+     "w": "a",
+     "t": 16.47
+    },
+    {
+     "w": "pizza",
+     "t": 16.603
+    },
+    {
+     "w": "assa",
+     "t": 16.83
+    },
+    {
+     "w": "por",
+     "t": 17.11
+    },
+    {
+     "w": "cima",
+     "t": 17.25
+    },
+    {
+     "w": "também",
+     "t": 17.536
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 18.12,
+   "fim": 28.04,
+   "texto": "Mas o forno enche de fumaça e o fogo apaga. Então, você faz a boca mais baixa que o teto, e uma chaminé logo na frente. O ar frio entra por baixo, a fumaça quente sai por cima.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 18.12
+    },
+    {
+     "w": "o",
+     "t": 18.32
+    },
+    {
+     "w": "forno",
+     "t": 18.42
+    },
+    {
+     "w": "enche",
+     "t": 18.813
+    },
+    {
+     "w": "de",
+     "t": 19.027
+    },
+    {
+     "w": "fumaça",
+     "t": 19.12
+    },
+    {
+     "w": "e",
+     "t": 19.64
+    },
+    {
+     "w": "o",
+     "t": 19.76
+    },
+    {
+     "w": "fogo",
+     "t": 19.84
+    },
+    {
+     "w": "apaga",
+     "t": 20.173
+    },
+    {
+     "w": "Então",
+     "t": 20.72
+    },
+    {
+     "w": "você",
+     "t": 21.192
+    },
+    {
+     "w": "faz",
+     "t": 21.38
+    },
+    {
+     "w": "a",
+     "t": 21.6
+    },
+    {
+     "w": "boca",
+     "t": 21.704
+    },
+    {
+     "w": "mais",
+     "t": 22.024
+    },
+    {
+     "w": "baixa",
+     "t": 22.36
+    },
+    {
+     "w": "que",
+     "t": 22.7
+    },
+    {
+     "w": "o",
+     "t": 22.8
+    },
+    {
+     "w": "teto",
+     "t": 22.88
+    },
+    {
+     "w": "e",
+     "t": 23.28
+    },
+    {
+     "w": "uma",
+     "t": 23.36
+    },
+    {
+     "w": "chaminé",
+     "t": 23.533
+    },
+    {
+     "w": "logo",
+     "t": 24.024
+    },
+    {
+     "w": "na",
+     "t": 24.307
+    },
+    {
+     "w": "frente",
+     "t": 24.417
+    },
+    {
+     "w": "O",
+     "t": 24.94
+    },
+    {
+     "w": "ar",
+     "t": 25.053
+    },
+    {
+     "w": "frio",
+     "t": 25.22
+    },
+    {
+     "w": "entra",
+     "t": 25.52
+    },
+    {
+     "w": "por",
+     "t": 25.76
+    },
+    {
+     "w": "baixo",
+     "t": 25.933
+    },
+    {
+     "w": "a",
+     "t": 26.4
+    },
+    {
+     "w": "fumaça",
+     "t": 26.48
+    },
+    {
+     "w": "quente",
+     "t": 26.893
+    },
+    {
+     "w": "sai",
+     "t": 27.3
+    },
+    {
+     "w": "por",
+     "t": 27.52
+    },
+    {
+     "w": "cima",
+     "t": 27.68
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.19,
+   "fim": 35.79,
+   "texto": "Mas a massa precisa de calor por baixo. Então, você acende o fogo direto no piso, deixa os tijolos chuparem o calor, e empurra a brasa pro canto.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 28.19
+    },
+    {
+     "w": "a",
+     "t": 28.43
+    },
+    {
+     "w": "massa",
+     "t": 28.563
+    },
+    {
+     "w": "precisa",
+     "t": 28.87
+    },
+    {
+     "w": "de",
+     "t": 29.203
+    },
+    {
+     "w": "calor",
+     "t": 29.363
+    },
+    {
+     "w": "por",
+     "t": 29.67
+    },
+    {
+     "w": "baixo",
+     "t": 29.87
+    },
+    {
+     "w": "Então",
+     "t": 30.39
+    },
+    {
+     "w": "você",
+     "t": 30.734
+    },
+    {
+     "w": "acende",
+     "t": 31.043
+    },
+    {
+     "w": "o",
+     "t": 31.35
+    },
+    {
+     "w": "fogo",
+     "t": 31.43
+    },
+    {
+     "w": "direto",
+     "t": 31.678
+    },
+    {
+     "w": "no",
+     "t": 32.057
+    },
+    {
+     "w": "piso",
+     "t": 32.19
+    },
+    {
+     "w": "deixa",
+     "t": 32.617
+    },
+    {
+     "w": "os",
+     "t": 32.857
+    },
+    {
+     "w": "tijolos",
+     "t": 32.95
+    },
+    {
+     "w": "chuparem",
+     "t": 33.417
+    },
+    {
+     "w": "o",
+     "t": 33.97
+    },
+    {
+     "w": "calor",
+     "t": 34.103
+    },
+    {
+     "w": "e",
+     "t": 34.39
+    },
+    {
+     "w": "empurra",
+     "t": 34.49
+    },
+    {
+     "w": "a",
+     "t": 34.87
+    },
+    {
+     "w": "brasa",
+     "t": 34.937
+    },
+    {
+     "w": "pro",
+     "t": 35.19
+    },
+    {
+     "w": "canto",
+     "t": 35.35
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 35.94,
+   "fim": 42.26,
+   "texto": "O piso fica a quatrocentos graus. A pizza assa em noventa segundos, porque o tijolo guarda calor como uma bateria.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 35.94
+    },
+    {
+     "w": "piso",
+     "t": 36.1
+    },
+    {
+     "w": "fica",
+     "t": 36.468
+    },
+    {
+     "w": "a",
+     "t": 36.7
+    },
+    {
+     "w": "quatrocentos",
+     "t": 36.767
+    },
+    {
+     "w": "graus",
+     "t": 37.44
+    },
+    {
+     "w": "A",
+     "t": 37.9
+    },
+    {
+     "w": "pizza",
+     "t": 38.007
+    },
+    {
+     "w": "assa",
+     "t": 38.4
+    },
+    {
+     "w": "em",
+     "t": 38.687
+    },
+    {
+     "w": "noventa",
+     "t": 38.793
+    },
+    {
+     "w": "segundos",
+     "t": 39.193
+    },
+    {
+     "w": "porque",
+     "t": 39.734
+    },
+    {
+     "w": "o",
+     "t": 39.98
+    },
+    {
+     "w": "tijolo",
+     "t": 40.06
+    },
+    {
+     "w": "guarda",
+     "t": 40.546
+    },
+    {
+     "w": "calor",
+     "t": 40.887
+    },
+    {
+     "w": "como",
+     "t": 41.252
+    },
+    {
+     "w": "uma",
+     "t": 41.42
+    },
+    {
+     "w": "bateria",
+     "t": 41.58
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 42.41,
+   "fim": 49.05,
+   "texto": "Coloque uma camada de isolante por fora, uma porta de ferro e uma pá comprida. Parabéns, você construiu um forno a lenha.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 42.41
+    },
+    {
+     "w": "uma",
+     "t": 42.83
+    },
+    {
+     "w": "camada",
+     "t": 42.95
+    },
+    {
+     "w": "de",
+     "t": 43.317
+    },
+    {
+     "w": "isolante",
+     "t": 43.418
+    },
+    {
+     "w": "por",
+     "t": 43.89
+    },
+    {
+     "w": "fora",
+     "t": 44.074
+    },
+    {
+     "w": "uma",
+     "t": 44.45
+    },
+    {
+     "w": "porta",
+     "t": 44.637
+    },
+    {
+     "w": "de",
+     "t": 45.023
+    },
+    {
+     "w": "ferro",
+     "t": 45.17
+    },
+    {
+     "w": "e",
+     "t": 45.45
+    },
+    {
+     "w": "uma",
+     "t": 45.57
+    },
+    {
+     "w": "pá",
+     "t": 45.77
+    },
+    {
+     "w": "comprida",
+     "t": 45.97
+    },
+    {
+     "w": "Parabéns",
+     "t": 46.61
+    },
+    {
+     "w": "você",
+     "t": 47.194
+    },
+    {
+     "w": "construiu",
+     "t": 47.496
+    },
+    {
+     "w": "um",
+     "t": 48.117
+    },
+    {
+     "w": "forno",
+     "t": 48.25
+    },
+    {
+     "w": "a",
+     "t": 48.61
+    },
+    {
+     "w": "lenha",
+     "t": 48.71
+    }
+   ]
+  }
+ ]
+}
