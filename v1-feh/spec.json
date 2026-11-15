@@ -1,0 +1,169 @@
+{
+ "nome": "Criativo 1 - modelo FEH (maes e bebes) v3 so TikTok",
+ "dur": 18.3,
+ "voz": {
+  "arq": "voz.mp3",
+  "vel": 1.2,
+  "atraso": 0
+ },
+ "musica": {
+  "arq": "musica.mp3",
+  "vol": 0.1
+ },
+ "segs": [
+  {
+   "de": 0,
+   "ate": 1,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 52
+   }
+  },
+  {
+   "de": 1,
+   "ate": 2,
+   "vid": {
+    "arq": "tiktok/childrensbebes_7538884870093786373.mp4",
+    "ini": 14.5
+   }
+  },
+  {
+   "de": 2,
+   "ate": 3,
+   "vid": {
+    "arq": "tiktok/promocao_babyy_7225022061343722779.mp4",
+    "ini": 3
+   }
+  },
+  {
+   "de": 3,
+   "ate": 4,
+   "vid": {
+    "arq": "tiktok/gabiiksantos_7457979003920567557.mp4",
+    "ini": 4
+   }
+  },
+  {
+   "de": 4,
+   "ate": 5,
+   "vid": {
+    "arq": "tiktok/aryanabezerrashop_7583910369429605639.mp4",
+    "ini": 43
+   }
+  },
+  {
+   "de": 5,
+   "ate": 6,
+   "vid": {
+    "arq": "tiktok/_isabmpaixao_7498822238297181445.mp4",
+    "ini": 41
+   }
+  },
+  {
+   "de": 6,
+   "ate": 7,
+   "vid": {
+    "arq": "tiktok/kellymoraiso_7280653302587460870.mp4",
+    "ini": 45
+   }
+  },
+  {
+   "de": 7,
+   "ate": 8,
+   "vid": {
+    "arq": "tiktok/amaeviaja_7036110812091534598.mp4",
+    "ini": 8
+   }
+  },
+  {
+   "de": 8,
+   "ate": 9,
+   "vid": {
+    "arq": "tiktok/aryanabezerrashop_7583910369429605639.mp4",
+    "ini": 41.5
+   }
+  },
+  {
+   "de": 9,
+   "ate": 10,
+   "vid": {
+    "arq": "tiktok/ivette_araiza_7545913325163498783.mp4",
+    "ini": 8
+   }
+  },
+  {
+   "de": 10,
+   "ate": 11,
+   "vid": {
+    "arq": "tiktok/childrensbebes_7538884870093786373.mp4",
+    "ini": 11
+   }
+  },
+  {
+   "de": 11,
+   "ate": 12,
+   "vid": {
+    "arq": "tiktok/childrensbebes_7538884870093786373.mp4",
+    "ini": 12
+   }
+  },
+  {
+   "de": 12,
+   "ate": 13,
+   "vid": {
+    "arq": "tiktok/promocao_babyy_7209422454119238917.mp4",
+    "ini": 13
+   }
+  },
+  {
+   "de": 13,
+   "ate": 14,
+   "vid": {
+    "arq": "tiktok/kellymoraiso_7280653302587460870.mp4",
+    "ini": 54
+   }
+  },
+  {
+   "de": 14,
+   "ate": 15,
+   "vid": {
+    "arq": "tiktok/ivette_araiza_7545913325163498783.mp4",
+    "ini": 41
+   }
+  },
+  {
+   "de": 15,
+   "ate": 16.3,
+   "vid": {
+    "arq": "tiktok/leee_silvaah_7644710561128779029.mp4",
+    "ini": 3
+   }
+  },
+  {
+   "de": 16.3,
+   "ate": 18.3,
+   "vid": {
+    "arq": "tiktok/aryanabezerrashop_7583910369429605639.mp4",
+    "ini": 3
+   }
+  }
+ ],
+ "celular": {
+  "de": 3,
+  "ate": 15,
+  "x": 558,
+  "y": 416,
+  "rolaDe": 3.4,
+  "rolaAte": 14.6,
+  "chatH": 4471
+ },
+ "sobre": [
+  {
+   "png": "pecas/v1-cta.png",
+   "x": "c",
+   "y": 1540,
+   "de": 4.2,
+   "ate": 18.3
+  }
+ ]
+}
