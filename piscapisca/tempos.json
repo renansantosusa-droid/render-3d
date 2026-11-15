@@ -1,0 +1,673 @@
+{
+ "total": 52.13,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.59,
+   "texto": "Se você ligar uma lâmpada na tomada, terá luz. Se ligar cem, terá um pisca-pisca.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.294
+    },
+    {
+     "w": "ligar",
+     "t": 0.59
+    },
+    {
+     "w": "uma",
+     "t": 0.85
+    },
+    {
+     "w": "lâmpada",
+     "t": 1.07
+    },
+    {
+     "w": "na",
+     "t": 1.483
+    },
+    {
+     "w": "tomada",
+     "t": 1.63
+    },
+    {
+     "w": "terá",
+     "t": 2.21
+    },
+    {
+     "w": "luz",
+     "t": 2.64
+    },
+    {
+     "w": "Se",
+     "t": 3.057
+    },
+    {
+     "w": "ligar",
+     "t": 3.31
+    },
+    {
+     "w": "cem",
+     "t": 3.63
+    },
+    {
+     "w": "terá",
+     "t": 4.11
+    },
+    {
+     "w": "um",
+     "t": 4.283
+    },
+    {
+     "w": "pisca-pisca",
+     "t": 4.37
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.74,
+   "fim": 11.9,
+   "texto": "Mas cada lâmpada pequena só aguenta uns dois volts, e a tomada manda cento e vinte e sete. Ela queima na hora.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 5.74
+    },
+    {
+     "w": "cada",
+     "t": 5.948
+    },
+    {
+     "w": "lâmpada",
+     "t": 6.18
+    },
+    {
+     "w": "pequena",
+     "t": 6.524
+    },
+    {
+     "w": "só",
+     "t": 6.993
+    },
+    {
+     "w": "aguenta",
+     "t": 7.153
+    },
+    {
+     "w": "uns",
+     "t": 7.54
+    },
+    {
+     "w": "dois",
+     "t": 7.692
+    },
+    {
+     "w": "volts",
+     "t": 7.9
+    },
+    {
+     "w": "e",
+     "t": 8.58
+    },
+    {
+     "w": "a",
+     "t": 8.66
+    },
+    {
+     "w": "tomada",
+     "t": 8.74
+    },
+    {
+     "w": "manda",
+     "t": 9.14
+    },
+    {
+     "w": "cento",
+     "t": 9.42
+    },
+    {
+     "w": "e",
+     "t": 9.86
+    },
+    {
+     "w": "vinte",
+     "t": 9.94
+    },
+    {
+     "w": "e",
+     "t": 10.1
+    },
+    {
+     "w": "sete",
+     "t": 10.2
+    },
+    {
+     "w": "Ela",
+     "t": 10.727
+    },
+    {
+     "w": "queima",
+     "t": 10.9
+    },
+    {
+     "w": "na",
+     "t": 11.18
+    },
+    {
+     "w": "hora",
+     "t": 11.404
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.05,
+   "fim": 20.29,
+   "texto": "Então, você liga uma atrás da outra, numa fila só. A tensão se divide, e cada uma recebe só um pedacinho. Isso é ligar em série.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 12.05
+    },
+    {
+     "w": "você",
+     "t": 12.562
+    },
+    {
+     "w": "liga",
+     "t": 12.73
+    },
+    {
+     "w": "uma",
+     "t": 12.99
+    },
+    {
+     "w": "atrás",
+     "t": 13.23
+    },
+    {
+     "w": "da",
+     "t": 13.543
+    },
+    {
+     "w": "outra",
+     "t": 13.703
+    },
+    {
+     "w": "numa",
+     "t": 14.018
+    },
+    {
+     "w": "fila",
+     "t": 14.29
+    },
+    {
+     "w": "só",
+     "t": 14.663
+    },
+    {
+     "w": "A",
+     "t": 15.05
+    },
+    {
+     "w": "tensão",
+     "t": 15.298
+    },
+    {
+     "w": "se",
+     "t": 15.623
+    },
+    {
+     "w": "divide",
+     "t": 15.787
+    },
+    {
+     "w": "e",
+     "t": 16.37
+    },
+    {
+     "w": "cada",
+     "t": 16.594
+    },
+    {
+     "w": "uma",
+     "t": 16.89
+    },
+    {
+     "w": "recebe",
+     "t": 17.067
+    },
+    {
+     "w": "só",
+     "t": 17.517
+    },
+    {
+     "w": "um",
+     "t": 17.757
+    },
+    {
+     "w": "pedacinho",
+     "t": 17.85
+    },
+    {
+     "w": "Isso",
+     "t": 18.797
+    },
+    {
+     "w": "é",
+     "t": 19.13
+    },
+    {
+     "w": "ligar",
+     "t": 19.21
+    },
+    {
+     "w": "em",
+     "t": 19.543
+    },
+    {
+     "w": "série",
+     "t": 19.703
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.44,
+   "fim": 28.04,
+   "texto": "Mas, em série, a corrente passa por dentro de todas. Se uma queima, abre um buraco no caminho, e o cordão inteiro apaga.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 20.44
+    },
+    {
+     "w": "em",
+     "t": 20.76
+    },
+    {
+     "w": "série",
+     "t": 20.893
+    },
+    {
+     "w": "a",
+     "t": 21.44
+    },
+    {
+     "w": "corrente",
+     "t": 21.52
+    },
+    {
+     "w": "passa",
+     "t": 21.928
+    },
+    {
+     "w": "por",
+     "t": 22.26
+    },
+    {
+     "w": "dentro",
+     "t": 22.474
+    },
+    {
+     "w": "de",
+     "t": 22.76
+    },
+    {
+     "w": "todas",
+     "t": 22.987
+    },
+    {
+     "w": "Se",
+     "t": 23.693
+    },
+    {
+     "w": "uma",
+     "t": 24.18
+    },
+    {
+     "w": "queima",
+     "t": 24.42
+    },
+    {
+     "w": "abre",
+     "t": 24.92
+    },
+    {
+     "w": "um",
+     "t": 25.267
+    },
+    {
+     "w": "buraco",
+     "t": 25.36
+    },
+    {
+     "w": "no",
+     "t": 25.827
+    },
+    {
+     "w": "caminho",
+     "t": 25.94
+    },
+    {
+     "w": "e",
+     "t": 26.48
+    },
+    {
+     "w": "o",
+     "t": 26.64
+    },
+    {
+     "w": "cordão",
+     "t": 26.728
+    },
+    {
+     "w": "inteiro",
+     "t": 27.08
+    },
+    {
+     "w": "apaga",
+     "t": 27.56
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 28.19,
+   "fim": 36.43,
+   "texto": "Então, dentro de cada lâmpada, você coloca um fiozinho de desvio. Quando o filamento queima, ele fecha o caminho e a corrente passa por fora.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 28.19
+    },
+    {
+     "w": "dentro",
+     "t": 28.636
+    },
+    {
+     "w": "de",
+     "t": 28.963
+    },
+    {
+     "w": "cada",
+     "t": 29.118
+    },
+    {
+     "w": "lâmpada",
+     "t": 29.39
+    },
+    {
+     "w": "você",
+     "t": 29.998
+    },
+    {
+     "w": "coloca",
+     "t": 30.23
+    },
+    {
+     "w": "um",
+     "t": 30.617
+    },
+    {
+     "w": "fiozinho",
+     "t": 30.71
+    },
+    {
+     "w": "de",
+     "t": 31.203
+    },
+    {
+     "w": "desvio",
+     "t": 31.37
+    },
+    {
+     "w": "Quando",
+     "t": 31.95
+    },
+    {
+     "w": "o",
+     "t": 32.49
+    },
+    {
+     "w": "filamento",
+     "t": 32.58
+    },
+    {
+     "w": "queima",
+     "t": 33.05
+    },
+    {
+     "w": "ele",
+     "t": 33.51
+    },
+    {
+     "w": "fecha",
+     "t": 33.71
+    },
+    {
+     "w": "o",
+     "t": 34.15
+    },
+    {
+     "w": "caminho",
+     "t": 34.25
+    },
+    {
+     "w": "e",
+     "t": 34.71
+    },
+    {
+     "w": "a",
+     "t": 34.89
+    },
+    {
+     "w": "corrente",
+     "t": 34.98
+    },
+    {
+     "w": "passa",
+     "t": 35.39
+    },
+    {
+     "w": "por",
+     "t": 35.83
+    },
+    {
+     "w": "fora",
+     "t": 36.03
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 36.58,
+   "fim": 43.62,
+   "texto": "E pra piscar? Uma caixinha com um chip liga e desliga cada fileira no tempo certo. É isso que faz a luz correr.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 36.58
+    },
+    {
+     "w": "pra",
+     "t": 36.7
+    },
+    {
+     "w": "piscar",
+     "t": 36.868
+    },
+    {
+     "w": "Uma",
+     "t": 37.46
+    },
+    {
+     "w": "caixinha",
+     "t": 37.993
+    },
+    {
+     "w": "com",
+     "t": 38.54
+    },
+    {
+     "w": "um",
+     "t": 38.687
+    },
+    {
+     "w": "chip",
+     "t": 38.82
+    },
+    {
+     "w": "liga",
+     "t": 39.18
+    },
+    {
+     "w": "e",
+     "t": 39.42
+    },
+    {
+     "w": "desliga",
+     "t": 39.52
+    },
+    {
+     "w": "cada",
+     "t": 39.94
+    },
+    {
+     "w": "fileira",
+     "t": 40.324
+    },
+    {
+     "w": "no",
+     "t": 40.793
+    },
+    {
+     "w": "tempo",
+     "t": 40.953
+    },
+    {
+     "w": "certo",
+     "t": 41.273
+    },
+    {
+     "w": "É",
+     "t": 41.86
+    },
+    {
+     "w": "isso",
+     "t": 42.164
+    },
+    {
+     "w": "que",
+     "t": 42.44
+    },
+    {
+     "w": "faz",
+     "t": 42.58
+    },
+    {
+     "w": "a",
+     "t": 42.86
+    },
+    {
+     "w": "luz",
+     "t": 42.94
+    },
+    {
+     "w": "correr",
+     "t": 43.1
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 43.77,
+   "fim": 51.53,
+   "texto": "Coloque fios verdes que somem na árvore, um fusível no plugue e cores diferentes. Parabéns, você construiu um pisca-pisca.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 43.77
+    },
+    {
+     "w": "fios",
+     "t": 44.13
+    },
+    {
+     "w": "verdes",
+     "t": 44.47
+    },
+    {
+     "w": "que",
+     "t": 44.85
+    },
+    {
+     "w": "somem",
+     "t": 45.03
+    },
+    {
+     "w": "na",
+     "t": 45.317
+    },
+    {
+     "w": "árvore",
+     "t": 45.45
+    },
+    {
+     "w": "um",
+     "t": 46.037
+    },
+    {
+     "w": "fusível",
+     "t": 46.15
+    },
+    {
+     "w": "no",
+     "t": 46.597
+    },
+    {
+     "w": "plugue",
+     "t": 46.714
+    },
+    {
+     "w": "e",
+     "t": 47.17
+    },
+    {
+     "w": "cores",
+     "t": 47.357
+    },
+    {
+     "w": "diferentes",
+     "t": 47.748
+    },
+    {
+     "w": "Parabéns",
+     "t": 48.61
+    },
+    {
+     "w": "você",
+     "t": 49.818
+    },
+    {
+     "w": "construiu",
+     "t": 50.056
+    },
+    {
+     "w": "um",
+     "t": 50.597
+    },
+    {
+     "w": "pisca-pisca",
+     "t": 50.73
+    }
+   ]
+  }
+ ]
+}
