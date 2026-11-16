@@ -6,7 +6,7 @@ export async function motion(video, tema = {}) {
   const TM = {
     fundo: "#0b1220", fundo2: "#121e35", padrao: "grade", destaque: "#ffd23a", alerta: "#ff4d4d",
     rotulo: "ELEIÇÕES 2026", rotuloCor: "#ff4d4d", sub: "• 2º TURNO", tag: "ENTENDA",
-    fonte: "Oswald", fonteLeg: "Nunito", legenda: "contorno", palavras: 3, legY: 1500, transicao: "sobe", ...tema,
+    fonte: "Oswald", fonteLeg: "Nunito", legenda: "contorno", palavras: 3, legY: 1500, transicao: "sobe", tinta: "#ffffff", vinheta: .55, ...tema,
   };
   const W = 1080, H = 1920, cv = document.createElement("canvas"); cv.width = W; cv.height = H; document.body.appendChild(cv);
   const g = cv.getContext("2d");
@@ -158,6 +158,8 @@ export async function motion(video, tema = {}) {
     let lw = ws.map((w) => g.measureText(w).width), esp = 22; const larg = () => lw.reduce((a, b) => a + b, 0) + esp * (ws.length - 1);
     if (larg() > 920) { tam = Math.floor(tam * 920 / larg()); g.font = f(tam); lw = ws.map((w) => g.measureText(w).width); esp = 18; }
     const tot = larg(), k = ease((t - gr.ws[0].t) / .12), y = TM.legY + (1 - k) * 20; let x = W / 2 - tot / 2;
+    if (TM.legenda === "papel") { g.globalAlpha = k; g.save(); g.shadowColor = "rgba(0,0,0,.18)"; g.shadowBlur = 14; rr(x - 30, y - tam * .78, tot + 60, tam * 1.56, 6, "#f7f4ec"); g.restore(); g.globalAlpha = 1;
+      ws.forEach((w, i) => { const dita = t >= gr.ws[i].t, ativa = dita && (i === ws.length - 1 || t < gr.ws[i + 1].t); g.textAlign = "left"; g.textBaseline = "middle"; g.globalAlpha = k; g.fillStyle = dita ? "#111" : "#b5b0a4"; g.fillText(w, x, y + 2); if (ativa) rr(x, y + tam * .48, lw[i], 6, 2, "#111"); g.globalAlpha = 1; x += lw[i] + esp; }); return; }
     if (TM.legenda === "caixa") { g.globalAlpha = k * .9; rr(x - 30, y - tam * .75, tot + 60, tam * 1.5, 18, "#000"); g.globalAlpha = 1; }
     ws.forEach((w, i) => { const ativa = t >= gr.ws[i].t && (i === ws.length - 1 || t < gr.ws[i + 1].t);
       g.textAlign = "left"; g.textBaseline = "middle"; g.globalAlpha = k;
@@ -168,17 +170,18 @@ export async function motion(video, tema = {}) {
   function fundo(t) {
     const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, TM.fundo); gr.addColorStop(1, TM.fundo2); g.fillStyle = gr; g.fillRect(0, 0, W, H);
     g.strokeStyle = "rgba(255,255,255,.04)"; g.fillStyle = "rgba(255,255,255,.06)"; g.lineWidth = 2;
+    if (TM.padrao === "cruzes") { g.strokeStyle = "rgba(40,35,25,.28)"; g.lineWidth = 2; for (let x = 0; x <= W; x += 180) for (let y = 60; y < H; y += 160) { g.beginPath(); g.moveTo(x - 9, y); g.lineTo(x + 9, y); g.moveTo(x, y - 9); g.lineTo(x, y + 9); g.stroke(); } }
     if (TM.padrao === "grade") { const off = (t * 18) % 90; for (let x = -90 + off; x < W; x += 90) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, H); g.stroke(); } for (let y = -90 + off; y < H; y += 90) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); } }
     if (TM.padrao === "pontos") { const off = (t * 12) % 60; for (let x = 0; x < W + 60; x += 60) for (let y = -60 + off; y < H; y += 60) { g.beginPath(); g.arc(x, y, 3, 0, 6.2832); g.fill(); } }
     if (TM.padrao === "diagonal") { const off = (t * 30) % 120; g.lineWidth = 26; g.strokeStyle = "rgba(255,255,255,.025)"; for (let x = -H + off; x < W + H; x += 120) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x + H, H); g.stroke(); } }
     if (TM.padrao === "radar") { for (let r = 200; r < 1400; r += 160) { g.beginPath(); g.arc(W / 2, H * .42, r + (t * 40) % 160, 0, 6.2832); g.stroke(); } }
-    const v = g.createRadialGradient(W / 2, H * .45, H * .2, W / 2, H * .5, H * .8); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.55)"); g.fillStyle = v; g.fillRect(0, 0, W, H);
+    const v = g.createRadialGradient(W / 2, H * .45, H * .2, W / 2, H * .5, H * .8); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, `rgba(0,0,0,${TM.vinheta})`); g.fillStyle = v; g.fillRect(0, 0, W, H);
   }
   function moldura(t) {
-    const w = pilula(TM.rotulo, 90, 170, 44, TM.rotuloCor, "#fff", "left"); txt(TM.sub, 90 + w + 24, 172, 44, "#fff", { al: "left", peso: 500 });
+    const w = pilula(TM.rotulo, 90, 170, 44, TM.rotuloCor, "#fff", "left"); txt(TM.sub, 90 + w + 24, 172, 44, TM.tinta, { al: "left", peso: 500 });
     txt(TM.tag, 990, 172, 34, C.AM, { al: "right" });
-    rr(90, 230, 900, 8, 4, "rgba(255,255,255,.12)"); rr(90, 230, 900 * clamp(t / T.total), 8, 4, C.AM);
-    txt("@comofuncionatalcoisa", W / 2, 1800, 40, "rgba(255,255,255,.8)", { peso: 500 });
+    rr(90, 230, 900, 8, 4, TM.tinta === "#ffffff" ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.12)"); rr(90, 230, 900 * clamp(t / T.total), 8, 4, C.AM);
+    txt("@comofuncionatalcoisa", W / 2, 1800, 40, TM.tinta === "#ffffff" ? "rgba(255,255,255,.8)" : TM.tinta, { peso: 500 });
   }
   function rodar(CENA) {
     window.renderFrame = (t) => {

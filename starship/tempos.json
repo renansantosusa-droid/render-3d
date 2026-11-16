@@ -1,0 +1,1345 @@
+{
+ "total": 86.8,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.51,
+   "texto": "Uma nave voltou do espaço e foi pega no ar por uma torre. As quatorze antes dela terminaram no oceano.",
+   "palavras": [
+    {
+     "w": "Uma",
+     "t": 0.15
+    },
+    {
+     "w": "nave",
+     "t": 0.374
+    },
+    {
+     "w": "voltou",
+     "t": 0.678
+    },
+    {
+     "w": "do",
+     "t": 0.977
+    },
+    {
+     "w": "espaço",
+     "t": 1.087
+    },
+    {
+     "w": "e",
+     "t": 1.47
+    },
+    {
+     "w": "foi",
+     "t": 1.57
+    },
+    {
+     "w": "pega",
+     "t": 1.79
+    },
+    {
+     "w": "no",
+     "t": 1.963
+    },
+    {
+     "w": "ar",
+     "t": 2.123
+    },
+    {
+     "w": "por",
+     "t": 2.27
+    },
+    {
+     "w": "uma",
+     "t": 2.43
+    },
+    {
+     "w": "torre",
+     "t": 2.61
+    },
+    {
+     "w": "As",
+     "t": 3.083
+    },
+    {
+     "w": "quatorze",
+     "t": 3.217
+    },
+    {
+     "w": "antes",
+     "t": 3.723
+    },
+    {
+     "w": "dela",
+     "t": 4.038
+    },
+    {
+     "w": "terminaram",
+     "t": 4.287
+    },
+    {
+     "w": "no",
+     "t": 4.817
+    },
+    {
+     "w": "oceano",
+     "t": 4.91
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.66,
+   "fim": 10.54,
+   "texto": "Me dá um minuto que eu te mostro por que isso é uma das coisas mais difíceis que a engenharia já fez.",
+   "palavras": [
+    {
+     "w": "Me",
+     "t": 5.66
+    },
+    {
+     "w": "dá",
+     "t": 5.82
+    },
+    {
+     "w": "um",
+     "t": 6.007
+    },
+    {
+     "w": "minuto",
+     "t": 6.1
+    },
+    {
+     "w": "que",
+     "t": 6.42
+    },
+    {
+     "w": "eu",
+     "t": 6.567
+    },
+    {
+     "w": "te",
+     "t": 6.673
+    },
+    {
+     "w": "mostro",
+     "t": 6.828
+    },
+    {
+     "w": "por",
+     "t": 7.14
+    },
+    {
+     "w": "que",
+     "t": 7.28
+    },
+    {
+     "w": "isso",
+     "t": 7.404
+    },
+    {
+     "w": "é",
+     "t": 7.74
+    },
+    {
+     "w": "uma",
+     "t": 7.86
+    },
+    {
+     "w": "das",
+     "t": 8.02
+    },
+    {
+     "w": "coisas",
+     "t": 8.193
+    },
+    {
+     "w": "mais",
+     "t": 8.524
+    },
+    {
+     "w": "difíceis",
+     "t": 8.84
+    },
+    {
+     "w": "que",
+     "t": 9.36
+    },
+    {
+     "w": "a",
+     "t": 9.46
+    },
+    {
+     "w": "engenharia",
+     "t": 9.54
+    },
+    {
+     "w": "já",
+     "t": 10.033
+    },
+    {
+     "w": "fez",
+     "t": 10.193
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.69,
+   "fim": 17.57,
+   "texto": "Essa nave tem a altura de um prédio de quinze andares, toda de aço. Um dia antes, ela estava em órbita, a oito quilômetros por segundo.",
+   "palavras": [
+    {
+     "w": "Essa",
+     "t": 10.69
+    },
+    {
+     "w": "nave",
+     "t": 11.058
+    },
+    {
+     "w": "tem",
+     "t": 11.31
+    },
+    {
+     "w": "a",
+     "t": 11.57
+    },
+    {
+     "w": "altura",
+     "t": 11.673
+    },
+    {
+     "w": "de",
+     "t": 11.863
+    },
+    {
+     "w": "um",
+     "t": 11.997
+    },
+    {
+     "w": "prédio",
+     "t": 12.077
+    },
+    {
+     "w": "de",
+     "t": 12.423
+    },
+    {
+     "w": "quinze",
+     "t": 12.583
+    },
+    {
+     "w": "andares",
+     "t": 12.89
+    },
+    {
+     "w": "toda",
+     "t": 13.442
+    },
+    {
+     "w": "de",
+     "t": 13.65
+    },
+    {
+     "w": "aço",
+     "t": 13.85
+    },
+    {
+     "w": "Um",
+     "t": 14.237
+    },
+    {
+     "w": "dia",
+     "t": 14.35
+    },
+    {
+     "w": "antes",
+     "t": 14.597
+    },
+    {
+     "w": "ela",
+     "t": 15.03
+    },
+    {
+     "w": "estava",
+     "t": 15.136
+    },
+    {
+     "w": "em",
+     "t": 15.463
+    },
+    {
+     "w": "órbita",
+     "t": 15.61
+    },
+    {
+     "w": "a",
+     "t": 16.05
+    },
+    {
+     "w": "oito",
+     "t": 16.17
+    },
+    {
+     "w": "quilômetros",
+     "t": 16.402
+    },
+    {
+     "w": "por",
+     "t": 16.95
+    },
+    {
+     "w": "segundo",
+     "t": 17.06
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.72,
+   "fim": 26.2,
+   "texto": "Deu quatorze voltas na Terra. Esticando o caminho, dá mais longe que a Lua. E no fim, ela tinha que achar uma torre no sul do Texas e parar no ar, entre dois braços.",
+   "palavras": [
+    {
+     "w": "Deu",
+     "t": 17.72
+    },
+    {
+     "w": "quatorze",
+     "t": 17.907
+    },
+    {
+     "w": "voltas",
+     "t": 18.344
+    },
+    {
+     "w": "na",
+     "t": 18.733
+    },
+    {
+     "w": "Terra",
+     "t": 18.893
+    },
+    {
+     "w": "Esticando",
+     "t": 19.28
+    },
+    {
+     "w": "o",
+     "t": 19.76
+    },
+    {
+     "w": "caminho",
+     "t": 19.84
+    },
+    {
+     "w": "dá",
+     "t": 20.253
+    },
+    {
+     "w": "mais",
+     "t": 20.392
+    },
+    {
+     "w": "longe",
+     "t": 20.584
+    },
+    {
+     "w": "que",
+     "t": 20.94
+    },
+    {
+     "w": "a",
+     "t": 21.08
+    },
+    {
+     "w": "Lua",
+     "t": 21.2
+    },
+    {
+     "w": "E",
+     "t": 21.44
+    },
+    {
+     "w": "no",
+     "t": 21.533
+    },
+    {
+     "w": "fim",
+     "t": 21.7
+    },
+    {
+     "w": "ela",
+     "t": 22
+    },
+    {
+     "w": "tinha",
+     "t": 22.16
+    },
+    {
+     "w": "que",
+     "t": 22.4
+    },
+    {
+     "w": "achar",
+     "t": 22.58
+    },
+    {
+     "w": "uma",
+     "t": 22.82
+    },
+    {
+     "w": "torre",
+     "t": 23.06
+    },
+    {
+     "w": "no",
+     "t": 23.373
+    },
+    {
+     "w": "sul",
+     "t": 23.52
+    },
+    {
+     "w": "do",
+     "t": 23.667
+    },
+    {
+     "w": "Texas",
+     "t": 23.813
+    },
+    {
+     "w": "e",
+     "t": 24.36
+    },
+    {
+     "w": "parar",
+     "t": 24.48
+    },
+    {
+     "w": "no",
+     "t": 24.813
+    },
+    {
+     "w": "ar",
+     "t": 24.973
+    },
+    {
+     "w": "entre",
+     "t": 25.2
+    },
+    {
+     "w": "dois",
+     "t": 25.464
+    },
+    {
+     "w": "braços",
+     "t": 25.76
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 26.35,
+   "fim": 36.35,
+   "texto": "A SpaceX já pousa foguetes há anos, centenas de vezes. E essa torre já pegou o propulsor três vezes. Mas o propulsor é a metade de baixo: sobe por alguns minutos e volta.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 26.35
+    },
+    {
+     "w": "SpaceX",
+     "t": 26.521
+    },
+    {
+     "w": "já",
+     "t": 27.123
+    },
+    {
+     "w": "pousa",
+     "t": 27.27
+    },
+    {
+     "w": "foguetes",
+     "t": 27.59
+    },
+    {
+     "w": "há",
+     "t": 28.057
+    },
+    {
+     "w": "anos",
+     "t": 28.174
+    },
+    {
+     "w": "centenas",
+     "t": 28.654
+    },
+    {
+     "w": "de",
+     "t": 29.177
+    },
+    {
+     "w": "vezes",
+     "t": 29.297
+    },
+    {
+     "w": "E",
+     "t": 29.83
+    },
+    {
+     "w": "essa",
+     "t": 29.918
+    },
+    {
+     "w": "torre",
+     "t": 30.19
+    },
+    {
+     "w": "já",
+     "t": 30.537
+    },
+    {
+     "w": "pegou",
+     "t": 30.65
+    },
+    {
+     "w": "o",
+     "t": 30.95
+    },
+    {
+     "w": "propulsor",
+     "t": 31.022
+    },
+    {
+     "w": "três",
+     "t": 31.534
+    },
+    {
+     "w": "vezes",
+     "t": 31.857
+    },
+    {
+     "w": "Mas",
+     "t": 32.41
+    },
+    {
+     "w": "o",
+     "t": 32.67
+    },
+    {
+     "w": "propulsor",
+     "t": 32.782
+    },
+    {
+     "w": "é",
+     "t": 33.27
+    },
+    {
+     "w": "a",
+     "t": 33.37
+    },
+    {
+     "w": "metade",
+     "t": 33.46
+    },
+    {
+     "w": "de",
+     "t": 33.843
+    },
+    {
+     "w": "baixo",
+     "t": 34.003
+    },
+    {
+     "w": "sobe",
+     "t": 34.43
+    },
+    {
+     "w": "por",
+     "t": 34.79
+    },
+    {
+     "w": "alguns",
+     "t": 34.944
+    },
+    {
+     "w": "minutos",
+     "t": 35.21
+    },
+    {
+     "w": "e",
+     "t": 35.71
+    },
+    {
+     "w": "volta",
+     "t": 35.857
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 36.5,
+   "fim": 40.82,
+   "texto": "A nave é a metade que vai até a órbita. E essa, ninguém nunca tinha pegado.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 36.5
+    },
+    {
+     "w": "nave",
+     "t": 36.66
+    },
+    {
+     "w": "é",
+     "t": 37.02
+    },
+    {
+     "w": "a",
+     "t": 37.1
+    },
+    {
+     "w": "metade",
+     "t": 37.2
+    },
+    {
+     "w": "que",
+     "t": 37.64
+    },
+    {
+     "w": "vai",
+     "t": 37.74
+    },
+    {
+     "w": "até",
+     "t": 37.92
+    },
+    {
+     "w": "a",
+     "t": 38.14
+    },
+    {
+     "w": "órbita",
+     "t": 38.22
+    },
+    {
+     "w": "E",
+     "t": 38.76
+    },
+    {
+     "w": "essa",
+     "t": 38.884
+    },
+    {
+     "w": "ninguém",
+     "t": 39.26
+    },
+    {
+     "w": "nunca",
+     "t": 39.673
+    },
+    {
+     "w": "tinha",
+     "t": 39.993
+    },
+    {
+     "w": "pegado",
+     "t": 40.32
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 40.97,
+   "fim": 50.73,
+   "texto": "Ela não tem combustível pra frear. Então entra na atmosfera de barriga, a vinte e seis mil quilômetros por hora, e deixa o ar fazer o trabalho. Coberta de plasma, se guiando com quatro aletas.",
+   "palavras": [
+    {
+     "w": "Ela",
+     "t": 40.97
+    },
+    {
+     "w": "não",
+     "t": 41.15
+    },
+    {
+     "w": "tem",
+     "t": 41.27
+    },
+    {
+     "w": "combustível",
+     "t": 41.5
+    },
+    {
+     "w": "pra",
+     "t": 42.13
+    },
+    {
+     "w": "frear",
+     "t": 42.31
+    },
+    {
+     "w": "Então",
+     "t": 42.79
+    },
+    {
+     "w": "entra",
+     "t": 43.09
+    },
+    {
+     "w": "na",
+     "t": 43.343
+    },
+    {
+     "w": "atmosfera",
+     "t": 43.503
+    },
+    {
+     "w": "de",
+     "t": 44.037
+    },
+    {
+     "w": "barriga",
+     "t": 44.138
+    },
+    {
+     "w": "a",
+     "t": 44.61
+    },
+    {
+     "w": "vinte",
+     "t": 44.73
+    },
+    {
+     "w": "e",
+     "t": 44.93
+    },
+    {
+     "w": "seis",
+     "t": 45.002
+    },
+    {
+     "w": "mil",
+     "t": 45.19
+    },
+    {
+     "w": "quilômetros",
+     "t": 45.418
+    },
+    {
+     "w": "por",
+     "t": 45.97
+    },
+    {
+     "w": "hora",
+     "t": 46.138
+    },
+    {
+     "w": "e",
+     "t": 46.45
+    },
+    {
+     "w": "deixa",
+     "t": 46.57
+    },
+    {
+     "w": "o",
+     "t": 46.93
+    },
+    {
+     "w": "ar",
+     "t": 47.023
+    },
+    {
+     "w": "fazer",
+     "t": 47.183
+    },
+    {
+     "w": "o",
+     "t": 47.57
+    },
+    {
+     "w": "trabalho",
+     "t": 47.717
+    },
+    {
+     "w": "Coberta",
+     "t": 48.07
+    },
+    {
+     "w": "de",
+     "t": 48.517
+    },
+    {
+     "w": "plasma",
+     "t": 48.627
+    },
+    {
+     "w": "se",
+     "t": 49.183
+    },
+    {
+     "w": "guiando",
+     "t": 49.33
+    },
+    {
+     "w": "com",
+     "t": 49.67
+    },
+    {
+     "w": "quatro",
+     "t": 49.903
+    },
+    {
+     "w": "aletas",
+     "t": 50.21
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 50.88,
+   "fim": 55.68,
+   "texto": "Cruza o Pacífico, passa por cima do México, e é a primeira a voltar pra casa por cima da terra.",
+   "palavras": [
+    {
+     "w": "Cruza",
+     "t": 50.88
+    },
+    {
+     "w": "o",
+     "t": 51.16
+    },
+    {
+     "w": "Pacífico",
+     "t": 51.26
+    },
+    {
+     "w": "passa",
+     "t": 51.872
+    },
+    {
+     "w": "por",
+     "t": 52.12
+    },
+    {
+     "w": "cima",
+     "t": 52.32
+    },
+    {
+     "w": "do",
+     "t": 52.533
+    },
+    {
+     "w": "México",
+     "t": 52.697
+    },
+    {
+     "w": "e",
+     "t": 53.16
+    },
+    {
+     "w": "é",
+     "t": 53.24
+    },
+    {
+     "w": "a",
+     "t": 53.32
+    },
+    {
+     "w": "primeira",
+     "t": 53.404
+    },
+    {
+     "w": "a",
+     "t": 53.8
+    },
+    {
+     "w": "voltar",
+     "t": 53.872
+    },
+    {
+     "w": "pra",
+     "t": 54.14
+    },
+    {
+     "w": "casa",
+     "t": 54.384
+    },
+    {
+     "w": "por",
+     "t": 54.7
+    },
+    {
+     "w": "cima",
+     "t": 54.92
+    },
+    {
+     "w": "da",
+     "t": 55.173
+    },
+    {
+     "w": "terra",
+     "t": 55.333
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 55.83,
+   "fim": 61.91,
+   "texto": "Ela não tem pernas, nem pista, nem paraquedas. A segundos do chão, ainda cai deitada, igual um paraquedista.",
+   "palavras": [
+    {
+     "w": "Ela",
+     "t": 55.83
+    },
+    {
+     "w": "não",
+     "t": 56.03
+    },
+    {
+     "w": "tem",
+     "t": 56.21
+    },
+    {
+     "w": "pernas",
+     "t": 56.43
+    },
+    {
+     "w": "nem",
+     "t": 56.97
+    },
+    {
+     "w": "pista",
+     "t": 57.11
+    },
+    {
+     "w": "nem",
+     "t": 57.61
+    },
+    {
+     "w": "paraquedas",
+     "t": 57.734
+    },
+    {
+     "w": "A",
+     "t": 58.55
+    },
+    {
+     "w": "segundos",
+     "t": 58.683
+    },
+    {
+     "w": "do",
+     "t": 59.137
+    },
+    {
+     "w": "chão",
+     "t": 59.27
+    },
+    {
+     "w": "ainda",
+     "t": 59.657
+    },
+    {
+     "w": "cai",
+     "t": 60.03
+    },
+    {
+     "w": "deitada",
+     "t": 60.203
+    },
+    {
+     "w": "igual",
+     "t": 60.83
+    },
+    {
+     "w": "um",
+     "t": 61.057
+    },
+    {
+     "w": "paraquedista",
+     "t": 61.158
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 62.06,
+   "fim": 69.82,
+   "texto": "Aí liga três motores, gira, fica em pé e para no ar, do lado da torre que lançou ela. Se errar, pode destruir a única plataforma que tem.",
+   "palavras": [
+    {
+     "w": "Aí",
+     "t": 62.06
+    },
+    {
+     "w": "liga",
+     "t": 62.26
+    },
+    {
+     "w": "três",
+     "t": 62.588
+    },
+    {
+     "w": "motores",
+     "t": 62.844
+    },
+    {
+     "w": "gira",
+     "t": 63.54
+    },
+    {
+     "w": "fica",
+     "t": 63.948
+    },
+    {
+     "w": "em",
+     "t": 64.167
+    },
+    {
+     "w": "pé",
+     "t": 64.3
+    },
+    {
+     "w": "e",
+     "t": 64.58
+    },
+    {
+     "w": "para",
+     "t": 64.764
+    },
+    {
+     "w": "no",
+     "t": 65.073
+    },
+    {
+     "w": "ar",
+     "t": 65.233
+    },
+    {
+     "w": "do",
+     "t": 65.447
+    },
+    {
+     "w": "lado",
+     "t": 65.564
+    },
+    {
+     "w": "da",
+     "t": 65.873
+    },
+    {
+     "w": "torre",
+     "t": 66.02
+    },
+    {
+     "w": "que",
+     "t": 66.26
+    },
+    {
+     "w": "lançou",
+     "t": 66.428
+    },
+    {
+     "w": "ela",
+     "t": 66.76
+    },
+    {
+     "w": "Se",
+     "t": 67.153
+    },
+    {
+     "w": "errar",
+     "t": 67.3
+    },
+    {
+     "w": "pode",
+     "t": 67.628
+    },
+    {
+     "w": "destruir",
+     "t": 67.9
+    },
+    {
+     "w": "a",
+     "t": 68.34
+    },
+    {
+     "w": "única",
+     "t": 68.447
+    },
+    {
+     "w": "plataforma",
+     "t": 68.831
+    },
+    {
+     "w": "que",
+     "t": 69.36
+    },
+    {
+     "w": "tem",
+     "t": 69.5
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 69.97,
+   "fim": 76.61,
+   "texto": "Por que arriscar? Porque perna é peso, e peso é carga a menos. E uma nave pega na torre pode ser abastecida e voar de novo.",
+   "palavras": [
+    {
+     "w": "Por",
+     "t": 69.97
+    },
+    {
+     "w": "que",
+     "t": 70.15
+    },
+    {
+     "w": "arriscar",
+     "t": 70.25
+    },
+    {
+     "w": "Porque",
+     "t": 70.83
+    },
+    {
+     "w": "perna",
+     "t": 71.15
+    },
+    {
+     "w": "é",
+     "t": 71.49
+    },
+    {
+     "w": "peso",
+     "t": 71.634
+    },
+    {
+     "w": "e",
+     "t": 72.01
+    },
+    {
+     "w": "peso",
+     "t": 72.114
+    },
+    {
+     "w": "é",
+     "t": 72.45
+    },
+    {
+     "w": "carga",
+     "t": 72.583
+    },
+    {
+     "w": "a",
+     "t": 72.89
+    },
+    {
+     "w": "menos",
+     "t": 72.997
+    },
+    {
+     "w": "E",
+     "t": 73.45
+    },
+    {
+     "w": "uma",
+     "t": 73.53
+    },
+    {
+     "w": "nave",
+     "t": 73.714
+    },
+    {
+     "w": "pega",
+     "t": 74.01
+    },
+    {
+     "w": "na",
+     "t": 74.317
+    },
+    {
+     "w": "torre",
+     "t": 74.43
+    },
+    {
+     "w": "pode",
+     "t": 74.802
+    },
+    {
+     "w": "ser",
+     "t": 74.97
+    },
+    {
+     "w": "abastecida",
+     "t": 75.143
+    },
+    {
+     "w": "e",
+     "t": 75.77
+    },
+    {
+     "w": "voar",
+     "t": 75.863
+    },
+    {
+     "w": "de",
+     "t": 76.103
+    },
+    {
+     "w": "novo",
+     "t": 76.258
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "ini": 76.76,
+   "fim": 86.2,
+   "texto": "Em mais de sessenta anos de foguetes, a parte que chega na órbita quase sempre foi jogada fora. Essa voltou pra casa, e foi pega. Você teria coragem de ficar embaixo dessa torre?",
+   "palavras": [
+    {
+     "w": "Em",
+     "t": 76.76
+    },
+    {
+     "w": "mais",
+     "t": 76.888
+    },
+    {
+     "w": "de",
+     "t": 77.107
+    },
+    {
+     "w": "sessenta",
+     "t": 77.192
+    },
+    {
+     "w": "anos",
+     "t": 77.624
+    },
+    {
+     "w": "de",
+     "t": 77.92
+    },
+    {
+     "w": "foguetes",
+     "t": 78.03
+    },
+    {
+     "w": "a",
+     "t": 78.56
+    },
+    {
+     "w": "parte",
+     "t": 78.667
+    },
+    {
+     "w": "que",
+     "t": 79.02
+    },
+    {
+     "w": "chega",
+     "t": 79.12
+    },
+    {
+     "w": "na",
+     "t": 79.427
+    },
+    {
+     "w": "órbita",
+     "t": 79.56
+    },
+    {
+     "w": "quase",
+     "t": 79.933
+    },
+    {
+     "w": "sempre",
+     "t": 80.257
+    },
+    {
+     "w": "foi",
+     "t": 80.64
+    },
+    {
+     "w": "jogada",
+     "t": 80.82
+    },
+    {
+     "w": "fora",
+     "t": 81.208
+    },
+    {
+     "w": "Essa",
+     "t": 81.62
+    },
+    {
+     "w": "voltou",
+     "t": 81.928
+    },
+    {
+     "w": "pra",
+     "t": 82.3
+    },
+    {
+     "w": "casa",
+     "t": 82.424
+    },
+    {
+     "w": "e",
+     "t": 82.88
+    },
+    {
+     "w": "foi",
+     "t": 82.98
+    },
+    {
+     "w": "pega",
+     "t": 83.2
+    },
+    {
+     "w": "Você",
+     "t": 83.624
+    },
+    {
+     "w": "teria",
+     "t": 83.92
+    },
+    {
+     "w": "coragem",
+     "t": 84.18
+    },
+    {
+     "w": "de",
+     "t": 84.627
+    },
+    {
+     "w": "ficar",
+     "t": 84.74
+    },
+    {
+     "w": "embaixo",
+     "t": 85.053
+    },
+    {
+     "w": "dessa",
+     "t": 85.453
+    },
+    {
+     "w": "torre",
+     "t": 85.78
+    }
+   ]
+  }
+ ]
+}

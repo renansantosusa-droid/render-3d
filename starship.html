@@ -1,0 +1,211 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<script type="module">
+// Motion "A torre que pegou uma nave no ar" — cópia em PT do Short do @visplained (DfvPZEypTIk), pedido do Renan 15/11.
+// Visual copiado: papel bege, cruzinhas, linha vermelha guiando, números grandes pretos, legenda em cartão com palavra sublinhada.
+// Tudo desenhado em código (nada de imagem/vídeo da SpaceX). Unidades convertidas pra km/m.
+import { motion } from "/kitmotion.js";
+const K = await motion("starship", { fundo: "#e9e3d3", fundo2: "#ddd6c3", padrao: "cruzes", destaque: "#e8452c", alerta: "#e8452c", rotulo: "ESPAÇO", rotuloCor: "#161616", sub: "• STARSHIP", tag: "ENTENDA", tinta: "#161616", vinheta: .12, legenda: "papel", legY: 1520, transicao: "sobe" });
+const { W, g, P, ini, ap, ease, clamp, rr, circ, txt, txtCabe, pop, desliza, carimbo, conta, CENAS } = K;
+const INK = "#161616", RED = "#e8452c", PAP = "#f7f4ec", AZ = "#3346d6";
+const fim = (c) => CENAS[c - 1].fim;
+const fmt = (n) => n.toLocaleString("pt-BR");
+
+// ---------- peças ----------
+function nave(x, y, s = 1, ang = 0, fogo = 0, t = 0, alfa = 1) {
+  g.save(); g.globalAlpha *= alfa; g.translate(x, y); g.rotate(ang); g.scale(s, s);
+  if (fogo > 0) for (let i = -1; i <= 1; i++) { const L = (110 + Math.sin(t * 40 + i * 2) * 18) * fogo; const gr = g.createLinearGradient(0, 210, 0, 210 + L); gr.addColorStop(0, "rgba(255,246,210,.98)"); gr.addColorStop(.4, "rgba(255,170,60,.85)"); gr.addColorStop(1, "rgba(255,100,30,0)"); g.fillStyle = gr; g.beginPath(); g.moveTo(i * 22 - 12, 208); g.lineTo(i * 22 + 12, 208); g.lineTo(i * 22, 208 + L); g.fill(); }
+  const gr = g.createLinearGradient(-40, 0, 40, 0); gr.addColorStop(0, "#80838a"); gr.addColorStop(.35, "#eceef0"); gr.addColorStop(.62, "#b8bbbf"); gr.addColorStop(1, "#6a6d73");
+  g.fillStyle = gr; g.beginPath(); g.moveTo(-40, 210); g.lineTo(-40, -120); g.quadraticCurveTo(-38, -200, 0, -218); g.quadraticCurveTo(38, -200, 40, -120); g.lineTo(40, 210); g.closePath(); g.fill();
+  g.fillStyle = "#2b2c30"; g.beginPath(); g.moveTo(8, 210); g.lineTo(8, -120); g.quadraticCurveTo(10, -190, 22, -200); g.quadraticCurveTo(38, -170, 40, -120); g.lineTo(40, 210); g.closePath(); g.fill(); // escudo térmico (barriga)
+  g.strokeStyle = "rgba(0,0,0,.22)"; g.lineWidth = 2; for (let yy = -100; yy < 210; yy += 26) { g.beginPath(); g.moveTo(-40, yy); g.lineTo(40, yy); g.stroke(); }
+  g.fillStyle = "#4a4d53";
+  for (const sx of [-1, 1]) {
+    g.beginPath(); g.moveTo(sx * 38, -150); g.lineTo(sx * 70, -112); g.lineTo(sx * 70, -78); g.lineTo(sx * 38, -88); g.fill();
+    g.beginPath(); g.moveTo(sx * 38, 110); g.lineTo(sx * 84, 162); g.lineTo(sx * 84, 210); g.lineTo(sx * 38, 210); g.fill();
+  }
+  g.restore();
+}
+function propulsor(x, topo, base, alfa = 1) { g.save(); g.globalAlpha *= alfa; const gr = g.createLinearGradient(x - 44, 0, x + 44, 0); gr.addColorStop(0, "#2a2b2e"); gr.addColorStop(.4, "#5b5d62"); gr.addColorStop(1, "#1c1d20"); g.fillStyle = gr; g.fillRect(x - 44, topo, 88, base - topo); g.strokeStyle = "rgba(255,255,255,.12)"; g.lineWidth = 2; for (let y = topo + 30; y < base; y += 34) { g.beginPath(); g.moveTo(x - 44, y); g.lineTo(x + 44, y); g.stroke(); } for (const sx of [-1, 1]) rr(x + sx * 44 - (sx < 0 ? 16 : 0), topo + 20, 16, 30, 3, "#3a3b3f"); g.restore(); }
+function trelica(x0, y0, w, h, lw = 4) { g.strokeStyle = INK; g.lineWidth = lw; g.strokeRect(x0, y0, w, h); const p = h; for (let x = x0; x < x0 + w - 1; x += p) { g.beginPath(); g.moveTo(x, y0 + h); g.lineTo(Math.min(x + p / 2, x0 + w), y0); g.lineTo(Math.min(x + p, x0 + w), y0 + h); g.stroke(); } }
+// torre de lançamento: x = centro, base/topo em y, braço (chopstick) saindo pra esquerda em bracoY
+function torre(x, base, topo, bracoY, s = 1) {
+  const w = 120 * s; g.strokeStyle = INK; g.lineWidth = 6 * s; g.strokeRect(x - w / 2, topo, w, base - topo);
+  g.lineWidth = 3.5 * s; for (let y = topo; y < base - 1; y += w) { const y2 = Math.min(y + w, base); g.beginPath(); g.moveTo(x - w / 2, y); g.lineTo(x + w / 2, y2); g.moveTo(x + w / 2, y); g.lineTo(x - w / 2, y2); g.moveTo(x - w / 2, y); g.lineTo(x + w / 2, y); g.stroke(); }
+  rr(x - 3 * s, topo - 70 * s, 6 * s, 70 * s, 2, INK); rr(x - w / 2 - 6, topo - 8, w + 12, 12, 2, INK);
+  if (bracoY != null) { const bw = 260 * s, bh = 44 * s; g.fillStyle = PAP; g.fillRect(x - w / 2 - bw, bracoY - bh / 2, bw, bh); trelica(x - w / 2 - bw, bracoY - bh / 2, bw, bh, 4 * s); rr(x - w / 2 - 14 * s, bracoY - 60 * s, 28 * s, 120 * s, 4, INK); }
+  rr(x - w / 2 - 20, base - 4, w + 40, 10, 2, INK);
+}
+function chao(y, cor = INK) { rr(0, y, W, 6, 0, cor); }
+function terra(cy, r, x = W / 2) { g.save(); g.beginPath(); g.arc(x, cy + r, r, 0, 6.2832); g.fillStyle = "#e2dbc8"; g.fill(); g.clip(); g.fillStyle = "rgba(22,22,22,.55)"; for (let yy = cy - 10; yy < cy + 700; yy += 16) for (let xx = (yy / 16 % 2) * 8; xx < W; xx += 16) g.fillRect(xx, yy, 3, 3); g.restore(); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.arc(x, cy + r, r, 0, 6.2832); g.stroke(); }
+function linha(x, y, y0 = 250) { rr(x - 4, y0, 8, y - y0, 0, RED); circ(x, y, 18, PAP); circ(x, y, 13, RED); }
+function numero(v, rot, x, y, tam = 150, al = "left", cor = INK) { txt(v, x, y, tam, cor, { al }); txt(rot, al === "left" ? x + 4 : x, y + tam * .62, 30, INK, { al, peso: 700, fonte: "Nunito" }); }
+function cartao(s, x, y, tam = 120, al = "left") { g.font = `700 ${tam}px Oswald`; const w = g.measureText(s).width + 50, x0 = al === "left" ? x : x - w / 2; g.save(); g.shadowColor = "rgba(0,0,0,.18)"; g.shadowBlur = 16; rr(x0, y - tam * .7, w, tam * 1.4, 6, PAP); g.restore(); txt(s, x0 + 25, y + 4, tam, INK, { al: "left" }); }
+function etiqueta(s, x, y, al = "left") { g.font = "800 26px Nunito"; const w = g.measureText(s).width + 26, x0 = al === "left" ? x : x - w / 2; rr(x0, y - 20, w, 40, 4, PAP); g.strokeStyle = INK; g.lineWidth = 2; g.strokeRect(x0, y - 20, w, 40); txt(s, x0 + 13, y + 1, 26, INK, { al: "left", fonte: "Nunito", peso: 800 }); }
+function xis(x, y, r, k) { if (k <= 0) return; g.strokeStyle = RED; g.lineWidth = 16; g.lineCap = "round"; const a = clamp(k * 2), b = clamp(k * 2 - 1); g.beginPath(); g.moveTo(x - r, y - r); g.lineTo(x - r + 2 * r * a, y - r + 2 * r * a); g.stroke(); if (b > 0) { g.beginPath(); g.moveTo(x + r, y - r); g.lineTo(x + r - 2 * r * b, y - r + 2 * r * b); g.stroke(); } }
+function ondas(y, t, n = 8) { g.strokeStyle = AZ; g.lineWidth = 4; for (let j = 0; j < 3; j++) { g.beginPath(); for (let x = 0; x <= W; x += 10) { const yy = y + j * 26 + Math.sin(x / 40 + t * 3 + j) * 6; x ? g.lineTo(x, yy) : g.moveTo(x, yy); } g.stroke(); } }
+function regua(x, y0, y1) { g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); g.moveTo(x, y0); g.lineTo(x, y1); g.stroke(); for (let y = y0; y <= y1; y += 30) { g.beginPath(); g.moveTo(x, y); g.lineTo(x + ((y - y0) % 150 ? 14 : 30), y); g.stroke(); } }
+function globo(x, y, r) { circ(x, y, r, "#e2dbc8"); g.save(); g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.clip(); g.fillStyle = "rgba(22,22,22,.5)"; for (let yy = y - r; yy < y + r; yy += 14) for (let xx = x + r * .25 + (yy / 14 % 2) * 7; xx < x + r; xx += 14) g.fillRect(xx, yy, 3, 3); g.restore(); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.stroke(); g.lineWidth = 1.5; for (let i = 1; i < 4; i++) { g.beginPath(); g.ellipse(x, y, r * i / 4, r, 0, 0, 6.2832); g.stroke(); g.beginPath(); g.moveTo(x - r, y + (i - 2) * r / 2); g.lineTo(x + r, y + (i - 2) * r / 2); g.stroke(); } }
+// caminho animado (lista de pontos), desenha até a fração k
+function caminho(pts, k, cor = RED, lw = 8) { const seg = []; let tot = 0; for (let i = 1; i < pts.length; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(d); tot += d; } let falta = tot * clamp(k); g.strokeStyle = cor; g.lineWidth = lw; g.lineCap = "round"; g.lineJoin = "round"; g.beginPath(); g.moveTo(...pts[0]); let fimP = pts[0]; for (let i = 1; i < pts.length && falta > 0; i++) { const f = Math.min(1, falta / seg[i - 1]); fimP = [pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * f, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * f]; g.lineTo(...fimP); falta -= seg[i - 1]; } g.stroke(); return fimP; }
+const curva = (a, b, c, n = 30) => Array.from({ length: n + 1 }, (_, i) => { const u = i / n; return [(1 - u) ** 2 * a[0] + 2 * (1 - u) * u * b[0] + u * u * c[0], (1 - u) ** 2 * a[1] + 2 * (1 - u) * u * b[1] + u * u * c[1]]; });
+
+const TX = 760, BASE = 1400; // torre padrão
+const CENA = [null,
+  // 1 — pega no ar / 14 antes no oceano
+  (t) => {
+    const k14 = ap(t, P(1, "quatorze") - .2);
+    torre(TX, BASE, 470, 620); chao(BASE);
+    const kd = ease((t - .15) / 3); const y = 330 + (720 - 330) * kd;
+    nave(TX - 60 - 130, y, 1, 0, 1 - ap(t, 3.2, .5), t);
+    linha(TX - 190, y - 240);
+    pop(ap(t, P(1, "pega") - .2), 90, 400, () => { etiqueta("HOJE · STARBASE, TEXAS", 90, 330); cartao("PEGA NO AR.", 90, 420, 96); });
+    if (k14 > 0) { g.save(); g.globalAlpha = k14; rr(0, 1180, W, 260, 0, "rgba(233,227,211,.92)"); ondas(1300, t); for (let i = 0; i < 14; i++) { const kk = ap(t, P(1, "quatorze") + i * .07, .3); const xx = 60 + i * 70; if (kk > 0) { g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); g.ellipse(xx, 1300, 24 * kk, 9 * kk, 0, 0, 6.2832); g.stroke(); g.beginPath(); g.ellipse(xx, 1300, 12 * kk, 4 * kk, 0, 0, 6.2832); g.stroke(); } } g.restore(); }
+    pop(k14, 90, 1060, () => numero("14", "ANTES DELA · TODAS NO OCEANO", 90, 1040, 170));
+  },
+  // 2 — um minuto / altitude
+  (t) => {
+    regua(70, 300, 1400); terra(1250, 2200);
+    rr(0, 760, W, 3, 0, INK); txt("100 KM · COMEÇA O ESPAÇO", 110, 735, 28, INK, { al: "left", fonte: "Nunito", peso: 800 });
+    const y = 520 + 120 * Math.sin(t * .6); linha(540, y); nave(540, y + 230, .5, 0, 0, t, .9);
+    pop(ap(t, ini(2) + .1), 760, 480, () => numero(`${conta(t, ini(2), 220)} KM`, "DE ALTURA", 990, 470, 140, "right"));
+    carimbo("MAIS DIFÍCIL", W / 2, 1000, ap(t, P(2, "dificeis") - .1), RED, -.08, 96);
+  },
+  // 3 — 15 andares de aço / 8 km/s
+  (t) => {
+    chao(1300);
+    const kb = ease((t - P(3, "predio")) / .6), andares = Math.round(2 + 13 * ease((t - P(3, "quinze") + .3) / .8));
+    const sobe = clamp((t - ini(3)) / .5);
+    nave(400, 1300 - 215 * 1.9 + (1 - ease(sobe)) * 200, 1.9, 0, 0, t);
+    if (kb > 0) { g.save(); g.globalAlpha = kb; const ah = 52, x0 = 640, w = 260; rr(x0, 1300 - andares * ah, w, andares * ah, 0, PAP); g.strokeStyle = INK; g.lineWidth = 5; g.strokeRect(x0, 1300 - andares * ah, w, andares * ah); for (let a = 0; a < andares; a++) for (let j = 0; j < 5; j++) rr(x0 + 22 + j * 46, 1300 - (a + 1) * ah + 14, 28, 24, 2, INK); g.restore();
+      numero(String(andares), "ANDARES", 640, 1300 - andares * ah - 130, 130); }
+    pop(ap(t, P(3, "aco") - .2), 90, 400, () => cartao("DE AÇO", 90, 400, 90));
+    if (t > P(3, "orbita") - .3) pop(ap(t, P(3, "oito") - .2), W / 2, 1420, () => { g.save(); g.shadowColor = "rgba(0,0,0,.2)"; g.shadowBlur = 14; rr(220, 1360, 640, 130, 6, PAP); g.restore(); txt("8 KM POR SEGUNDO", W / 2, 1428, 76, RED); });
+  },
+  // 4 — 14 voltas / mais longe que a Lua / torre no Texas
+  (t) => {
+    const fase = t < P(4, "esticando") - .2 ? 0 : t < P(4, "fim") - .1 ? 1 : 2;
+    if (fase === 0) { globo(W / 2, 800, 190); const n = Math.min(14, Math.floor(1 + 13 * ease((t - ini(4)) / 1.6))); g.strokeStyle = RED; g.lineWidth = 4; for (let i = 0; i < n; i++) { g.beginPath(); g.ellipse(W / 2, 800, 250, 90 + i * 4, i * .224, 0, 6.2832); g.stroke(); } numero(String(n), "VOLTAS NA TERRA", 90, 1170, 160); }
+    if (fase === 1) { const k = ease((t - P(4, "esticando") + .2) / 1.4); globo(160, 1250, 90); rr(156, 300, 8, 950, 0, INK); txt("LUA", 210, 520, 40, INK, { al: "left" }); circ(160, 520, 34, "#cfc8b4"); g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); g.arc(160, 520, 34, 0, 6.2832); g.stroke();
+      rr(W / 2 + 160, 1160 - 1000 * k, 10, 1000 * k, 0, RED); circ(W / 2 + 165, 1160 - 1000 * k, 14, RED); globo(W / 2 + 165, 1250, 90);
+      pop(ap(t, P(4, "lua") - .2), W / 2 + 165, 330, () => etiqueta("14 VOLTAS ESTICADAS", W / 2 + 165, 330, "center")); pop(ap(t, P(4, "longe") - .2), 520, 800, () => cartao("MAIS LONGE", 290, 800, 80)); }
+    if (fase === 2) { const k = ease((t - P(4, "fim") + .1) / .8); terra(1100 + (1 - k) * 300, 1600); rr(W / 2 - 3, 1030, 6, 70, 0, INK); rr(W / 2 - 18, 1050, 14, 6, 0, INK); linha(W / 2, 1020); etiqueta("SUL DO TEXAS", W / 2 + 60, 1050);
+      pop(ap(t, P(4, "torre") - .2), 90, 520, () => { txt("UMA", 90, 470, 150, INK, { al: "left" }); txt("TORRE", 90, 620, 150, INK, { al: "left" }); });
+      pop(ap(t, P(4, "bracos") - .25), W / 2, 1300, () => cartao("ENTRE 2 BRAÇOS", W / 2, 1300, 72, "center")); }
+  },
+  // 5 — SpaceX pousa foguetes / torre pegou o propulsor 3x / metade de baixo
+  (t) => {
+    torre(TX, BASE, 360, 520); chao(BASE);
+    const kp = ap(t, P(5, "pousa") - .2);
+    if (t < P(5, "torre") - .2) pop(kp, 300, 900, () => { g.strokeStyle = INK; g.lineWidth = 5; rr(250, 620, 100, 300, 50, PAP); g.strokeRect(250, 700, 100, 220); g.beginPath(); g.moveTo(255, 900); g.lineTo(200, 990); g.moveTo(345, 900); g.lineTo(400, 990); g.moveTo(180, 990); g.lineTo(420, 990); g.stroke(); etiqueta("POUSA HÁ ANOS", 300, 1060, "center"); });
+    const kt = ap(t, P(5, "propulsor") - .4), kb = ap(t, P(5, "metade") - .3);
+    if (kt > 0) { propulsor(TX - 60 - 130, 560 + (1 - ease(kt)) * -200, 560 + 760 + (1 - ease(kt)) * -200, 1); }
+    pop(ap(t, P(5, "tres") - .2), 90, 480, () => numero("3x", "PROPULSOR PEGO", 90, 440, 160));
+    if (kb > 0) { nave(TX - 190, 560 - 215, 1, 0, 0, t, kb); g.globalAlpha = kb; g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); g.moveTo(TX - 270, 580); g.lineTo(TX - 285, 580); g.lineTo(TX - 285, 1320); g.lineTo(TX - 270, 1320); g.stroke(); txt("PROPULSOR", TX - 300, 920, 34, INK, { al: "right", fonte: "Nunito", peso: 900 }); txt("METADE DE BAIXO", TX - 300, 962, 30, INK, { al: "right", fonte: "Nunito", peso: 800 }); g.globalAlpha = 1; }
+    if (t > P(5, "volta") - .3) { const k = ap(t, P(5, "volta") - .3, .8); g.setLineDash([12, 12]); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.ellipse(200, 1150, 110, 60, -.4, 0, 6.2832 * k); g.stroke(); g.setLineDash([]); }
+  },
+  // 6 — a nave vai até a órbita / nunca foi pega
+  (t) => {
+    terra(1240, 2400);
+    rr(0, 430, W, 3, 0, INK); txt("ÓRBITA · 275 KM", 60, 405, 30, INK, { al: "left", fonte: "Nunito", peso: 800 });
+    const k = ease((t - ini(6)) / 2.2), y = 1000 - 420 * k; linha(W / 2 + 200, y - 160); nave(W / 2 + 200, y + 60, .9, 0, 1 - k, t);
+    pop(ap(t, P(6, "ninguem") - .2), 90, 780, () => { txt("NUNCA", 90, 720, 150, INK, { al: "left" }); txt("PEGA", 90, 870, 150, RED, { al: "left" }); });
+  },
+  // 7 — sem combustível / entra de barriga / plasma / 4 aletas
+  (t) => {
+    const fase2 = t > P(7, "entao") - .2;
+    if (!fase2) { nave(560, 860, 1.4, 0, 0, t); g.strokeStyle = INK; g.lineWidth = 5; g.strokeRect(330, 600, 70, 480); const nv = 1 - ease((t - ini(7)) / 1.2); rr(336, 1074 - 468 * nv, 58, 468 * nv, 0, RED); txt("COMBUSTÍVEL", 365, 570, 30, INK, { fonte: "Nunito", peso: 900 }); pop(ap(t, P(7, "frear") - .2), 180, 1200, () => cartao("VAZIO", 180, 1200, 110, "center")); return; }
+    const k = ease((t - P(7, "entao") + .2) / .6);
+    for (let j = 0; j < 7; j++) { g.strokeStyle = `rgba(22,22,22,${.25 + j * .08})`; g.lineWidth = 2; g.beginPath(); for (let x = 0; x <= W; x += 20) { const yy = 980 + j * 34 + Math.sin(x / 140 + j) * 10; x ? g.lineTo(x, yy) : g.moveTo(x, yy); } g.stroke(); }
+    txt("ATMOSFERA", 990, 1250, 30, INK, { al: "right", fonte: "Nunito", peso: 900 });
+    const kpl = ap(t, P(7, "plasma") - .5, .8);
+    if (kpl > 0) { const gr = g.createRadialGradient(560, 960, 20, 560, 960, 420); gr.addColorStop(0, `rgba(255,120,200,${.75 * kpl})`); gr.addColorStop(.5, `rgba(170,60,220,${.4 * kpl})`); gr.addColorStop(1, "rgba(120,40,200,0)"); g.fillStyle = gr; g.fillRect(100, 600, 920, 700); for (let i = 0; i < 12; i++) { const ph = (t * 2.2 + i * .19) % 1; rr(240 + ph * 700, 1010 + (i % 4) * 20, 60, 5, 2, `rgba(255,200,240,${(1 - ph) * kpl})`); } }
+    const wig = t > P(7, "aletas") - .3 ? Math.sin(t * 9) * .05 : 0;
+    nave(560, 900 + (1 - k) * -200, 1.2, Math.PI / 2 + wig, 0, t);
+    if (t < P(7, "plasma") - .3) { const v = conta(t, P(7, "entao"), 26400, .8); pop(k, 900, 560, () => numero(fmt(v), "KM POR HORA", 990, 540, 130, "right")); }
+    else { const v = Math.round(26400 - (26400 - 13800) * ease((t - P(7, "plasma") + .3) / 2)); numero(fmt(v), "KM POR HORA", 990, 540, 130, "right"); }
+    pop(ap(t, P(7, "barriga") - .2), 90, 700, () => cartao("DE BARRIGA", 90, 720, 80));
+    pop(ap(t, P(7, "aletas") - .2), W / 2, 1380, () => etiqueta("4 ALETAS PRA SE GUIAR", W / 2, 1380, "center"));
+  },
+  // 8 — Pacífico, México, primeira por cima da terra
+  (t) => {
+    const terraP = [[330, 380], [360, 470], [400, 580], [430, 690], [470, 790], [520, 880], [580, 960], [640, 1030], [700, 1090], [750, 1140], [790, 1130], [760, 1080], [720, 1020], [700, 960], [720, 900], [760, 870], [820, 860], [880, 870], [910, 930], [935, 880], [950, 820], [990, 720], [1040, 620], [1080, 540], [1080, 380]];
+    g.save(); g.beginPath(); terraP.forEach((p, i) => i ? g.lineTo(...p) : g.moveTo(...p)); g.closePath(); g.fillStyle = "#e2dbc8"; g.fill(); g.clip(); g.fillStyle = "rgba(22,22,22,.45)"; for (let yy = 380; yy < 1150; yy += 14) for (let xx = 330 + (yy / 14 % 2) * 7; xx < W; xx += 14) g.fillRect(xx, yy, 3, 3); g.restore();
+    g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); terraP.forEach((p, i) => i ? g.lineTo(...p) : g.moveTo(...p)); g.stroke();
+    txt("PACÍFICO", 150, 1000, 30, INK, { fonte: "Nunito", peso: 900 }); txt("MÉXICO", 640, 1000, 28, INK, { fonte: "Nunito", peso: 900 }); txt("TEXAS", 830, 820, 28, INK, { fonte: "Nunito", peso: 900 });
+    const pts = [...curva([120, 330], [100, 980], [380, 960], 24), ...curva([380, 960], [600, 950], [780, 870], 24).slice(1)];
+    const k = ease((t - ini(8)) / 3.6); const p = caminho(pts, k); circ(p[0], p[1], 15, PAP); circ(p[0], p[1], 11, RED);
+    const v = Math.round(3300 - (3300 - 480) * k); g.save(); g.shadowColor = "rgba(0,0,0,.18)"; g.shadowBlur = 14; rr(620, 400, 380, 190, 6, PAP); g.restore(); numero(fmt(v), "KM POR HORA", 980, 470, 110, "right");
+    pop(ap(t, P(8, "primeira") - .2), W / 2, 1300, () => cartao("1ª POR CIMA DA TERRA", W / 2, 1300, 66, "center"));
+  },
+  // 9 — sem pernas, pista, paraquedas / cai deitada
+  (t) => {
+    const it = [["pernas", "SEM PERNAS", 470], ["pista", "SEM PISTA", 640], ["paraquedas", "SEM PARAQUEDAS", 810]];
+    if (t < P(9, "segundos") - .2) {
+      nave(330, 640, .8, Math.PI / 2, 0, t);
+      for (const [w, s, y] of it) { const k = ap(t, P(9, w) - .2); pop(k, 760, y, () => txt(s, 760, y, 66, INK)); xis(330, y + (y === 470 ? 0 : 0) + 0, 0, 0); }
+      pop(ap(t, P(9, "pernas") - .1), 330, 900, () => { g.strokeStyle = AZ; g.lineWidth = 6; g.beginPath(); g.moveTo(200, 900); g.lineTo(460, 900); g.stroke(); g.setLineDash([30, 20]); g.beginPath(); g.moveTo(200, 960); g.lineTo(460, 960); g.stroke(); g.setLineDash([]); });
+      for (const [w, , y] of it) xis(1000, y, 24, ap(t, P(9, w), .3));
+      return;
+    }
+    const k = clamp((t - P(9, "segundos") + .2) / (fim(9) - P(9, "segundos") + .2));
+    regua(60, 320, 1400);
+    const ty = 1500 - 500 * ease(k); torre(560, ty + 900, ty, ty + 140, 1); nave(320, 560, 1, Math.PI / 2, 0, t); linha(320, 520);
+    for (let i = 0; i < 9; i++) { const ph = (t * 2 + i * .13) % 1; rr(120 + i * 95, 380 + ph * 900, 4, 70, 2, `rgba(22,22,22,${.6 * (1 - ph)})`); }
+    numero(fmt(Math.round(1750 - (1750 - 680) * k)), "METROS DE ALTURA", 100, 1220, 100);
+    pop(ap(t, P(9, "paraquedista", 0) - .2), W / 2, 1380, () => cartao("IGUAL PARAQUEDISTA", W / 2, 1380, 64, "center"));
+    pop(ap(t, P(9, "deitada") - .2), 600, 420, () => etiqueta("AINDA DEITADA", 600, 420));
+  },
+  // 10 — liga 3 motores, gira, fica em pé, para no ar / se errar
+  (t) => {
+    const BY = 760, TT = 560; torre(TX, 1400, 420, BY); chao(1400);
+    const tg = P(10, "gira") - .2, tp = P(10, "pe") + .2, ta = P(10, "para") + .3;
+    const giro = ease((t - tg) / (tp - tg)); const ang = Math.PI / 2 * (1 - giro);
+    const xs = TX - 60 - 130, x = 330 + (xs - 330) * ease((t - tg) / (ta - tg)), yAlvo = BY + 100, y = 420 + (yAlvo - 420) * ease((t - ini(10)) / (ta - ini(10)));
+    const fogo = t > P(10, "liga") - .1 ? 1 - ap(t, ta + .4, .5) : 0;
+    nave(x, y, 1, ang, fogo, t); linha(x, y - 120 * Math.cos(ang) - 10, 250);
+    const alt = Math.round(230 - 155 * ease((t - ini(10)) / (ta - ini(10)))); numero(String(alt), "METROS", 90, 1180, 110);
+    pop(ap(t, P(10, "motores") - .2), 90, 480, () => numero("3", "MOTORES LIGADOS", 90, 470, 150));
+    if (t > P(10, "errar") - .3) { const k = ap(t, P(10, "errar") - .3, .6); g.save(); g.globalAlpha = k; g.setLineDash([14, 10]); g.strokeStyle = AZ; g.lineWidth = 4; g.save(); g.translate(TX + 40, 1200); g.rotate(.9); g.strokeRect(-45, -220, 90, 430); g.restore(); g.setLineDash([]); g.restore(); etiqueta("A ÚNICA PLATAFORMA", TX - 60, 1360, "center"); carimbo("SE ERRAR...", W / 2 - 100, 640, ap(t, P(10, "destruir") - .1), RED, -.08, 84); }
+  },
+  // 11 — perna é peso / voa de novo
+  (t) => {
+    const kv = ap(t, P(11, "abastecida") - .3);
+    if (kv <= 0) {
+      torre(TX, 1400, 420, 760); chao(1400); nave(TX - 190, 860, 1, 0, 0, t);
+      const kl = ap(t, P(11, "perna") - .2); if (kl > 0) { g.save(); g.globalAlpha = kl; g.strokeStyle = AZ; g.lineWidth = 7; g.beginPath(); g.moveTo(TX - 230, 1020); g.lineTo(TX - 300, 1110); g.moveTo(TX - 150, 1020); g.lineTo(TX - 80, 1110); g.moveTo(TX - 330, 1110); g.lineTo(TX - 270, 1110); g.moveTo(TX - 110, 1110); g.lineTo(TX - 50, 1110); g.stroke(); g.restore(); xis(TX - 190, 1070, 70, ap(t, P(11, "peso") - .1, .3)); }
+      pop(ap(t, P(11, "peso") - .2), 90, 420, () => cartao("PERNA = PESO", 90, 420, 70));
+      pop(ap(t, P(11, "carga") - .2), 90, 560, () => cartao("PESO = CARGA A MENOS", 90, 560, 56));
+      pop(ap(t, P(11, "arriscar") - .2), 90, 1220, () => txt("POR QUE ARRISCAR?", 90, 1220, 72, RED, { al: "left" }));
+      return;
+    }
+    torre(TX, 1400, 360, 560); chao(1400); propulsor(TX - 190, 560, 1320); nave(TX - 190, 560 - 215 + (1 - ease(kv)) * -300, 1, 0, 0, t);
+    pop(ap(t, P(11, "voar") - .2), 90, 1200, () => { txt("VOA", 90, 1130, 140, INK, { al: "left" }); txt("DE NOVO", 90, 1270, 140, RED, { al: "left" }); });
+    pop(kv, 90, 460, () => etiqueta("ABASTECE NA TORRE", 90, 460));
+  },
+  // 12 — 60 anos jogando fora / essa voltou e foi pega / pergunta final
+  (t) => {
+    const tv = P(12, "essa") - .2;
+    if (t < P(12, "coragem") - .4) {
+      const cx = W / 2, cy = 960, r = 230; globo(cx, cy, r); const sx = cx - 190, sy = cy - 130;
+      const n = Math.floor(16 * ease((t - ini(12)) / 3)); g.strokeStyle = t > tv ? "rgba(22,22,22,.25)" : INK; g.lineWidth = 2.5;
+      for (let i = 0; i < n; i++) { const h = 300 + (i * 53) % 260, d = 120 + (i * 71) % 520, dir = i % 3 ? 1 : -1; g.beginPath(); g.moveTo(sx, sy); g.quadraticCurveTo(sx + dir * d * .5, sy - h * 2, sx + dir * d, sy + 260); g.stroke(); }
+      circ(sx, sy, 12, PAP); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.arc(sx, sy, 12, 0, 6.2832); g.stroke();
+      pop(ap(t, ini(12) + .1), 90, 420, () => numero(String(1963 + Math.round(63 * ease((t - ini(12)) / 3))), "FOGUETES PRA ÓRBITA", 90, 400, 130));
+      pop(ap(t, P(12, "jogada") - .2), 990, 1340, () => etiqueta("ESTÁGIO DE CIMA: JOGADO FORA", 990, 1340, "center"));
+      if (t > tv) { const pts = [[cx + 160, 300], [cx + 160, 560], ...curva([cx + 160, 560], [cx + 330, 1300], [cx - 40, 1230], 20).slice(1), ...curva([cx - 40, 1230], [cx - 330, 1150], [sx, sy], 20).slice(1)]; const p = caminho(pts, ease((t - tv) / 1.6)); circ(p[0], p[1], 16, PAP); circ(p[0], p[1], 12, RED); }
+      carimbo("PEGA.", W / 2, 640, ap(t, P(12, "pega") - .1), RED, -.08, 120);
+      return;
+    }
+    const k = ap(t, P(12, "coragem") - .4, .5);
+    torre(TX, 1400, 420, 640); chao(1400); nave(TX - 190, 740, 1, 0, 0, t); linha(TX - 190, 520);
+    for (let i = 0; i < 3; i++) { const x = 220 + i * 80; circ(x, 1340, 16, INK); rr(x - 12, 1358, 24, 40, 8, INK); }
+    pop(k, 90, 500, () => { txt("VOCÊ FICARIA", 90, 440, 84, INK, { al: "left" }); txt("EMBAIXO?", 90, 540, 120, RED, { al: "left" }); });
+  },
+];
+await K.rodar(CENA);
+</script>
+</body></html>
