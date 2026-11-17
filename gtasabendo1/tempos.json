@@ -1,0 +1,785 @@
+{
+ "total": 61.85,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 5.51,
+   "texto": "GTA sabendo que o GTA seis libera amanhã? Tem coisa que quase ninguém tá falando.",
+   "palavras": [
+    {
+     "w": "GTA",
+     "t": 0.15
+    },
+    {
+     "w": "sabendo",
+     "t": 0.71
+    },
+    {
+     "w": "que",
+     "t": 1.15
+    },
+    {
+     "w": "o",
+     "t": 1.39
+    },
+    {
+     "w": "GTA",
+     "t": 1.57
+    },
+    {
+     "w": "seis",
+     "t": 1.814
+    },
+    {
+     "w": "libera",
+     "t": 2.13
+    },
+    {
+     "w": "amanhã",
+     "t": 2.443
+    },
+    {
+     "w": "Tem",
+     "t": 3.17
+    },
+    {
+     "w": "coisa",
+     "t": 3.39
+    },
+    {
+     "w": "que",
+     "t": 3.67
+    },
+    {
+     "w": "quase",
+     "t": 3.937
+    },
+    {
+     "w": "ninguém",
+     "t": 4.27
+    },
+    {
+     "w": "tá",
+     "t": 4.603
+    },
+    {
+     "w": "falando",
+     "t": 4.75
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.66,
+   "fim": 12.3,
+   "texto": "Primeiro, o horário. No Brasil, o jogo libera à meia-noite do dia dezenove, na virada de quarta pra quinta.",
+   "palavras": [
+    {
+     "w": "Primeiro",
+     "t": 5.66
+    },
+    {
+     "w": "o",
+     "t": 6.24
+    },
+    {
+     "w": "horário",
+     "t": 6.36
+    },
+    {
+     "w": "No",
+     "t": 7.02
+    },
+    {
+     "w": "Brasil",
+     "t": 7.397
+    },
+    {
+     "w": "o",
+     "t": 8.02
+    },
+    {
+     "w": "jogo",
+     "t": 8.108
+    },
+    {
+     "w": "libera",
+     "t": 8.34
+    },
+    {
+     "w": "à",
+     "t": 8.66
+    },
+    {
+     "w": "meia-noite",
+     "t": 8.727
+    },
+    {
+     "w": "do",
+     "t": 9.287
+    },
+    {
+     "w": "dia",
+     "t": 9.4
+    },
+    {
+     "w": "dezenove",
+     "t": 9.633
+    },
+    {
+     "w": "na",
+     "t": 10.487
+    },
+    {
+     "w": "virada",
+     "t": 10.58
+    },
+    {
+     "w": "de",
+     "t": 10.913
+    },
+    {
+     "w": "quarta",
+     "t": 11.073
+    },
+    {
+     "w": "pra",
+     "t": 11.38
+    },
+    {
+     "w": "quinta",
+     "t": 11.58
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 12.45,
+   "fim": 17.25,
+   "texto": "O pré-load já tá liberado, com até duzentos e doze gigas. Confere o espaço.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 12.45
+    },
+    {
+     "w": "pré-load",
+     "t": 12.59
+    },
+    {
+     "w": "já",
+     "t": 13.143
+    },
+    {
+     "w": "tá",
+     "t": 13.303
+    },
+    {
+     "w": "liberado",
+     "t": 13.45
+    },
+    {
+     "w": "com",
+     "t": 14.17
+    },
+    {
+     "w": "até",
+     "t": 14.35
+    },
+    {
+     "w": "duzentos",
+     "t": 14.583
+    },
+    {
+     "w": "e",
+     "t": 15.25
+    },
+    {
+     "w": "doze",
+     "t": 15.357
+    },
+    {
+     "w": "gigas",
+     "t": 15.57
+    },
+    {
+     "w": "Confere",
+     "t": 16.258
+    },
+    {
+     "w": "o",
+     "t": 16.57
+    },
+    {
+     "w": "espaço",
+     "t": 16.679
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.4,
+   "fim": 22.84,
+   "texto": "Só vai ter pra PlayStation cinco e Xbox Series. PC? A Rockstar não anunciou nada.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 17.4
+    },
+    {
+     "w": "vai",
+     "t": 17.58
+    },
+    {
+     "w": "ter",
+     "t": 17.7
+    },
+    {
+     "w": "pra",
+     "t": 17.92
+    },
+    {
+     "w": "PlayStation",
+     "t": 18.093
+    },
+    {
+     "w": "cinco",
+     "t": 18.733
+    },
+    {
+     "w": "e",
+     "t": 19.08
+    },
+    {
+     "w": "Xbox",
+     "t": 19.272
+    },
+    {
+     "w": "Series",
+     "t": 19.789
+    },
+    {
+     "w": "PC",
+     "t": 20.68
+    },
+    {
+     "w": "A",
+     "t": 21.16
+    },
+    {
+     "w": "Rockstar",
+     "t": 21.304
+    },
+    {
+     "w": "não",
+     "t": 21.76
+    },
+    {
+     "w": "anunciou",
+     "t": 21.926
+    },
+    {
+     "w": "nada",
+     "t": 22.424
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 22.99,
+   "fim": 29.71,
+   "texto": "O preço aqui: a Standard sai por quatrocentos e quarenta e nove reais, e a Ultimate, quinhentos e quarenta e nove.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 22.99
+    },
+    {
+     "w": "preço",
+     "t": 23.123
+    },
+    {
+     "w": "aqui",
+     "t": 23.454
+    },
+    {
+     "w": "a",
+     "t": 23.95
+    },
+    {
+     "w": "Standard",
+     "t": 24.163
+    },
+    {
+     "w": "sai",
+     "t": 24.65
+    },
+    {
+     "w": "por",
+     "t": 24.87
+    },
+    {
+     "w": "quatrocentos",
+     "t": 25.043
+    },
+    {
+     "w": "e",
+     "t": 25.79
+    },
+    {
+     "w": "quarenta",
+     "t": 25.91
+    },
+    {
+     "w": "e",
+     "t": 26.17
+    },
+    {
+     "w": "nove",
+     "t": 26.243
+    },
+    {
+     "w": "reais",
+     "t": 26.51
+    },
+    {
+     "w": "e",
+     "t": 27.15
+    },
+    {
+     "w": "a",
+     "t": 27.35
+    },
+    {
+     "w": "Ultimate",
+     "t": 27.452
+    },
+    {
+     "w": "quinhentos",
+     "t": 28.11
+    },
+    {
+     "w": "e",
+     "t": 28.79
+    },
+    {
+     "w": "quarenta",
+     "t": 28.857
+    },
+    {
+     "w": "e",
+     "t": 29.21
+    },
+    {
+     "w": "nove",
+     "t": 29.283
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 29.86,
+   "fim": 35.06,
+   "texto": "Minha opinião: com esse preço, vale esperar as primeiras análises antes de comprar.",
+   "palavras": [
+    {
+     "w": "Minha",
+     "t": 29.86
+    },
+    {
+     "w": "opinião",
+     "t": 30.073
+    },
+    {
+     "w": "com",
+     "t": 30.74
+    },
+    {
+     "w": "esse",
+     "t": 31.268
+    },
+    {
+     "w": "preço",
+     "t": 31.527
+    },
+    {
+     "w": "vale",
+     "t": 32.052
+    },
+    {
+     "w": "esperar",
+     "t": 32.54
+    },
+    {
+     "w": "as",
+     "t": 32.873
+    },
+    {
+     "w": "primeiras",
+     "t": 33.033
+    },
+    {
+     "w": "análises",
+     "t": 33.54
+    },
+    {
+     "w": "antes",
+     "t": 34.14
+    },
+    {
+     "w": "de",
+     "t": 34.367
+    },
+    {
+     "w": "comprar",
+     "t": 34.48
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 35.21,
+   "fim": 40.01,
+   "texto": "Você joga com a Lucia e o Jason, em Leonida, o estado onde fica Vice City.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 35.21
+    },
+    {
+     "w": "joga",
+     "t": 35.49
+    },
+    {
+     "w": "com",
+     "t": 35.81
+    },
+    {
+     "w": "a",
+     "t": 35.97
+    },
+    {
+     "w": "Lucia",
+     "t": 36.077
+    },
+    {
+     "w": "e",
+     "t": 36.45
+    },
+    {
+     "w": "o",
+     "t": 36.53
+    },
+    {
+     "w": "Jason",
+     "t": 36.65
+    },
+    {
+     "w": "em",
+     "t": 37.237
+    },
+    {
+     "w": "Leonida",
+     "t": 37.37
+    },
+    {
+     "w": "o",
+     "t": 38.13
+    },
+    {
+     "w": "estado",
+     "t": 38.227
+    },
+    {
+     "w": "onde",
+     "t": 38.618
+    },
+    {
+     "w": "fica",
+     "t": 38.874
+    },
+    {
+     "w": "Vice",
+     "t": 39.21
+    },
+    {
+     "w": "City",
+     "t": 39.594
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 40.16,
+   "fim": 46.16,
+   "texto": "No PlayStation cinco: gatilho adaptativo, som em três D e carregamento quase instantâneo.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 40.16
+    },
+    {
+     "w": "PlayStation",
+     "t": 40.367
+    },
+    {
+     "w": "cinco",
+     "t": 40.947
+    },
+    {
+     "w": "gatilho",
+     "t": 41.6
+    },
+    {
+     "w": "adaptativo",
+     "t": 42.2
+    },
+    {
+     "w": "som",
+     "t": 43.2
+    },
+    {
+     "w": "em",
+     "t": 43.493
+    },
+    {
+     "w": "três",
+     "t": 43.648
+    },
+    {
+     "w": "D",
+     "t": 43.96
+    },
+    {
+     "w": "e",
+     "t": 44.24
+    },
+    {
+     "w": "carregamento",
+     "t": 44.44
+    },
+    {
+     "w": "quase",
+     "t": 45.093
+    },
+    {
+     "w": "instantâneo",
+     "t": 45.48
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 46.31,
+   "fim": 51.19,
+   "texto": "E o YouTube vai fazer uma live de vinte e quatro horas, com mais de trinta criadores.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 46.31
+    },
+    {
+     "w": "o",
+     "t": 46.43
+    },
+    {
+     "w": "YouTube",
+     "t": 46.53
+    },
+    {
+     "w": "vai",
+     "t": 46.99
+    },
+    {
+     "w": "fazer",
+     "t": 47.15
+    },
+    {
+     "w": "uma",
+     "t": 47.39
+    },
+    {
+     "w": "live",
+     "t": 47.574
+    },
+    {
+     "w": "de",
+     "t": 47.91
+    },
+    {
+     "w": "vinte",
+     "t": 48.11
+    },
+    {
+     "w": "e",
+     "t": 48.35
+    },
+    {
+     "w": "quatro",
+     "t": 48.443
+    },
+    {
+     "w": "horas",
+     "t": 48.777
+    },
+    {
+     "w": "com",
+     "t": 49.39
+    },
+    {
+     "w": "mais",
+     "t": 49.558
+    },
+    {
+     "w": "de",
+     "t": 49.83
+    },
+    {
+     "w": "trinta",
+     "t": 50.017
+    },
+    {
+     "w": "criadores",
+     "t": 50.35
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 51.34,
+   "fim": 56.7,
+   "texto": "A dois K deixou uma pista de crossover no NBA dois K vinte e sete, mas sem confirmação.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 51.34
+    },
+    {
+     "w": "dois",
+     "t": 51.468
+    },
+    {
+     "w": "K",
+     "t": 51.78
+    },
+    {
+     "w": "deixou",
+     "t": 51.948
+    },
+    {
+     "w": "uma",
+     "t": 52.24
+    },
+    {
+     "w": "pista",
+     "t": 52.42
+    },
+    {
+     "w": "de",
+     "t": 52.753
+    },
+    {
+     "w": "crossover",
+     "t": 52.916
+    },
+    {
+     "w": "no",
+     "t": 53.447
+    },
+    {
+     "w": "NBA",
+     "t": 53.64
+    },
+    {
+     "w": "dois",
+     "t": 54.108
+    },
+    {
+     "w": "K",
+     "t": 54.42
+    },
+    {
+     "w": "vinte",
+     "t": 54.58
+    },
+    {
+     "w": "e",
+     "t": 54.74
+    },
+    {
+     "w": "sete",
+     "t": 54.84
+    },
+    {
+     "w": "mas",
+     "t": 55.56
+    },
+    {
+     "w": "sem",
+     "t": 55.78
+    },
+    {
+     "w": "confirmação",
+     "t": 55.948
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 56.85,
+   "fim": 61.25,
+   "texto": "Segue o GTA Sabendo, que amanhã tem os melhores momentos do lançamento.",
+   "palavras": [
+    {
+     "w": "Segue",
+     "t": 56.85
+    },
+    {
+     "w": "o",
+     "t": 57.21
+    },
+    {
+     "w": "GTA",
+     "t": 57.37
+    },
+    {
+     "w": "Sabendo",
+     "t": 57.81
+    },
+    {
+     "w": "que",
+     "t": 58.49
+    },
+    {
+     "w": "amanhã",
+     "t": 58.663
+    },
+    {
+     "w": "tem",
+     "t": 58.99
+    },
+    {
+     "w": "os",
+     "t": 59.197
+    },
+    {
+     "w": "melhores",
+     "t": 59.303
+    },
+    {
+     "w": "momentos",
+     "t": 59.792
+    },
+    {
+     "w": "do",
+     "t": 60.343
+    },
+    {
+     "w": "lançamento",
+     "t": 60.498
+    }
+   ]
+  }
+ ]
+}
