@@ -87,7 +87,7 @@ const CENA = [
     const tot = Math.round(86399 * (1 - k)); const hh = String(Math.floor(tot / 3600)).padStart(2, "0"), mm = String(Math.floor(tot % 3600 / 60)).padStart(2, "0"), ss = String(tot % 60).padStart(2, "0");
     const pulso = k >= 1 ? 1 + Math.sin((t - t0 - 2.8) * 9) * .03 : 1;
     pop(ap(t, t0 + .05), W / 2, 420, () => pilula("FALTA POUCO", W / 2, 420, 54, ROSA, BR));
-    pop(ap(t, P(1, "GTA", 1) - .1), W / 2, 590, () => txt("GTA 6", W / 2, 590, 230, BR, { contorno: 14, sombra: true }));
+    pop(ap(t, CENAS[0].ini + .1), W / 2, 590, () => txt("GTA 6", W / 2, 590, 230, BR, { contorno: 14, sombra: true }));
     g.save(); g.translate(W / 2, 900); g.scale(pulso, pulso);
     rr(-450, -150, 900, 300, 40, "rgba(18,4,46,.88)"); g.lineWidth = 6; g.strokeStyle = AZUL; g.beginPath(); g.roundRect(-450, -150, 900, 300, 40); g.stroke();
     g.shadowColor = AZUL; g.shadowBlur = 36; txt(`${hh}:${mm}:${ss}`, 0, 6, 210, k >= 1 ? ROSA : BR, { fonte: "Oswald", peso: 700 }); g.shadowBlur = 0; g.restore();
@@ -97,7 +97,7 @@ const CENA = [
   (t) => { // 2: horario
     const t0 = P(2, "meianoite") - .2, k = ease((t - t0) / 1.6);
     pop(ap(t, CENAS[1].ini + .1), W / 2, 330, () => pilula("HORÁRIO NO BRASIL", W / 2, 330, 54, AZUL, "#06243a"));
-    pop(ap(t, t0), W / 2, 640, () => relogio(W / 2, 640, 230, 11.9 + .1 * k));
+    pop(ap(t, CENAS[1].ini + .15), W / 2, 640, () => relogio(W / 2, 640, 230, 11.8 + .2 * k));
     pop(ap(t, P(2, "dezenove") - .15), W / 2, 960, () => { txt("19/11", W / 2, 940, 190, AM, { contorno: 12, sombra: true }); });
     pop(ap(t, P(2, "dezenove") + .2), W / 2, 1070, () => pilula("0H · HORÁRIO DE BRASÍLIA", W / 2, 1075, 46, ROSA, BR));
     const kv = ap(t, P(2, "virada") - .1);
@@ -107,12 +107,12 @@ const CENA = [
   },
   (t) => { // 3: pre-load
     const kb = ease((t - (P(3, "com") - .1)) / 1.7);
-    pop(ap(t, P(3, "liberado") - .3), W / 2, 380, () => { pilula("PRÉ-LOAD LIBERADO", W / 2 - 40, 380, 58, VERDE, "#06301c"); });
-    pop(ap(t, P(3, "liberado") - .1), 830, 380, () => check(850, 380, 40));
-    painel(90, 520, 900, 220, AZUL);
+    pop(ap(t, CENAS[2].ini + .1), W / 2, 380, () => { pilula("PRÉ-LOAD LIBERADO", W / 2 - 40, 380, 58, VERDE, "#06301c"); });
+    pop(ap(t, P(3, "liberado") - .2), 830, 380, () => check(850, 380, 40));
+    if (ap(t, CENAS[2].ini + .25) > 0) { g.globalAlpha = ap(t, CENAS[2].ini + .25); } painel(90, 520, 900, 220, AZUL);
     rr(130, 600, 820, 70, 35, "#2b1856"); const gb = g.createLinearGradient(130, 0, 950, 0); gb.addColorStop(0, AZUL); gb.addColorStop(1, ROSA);
     if (kb > 0) rr(130, 600, Math.max(70, 820 * kb), 70, 35, gb);
-    txt(Math.round(212 * kb) + " GB", W / 2, 560, 60, BR, { contorno: 6 });
+    txt(Math.round(212 * kb) + " GB", W / 2, 560, 60, BR, { contorno: 6 }); g.globalAlpha = 1;
     pop(ap(t, P(3, "duzentos") - .2), W / 2, 960, () => { txt("ATÉ", W / 2, 840, 70, CINZA, { contorno: 6 }); txt("212 GB", W / 2, 990, 250, AM, { contorno: 14, sombra: true }); });
     pop(ap(t, P(3, "confere") - .1), W / 2, 1210, () => pilula("CONFERE O ESPAÇO NO CONSOLE", W / 2, 1210, 52, ROSA, BR));
   },
@@ -122,12 +122,12 @@ const CENA = [
     pop(ap(t, P(4, "PlayStation") - .1), W / 2, 530, () => { card(430, "PS5", "PLAYSTATION 5", AZUL); check(880, 540, 52); });
     pop(ap(t, P(4, "Xbox") - .1), W / 2, 790, () => { card(690, "XBOX", "SERIES X | S", VERDE); check(880, 800, 52); });
     pop(ap(t, P(4, "PC") - .1), W / 2, 1050, () => { card(950, "PC", "SEM ANÚNCIO DA ROCKSTAR", VM); xis(880, 1060, 52); });
-    carimbo("SEM DATA", W / 2 + 120, 1290, ap(t, P(4, "anunciou") - .1, .35), VM, -.1, 80);
+    carimbo("SEM DATA", W / 2 + 120, 1340, ap(t, P(4, "anunciou") - .1, .35), VM, -.1, 80);
   },
   (t) => { // 5: preco
     pop(ap(t, CENAS[4].ini + .05), W / 2, 330, () => pilula("PREÇO NO BRASIL", W / 2, 330, 54, AZUL, "#06243a"));
     const cartao = (y, nome, valor, t0, cor) => { const k = ease((t - t0) / .9); painel(110, y, 860, 330, cor); txt(nome, W / 2, y + 70, 64, cor, { contorno: 6 }); const v = (valor * k).toFixed(2).replace(".", ","); txt("R$ " + v, W / 2, y + 200, 150, BR, { contorno: 10, sombra: true }); };
-    pop(ap(t, P(5, "Standard") - .2), W / 2, 600, () => cartao(440, "STANDARD", 449.9, P(5, "Standard"), AM));
+    pop(ap(t, CENAS[4].ini + .15), W / 2, 600, () => cartao(440, "STANDARD", 449.9, P(5, "Standard"), AM));
     pop(ap(t, P(5, "Ultimate") - .2), W / 2, 1050, () => cartao(880, "ULTIMATE", 549.9, P(5, "Ultimate"), ROSA));
     pop(ap(t, P(5, "Ultimate") + .6), W / 2, 1290, () => pilula("+ R$ 100", W / 2, 1290, 48, "#3a2468", BR));
   },
@@ -138,6 +138,7 @@ const CENA = [
     pop(ap(t, P(6, "comprar") - .1), W / 2, 1230, () => txt("ANTES DE COMPRAR", W / 2, 1230, 60, BR, { contorno: 8 }));
   },
   (t) => { // 7: Lucia e Jason em Leonida
+    pop(ap(t, CENAS[6].ini + .1), W / 2, 330, () => pilula("OS PERSONAGENS", W / 2, 330, 54, ROXO, BR));
     pop(ap(t, P(7, "Lucia") - .3), 300, 640, () => { painel(100, 380, 400, 560, ROSA); silhueta(300, 700, 1.7, ROSA); txt("LUCIA", 300, 880, 64, BR, { contorno: 6 }); });
     pop(ap(t, P(7, "Jason") - .3), 780, 640, () => { painel(580, 380, 400, 560, AZUL); silhueta(780, 700, 1.7, AZUL); txt("JASON", 780, 880, 64, BR, { contorno: 6 }); });
     pop(ap(t, P(7, "Leonida") - .2), W / 2, 1090, () => { painel(100, 990, 880, 150, AM); circ(200, 1058, 30, ROSA); g.fillStyle = ROSA; g.beginPath(); g.moveTo(172, 1074); g.lineTo(228, 1074); g.lineTo(200, 1112); g.fill(); circ(200, 1058, 11, ESC); txt("ESTADO DE LEONIDA", 630, 1066, 66, AM, { contorno: 6 }); });
@@ -167,7 +168,7 @@ const CENA = [
   (t) => { // 11: CTA
     const b = Math.sin(t * 6) * 16;
     pop(ap(t, CENAS[10].ini + .02), W / 2, 520, () => txt("SEGUE", W / 2, 520, 220, BR, { contorno: 14, sombra: true }));
-    pop(ap(t, P(11, "Sabendo") - .15), W / 2, 740, () => { g.shadowColor = ROSA; g.shadowBlur = 40; txt(NOME, W / 2, 740, 140, ROSA, { contorno: 10 }); g.shadowBlur = 0; });
+    pop(ap(t, P(11, "Sabendo") - .15), W / 2, 740, () => { g.shadowColor = ROSA; g.shadowBlur = 40; txt(NOME, W / 2, 740, 140, BR, { contorno: 12 }); g.shadowBlur = 0; });
     pop(ap(t, P(11, "virada") - .1), W / 2, 960, () => pilula("NA VIRADA TEM", W / 2, 960, 54, AM));
     pop(ap(t, P(11, "melhores") - .15), W / 2, 1090, () => { txt("OS MELHORES MOMENTOS", W / 2, 1090, 76, BR, { contorno: 8 }); txt("DO LANÇAMENTO", W / 2, 1180, 76, AM, { contorno: 8 }); });
     g.fillStyle = AM; g.beginPath(); g.moveTo(W / 2 - 55, 1290 + b); g.lineTo(W / 2 + 55, 1290 + b); g.lineTo(W / 2, 1360 + b); g.fill();
