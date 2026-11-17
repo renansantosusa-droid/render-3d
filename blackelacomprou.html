@@ -107,21 +107,21 @@ function cartao(t) {
   // preço
   const tp = P(9, "noventa"), kp = back((t - tp + .1) / .45);
   const t11 = P(9, "onze"), k11 = ap(t, t11 - .05, .3);
-  g.globalAlpha = k11; txt("11 MATERIAIS POR", W / 2, 1180, 52, BR, { esp: 6, peso: 900 }); g.globalAlpha = 1;
-  g.save(); g.translate(W / 2, 1315); g.scale(Math.max(.01, .4 + .6 * kp), Math.max(.01, .4 + .6 * kp)); g.globalAlpha = clamp(kp); txt("R$97", 0, 0, 230, ROSA, { fonte: "Anton", peso: 400, glow: 60 }); g.restore();
+  g.globalAlpha = k11; txt("11 MATERIAIS POR", W / 2, 1218, 52, BR, { esp: 6, peso: 900 }); g.globalAlpha = 1;
+  g.save(); g.translate(W / 2, 1352); g.scale(Math.max(.01, .4 + .6 * kp), Math.max(.01, .4 + .6 * kp)); g.globalAlpha = clamp(kp); txt("R$97", 0, 0, 230, ROSA, { fonte: "Anton", peso: 400, glow: 60 }); g.restore();
   // kit natal incluso
   const tk = P(9, "Kit"), kn = clamp(back((t - tk + .1) / .45), 0, 1.2);
-  if (kn > 0) { g.save(); g.translate(W / 2, 1450); g.scale(kn, kn);
+  if (kn > 0) { g.save(); g.translate(W / 2, 1480); g.scale(kn, kn);
     rr(-300, -42, 600, 84, 42, "#16080f"); g.strokeStyle = "#2fbf6a"; g.lineWidth = 4; g.beginPath(); g.roundRect(-300, -42, 600, 84, 42); g.stroke();
     txt("KIT NATAL INCLUSO", 24, 3, 42, BR, { peso: 900, esp: 3 }); arvore(-250, 22, 40); g.restore(); }
   // CTA (cena 10)
   const kc = clamp(back((t - t10 + .05) / .45), 0, 1.2);
   if (kc > 0) {
     const p = 1 + .05 * Math.sin(t * 8);
-    g.save(); g.translate(W / 2, 1580); g.scale(kc * p, kc * p);
+    g.save(); g.translate(W / 2, 1597); g.scale(kc * p, kc * p);
     g.shadowColor = ROSA; g.shadowBlur = 55; rr(-470, -62, 940, 124, 62, ROSA); g.shadowBlur = 0;
     txt("TOCA NO LINK AQUI EMBAIXO", 0, 4, 54, BR, { fonte: "Anton", peso: 400, esp: 2 }); g.restore();
-    const by = 1710 + Math.abs(Math.sin(t * 7)) * 24; if (t < T.total - 0.1) seta(W / 2, by, 70, BR);
+    const by = 1722 + Math.abs(Math.sin(t * 7)) * 24; if (t < T.total - 0.1) seta(W / 2, by, 70, BR);
   }
 }
 
