@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// GTÁ SABENDO? #3: "Leonida tem 6 regioes". Imagens reais (screenshots oficiais da Rockstar + mapa gtadb.org CC BY 4.0), Ken Burns.
+// Base: gtasabendo1.html (legenda palavra por palavra, P(), tempos.json). Fundo animado trocado por imagens.
+const NOME = "GTÁ SABENDO?", ARROBA = "@gtasabendo";
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch("/gtasabendo3/tempos.json")).json();
+const CENAS = T.cenas;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const AM = "#ffd23a", ROSA = "#ff2d78", BR = "#ffffff";
+
+// junta "Gê Tê Á" numa palavra so ("GTÁ") pra legenda
+for (const cn of CENAS) { const o = []; for (let i = 0; i < cn.palavras.length; i++) { const p = cn.palavras[i]; if (norm(p.w) === "ge" && cn.palavras[i + 1] && norm(cn.palavras[i + 1].w) === "te") { o.push({ w: "GTÁ", t: p.t }); i += 2; } else o.push(p); } cn.palavras = o; }
+
+// [arquivo, zoom0, zoom1, fx0, fy0, fx1, fy1]  (foco em fracao da imagem)
+const PLANO = [
+  [["vice-11-helicoptero-skyline.jpg", 1.0, 1.12, .3, .5, .6, .5], ["keys-01-hidroaviao.jpg", 1.0, 1.12, .5, .5, .6, .55]],
+  [["vice-15-marina.jpg", 1.0, 1.12, .3, .5, .6, .5], ["keys-03-rusty-anchor.jpg", 1.0, 1.12, .5, .5, .5, .5], ["grass-02-vila.jpg", 1.0, 1.12, .6, .5, .4, .5]],
+  [["port-06-cidade.jpg", 1.0, 1.12, .6, .5, .4, .5], ["ambrosia-04-por-do-sol.jpg", 1.0, 1.12, .4, .5, .6, .5], ["kalaga-04-estrada.jpg", 1.0, 1.12, .5, .5, .5, .5]],
+  [["mapa-gtadb-leonida.jpg", 1.0, 1.15, .5, .45, .5, .6], ["vice-03-cidade.jpg", 1.0, 1.12, .3, .5, .6, .5]],
+  [["keys-01-hidroaviao.jpg", 1.3, 1.1, .7, .5, .5, .5], ["keys-04-mergulho.jpg", 1.0, 1.12, .5, .5, .5, .5]],
+  [["kalaga-05-caiaque.jpg", 1.0, 1.15, .5, .5, .5, .5]],
+];
+const arqs = [...new Set(PLANO.flat().map((x) => x[0]))];
+const IMG = {};
+await Promise.all(arqs.map((a) => new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(IMG[a] = im); im.onerror = () => no(new Error("imagem " + a)); im.src = "/gtasabendo3/img/" + a; })));
+
+// linha do tempo das imagens
+const SEG = [];
+CENAS.forEach((cn, i) => { const a = i === 0 ? 0 : cn.ini, b = i + 1 < CENAS.length ? CENAS[i + 1].ini : T.total + .5; const n = PLANO[i].length; PLANO[i].forEach((p, j) => SEG.push({ p, a: a + (b - a) * j / n, b: a + (b - a) * (j + 1) / n })); });
+
+function desenha(s, t, alfa) {
+  const [arq, z0, z1, fx0, fy0, fx1, fy1] = s.p, im = IMG[arq], k = clamp((t - s.a) / (s.b - s.a)), e = k * k * (3 - 2 * k);
+  const z = z0 + (z1 - z0) * e, fx = fx0 + (fx1 - fx0) * e, fy = fy0 + (fy1 - fy0) * e;
+  const base = Math.max(W / im.width, H / im.height), sc = base * z, sw = W / sc, sh = H / sc;
+  const sx = clamp(fx * im.width - sw / 2, 0, im.width - sw), sy = clamp(fy * im.height - sh / 2, 0, im.height - sh);
+  g.globalAlpha = alfa; g.imageSmoothingQuality = "high"; g.drawImage(im, sx, sy, sw, sh, 0, 0, W, H); g.globalAlpha = 1;
+}
+function fundo(t) {
+  g.fillStyle = "#000"; g.fillRect(0, 0, W, H);
+  let i = SEG.findIndex((s) => t >= s.a && t < s.b); if (i < 0) i = t < SEG[0].a ? 0 : SEG.length - 1;
+  const s = SEG[i]; desenha(s, t, 1);
+  const f = .25; if (i + 1 < SEG.length && t > s.b - f) { const n = SEG[i + 1]; desenha(n, Math.max(t, n.a), clamp((t - (s.b - f)) / f)); }
+  let gr = g.createLinearGradient(0, 0, 0, 640); gr.addColorStop(0, "rgba(0,0,0,.78)"); gr.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = gr; g.fillRect(0, 0, W, 640);
+  gr = g.createLinearGradient(0, 1150, 0, H); gr.addColorStop(0, "rgba(0,0,0,0)"); gr.addColorStop(.55, "rgba(0,0,0,.6)"); gr.addColorStop(1, "rgba(0,0,0,.85)"); g.fillStyle = gr; g.fillRect(0, 1150, W, H - 1150);
+  return s;
+}
+function contorno(s, x, y, tam, cor, al = "center", lw = 14) { g.font = `900 ${tam}px Nunito`; g.textAlign = al; g.textBaseline = "middle"; g.lineWidth = lw; g.lineJoin = "round"; g.strokeStyle = "#000"; g.strokeText(s, x, y); g.fillStyle = cor; g.fillText(s, x, y); }
+function titulo() { // fixo no topo: o gancho
+  contorno("6 REGIÕES", W / 2, 160, 120, AM, "center", 18);
+  contorno("no mapa do GTA 6", W / 2, 285, 72, BR);
+}
+const DISP = { seis: "6", cinco: "5" };
+const GRUPOS = []; for (const cn of CENAS) for (let i = 0; i < cn.palavras.length; i += 3) GRUPOS.push({ ws: cn.palavras.slice(i, i + 3), fim: (cn.palavras[i + 3] || { t: cn.fim + .15 }).t });
+function legenda(t) {
+  const gr = GRUPOS.find((x) => t >= x.ws[0].t && t < x.fim); if (!gr) return;
+  const ws = gr.ws.map((p) => (DISP[norm(p.w)] || p.w).toUpperCase().replace(/[.,!?;:]+$/, "")); let tam = 88; g.font = `900 ${tam}px Nunito`; let lw = ws.map((w) => g.measureText(w).width), esp = 24;
+  const larg = () => lw.reduce((a, b) => a + b, 0) + esp * (ws.length - 1); if (larg() > 960) { tam = Math.floor(tam * 960 / larg()); g.font = `900 ${tam}px Nunito`; lw = ws.map((w) => g.measureText(w).width); esp = 18; }
+  let x = W / 2 - larg() / 2; const k = ease((t - gr.ws[0].t) / .1), y = 1430 + (1 - k) * 18;
+  ws.forEach((w, i) => { const ativa = t >= gr.ws[i].t && (i === ws.length - 1 || t < gr.ws[i + 1].t);
+    g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.lineJoin = "round"; g.strokeStyle = "#000"; g.globalAlpha = k; g.strokeText(w, x, y); g.fillStyle = ativa ? AM : BR; g.fillText(w, x, y); g.globalAlpha = 1; x += lw[i] + esp; });
+}
+function selo(s) {
+  g.font = "700 40px Oswald"; const w = g.measureText(NOME).width + 50, h = 66, x = W / 2 - w / 2, y = 1600;
+  g.fillStyle = ROSA; g.beginPath(); g.roundRect(x, y - h / 2, w, h, h / 2); g.fill(); g.fillStyle = BR; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(NOME, W / 2, y + 2);
+  g.font = "500 38px Oswald"; g.fillStyle = "rgba(255,255,255,.92)"; g.fillText(ARROBA, W / 2, y + 74);
+  g.font = "500 26px Oswald"; g.fillStyle = "rgba(255,255,255,.7)";
+  g.fillText(s.p[0].startsWith("mapa") ? "Imagens: Rockstar Games  ·  Mapa: gtadb.org CC BY 4.0" : "Imagens: Rockstar Games", W / 2, y + 130);
+}
+window.renderFrame = (t) => { const s = fundo(t); titulo(); legenda(t); selo(s); };
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>

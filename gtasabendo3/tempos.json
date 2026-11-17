@@ -1,0 +1,333 @@
+{
+ "total": 26.22,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.99,
+   "texto": "Leonida, o mapa do Gê Tê Á seis, tem seis regiões diferentes.",
+   "palavras": [
+    {
+     "w": "Leonida",
+     "t": 0.15
+    },
+    {
+     "w": "o",
+     "t": 0.83
+    },
+    {
+     "w": "mapa",
+     "t": 0.95
+    },
+    {
+     "w": "do",
+     "t": 1.297
+    },
+    {
+     "w": "Gê",
+     "t": 1.39
+    },
+    {
+     "w": "Tê",
+     "t": 1.55
+    },
+    {
+     "w": "Á",
+     "t": 1.75
+    },
+    {
+     "w": "seis",
+     "t": 1.878
+    },
+    {
+     "w": "tem",
+     "t": 2.25
+    },
+    {
+     "w": "seis",
+     "t": 2.598
+    },
+    {
+     "w": "regiões",
+     "t": 2.85
+    },
+    {
+     "w": "diferentes",
+     "t": 3.328
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.14,
+   "fim": 8.38,
+   "texto": "Tem Vice City, as Leonida Keys e os pântanos dos Grassrivers.",
+   "palavras": [
+    {
+     "w": "Tem",
+     "t": 4.14
+    },
+    {
+     "w": "Vice",
+     "t": 4.364
+    },
+    {
+     "w": "City",
+     "t": 4.7
+    },
+    {
+     "w": "as",
+     "t": 5.34
+    },
+    {
+     "w": "Leonida",
+     "t": 5.548
+    },
+    {
+     "w": "Keys",
+     "t": 6.012
+    },
+    {
+     "w": "e",
+     "t": 6.5
+    },
+    {
+     "w": "os",
+     "t": 6.593
+    },
+    {
+     "w": "pântanos",
+     "t": 6.78
+    },
+    {
+     "w": "dos",
+     "t": 7.24
+    },
+    {
+     "w": "Grassrivers",
+     "t": 7.473
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 8.53,
+   "fim": 12.53,
+   "texto": "E também Port Gellhorn, Ambrosia e o parque Mount Kalaga.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 8.53
+    },
+    {
+     "w": "também",
+     "t": 8.679
+    },
+    {
+     "w": "Port",
+     "t": 9.17
+    },
+    {
+     "w": "Gellhorn",
+     "t": 9.53
+    },
+    {
+     "w": "Ambrosia",
+     "t": 10.33
+    },
+    {
+     "w": "e",
+     "t": 11.05
+    },
+    {
+     "w": "o",
+     "t": 11.21
+    },
+    {
+     "w": "parque",
+     "t": 11.33
+    },
+    {
+     "w": "Mount",
+     "t": 11.783
+    },
+    {
+     "w": "Kalaga",
+     "t": 12.11
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 12.68,
+   "fim": 17.24,
+   "texto": "Pelo que foi divulgado, o mapa tem o dobro do tamanho do Gê Tê Á cinco.",
+   "palavras": [
+    {
+     "w": "Pelo",
+     "t": 12.68
+    },
+    {
+     "w": "que",
+     "t": 12.88
+    },
+    {
+     "w": "foi",
+     "t": 13.04
+    },
+    {
+     "w": "divulgado",
+     "t": 13.22
+    },
+    {
+     "w": "o",
+     "t": 14.08
+    },
+    {
+     "w": "mapa",
+     "t": 14.2
+    },
+    {
+     "w": "tem",
+     "t": 14.58
+    },
+    {
+     "w": "o",
+     "t": 14.8
+    },
+    {
+     "w": "dobro",
+     "t": 14.947
+    },
+    {
+     "w": "do",
+     "t": 15.347
+    },
+    {
+     "w": "tamanho",
+     "t": 15.47
+    },
+    {
+     "w": "do",
+     "t": 16.013
+    },
+    {
+     "w": "Gê",
+     "t": 16.2
+    },
+    {
+     "w": "Tê",
+     "t": 16.48
+    },
+    {
+     "w": "Á",
+     "t": 16.66
+    },
+    {
+     "w": "cinco",
+     "t": 16.747
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 17.39,
+   "fim": 22.83,
+   "texto": "Minha opinião: as Leonida Keys, de hidroavião, vão ser as mais bonitas de explorar.",
+   "palavras": [
+    {
+     "w": "Minha",
+     "t": 17.39
+    },
+    {
+     "w": "opinião",
+     "t": 17.603
+    },
+    {
+     "w": "as",
+     "t": 18.563
+    },
+    {
+     "w": "Leonida",
+     "t": 18.734
+    },
+    {
+     "w": "Keys",
+     "t": 19.23
+    },
+    {
+     "w": "de",
+     "t": 19.683
+    },
+    {
+     "w": "hidroavião",
+     "t": 19.83
+    },
+    {
+     "w": "vão",
+     "t": 20.63
+    },
+    {
+     "w": "ser",
+     "t": 20.89
+    },
+    {
+     "w": "as",
+     "t": 21.123
+    },
+    {
+     "w": "mais",
+     "t": 21.31
+    },
+    {
+     "w": "bonitas",
+     "t": 21.69
+    },
+    {
+     "w": "de",
+     "t": 22.137
+    },
+    {
+     "w": "explorar",
+     "t": 22.247
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 22.98,
+   "fim": 25.62,
+   "texto": "Qual região você abre primeiro? Comenta aí.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 22.98
+    },
+    {
+     "w": "região",
+     "t": 23.2
+    },
+    {
+     "w": "você",
+     "t": 23.604
+    },
+    {
+     "w": "abre",
+     "t": 23.908
+    },
+    {
+     "w": "primeiro",
+     "t": 24.144
+    },
+    {
+     "w": "Comenta",
+     "t": 24.68
+    },
+    {
+     "w": "aí",
+     "t": 25.3
+    }
+   ]
+  }
+ ]
+}
