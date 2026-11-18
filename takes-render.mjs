@@ -102,11 +102,11 @@ function montaBase(modo) {
   const lista = [];
   segmentos.forEach((s, k) => {
     const out = path.join(TMP, `${modo}-${String(k).padStart(3, "0")}.mp4`);
-    run(["-y", "-v", "error", "-ss", String(s.t.ini), "-i", path.join(RAIZ, "fontes", s.t.fonte + ".mp4"), "-an", "-frames:v", String(s.q), "-vf", filtroModo(modo, s.t), "-c:v", "libx264", "-crf", "15", "-preset", "veryfast", out]);
+    run(["-y", "-v", "error", "-ss", String(Math.max(0, s.t.ini - 2)), "-i", path.join(RAIZ, "fontes", s.t.fonte + ".mp4"), "-ss", String(s.t.ini - Math.max(0, s.t.ini - 2)), "-an", "-frames:v", String(s.q), "-vf", filtroModo(modo, s.t), "-c:v", "libx264", "-crf", "15", "-preset", "veryfast", out]);
     lista.push(`file '${out}'`);
   });
   const txt = path.join(TMP, `${modo}-lista.txt`); fs.writeFileSync(txt, lista.join("\n"));
-  const base = path.join(TMP, `${modo}-base.mp4`); run(["-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", txt, "-c", "copy", base]); return base;
+  const base = path.join(TMP, `${modo}-base.mp4`); run(["-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", txt, "-an", "-c:v", "libx264", "-crf", "15", "-preset", "veryfast", "-r", String(FPS), base]); return base;
 }
 
 // ---- 5) junta: base + texto (PNG com alfa por stdin) + voz
