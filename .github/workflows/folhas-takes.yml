@@ -1,0 +1,33 @@
+name: Folhas de takes GTA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  folhas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: |
+          npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0
+          echo "FFMPEG=$(node -p 'require("ffmpeg-static")')" >> "$GITHUB_ENV"
+      - run: gh release download gta-takes -p "*.mp4" -D fontes
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: folhas 1 quadro por segundo com tempo
+        run: |
+          mkdir -p folhas
+          F=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+          for v in fontes/*.mp4; do
+            id=$(basename "$v" .mp4)
+            "$FFMPEG" -y -v error -i "$v" -an -vf "fps=1,scale=320:180,drawtext=fontfile=$F:text='%{pts\:gmtime\:0\:%M\:%S}':x=6:y=6:fontsize=24:fontcolor=yellow:box=1:boxcolor=black@0.7,tile=6x4:padding=2" -q:v 3 "folhas/${id}-%02d.jpg"
+          done
+          ls folhas | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: folhas
+          path: folhas/*.jpg
+          retention-days: 3
