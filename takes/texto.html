@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:transparent}canvas{display:block;background:transparent}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// CAMADA DE TEXTO (fundo transparente) do GTÁ SABENDO? com takes de video. Mesmo visual do gtasabendo4.html:
+// titulo fixo no topo, legenda de 3 palavras com a falada em amarelo, selo GTÁ SABENDO? + @gtasabendo + credito.
+// Le /<video>/tempos.json e /<video>/cenas-takes.json (titulo1, titulo2). O render (takes-render.mjs) tira PNG com alfa.
+const V = new URLSearchParams(location.search).get("v");
+const NOME = "GTÁ SABENDO?", ARROBA = "@gtasabendo";
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch(`/${V}/tempos.json`)).json();
+const CFG = await (await fetch(`/${V}/cenas-takes.json`)).json();
+const CENAS = T.cenas;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const AM = "#ffd23a", ROSA = "#ff2d78", BR = "#ffffff";
+
+// junta "Gê Tê Á" numa palavra so ("GTÁ") pra legenda
+for (const cn of CENAS) { const o = []; for (let i = 0; i < cn.palavras.length; i++) { const p = cn.palavras[i]; if (norm(p.w) === "ge" && cn.palavras[i + 1] && norm(cn.palavras[i + 1].w) === "te") { o.push({ w: "GTÁ", t: p.t }); i += 2; } else o.push(p); } cn.palavras = o; }
+
+function contorno(s, x, y, tam, cor, al = "center", lw = 14) { g.font = `900 ${tam}px Nunito`; g.textAlign = al; g.textBaseline = "middle"; g.lineWidth = lw; g.lineJoin = "round"; g.strokeStyle = "#000"; g.strokeText(s, x, y); g.fillStyle = cor; g.fillText(s, x, y); }
+function ajusta(s, tam, larg) { g.font = `900 ${tam}px Nunito`; const w = g.measureText(s).width; return w > larg ? Math.floor(tam * larg / w) : tam; }
+function sombras() { // degradês pra dar leitura ao texto sobre o video
+  let gr = g.createLinearGradient(0, 0, 0, 640); gr.addColorStop(0, "rgba(0,0,0,.72)"); gr.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = gr; g.fillRect(0, 0, W, 640);
+  gr = g.createLinearGradient(0, 1150, 0, H); gr.addColorStop(0, "rgba(0,0,0,0)"); gr.addColorStop(.55, "rgba(0,0,0,.6)"); gr.addColorStop(1, "rgba(0,0,0,.85)"); g.fillStyle = gr; g.fillRect(0, 1150, W, H - 1150);
+}
+function titulo() { // fixo no topo: o gancho
+  contorno(CFG.titulo1, W / 2, 160, ajusta(CFG.titulo1, 108, 980), AM, "center", 18);
+  contorno(CFG.titulo2, W / 2, 285, ajusta(CFG.titulo2, 56, 980), BR);
+}
+const DISP = { seis: "6" };
+const GRUPOS = []; for (const cn of CENAS) for (let i = 0; i < cn.palavras.length; i += 3) GRUPOS.push({ ws: cn.palavras.slice(i, i + 3), fim: (cn.palavras[i + 3] || { t: cn.fim + .15 }).t });
+function legenda(t) {
+  const gr = GRUPOS.find((x) => t >= x.ws[0].t && t < x.fim); if (!gr) return;
+  const ws = gr.ws.map((p) => (DISP[norm(p.w)] || p.w).toUpperCase().replace(/[.,!?;:]+$/, "")); let tam = 88; g.font = `900 ${tam}px Nunito`; let lw = ws.map((w) => g.measureText(w).width), esp = 24;
+  const larg = () => lw.reduce((a, b) => a + b, 0) + esp * (ws.length - 1); if (larg() > 960) { tam = Math.floor(tam * 960 / larg()); g.font = `900 ${tam}px Nunito`; lw = ws.map((w) => g.measureText(w).width); esp = 18; }
+  let x = W / 2 - larg() / 2; const k = ease((t - gr.ws[0].t) / .1), y = 1430 + (1 - k) * 18;
+  ws.forEach((w, i) => { const ativa = t >= gr.ws[i].t && (i === ws.length - 1 || t < gr.ws[i + 1].t);
+    g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.lineJoin = "round"; g.strokeStyle = "#000"; g.globalAlpha = k; g.strokeText(w, x, y); g.fillStyle = ativa ? AM : BR; g.fillText(w, x, y); g.globalAlpha = 1; x += lw[i] + esp; });
+}
+function selo() {
+  g.font = "700 40px Oswald"; const w = g.measureText(NOME).width + 50, h = 66, x = W / 2 - w / 2, y = 1600;
+  g.fillStyle = ROSA; g.beginPath(); g.roundRect(x, y - h / 2, w, h, h / 2); g.fill(); g.fillStyle = BR; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(NOME, W / 2, y + 2);
+  g.font = "500 38px Oswald"; g.fillStyle = "rgba(255,255,255,.92)"; g.fillText(ARROBA, W / 2, y + 74);
+  g.font = "500 26px Oswald"; g.fillStyle = "rgba(255,255,255,.7)";
+  g.fillText("Imagens: Rockstar Games", W / 2, y + 130);
+}
+// estado do quadro = grupo de legenda + palavra ativa + fase da animacao de entrada (so os 0,1 s do inicio do grupo)
+window.chave = (t) => {
+  const gi = GRUPOS.findIndex((x) => t >= x.ws[0].t && t < x.fim); if (gi < 0) return "vazio";
+  const gr = GRUPOS[gi]; let ativa = 0; gr.ws.forEach((p, i) => { if (t >= p.t) ativa = i; });
+  const k = t - gr.ws[0].t < .1 ? "e" + Math.round((t - gr.ws[0].t) * 60) : "f";
+  return `${gi}-${ativa}-${k}`;
+};
+window.renderFrame = (t) => { g.clearRect(0, 0, W, H); sombras(); titulo(); legenda(t); selo(); };
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>

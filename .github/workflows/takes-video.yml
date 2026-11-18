@@ -1,0 +1,46 @@
+name: Video com takes (GTA)
+
+on:
+  workflow_dispatch:
+    inputs:
+      video:
+        description: "Nome da pasta do video (ex.: gtasabendo4v)"
+        required: true
+      modo:
+        description: "crop, blur ou ambos"
+        required: true
+        default: "crop"
+
+jobs:
+  takes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install chromium
+      - name: ffmpeg (pacote npm, sem apt)
+        run: |
+          npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0
+          echo "FFMPEG=$(node -p 'require("ffmpeg-static")')" >> "$GITHUB_ENV"
+      - run: gh release download gta-takes -p "*.mp4" -D fontes
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - run: node takes-render.mjs "${{ inputs.video }}" "${{ inputs.modo }}"
+      - name: mosaico 1 quadro por segundo
+        run: |
+          for v in saida/${{ inputs.video }}-*.mp4; do
+            n=$(basename "$v" .mp4)
+            "$FFMPEG" -y -v error -i "$v" -vf "fps=1,scale=216:384,tile=9x4:padding=2" -frames:v 1 "saida/mosaico-$n.jpg"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: takes-${{ inputs.video }}
+          path: |
+            saida/${{ inputs.video }}-*.mp4
+            saida/${{ inputs.video }}-takes-usados.json
+            saida/mosaico-*.jpg
+          retention-days: 2

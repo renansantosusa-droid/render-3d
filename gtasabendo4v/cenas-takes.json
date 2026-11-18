@@ -1,0 +1,12 @@
+{
+ "titulo1": "NÃO É O JACARÉ",
+ "titulo2": "o bicho mais perigoso do pântano",
+ "cenas": [
+  { "takes": ["gta6-t1-019"], "tags": ["pantano", "natureza", "mar"] },
+  { "takes": ["gta6-launch-021", "gta6-t1-021"], "tags": ["animal", "pantano", "natureza", "barco"] },
+  { "takes": ["gta6-t2-218"], "tags": ["helicoptero", "pantano"] },
+  { "takes": [], "tags": ["natureza", "pantano", "animal", "mar", "doca"] },
+  { "takes": ["gta6-t2-227"], "tags": ["helicoptero", "barco", "perseguicao", "pantano"] },
+  { "takes": [], "tags": ["animal", "natureza", "pantano"] }
+ ]
+}
