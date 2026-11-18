@@ -55,7 +55,7 @@ function fundo(t) {
 }
 function contorno(s, x, y, tam, cor, al = "center", lw = 14) { g.font = `900 ${tam}px Nunito`; g.textAlign = al; g.textBaseline = "middle"; g.lineWidth = lw; g.lineJoin = "round"; g.strokeStyle = "#000"; g.strokeText(s, x, y); g.fillStyle = cor; g.fillText(s, x, y); }
 function titulo() {
-  contorno("2013 → 2026", W / 2, 160, 124, AM, "center", 18);
+  contorno("2013", 330, 160, 124, AM, "center", 18); contorno("2026", 750, 160, 124, AM, "center", 18); g.strokeStyle = "#000"; g.lineWidth = 30; g.lineCap = "round"; g.lineJoin = "round"; for (const [cor, lw] of [["#000", 30], [ROSA, 14]]) { g.strokeStyle = cor; g.lineWidth = lw; g.beginPath(); g.moveTo(490, 160); g.lineTo(590, 160); g.stroke(); g.beginPath(); g.moveTo(555, 125); g.lineTo(590, 160); g.lineTo(555, 195); g.stroke(); }
   contorno("da última vez que saiu um GTA", W / 2, 290, 54, BR);
 }
 function wt(ci, w) { const p = CENAS[ci].palavras.find((x) => norm(x.w) === w); return p ? p.t : CENAS[ci].ini; }
@@ -76,10 +76,10 @@ function card(t) {
   if (c.solo) { contorno(c.solo[0], 0, -10, fit(c.solo[0], 100, 900), AM, "center", 14); contorno(c.solo[1], 0, 100, fit(c.solo[1], 64, 900), BR, "center", 12); g.restore(); return; }
   const kb = ease((t - c.tb()) / .3), side = (x, lab, val, sub, al) => {
     g.globalAlpha = al; g.font = "500 44px Oswald"; g.fillStyle = "rgba(255,255,255,.75)"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(lab, x, -90);
-    contorno(val, x, 20, fit(val, 140, 400), BR === "#fff" ? AM : AM, "center", 16);
-    if (sub) { g.font = "500 36px Oswald"; g.fillStyle = "rgba(255,255,255,.8)"; g.textAlign = "center"; g.fillText(sub, x, 130); } };
-  side(-245, c.la, c.a, c.sa, k); side(245, c.lb, c.b, c.sb, kb * k);
-  g.globalAlpha = k; contorno("→", 0, 20, 120, ROSA, "center", 12);
+    contorno(val, x, 20, fit(val, 140, 320), AM, "center", 16);
+    if (sub) { g.font = "500 40px Oswald"; g.fillStyle = "rgba(255,255,255,.85)"; g.textAlign = "center"; g.fillText(sub, x, 135); } };
+  side(-270, c.la, c.a, c.sa, k); side(270, c.lb, c.b, c.sb, kb * k);
+  g.globalAlpha = k; g.fillStyle = ROSA; g.strokeStyle = ROSA; g.lineWidth = 12; g.lineCap = "round"; g.lineJoin = "round"; g.beginPath(); g.moveTo(-34, 20); g.lineTo(26, 20); g.stroke(); g.beginPath(); g.moveTo(8, -6); g.lineTo(34, 20); g.lineTo(8, 46); g.stroke();
   g.restore();
 }
 const DISP = { seis: "6" };
