@@ -40,10 +40,15 @@ const limites = CENAS.map((c, i) => [i === 0 ? 0 : c.ini, i + 1 < CENAS.length ?
 const TOTAL = limites[limites.length - 1][1];
 const usados = new Set();
 const dur = (t) => t.fim - t.ini;
+const FALLBACK = ["natureza", "mar", "aerea", "pordosol", "cidade", "estrada"];
 function escolheAuto(tags, tAtual) { // takes do catalogo pelas tags, sem repetir, sem texto na tela, sem violencia nos 7 primeiros segundos
-  const cand = CAT.filter((t) => !usados.has(t.id) && !t.texto_na_tela && !(t.violencia && tAtual < 7) && t.tags.some((g) => tags.includes(g)));
-  cand.sort((a, b) => b.tags.filter((g) => tags.includes(g)).length - a.tags.filter((g) => tags.includes(g)).length || dur(b) - dur(a));
-  return cand[0];
+  const ok = (t) => !t.texto_na_tela && !(t.violencia && tAtual < 7);
+  for (const [lista, repete] of [[tags, false], [FALLBACK, false], [tags, true], [FALLBACK, true]]) {
+    const cand = CAT.filter((t) => ok(t) && (repete || !usados.has(t.id)) && t.tags.some((g) => lista.includes(g)));
+    cand.sort((a, b) => b.tags.filter((g) => lista.includes(g)).length - a.tags.filter((g) => lista.includes(g)).length || dur(b) - dur(a));
+    if (cand[0]) { if (lista === FALLBACK || repete) console.log("AVISO: take de reserva/repetido", cand[0].id, "pra tags", tags.join(",")); return cand[0]; }
+  }
+  return null;
 }
 const segmentos = [];
 CENAS.forEach((c, i) => {
