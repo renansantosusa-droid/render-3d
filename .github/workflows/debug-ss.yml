@@ -5,23 +5,21 @@ jobs:
   d:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: |
           npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0
           echo "FFMPEG=$(node -p 'require("ffmpeg-static")')" >> "$GITHUB_ENV"
-      - run: gh release download gta-takes -p "gta6-launch.mp4" -D fontes
+      - run: gh release download gta-takes -p "gtasabendo4v-crop.mp4" -D fontes -R renansantosusa-droid/render-3d
         env:
           GH_TOKEN: ${{ github.token }}
       - run: |
           mkdir -p dbg
-          "$FFMPEG" -hide_banner -i fontes/gta6-launch.mp4 2>&1 | grep -E "Duration|Stream|start" > dbg/info.txt || true
-          cat dbg/info.txt
-          # 6 quadros a partir de 1:08 : fim de seek rapido (-ss antes) em passos de 1s
-          "$FFMPEG" -y -v error -ss 68 -i fontes/gta6-launch.mp4 -an -frames:v 6 -vf "fps=1,scale=320:180,tile=6x1" -frames:v 1 dbg/a.jpg
-          "$FFMPEG" -y -v error -ss 68 -i fontes/gta6-launch.mp4 -an -frames:v 90 -vf "fps=30,scale=320:180,select='not(mod(n,15))',tile=6x1" -frames:v 1 dbg/b.jpg
+          F=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+          "$FFMPEG" -hide_banner -i fontes/gtasabendo4v-crop.mp4 2>&1 | grep -E "Duration|Stream" > dbg/info.txt || true
+          # 12 a 15 s em 3 fps com o tempo escrito
+          "$FFMPEG" -y -v error -ss 11.5 -t 4.5 -i fontes/gtasabendo4v-crop.mp4 -an -vf "fps=3,scale=216:384,drawtext=fontfile=$F:text='%{pts\:flt}':x=6:y=40:fontsize=30:fontcolor=yellow:box=1:boxcolor=black@0.7,tile=9x2" -frames:v 1 dbg/c.jpg
       - uses: actions/upload-artifact@v4
         with:
           name: dbg
