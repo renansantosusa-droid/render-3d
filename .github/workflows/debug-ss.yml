@@ -1,0 +1,29 @@
+name: Debug ss takes
+on:
+  workflow_dispatch:
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: |
+          npm install --no-save --no-audit --no-fund ffmpeg-static@5.2.0
+          echo "FFMPEG=$(node -p 'require("ffmpeg-static")')" >> "$GITHUB_ENV"
+      - run: gh release download gta-takes -p "gta6-launch.mp4" -D fontes
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - run: |
+          mkdir -p dbg
+          "$FFMPEG" -hide_banner -i fontes/gta6-launch.mp4 2>&1 | grep -E "Duration|Stream|start" > dbg/info.txt || true
+          cat dbg/info.txt
+          # 6 quadros a partir de 1:08 : fim de seek rapido (-ss antes) em passos de 1s
+          "$FFMPEG" -y -v error -ss 68 -i fontes/gta6-launch.mp4 -an -frames:v 6 -vf "fps=1,scale=320:180,tile=6x1" -frames:v 1 dbg/a.jpg
+          "$FFMPEG" -y -v error -ss 68 -i fontes/gta6-launch.mp4 -an -frames:v 90 -vf "fps=30,scale=320:180,select='not(mod(n,15))',tile=6x1" -frames:v 1 dbg/b.jpg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dbg
+          path: dbg/*
+          retention-days: 1
