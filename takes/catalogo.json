@@ -2,8 +2,8 @@
  {
   "id": "gta5-t2-050",
   "fonte": "gta5-t2",
-  "ini": 50,
-  "fim": 50.9,
+  "ini": 50.5,
+  "fim": 51,
   "descricao": "cabriolé azul parado numa rua de Los Santos",
   "tags": [
    "carro",
@@ -18,8 +18,8 @@
  {
   "id": "gta5-t2-051",
   "fonte": "gta5-t2",
-  "ini": 51,
-  "fim": 51.9,
+  "ini": 51.5,
+  "fim": 52,
   "descricao": "guindastes do porto de Los Santos",
   "tags": [
    "porto",
@@ -34,8 +34,8 @@
  {
   "id": "gta5-t2-052",
   "fonte": "gta5-t2",
-  "ini": 52,
-  "fim": 52.9,
+  "ini": 52.5,
+  "fim": 53,
   "descricao": "rua com viatura e moradores sob viaduto",
   "tags": [
    "policia",
@@ -50,8 +50,8 @@
  {
   "id": "gta5-t2-056",
   "fonte": "gta5-t2",
-  "ini": 56,
-  "fim": 56.9,
+  "ini": 56.5,
+  "fim": 57,
   "descricao": "posto de bebidas ao pôr do sol com carro parado",
   "tags": [
    "rua",
@@ -66,8 +66,8 @@
  {
   "id": "gta5-t2-057",
   "fonte": "gta5-t2",
-  "ini": 57,
-  "fim": 57.9,
+  "ini": 57.5,
+  "fim": 58,
   "descricao": "carro esportivo preto em alta velocidade",
   "tags": [
    "carro",
@@ -81,8 +81,8 @@
  {
   "id": "gta5-t2-101",
   "fonte": "gta5-t2",
-  "ini": 61,
-  "fim": 62.2,
+  "ini": 61.55,
+  "fim": 62.5,
   "descricao": "moto amarela em primeiro plano numa rua",
   "tags": [
    "moto",
@@ -97,8 +97,8 @@
  {
   "id": "gta5-t2-103",
   "fonte": "gta5-t2",
-  "ini": 63,
-  "fim": 63.9,
+  "ini": 63.5,
+  "fim": 64,
   "descricao": "bomba de petróleo e skyline ao pôr do sol",
   "tags": [
    "pordosol",
@@ -114,8 +114,8 @@
  {
   "id": "gta5-t2-104",
   "fonte": "gta5-t2",
-  "ini": 64,
-  "fim": 64.9,
+  "ini": 64.5,
+  "fim": 65,
   "descricao": "viatura perseguindo carro vermelho",
   "tags": [
    "policia",
@@ -131,8 +131,8 @@
  {
   "id": "gta5-t2-105",
   "fonte": "gta5-t2",
-  "ini": 65,
-  "fim": 65.9,
+  "ini": 65.5,
+  "fim": 66,
   "descricao": "viatura derrapando atrás de outro carro",
   "tags": [
    "policia",
@@ -148,8 +148,8 @@
  {
   "id": "gta5-t2-107",
   "fonte": "gta5-t2",
-  "ini": 67,
-  "fim": 67.9,
+  "ini": 67.5,
+  "fim": 68,
   "descricao": "helicóptero sobre bairro, vista aérea",
   "tags": [
    "helicoptero",
@@ -165,8 +165,8 @@
  {
   "id": "gta5-t2-108",
   "fonte": "gta5-t2",
-  "ini": 68,
-  "fim": 68.9,
+  "ini": 68.5,
+  "fim": 69,
   "descricao": "carro em chamas numa rua",
   "tags": [
    "explosao",
@@ -181,8 +181,8 @@
  {
   "id": "gta5-t2-109",
   "fonte": "gta5-t2",
-  "ini": 69,
-  "fim": 70.2,
+  "ini": 69.55,
+  "fim": 70.5,
   "descricao": "letreiro Vinewood ao pôr do sol",
   "tags": [
    "los-santos",
@@ -197,8 +197,8 @@
  {
   "id": "gta6-t1-018",
   "fonte": "gta6-t1",
-  "ini": 18,
-  "fim": 18.9,
+  "ini": 18.5,
+  "fim": 19,
   "descricao": "prédios e palmeiras vistos de baixo",
   "tags": [
    "cidade",
@@ -211,8 +211,8 @@
  {
   "id": "gta6-t1-021",
   "fonte": "gta6-t1",
-  "ini": 21,
-  "fim": 21.9,
+  "ini": 21.5,
+  "fim": 22,
   "descricao": "flamingos voando sobre o pântano",
   "tags": [
    "animal",
@@ -228,8 +228,8 @@
  {
   "id": "gta6-t1-022",
   "fonte": "gta6-t1",
-  "ini": 22,
-  "fim": 22.9,
+  "ini": 22.5,
+  "fim": 23,
   "descricao": "praia lotada com banhistas",
   "tags": [
    "praia",
@@ -243,8 +243,8 @@
  {
   "id": "gta6-t1-036",
   "fonte": "gta6-t1",
-  "ini": 36,
-  "fim": 36.9,
+  "ini": 36.5,
+  "fim": 37,
   "descricao": "ilhas, ponte e hidroavião vistos de cima",
   "tags": [
    "mapa",
@@ -260,8 +260,8 @@
  {
   "id": "gta6-t1-103",
   "fonte": "gta6-t1",
-  "ini": 63,
-  "fim": 63.9,
+  "ini": 63.5,
+  "fim": 64,
   "descricao": "Lucia com dinheiro e lenço no rosto",
   "tags": [
    "lucia",
@@ -275,8 +275,8 @@
  {
   "id": "gta6-t1-106",
   "fonte": "gta6-t1",
-  "ini": 66,
-  "fim": 66.9,
+  "ini": 66.5,
+  "fim": 67,
   "descricao": "motos empinando numa estrada de terra",
   "tags": [
    "moto",
@@ -290,8 +290,8 @@
  {
   "id": "gta6-t1-029",
   "fonte": "gta6-t1",
-  "ini": 29,
-  "fim": 29.9,
+  "ini": 29.5,
+  "fim": 30,
   "descricao": "balada com faíscas e dançarinos",
   "tags": [
    "festa",
@@ -305,8 +305,8 @@
  {
   "id": "gta6-t1-033",
   "fonte": "gta6-t1",
-  "ini": 33,
-  "fim": 33.9,
+  "ini": 33.5,
+  "fim": 34,
   "descricao": "carros esportivos numa rua com neon à noite",
   "tags": [
    "carro",
@@ -322,8 +322,8 @@
  {
   "id": "gta6-t2-201",
   "fonte": "gta6-t2",
-  "ini": 121,
-  "fim": 122.2,
+  "ini": 121.55,
+  "fim": 122.5,
   "descricao": "picape preta à noite soltando faíscas numa rua",
   "tags": [
    "carro",
@@ -337,8 +337,8 @@
  {
   "id": "gta6-t2-206",
   "fonte": "gta6-t2",
-  "ini": 126,
-  "fim": 126.9,
+  "ini": 126.5,
+  "fim": 127,
   "descricao": "rua de Vice City com hotel art déco e carros",
   "tags": [
    "cidade",
@@ -353,8 +353,8 @@
  {
   "id": "gta6-t2-207",
   "fonte": "gta6-t2",
-  "ini": 127,
-  "fim": 127.9,
+  "ini": 127.5,
+  "fim": 128,
   "descricao": "festa neon rosa num barco à noite",
   "tags": [
    "festa",
@@ -369,8 +369,8 @@
  {
   "id": "gta6-t2-208",
   "fonte": "gta6-t2",
-  "ini": 128,
-  "fim": 128.9,
+  "ini": 128.5,
+  "fim": 129,
   "descricao": "dançarina sob luz neon roxa",
   "tags": [
    "festa",
@@ -385,8 +385,8 @@
  {
   "id": "gta6-t2-125",
   "fonte": "gta6-t2",
-  "ini": 85,
-  "fim": 85.9,
+  "ini": 85.5,
+  "fim": 86,
   "descricao": "hangar com hidroavião à noite",
   "tags": [
    "aviao",
@@ -400,8 +400,8 @@
  {
   "id": "gta6-t2-126",
   "fonte": "gta6-t2",
-  "ini": 86,
-  "fim": 86.9,
+  "ini": 86.5,
+  "fim": 87,
   "descricao": "pessoas descendo de barco no cais à noite",
   "tags": [
    "barco",
@@ -415,8 +415,8 @@
  {
   "id": "gta6-t2-226",
   "fonte": "gta6-t2",
-  "ini": 146,
-  "fim": 146.9,
+  "ini": 146.5,
+  "fim": 147,
   "descricao": "casal se abraçando num quarto",
   "tags": [
    "casal",
@@ -429,8 +429,8 @@
  {
   "id": "gta6-launch-032",
   "fonte": "gta6-launch",
-  "ini": 32,
-  "fim": 32.9,
+  "ini": 32.5,
+  "fim": 33,
   "descricao": "homem de boné em avião com nuvens douradas",
   "tags": [
    "aviao",
@@ -444,8 +444,8 @@
  {
   "id": "gta6-launch-037",
   "fonte": "gta6-launch",
-  "ini": 37,
-  "fim": 37.9,
+  "ini": 37.5,
+  "fim": 38,
   "descricao": "mulher dançando em luz rosa e vermelha",
   "tags": [
    "festa",
@@ -460,8 +460,8 @@
  {
   "id": "gta6-launch-042",
   "fonte": "gta6-launch",
-  "ini": 42,
-  "fim": 42.9,
+  "ini": 42.5,
+  "fim": 43,
   "descricao": "bar neon azul com cliente",
   "tags": [
    "bar",
@@ -475,8 +475,8 @@
  {
   "id": "gta6-launch-109",
   "fonte": "gta6-launch",
-  "ini": 69,
-  "fim": 69.9,
+  "ini": 69.5,
+  "fim": 70,
   "descricao": "vista aérea de cidade à noite com lancha branca",
   "tags": [
    "aerea",
@@ -491,8 +491,8 @@
  {
   "id": "gta6-launch-110",
   "fonte": "gta6-launch",
-  "ini": 70,
-  "fim": 70.9,
+  "ini": 70.5,
+  "fim": 71,
   "descricao": "picape à noite com luzes traseiras",
   "tags": [
    "carro",
@@ -505,8 +505,8 @@
  {
   "id": "gta5-t1-000",
   "fonte": "gta5-t1",
-  "ini": 0,
-  "fim": 2.2,
+  "ini": 0.55,
+  "fim": 2.5,
   "descricao": "deserto com trem e montanhas ao pôr do sol",
   "tags": [
    "deserto",
@@ -522,8 +522,8 @@
  {
   "id": "gta5-t1-006",
   "fonte": "gta5-t1",
-  "ini": 6,
-  "fim": 7.2,
+  "ini": 6.55,
+  "fim": 7.5,
   "descricao": "piscina de mansão com espreguiçadeiras",
   "tags": [
    "piscina",
@@ -538,8 +538,8 @@
  {
   "id": "gta5-t1-011",
   "fonte": "gta5-t1",
-  "ini": 11,
-  "fim": 12.2,
+  "ini": 11.55,
+  "fim": 12.5,
   "descricao": "homem de jaqueta andando numa rua de cidade do deserto",
   "tags": [
    "personagem",
@@ -553,8 +553,8 @@
  {
   "id": "gta5-t1-021",
   "fonte": "gta5-t1",
-  "ini": 21,
-  "fim": 22.2,
+  "ini": 21.55,
+  "fim": 22.5,
   "descricao": "Michael conversando com Lester no escritório",
   "tags": [
    "conversa",
@@ -568,8 +568,8 @@
  {
   "id": "gta5-t1-027",
   "fonte": "gta5-t1",
-  "ini": 27,
-  "fim": 27.9,
+  "ini": 27.5,
+  "fim": 28,
   "descricao": "skyline de Los Santos visto das colinas",
   "tags": [
    "los-santos",
@@ -585,8 +585,8 @@
  {
   "id": "gta5-t1-033",
   "fonte": "gta5-t1",
-  "ini": 33,
-  "fim": 34.2,
+  "ini": 33.55,
+  "fim": 34.5,
   "descricao": "Franklin conversando na rua",
   "tags": [
    "personagem",
@@ -600,8 +600,8 @@
  {
   "id": "gta5-t1-035",
   "fonte": "gta5-t1",
-  "ini": 35,
-  "fim": 35.9,
+  "ini": 35.5,
+  "fim": 36,
   "descricao": "esportivo vermelho na chuva à noite",
   "tags": [
    "carro",
@@ -616,8 +616,8 @@
  {
   "id": "gta5-t1-038",
   "fonte": "gta5-t1",
-  "ini": 38,
-  "fim": 38.9,
+  "ini": 38.5,
+  "fim": 39,
   "descricao": "helicóptero explodindo no deserto",
   "tags": [
    "explosao",
@@ -631,8 +631,8 @@
  {
   "id": "gta5-t1-039",
   "fonte": "gta5-t1",
-  "ini": 39,
-  "fim": 39.9,
+  "ini": 39.5,
+  "fim": 40,
   "descricao": "submarino amarelo no mar ao entardecer",
   "tags": [
    "submarino",
@@ -647,8 +647,8 @@
  {
   "id": "gta5-t1-044",
   "fonte": "gta5-t1",
-  "ini": 44,
-  "fim": 45.2,
+  "ini": 44.55,
+  "fim": 45.5,
   "descricao": "paraquedista saltando à noite",
   "tags": [
    "paraquedas",
@@ -662,8 +662,8 @@
  {
   "id": "gta5-t1-046",
   "fonte": "gta5-t1",
-  "ini": 46,
-  "fim": 46.9,
+  "ini": 46.5,
+  "fim": 47,
   "descricao": "vista aérea noturna de Los Santos",
   "tags": [
    "noite",
@@ -679,8 +679,8 @@
  {
   "id": "gta5-t1-047",
   "fonte": "gta5-t1",
-  "ini": 47,
-  "fim": 47.9,
+  "ini": 47.5,
+  "fim": 48,
   "descricao": "homem correndo na rua com explosão e helicóptero",
   "tags": [
    "explosao",
@@ -695,8 +695,8 @@
  {
   "id": "gta5-t1-048",
   "fonte": "gta5-t1",
-  "ini": 48,
-  "fim": 48.9,
+  "ini": 48.5,
+  "fim": 49,
   "descricao": "helicóptero sobre a cidade ao pôr do sol",
   "tags": [
    "helicoptero",
@@ -712,8 +712,8 @@
  {
   "id": "gta5-t1-049",
   "fonte": "gta5-t1",
-  "ini": 49,
-  "fim": 49.9,
+  "ini": 49.5,
+  "fim": 50,
   "descricao": "viatura de polícia e moto numa avenida",
   "tags": [
    "policia",
@@ -728,8 +728,8 @@
  {
   "id": "gta5-t1-054",
   "fonte": "gta5-t1",
-  "ini": 54,
-  "fim": 54.9,
+  "ini": 54.5,
+  "fim": 55,
   "descricao": "avião caindo e explodindo",
   "tags": [
    "aviao",
@@ -743,8 +743,8 @@
  {
   "id": "gta5-t2-006",
   "fonte": "gta5-t2",
-  "ini": 6,
-  "fim": 8.2,
+  "ini": 6.55,
+  "fim": 8.5,
   "descricao": "guarita de salva-vidas na praia ao pôr do sol",
   "tags": [
    "praia",
@@ -759,8 +759,8 @@
  {
   "id": "gta5-t2-009",
   "fonte": "gta5-t2",
-  "ini": 9,
-  "fim": 11.2,
+  "ini": 9.55,
+  "fim": 11.5,
   "descricao": "corredores no calçadão da praia",
   "tags": [
    "praia",
@@ -775,8 +775,8 @@
  {
   "id": "gta5-t2-017",
   "fonte": "gta5-t2",
-  "ini": 17,
-  "fim": 18.2,
+  "ini": 17.55,
+  "fim": 18.5,
   "descricao": "parque com jogadores de golfe e skyline ao fundo",
   "tags": [
    "parque",
@@ -791,8 +791,8 @@
  {
   "id": "gta5-t2-019",
   "fonte": "gta5-t2",
-  "ini": 19,
-  "fim": 19.9,
+  "ini": 19.5,
+  "fim": 20,
   "descricao": "homem de jet ski levantando água",
   "tags": [
    "jetski",
@@ -806,8 +806,8 @@
  {
   "id": "gta5-t2-020",
   "fonte": "gta5-t2",
-  "ini": 20,
-  "fim": 22.2,
+  "ini": 20.55,
+  "fim": 22.5,
   "descricao": "trilheiros olhando a montanha",
   "tags": [
    "natureza",
@@ -822,8 +822,8 @@
  {
   "id": "gta5-t2-023",
   "fonte": "gta5-t2",
-  "ini": 23,
-  "fim": 24.2,
+  "ini": 23.55,
+  "fim": 24.5,
   "descricao": "conversível vermelho na rua",
   "tags": [
    "carro",
@@ -838,8 +838,8 @@
  {
   "id": "gta5-t2-025",
   "fonte": "gta5-t2",
-  "ini": 25,
-  "fim": 26.2,
+  "ini": 25.55,
+  "fim": 26.5,
   "descricao": "mulher ao lado de carro esportivo vermelho",
   "tags": [
    "carro",
@@ -855,8 +855,8 @@
  {
   "id": "gta5-t2-032",
   "fonte": "gta5-t2",
-  "ini": 32,
-  "fim": 32.9,
+  "ini": 32.5,
+  "fim": 33,
   "descricao": "placa de autoestrada Los Puertas Fwy",
   "tags": [
    "estrada",
@@ -870,8 +870,8 @@
  {
   "id": "gta5-t2-033",
   "fonte": "gta5-t2",
-  "ini": 33,
-  "fim": 34.2,
+  "ini": 33.55,
+  "fim": 34.5,
   "descricao": "mulher andando num calçadão com palmeiras ao pôr do sol",
   "tags": [
    "praia",
@@ -887,8 +887,8 @@
  {
   "id": "gta5-t2-039",
   "fonte": "gta5-t2",
-  "ini": 39,
-  "fim": 41.2,
+  "ini": 39.55,
+  "fim": 41.5,
   "descricao": "Michael de terno olhando o skyline de Los Santos",
   "tags": [
    "personagem",
@@ -903,8 +903,8 @@
  {
   "id": "gta5-t2-042",
   "fonte": "gta5-t2",
-  "ini": 42,
-  "fim": 43.2,
+  "ini": 42.55,
+  "fim": 43.5,
   "descricao": "biplano sobrevoando vinhedo",
   "tags": [
    "aviao",
@@ -918,8 +918,8 @@
  {
   "id": "gta5-t2-044",
   "fonte": "gta5-t2",
-  "ini": 44,
-  "fim": 45.2,
+  "ini": 44.55,
+  "fim": 45.5,
   "descricao": "colhedores de uva num vinhedo",
   "tags": [
    "natureza",
@@ -933,8 +933,8 @@
  {
   "id": "gta5-t2-046",
   "fonte": "gta5-t2",
-  "ini": 46,
-  "fim": 47.2,
+  "ini": 46.55,
+  "fim": 47.5,
   "descricao": "homens de macacão vermelho e máscara saindo de van",
   "tags": [
    "assalto",
@@ -948,8 +948,8 @@
  {
   "id": "gta6-launch-002",
   "fonte": "gta6-launch",
-  "ini": 2,
-  "fim": 3.2,
+  "ini": 2.55,
+  "fim": 3.5,
   "descricao": "picape rebocando jet ski, placa The Keys ao fundo",
   "tags": [
    "estrada",
@@ -964,8 +964,8 @@
  {
   "id": "gta6-launch-004",
   "fonte": "gta6-launch",
-  "ini": 4,
-  "fim": 5.2,
+  "ini": 4.55,
+  "fim": 5.5,
   "descricao": "marina com barcos em docas, vista aérea",
   "tags": [
    "marina",
@@ -981,8 +981,8 @@
  {
   "id": "gta6-launch-006",
   "fonte": "gta6-launch",
-  "ini": 6,
-  "fim": 8.2,
+  "ini": 6.55,
+  "fim": 8.5,
   "descricao": "homem polindo o casco de um barco",
   "tags": [
    "keys",
@@ -997,8 +997,8 @@
  {
   "id": "gta6-launch-009",
   "fonte": "gta6-launch",
-  "ini": 9,
-  "fim": 10.2,
+  "ini": 9.55,
+  "fim": 10.5,
   "descricao": "pessoas limpando um iate na marina",
   "tags": [
    "marina",
@@ -1012,8 +1012,8 @@
  {
   "id": "gta6-launch-012",
   "fonte": "gta6-launch",
-  "ini": 12,
-  "fim": 13.2,
+  "ini": 12.55,
+  "fim": 13.5,
   "descricao": "homem de boné falando no celular na marina",
   "tags": [
    "marina",
@@ -1027,8 +1027,8 @@
  {
   "id": "gta6-launch-014",
   "fonte": "gta6-launch",
-  "ini": 14,
-  "fim": 14.9,
+  "ini": 14.5,
+  "fim": 15,
   "descricao": "pessoa na beira da água com hidroavião ao fundo",
   "tags": [
    "keys",
@@ -1043,8 +1043,8 @@
  {
   "id": "gta6-launch-018",
   "fonte": "gta6-launch",
-  "ini": 18,
-  "fim": 20.2,
+  "ini": 18.55,
+  "fim": 20.5,
   "descricao": "conversível verde com pessoas armadas na rua",
   "tags": [
    "carro",
@@ -1059,8 +1059,8 @@
  {
   "id": "gta6-launch-021",
   "fonte": "gta6-launch",
-  "ini": 21,
-  "fim": 21.9,
+  "ini": 21.5,
+  "fim": 22,
   "descricao": "iguana verde na calçada",
   "tags": [
    "animal",
@@ -1075,8 +1075,8 @@
  {
   "id": "gta6-launch-025",
   "fonte": "gta6-launch",
-  "ini": 25,
-  "fim": 25.9,
+  "ini": 25.5,
+  "fim": 26,
   "descricao": "pôr do sol rosa sobre a baía e skyline, roda-gigante",
   "tags": [
    "pordosol",
@@ -1092,8 +1092,8 @@
  {
   "id": "gta6-launch-026",
   "fonte": "gta6-launch",
-  "ini": 26,
-  "fim": 26.9,
+  "ini": 26.5,
+  "fim": 27,
   "descricao": "Lucia e Jason em conversível vermelho",
   "tags": [
    "lucia",
@@ -1109,8 +1109,8 @@
  {
   "id": "gta6-launch-027",
   "fonte": "gta6-launch",
-  "ini": 27,
-  "fim": 28.2,
+  "ini": 27.55,
+  "fim": 28.5,
   "descricao": "homens armados no pântano ao pôr do sol",
   "tags": [
    "pantano",
@@ -1125,8 +1125,8 @@
  {
   "id": "gta6-launch-034",
   "fonte": "gta6-launch",
-  "ini": 34,
-  "fim": 35.2,
+  "ini": 34.55,
+  "fim": 35.5,
   "descricao": "mulheres diante de porta de cofre redonda",
   "tags": [
    "assalto",
@@ -1140,8 +1140,8 @@
  {
   "id": "gta6-launch-038",
   "fonte": "gta6-launch",
-  "ini": 38,
-  "fim": 39.2,
+  "ini": 38.55,
+  "fim": 39.5,
   "descricao": "avião decolando com picape correndo na pista ao entardecer",
   "tags": [
    "aviao",
@@ -1156,8 +1156,8 @@
  {
   "id": "gta6-launch-040",
   "fonte": "gta6-launch",
-  "ini": 40,
-  "fim": 41.2,
+  "ini": 40.55,
+  "fim": 41.5,
   "descricao": "casal encostado em carro vermelho com contêineres",
   "tags": [
    "casal",
@@ -1172,8 +1172,8 @@
  {
   "id": "gta6-launch-044",
   "fonte": "gta6-launch",
-  "ini": 44,
-  "fim": 45.2,
+  "ini": 44.55,
+  "fim": 45.5,
   "descricao": "mulher dançando sob luzes rosa",
   "tags": [
    "festa",
@@ -1188,8 +1188,8 @@
  {
   "id": "gta6-launch-046",
   "fonte": "gta6-launch",
-  "ini": 46,
-  "fim": 46.9,
+  "ini": 46.5,
+  "fim": 47,
   "descricao": "carro esportivo vermelho derrapando em avenida",
   "tags": [
    "carro",
@@ -1204,8 +1204,8 @@
  {
   "id": "gta6-launch-047",
   "fonte": "gta6-launch",
-  "ini": 47,
-  "fim": 47.9,
+  "ini": 47.5,
+  "fim": 48,
   "descricao": "viatura derrapando em avenida com palmeiras",
   "tags": [
    "policia",
@@ -1220,8 +1220,8 @@
  {
   "id": "gta6-launch-048",
   "fonte": "gta6-launch",
-  "ini": 48,
-  "fim": 48.9,
+  "ini": 48.5,
+  "fim": 49,
   "descricao": "motociclista sobre ponte com prédios",
   "tags": [
    "moto",
@@ -1234,8 +1234,8 @@
  {
   "id": "gta6-launch-049",
   "fonte": "gta6-launch",
-  "ini": 49,
-  "fim": 49.9,
+  "ini": 49.5,
+  "fim": 50,
   "descricao": "moto saltando no ar entre prédios",
   "tags": [
    "moto",
@@ -1250,8 +1250,8 @@
  {
   "id": "gta6-launch-052",
   "fonte": "gta6-launch",
-  "ini": 52,
-  "fim": 53.2,
+  "ini": 52.55,
+  "fim": 53.5,
   "descricao": "homem armado num telhado à noite com explosão atrás",
   "tags": [
    "arma",
@@ -1266,8 +1266,8 @@
  {
   "id": "gta6-launch-055",
   "fonte": "gta6-launch",
-  "ini": 55,
-  "fim": 55.9,
+  "ini": 55.5,
+  "fim": 56,
   "descricao": "biplano com fumaça rosa sobre a praia lotada",
   "tags": [
    "aviao",
@@ -1282,8 +1282,8 @@
  {
   "id": "gta6-launch-056",
   "fonte": "gta6-launch",
-  "ini": 56,
-  "fim": 57.2,
+  "ini": 56.55,
+  "fim": 57.5,
   "descricao": "homem musculoso treinando numa academia escura",
   "tags": [
    "pessoas",
@@ -1296,8 +1296,8 @@
  {
   "id": "gta6-launch-103",
   "fonte": "gta6-launch",
-  "ini": 63,
-  "fim": 63.9,
+  "ini": 63.5,
+  "fim": 64,
   "descricao": "traseira de carro esportivo com luzes vermelhas à noite",
   "tags": [
    "carro",
@@ -1310,8 +1310,8 @@
  {
   "id": "gta6-launch-106",
   "fonte": "gta6-launch",
-  "ini": 66,
-  "fim": 67.2,
+  "ini": 66.55,
+  "fim": 67.5,
   "descricao": "casal abraçado na sacada ao pôr do sol",
   "tags": [
    "casal",
@@ -1327,8 +1327,8 @@
  {
   "id": "gta6-launch-112",
   "fonte": "gta6-launch",
-  "ini": 72,
-  "fim": 72.2,
+  "ini": 72.55,
+  "fim": 72.5,
   "descricao": "mulher atirando com fuzil, carro em chamas",
   "tags": [
    "arma",
@@ -1342,8 +1342,8 @@
  {
   "id": "gta6-launch-114",
   "fonte": "gta6-launch",
-  "ini": 74,
-  "fim": 75.2,
+  "ini": 74.55,
+  "fim": 75.5,
   "descricao": "piscina azul à noite com pessoas mergulhando",
   "tags": [
    "piscina",
@@ -1357,8 +1357,8 @@
  {
   "id": "gta6-launch-120",
   "fonte": "gta6-launch",
-  "ini": 80,
-  "fim": 80.9,
+  "ini": 80.5,
+  "fim": 81,
   "descricao": "skyline de Vice City ao anoitecer",
   "tags": [
    "cidade",
@@ -1373,8 +1373,8 @@
  {
   "id": "gta6-preload-011",
   "fonte": "gta6-preload",
-  "ini": 11,
-  "fim": 11.9,
+  "ini": 11.5,
+  "fim": 12,
   "descricao": "lancha de luxo Ships and Giggles cortando o mar",
   "tags": [
    "barco",
@@ -1388,8 +1388,8 @@
  {
   "id": "gta6-preload-018",
   "fonte": "gta6-preload",
-  "ini": 18,
-  "fim": 18.9,
+  "ini": 18.5,
+  "fim": 19,
   "descricao": "avenida de Vice City à noite com carros e neon",
   "tags": [
    "cidade",
@@ -1405,8 +1405,8 @@
  {
   "id": "gta6-preload-019",
   "fonte": "gta6-preload",
-  "ini": 19,
-  "fim": 19.9,
+  "ini": 19.5,
+  "fim": 20,
   "descricao": "mulher dançando com vestido de lantejoulas sob neon",
   "tags": [
    "festa",
@@ -1421,8 +1421,8 @@
  {
   "id": "ps5-recursos-008",
   "fonte": "ps5-recursos",
-  "ini": 8,
-  "fim": 10.2,
+  "ini": 8.55,
+  "fim": 10.5,
   "descricao": "tiroteio contra picape da polícia no meio da rua",
   "tags": [
    "tiro",
@@ -1438,8 +1438,8 @@
  {
   "id": "ps5-recursos-011",
   "fonte": "ps5-recursos",
-  "ini": 11,
-  "fim": 11.9,
+  "ini": 11.5,
+  "fim": 12,
   "descricao": "picape capotando na avenida",
   "tags": [
    "carro",
@@ -1454,8 +1454,8 @@
  {
   "id": "ps5-recursos-012",
   "fonte": "ps5-recursos",
-  "ini": 12,
-  "fim": 14.2,
+  "ini": 12.55,
+  "fim": 14.5,
   "descricao": "mulher levantando barra na academia",
   "tags": [
    "academia",
@@ -1469,8 +1469,8 @@
  {
   "id": "ps5-recursos-017",
   "fonte": "ps5-recursos",
-  "ini": 17,
-  "fim": 18.2,
+  "ini": 17.55,
+  "fim": 18.5,
   "descricao": "moto de trilha em estrada de terra, gameplay",
   "tags": [
    "moto",
@@ -1485,8 +1485,8 @@
  {
   "id": "ps5-recursos-020",
   "fonte": "ps5-recursos",
-  "ini": 20,
-  "fim": 22.2,
+  "ini": 20.55,
+  "fim": 22.5,
   "descricao": "de trás de conversível à noite, trânsito, gameplay",
   "tags": [
    "carro",
@@ -1502,8 +1502,8 @@
  {
   "id": "ps5-recursos-025",
   "fonte": "ps5-recursos",
-  "ini": 25,
-  "fim": 25.9,
+  "ini": 25.5,
+  "fim": 26,
   "descricao": "luta de boxe em ringue improvisado ao ar livre",
   "tags": [
    "briga",
@@ -1517,8 +1517,8 @@
  {
   "id": "ps5-recursos-026",
   "fonte": "ps5-recursos",
-  "ini": 26,
-  "fim": 28.2,
+  "ini": 26.55,
+  "fim": 28.5,
   "descricao": "corrida de carros em circuito com palmeiras",
   "tags": [
    "corrida",
@@ -1533,8 +1533,8 @@
  {
   "id": "ps5-recursos-032",
   "fonte": "ps5-recursos",
-  "ini": 32,
-  "fim": 32.9,
+  "ini": 32.5,
+  "fim": 33,
   "descricao": "duas viaturas na rua de trás, gameplay",
   "tags": [
    "policia",
@@ -1549,8 +1549,8 @@
  {
   "id": "ps5-recursos-033",
   "fonte": "ps5-recursos",
-  "ini": 33,
-  "fim": 33.9,
+  "ini": 33.5,
+  "fim": 34,
   "descricao": "carro e cadeirante em scooter cruzando a rua",
   "tags": [
    "carro",
@@ -1565,8 +1565,8 @@
  {
   "id": "ps5-recursos-034",
   "fonte": "ps5-recursos",
-  "ini": 34,
-  "fim": 35.2,
+  "ini": 34.55,
+  "fim": 35.5,
   "descricao": "carro andando de trás por avenida com palmeiras e prédios",
   "tags": [
    "carro",
@@ -1582,8 +1582,8 @@
  {
   "id": "ps5-recursos-038",
   "fonte": "ps5-recursos",
-  "ini": 38,
-  "fim": 39.2,
+  "ini": 38.55,
+  "fim": 39.5,
   "descricao": "pessoas brigando num galpão",
   "tags": [
    "briga",
@@ -1596,8 +1596,8 @@
  {
   "id": "ps5-recursos-042",
   "fonte": "ps5-recursos",
-  "ini": 42,
-  "fim": 42.9,
+  "ini": 42.5,
+  "fim": 43,
   "descricao": "personagem diante de carro em chamas num estacionamento",
   "tags": [
    "explosao",
@@ -1611,8 +1611,8 @@
  {
   "id": "ps5-recursos-044",
   "fonte": "ps5-recursos",
-  "ini": 44,
-  "fim": 44.9,
+  "ini": 44.5,
+  "fim": 45,
   "descricao": "paraquedista sobre Vice City, vista aérea",
   "tags": [
    "cidade",
@@ -1628,8 +1628,8 @@
  {
   "id": "gta6-t1-003",
   "fonte": "gta6-t1",
-  "ini": 3,
-  "fim": 4.2,
+  "ini": 3.55,
+  "fim": 4.5,
   "descricao": "amanhecer sobre rodovia com carros e skyline",
   "tags": [
    "cidade",
@@ -1645,8 +1645,8 @@
  {
   "id": "gta6-t1-005",
   "fonte": "gta6-t1",
-  "ini": 5,
-  "fim": 6.2,
+  "ini": 5.55,
+  "fim": 6.5,
   "descricao": "cerca de arame farpado ao pôr do sol",
   "tags": [
    "prisao",
@@ -1660,8 +1660,8 @@
  {
   "id": "gta6-t1-008",
   "fonte": "gta6-t1",
-  "ini": 8,
-  "fim": 9.2,
+  "ini": 8.55,
+  "fim": 9.5,
   "descricao": "psicóloga conversa com detenta de uniforme laranja",
   "tags": [
    "lucia",
@@ -1675,8 +1675,8 @@
  {
   "id": "gta6-t1-011",
   "fonte": "gta6-t1",
-  "ini": 11,
-  "fim": 12.2,
+  "ini": 11.55,
+  "fim": 12.5,
   "descricao": "lancha e jet skis no mar turquesa, vista aérea",
   "tags": [
    "barco",
@@ -1691,8 +1691,8 @@
  {
   "id": "gta6-t1-013",
   "fonte": "gta6-t1",
-  "ini": 13,
-  "fim": 14.2,
+  "ini": 13.55,
+  "fim": 14.5,
   "descricao": "praia e prédios de Vice City, vista aérea",
   "tags": [
    "praia",
@@ -1708,8 +1708,8 @@
  {
   "id": "gta6-t1-019",
   "fonte": "gta6-t1",
-  "ini": 19,
-  "fim": 20.2,
+  "ini": 19.55,
+  "fim": 20.5,
   "descricao": "airboat no pântano com luz dourada",
   "tags": [
    "airboat",
@@ -1724,8 +1724,8 @@
  {
   "id": "gta6-t1-023",
   "fonte": "gta6-t1",
-  "ini": 23,
-  "fim": 24.2,
+  "ini": 23.55,
+  "fim": 24.5,
   "descricao": "lancha rápida passando por navio cargueiro no porto",
   "tags": [
    "barco",
@@ -1739,8 +1739,8 @@
  {
   "id": "gta6-t1-025",
   "fonte": "gta6-t1",
-  "ini": 25,
-  "fim": 26.2,
+  "ini": 25.55,
+  "fim": 26.5,
   "descricao": "mulher dançando em carro conversível à noite na cidade",
   "tags": [
    "carro",
@@ -1756,8 +1756,8 @@
  {
   "id": "gta6-t1-027",
   "fonte": "gta6-t1",
-  "ini": 27,
-  "fim": 28.2,
+  "ini": 27.55,
+  "fim": 28.5,
   "descricao": "rua de bairro com carros customizados e grafite",
   "tags": [
    "carro",
@@ -1772,8 +1772,8 @@
  {
   "id": "gta6-t1-031",
   "fonte": "gta6-t1",
-  "ini": 31,
-  "fim": 32.2,
+  "ini": 31.55,
+  "fim": 32.5,
   "descricao": "vista aérea de Vice City à noite sobre a baía",
   "tags": [
    "cidade",
@@ -1789,8 +1789,8 @@
  {
   "id": "gta6-t1-034",
   "fonte": "gta6-t1",
-  "ini": 34,
-  "fim": 35.2,
+  "ini": 34.55,
+  "fim": 35.5,
   "descricao": "multidão na balada com luzes vermelhas",
   "tags": [
    "festa",
@@ -1805,8 +1805,8 @@
  {
   "id": "gta6-t1-037",
   "fonte": "gta6-t1",
-  "ini": 37,
-  "fim": 39.2,
+  "ini": 37.55,
+  "fim": 39.5,
   "descricao": "mulher na piscina de cobertura com skyline ao fundo",
   "tags": [
    "piscina",
@@ -1822,8 +1822,8 @@
  {
   "id": "gta6-t1-045",
   "fonte": "gta6-t1",
-  "ini": 45,
-  "fim": 46.2,
+  "ini": 45.55,
+  "fim": 46.5,
   "descricao": "vista aérea de rua à noite com fumaça e luzes",
   "tags": [
    "cidade",
@@ -1837,8 +1837,8 @@
  {
   "id": "gta6-t1-101",
   "fonte": "gta6-t1",
-  "ini": 61,
-  "fim": 62.2,
+  "ini": 61.55,
+  "fim": 62.5,
   "descricao": "Jason dirigindo picape com a mão no volante",
   "tags": [
    "jason",
@@ -1852,8 +1852,8 @@
  {
   "id": "gta6-t1-110",
   "fonte": "gta6-t1",
-  "ini": 70,
-  "fim": 72.2,
+  "ini": 70.55,
+  "fim": 72.5,
   "descricao": "carro vermelho levantando poeira em estrada de terra",
   "tags": [
    "carro",
@@ -1868,8 +1868,8 @@
  {
   "id": "gta6-t1-113",
   "fonte": "gta6-t1",
-  "ini": 73,
-  "fim": 74.2,
+  "ini": 73.55,
+  "fim": 74.5,
   "descricao": "Lucia debruçada sobre Jason na cama, abajur aceso",
   "tags": [
    "casal",
@@ -1884,8 +1884,8 @@
  {
   "id": "gta6-t1-115",
   "fonte": "gta6-t1",
-  "ini": 75,
-  "fim": 76.2,
+  "ini": 75.55,
+  "fim": 76.5,
   "descricao": "Lucia com a mão no pescoço de Jason na cama",
   "tags": [
    "casal",
@@ -1900,8 +1900,8 @@
  {
   "id": "gta6-t1-117",
   "fonte": "gta6-t1",
-  "ini": 77,
-  "fim": 78.2,
+  "ini": 77.55,
+  "fim": 78.5,
   "descricao": "Lucia e Jason mascarados apontando armas numa loja",
   "tags": [
    "assalto",
@@ -1917,8 +1917,8 @@
  {
   "id": "gta6-t1-055",
   "fonte": "gta6-t1",
-  "ini": 55,
-  "fim": 56.2,
+  "ini": 55.55,
+  "fim": 56.5,
   "descricao": "festa na lama com gente dançando",
   "tags": [
    "festa",
@@ -1933,8 +1933,8 @@
  {
   "id": "gta6-t2-006",
   "fonte": "gta6-t2",
-  "ini": 6,
-  "fim": 7.2,
+  "ini": 6.55,
+  "fim": 7.5,
   "descricao": "ilhas com casas e lancha na baía, vista aérea",
   "tags": [
    "cidade",
@@ -1951,8 +1951,8 @@
  {
   "id": "gta6-t2-008",
   "fonte": "gta6-t2",
-  "ini": 8,
-  "fim": 9.2,
+  "ini": 8.55,
+  "fim": 9.5,
   "descricao": "casa de palafita verde com carro antigo azul",
   "tags": [
    "casa",
@@ -1966,8 +1966,8 @@
  {
   "id": "gta6-t2-011",
   "fonte": "gta6-t2",
-  "ini": 11,
-  "fim": 13.2,
+  "ini": 11.55,
+  "fim": 13.5,
   "descricao": "homem de bermuda subindo no telhado de casa à beira d'água",
   "tags": [
    "keys",
@@ -1981,8 +1981,8 @@
  {
   "id": "gta6-t2-014",
   "fonte": "gta6-t2",
-  "ini": 14,
-  "fim": 17.2,
+  "ini": 14.55,
+  "fim": 17.5,
   "descricao": "homem de camisa havaiana gesticulando ao lado de picape",
   "tags": [
    "personagem",
@@ -1996,8 +1996,8 @@
  {
   "id": "gta6-t2-020",
   "fonte": "gta6-t2",
-  "ini": 20,
-  "fim": 22.2,
+  "ini": 20.55,
+  "fim": 22.5,
   "descricao": "picape numa rua alagada vista da varanda",
   "tags": [
    "carro",
@@ -2011,8 +2011,8 @@
  {
   "id": "gta6-t2-024",
   "fonte": "gta6-t2",
-  "ini": 24,
-  "fim": 26.2,
+  "ini": 24.55,
+  "fim": 26.5,
   "descricao": "homem sem camisa entrando numa casa de madeira",
   "tags": [
    "personagem",
@@ -2026,8 +2026,8 @@
  {
   "id": "gta6-t2-027",
   "fonte": "gta6-t2",
-  "ini": 27,
-  "fim": 29.2,
+  "ini": 27.55,
+  "fim": 29.5,
   "descricao": "homem de óculos e boné dirigindo carro",
   "tags": [
    "personagem",
@@ -2041,8 +2041,8 @@
  {
   "id": "gta6-t2-030",
   "fonte": "gta6-t2",
-  "ini": 30,
-  "fim": 31.2,
+  "ini": 30.55,
+  "fim": 31.5,
   "descricao": "homem sorrindo ao volante com carro rosa ao lado",
   "tags": [
    "personagem",
@@ -2056,8 +2056,8 @@
  {
   "id": "gta6-t2-035",
   "fonte": "gta6-t2",
-  "ini": 35,
-  "fim": 37.2,
+  "ini": 35.55,
+  "fim": 37.5,
   "descricao": "rodovia com placas e avião sobrevoando os prédios",
   "tags": [
    "estrada",
@@ -2072,8 +2072,8 @@
  {
   "id": "gta6-t2-038",
   "fonte": "gta6-t2",
-  "ini": 38,
-  "fim": 41.2,
+  "ini": 38.55,
+  "fim": 41.5,
   "descricao": "homem treinando supino na praia, palmeiras ao fundo",
   "tags": [
    "praia",
@@ -2088,8 +2088,8 @@
  {
   "id": "gta6-t2-042",
   "fonte": "gta6-t2",
-  "ini": 42,
-  "fim": 44.2,
+  "ini": 42.55,
+  "fim": 44.5,
   "descricao": "casal saindo de loja de conveniência com cooler",
   "tags": [
    "loja",
@@ -2103,8 +2103,8 @@
  {
   "id": "gta6-t2-045",
   "fonte": "gta6-t2",
-  "ini": 45,
-  "fim": 47.2,
+  "ini": 45.55,
+  "fim": 47.5,
   "descricao": "de dentro do carro, viatura de polícia na rua com murais",
   "tags": [
    "policia",
@@ -2119,8 +2119,8 @@
  {
   "id": "gta6-t2-048",
   "fonte": "gta6-t2",
-  "ini": 48,
-  "fim": 49.2,
+  "ini": 48.55,
+  "fim": 49.5,
   "descricao": "de dentro do carro, viaturas e policiais ao lado de mural",
   "tags": [
    "policia",
@@ -2135,8 +2135,8 @@
  {
   "id": "gta6-t2-050",
   "fonte": "gta6-t2",
-  "ini": 50,
-  "fim": 51.2,
+  "ini": 50.55,
+  "fim": 51.5,
   "descricao": "torre de presídio com arame farpado e céu azul",
   "tags": [
    "prisao",
@@ -2150,8 +2150,8 @@
  {
   "id": "gta6-t2-052",
   "fonte": "gta6-t2",
-  "ini": 52,
-  "fim": 55.2,
+  "ini": 52.55,
+  "fim": 55.5,
   "descricao": "Jason fala com guarda no guichê do presídio",
   "tags": [
    "prisao",
@@ -2165,8 +2165,8 @@
  {
   "id": "gta6-t2-056",
   "fonte": "gta6-t2",
-  "ini": 56,
-  "fim": 59.2,
+  "ini": 56.55,
+  "fim": 59.5,
   "descricao": "Jason diante do guichê do presídio, guarda atrás da tela",
   "tags": [
    "prisao",
@@ -2180,8 +2180,8 @@
  {
   "id": "gta6-t2-101",
   "fonte": "gta6-t2",
-  "ini": 61,
-  "fim": 62.2,
+  "ini": 61.55,
+  "fim": 62.5,
   "descricao": "Jason de costas diante da cerca do presídio, camiseta Let Freedom Reign",
   "tags": [
    "prisao",
@@ -2195,8 +2195,8 @@
  {
   "id": "gta6-t2-103",
   "fonte": "gta6-t2",
-  "ini": 63,
-  "fim": 65.2,
+  "ini": 63.55,
+  "fim": 65.5,
   "descricao": "Lucia saindo do presídio ao fim da tarde",
   "tags": [
    "lucia",
@@ -2210,8 +2210,8 @@
  {
   "id": "gta6-t2-106",
   "fonte": "gta6-t2",
-  "ini": 66,
-  "fim": 68.2,
+  "ini": 66.55,
+  "fim": 68.5,
   "descricao": "Lucia e Jason frente a frente na rua",
   "tags": [
    "casal",
@@ -2225,8 +2225,8 @@
  {
   "id": "gta6-t2-121",
   "fonte": "gta6-t2",
-  "ini": 81,
-  "fim": 82.2,
+  "ini": 81.55,
+  "fim": 82.5,
   "descricao": "casal sentado na doca ao lado de barco Predator",
   "tags": [
    "barco",
@@ -2243,8 +2243,8 @@
  {
   "id": "gta6-t2-123",
   "fonte": "gta6-t2",
-  "ini": 83,
-  "fim": 84.2,
+  "ini": 83.55,
+  "fim": 84.5,
   "descricao": "pôr do sol no mar visto da doca com luzinhas",
   "tags": [
    "mar",
@@ -2259,8 +2259,8 @@
  {
   "id": "gta6-t2-128",
   "fonte": "gta6-t2",
-  "ini": 88,
-  "fim": 89.2,
+  "ini": 88.55,
+  "fim": 89.5,
   "descricao": "Lucia e Jason na cozinha de casa",
   "tags": [
    "casal",
@@ -2275,8 +2275,8 @@
  {
   "id": "gta6-t2-130",
   "fonte": "gta6-t2",
-  "ini": 90,
-  "fim": 91.2,
+  "ini": 90.55,
+  "fim": 91.5,
   "descricao": "bar Hurricane Roxy lotado, happy hour",
   "tags": [
    "bar",
@@ -2290,8 +2290,8 @@
  {
   "id": "gta6-t2-132",
   "fonte": "gta6-t2",
-  "ini": 92,
-  "fim": 93.2,
+  "ini": 92.55,
+  "fim": 93.5,
   "descricao": "confusão entre dois clientes no balcão do bar",
   "tags": [
    "bar",
@@ -2305,8 +2305,8 @@
  {
   "id": "gta6-t2-134",
   "fonte": "gta6-t2",
-  "ini": 94,
-  "fim": 95.2,
+  "ini": 94.55,
+  "fim": 95.5,
   "descricao": "mulher de vestido dourado andando no barco-bar",
   "tags": [
    "festa",
@@ -2320,8 +2320,8 @@
  {
   "id": "gta6-t2-136",
   "fonte": "gta6-t2",
-  "ini": 96,
-  "fim": 97.2,
+  "ini": 96.55,
+  "fim": 97.5,
   "descricao": "mulher dançando no deque ao pôr do sol",
   "tags": [
    "festa",
@@ -2335,8 +2335,8 @@
  {
   "id": "gta6-t2-138",
   "fonte": "gta6-t2",
-  "ini": 98,
-  "fim": 99.2,
+  "ini": 98.55,
+  "fim": 99.5,
   "descricao": "casal de mãos dadas visto de costas",
   "tags": [
    "casal",
@@ -2350,8 +2350,8 @@
  {
   "id": "gta6-t2-149",
   "fonte": "gta6-t2",
-  "ini": 109,
-  "fim": 110.2,
+  "ini": 109.55,
+  "fim": 110.5,
   "descricao": "policiais conversando num quarto escuro",
   "tags": [
    "policia",
@@ -2365,8 +2365,8 @@
  {
   "id": "gta6-t2-151",
   "fonte": "gta6-t2",
-  "ini": 111,
-  "fim": 112.2,
+  "ini": 111.55,
+  "fim": 112.5,
   "descricao": "mulher de óculos escuros em carro conversível",
   "tags": [
    "mulher",
@@ -2380,8 +2380,8 @@
  {
   "id": "gta6-t2-158",
   "fonte": "gta6-t2",
-  "ini": 118,
-  "fim": 118.9,
+  "ini": 118.5,
+  "fim": 119,
   "descricao": "explosão atrás do vidro, viaturas de polícia em chamas",
   "tags": [
    "policia",
@@ -2396,8 +2396,8 @@
  {
   "id": "gta6-t2-203",
   "fonte": "gta6-t2",
-  "ini": 123,
-  "fim": 124.2,
+  "ini": 123.55,
+  "fim": 124.5,
   "descricao": "casal se abraçando na cama em tom azul",
   "tags": [
    "casal",
@@ -2413,8 +2413,8 @@
  {
   "id": "gta6-t2-209",
   "fonte": "gta6-t2",
-  "ini": 129,
-  "fim": 132.2,
+  "ini": 129.55,
+  "fim": 132.5,
   "descricao": "sala com TV ao fundo e cerveja na mesa",
   "tags": [
    "casa",
@@ -2428,8 +2428,8 @@
  {
   "id": "gta6-t2-214",
   "fonte": "gta6-t2",
-  "ini": 134,
-  "fim": 136.2,
+  "ini": 134.55,
+  "fim": 136.5,
   "descricao": "mulher de colete laranja anda pela sala, homem dormindo no sofá",
   "tags": [
    "casa",
@@ -2443,8 +2443,8 @@
  {
   "id": "gta6-t2-218",
   "fonte": "gta6-t2",
-  "ini": 138,
-  "fim": 139.2,
+  "ini": 138.55,
+  "fim": 139.5,
   "descricao": "helicóptero sobrevoando o pântano atrás de um barco",
   "tags": [
    "helicoptero",
@@ -2461,8 +2461,8 @@
  {
   "id": "gta6-t2-220",
   "fonte": "gta6-t2",
-  "ini": 140,
-  "fim": 140.9,
+  "ini": 140.5,
+  "fim": 141,
   "descricao": "jet ski com casal no mar, lancha ao fundo",
   "tags": [
    "jetski",
@@ -2477,8 +2477,8 @@
  {
   "id": "gta6-t2-221",
   "fonte": "gta6-t2",
-  "ini": 141,
-  "fim": 141.9,
+  "ini": 141.5,
+  "fim": 142,
   "descricao": "casal em jet ski levantando água",
   "tags": [
    "jetski",
@@ -2494,8 +2494,8 @@
  {
   "id": "gta6-t2-222",
   "fonte": "gta6-t2",
-  "ini": 142,
-  "fim": 143.2,
+  "ini": 142.55,
+  "fim": 143.5,
   "descricao": "motociclista de óculos com avião sobrevoando",
   "tags": [
    "moto",
@@ -2509,8 +2509,8 @@
  {
   "id": "gta6-t2-227",
   "fonte": "gta6-t2",
-  "ini": 147,
-  "fim": 147.9,
+  "ini": 147.5,
+  "fim": 148,
   "descricao": "helicóptero perseguindo lancha no mar",
   "tags": [
    "helicoptero",
@@ -2525,8 +2525,8 @@
  {
   "id": "gta6-t2-228",
   "fonte": "gta6-t2",
-  "ini": 148,
-  "fim": 148.9,
+  "ini": 148.5,
+  "fim": 149,
   "descricao": "moto na avenida ao entardecer",
   "tags": [
    "moto",
@@ -2541,8 +2541,8 @@
  {
   "id": "gta6-t2-229",
   "fonte": "gta6-t2",
-  "ini": 149,
-  "fim": 150.2,
+  "ini": 149.55,
+  "fim": 150.5,
   "descricao": "mulher dirigindo conversível à noite",
   "tags": [
    "lucia",
@@ -2556,8 +2556,8 @@
  {
   "id": "gta6-t2-231",
   "fonte": "gta6-t2",
-  "ini": 151,
-  "fim": 152.2,
+  "ini": 151.55,
+  "fim": 152.5,
   "descricao": "homem de camiseta azul dançando numa garagem",
   "tags": [
    "personagem",
@@ -2570,8 +2570,8 @@
  {
   "id": "gta6-t2-234",
   "fonte": "gta6-t2",
-  "ini": 154,
-  "fim": 155.2,
+  "ini": 154.55,
+  "fim": 155.5,
   "descricao": "rodovia ao pôr do sol com palmeiras e skyline",
   "tags": [
    "estrada",
