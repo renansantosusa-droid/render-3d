@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Oswald:wght@500;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// GTÁ SABENDO? #5: "2013 x 2026" (nostalgia, preco e salario). Imagens reais (screenshots oficiais da Rockstar), Ken Burns.
+// Base: gtasabendo1.html (legenda palavra por palavra, P(), tempos.json). Fundo animado trocado por imagens.
+const NOME = "GTÁ SABENDO?", ARROBA = "@gtasabendo";
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch("/gtasabendo5/tempos.json")).json();
+const CENAS = T.cenas;
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+const AM = "#ffd23a", ROSA = "#ff2d78", BR = "#ffffff";
+
+// junta "Gê Tê Á" numa palavra so ("GTÁ") pra legenda
+for (const cn of CENAS) { const o = []; for (let i = 0; i < cn.palavras.length; i++) { const p = cn.palavras[i]; if (norm(p.w) === "ge" && cn.palavras[i + 1] && norm(cn.palavras[i + 1].w) === "te") { o.push({ w: "GTÁ", t: p.t }); i += 2; } else o.push(p); } cn.palavras = o; }
+
+// [arquivo, zoom0, zoom1, fx0, fy0, fx1, fy1]  (foco em fracao da imagem)
+const PLANO = [
+  [["gtav-01-los-santos.jpg", 1.0, 1.12, .3, .5, .55, .5]],
+  [["vice-03-cidade.jpg", 1.0, 1.12, .5, .5, .4, .5]],
+  [["gtav-02-helicoptero.jpg", 1.0, 1.1, .4, .5, .5, .5], ["vice-11-helicoptero-skyline.jpg", 1.0, 1.12, .5, .5, .6, .5]],
+  [["gtav-03-carro.jpg", 1.0, 1.12, .5, .5, .5, .55]],
+  [["vice-10-skyline.jpg", 1.0, 1.12, .4, .5, .55, .5]],
+  [["port-06-cidade.jpg", 1.0, 1.1, .5, .5, .4, .5]],
+  [["gtav-01-los-santos.jpg", 1.0, 1.08, .6, .5, .4, .5]],
+];
+const arqs = [...new Set(PLANO.flat().map((x) => x[0]))];
+const IMG = {};
+await Promise.all(arqs.map((a) => new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(IMG[a] = im); im.onerror = () => no(new Error("imagem " + a)); im.src = "/gtasabendo5/img/" + a; })));
+
+// linha do tempo das imagens
+const SEG = [];
+CENAS.forEach((cn, i) => { const a = i === 0 ? 0 : cn.ini, b = i + 1 < CENAS.length ? CENAS[i + 1].ini : T.total + .5; const n = PLANO[i].length; PLANO[i].forEach((p, j) => SEG.push({ p, a: a + (b - a) * j / n, b: a + (b - a) * (j + 1) / n })); });
+
+function desenha(s, t, alfa) {
+  const [arq, z0, z1, fx0, fy0, fx1, fy1] = s.p, im = IMG[arq], k = clamp((t - s.a) / (s.b - s.a)), e = k * k * (3 - 2 * k);
+  const z = z0 + (z1 - z0) * e, fx = fx0 + (fx1 - fx0) * e, fy = fy0 + (fy1 - fy0) * e;
+  const base = Math.max(W / im.width, H / im.height), sc = base * z, sw = W / sc, sh = H / sc;
+  const sx = clamp(fx * im.width - sw / 2, 0, im.width - sw), sy = clamp(fy * im.height - sh / 2, 0, im.height - sh);
+  g.globalAlpha = alfa; g.imageSmoothingQuality = "high"; g.drawImage(im, sx, sy, sw, sh, 0, 0, W, H); g.globalAlpha = 1;
+}
+function fundo(t) {
+  g.fillStyle = "#000"; g.fillRect(0, 0, W, H);
+  let i = SEG.findIndex((s) => t >= s.a && t < s.b); if (i < 0) i = t < SEG[0].a ? 0 : SEG.length - 1;
+  const s = SEG[i]; desenha(s, t, 1);
+  const f = .25; if (i + 1 < SEG.length && t > s.b - f) { const n = SEG[i + 1]; desenha(n, Math.max(t, n.a), clamp((t - (s.b - f)) / f)); }
+  let gr = g.createLinearGradient(0, 0, 0, 640); gr.addColorStop(0, "rgba(0,0,0,.78)"); gr.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = gr; g.fillRect(0, 0, W, 640);
+  gr = g.createLinearGradient(0, 1150, 0, H); gr.addColorStop(0, "rgba(0,0,0,0)"); gr.addColorStop(.55, "rgba(0,0,0,.6)"); gr.addColorStop(1, "rgba(0,0,0,.85)"); g.fillStyle = gr; g.fillRect(0, 1150, W, H - 1150);
+  return s;
+}
+function contorno(s, x, y, tam, cor, al = "center", lw = 14) { g.font = `900 ${tam}px Nunito`; g.textAlign = al; g.textBaseline = "middle"; g.lineWidth = lw; g.lineJoin = "round"; g.strokeStyle = "#000"; g.strokeText(s, x, y); g.fillStyle = cor; g.fillText(s, x, y); }
+function titulo() {
+  contorno("2013 → 2026", W / 2, 160, 124, AM, "center", 18);
+  contorno("da última vez que saiu um GTA", W / 2, 290, 54, BR);
+}
+function wt(ci, w) { const p = CENAS[ci].palavras.find((x) => norm(x.w) === w); return p ? p.t : CENAS[ci].ini; }
+const CARDS = [
+  { c0: 0, c1: 1, tit: "DÓLAR", la: "set/2013", a: "R$ 2,22", sa: "fim do mês", lb: "nov/2026", b: "R$ 5,65", sb: "13/11", tb: () => CENAS[1].ini },
+  { c0: 2, c1: 2, tit: "SALÁRIO MÍNIMO", la: "2013", a: "R$ 678", sa: "", lb: "2026", b: "R$ 1.621", sb: "", tb: () => wt(2, "hoje") },
+  { c0: 3, c1: 4, tit: "QUANTO O GTA PESA NO SALÁRIO", la: "GTA 5", a: "30%", sa: "R$ 199,90 na pré-venda", lb: "GTA 6", b: "28%", sb: "R$ 449,90", tb: () => CENAS[4].ini },
+  { c0: 5, c1: 5, tit: "QUANTO SUBIU DESDE 2013", la: "DÓLAR", a: "+155%", sa: "", lb: "GTA", b: "+125%", sb: "", tb: () => wt(5, "jogo") },
+  { c0: 6, c1: 6, tit: "COMENTA AÍ", solo: ["ONDE VOCÊ TAVA", "EM SETEMBRO DE 2013?"] },
+];
+function fit(s, tam, max, fam = "Nunito", peso = 900) { g.font = peso + " " + tam + "px " + fam; const w = g.measureText(s).width; return w > max ? Math.floor(tam * max / w) : tam; }
+function card(t) {
+  const c = CARDS.find((x) => t >= (x.c0 === 0 ? 0 : CENAS[x.c0].ini) && t < (x.c1 + 1 < CENAS.length ? CENAS[x.c1 + 1].ini : T.total + 1)); if (!c) return;
+  const ini = c.c0 === 0 ? 0 : CENAS[c.c0].ini, k = ease((t - ini) / .3), cx = 540, cy = 880, pw = 980, ph = c.solo ? 380 : 560;
+  g.save(); g.globalAlpha = k; g.translate(cx, cy + (1 - k) * 40);
+  g.fillStyle = "rgba(0,0,0,.66)"; g.beginPath(); g.roundRect(-pw / 2, -ph / 2, pw, ph, 44); g.fill(); g.lineWidth = 6; g.strokeStyle = ROSA; g.stroke();
+  const ts = fit(c.tit, 54, 900, "Oswald", 700); g.font = "700 " + ts + "px Oswald"; g.fillStyle = BR; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(c.tit, 0, -ph / 2 + 60);
+  if (c.solo) { contorno(c.solo[0], 0, -10, fit(c.solo[0], 100, 900), AM, "center", 14); contorno(c.solo[1], 0, 100, fit(c.solo[1], 64, 900), BR, "center", 12); g.restore(); return; }
+  const kb = ease((t - c.tb()) / .3), side = (x, lab, val, sub, al) => {
+    g.globalAlpha = al; g.font = "500 44px Oswald"; g.fillStyle = "rgba(255,255,255,.75)"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(lab, x, -90);
+    contorno(val, x, 20, fit(val, 140, 400), BR === "#fff" ? AM : AM, "center", 16);
+    if (sub) { g.font = "500 36px Oswald"; g.fillStyle = "rgba(255,255,255,.8)"; g.textAlign = "center"; g.fillText(sub, x, 130); } };
+  side(-245, c.la, c.a, c.sa, k); side(245, c.lb, c.b, c.sb, kb * k);
+  g.globalAlpha = k; contorno("→", 0, 20, 120, ROSA, "center", 12);
+  g.restore();
+}
+const DISP = { seis: "6" };
+const GRUPOS = []; for (const cn of CENAS) for (let i = 0; i < cn.palavras.length; i += 3) GRUPOS.push({ ws: cn.palavras.slice(i, i + 3), fim: (cn.palavras[i + 3] || { t: cn.fim + .15 }).t });
+function legenda(t) {
+  const gr = GRUPOS.find((x) => t >= x.ws[0].t && t < x.fim); if (!gr) return;
+  const ws = gr.ws.map((p) => (DISP[norm(p.w)] || p.w).toUpperCase().replace(/[.,!?;:]+$/, "")); let tam = 88; g.font = `900 ${tam}px Nunito`; let lw = ws.map((w) => g.measureText(w).width), esp = 24;
+  const larg = () => lw.reduce((a, b) => a + b, 0) + esp * (ws.length - 1); if (larg() > 960) { tam = Math.floor(tam * 960 / larg()); g.font = `900 ${tam}px Nunito`; lw = ws.map((w) => g.measureText(w).width); esp = 18; }
+  let x = W / 2 - larg() / 2; const k = ease((t - gr.ws[0].t) / .1), y = 1430 + (1 - k) * 18;
+  ws.forEach((w, i) => { const ativa = t >= gr.ws[i].t && (i === ws.length - 1 || t < gr.ws[i + 1].t);
+    g.textAlign = "left"; g.textBaseline = "middle"; g.lineWidth = 14; g.lineJoin = "round"; g.strokeStyle = "#000"; g.globalAlpha = k; g.strokeText(w, x, y); g.fillStyle = ativa ? AM : BR; g.fillText(w, x, y); g.globalAlpha = 1; x += lw[i] + esp; });
+}
+function selo(s) {
+  g.font = "700 40px Oswald"; const w = g.measureText(NOME).width + 50, h = 66, x = W / 2 - w / 2, y = 1600;
+  g.fillStyle = ROSA; g.beginPath(); g.roundRect(x, y - h / 2, w, h, h / 2); g.fill(); g.fillStyle = BR; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(NOME, W / 2, y + 2);
+  g.font = "500 38px Oswald"; g.fillStyle = "rgba(255,255,255,.92)"; g.fillText(ARROBA, W / 2, y + 74);
+  g.font = "500 26px Oswald"; g.fillStyle = "rgba(255,255,255,.7)";
+  g.fillText("Imagens: Rockstar Games", W / 2, y + 130);
+}
+window.renderFrame = (t) => { const s = fundo(t); titulo(); card(t); legenda(t); selo(s); };
+await document.fonts.load("900 40px Nunito"); await document.fonts.load("700 40px Oswald"); await document.fonts.load("500 40px Oswald"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>
