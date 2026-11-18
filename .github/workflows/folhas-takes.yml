@@ -23,7 +23,7 @@ jobs:
           F=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
           for v in fontes/*.mp4; do
             id=$(basename "$v" .mp4)
-            "$FFMPEG" -y -v error -i "$v" -an -vf "fps=1,scale=320:180,drawtext=fontfile=$F:text='%{pts\:gmtime\:0\:%M\:%S}':x=6:y=6:fontsize=24:fontcolor=yellow:box=1:boxcolor=black@0.7,tile=6x4:padding=2" -q:v 3 "folhas/${id}-%02d.jpg"
+            "$FFMPEG" -y -v warning -i "$v" -an -vf "fps=1,scale=320:180,drawtext=fontfile=$F:text='%{pts\:gmtime\:0\:%M\:%S}':x=6:y=6:fontsize=28:fontcolor=yellow:box=1:boxcolor=black@0.7,tile=6x4:padding=2" -q:v 3 "folhas/${id}-%02d.jpg"
           done
           ls folhas | wc -l
       - uses: actions/upload-artifact@v4
