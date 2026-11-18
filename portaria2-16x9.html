@@ -790,18 +790,19 @@ function crachaPeca(t, k) { fundoBorrado("#1c2a3e", "#04060a"); g.save(); camera
 
 // ---------- peças do Capítulo 2 (O elevador das três): monitor da calçada + tomadas ----------
 const VERMG = "rgba(255,40,30,A)";
+function crachaPorteiro(x, y, s) { rr(x - 22 * s, y - 14 * s, 44 * s, 56 * s, 5 * s, "#f4f0e0"); rr(x - 22 * s, y - 14 * s, 44 * s, 14 * s, 5 * s, "#1d4a8a"); circ(x, y + 18 * s, 9 * s, "#a87650"); }
 function camMonitor(t, k, o = {}) { const { homem = 0, vira = 0, a = 1 } = o; fundoBorrado("#0c1210", "#020403"); rr(100, 520, 880, 920, 28, "#16181b");
   g.save(); g.beginPath(); g.rect(140, 560, 800, 840); g.clip();
   const gr = g.createLinearGradient(0, 560, 0, 1400); gr.addColorStop(0, "#12201a"); gr.addColorStop(1, "#1d2a24"); g.fillStyle = gr; g.fillRect(140, 560, 800, 840);
   rect(140, 1120, 800, 280, "#23302a"); rect(140, 1110, 800, 10, "#3a4a42"); rect(250, 700, 16, 420, "#0a1410"); glow(258, 700, 260, "rgba(255,230,160,A)", .35); circ(258, 700, 14, "#fff0b0");
   if (homem) { g.globalAlpha = a; const hx = 640, hy2 = 1370, hs = .66; const front = vira > .5; pessoa(hx, hy2, hs, { ...dk(JORGE, -34), expr: "neutro", piscar: 1, braco: .1, braco2: .1 });
-    if (!front) { circ(hx, hy2 - 420 * hs, 58 * hs, "#7a7a7a"); } else { crachaJ(hx + 28 * hs, hy2 - 270 * hs, hs * .9); } g.globalAlpha = 1; }
+    if (!front) { circ(hx, hy2 - 420 * hs, 58 * hs, "#7a7a7a"); } else { crachaPorteiro(hx + 28 * hs, hy2 - 270 * hs, hs * .9); } g.globalAlpha = 1; }
   for (let i = 0; i < 14; i++) rect(150 + i * 60, 1010, 8, 390, "#0a0f0d"); rect(140, 1010, 800, 10, "#0a0f0d");
   for (let y = 560; y < 1400; y += 8) rect(140, y, 800, 2, "rgba(0,0,0,.2)"); g.fillStyle = "rgba(60,255,140,.07)"; g.fillRect(140, 560, 800, 840);
   if (Math.sin(t * 31) > .93) rect(140, 700 + ((t * 700) % 500), 800, 14, "rgba(200,255,220,.12)");
   txt("CAM 02 · CALÇADA", 170, 600, 28, "#9affc0", 800, "left", "Nunito"); circ(890, 600, 9, (t * 2) % 1 < .6 ? "#ff3a2a" : "#4a1410");
   g.restore(); g.strokeStyle = "#2a2e33"; g.lineWidth = 10; g.strokeRect(140, 560, 800, 840); }
-function corpoJorge(t, k, parte) { fundoBorrado("#1d2d3e", "#05080e"); g.save(); camera(k, { z0: 1.15, z1: 1.35, cy: 1100 }); pessoa(540, 1950, 2.6, { ...dk(JORGE, -20), expr: "neutro", piscar: piscar(t), braco: 0, braco2: 0 }); if (parte === "cracha") { crachaJ(660, 1300, 5); } g.restore(); }
+function corpoJorge(t, k, parte) { fundoBorrado("#1d2d3e", "#05080e"); g.save(); camera(k, { z0: 1.15, z1: 1.35, cy: 1100 }); pessoa(540, 1950, 2.6, { ...dk(JORGE, -20), expr: "neutro", piscar: piscar(t), braco: 0, braco2: 0 }); if (parte === "cracha") { crachaPorteiro(660, 1300, 5); } g.restore(); }
 const T = {
   interfone(t, k) { interfoneG(t, k, { tela: 1, vibra: 1, ondas: 1, z0: 1.0, z1: 1.2 }); tinta("#ff1a1a", .08); vinheta(.88); },
   predio13(t, k) { g.save(); camera(k, { z0: 1.3, z1: 1.0, cy: 600 }); predioFach(t, k, { treze: 1, luzes: 0 }); g.restore(); palavraP("NÃO EXISTE", t, P(1, "existe") - .05, 1000, "#ff5a4a", 120); vinheta(.9); },
