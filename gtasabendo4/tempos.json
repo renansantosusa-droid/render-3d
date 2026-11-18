@@ -1,0 +1,361 @@
+{
+ "total": 27.74,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.99,
+   "texto": "No Gê Tê Á seis, o jacaré não é o bicho mais perigoso do pântano.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 0.15
+    },
+    {
+     "w": "Gê",
+     "t": 0.27
+    },
+    {
+     "w": "Tê",
+     "t": 0.47
+    },
+    {
+     "w": "Á",
+     "t": 0.67
+    },
+    {
+     "w": "seis",
+     "t": 0.758
+    },
+    {
+     "w": "o",
+     "t": 1.31
+    },
+    {
+     "w": "jacaré",
+     "t": 1.41
+    },
+    {
+     "w": "não",
+     "t": 1.87
+    },
+    {
+     "w": "é",
+     "t": 2.07
+    },
+    {
+     "w": "o",
+     "t": 2.19
+    },
+    {
+     "w": "bicho",
+     "t": 2.27
+    },
+    {
+     "w": "mais",
+     "t": 2.598
+    },
+    {
+     "w": "perigoso",
+     "t": 2.85
+    },
+    {
+     "w": "do",
+     "t": 3.377
+    },
+    {
+     "w": "pântano",
+     "t": 3.51
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.14,
+   "fim": 11.66,
+   "texto": "A descrição oficial da Rockstar diz que os jacarés são a atração mais famosa, mas tem predadores bem mais mortais nos mangues.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 4.14
+    },
+    {
+     "w": "descrição",
+     "t": 4.277
+    },
+    {
+     "w": "oficial",
+     "t": 4.76
+    },
+    {
+     "w": "da",
+     "t": 5.233
+    },
+    {
+     "w": "Rockstar",
+     "t": 5.388
+    },
+    {
+     "w": "diz",
+     "t": 5.94
+    },
+    {
+     "w": "que",
+     "t": 6.32
+    },
+    {
+     "w": "os",
+     "t": 6.407
+    },
+    {
+     "w": "jacarés",
+     "t": 6.52
+    },
+    {
+     "w": "são",
+     "t": 7.06
+    },
+    {
+     "w": "a",
+     "t": 7.22
+    },
+    {
+     "w": "atração",
+     "t": 7.3
+    },
+    {
+     "w": "mais",
+     "t": 7.788
+    },
+    {
+     "w": "famosa",
+     "t": 8.02
+    },
+    {
+     "w": "mas",
+     "t": 8.84
+    },
+    {
+     "w": "tem",
+     "t": 9.06
+    },
+    {
+     "w": "predadores",
+     "t": 9.228
+    },
+    {
+     "w": "bem",
+     "t": 9.82
+    },
+    {
+     "w": "mais",
+     "t": 10.108
+    },
+    {
+     "w": "mortais",
+     "t": 10.38
+    },
+    {
+     "w": "nos",
+     "t": 10.9
+    },
+    {
+     "w": "mangues",
+     "t": 11.084
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 11.81,
+   "fim": 13.89,
+   "texto": "Qual? A Rockstar não revelou.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 11.81
+    },
+    {
+     "w": "A",
+     "t": 12.41
+    },
+    {
+     "w": "Rockstar",
+     "t": 12.658
+    },
+    {
+     "w": "não",
+     "t": 13.15
+    },
+    {
+     "w": "revelou",
+     "t": 13.383
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 14.04,
+   "fim": 20.12,
+   "texto": "No mundo real, a píton birmanesa é uma espécie invasora nos Everglades, que inspiram os Grassrivers.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 14.04
+    },
+    {
+     "w": "mundo",
+     "t": 14.24
+    },
+    {
+     "w": "real",
+     "t": 14.504
+    },
+    {
+     "w": "a",
+     "t": 15.04
+    },
+    {
+     "w": "píton",
+     "t": 15.16
+    },
+    {
+     "w": "birmanesa",
+     "t": 15.52
+    },
+    {
+     "w": "é",
+     "t": 16.16
+    },
+    {
+     "w": "uma",
+     "t": 16.32
+    },
+    {
+     "w": "espécie",
+     "t": 16.5
+    },
+    {
+     "w": "invasora",
+     "t": 16.9
+    },
+    {
+     "w": "nos",
+     "t": 17.52
+    },
+    {
+     "w": "Everglades",
+     "t": 17.688
+    },
+    {
+     "w": "que",
+     "t": 18.42
+    },
+    {
+     "w": "inspiram",
+     "t": 18.657
+    },
+    {
+     "w": "os",
+     "t": 19.133
+    },
+    {
+     "w": "Grassrivers",
+     "t": 19.293
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 20.27,
+   "fim": 24.35,
+   "texto": "Minha opinião: vai ter bicho muito pior que jacaré por lá.",
+   "palavras": [
+    {
+     "w": "Minha",
+     "t": 20.27
+    },
+    {
+     "w": "opinião",
+     "t": 20.563
+    },
+    {
+     "w": "vai",
+     "t": 21.23
+    },
+    {
+     "w": "ter",
+     "t": 21.75
+    },
+    {
+     "w": "bicho",
+     "t": 21.95
+    },
+    {
+     "w": "muito",
+     "t": 22.497
+    },
+    {
+     "w": "pior",
+     "t": 22.91
+    },
+    {
+     "w": "que",
+     "t": 23.27
+    },
+    {
+     "w": "jacaré",
+     "t": 23.45
+    },
+    {
+     "w": "por",
+     "t": 23.91
+    },
+    {
+     "w": "lá",
+     "t": 24.11
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 24.5,
+   "fim": 27.14,
+   "texto": "Qual bicho você acha que é? Comenta aí.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 24.5
+    },
+    {
+     "w": "bicho",
+     "t": 24.78
+    },
+    {
+     "w": "você",
+     "t": 25.124
+    },
+    {
+     "w": "acha",
+     "t": 25.42
+    },
+    {
+     "w": "que",
+     "t": 25.6
+    },
+    {
+     "w": "é",
+     "t": 25.86
+    },
+    {
+     "w": "Comenta",
+     "t": 26.29
+    },
+    {
+     "w": "aí",
+     "t": 26.74
+    }
+   ]
+  }
+ ]
+}
