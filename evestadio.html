@@ -327,6 +327,8 @@ document.body.prepend(renderer.domElement);
 const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 420);
 const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
 mundo.setPlacar(2, 1); mundo.setPlacarV(5, 4);
+// etiquetas pequenas de nome de área (sprites a 2,4 m do chão) ficavam gigantes na frente da câmera: somem no vídeo
+cena.traverse((o) => { if (o.isSprite && Math.abs(o.position.y - 2.4) < .01) o.visible = false; });
 const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(12345);
 const GENTE = [];
 const PC = PISTA_C;
@@ -357,7 +359,7 @@ const medalha = new THREE.Group();
   const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace;
   for (const [z, ry] of [[.16, 0], [-.16, Math.PI]]) { const f = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 1.8), new THREE.MeshBasicMaterial({ map: tx, transparent: true })); f.position.z = z; f.rotation.y = ry; medalha.add(f); }
   for (const [x, cor, rz] of [[-.45, 0x1fae4b, .18], [.45, 0xffd23f, -.18]]) { const fita = new THREE.Mesh(new THREE.BoxGeometry(.8, 2.2, .08), new THREE.MeshLambertMaterial({ color: cor })); fita.position.set(x, 2.3, 0); fita.rotation.z = rz; medalha.add(fita); }
-  medalha.position.set(0, 3.6, -3.5); medalha.visible = false; cena.add(medalha);
+  medalha.position.set(0, 3.2, -4); medalha.visible = false; cena.add(medalha);
 }
 const NCF = 90, confete = new THREE.InstancedMesh(new THREE.BoxGeometry(.28, .06, .18), new THREE.MeshBasicMaterial({ color: 0xffffff }), NCF); confete.frustumCulled = false; cena.add(confete);
 const CF = Array.from({ length: NCF }, (_, i) => { confete.setColorAt(i, new THREE.Color([0x1fae4b, 0xffd23f, 0x2b59c3, 0xffffff][i % 4])); return { x: (r() - .5) * 18, z: -3.5 + (r() - .5) * 10, ph: r(), v: 3 + r() * 2.5, sp: r() * 8 }; });
@@ -373,7 +375,7 @@ const T = [
   [C(4), 0, -27, 22, 11, 16, 8],
   [P(4, "verde") - .2, 0, -27, 15, 6, 11, 4.5],
   [P(4, "quem") - .15, 0, -27, 12, 4, 9, 3.5],
-  [C(5), 0, -2, 14, 5, 10, 4],
+  [C(5), 0, -2, 22, 10, 19, 9],
   [C(6), 0, -2, 140, 130, 120, 110, 1],
 ];
 const CHIPS = [
@@ -422,7 +424,7 @@ function renderFrame(t) {
   mundo.setCorrida(t < LARGA ? "🏃 LARGADA" : "🏃 VALENDO!");
   // medalha + confete na cena 5
   const kM = pop(t, C(5) + .1, .5) * (t < C(6) ? 1 : 0);
-  medalha.visible = kM > 0; medalha.scale.setScalar(Math.max(.001, kM)); medalha.position.y = 3.6 + Math.sin(t * 2.2) * .15; medalha.rotation.y = t * 1.8;
+  medalha.visible = kM > 0; medalha.scale.setScalar(Math.max(.001, kM)); medalha.position.y = 3.2 + Math.sin(t * 2.2) * .15; medalha.rotation.y = t * 1.8;
   const vis = entre(t, C(5) + .3, C(6)) ? 1 : 0.0001;
   for (let j = 0; j < NCF; j++) { const c = CF[j], f = ((t * c.v / 14 + c.ph) % 1); o3.position.set(c.x + Math.sin(t * 2 + c.sp) * .8, 14 - f * 14, c.z); o3.rotation.set(t * 5 + c.sp, t * 3, t * 4); o3.scale.setScalar(vis); o3.updateMatrix(); confete.setMatrixAt(j, o3.matrix); }
   confete.instanceMatrix.needsUpdate = true;
