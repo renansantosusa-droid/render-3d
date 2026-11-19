@@ -229,7 +229,7 @@ function montarCenario(cena) {
     for (let i = 0; i < NEQ; i++) { const h = 1 + 3.2 * Math.abs(Math.sin(t * 4.3 + i * .7) * Math.sin(t * 2.1 + i * .31)); m4.makeScale(1, h, 1); m4.setPosition((i - NEQ / 2 + .5) * .84, 1.7 + h / 2, -44.3); eq.setMatrixAt(i, m4); }
     eq.instanceMatrix.needsUpdate = true;
     banda.forEach((b, i) => { b.position.y = 1.7 + Math.abs(Math.sin(t * (i ? 6 : 4.4) + i)) * (i ? .55 : .3); b.rotation.z = Math.sin(t * 3 + i) * .1; });
-    canhoes.forEach((c, i) => { c.rotation.x = -.42 + Math.sin(t * .9 + i) * .28; c.rotation.z = Math.sin(t * 1.3 + i * 1.6) * .42; });
+    canhoes.forEach((c, i) => { c.visible = !globalThis.__semCanhao; c.rotation.x = -.42 + Math.sin(t * .9 + i) * .28; c.rotation.z = Math.sin(t * 1.3 + i * 1.6) * .42; });
     confete.passo(t, 2.4);
   }
   const alvosBarraca = barracas.map((b) => b.alvo);
@@ -356,8 +356,8 @@ const T = [
   [C(3), 0, -30, 26, 16, 19, 11],
   [P(3, "campinho") - .15, 38, 0, 22, 18, 19, 15],
   [P(3, "loja") - .15, -4.5, 9, 13, 4.5, 12, 4, 0, 0, 4.5],
-  [C(4), -1.6, -33.5, 6.5, 3, 5, 2.7],
-  [P(4, "prefeito") - .25, 1.6, -33.5, 6.5, 3, 5, 2.7],
+  [C(4), -1.6, -33.5, 4.8, 2.4, 4, 2.2, 0, 0, undefined, 1],
+  [P(4, "prefeito"), 1.6, -33.5, 4.8, 2.4, 4, 2.2, 0, 0, undefined, 1],
   [C(5), 0, 1, 22, 13, 18, 11],
   [C(6), 0, -2, 74, 72, 64, 62, 1],
 ];
@@ -383,7 +383,7 @@ const tc = (el, k, x = true) => el.style.transform = (x ? "translateX(-50%) " : 
 
 function renderFrame(t) {
   const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
-  const dist = s[3] + (s[5] - s[3]) * k, alt = s[4] + (s[6] - s[4]) * k, giro = s[9] === undefined ? (k - .5) * 5 : 0;
+  const dist = s[3] + (s[5] - s[3]) * k, alt = s[4] + (s[6] - s[4]) * k, giro = s[9] === undefined && !s[10] ? (k - .5) * 5 : 0;
   const lx = s[9] === undefined ? s[1] : s[1] + (s[9] - s[1]) * k;
   cam.position.set(lx + giro, alt, s[2] + dist); cam.lookAt(lx, 1.5, s[2] - 2); cam.updateMatrixWorld();
   cena.fog.far = s[7] ? 500 : 110; cena.fog.near = s[7] ? 300 : 48;
@@ -398,11 +398,12 @@ function renderFrame(t) {
     bonecos.poe(n++, x, pulo, z, danca ? Math.sin(t * 6 + p.fase) * .13 : 0, p.cor, p.id);
   }
   // governador (coroa grande) e prefeito (cartola) chegam andando pela frente do palco
-  const xg = -1.6 - 4.2 * (1 - prog(t, C(4) + .05, C(4) + .9)), xp = 1.6 + 4.2 * (1 - prog(t, P(4, "prefeito") - .25, P(4, "prefeito") + .6));
+  const xg = -1.6 - 4.2 * (1 - prog(t, C(4) + .05, C(4) + .9)), xp = 1.6 + 4.2 * (1 - prog(t, P(4, "prefeito") - .1, P(4, "prefeito") + .7));
   bonecos.poe(n++, xg, Math.abs(Math.sin(t * 9)) * .16, -33.5, Math.sin(t * 4.5) * .06, 1, 901, -1, t, -1, 2);
   bonecos.poe(n++, xp, Math.abs(Math.sin(t * 9 + 1)) * .16, -33.5, Math.sin(t * 4.5 + 1) * .06, 3, 902, -1, t, -1, 1);
   bonecos.fim(n);
   mundo.bola.position.x = 38 + Math.sin(t * 1.1) * 8; mundo.bola.position.z = Math.sin(t * 1.9) * 5; mundo.bola.rotation.z = -t * 5;
+  globalThis.__semCanhao = entre(t, C(4) - .3, C(5)); // sem os feixes de luz do palco estourando o governador e o prefeito
   mundo.atualizar(t, s[1], s[2], !!s[7]);
   // "+20" estoura na hora do "vinte"
   const tv = P(5, "vinte"), kv = pop(t, tv, .35) * (entre(t, tv, C(6)) ? 1 : 0); elG.textContent = kv > 0 ? "+20" : ""; elG.style.opacity = kv > 0 ? 1 : 0; tc(elG, Math.max(.01, kv));
