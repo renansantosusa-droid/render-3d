@@ -1,0 +1,22 @@
+{
+ "nome": "radar96-filhos-v5",
+ "obs": "19/11: repete radar31/81/90 (filhos) com IMG_7806 (outro take do sling, contraluz). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7806_0_7.6.MOV",
+   "inicio": 0,
+   "duracao": 7.6
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Amiga, você pode ser incrível…\nmas se não tem FILHO PEQUENO,\nnão dá pra me comparar. Desculpa.",
+   "y": 0.03
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 5.2
+  }
+ ]
+}
