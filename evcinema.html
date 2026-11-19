@@ -1,0 +1,614 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0a1633;position:relative}canvas{display:block}
+.ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
+#marca{top:70px;left:50%;background:#fff;color:#1d5e2a;font-size:46px;padding:14px 36px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap;letter-spacing:1px}
+#marca b{color:#2fa34a}
+#chip{top:250px;left:50%;white-space:nowrap;background:rgba(18,52,24,.9);border-radius:34px;padding:10px 40px 22px;text-align:center;font-size:84px;color:#ffd23f;line-height:1.05}
+#chip small{display:block;font-size:50px;color:#fff}
+#legenda{top:1640px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}
+#legenda.am{color:#ffd23f}
+#grande{top:760px;left:50%;font-size:230px;color:#ffd23f;-webkit-text-stroke:9px #14204a;paint-order:stroke fill;white-space:nowrap}
+#cta{left:60px;right:60px;top:1160px;background:#fff;border:8px solid #14204a;border-radius:44px;box-shadow:0 12px 0 #14204a;text-align:center;padding:30px 20px 34px;color:#14204a}
+#cta .l1{font-size:76px;line-height:1.05}
+#cta .l2{font-size:46px;color:#1d5e2a;margin-top:10px}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from "three";
+const FESTA = (() => {
+
+// Cenário da Festa da Turma: praça de Natal no meio e 5 ambientes em volta. Tudo em função do tempo t, sem sorteio:
+// a mesma função desenha a página ao vivo e a prévia em vídeo (animacoes-3d/festaprevia).
+const LIMITE = 56;
+const AREAS = [
+  { id: "praca", nome: "🎄 Praça de Natal", x: 0, z: 0, r: 15 },
+  { id: "palco", nome: "🎤 Palco", x: 0, z: -36, r: 21 },
+  { id: "campinho", nome: "⚽ Pênaltis", x: 38, z: 0, r: 17 },
+  { id: "pinta", nome: "🎨 Pinta o Chão", x: -38, z: 0, r: 17 },
+  { id: "corrida", nome: "🏃 Corrida", x: -26, z: 32, r: 16 },
+  { id: "volei", nome: "🏐 Vôlei", x: 26, z: 34, r: 15 },
+];
+const CAMPO = { x0: 26, x1: 50, z0: -8, z1: 8, gol: 2.5 };
+const PISTA_C = { x0: -38, x1: -12, z0: 28, z1: 36, lx0: -43 }; // corrida: largada entre lx0 e x0, chegada em x1
+const PG = { cx: -38, cz: 0, n: 12, tam: 2.2 }; // Pinta o Chão: grade 12x12 (igual ao servidor)
+const QV = { x0: 16, x1: 36, z0: 28, z1: 40, rede: 26 }; // quadra de vôlei
+const PISTA = 9, TAM = 1.6, PISTA_Z = -27;
+const naPista = (x, z) => Math.abs(x) < PISTA * TAM / 2 && Math.abs(z - PISTA_Z) < PISTA * TAM / 2;
+const areaDe = (x, z) => AREAS.filter((a) => Math.hypot(x - a.x, z - a.z) <= a.r).sort((a, b) => Math.hypot(x - a.x, z - a.z) - Math.hypot(x - b.x, z - b.z))[0] || null;
+const CORES = [0xe4573a, 0x2b59c3, 0xffb020, 0x8e5cd9, 0xff6fa8, 0x18a39a, 0xff7a45, 0x4cc26a].map((c) => new THREE.Color(c));
+const CORES_PISTA = [0x7a1f6b, 0x1c3f8f, 0x0f6f6a, 0x8a3f12, 0x4b2a8a, 0x8a1f3a].map((c) => new THREE.Color(c));
+// cor de cada estado no Pinta o Chão (0 = vazio, 1..27 = UFS, 28 = sem casa)
+const CORES_UF = [0x9aa3b8, ...Array.from({ length: 27 }, (_, i) => new THREE.Color().setHSL((i * 0.381) % 1, .78, i % 2 ? .5 : .62).getHex()), 0xf2f2f2];
+const PELES = [0xffdfc4, 0xf0c29a, 0xd99a6c, 0xa86b42, 0x7a4a2c].map((c) => new THREE.Color(c));
+const UFS = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+
+// sorteio com semente: o cenário sai igual em todo aparelho
+const semente = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const mats = new Map();
+const mat = (cor, emis = 0, forca = .6) => { const k = `${cor}-${emis}-${forca}`; if (!mats.has(k)) mats.set(k, new THREE.MeshLambertMaterial({ color: cor, ...(emis ? { emissive: emis, emissiveIntensity: forca } : {}) })); return mats.get(k); };
+function caixa(g, w, h, d, cor, x, y, z, emis) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(cor, emis)); m.position.set(x, y, z); g.add(m); return m; }
+function textura(w, h, pinta) { const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d"); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const refaz = (...a) => { pinta(g, w, h, ...a); t.needsUpdate = true; }; refaz(); return { t, refaz }; }
+function placa(g, w, h, px, py, pinta, x, y, z) { const tx = textura(px, py, pinta), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tx.t, fog: false, toneMapped: false })); m.position.set(x, y, z); g.add(m); return tx; }
+const letra = (g, txt, x, y, tam, cor = "#fff", al = "center") => { g.fillStyle = cor; g.font = `900 ${tam}px Nunito, sans-serif`; g.textAlign = al; g.textBaseline = "middle"; g.fillText(txt, x, y); };
+function rotulo(g, txt, x, y, z, alt = 2.2, fundo = "#fff", cor = "#14204a") {
+  const m = document.createElement("canvas").getContext("2d"); m.font = "900 56px Nunito, sans-serif"; const w = Math.ceil(m.measureText(txt).width) + 60;
+  const tx = textura(w, 88, (c, W, H) => { c.fillStyle = fundo; c.beginPath(); c.roundRect(3, 3, W - 6, H - 6, 40); c.fill(); c.lineWidth = 6; c.strokeStyle = "#14204a"; c.stroke(); letra(c, txt, W / 2, H / 2 + 3, 56, cor); });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx.t, depthTest: false, fog: false })); s.scale.set(alt * w / 88, alt, 1); s.position.set(x, y, z); s.renderOrder = 5; g.add(s); return s;
+}
+function chuva(n, cores, tamanho, raio, alt, cx, cz, s0) { // nuvem de pontos que desce em dois blocos emendados, sem recalcular ponto a ponto
+  const r = semente(s0), pos = [], cor = [], c = new THREE.Color();
+  for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()) * raio; pos.push(cx + Math.cos(a) * d, r() * alt, cz + Math.sin(a) * d); c.setHex(cores[i % cores.length]); cor.push(c.r, c.g, c.b); }
+  const geo = new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)).setAttribute("color", new THREE.Float32BufferAttribute(cor, 3));
+  const material = new THREE.PointsMaterial({ size: tamanho, vertexColors: true, fog: false, transparent: true, depthWrite: false });
+  const a = new THREE.Points(geo, material), b = new THREE.Points(geo, material), g = new THREE.Group(); a.frustumCulled = b.frustumCulled = false; b.position.y = alt; g.add(a, b);
+  return { g, passo: (t, vel) => { g.position.y = -((t * vel) % alt); } };
+}
+
+function montarCenario(cena) {
+  cena.background = new THREE.Color(0x0a1633); cena.fog = new THREE.Fog(0x0a1633, 48, 110);
+  cena.add(new THREE.HemisphereLight(0xffffff, 0x8088a8, 2.6));
+  const lua = new THREE.DirectionalLight(0xffffff, 1.2); lua.position.set(-8, 20, 10); cena.add(lua);
+  const fundo = new THREE.Group(); cena.add(fundo);
+  const G = Object.fromEntries(AREAS.map((a) => { const g = new THREE.Group(); cena.add(g); return [a.id, g]; }));
+
+  // ---------- chão, caminhos, fundo ----------
+  const chao = new THREE.Mesh(new THREE.CircleGeometry(120, 48), mat(0x1f6b35)); chao.rotation.x = -Math.PI / 2; fundo.add(chao);
+  for (const a of AREAS.slice(1)) {
+    const d = Math.hypot(a.x, a.z), c = new THREE.Mesh(new THREE.PlaneGeometry(5, d), mat(0x77819a)); c.rotation.x = -Math.PI / 2; c.rotation.z = Math.atan2(-a.x, -a.z);
+    c.position.set(a.x / 2, .012, a.z / 2); fundo.add(c);
+    rotulo(fundo, a.nome, a.x * .46, 2.4, a.z * .46, 1);
+  }
+  const r0 = semente(77), estrelas = []; for (let i = 0; i < 500; i++) estrelas.push((r0() - .5) * 260, 34 + r0() * 50, -30 - r0() * 110);
+  fundo.add(new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(estrelas, 3)), new THREE.PointsMaterial({ color: 0xffffff, size: .4, fog: false })));
+  const luaBola = new THREE.Mesh(new THREE.SphereGeometry(5, 24, 16), new THREE.MeshBasicMaterial({ color: 0xfff4cf, fog: false })); luaBola.position.set(38, 44, -92); fundo.add(luaBola);
+  // bairro em volta, no estilo do mapa, com as janelas acesas
+  const casaGeo = new THREE.BoxGeometry(3.2, 2.6, 3), telGeo = new THREE.ConeGeometry(2.9, 2, 4); telGeo.rotateY(Math.PI / 4);
+  const nc = 34, casas = new THREE.InstancedMesh(casaGeo, mat(0xfffaf0, 0xffb54d, .55), nc), tels = new THREE.InstancedMesh(telGeo, mat(0xffffff), nc), m4 = new THREE.Matrix4();
+  for (let i = 0; i < nc; i++) { const a = i / nc * 6.283, r = 62 + (i % 3) * 5, x = Math.cos(a) * r, z = Math.sin(a) * r; m4.makeTranslation(x, 1.3, z); casas.setMatrixAt(i, m4); m4.makeTranslation(x, 3.6, z); tels.setMatrixAt(i, m4); tels.setColorAt(i, CORES[i % 8]); }
+  fundo.add(casas, tels);
+
+  // ---------- praça de Natal ----------
+  const pr = G.praca;
+  const calcada = new THREE.Mesh(new THREE.CircleGeometry(15, 40), mat(0x8d97ad)); calcada.rotation.x = -Math.PI / 2; calcada.position.y = .02; pr.add(calcada);
+  const tronco = new THREE.Mesh(new THREE.CylinderGeometry(.6, .8, 2, 10), mat(0x6b4a2b)); tronco.position.y = 1; pr.add(tronco);
+  [[4.2, 4, 3.6], [3.3, 3.6, 6], [2.3, 3.2, 8.2], [1.3, 2.6, 10.2]].forEach(([r, h, y]) => { const c = new THREE.Mesh(new THREE.ConeGeometry(r, h, 16), mat(0x1c8a3c, 0x0b4a1e, .5)); c.position.y = y; pr.add(c); });
+  const estrela = new THREE.Mesh(new THREE.OctahedronGeometry(.9), new THREE.MeshBasicMaterial({ color: 0xffd23f, fog: false })); estrela.position.y = 12.1; pr.add(estrela);
+  // bolas da árvore: dois grupos que piscam alternados
+  const rb = semente(31), bolaGeo = new THREE.SphereGeometry(.24, 8, 6);
+  const bolasA = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22), bolasB = new THREE.InstancedMesh(bolaGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }), 22);
+  [bolasA, bolasB].forEach((b, k) => { for (let i = 0; i < 22; i++) { const y = 2.6 + rb() * 8.4, r = (11.4 - y) * .44, a = rb() * 6.283; m4.makeTranslation(Math.cos(a) * r, y, Math.sin(a) * r); b.setMatrixAt(i, m4); b.setColorAt(i, new THREE.Color([0xff3b3b, 0xffd23f, 0x4fa8ff, 0xffffff][(i + k) % 4])); } pr.add(b); });
+  // presentes em volta da árvore
+  for (let i = 0; i < 10; i++) { const a = i * .63 + .3, r = 4.6 + (i % 3) * .5, s = .7 + (i % 3) * .25, x = Math.cos(a) * r, z = Math.sin(a) * r; caixa(pr, s, s, s, CORES[i % 8].getHex(), x, s / 2, z); caixa(pr, s + .04, s * .18, s + .04, 0xffffff, x, s / 2, z); }
+  // Papai Noel acenando
+  const noel = new THREE.Group(); noel.position.set(6.4, 0, 5.2); pr.add(noel);
+  const noelCorpo = new THREE.Mesh(new THREE.CapsuleGeometry(.72, 1.1, 3, 10), mat(0xd92b2b)); noelCorpo.position.y = 1.4; noel.add(noelCorpo);
+  const cinto = new THREE.Mesh(new THREE.CylinderGeometry(.76, .76, .2, 14), mat(0x1a1a1a)); cinto.position.y = 1.35; noel.add(cinto);
+  const noelCab = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffdfc4)); noelCab.position.y = 2.95; noel.add(noelCab);
+  const barba = new THREE.Mesh(new THREE.SphereGeometry(.56, 12, 10), mat(0xffffff)); barba.position.set(0, 2.68, .2); barba.scale.set(.95, .8, .8); noel.add(barba);
+  const gorroN = new THREE.Mesh(new THREE.ConeGeometry(.58, 1, 12), mat(0xd92b2b)); gorroN.position.y = 3.72; noel.add(gorroN);
+  const abaN = new THREE.Mesh(new THREE.CylinderGeometry(.6, .6, .2, 14), mat(0xffffff)); abaN.position.y = 3.25; noel.add(abaN);
+  const braco = new THREE.Mesh(new THREE.CapsuleGeometry(.2, .9, 2, 8), mat(0xd92b2b)); braco.geometry.translate(0, .55, 0); braco.position.set(.72, 2, 0); noel.add(braco);
+  rotulo(pr, "🎅 Feliz Natal, turma!", 6.4, 5, 5.2, 1.5, "#ffd23f");
+  // cordões de luz em volta da praça
+  const postes = 12, luzes = [[], []];
+  for (let i = 0; i < postes; i++) {
+    const a = i / postes * 6.283, b = (i + 1) / postes * 6.283, r = 14.6;
+    caixa(pr, .22, 5.4, .22, 0x2a2f55, Math.cos(a) * r, 2.7, Math.sin(a) * r);
+    for (let k = 0; k < 12; k++) { const f = k / 12, ang = a + (b - a) * f; luzes[k % 2].push(Math.cos(ang) * r, 5.3 - Math.sin(f * Math.PI) * 1.1, Math.sin(ang) * r); }
+  }
+  const pontos = (lista, cor) => { const p = new THREE.Points(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(lista, 3)), new THREE.PointsMaterial({ color: cor, size: .42, fog: false })); pr.add(p); return p; };
+  const luzA = pontos(luzes[0], 0xffd23f), luzB = pontos(luzes[1], 0xff4d4d);
+  // pinheirinhos com luz nos caminhos
+  const nt = 16, conePeq = new THREE.ConeGeometry(1.2, 3.2, 8), pinhos = new THREE.InstancedMesh(conePeq, mat(0x1c8a3c, 0x0b4a1e, .5), nt), topos = new THREE.InstancedMesh(new THREE.OctahedronGeometry(.28), new THREE.MeshBasicMaterial({ color: 0xffd23f }), nt);
+  AREAS.slice(1).forEach((a, i) => [.46, .52, .49].forEach((f, k) => { const n = i * 3 + k; if (n >= nt) return; const d = Math.hypot(a.x, a.z), lado = k % 2 ? 4.5 : -4.5, x = a.x * f + (a.z / d) * lado, z = a.z * f - (a.x / d) * lado; m4.makeTranslation(x, 1.7, z); pinhos.setMatrixAt(n, m4); m4.makeTranslation(x, 3.5, z); topos.setMatrixAt(n, m4); }));
+  fundo.add(pinhos, topos);
+  const neve = chuva(520, [0xffffff, 0xeaf3ff], .3, 95, 26, 0, 0, 11); fundo.add(neve.g);
+
+  // ---------- palco principal ----------
+  const pc = G.palco;
+  const pisoShow = new THREE.Mesh(new THREE.CircleGeometry(21, 36), mat(0x4a5068)); pisoShow.rotation.x = -Math.PI / 2; pisoShow.position.set(0, .02, -36); pc.add(pisoShow);
+  const tileGeo = new THREE.BoxGeometry(TAM - .06, .06, TAM - .06), pista = new THREE.InstancedMesh(tileGeo, new THREE.MeshBasicMaterial(), PISTA * PISTA);
+  for (let i = 0; i < PISTA * PISTA; i++) { m4.makeTranslation((i % PISTA - 4) * TAM, .06, (Math.floor(i / PISTA) - 4) * TAM + PISTA_Z); pista.setMatrixAt(i, m4); pista.setColorAt(i, CORES_PISTA[i % 6]); } pc.add(pista);
+  caixa(pc, 24, 1.6, 8, 0x20254a, 0, .8, -41);
+  caixa(pc, 24.4, .2, 8.4, 0xffd23f, 0, 1.6, -41, 0xffa000);
+  placa(pc, 22, 8, 1024, 372, (g, w, h) => { const d = g.createLinearGradient(0, 0, w, h); d.addColorStop(0, "#2b1a6b"); d.addColorStop(.5, "#b81f6b"); d.addColorStop(1, "#ff7a2a"); g.fillStyle = d; g.fillRect(0, 0, w, h); letra(g, "FESTA DA TURMA", w / 2, h * .36, 104, "#ffd23f"); letra(g, "🎉 SEXTOU, BRASIL! 🇧🇷", w / 2, h * .7, 56); }, 0, 7.2, -44.7);
+  for (const x of [-11.6, 11.6]) { caixa(pc, .5, 13, .5, 0x333a66, x, 6.5, -44.6); caixa(pc, 2.4, 4.2, 1.8, 0x14141c, x + (x < 0 ? -1.2 : 1.2) * 0, 3.7, -39.2); }
+  caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -44.6); caixa(pc, 24, .5, .5, 0x333a66, 0, 13, -37.6);
+  // barras de equalizador na frente do telão
+  const NEQ = 26, eq = new THREE.InstancedMesh(new THREE.BoxGeometry(.56, 1, .3), new THREE.MeshBasicMaterial({ color: 0xffffff }), NEQ); eq.frustumCulled = false;
+  for (let i = 0; i < NEQ; i++) eq.setColorAt(i, CORES[i % 8]); pc.add(eq);
+  // artista e dançarinos no palco
+  const banda = [[0, 0xffd23f, 1.35], [-5, 0xff6fa8, 1], [5, 0x4fd1ff, 1], [-8.5, 0x8e5cd9, 1], [8.5, 0x4cc26a, 1]].map(([x, cor, s], i) => { const b = new THREE.Group(); const c = new THREE.Mesh(new THREE.CapsuleGeometry(.34 * s, .7 * s, 3, 10), mat(cor)), h = new THREE.Mesh(new THREE.SphereGeometry(.32 * s, 12, 10), mat(PELES[i % 5].getHex())); c.position.y = .68 * s; h.position.y = 1.5 * s; b.add(c, h); b.position.set(x, 1.7, -40); pc.add(b); return b; });
+  const mic = new THREE.Mesh(new THREE.CylinderGeometry(.04, .04, 1.5, 6), mat(0x222222)); mic.position.set(.55, 2.45, -39.4); pc.add(mic);
+  // canhões de luz
+  const canhoes = [-9, -5.4, -1.8, 1.8, 5.4, 9].map((x, i) => { const g = new THREE.ConeGeometry(2.6, 15, 16, 1, true); g.translate(0, -7.5, 0); const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: [0xff4dd2, 0x4fd1ff, 0xffd23f][i % 3], transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false })); m.position.set(x, 12.8, -37.8); pc.add(m); return m; });
+  const confete = chuva(220, [0xffd23f, 0xff4dd2, 0x4fd1ff, 0xff4d4d, 0x4cc26a], .32, 15, 16, 0, -30, 23); pc.add(confete.g);
+
+  // ---------- campinho ----------
+  const cp = G.campinho, cx = (CAMPO.x0 + CAMPO.x1) / 2, W = CAMPO.x1 - CAMPO.x0, H = CAMPO.z1 - CAMPO.z0;
+  const gr = textura(512, 340, (g, w, h) => { for (let i = 0; i < 8; i++) { g.fillStyle = i % 2 ? "#3d9e45" : "#34903d"; g.fillRect(i * w / 8, 0, w / 8 + 1, h); } g.strokeStyle = "#fff"; g.lineWidth = 5; g.strokeRect(5, 5, w - 10, h - 10); g.beginPath(); g.moveTo(w / 2, 5); g.lineTo(w / 2, h - 5); g.stroke(); g.beginPath(); g.arc(w / 2, h / 2, 46, 0, 6.3); g.stroke(); g.strokeRect(5, h / 2 - 90, 60, 180); g.strokeRect(w - 65, h / 2 - 90, 60, 180); });
+  const gramado = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: gr.t })); gramado.rotation.x = -Math.PI / 2; gramado.position.set(cx, .03, 0); cp.add(gramado);
+  for (const [x, s] of [[CAMPO.x0, -1], [CAMPO.x1, 1]]) { caixa(cp, .18, 2, .18, 0xffffff, x, 1, -CAMPO.gol); caixa(cp, .18, 2, .18, 0xffffff, x, 1, CAMPO.gol); caixa(cp, .18, .18, CAMPO.gol * 2, 0xffffff, x, 2, 0); caixa(cp, .1, .1, CAMPO.gol * 2, 0xdddddd, x + s, .05, 0); }
+  // arquibancada e refletores
+  for (let i = 0; i < 3; i++) caixa(cp, W, .6, 1.1, 0x56607f, cx, .3 + i * .6, CAMPO.z0 - 1.2 - i * 1.1);
+  for (const x of [CAMPO.x0 - 1.5, CAMPO.x1 + 1.5]) { caixa(cp, .3, 11, .3, 0x333a66, x, 5.5, CAMPO.z0 - 2); caixa(cp, 2.2, .7, .3, 0xffffff, x, 11, CAMPO.z0 - 2, 0xffffff); }
+  const placar = placa(cp, 8, 3, 512, 192, (g, w, h, a = 0, b = 0) => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, "⚽ CAMPINHO DA TURMA", w / 2, 40, 34, "#ffd23f"); letra(g, `${a}  x  ${b}`, w / 2, 124, 92); }, cx, 7.4, CAMPO.z0 - 4.4);
+  caixa(cp, 8.4, 3.4, .2, 0x333a66, cx, 7.4, CAMPO.z0 - 4.55); caixa(cp, .3, 6, .3, 0x333a66, cx, 3, CAMPO.z0 - 4.55);
+  const bolaT = textura(128, 64, (g, w, h) => { g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.fillStyle = "#111"; for (let i = 0; i < 8; i++) { g.beginPath(); g.arc((i + .5) * w / 8, i % 2 ? h * .3 : h * .7, 6, 0, 6.3); g.fill(); } });
+  const bola = new THREE.Mesh(new THREE.SphereGeometry(.42, 16, 12), new THREE.MeshLambertMaterial({ map: bolaT.t })); bola.position.set(cx, .42, 0); cp.add(bola);
+
+  // ---------- PINTA O CHÃO (no lugar da prefeitura): quem pisa pinta o piso com a cor do estado ----------
+  const pf = G.pinta, pfx = PG.cx, LADO = PG.n * PG.tam;
+  const baseP = new THREE.Mesh(new THREE.CircleGeometry(17, 36), mat(0x3a4256)); baseP.rotation.x = -Math.PI / 2; baseP.position.set(pfx, .02, PG.cz); pf.add(baseP);
+  caixa(pf, LADO + .8, .1, LADO + .8, 0xffffff, pfx, .03, PG.cz);
+  const pisos = new THREE.InstancedMesh(new THREE.BoxGeometry(PG.tam - .12, .08, PG.tam - .12), new THREE.MeshBasicMaterial({ color: 0xffffff }), PG.n * PG.n);
+  for (let k = 0; k < PG.n * PG.n; k++) { const i = k % PG.n, j = Math.floor(k / PG.n); m4.makeTranslation(pfx + (i - PG.n / 2 + .5) * PG.tam, .08, PG.cz + (j - PG.n / 2 + .5) * PG.tam); pisos.setMatrixAt(k, m4); pisos.setColorAt(k, new THREE.Color(CORES_UF[0])); }
+  pf.add(pisos);
+  const corP = new THREE.Color();
+  function pintar(lista) { for (let x = 0; x < lista.length; x += 2) pisos.setColorAt(lista[x], corP.setHex(CORES_UF[lista[x + 1]] ?? CORES_UF[0])); pisos.instanceColor.needsUpdate = true; }
+  function pintarTudo(vals) { vals.forEach((v, k) => pisos.setColorAt(k, corP.setHex(CORES_UF[v] ?? CORES_UF[0]))); pisos.instanceColor.needsUpdate = true; }
+  // baldes de tinta nos cantos
+  [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b], i) => { const bx = pfx + a * (LADO / 2 + 1.6), bz = PG.cz + b * (LADO / 2 + 1.6); const bd = new THREE.Mesh(new THREE.CylinderGeometry(.7, .55, 1.1, 14), mat(0xdfe4ee)); bd.position.set(bx, .55, bz); pf.add(bd); const tinta = new THREE.Mesh(new THREE.CylinderGeometry(.62, .62, .08, 14), mat(CORES_UF[[25, 13, 5, 21][i]])); tinta.position.set(bx, 1.1, bz); pf.add(tinta); });
+  const placaPinta = placa(pf, 9, 4.6, 512, 262, (g, w, h, seg = 90, top = []) => {
+    g.fillStyle = "#14204a"; g.fillRect(0, 0, w, h); letra(g, "🎨 PINTA O CHÃO", w / 2, 36, 40, "#ffd23f"); letra(g, `rodada acaba em ${seg}s`, w / 2, 82, 28, "#fff");
+    (top.length ? top : [["pisa no piso!", 0]]).slice(0, 3).forEach(([uf, n], i) => { const y = 132 + i * 44, k = UFS.indexOf(uf); if (k >= 0) { g.fillStyle = "#" + new THREE.Color(CORES_UF[k + 1]).getHexString(); g.fillRect(64, y - 16, 32, 32); } letra(g, k >= 0 ? `${["🥇", "🥈", "🥉"][i]} ${uf}  ${n} pisos` : uf, k >= 0 ? 112 : w / 2, y + 2, 32, "#fff", k >= 0 ? "left" : "center"); });
+  }, pfx, 6.2, PG.cz - LADO / 2 - 3.2);
+  caixa(pf, 9.4, 5, .2, 0x333a66, pfx, 6.2, PG.cz - LADO / 2 - 3.35); caixa(pf, .3, 4, .3, 0x333a66, pfx, 2, PG.cz - LADO / 2 - 3.35);
+
+  // ---------- corrida ----------
+  const fr = G.corrida, P0 = PISTA_C, cxP = (P0.lx0 + P0.x1) / 2, wP = P0.x1 - P0.lx0, hP = P0.z1 - P0.z0;
+  const tpista = textura(1024, 256, (g, w, h) => { g.fillStyle = "#b8492f"; g.fillRect(0, 0, w, h); g.strokeStyle = "#fff"; g.lineWidth = 4; for (let k = 1; k < 4; k++) { g.beginPath(); g.moveTo(0, k * h / 4); g.lineTo(w, k * h / 4); g.stroke(); }
+    const xl = (P0.x0 - P0.lx0) / wP * w; g.fillStyle = "rgba(255,255,255,.18)"; g.fillRect(0, 0, xl, h); g.fillStyle = "#fff"; g.fillRect(xl - 4, 0, 8, h); letra(g, "LARGADA", xl / 2, h / 2, 46, "#fff");
+    for (let a = 0; a < 8; a++) for (let b = 0; b < 2; b++) { g.fillStyle = (a + b) % 2 ? "#111" : "#fff"; g.fillRect(w - 28 + b * 14, a * h / 8, 14, h / 8); } });
+  const chaoP = new THREE.Mesh(new THREE.PlaneGeometry(wP, hP), new THREE.MeshLambertMaterial({ map: tpista.t })); chaoP.rotation.x = -Math.PI / 2; chaoP.position.set(cxP, .04, (P0.z0 + P0.z1) / 2); fr.add(chaoP);
+  for (const [x, txt, cor] of [[P0.x0, "🏃 LARGADA", "#ffffff"], [P0.x1, "🏁 CHEGADA", "#ffd23f"]]) { caixa(fr, .3, 5, .3, 0x333a66, x, 2.5, P0.z0 - .4); caixa(fr, .3, 5, .3, 0x333a66, x, 2.5, P0.z1 + .4); caixa(fr, .3, .5, hP + 1, 0xffffff, x, 5, (P0.z0 + P0.z1) / 2); rotulo(fr, txt, x, 6.3, (P0.z0 + P0.z1) / 2, 1.3, cor); }
+  for (let i = 0; i < 3; i++) caixa(fr, wP * .7, .6, 1.1, 0x56607f, cxP + 3, .3 + i * .6, P0.z0 - 1.6 - i * 1.1);
+  const placaCorrida = placa(fr, 9, 2.4, 512, 136, (g, w, h, txt = "🏃 CORRIDA DA TURMA") => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, txt, w / 2, h / 2 + 2, txt.length > 22 ? 34 : 48, "#ffd23f"); }, cxP + 3, 6.4, P0.z0 - 5.2);
+  caixa(fr, .3, 5.2, .3, 0x333a66, cxP + 3, 2.6, P0.z0 - 5.35);
+
+  // ---------- vôlei ----------
+  const es = G.volei, Q0 = QV, qcx = (Q0.x0 + Q0.x1) / 2, qcz = (Q0.z0 + Q0.z1) / 2, qw = Q0.x1 - Q0.x0, qh = Q0.z1 - Q0.z0;
+  const tq = textura(512, 320, (g, w, h) => { g.fillStyle = "#e8c98a"; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(160,120,60,.25)"; for (let k = 0; k < 400; k++) g.fillRect((k * 97) % w, (k * 53) % h, 3, 3); g.strokeStyle = "#2b59c3"; g.lineWidth = 7; g.strokeRect(5, 5, w - 10, h - 10); g.beginPath(); g.moveTo(w / 2, 5); g.lineTo(w / 2, h - 5); g.stroke(); });
+  const areia = new THREE.Mesh(new THREE.PlaneGeometry(qw, qh), new THREE.MeshLambertMaterial({ map: tq.t })); areia.rotation.x = -Math.PI / 2; areia.position.set(qcx, .04, qcz); es.add(areia);
+  caixa(es, .2, 3, .2, 0xdddddd, Q0.rede, 1.5, Q0.z0 - .3); caixa(es, .2, 3, .2, 0xdddddd, Q0.rede, 1.5, Q0.z1 + .3);
+  const rede = new THREE.Mesh(new THREE.BoxGeometry(.06, 1, qh + .6), new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: .55 })); rede.position.set(Q0.rede, 2.4, qcz); es.add(rede); caixa(es, .1, .12, qh + .6, 0xffffff, Q0.rede, 2.92, qcz);
+  const placarV = placa(es, 7, 2.6, 512, 192, (g, w, h, a = 0, b = 0) => { g.fillStyle = "#10141f"; g.fillRect(0, 0, w, h); letra(g, "🏐 VÔLEI DA TURMA", w / 2, 40, 34, "#ffd23f"); letra(g, `${b}  x  ${a}`, w / 2, 124, 92); }, qcx, 6.6, Q0.z0 - 3.4);
+  caixa(es, .3, 5.4, .3, 0x333a66, qcx, 2.7, Q0.z0 - 3.55);
+  const bolaV = new THREE.Mesh(new THREE.SphereGeometry(.5, 16, 12), mat(0xfff1a8)); bolaV.position.set(21, .5, qcz); es.add(bolaV);
+  const faixa = new THREE.Mesh(new THREE.TorusGeometry(.5, .06, 6, 20), mat(0x2b59c3)); bolaV.add(faixa);
+
+  // ---------- pódio na frente do palco ----------
+  const podioG = new THREE.Group(); podioG.visible = false; G.palco.add(podioG); // sem pódio (06/11: festa, não Olimpíadas)
+  const podioRot = [[0, 1.5, 0xffd23f, "1"], [-3, 1, 0xd9dde8, "2"], [3, .7, 0xd98a4a, "3"]].map(([x, h, cor, n]) => { caixa(podioG, 2.8, h, 2.2, cor, x, h / 2, -35.4); const s2 = rotulo(podioG, n + "º", x, h + .6, -34.2, .9); return { x, h, s: null }; });
+  function setPodio(lista) {
+    podioRot.forEach((p, i) => { if (p.s) { podioG.remove(p.s); p.s.material.map.dispose(); p.s.material.dispose(); } const l = lista[i]; p.s = l ? rotulo(podioG, `${["🥇", "🥈", "🥉"][i]} @${l[0]}`, p.x, p.h + 3 + (i ? 0 : .5), -35.4, 1.1, i ? "#ffffff" : "#ffd23f") : null; });
+  }
+  const barracas = [];
+  function nomeNaBarraca() {}
+
+  // nome de cada ambiente
+  rotulo(G.palco, "🎤 PALCO DA FESTA", 0, 15.2, -41, 1.6, "#ffd23f");
+  rotulo(G.campinho, "⚽ PÊNALTIS", cx, 11.6, CAMPO.z0 - 4.5, 1.4);
+  rotulo(G.pinta, "🎨 PINTA O CHÃO", pfx, 10.6, PG.cz - LADO / 2 - 3.2, 1.4);
+  rotulo(G.corrida, "🏃 CORRIDA", cxP + 3, 10.4, P0.z0 - 5.2, 1.4);
+  rotulo(G.volei, "🏐 VÔLEI", qcx, 9.6, Q0.z0 - 3.4, 1.4);
+
+  let passoPista = -1;
+  function atualizar(t, fcx, fcz, verTudo = false) {
+    // ambiente longe não é desenhado: poupa o celular
+    for (const a of AREAS) G[a.id].visible = verTudo || Math.hypot(a.x - fcx, a.z - fcz) < a.r + 46;
+    neve.passo(t, 1.3);
+    estrela.rotation.y = t; const pisca = Math.floor(t * 2) % 2 === 0;
+    bolasA.visible = pisca; bolasB.visible = !pisca; luzA.visible = pisca; luzB.visible = !pisca;
+    braco.rotation.z = -1.9 + Math.sin(t * 5) * .5;
+    if (!G.palco.visible) return;
+    const f = Math.floor(t * 2.2);
+    if (f !== passoPista) { passoPista = f; for (let i = 0; i < PISTA * PISTA; i++) { const col = i % PISTA, lin = Math.floor(i / PISTA); pista.setColorAt(i, CORES_PISTA[(col * 5 + lin * 3 + f * (1 + (col + lin) % 2)) % 6]); } pista.instanceColor.needsUpdate = true; }
+    for (let i = 0; i < NEQ; i++) { const h = 1 + 3.2 * Math.abs(Math.sin(t * 4.3 + i * .7) * Math.sin(t * 2.1 + i * .31)); m4.makeScale(1, h, 1); m4.setPosition((i - NEQ / 2 + .5) * .84, 1.7 + h / 2, -44.3); eq.setMatrixAt(i, m4); }
+    eq.instanceMatrix.needsUpdate = true;
+    banda.forEach((b, i) => { b.position.y = 1.7 + Math.abs(Math.sin(t * (i ? 6 : 4.4) + i)) * (i ? .55 : .3); b.rotation.z = Math.sin(t * 3 + i) * .1; });
+    canhoes.forEach((c, i) => { c.rotation.x = -.42 + Math.sin(t * .9 + i) * .28; c.rotation.z = Math.sin(t * 1.3 + i * 1.6) * .42; });
+    confete.passo(t, 2.4);
+  }
+  const alvosBarraca = barracas.map((b) => b.alvo);
+  return { atualizar, bola, bolaV, setPodio, setPlacarV: (a, b) => placarV.refaz(a, b), setCorrida: (txt) => placaCorrida.refaz(txt), setPlacar: (a, b) => placar.refaz(a, b), setQuadro: () => {}, pintar, pintarTudo, setPinta: (seg, top) => placaPinta.refaz(seg, top), nomeNaBarraca, alvosBarraca };
+}
+
+// ---------- bonecos da turma: tudo instanciado, com gorro de Natal; a skin comprada troca o chapéu ou põe acessório ----------
+// skins (MESMA ordem do robô, skins.js): 0 coroa · 1 óculos escuros · 2 capa de herói · 3 camisa do Brasil · 4 chapéu de cowboy · 5 asas de anjo
+const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"], ["✨", "Farmador de Aura (roxa)"], ["✨", "Farmador de Aura (azul)"], ["✨", "Farmador de Aura (verde)"], ["✨", "Farmador de Aura (vermelha)"], ["✨", "Farmador de Aura (dourada)"], ["✨", "Farmador de Aura (rosa)"]]; // 6..11 = LENDÁRIA em 6 cores
+// cores da aura: [dentro, fora, feixe de luz, anel]
+const AURAS = [[0x9b3dff, 0xffb300, 0xd9a3ff, 0xffe066], [0x2f7bff, 0x7fe3ff, 0x9fd0ff, 0xbff4ff], [0x1fd15a, 0xc6ff4d, 0xa8ffc4, 0xdcff8a], [0xff2a2a, 0xff9a00, 0xffb0a0, 0xffc04d], [0xffb300, 0xfff07a, 0xfff2b0, 0xffe066], [0xff3fb4, 0xffd0f0, 0xffb3e6, 0xffc2ea]].map((l) => l.map((c) => new THREE.Color(c)));
+function montarBonecos(cena, MAX) {
+  const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
+  const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.27, .46, 10), mat(0xd92b2b), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.29, .29, .1, 10), mat(0xffffff), MAX);
+  const ouro = new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffa000, emissiveIntensity: .45 }), asaM = new THREE.MeshLambertMaterial({ color: 0xffffff, emissive: 0xbfe6ff, emissiveIntensity: .35 });
+  const pontaG = new THREE.ConeGeometry(.08, .2, 4);
+  const acess = {
+    coroa: new THREE.InstancedMesh(new THREE.CylinderGeometry(.3, .27, .2, 10), ouro, MAX), ponta: new THREE.InstancedMesh(pontaG, ouro, MAX * 5),
+    oculos: new THREE.InstancedMesh(new THREE.BoxGeometry(.48, .13, .06), mat(0x111111), MAX),
+    capa: new THREE.InstancedMesh(new THREE.BoxGeometry(.64, .95, .05), mat(0xd92b2b), MAX),
+    gola: new THREE.InstancedMesh(new THREE.TorusGeometry(.22, .06, 6, 14), mat(0x1a9c3e), MAX), short: new THREE.InstancedMesh(new THREE.CylinderGeometry(.315, .315, .26, 12), mat(0x2b59c3), MAX),
+    cowboy: new THREE.InstancedMesh(new THREE.CylinderGeometry(.2, .26, .32, 12), mat(0x8a5a2b), MAX), aba2: new THREE.InstancedMesh(new THREE.CylinderGeometry(.54, .54, .05, 16), mat(0x8a5a2b), MAX),
+    asa: new THREE.InstancedMesh(new THREE.SphereGeometry(.36, 10, 8), asaM, MAX * 2),
+    // Farmador de Aura (lendária): duas camadas de brilho, anel no chão e faíscas subindo
+    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .55, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .3, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    raio: new THREE.InstancedMesh(new THREE.CylinderGeometry(.32, .62, 7, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }), MAX),
+    faisca: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: 0xfff3b0, fog: false }), MAX * 6),
+    // CARGO (eleição de domingo, não se compra): governador = coroa grande com veludo e pedras · prefeito = cartola · os dois com faixa verde e amarela
+    govCoroa: new THREE.InstancedMesh(new THREE.CylinderGeometry(.36, .31, .3, 12), new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffb000, emissiveIntensity: .7 }), MAX),
+    govPonta: new THREE.InstancedMesh(new THREE.ConeGeometry(.1, .28, 4), new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffb000, emissiveIntensity: .7 }), MAX * 6),
+    govVeludo: new THREE.InstancedMesh(new THREE.SphereGeometry(.3, 10, 8, 0, 6.283, 0, 1.6), mat(0xc4122f), MAX),
+    govPedra: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.06), new THREE.MeshBasicMaterial({ color: 0x2fd0ff, fog: false }), MAX * 6),
+    govBrilho: new THREE.InstancedMesh(new THREE.TorusGeometry(.5, .04, 6, 24), new THREE.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: .85, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    cartola: new THREE.InstancedMesh(new THREE.CylinderGeometry(.24, .24, .46, 14), mat(0x1b1b1f), MAX), cartolaAba: new THREE.InstancedMesh(new THREE.CylinderGeometry(.42, .42, .05, 16), mat(0x1b1b1f), MAX),
+    cartolaFita: new THREE.InstancedMesh(new THREE.CylinderGeometry(.245, .245, .09, 14), mat(0xffd23f), MAX),
+    faixaV: new THREE.InstancedMesh(new THREE.BoxGeometry(.16, .95, .66), mat(0x1a9c3e), MAX), faixaA: new THREE.InstancedMesh(new THREE.BoxGeometry(.06, .96, .675), mat(0xffd23f), MAX),
+  };
+  const BRANCO = new THREE.Color(0xffffff); for (const k of ["aura", "aura2", "raio", "anel"]) for (let i = 0; i < MAX; i++) acess[k].setColorAt(i, BRANCO); // cor por boneco
+  const todos = [corpos, cabecas, gorros, abas, ...Object.values(acess)]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
+  const cont = Object.fromEntries(Object.keys(acess).map((k) => [k, 0]));
+  const o = new THREE.Object3D(), AMARELO = new THREE.Color(0xffd23f);
+  const coloca = (m, n, x, y, z, rz = 0, s = 1, sx = 1, sy = 1, sz = 1, rx = 0) => { o.position.set(x, y, z); o.rotation.set(rx, 0, rz); o.scale.set(s * sx, s * sy, s * sz); o.updateMatrix(); m.setMatrixAt(n, o.matrix); };
+  const ac = (k, ...a) => { const i = cont[k]++; coloca(acess[k], i, ...a); return i; };
+  const acCor = (k, c, ...a) => acess[k].setColorAt(ac(k, ...a), c);
+  return {
+    // sk = skin vestida (-1 = nenhuma); t = tempo, pra capa e asas mexerem
+    // sk = skin comum (0-5), au = aura lendária (6-11): dá pra usar as duas juntas
+    // g = cargo da eleição: 2 governador · 1 prefeito · 0 nada. Cargo tira o que vai na cabeça (gorro, coroa comprada, cowboy)
+    poe(n, x, pulo, z, rz, cor, id, sk = -1, t = 0, au = -1, g = 0) {
+      if (sk >= 6) { au = sk; sk = -1; } // compatível com quem só manda um número
+      if (g && (sk === 0 || sk === 4)) sk = -1;
+      coloca(corpos, n, x, .58 + pulo, z, rz); corpos.setColorAt(n, sk === 3 ? AMARELO : CORES[cor % 8]);
+      coloca(cabecas, n, x, 1.28 + pulo, z); cabecas.setColorAt(n, PELES[id % 5]);
+      const gorro = g || sk === 0 || sk === 4 ? 0 : 1; // coroa, cowboy e cargo tiram o gorro
+      if (g === 2) {
+        ac("govVeludo", x, 1.5 + pulo, z); ac("govCoroa", x, 1.62 + pulo, z);
+        for (let k = 0; k < 6; k++) { const a = k / 6 * 6.283 + .26; ac("govPonta", x + Math.cos(a) * .33, 1.88 + pulo, z + Math.sin(a) * .33); ac("govPedra", x + Math.cos(a) * .35, 1.63 + pulo, z + Math.sin(a) * .35, t * 2); }
+        ac("govBrilho", x, 2.02 + pulo + Math.sin(t * 3 + id) * .05, z, 0, 1 + Math.sin(t * 4 + id) * .1, 1, 1, 1, Math.PI / 2);
+      } else if (g === 1) { ac("cartola", x, 1.78 + pulo, z, .06); ac("cartolaFita", x, 1.6 + pulo, z, .06); ac("cartolaAba", x, 1.54 + pulo, z, .06); }
+      if (g) { ac("faixaV", x, .62 + pulo, z, rz + .62); ac("faixaA", x, .62 + pulo, z, rz + .62); }
+      coloca(gorros, n, x, 1.68 + pulo, z, .12, gorro); coloca(abas, n, x, 1.47 + pulo, z, 0, gorro);
+      if (sk === 0) { ac("coroa", x, 1.58 + pulo, z); for (let k = 0; k < 5; k++) { const a = k / 5 * 6.283; ac("ponta", x + Math.cos(a) * .27, 1.76 + pulo, z + Math.sin(a) * .27); } }
+      else if (sk === 1) ac("oculos", x, 1.32 + pulo, z + .25);
+      else if (sk === 2) ac("capa", x, .78 + pulo, z - .32, rz, 1, 1, 1, 1, .14 + Math.sin(t * 4 + id) * .07);
+      else if (sk === 3) { ac("gola", x, 1.0 + pulo, z, 0, 1, 1, 1, 1, Math.PI / 2); ac("short", x, .36 + pulo, z, rz); }
+      else if (sk === 4) { ac("cowboy", x, 1.66 + pulo, z, .08); ac("aba2", x, 1.52 + pulo, z, .08); }
+      else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
+      if (au >= 6 && au <= 11) {
+        const pz = 1 + Math.sin(t * 4 + id) * .07, C = AURAS[au - 6];
+        acCor("aura", C[0], x, .95 + pulo, z, 0, pz); acCor("aura2", C[1], x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
+        acCor("raio", C[2], x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); acCor("anel", C[3], x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
+        for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
+      }
+    },
+    fim(n) {
+      for (const m of [corpos, cabecas, gorros, abas]) m.count = n;
+      for (const k in acess) { acess[k].count = cont[k]; cont[k] = 0; }
+      todos.forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; });
+    },
+  };
+}
+
+return { montarBonecos };
+})();
+const CINE = (() => {
+
+// CINE TURMA: sala escura, telão 16:9, poltronas em degraus, corredor no meio, balcão de pipoca no fundo (entrada) e letreiro.
+// Mesmo estilo da Festa (cores chapadas, Nunito 900, bonecos instanciados do festa/cenario.js). A sala é igual à do servidor (SALA).
+const SALA = { filas: 10, porLado: 12, x0: 2.2, px: 1.25, z0: -12, pz: 2.4, xMax: 19, zMin: -24, zMax: 21, degrau: .5 };
+const N_POLT = SALA.filas * SALA.porLado * 2;
+const poltrona = (i) => { const r = Math.floor(i / (SALA.porLado * 2)), c = i % (SALA.porLado * 2), lado = c < SALA.porLado ? -1 : 1, k = c % SALA.porLado; return [+(lado * (SALA.x0 + k * SALA.px)).toFixed(2), +(SALA.z0 + r * SALA.pz).toFixed(2), r]; };
+// altura do piso em cada ponto (degraus): na frente do telão 0; fileira r = r * degrau; o fundo (pipoca) fica no alto
+const FOYER_Z = SALA.z0 + (SALA.filas - .5) * SALA.pz; // 10.8
+const alturaDe = (z) => { const n = Math.floor((z - (SALA.z0 - SALA.pz / 2)) / SALA.pz); return Math.max(0, Math.min(SALA.filas, n)) * SALA.degrau; };
+// boneco sentado = está em cima de uma poltrona
+function assentoEm(x, z, tol = .12) { const r = Math.round((z - SALA.z0) / SALA.pz); if (r < 0 || r >= SALA.filas) return -1; for (let i = r * SALA.porLado * 2; i < (r + 1) * SALA.porLado * 2; i++) { const [px, pz] = poltrona(i); if (Math.abs(px - x) < tol && Math.abs(pz - z) < tol) return i; } return -1; }
+const poltronaPerto = (x, z, raio = .75) => { let m = -1, dm = raio; for (let i = 0; i < N_POLT; i++) { const [px, pz] = poltrona(i), d = Math.hypot(px - x, pz - z); if (d < dm) { dm = d; m = i; } } return m; };
+const TELA = { z: -28.5, w: 32, h: 18, y0: 3 }; // telão 16:9
+const areaDe = (x, z) => z >= 12.6 ? { id: "pipoca", nome: "🍿 Pipoca" } : Math.abs(x) < 1.5 || Math.abs(x) > 17 ? { id: "corredor", nome: "🚶 Corredor" } : { id: "poltronas", nome: "💺 Poltronas" };
+
+const mats = new Map();
+const mat = (cor, emis = 0, forca = .6) => { const k = `${cor}-${emis}-${forca}`; if (!mats.has(k)) mats.set(k, new THREE.MeshLambertMaterial({ color: cor, ...(emis ? { emissive: emis, emissiveIntensity: forca } : {}) })); return mats.get(k); };
+function caixa(g, w, h, d, m, x, y, z) { const c = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), typeof m === "number" ? mat(m) : m); c.position.set(x, y, z); g.add(c); return c; }
+function textura(w, h, pinta) { const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d"); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const refaz = (...a) => { pinta(g, w, h, ...a); t.needsUpdate = true; }; refaz(); return { t, refaz }; }
+const letra = (g, txt, x, y, tam, cor = "#fff", al = "center") => { g.fillStyle = cor; g.font = `900 ${tam}px Nunito, sans-serif`; g.textAlign = al; g.textBaseline = "middle"; g.fillText(txt, x, y); };
+function placa(g, w, h, px, py, pinta, x, y, z, ry = 0) { const tx = textura(px, py, pinta), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tx.t, toneMapped: false })); m.position.set(x, y, z); m.rotation.y = ry; g.add(m); return Object.assign(tx, { m }); }
+
+function montarCinema(cena, video) {
+  cena.background = new THREE.Color(0x07050a); cena.fog = new THREE.Fog(0x07050a, 60, 120);
+  const hemi = new THREE.HemisphereLight(0xfff1e0, 0x3a2030, 2.4); cena.add(hemi);
+  const teto = new THREE.DirectionalLight(0xffe7c4, 1.1); teto.position.set(0, 30, 10); cena.add(teto);
+  // luz que sai do telão e pinta a plateia com a cor do filme
+  const luzTela = new THREE.DirectionalLight(0x9fb8ff, 0); luzTela.position.set(0, 12, TELA.z); luzTela.target.position.set(0, 0, 8); cena.add(luzTela, luzTela.target);
+  const sala = new THREE.Group(); cena.add(sala);
+  const L = SALA.xMax + 1; // parede lateral
+
+  // ---------- piso: frente, degraus das fileiras e o alto do fundo (pipoca) ----------
+  const carpete = textura(256, 256, (g, w, h) => { g.fillStyle = "#4a1020"; g.fillRect(0, 0, w, h); g.fillStyle = "#5a1628"; for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) if ((i + j) % 2) g.fillRect(i * 16, j * 16, 16, 16); g.fillStyle = "#c9a04a"; for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) { g.beginPath(); g.arc(16 + i * 32, 16 + j * 32, 2.5, 0, 6.3); g.fill(); } });
+  carpete.t.wrapS = carpete.t.wrapT = THREE.RepeatWrapping; carpete.t.repeat.set(10, 1);
+  const matCarp = new THREE.MeshLambertMaterial({ map: carpete.t });
+  caixa(sala, L * 2, .2, SALA.z0 - SALA.pz / 2 - TELA.z + 1, matCarp, 0, -.1, (SALA.z0 - SALA.pz / 2 + TELA.z - 1) / 2);
+  const degraus = [];
+  for (let r = 0; r <= SALA.filas; r++) {
+    const h = r * SALA.degrau, z0 = SALA.z0 + (r - .5) * SALA.pz, z1 = r === SALA.filas ? SALA.zMax + 4 : z0 + SALA.pz;
+    if (h > 0) degraus.push(caixa(sala, L * 2, h, z1 - z0, matCarp, 0, h / 2, (z0 + z1) / 2));
+    // fita de luz azul no degrau (fica acesa no escuro: mostra o caminho)
+    if (r > 0) for (const x of [-1.35, 1.35, -17.6, 17.6]) caixa(sala, .9, .05, .08, new THREE.MeshBasicMaterial({ color: 0x3fa9ff }), x, h + .03, z0 + .05);
+  }
+  // corredor do meio com tapete vermelho
+  const tapete = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 1), mat(0xb3122e)); tapete.rotation.x = -Math.PI / 2; sala.add(tapete);
+  for (let r = 0; r <= SALA.filas; r++) { const t = tapete.clone(), z0 = SALA.z0 + (r - .5) * SALA.pz, len = r === SALA.filas ? 6 : SALA.pz; t.scale.y = len; t.position.set(0, r * SALA.degrau + .012, z0 + len / 2); sala.add(t); }
+
+  // ---------- paredes com painéis e arandelas ----------
+  const painel = textura(256, 512, (g, w, h) => { g.fillStyle = "#2a0a14"; g.fillRect(0, 0, w, h); for (let i = 0; i < 4; i++) { const x = 8 + i * 62; const d = g.createLinearGradient(x, 0, x + 56, 0); d.addColorStop(0, "#5c1426"); d.addColorStop(.5, "#7a1d33"); d.addColorStop(1, "#4a0f1e"); g.fillStyle = d; g.fillRect(x, 10, 56, h - 20); } });
+  painel.t.wrapS = THREE.RepeatWrapping; painel.t.repeat.set(12, 1);
+  const prof = SALA.zMax + 4 - TELA.z + 2;
+  for (const s of [-1, 1]) { const p = new THREE.Mesh(new THREE.PlaneGeometry(prof, 18), new THREE.MeshLambertMaterial({ map: painel.t })); p.rotation.y = -s * Math.PI / 2; p.position.set(s * L, 9, (TELA.z + SALA.zMax + 2) / 2); sala.add(p); }
+  const arandelas = new THREE.MeshLambertMaterial({ color: 0xffd9a0, emissive: 0xffb347, emissiveIntensity: 1 });
+  const nArand = 7, arGeo = new THREE.SphereGeometry(.42, 12, 8, 0, 6.283, 0, 1.7), arand = new THREE.InstancedMesh(arGeo, arandelas, nArand * 2), m4 = new THREE.Matrix4(), o = new THREE.Object3D();
+  for (let i = 0; i < nArand * 2; i++) { const s = i < nArand ? -1 : 1, z = -22 + (i % nArand) * 6; o.position.set(s * (L - .25), 7 + alturaDe(z) * .6, z); o.rotation.set(Math.PI, 0, 0); o.updateMatrix(); arand.setMatrixAt(i, o.matrix); }
+  sala.add(arand);
+
+  // ---------- palco, telão e cortinas ----------
+  caixa(sala, L * 2, 1.4, 4.5, 0x1a0b10, 0, .7, TELA.z + 2.2);
+  caixa(sala, L * 2, .12, .25, new THREE.MeshBasicMaterial({ color: 0xffd23f }), 0, 1.42, TELA.z + 4.4);
+  caixa(sala, TELA.w + 1.6, TELA.h + 1.6, .3, 0x050507, 0, TELA.y0 + TELA.h / 2, TELA.z - .25); // moldura
+  const quadroTela = textura(1024, 576, (g, w, h, tipo = "sala", a = "", b = "", c = "") => {
+    const d = g.createRadialGradient(w / 2, h / 2, 40, w / 2, h / 2, w * .7); d.addColorStop(0, tipo === "fim" ? "#2a1430" : "#3a0c18"); d.addColorStop(1, "#0b0306"); g.fillStyle = d; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "#ffd23f"; g.lineWidth = 10; g.strokeRect(150, 120, w - 300, 210);
+    letra(g, "CINE TURMA", w / 2, 228, 128, "#ffd23f");
+    letra(g, a, w / 2, 400, 54, "#fff"); letra(g, b, w / 2, 470, 38, "#ffcf9e"); letra(g, c, w / 2, 525, 30, "#b9a6c9");
+  });
+  const telaMat = new THREE.MeshBasicMaterial({ map: quadroTela.t, toneMapped: false, fog: false });
+  const telao = new THREE.Mesh(new THREE.PlaneGeometry(TELA.w, TELA.h), telaMat); telao.position.set(0, TELA.y0 + TELA.h / 2, TELA.z); sala.add(telao);
+  const vt = new THREE.VideoTexture(video); vt.colorSpace = THREE.SRGBColorSpace; vt.minFilter = THREE.LinearFilter; vt.magFilter = THREE.LinearFilter;
+  // brilho em volta do telão (some com a luz acesa)
+  const brilho = new THREE.Mesh(new THREE.PlaneGeometry(TELA.w + 8, TELA.h + 6), new THREE.MeshBasicMaterial({ color: 0x7fa0ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }));
+  brilho.position.set(0, TELA.y0 + TELA.h / 2, TELA.z - .4); sala.add(brilho);
+  const dobras = textura(256, 512, (g, w, h) => { for (let i = 0; i < 8; i++) { const d = g.createLinearGradient(i * 32, 0, i * 32 + 32, 0); d.addColorStop(0, "#5e0718"); d.addColorStop(.5, "#c0182f"); d.addColorStop(1, "#5e0718"); g.fillStyle = d; g.fillRect(i * 32, 0, 33, h); } g.fillStyle = "#ffd23f"; g.fillRect(0, h - 18, w, 18); });
+  dobras.t.wrapS = THREE.RepeatWrapping;
+  const cortinas = [-1, 1].map((s) => { const t = dobras.t.clone(); t.needsUpdate = true; t.wrapS = THREE.RepeatWrapping; const c = new THREE.Mesh(new THREE.PlaneGeometry(1, TELA.h + 4), new THREE.MeshLambertMaterial({ map: t, side: THREE.DoubleSide })); c.position.set(s * L, TELA.y0 + TELA.h / 2 - 1, TELA.z + .6); sala.add(c); return { c, s, t }; });
+  const bando = caixa(sala, L * 2, 2.6, .5, new THREE.MeshLambertMaterial({ map: dobras.t }), 0, TELA.y0 + TELA.h + 1.4, TELA.z + .7);
+  // ---------- letreiro CINE TURMA com lampadinhas (em cima do telão e em cima do balcão) ----------
+  const lampadas = [];
+  function letreiro(x, y, z, esc, ry = 0) {
+    const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = ry; g.scale.setScalar(esc); sala.add(g);
+    caixa(g, 16, 4.2, .4, 0x14204a, 0, 0, -.25);
+    placa(g, 15.4, 3.6, 1024, 240, (c, w, h) => { c.fillStyle = "#14204a"; c.fillRect(0, 0, w, h); letra(c, "🎬 CINE TURMA", w / 2, h / 2 + 6, 118, "#ffd23f"); }, 0, 0, 0);
+    const n = 30, lp = new THREE.InstancedMesh(new THREE.SphereGeometry(.16, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffffff }), n);
+    for (let i = 0; i < n; i++) { const f = i / n, per = 2 * (16 + 4.2), d = f * per; let px, py; if (d < 16) { px = -8 + d; py = 2.1; } else if (d < 20.2) { px = 8; py = 2.1 - (d - 16); } else if (d < 36.2) { px = 8 - (d - 20.2); py = -2.1; } else { px = -8; py = -2.1 + (d - 36.2); } m4.makeTranslation(px, py, .05); lp.setMatrixAt(i, m4); lp.setColorAt(i, new THREE.Color(0xfff2b0)); }
+    g.add(lp); lampadas.push(lp); return g;
+  }
+  letreiro(0, TELA.y0 + TELA.h + 1.5, TELA.z + 1.3, .62); // em cima do bandô das cortinas
+
+  // ---------- poltronas: assento, encosto e braços (vermelho veludo) ----------
+  const NP = N_POLT, assento = new THREE.InstancedMesh(new THREE.BoxGeometry(1.02, .32, .9), mat(0xb3122e), NP), encosto = new THREE.InstancedMesh(new THREE.BoxGeometry(1.06, .95, .22), mat(0x8e0e25), NP), braco = new THREE.InstancedMesh(new THREE.BoxGeometry(.12, .42, .85), mat(0x2a1a1f), NP + SALA.filas * 2);
+  let nb = 0;
+  for (let i = 0; i < NP; i++) {
+    const [x, z, r] = poltrona(i), h = r * SALA.degrau;
+    m4.makeTranslation(x, h + .3, z + .05); assento.setMatrixAt(i, m4); m4.makeTranslation(x, h + .62, z + .55); encosto.setMatrixAt(i, m4);
+    m4.makeTranslation(x - .6 * Math.sign(x), h + .36, z + .1); braco.setMatrixAt(nb++, m4);
+    const k = i % SALA.porLado; if (k === SALA.porLado - 1) { m4.makeTranslation(x + .6 * Math.sign(x), h + .36, z + .1); braco.setMatrixAt(nb++, m4); }
+  }
+  braco.count = nb; sala.add(assento, encosto, braco);
+  // número da fileira na ponta (letra), virado pra plateia
+  for (let r = 0; r < SALA.filas; r++) { const z = SALA.z0 + r * SALA.pz, h = r * SALA.degrau; for (const s of [-1, 1]) placa(sala, .7, .5, 64, 48, (g, w, hh) => { g.fillStyle = "#ffd23f"; g.fillRect(0, 0, w, hh); letra(g, "ABCDEFGHIJ"[r], w / 2, hh / 2 + 2, 36, "#14204a"); }, s * 1.62, h + .75, z + .2); }
+
+  // ---------- fundo da sala (entrada): balcão de pipoca, pipoqueira e cartazes ----------
+  const hF = SALA.filas * SALA.degrau, zB = 18.2;
+  const listra = textura(256, 64, (g, w, h) => { for (let i = 0; i < 16; i++) { g.fillStyle = i % 2 ? "#ffffff" : "#d91e36"; g.fillRect(i * 16, 0, 16, h); } });
+  listra.t.wrapS = THREE.RepeatWrapping; listra.t.repeat.set(3, 1);
+  caixa(sala, 14, 1.3, 1.6, new THREE.MeshLambertMaterial({ map: listra.t }), 0, hF + .65, zB);
+  caixa(sala, 14.4, .14, 1.9, 0xffd23f, 0, hF + 1.34, zB);
+  // pipoqueira: caixa de vidro com pipoca pulando
+  const pip = new THREE.Group(); pip.position.set(-4.2, hF + 1.4, zB); sala.add(pip);
+  caixa(pip, 2.2, .3, 1.4, 0xd91e36, 0, .15, 0); caixa(pip, 2.2, .3, 1.4, 0xd91e36, 0, 2.35, 0);
+  const vidro = new THREE.Mesh(new THREE.BoxGeometry(2.1, 1.9, 1.3), new THREE.MeshLambertMaterial({ color: 0xfff4c0, emissive: 0xffb000, emissiveIntensity: .35, transparent: true, opacity: .35, depthWrite: false })); vidro.position.y = 1.25; pip.add(vidro);
+  const NPC = 70, pipoca = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(.11, 0), new THREE.MeshBasicMaterial({ color: 0xfff1b8 }), NPC); pip.add(pipoca);
+  // baldes de pipoca no balcão
+  for (let i = 0; i < 5; i++) { const b = new THREE.Group(), x = -1 + i * 1.3; b.position.set(x, hF + 1.4, zB - .2); sala.add(b); const bd = new THREE.Mesh(new THREE.CylinderGeometry(.34, .24, .7, 12), new THREE.MeshLambertMaterial({ map: listra.t })); bd.position.y = .35; b.add(bd); const top = new THREE.Mesh(new THREE.SphereGeometry(.34, 10, 8, 0, 6.283, 0, 1.6), mat(0xfff1b8)); top.position.y = .7; b.add(top); }
+  placa(sala, 4.6, 1.5, 512, 160, (g, w, h) => { g.fillStyle = "#d91e36"; g.beginPath(); g.roundRect(0, 0, w, h, 30); g.fill(); letra(g, "🍿 PIPOCA", w / 2, h / 2 + 4, 96, "#fff"); }, 4.4, hF + 3.2, zB, Math.PI);
+  placa(sala, 4.6, 1.5, 512, 160, (g, w, h) => { g.fillStyle = "#d91e36"; g.beginPath(); g.roundRect(0, 0, w, h, 30); g.fill(); letra(g, "🍿 PIPOCA", w / 2, h / 2 + 4, 96, "#fff"); }, 4.4, hF + 3.2, zB - .02);
+  // parede do fundo com letreiro, portas e cartazes (vista de quem está na entrada)
+  caixa(sala, L * 2, 18, .4, 0x2a0a14, 0, hF + 9, SALA.zMax + 4.2);
+  letreiro(0, hF + 8.6, SALA.zMax + 3.9, .9, Math.PI);
+  for (const s of [-1, 1]) { caixa(sala, 3.2, 5.2, .2, 0x14204a, s * 12, hF + 2.6, SALA.zMax + 3.95); caixa(sala, 2.9, 4.9, .22, 0x6a1022, s * 12, hF + 2.5, SALA.zMax + 3.9); placa(sala, 2.6, .7, 256, 70, (g, w, h) => { g.fillStyle = "#3fbf5a"; g.fillRect(0, 0, w, h); letra(g, "SAÍDA", w / 2, h / 2 + 2, 48, "#fff"); }, s * 12, hF + 5.7, SALA.zMax + 3.8, Math.PI); }
+  const CARTAZES = [["O ÁUDIO DA MÃE", "ÀS 3H17", "#2b1550", "#ff6fa8"], ["REGRAS DA", "PORTARIA", "#0f2a3a", "#4fd1ff"], ["HISTÓRIAS", "COM CLAUDIO", "#3a1a0a", "#ffd23f"], ["EM BREVE", "NO CINE TURMA", "#14204a", "#4cc26a"]];
+  CARTAZES.forEach(([a, b, f, c], i) => { const x = [-6.5, -3.4, 3.4, 6.5][i]; placa(sala, 2.6, 3.8, 260, 380, (g, w, h) => { g.fillStyle = f; g.fillRect(0, 0, w, h); g.strokeStyle = c; g.lineWidth = 10; g.strokeRect(8, 8, w - 16, h - 16); letra(g, "🎬", w / 2, 110, 90, c); letra(g, a, w / 2, 220, 30, "#fff"); letra(g, b, w / 2, 262, 30, c); letra(g, "CINE TURMA", w / 2, 340, 22, "#ffffffaa"); }, x, hF + 3.2, SALA.zMax + 3.95, Math.PI); });
+
+  // ---------- estado do telão ----------
+  let usandoVideo = false;
+  function setTela(tl) {
+    // tl: { k: sala|vinheta|filme|fim, falta, titulo, prox }
+    const vid = !!tl && (tl.k === "filme" || tl.k === "vinheta") && (video.readyState >= 2 || (usandoVideo && !!video.currentSrc)); // pulando pro segundo certo: segura a última imagem
+    if (vid !== usandoVideo) { usandoVideo = vid; telaMat.map = vid ? vt : quadroTela.t; telaMat.needsUpdate = true; }
+    if (!vid) {
+      const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+      if (!tl || tl.k === "sala") quadroTela.refaz("sala", tl ? `A sessão começa em ${mmss(tl.falta || 0)}` : "Bem-vindo ao cinema da turma!", tl?.prox ? `Primeiro filme: ${tl.prox}` : "", "💺 Toca numa poltrona pra trocar de lugar · 🍿 pipoca no fundo");
+      else if (tl.k === "fim") quadroTela.refaz("fim", "Sessão encerrada", "Valeu, turma! 🎬", "Semana que vem tem mais");
+      else quadroTela.refaz("sala", tl.titulo || tl.prox || "", "carregando o filme…", "");
+    }
+  }
+  setTela(null);
+
+  // amostra a cor do vídeo pra luz que sai do telão iluminar a plateia
+  const amostra = document.createElement("canvas"); amostra.width = amostra.height = 8; const ag = amostra.getContext("2d", { willReadFrequently: true }); let ultAmostra = 0; const corTela = new THREE.Color(0x9fb8ff);
+  let luzAtual = 1, tAnt = 0, abertura = 0;
+  function atualizar(t, luzAlvo, fcx, fcz) {
+    const dt = Math.min(.5, Math.max(0, t - tAnt)); tAnt = t;
+    luzAtual = luzAlvo; // a luz apaga devagar (uns 2 s), igual em celular lento ou rápido
+    const L1 = luzAtual;
+    hemi.intensity = .12 + 2.3 * L1; teto.intensity = 1.1 * L1;
+    arandelas.emissiveIntensity = .15 + 1 * L1;
+    if (usandoVideo && t - ultAmostra > .4) { ultAmostra = t; try { ag.drawImage(video, 0, 0, 8, 8); const d = ag.getImageData(0, 0, 8, 8).data; let r = 0, g2 = 0, b = 0; for (let i = 0; i < d.length; i += 4) { r += d[i]; g2 += d[i + 1]; b += d[i + 2]; } const n = d.length / 4; corTela.setRGB(Math.min(1, r / n / 255 * 1.4 + .15), Math.min(1, g2 / n / 255 * 1.4 + .15), Math.min(1, b / n / 255 * 1.4 + .2)); } catch {} }
+    luzTela.color.lerp(corTela, .1); luzTela.intensity = usandoVideo ? 1.3 * (1 - L1) + .1 : .1;
+    brilho.material.color.copy(luzTela.color); brilho.material.opacity = usandoVideo ? .16 * (1 - L1) : 0;
+    // cortinas: fechadas antes da sessão (luz acesa), abrem quando apaga
+    // cortinas abrem por inteiro assim que o telão passa vídeo (vinheta ou filme), sem esperar a luz terminar de apagar: o 16:9 aparece todo
+    const abrir = usandoVideo || L1 < .6 ? 1 : 0; abertura = (globalThis.__abertura ?? abrir); if (Math.abs(abrir - abertura) < .01) abertura = abrir;
+    const aberto = abertura, larg = 3 + (TELA.w / 2 + 1) * (1 - aberto);
+    for (const c of cortinas) { c.c.scale.x = larg; c.c.position.x = c.s * (L - larg / 2); c.t.repeat.x = larg / 4; }
+    // lampadinhas do letreiro piscando em corrida
+    for (const lp of lampadas) { for (let i = 0; i < lp.count; i++) lp.setColorAt(i, (Math.floor(t * 6) + i) % 3 === 0 ? new THREE.Color(0xffffff) : new THREE.Color(0xffb020)); lp.instanceColor.needsUpdate = true; }
+    // pipoca pulando na pipoqueira
+    for (let i = 0; i < NPC; i++) { const f = (t * .9 + i * .137) % 1, x = Math.sin(i * 12.9) * .9, z = Math.cos(i * 7.3) * .5, y = .35 + Math.abs(Math.sin(f * Math.PI * (1 + i % 3))) * (i % 4 === 0 ? 1.4 : .5); m4.makeTranslation(x, y, z); pipoca.setMatrixAt(i, m4); }
+    pipoca.instanceMatrix.needsUpdate = true;
+  }
+  return { atualizar, setTela, telao, get luz() { return luzAtual; } };
+}
+
+return { montarCinema, SALA, TELA, N_POLT, poltrona, alturaDe };
+})();
+// Reels "Hoje tem cinema" (Turma do Brasil): cenário real do Cine Turma (sala escura, telão, poltronas, pipoca), bonecos sentados e pipoca voando.
+// FESTA = festa/cenario.js (só os bonecos) e CINE = cenario-cinema.js, cada um dentro do seu escopo (têm nomes iguais por dentro).
+const { montarBonecos } = FESTA;
+const { montarCinema, SALA, TELA, N_POLT, poltrona, alturaDe } = CINE;
+const ID = "evcinema";
+const TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json();
+const FIM = TEMPOS.total;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v)), ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pop = (t, a, d = .3) => { const k = clamp((t - a) / d, 0, 1); return k <= 0 ? 0 : k >= 1 ? 1 : (1 - Math.pow(1 - k, 3)) + .3 * Math.sin(k * Math.PI); };
+const entre = (t, a, b) => t >= a && t < b;
+const C = (n) => TEMPOS.cenas[n - 1].ini;
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, w, o = 1) { let k = 0; for (const p of TEMPOS.cenas[n - 1].palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+
+const W = 1080, H = 1920;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); renderer.setSize(W, H); renderer.setPixelRatio(1); renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
+const mundo = montarCinema(cena, document.createElement("video")), bonecos = montarBonecos(cena, 260);
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(777);
+
+// ---------- telão: antes da sessão fica o quadro "CINE TURMA"; quando liga, passa um filme de cores (peça própria, sem vídeo) ----------
+const mapaSala = mundo.telao.material.map;
+const filmeC = document.createElement("canvas"); filmeC.width = 512; filmeC.height = 288; const fg = filmeC.getContext("2d");
+const filmeTex = new THREE.CanvasTexture(filmeC); filmeTex.colorSpace = THREE.SRGBColorSpace;
+function pintaFilme(t) {
+  const h = (t * 38) % 360, gr = fg.createLinearGradient(0, 0, 512, 288); gr.addColorStop(0, `hsl(${h},80%,46%)`); gr.addColorStop(1, `hsl(${(h + 90) % 360},85%,28%)`); fg.fillStyle = gr; fg.fillRect(0, 0, 512, 288);
+  for (let j = 0; j < 6; j++) { fg.fillStyle = `hsla(${(h + j * 55) % 360},90%,66%,.34)`; fg.beginPath(); fg.arc(256 + Math.sin(t * .9 + j * 1.7) * 210, 144 + Math.cos(t * 1.1 + j * 2.3) * 100, 44 + 22 * Math.sin(t + j), 0, 6.3); fg.fill(); }
+  fg.font = "900 120px Nunito, sans-serif"; fg.textAlign = "center"; fg.textBaseline = "middle"; fg.fillStyle = "#fff"; fg.save(); fg.translate(256, 150); fg.scale(1 + .08 * Math.sin(t * 4), 1 + .08 * Math.sin(t * 4)); fg.fillText("🎬", 0, 0); fg.restore();
+  filmeTex.needsUpdate = true; return h;
+}
+let telaLigada = null;
+const luzFilme = new THREE.DirectionalLight(0x7fa0ff, 0); luzFilme.position.set(0, 14, TELA.z + 2); luzFilme.target.position.set(0, 0, 8); cena.add(luzFilme, luzFilme.target);
+
+// ---------- plateia: bonecos sentados nas poltronas, gente andando no corredor e fila na pipoca ----------
+const SENTADOS = [];
+for (let i = 0; i < N_POLT; i++) if (r() < .62) { const [x, z] = poltrona(i); SENTADOS.push({ x, z, cor: Math.floor(r() * 8), id: SENTADOS.length, fase: r() * 6.28 }); }
+const CAMINHANTES = Array.from({ length: 7 }, (_, i) => ({ off: i * 3.7, lado: (i % 2 ? 1 : -1) * .55, cor: (i * 3 + 1) % 8, id: 600 + i, fase: r() * 6.28 }));
+const FILA = [-2.2, -.7, .9, 2.5, 4].map((x, i) => ({ x, z: 16.5 + (i % 2) * .2, cor: (i * 5 + 2) % 8, id: 700 + i, fase: r() * 6.28 }));
+const piso = (z) => alturaDe(z); // degraus do cenário
+// pipoca voando (cena 4): sai das poltronas pra cima
+const NPC = 170, pipocas = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(.14, 0), new THREE.MeshBasicMaterial({ color: 0xfff1b8 }), NPC); pipocas.frustumCulled = false; cena.add(pipocas);
+const PP = Array.from({ length: NPC }, () => { const s = SENTADOS[Math.floor(r() * SENTADOS.length)]; return { x: s.x, y: alturaDe(s.z) + 1.5, z: s.z, vx: (r() - .5) * 3.2, vy: 5 + r() * 4.5, vz: (r() - .5) * 3.2, d: r() * .6, sp: r() * 9 }; });
+const m4 = new THREE.Matrix4(), o3 = new THREE.Object3D();
+
+// tomadas: [início, câmera de, câmera até] com [posição x,y,z, olha x,y,z]
+const T = [
+  [0, [0, 9, 14.5, 0, 9, -28.5], [0, 11, 8, 0, 10, -28.5]],
+  [C(2), [0, 9, 22, 0, 10, -28.5], [0, 8, 14, 0, 10, -28.5]],
+  [C(3), [-10, 8, 10, -3, 2.8, -4], [-6.5, 6.5, 6, -1, 2.8, -6]],
+  [P(3, "pega") - .1, [-1, 9.5, 6, 0, 6.5, 18.2], [1, 9, 9, 0, 6.6, 18.2]],
+  [P(3, "assiste") - .1, [0, 9.5, 13, 0, 6, -20], [0, 10.5, 15.5, 0, 7, -22]],
+  [C(4), [0, 3.6, -14, 0, 3, 4], [3, 4.2, -12, -1, 3.4, 3]],
+  [P(4, "pipoca") - .15, [-9, 6, 9, -2, 3.2, -4], [-6, 6, 6, 0, 3.5, -5]],
+  [P(4, "torcer") - .1, [0, 9.5, 13, 0, 6, -20], [0, 10.5, 16, 0, 7.5, -22]],
+  [C(5), [.4, 5.2, 2, 7, 3.4, -6], [1, 5, 0, 7, 3.6, -7]],
+  [C(6), [0, 10, 14, 0, 8, -26], [0, 11.5, 17, 0, 9, -26]],
+];
+const CHIPS = [
+  [0, C(2), "HOJE TEM CINEMA 🎬"],
+  [C(2), C(3), "HOJE · 21H<small>a luz apaga e o telão liga</small>"],
+  [C(3), T[3][0], "💺 TUA POLTRONA"],
+  [T[3][0], T[4][0], "🍿 PIPOCA"],
+  [T[4][0], C(4), "🇧🇷 BRASIL INTEIRO"],
+  [C(4), T[6][0], "😱 QUE MEDO"],
+  [T[6][0], T[7][0], "🍿 PEDE PIPOCA"],
+  [T[7][0], C(5), "🎬 PARTE 2"],
+  [C(5), C(6), "+20 PONTOS 👑<small>ficando 15 minutos</small>"],
+  [C(6), FIM + 1, "HOJE · 21H 🍿"],
+];
+const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
+const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
+const elCta = mk("cta", '<div class="l1">🎬 HOJE, 21H<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra sentar no cinema</div>');
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = new Set(["cinema", "turma", "brasil", "nove", "noite", "luz", "apaga", "telao", "liga", "poltrona", "pipoca", "assiste", "inteiro", "medo", "parte", "2", "quinze", "vinte", "pontos", "casa", "cidade", "estado", "bio"]);
+const elG = mk("grande");
+const tc = (el, k, x = true) => el.style.transform = (x ? "translateX(-50%) " : "") + `scale(${k})`;
+
+const tApaga = P(2, "apaga"), tLiga = P(2, "liga"), tMedo = P(4, "medo"), tPipoca = P(4, "pipoca"), tTorcer = P(4, "torcer");
+
+function renderFrame(t) {
+  // câmera
+  const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
+  const v = s[1].map((a, j) => a + (s[2][j] - a) * k);
+  cam.position.set(v[0], v[1], v[2]); cam.lookAt(v[3], v[4], v[5]); cam.updateMatrixWorld();
+  // luz da sala: acesa até "apaga", escurece em ~1,3 s; cortinas abrem junto; telão liga em "liga"
+  const luz = t < tApaga ? 1 : 1 - .78 * prog(t, tApaga, tApaga + 1.3);
+  globalThis.__abertura = prog(t, tApaga + .1, tApaga + 1.6);
+  const ligada = t >= tLiga - .1;
+  if (ligada !== telaLigada) { telaLigada = ligada; mundo.telao.material.map = ligada ? filmeTex : mapaSala; mundo.telao.material.needsUpdate = true; }
+  if (ligada) { const h = pintaFilme(t); luzFilme.color.setHSL(h / 360, .75, .62); luzFilme.intensity = 1.7 * prog(t, tLiga - .1, tLiga + .5); } else luzFilme.intensity = 0;
+  mundo.atualizar(t, luz, 0, 0);
+  // gente
+  const medo = prog(t, tMedo - .1, tMedo + .15) * (1 - prog(t, tMedo + 1.2, tMedo + 1.6));
+  const torce = prog(t, tTorcer - .1, tTorcer + .2) * (1 - prog(t, C(5), C(5) + .3));
+  const pontos = prog(t, P(5, "vinte") - .1, P(5, "vinte") + .2) * (1 - prog(t, C(6), C(6) + .3));
+  let n = 0;
+  for (const p of SENTADOS) {
+    const pulo = medo * Math.abs(Math.sin(t * 14 + p.fase)) * .6 + torce * Math.abs(Math.sin(t * 8 + p.fase)) * .55 + pontos * Math.abs(Math.sin(t * 7 + p.fase)) * .3 + Math.abs(Math.sin(t * .9 + p.fase)) * .03;
+    bonecos.poe(n++, p.x, alturaDe(p.z) - .24 + pulo, p.z, medo * Math.sin(t * 22 + p.fase) * .25 + torce * Math.sin(t * 8 + p.fase) * .12, p.cor, p.id);
+  }
+  for (const p of CAMINHANTES) { const z = 14 - ((t * 2.8 + p.off) % 26); bonecos.poe(n++, p.lado, piso(z) + Math.abs(Math.sin(t * 11 + p.fase)) * .12, z, 0, p.cor, p.id); }
+  const pega = prog(t, P(3, "pega"), P(3, "pega") + .3);
+  for (const p of FILA) bonecos.poe(n++, p.x, SALA.filas * SALA.degrau + Math.abs(Math.sin(t * (4 + pega * 4) + p.fase)) * (.05 + pega * .2), p.z, 0, p.cor, p.id);
+  bonecos.fim(n);
+  // pipoca voando em "pedir pipoca" (e um tiquinho na torcida)
+  for (let j = 0; j < NPC; j++) { const p = PP[j], d = t - tPipoca - p.d, vis = d > 0 && d < 2.2 ? 1 : 0.0001, dd = clamp(d, 0, 2.2); o3.position.set(p.x + p.vx * dd, p.y + p.vy * dd - 4.9 * dd * dd, p.z + p.vz * dd); o3.rotation.set(t * 5 + p.sp, t * 3, 0); o3.scale.setScalar(vis); o3.updateMatrix(); pipocas.setMatrixAt(j, o3.matrix); }
+  pipocas.instanceMatrix.needsUpdate = true;
+  // "+20" estoura na hora do "vinte"
+  const tv = P(5, "vinte"), kv = pop(t, tv, .35) * (entre(t, tv, C(6)) ? 1 : 0); elG.textContent = kv > 0 ? "+20" : ""; elG.style.opacity = kv > 0 ? 1 : 0; tc(elG, Math.max(.01, kv));
+  renderer.render(cena, cam);
+  // textos
+  tc(elMarca, 1);
+  const c = CHIPS.find(([a, b]) => entre(t, a, b));
+  if (c) { elChip.innerHTML = c[2]; elChip.style.opacity = 1; tc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16)); } else elChip.style.opacity = 0;
+  const kc = prog(t, P(6, "comenta") - .1, P(6, "comenta") + .2); elCta.style.opacity = kc; tc(elCta, .6 + .4 * kc + .03 * Math.sin(t * 9) * kc, false);
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual || kc > 0) { elLeg.textContent = ""; }
+  else { elLeg.textContent = atual.w.toUpperCase(); elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : ""); tc(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09), false); }
+}
+window.renderFrame = renderFrame;
+renderFrame(0);
+window.pronto = true;
+</script>
+</body></html>
