@@ -1,0 +1,492 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0a1633;position:relative}canvas{display:block}
+.ov{position:absolute;pointer-events:none;font-family:'Nunito',sans-serif;font-weight:900}
+#marca{top:70px;left:50%;background:#fff;color:#1d5e2a;font-size:46px;padding:14px 36px;border-radius:99px;border:6px solid #1d5e2a;box-shadow:0 8px 0 #1d5e2a;white-space:nowrap;letter-spacing:1px}
+#marca b{color:#2fa34a}
+#chip{top:250px;left:50%;white-space:nowrap;background:rgba(18,52,24,.9);border-radius:34px;padding:10px 40px 22px;text-align:center;font-size:84px;color:#ffd23f;line-height:1.05}
+#chip small{display:block;font-size:50px;color:#fff}
+#legenda{top:1640px;left:0;right:0;text-align:center;font-size:96px;color:#fff;-webkit-text-stroke:4px #111;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.6)}
+#legenda.am{color:#ffd23f}
+#grande{top:760px;left:50%;font-size:230px;color:#ffd23f;-webkit-text-stroke:9px #14204a;paint-order:stroke fill;white-space:nowrap}
+#cta{left:60px;right:60px;top:1160px;background:#fff;border:8px solid #14204a;border-radius:44px;box-shadow:0 12px 0 #14204a;text-align:center;padding:30px 20px 34px;color:#14204a}
+#cta .l1{font-size:76px;line-height:1.05}
+#cta .l2{font-size:46px;color:#1d5e2a;margin-top:10px}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from "three";
+
+// Cenário da CAÇA AO TESOURO DA TURMA (versão praia, pôr do sol). Mesmos exports do cenario-estadio.js pra página não quebrar.
+// Tudo em função do tempo t, sem sorteio solto: a mesma função desenha a página ao vivo e a prévia.
+const LIMITE = 56;
+const AREAS = [
+  { id: "praca", nome: "🏖️ Quiosque da Turma", x: 0, z: 0, r: 15 },
+  { id: "palco", nome: "🏴‍☠️ Píer do Pirata", x: 0, z: -36, r: 21 },
+  { id: "campinho", nome: "🌴 Coqueiral", x: 38, z: 0, r: 17 },
+  { id: "pinta", nome: "⛱️ Guarda-sóis", x: -38, z: 0, r: 17 },
+  { id: "corrida", nome: "🐚 Pedras e Conchas", x: -26, z: 32, r: 16 },
+  { id: "volei", nome: "🦀 Dunas", x: 26, z: 34, r: 15 },
+];
+// zonas das provas antigas: ficam exportadas (a página importa), mas fora do mapa
+const CAMPO = { x0: 900, x1: 924, z0: 900, z1: 916, gol: 2.5 };
+const PISTA_C = { x0: 900, x1: 926, z0: 900, z1: 908, lx0: 895 };
+const PG = { cx: 900, cz: 900, n: 12, tam: 2.2 };
+const QV = { x0: 900, x1: 920, z0: 900, z1: 912, rede: 910 };
+const naPista = () => false;
+const areaDe = (x, z) => AREAS.filter((a) => Math.hypot(x - a.x, z - a.z) <= a.r).sort((a, b) => Math.hypot(x - a.x, z - a.z) - Math.hypot(x - b.x, z - b.z))[0] || null;
+const CORES = [0xe4573a, 0x2b59c3, 0xffb020, 0x8e5cd9, 0xff6fa8, 0x18a39a, 0xff7a45, 0x4cc26a].map((c) => new THREE.Color(c));
+const CORES_UF = [0x9aa3b8, ...Array.from({ length: 27 }, (_, i) => new THREE.Color().setHSL((i * 0.381) % 1, .78, i % 2 ? .5 : .62).getHex()), 0xf2f2f2];
+const PELES = [0xffdfc4, 0xf0c29a, 0xd99a6c, 0xa86b42, 0x7a4a2c].map((c) => new THREE.Color(c));
+const UFS = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+const ORLA_Z = -48; // onde a areia vira mar
+
+const semente = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const mats = new Map();
+const mat = (cor, emis = 0, forca = .6) => { const k = `${cor}-${emis}-${forca}`; if (!mats.has(k)) mats.set(k, new THREE.MeshLambertMaterial({ color: cor, ...(emis ? { emissive: emis, emissiveIntensity: forca } : {}) })); return mats.get(k); };
+const basico = (cor) => new THREE.MeshBasicMaterial({ color: cor, fog: false });
+function caixa(g, w, h, d, cor, x, y, z, emis) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(cor, emis)); m.position.set(x, y, z); g.add(m); return m; }
+function textura(w, h, pinta) { const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d"); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const refaz = (...a) => { pinta(g, w, h, ...a); t.needsUpdate = true; }; refaz(); return { t, refaz }; }
+function placa(g, w, h, px, py, pinta, x, y, z) { const tx = textura(px, py, pinta), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tx.t, fog: false, toneMapped: false, side: THREE.DoubleSide })); m.position.set(x, y, z); g.add(m); tx.m = m; return tx; }
+const letra = (g, txt, x, y, tam, cor = "#fff", al = "center") => { g.fillStyle = cor; g.font = `900 ${tam}px Nunito, sans-serif`; g.textAlign = al; g.textBaseline = "middle"; g.fillText(txt, x, y); };
+function rotulo(g, txt, x, y, z, alt = 2.2, fundo = "#fff", cor = "#14204a") {
+  const m = document.createElement("canvas").getContext("2d"); m.font = "900 56px Nunito, sans-serif"; const w = Math.ceil(m.measureText(txt).width) + 60;
+  const tx = textura(w, 88, (c, W, H) => { c.fillStyle = fundo; c.beginPath(); c.roundRect(3, 3, W - 6, H - 6, 40); c.fill(); c.lineWidth = 6; c.strokeStyle = "#14204a"; c.stroke(); letra(c, txt, W / 2, H / 2 + 3, 56, cor); });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx.t, depthTest: false, fog: false })); s.scale.set(alt * w / 88, alt, 1); s.position.set(x, y, z); s.renderOrder = 5; g.add(s); return s;
+}
+const listras = new Map();
+function texListra(a, b, n = 8) { const k = `${a}${b}${n}`; if (!listras.has(k)) listras.set(k, textura(256, 16, (g, w, h) => { for (let i = 0; i < n; i++) { g.fillStyle = i % 2 ? b : a; g.fillRect(i * w / n, 0, w / n + 1, h); } }).t); return listras.get(k); }
+
+// ---------- peças da praia ----------
+const GEO = {
+  tronco: new THREE.CylinderGeometry(.24, .32, 1, 8), folha: new THREE.ConeGeometry(.55, 4.4, 4), coco: new THREE.SphereGeometry(.26, 8, 6),
+  pedra: new THREE.DodecahedronGeometry(1, 0), concha: new THREE.ConeGeometry(.22, .4, 6), poste: new THREE.CylinderGeometry(.07, .07, 1, 6),
+  chama: new THREE.ConeGeometry(.22, .7, 8), chama2: new THREE.ConeGeometry(.12, .45, 6),
+};
+function coqueiro(g, x, z, h, inc, rot, r) {
+  const c = new THREE.Group(); c.position.set(x, 0, z); c.rotation.y = rot; g.add(c);
+  const N = 7; let px = 0, py = 0;
+  for (let i = 0; i < N; i++) { const f = i / N, seg = new THREE.Mesh(GEO.tronco, mat(i % 2 ? 0x8a6238 : 0x9c7244)); const dx = inc * (2 * f + 1 / N) / N * h * .5; seg.scale.set(1 - f * .3, Math.hypot(dx, h / N) + .12, 1 - f * .3); seg.position.set(px + dx / 2, py + h / N / 2, 0); seg.rotation.z = -Math.atan2(dx, h / N); c.add(seg); px += dx; py += h / N; }
+  const topo = new THREE.Group(); topo.position.set(px, py, 0); c.add(topo);
+  for (let k = 0; k < 8; k++) { const f = new THREE.Mesh(GEO.folha, mat(k % 2 ? 0x2f8a3a : 0x3fa648)); f.scale.set(1, 1, .18); f.position.set(Math.cos(k * .785) * 1.6, -.5, Math.sin(k * .785) * 1.6); f.rotation.set(0, -k * .785, 0); f.rotateZ(-1.95 - r() * .3); topo.add(f); }
+  for (let k = 0; k < 3; k++) { const o = new THREE.Mesh(GEO.coco, mat(0x5a3a1c)); o.position.set(Math.cos(k * 2.1) * .32, -.35, Math.sin(k * 2.1) * .32); topo.add(o); }
+  return topo;
+}
+function guardaSol(g, x, z, a, b, r) {
+  const p = new THREE.Mesh(GEO.poste, mat(0xeeeeee)); p.scale.y = 3.2; p.position.set(x, 1.6, z); p.rotation.z = (r() - .5) * .15; g.add(p);
+  const topo = new THREE.Mesh(new THREE.ConeGeometry(1.9, .8, 16, 1, true), new THREE.MeshLambertMaterial({ map: texListra(a, b), side: THREE.DoubleSide })); topo.position.set(x + p.rotation.z * -1.6, 3.3, z); g.add(topo);
+  const canga = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 2.4), new THREE.MeshLambertMaterial({ map: texListra(b, "#ffffff", 6) })); canga.rotation.x = -Math.PI / 2; canga.rotation.z = r() * 3; canga.position.set(x + 1.4, .05, z + .6); g.add(canga);
+  const cad = new THREE.Group(); cad.position.set(x - 1.2, 0, z + .9); cad.rotation.y = r() * 6; g.add(cad);
+  caixa(cad, .9, .08, 1.1, a === "#ffffff" ? 0x2b59c3 : new THREE.Color(a).getHex(), 0, .45, 0); const enc = caixa(cad, .9, .08, .9, new THREE.Color(b).getHex(), 0, .8, -.75); enc.rotation.x = -1;
+  for (const [sx, sz] of [[-.4, -.5], [.4, -.5], [-.4, .5], [.4, .5]]) caixa(cad, .05, .45, .05, 0xdddddd, sx, .22, sz);
+}
+function quiosque(g, x, z, rot, nome, cor) {
+  const q = new THREE.Group(); q.position.set(x, 0, z); q.rotation.y = rot; g.add(q);
+  for (const [sx, sz] of [[-2.2, -1.6], [2.2, -1.6], [-2.2, 1.6], [2.2, 1.6]]) caixa(q, .3, 3.4, .3, 0x7a5230, sx, 1.7, sz);
+  caixa(q, 4.4, 1.2, .5, 0xc98f52, 0, .6, 1.6); caixa(q, 4.6, .15, .8, 0x8a5a2b, 0, 1.25, 1.6);
+  const teto = new THREE.Mesh(new THREE.ConeGeometry(3.9, 2.2, 4), mat(0xd6b46a)); teto.rotation.y = Math.PI / 4; teto.scale.set(1, 1, .8); teto.position.y = 4.4; q.add(teto);
+  const franja = new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.7, .35, 4, 1, true), mat(0xb8944a)); franja.rotation.y = Math.PI / 4; franja.scale.set(1, 1, .8); franja.position.y = 3.35; q.add(franja);
+  placa(q, 3.6, .8, 384, 84, (c, w, h) => { c.fillStyle = cor; c.fillRect(0, 0, w, h); letra(c, nome, w / 2, h / 2 + 2, nome.length > 14 ? 32 : 40, "#fff"); }, 0, 2.75, 1.86);
+  for (let k = 0; k < 3; k++) { const copo = new THREE.Mesh(new THREE.CylinderGeometry(.13, .1, .35, 8), mat([0xff8a3d, 0xffd23f, 0x3fd0c9][k])); copo.position.set(-1 + k, 1.5, 1.6); q.add(copo); }
+  return q;
+}
+function bauModelo(aberto = 1) {
+  const b = new THREE.Group();
+  caixa(b, 1.6, .9, 1, 0x7a4a1f, 0, .45, 0); caixa(b, 1.66, .14, 1.06, 0xc9a227, 0, .2, 0); caixa(b, 1.66, .14, 1.06, 0xc9a227, 0, .78, 0); caixa(b, .22, .3, .08, 0xffd23f, 0, .62, .52);
+  const tampa = new THREE.Group(); tampa.position.set(0, .9, -.5); b.add(tampa);
+  const tm = new THREE.Mesh(new THREE.CylinderGeometry(.5, .5, 1.6, 12, 1, false, 0, Math.PI), mat(0x8a5626)); tm.rotation.z = Math.PI / 2; tm.position.z = .5; tampa.add(tm);
+  tampa.rotation.x = -aberto * 1.9;
+  const ouro = new THREE.Mesh(new THREE.SphereGeometry(.72, 14, 8, 0, 6.283, 0, 1.2), new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffa000, emissiveIntensity: .8 })); ouro.scale.set(1, .5, .6); ouro.position.y = .82; ouro.visible = aberto > 0; b.add(ouro);
+  const brilho = new THREE.Mesh(new THREE.CylinderGeometry(.3, .9, 5, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xffe680, transparent: true, opacity: .28, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false })); brilho.position.y = 3.3; brilho.visible = aberto > 0; b.add(brilho);
+  b.userData = { tampa, ouro, brilho }; return b;
+}
+function tocha(g, x, z, lista) {
+  const p = new THREE.Mesh(GEO.poste, mat(0x6b4423)); p.scale.set(1.6, 2.4, 1.6); p.position.set(x, 1.2, z); g.add(p);
+  const cp = new THREE.Mesh(new THREE.CylinderGeometry(.2, .12, .35, 8), mat(0x3a2a1a)); cp.position.set(x, 2.5, z); g.add(cp);
+  const a = new THREE.Mesh(GEO.chama, basico(0xff7a1a)), b = new THREE.Mesh(GEO.chama2, basico(0xffe066)); a.position.set(x, 2.95, z); b.position.set(x, 2.85, z); g.add(a, b); lista.push([a, b, lista.length]);
+}
+
+function montarCenario(cena) {
+  const r = semente(2611);
+  cena.background = new THREE.Color(0xf6a36a); cena.fog = new THREE.Fog(0xf3a874, 110, 300);
+  cena.add(new THREE.HemisphereLight(0xffe6c8, 0xc8955e, 2.4));
+  const sol = new THREE.DirectionalLight(0xffb27a, 1.5); sol.position.set(-10, 22, -60); cena.add(sol);
+  const fundo = new THREE.Group(); cena.add(fundo);
+  const G = Object.fromEntries(AREAS.map((a) => { const g = new THREE.Group(); cena.add(g); return [a.id, g]; }));
+  const chamas = [], bichos = [];
+
+  // ---------- céu de pôr do sol + sol ----------
+  const ceu = new THREE.Mesh(new THREE.SphereGeometry(330, 32, 16), new THREE.MeshBasicMaterial({ side: THREE.BackSide, fog: false, map: textura(8, 256, (g, w, h) => { const d = g.createLinearGradient(0, 0, 0, h); d.addColorStop(0, "#2a1d5e"); d.addColorStop(.32, "#7a3f8f"); d.addColorStop(.44, "#e8607a"); d.addColorStop(.5, "#ffa25a"); d.addColorStop(.56, "#ffd08a"); d.addColorStop(1, "#ffd08a"); g.fillStyle = d; g.fillRect(0, 0, w, h); }).t })); fundo.add(ceu);
+  const sola = new THREE.Mesh(new THREE.CircleGeometry(20, 40), basico(0xffe2a0)); sola.position.set(-30, 16, -300); fundo.add(sola);
+  const halo = new THREE.Mesh(new THREE.CircleGeometry(38, 40), new THREE.MeshBasicMaterial({ color: 0xffb070, transparent: true, opacity: .35, fog: false, depthWrite: false })); halo.position.set(-30, 16, -301); fundo.add(halo);
+  for (let i = 0; i < 9; i++) { const n = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), new THREE.MeshBasicMaterial({ color: i % 2 ? 0xffc59a : 0xf59ab0, fog: false })); n.scale.set(14 + r() * 18, 2 + r() * 2, 4); n.position.set((r() - .5) * 420, 40 + r() * 40, -240 - r() * 40); fundo.add(n); }
+
+  // ---------- areia, orla, mar ----------
+  const areia = new THREE.Mesh(new THREE.CircleGeometry(130, 64), new THREE.MeshLambertMaterial({ map: (() => { const t = textura(512, 512, (g, w, h) => { g.fillStyle = "#ecd29c"; g.fillRect(0, 0, w, h); const rr = semente(9); for (let k = 0; k < 5000; k++) { g.fillStyle = rr() < .5 ? "rgba(190,150,90,.25)" : "rgba(255,245,215,.35)"; g.fillRect(rr() * w, rr() * h, 2, 2); } }).t; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(10, 10); return t; })() }));
+  areia.rotation.x = -Math.PI / 2; fundo.add(areia);
+  const molhada = new THREE.Mesh(new THREE.PlaneGeometry(400, 10), mat(0xc9a66a)); molhada.rotation.x = -Math.PI / 2; molhada.position.set(0, .02, ORLA_Z - 1); fundo.add(molhada);
+  const marGeo = new THREE.PlaneGeometry(420, 200, 70, 24); marGeo.rotateX(-Math.PI / 2); marGeo.translate(0, .25, ORLA_Z - 100);
+  const marBase = marGeo.attributes.position.array.slice();
+  const mar = new THREE.Mesh(marGeo, new THREE.MeshLambertMaterial({ color: 0x1f9bbf, flatShading: true, transparent: true, opacity: .93 })); fundo.add(mar);
+  const raso = new THREE.Mesh(new THREE.PlaneGeometry(420, 7), new THREE.MeshLambertMaterial({ color: 0x7fe3df, transparent: true, opacity: .6, depthWrite: false })); raso.rotation.x = -Math.PI / 2; raso.position.set(0, .06, ORLA_Z - 2.5); fundo.add(raso);
+  const espuma = new THREE.Mesh(new THREE.PlaneGeometry(420, 1.1), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .85 })); espuma.rotation.x = -Math.PI / 2; espuma.position.set(0, .08, ORLA_Z); fundo.add(espuma);
+  // reflexo do sol no mar
+  const reflexo = new THREE.Mesh(new THREE.PlaneGeometry(10, 160), new THREE.MeshBasicMaterial({ color: 0xffd9a0, transparent: true, opacity: .35, depthWrite: false, fog: false })); reflexo.rotation.x = -Math.PI / 2; reflexo.position.set(-16, .5, ORLA_Z - 110); fundo.add(reflexo);
+
+  // ---------- caminhos de tábua até cada canto + nome ----------
+  for (const a of AREAS.slice(1)) {
+    const d = Math.hypot(a.x, a.z), c = new THREE.Mesh(new THREE.PlaneGeometry(3.4, d - 10), new THREE.MeshLambertMaterial({ map: (() => { const t = texListra("#b98b57", "#a3784a", 2); return t; })() }));
+    c.rotation.x = -Math.PI / 2; c.rotation.z = Math.atan2(-a.x, -a.z); c.position.set(a.x / 2, .03, a.z / 2); fundo.add(c);
+    rotulo(fundo, a.nome, a.x * .46, 2.4, a.z * .46, 1);
+    tocha(fundo, a.x * .3 + (a.z ? 2.4 : 0), a.z * .3 + (a.z ? 0 : 2.4), chamas); tocha(fundo, a.x * .3 - (a.z ? 2.4 : 0), a.z * .3 - (a.z ? 0 : 2.4), chamas);
+  }
+
+  // ---------- CENTRO: quiosque da Turma, mapa do tesouro, baú aberto no X ----------
+  const pr = G.praca;
+  const roda = new THREE.Mesh(new THREE.CircleGeometry(14, 40), mat(0xdcb878)); roda.rotation.x = -Math.PI / 2; roda.position.y = .025; pr.add(roda);
+  for (const s of [1, -1]) { const x = new THREE.Mesh(new THREE.PlaneGeometry(.7, 5), mat(0xd62828)); x.rotation.x = -Math.PI / 2; x.rotation.z = s * .785; x.position.set(0, .05, 3); pr.add(x); }
+  const bauC = bauModelo(1); bauC.position.set(0, 0, 3); bauC.scale.setScalar(1.3); pr.add(bauC);
+  quiosque(pr, 0, -8, 0, "QUIOSQUE DA TURMA", "#1c8a3c");
+  // mapa do tesouro em pergaminho
+  caixa(pr, .25, 3.6, .25, 0x7a5230, -9.5, 1.8, -2); caixa(pr, .25, 3.6, .25, 0x7a5230, -5.5, 1.8, -2);
+  const mapaT = placa(pr, 4.6, 3.4, 400, 296, (g, w, h) => {
+    g.fillStyle = "#e9d3a0"; g.fillRect(0, 0, w, h); g.strokeStyle = "#8a5a2b"; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
+    letra(g, "MAPA DO TESOURO", w / 2, 34, 34, "#6b3a12");
+    g.fillStyle = "#4fb6d6"; g.fillRect(14, 54, w - 28, 50); g.fillStyle = "#e0bf7a"; g.beginPath(); g.ellipse(w / 2, 190, 170, 88, 0, 0, 6.3); g.fill();
+    g.setLineDash([10, 10]); g.strokeStyle = "#6b3a12"; g.lineWidth = 5; g.beginPath(); g.moveTo(80, 230); g.bezierCurveTo(140, 130, 230, 260, 300, 160); g.stroke(); g.setLineDash([]);
+    letra(g, "✖", 306, 156, 52, "#d62828"); letra(g, "🌴", 90, 150, 40); letra(g, "⛱️", 190, 240, 34); letra(g, "🦀", 300, 245, 34); letra(g, "🏴‍☠️", w / 2, 80, 34);
+  }, -7.5, 3, -1.9);
+  mapaT.m.rotation.y = .5; mapaT.m.position.set(-7.4, 3, -1.6);
+  for (let k = 0; k < 4; k++) { const ang = k * 1.57 + .8; coqueiro(pr, Math.cos(ang) * 12.5, Math.sin(ang) * 12.5, 6 + r() * 2, .8, ang + 1.57, r); }
+
+  // ---------- PÍER + BARCO PIRATA (id "palco": pódio fica aqui) ----------
+  const pc = G.palco;
+  const pier = new THREE.Mesh(new THREE.BoxGeometry(6, .3, 48), new THREE.MeshLambertMaterial({ map: (() => { const t = texListra("#a87a48", "#8f6538", 2); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 1); return t; })() }));
+  pier.position.set(0, .15, -52); pier.rotation.y = 0; pc.add(pier);
+  for (let k = 0; k < 9; k++) for (const s of [-1, 1]) { const p = new THREE.Mesh(new THREE.CylinderGeometry(.22, .22, 3, 8), mat(0x6b4423)); p.position.set(s * 3, -.8, -30 - k * 5.4); pc.add(p); }
+  for (const s of [-1, 1]) caixa(pc, .15, .9, 46, 0x8a5a2b, s * 3, .75, -53);
+  caixa(pc, .6, 1.4, .6, 0x5a3a1c, 2, .9, -74); // amarração
+  const boia = new THREE.Mesh(new THREE.TorusGeometry(.55, .2, 8, 16), new THREE.MeshLambertMaterial({ map: texListra("#ff3b3b", "#ffffff", 8) })); boia.position.set(-3.1, 1.2, -45); boia.rotation.y = 1.57; pc.add(boia);
+  const barco = new THREE.Group(); barco.position.set(18, 0, -96); barco.rotation.y = -.35; fundo.add(barco);
+  const casco = new THREE.Shape(); casco.moveTo(-13, 1); casco.lineTo(10, 1); casco.lineTo(15, 5); casco.lineTo(9, 4.6); casco.lineTo(-9, 4.6); casco.lineTo(-11, 7.5); casco.lineTo(-15, 7.5); casco.lineTo(-15, 4); casco.lineTo(-13, 1);
+  const cg = new THREE.ExtrudeGeometry(casco, { depth: 8, bevelEnabled: false }); cg.translate(0, -1.5, -4);
+  barco.add(new THREE.Mesh(cg, mat(0x5a3418))); caixa(barco, 24, .3, 8.4, 0xffd23f, -1, 3.1, 0);
+  for (let k = 0; k < 5; k++) { const j = new THREE.Mesh(new THREE.CircleGeometry(.4, 10), basico(0xffcf6a)); j.position.set(-9 + k * 4, 2, 4.05); barco.add(j); }
+  const velas = [];
+  for (const [mx, alt, lar] of [[-5, 20, 11], [5, 16, 9]]) {
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(.35, .45, alt, 8), mat(0x4a2a12)); m.position.set(mx, 3 + alt / 2, 0); barco.add(m);
+    caixa(barco, .3, .3, lar + 1, 0x4a2a12, mx, 3 + alt * .92, 0); caixa(barco, .3, .3, lar + 1, 0x4a2a12, mx, 3 + alt * .38, 0);
+    const vg = new THREE.PlaneGeometry(lar, alt * .52, 6, 4); const vp = vg.attributes.position; for (let i = 0; i < vp.count; i++) { const u = vp.getX(i) / (lar / 2); vp.setZ(i, (1 - u * u) * 1.4); }
+    vg.computeVertexNormals();
+    const tv = textura(512, 470, (g, w, h) => { g.fillStyle = "#f4ead2"; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(120,90,50,.15)"; for (let k = 0; k < 6; k++) g.fillRect(0, k * h / 6, w, 3);
+      if (mx < 0) { letra(g, "CAÇA AO", w / 2, h * .2, 92, "#6b2410"); letra(g, "TESOURO", w / 2, h * .42, 104, "#c0392b"); letra(g, "DA TURMA", w / 2, h * .64, 84, "#6b2410"); letra(g, "🇧🇷 🏴‍☠️ 💰", w / 2, h * .85, 64); } else { letra(g, "☠️", w / 2, h * .48, 260); } });
+    const v = new THREE.Mesh(vg, new THREE.MeshBasicMaterial({ map: tv.t, side: THREE.DoubleSide, fog: false })); v.rotation.y = Math.PI / 2; v.position.set(mx + .9, 3 + alt * .65, 0); barco.add(v); velas.push(v);
+  }
+  const bandeiraP = placa(barco, 4, 2.6, 160, 104, (g, w, h) => { g.fillStyle = "#111"; g.fillRect(0, 0, w, h); letra(g, "☠️", w / 2, h / 2 + 4, 76); }, -5, 25, 0); bandeiraP.m.rotation.y = Math.PI / 2; bandeiraP.m.position.set(-5, 25, 2);
+  // ilhazinha com coqueiro no fundo
+  for (const [ix, iz, s] of [[-70, -140, 9], [90, -170, 12]]) { const il = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 10, 0, 6.283, 0, 1.4), mat(0xe2c487)); il.scale.set(s, s * .3, s * .7); il.position.set(ix, -.5, iz); fundo.add(il); coqueiro(fundo, ix - 1, iz, 7, 1.4, .3, r); coqueiro(fundo, ix + 2, iz + 1, 6, -1, 2, r); }
+
+  // ---------- COQUEIRAL com rede ----------
+  const cq = G.campinho;
+  const posC = [[30, -8], [34, 6], [40, -10], [44, 2], [48, -6], [36, 12], [46, 12], [42, -2], [31, 1]];
+  posC.forEach(([x, z], i) => coqueiro(cq, x, z, 7 + r() * 3, .6 + r() * .8, r() * 6, r));
+  const curva = new THREE.CatmullRomCurve3([new THREE.Vector3(34.2, 2.6, 6), new THREE.Vector3(37, 1.2, 4), new THREE.Vector3(39.8, 2.6, 2.2)]);
+  cq.add(new THREE.Mesh(new THREE.TubeGeometry(curva, 20, .32, 8), new THREE.MeshLambertMaterial({ map: texListra("#ff5a5a", "#ffd23f", 10) })));
+  for (let k = 0; k < 7; k++) { const o = new THREE.Mesh(GEO.coco, mat(0x5a3a1c)); o.position.set(38 + r() * 8 - 4, .22, r() * 10 - 5); cq.add(o); }
+  quiosque(cq, 46, -12, -.6, "ÁGUA DE COCO", "#2f8a3a");
+
+  // ---------- GUARDA-SÓIS ----------
+  const gs = G.pinta, CS = [["#ff4d6d", "#ffffff"], ["#2b59c3", "#ffd23f"], ["#1c8a3c", "#ffd23f"], ["#ff8a3d", "#ffffff"], ["#8e5cd9", "#ffffff"], ["#18a39a", "#ffffff"]];
+  let n = 0; for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) { const [a, b] = CS[n++ % CS.length]; guardaSol(gs, -38 + i * 8 + (r() - .5) * 2, j * 8 + (r() - .5) * 2, a, b, r); }
+  const bolaP = new THREE.Mesh(new THREE.SphereGeometry(.55, 16, 12), new THREE.MeshLambertMaterial({ map: texListra("#ff3b3b", "#ffffff", 6) })); bolaP.position.set(-34, .55, 4); gs.add(bolaP);
+  const prancha = new THREE.Mesh(new THREE.CapsuleGeometry(.45, 2.6, 4, 10), mat(0x18a3c9)); prancha.scale.z = .2; prancha.position.set(-46, 1.3, -6); prancha.rotation.x = -.2; gs.add(prancha);
+  const castelo = new THREE.Group(); castelo.position.set(-32, 0, -9); gs.add(castelo);
+  for (const [x, z] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) { const t = new THREE.Mesh(new THREE.CylinderGeometry(.45, .55, 1.6, 10), mat(0xd9b876)); t.position.set(x, .8, z); castelo.add(t); const tp = new THREE.Mesh(new THREE.ConeGeometry(.55, .7, 10), mat(0xc9a866)); tp.position.set(x, 1.95, z); castelo.add(tp); }
+  caixa(castelo, 2, 1, 2, 0xd9b876, 0, .5, 0); placa(castelo, .6, .4, 48, 32, (g, w, h) => { g.fillStyle = "#1c8a3c"; g.fillRect(0, 0, w, h); g.fillStyle = "#ffd23f"; g.beginPath(); g.moveTo(w / 2, 4); g.lineTo(w - 4, h / 2); g.lineTo(w / 2, h - 4); g.lineTo(4, h / 2); g.fill(); }, 1.3, 2.7, 1);
+
+  // ---------- PEDRAS E CONCHAS ----------
+  const pd = G.corrida;
+  for (let k = 0; k < 14; k++) { const ang = r() * 6.28, d = 4 + r() * 10, p = new THREE.Mesh(GEO.pedra, mat(k % 3 ? 0x8c8c94 : 0x6f7078)); const s = .6 + r() * 2.2; p.scale.set(s, s * (.5 + r() * .5), s); p.rotation.set(r() * 3, r() * 3, 0); p.position.set(-26 + Math.cos(ang) * d, s * .3, 32 + Math.sin(ang) * d); pd.add(p); }
+  const estrela = new THREE.Shape(); for (let k = 0; k < 10; k++) { const a = k / 10 * 6.283, rr = k % 2 ? .18 : .45; k ? estrela.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : estrela.moveTo(rr, 0); }
+  const eGeo = new THREE.ShapeGeometry(estrela); eGeo.rotateX(-Math.PI / 2);
+  for (let k = 0; k < 22; k++) { const ang = r() * 6.28, d = 2 + r() * 13, x = -26 + Math.cos(ang) * d, z = 32 + Math.sin(ang) * d; if (k % 2) { const e = new THREE.Mesh(eGeo, mat([0xff7a45, 0xff4d6d, 0xffb020][k % 3])); e.position.set(x, .06, z); e.rotation.y = r() * 6; pd.add(e); } else { const c = new THREE.Mesh(GEO.concha, mat([0xffd0e0, 0xfff1d6, 0xffc0a0][k % 3])); c.rotation.z = 1.57; c.rotation.y = r() * 6; c.position.set(x, .18, z); pd.add(c); } }
+
+  // ---------- DUNAS com caranguejos ----------
+  const dn = G.volei;
+  for (let k = 0; k < 6; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 18, 8, 0, 6.283, 0, 1.4), mat(0xe2c487)); const s = 3 + r() * 4; m.scale.set(s, s * .28, s * .8); m.position.set(26 + (r() - .5) * 22, -.3, 34 + (r() - .5) * 18); dn.add(m); }
+  for (let k = 0; k < 5; k++) { const c = new THREE.Group(); caixa(c, .8, .35, .55, 0xe03a2a, 0, .3, 0); for (const s of [-1, 1]) { const g2 = new THREE.Mesh(new THREE.SphereGeometry(.2, 8, 6), mat(0xe03a2a)); g2.position.set(s * .55, .45, .3); c.add(g2); const o = new THREE.Mesh(new THREE.SphereGeometry(.07, 6, 4), basico(0x111111)); o.position.set(s * .15, .58, .25); c.add(o); } c.position.set(22 + k * 2.4, 0, 30 + (k % 2) * 6); dn.add(c); bichos.push([c, c.position.x, k]); }
+  for (let k = 0; k < 4; k++) coqueiro(dn, 18 + k * 6, 44 - (k % 2) * 3, 6 + r() * 2, .9, r() * 6, r);
+
+  // ---------- gaivotas ----------
+  const gaivotas = new THREE.Group(); gaivotas.position.set(0, 0, -30); fundo.add(gaivotas); const asas = [];
+  for (let k = 0; k < 7; k++) { const a = new THREE.Group(), ang = k / 7 * 6.283, rr = 18 + (k % 3) * 9; a.position.set(Math.cos(ang) * rr, 20 + (k % 3) * 4, Math.sin(ang) * rr); a.rotation.y = -ang; for (const s of [-1, 1]) { const w = new THREE.Mesh(new THREE.BoxGeometry(1.4, .06, .4), basico(0xffffff)); w.position.x = s * .7; a.add(w); asas.push([w, s, k]); } gaivotas.add(a); }
+
+  // ---------- pódio no píer ----------
+  const podioG = new THREE.Group(); podioG.visible = false; G.palco.add(podioG);
+  const podioRot = [[0, 1.5, 0xffd23f], [-3, 1, 0xd9dde8], [3, .7, 0xd98a4a]].map(([x, h, cor], i) => { caixa(podioG, 2.8, h, 2.2, cor, x, h / 2 + .3, -35.4); rotulo(podioG, i + 1 + "º", x, h + .9, -34.2, .9); return { x, h, s: null }; });
+  function setPodio(lista) {
+    podioG.visible = !!(lista && lista.length);
+    podioRot.forEach((p, i) => { if (p.s) { podioG.remove(p.s); p.s.material.map.dispose(); p.s.material.dispose(); } const l = lista && lista[i]; p.s = l ? rotulo(podioG, `${["🥇", "🥈", "🥉"][i]} @${l[0]}`, p.x, p.h + 3.3 + (i ? 0 : .5), -35.4, 1.1, i ? "#ffffff" : "#ffd23f") : null; });
+  }
+
+  // ---------- buracos cavados e baús achados (a mecânica da Parte 3 usa) ----------
+  const MAXB = 400, buracos = new THREE.InstancedMesh(new THREE.CircleGeometry(.75, 14), mat(0x9c7a46), MAXB), monte = new THREE.InstancedMesh(new THREE.SphereGeometry(.45, 8, 5, 0, 6.283, 0, 1.4), mat(0xd9bb7c), MAXB);
+  buracos.count = monte.count = 0; buracos.frustumCulled = monte.frustumCulled = false; fundo.add(buracos, monte); let nb = 0; const o3 = new THREE.Object3D();
+  function cavado(x, z) { const i = nb++ % MAXB; o3.position.set(x, .045, z); o3.rotation.set(-Math.PI / 2, 0, 0); o3.scale.set(1, 1, 1); o3.updateMatrix(); buracos.setMatrixAt(i, o3.matrix); o3.position.set(x + .9, 0, z + .3); o3.rotation.set(0, 0, 0); o3.scale.set(1, .55, 1); o3.updateMatrix(); monte.setMatrixAt(i, o3.matrix); buracos.count = monte.count = Math.min(nb, MAXB); buracos.instanceMatrix.needsUpdate = monte.instanceMatrix.needsUpdate = true; }
+  function limparBuracos() { nb = 0; buracos.count = monte.count = 0; }
+  const achados = [];
+  function bauAchado(x, z, dono = "") { const b = bauModelo(0); b.position.set(x, -1, z); fundo.add(b); const s = dono ? rotulo(b, `💰 @${dono}`, 0, 4.2, 0, 1) : null; achados.push({ b, t0: -1 }); }
+
+  rotulo(G.palco, "🏴‍☠️ PÍER DO PIRATA", 0, 5.5, -30, 1.4, "#ffd23f");
+  rotulo(G.campinho, "🌴 COQUEIRAL", 38, 8, -14, 1.4);
+  rotulo(G.pinta, "⛱️ GUARDA-SÓIS", -38, 7, -12, 1.4);
+  rotulo(G.corrida, "🐚 PEDRAS E CONCHAS", -26, 7, 20, 1.4);
+  rotulo(G.volei, "🦀 DUNAS", 26, 7, 24, 1.4);
+
+  // peças das provas antigas: existem (a página mexe nelas) mas ficam escondidas
+  const bola = new THREE.Mesh(new THREE.SphereGeometry(.4), mat(0xffffff)), bolaV = new THREE.Mesh(new THREE.SphereGeometry(.5), mat(0xffffff)); bola.visible = bolaV.visible = false; fundo.add(bola, bolaV);
+
+  const mp = marGeo.attributes.position;
+  function atualizar(t, fcx, fcz, verTudo = false) {
+    for (const a of AREAS) G[a.id].visible = verTudo || Math.hypot(a.x - fcx, a.z - fcz) < a.r + 50;
+    for (let i = 0; i < mp.count; i++) { const x = marBase[i * 3], z = marBase[i * 3 + 2]; mp.array[i * 3 + 1] = marBase[i * 3 + 1] + Math.sin(x * .12 + t * 1.1) * .35 + Math.sin(z * .18 + t * 1.6) * .25; }
+    mp.needsUpdate = true; mar.geometry.computeVertexNormals();
+    const onda = Math.sin(t * .7); espuma.position.z = ORLA_Z + onda * 1.6; espuma.material.opacity = .55 + .3 * Math.abs(onda); raso.position.z = ORLA_Z - 2.5 + onda * 1.2;
+    barco.position.y = Math.sin(t * .9) * .5; barco.rotation.z = Math.sin(t * .7) * .04; barco.rotation.x = Math.sin(t * .8 + 1) * .025;
+    for (const [a, b, k] of chamas) { const f = 1 + Math.sin(t * 11 + k) * .15; a.scale.set(f, 1 + Math.sin(t * 8 + k) * .2, f); b.scale.y = 1 + Math.sin(t * 13 + k * 2) * .25; }
+    for (const [c, x0, k] of bichos) { c.position.x = x0 + Math.sin(t * .8 + k * 1.7) * 1.6; c.position.y = Math.abs(Math.sin(t * 9 + k)) * .05; }
+    gaivotas.rotation.y = t * .12; for (const [w, s, k] of asas) w.rotation.z = s * Math.sin(t * 6 + k) * .5;
+    bauC.userData.brilho.material.opacity = .2 + Math.abs(Math.sin(t * 2)) * .2; bauC.userData.ouro.material.emissiveIntensity = .6 + Math.sin(t * 3) * .25;
+    for (let i = achados.length - 1; i >= 0; i--) { const a = achados[i]; if (a.t0 < 0) a.t0 = t; const d = t - a.t0; a.b.position.y = Math.min(0, -1 + d * 1.5); a.b.userData.tampa.rotation.x = -Math.min(1, Math.max(0, d - .6)) * 1.9; a.b.userData.ouro.visible = a.b.userData.brilho.visible = d > .9; if (d > 7) { fundo.remove(a.b); achados.splice(i, 1); } }
+  }
+  const nada = () => {};
+  return { atualizar, setCabo: nada, bola, bolaV, setPodio, setPlacarV: nada, setCorrida: nada, setPlacar: nada, setQuadro: nada, pintar: nada, pintarTudo: nada, setPinta: nada, nomeNaBarraca: nada, alvosBarraca: [], cavado, limparBuracos, bauAchado, bauModelo };
+}
+// ---------- bonecos da turma: tudo instanciado, com gorro de Natal; a skin comprada troca o chapéu ou põe acessório ----------
+// skins (MESMA ordem do robô, skins.js): 0 coroa · 1 óculos escuros · 2 capa de herói · 3 camisa do Brasil · 4 chapéu de cowboy · 5 asas de anjo
+const SKINS = [["👑", "Coroa dourada"], ["🕶️", "Óculos escuros"], ["🦸", "Capa de herói"], ["🇧🇷", "Camisa do Brasil"], ["🤠", "Chapéu de cowboy"], ["👼", "Asas de anjo"], ["✨", "Farmador de Aura (roxa)"], ["✨", "Farmador de Aura (azul)"], ["✨", "Farmador de Aura (verde)"], ["✨", "Farmador de Aura (vermelha)"], ["✨", "Farmador de Aura (dourada)"], ["✨", "Farmador de Aura (rosa)"]]; // 6..11 = LENDÁRIA em 6 cores
+// cores da aura: [dentro, fora, feixe de luz, anel]
+const AURAS = [[0x9b3dff, 0xffb300, 0xd9a3ff, 0xffe066], [0x2f7bff, 0x7fe3ff, 0x9fd0ff, 0xbff4ff], [0x1fd15a, 0xc6ff4d, 0xa8ffc4, 0xdcff8a], [0xff2a2a, 0xff9a00, 0xffb0a0, 0xffc04d], [0xffb300, 0xfff07a, 0xfff2b0, 0xffe066], [0xff3fb4, 0xffd0f0, 0xffb3e6, 0xffc2ea]].map((l) => l.map((c) => new THREE.Color(c)));
+function montarBonecos(cena, MAX) {
+  const corpos = new THREE.InstancedMesh(new THREE.CapsuleGeometry(.3, .55, 3, 10), mat(0xffffff), MAX), cabecas = new THREE.InstancedMesh(new THREE.SphereGeometry(.28, 12, 10), mat(0xffffff), MAX);
+  const gorros = new THREE.InstancedMesh(new THREE.ConeGeometry(.3, .24, 12), mat(0xe6c56f), MAX), abas = new THREE.InstancedMesh(new THREE.CylinderGeometry(.55, .55, .04, 16), mat(0xd9b25a), MAX);
+  const ouro = new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffa000, emissiveIntensity: .45 }), asaM = new THREE.MeshLambertMaterial({ color: 0xffffff, emissive: 0xbfe6ff, emissiveIntensity: .35 });
+  const pontaG = new THREE.ConeGeometry(.08, .2, 4);
+  const acess = {
+    coroa: new THREE.InstancedMesh(new THREE.CylinderGeometry(.3, .27, .2, 10), ouro, MAX), ponta: new THREE.InstancedMesh(pontaG, ouro, MAX * 5),
+    oculos: new THREE.InstancedMesh(new THREE.BoxGeometry(.48, .13, .06), mat(0x111111), MAX),
+    capa: new THREE.InstancedMesh(new THREE.BoxGeometry(.64, .95, .05), mat(0xd92b2b), MAX),
+    gola: new THREE.InstancedMesh(new THREE.TorusGeometry(.22, .06, 6, 14), mat(0x1a9c3e), MAX), short: new THREE.InstancedMesh(new THREE.CylinderGeometry(.315, .315, .26, 12), mat(0x2b59c3), MAX),
+    cowboy: new THREE.InstancedMesh(new THREE.CylinderGeometry(.2, .26, .32, 12), mat(0x8a5a2b), MAX), aba2: new THREE.InstancedMesh(new THREE.CylinderGeometry(.54, .54, .05, 16), mat(0x8a5a2b), MAX),
+    asa: new THREE.InstancedMesh(new THREE.SphereGeometry(.36, 10, 8), asaM, MAX * 2),
+    // Farmador de Aura (lendária): duas camadas de brilho, anel no chão e faíscas subindo
+    aura: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.5, .95, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .55, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    aura2: new THREE.InstancedMesh(new THREE.CapsuleGeometry(.72, 1.25, 4, 14), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .3, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    anel: new THREE.InstancedMesh(new THREE.TorusGeometry(.8, .06, 6, 28), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    raio: new THREE.InstancedMesh(new THREE.CylinderGeometry(.32, .62, 7, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }), MAX),
+    faisca: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: 0xfff3b0, fog: false }), MAX * 6),
+    // CARGO (eleição de domingo, não se compra): governador = coroa grande com veludo e pedras · prefeito = cartola · os dois com faixa verde e amarela
+    govCoroa: new THREE.InstancedMesh(new THREE.CylinderGeometry(.36, .31, .3, 12), new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffb000, emissiveIntensity: .7 }), MAX),
+    govPonta: new THREE.InstancedMesh(new THREE.ConeGeometry(.1, .28, 4), new THREE.MeshLambertMaterial({ color: 0xffd23f, emissive: 0xffb000, emissiveIntensity: .7 }), MAX * 6),
+    govVeludo: new THREE.InstancedMesh(new THREE.SphereGeometry(.3, 10, 8, 0, 6.283, 0, 1.6), mat(0xc4122f), MAX),
+    govPedra: new THREE.InstancedMesh(new THREE.OctahedronGeometry(.06), new THREE.MeshBasicMaterial({ color: 0x2fd0ff, fog: false }), MAX * 6),
+    govBrilho: new THREE.InstancedMesh(new THREE.TorusGeometry(.5, .04, 6, 24), new THREE.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: .85, blending: THREE.AdditiveBlending, depthWrite: false, fog: false }), MAX),
+    cartola: new THREE.InstancedMesh(new THREE.CylinderGeometry(.24, .24, .46, 14), mat(0x1b1b1f), MAX), cartolaAba: new THREE.InstancedMesh(new THREE.CylinderGeometry(.42, .42, .05, 16), mat(0x1b1b1f), MAX),
+    cartolaFita: new THREE.InstancedMesh(new THREE.CylinderGeometry(.245, .245, .09, 14), mat(0xffd23f), MAX),
+    faixaV: new THREE.InstancedMesh(new THREE.BoxGeometry(.16, .95, .66), mat(0x1a9c3e), MAX), faixaA: new THREE.InstancedMesh(new THREE.BoxGeometry(.06, .96, .675), mat(0xffd23f), MAX),
+  };
+  const BRANCO = new THREE.Color(0xffffff); for (const k of ["aura", "aura2", "raio", "anel"]) for (let i = 0; i < MAX; i++) acess[k].setColorAt(i, BRANCO); // cor por boneco
+  const todos = [corpos, cabecas, gorros, abas, ...Object.values(acess)]; todos.forEach((m) => { m.frustumCulled = false; m.count = 0; cena.add(m); });
+  const cont = Object.fromEntries(Object.keys(acess).map((k) => [k, 0]));
+  const o = new THREE.Object3D(), AMARELO = new THREE.Color(0xffd23f);
+  const coloca = (m, n, x, y, z, rz = 0, s = 1, sx = 1, sy = 1, sz = 1, rx = 0) => { o.position.set(x, y, z); o.rotation.set(rx, 0, rz); o.scale.set(s * sx, s * sy, s * sz); o.updateMatrix(); m.setMatrixAt(n, o.matrix); };
+  const ac = (k, ...a) => { const i = cont[k]++; coloca(acess[k], i, ...a); return i; };
+  const acCor = (k, c, ...a) => acess[k].setColorAt(ac(k, ...a), c);
+  return {
+    // sk = skin vestida (-1 = nenhuma); t = tempo, pra capa e asas mexerem
+    // sk = skin comum (0-5), au = aura lendária (6-11): dá pra usar as duas juntas
+    // g = cargo da eleição: 2 governador · 1 prefeito · 0 nada. Cargo tira o que vai na cabeça (gorro, coroa comprada, cowboy)
+    poe(n, x, pulo, z, rz, cor, id, sk = -1, t = 0, au = -1, g = 0) {
+      if (sk >= 6) { au = sk; sk = -1; } // compatível com quem só manda um número
+      if (g && (sk === 0 || sk === 4)) sk = -1;
+      coloca(corpos, n, x, .58 + pulo, z, rz); corpos.setColorAt(n, sk === 3 ? AMARELO : CORES[cor % 8]);
+      coloca(cabecas, n, x, 1.28 + pulo, z); cabecas.setColorAt(n, PELES[id % 5]);
+      const gorro = g || sk === 0 || sk === 4 ? 0 : 1; // coroa, cowboy e cargo tiram o gorro
+      if (g === 2) {
+        ac("govVeludo", x, 1.5 + pulo, z); ac("govCoroa", x, 1.62 + pulo, z);
+        for (let k = 0; k < 6; k++) { const a = k / 6 * 6.283 + .26; ac("govPonta", x + Math.cos(a) * .33, 1.88 + pulo, z + Math.sin(a) * .33); ac("govPedra", x + Math.cos(a) * .35, 1.63 + pulo, z + Math.sin(a) * .35, t * 2); }
+        ac("govBrilho", x, 2.02 + pulo + Math.sin(t * 3 + id) * .05, z, 0, 1 + Math.sin(t * 4 + id) * .1, 1, 1, 1, Math.PI / 2);
+      } else if (g === 1) { ac("cartola", x, 1.78 + pulo, z, .06); ac("cartolaFita", x, 1.6 + pulo, z, .06); ac("cartolaAba", x, 1.54 + pulo, z, .06); }
+      if (g) { ac("faixaV", x, .62 + pulo, z, rz + .62); ac("faixaA", x, .62 + pulo, z, rz + .62); }
+      coloca(gorros, n, x, 1.6 + pulo, z, .05, gorro); coloca(abas, n, x, 1.5 + pulo, z, .05, gorro);
+      if (sk === 0) { ac("coroa", x, 1.58 + pulo, z); for (let k = 0; k < 5; k++) { const a = k / 5 * 6.283; ac("ponta", x + Math.cos(a) * .27, 1.76 + pulo, z + Math.sin(a) * .27); } }
+      else if (sk === 1) ac("oculos", x, 1.32 + pulo, z + .25);
+      else if (sk === 2) ac("capa", x, .78 + pulo, z - .32, rz, 1, 1, 1, 1, .14 + Math.sin(t * 4 + id) * .07);
+      else if (sk === 3) { ac("gola", x, 1.0 + pulo, z, 0, 1, 1, 1, 1, Math.PI / 2); ac("short", x, .36 + pulo, z, rz); }
+      else if (sk === 4) { ac("cowboy", x, 1.66 + pulo, z, .08); ac("aba2", x, 1.52 + pulo, z, .08); }
+      else if (sk === 5) { const b = Math.sin(t * 5 + id) * .22; ac("asa", x - .38, 1.0 + pulo, z - .24, .55 + b, 1, .5, 1, .22); ac("asa", x + .38, 1.0 + pulo, z - .24, -.55 - b, 1, .5, 1, .22); }
+      if (au >= 6 && au <= 11) {
+        const pz = 1 + Math.sin(t * 4 + id) * .07, C = AURAS[au - 6];
+        acCor("aura", C[0], x, .95 + pulo, z, 0, pz); acCor("aura2", C[1], x, .95 + pulo, z, 0, 1 + Math.sin(t * 3 + id + 1) * .09);
+        acCor("raio", C[2], x, 3.6 + pulo, z, 0, 1 + Math.sin(t * 2 + id) * .08); acCor("anel", C[3], x, .06, z, 0, 1 + Math.sin(t * 5 + id) * .12, 1, 1, 1, Math.PI / 2);
+        for (let k = 0; k < 6; k++) { const f = (t * .7 + k / 6 + id * .13) % 1, a = k * 1.047 + t * 1.5; ac("faisca", x + Math.cos(a) * .6, .1 + f * 2.4, z + Math.sin(a) * .6, t * 3 + k, 1 - f * .6); }
+      }
+    },
+    fim(n) {
+      for (const m of [corpos, cabecas, gorros, abas]) m.count = n;
+      for (const k in acess) { acess[k].count = cont[k]; cont[k] = 0; }
+      todos.forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; });
+    },
+  };
+}
+
+// Reels "Hoje tem caça ao tesouro na praia" (Turma do Brasil): cenário real da praia, bonecos cavando, dicas frio/quente e baú subindo.
+const ID = "evpraia";
+const TEMPOS = await (await fetch(`/${ID}/tempos.json`)).json();
+const FIM = TEMPOS.total;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v)), ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+const prog = (t, a, b) => ease(clamp((t - a) / (b - a), 0, 1));
+const pop = (t, a, d = .3) => { const k = clamp((t - a) / d, 0, 1); return k <= 0 ? 0 : k >= 1 ? 1 : (1 - Math.pow(1 - k, 3)) + .3 * Math.sin(k * Math.PI); };
+const entre = (t, a, b) => t >= a && t < b;
+const C = (n) => TEMPOS.cenas[n - 1].ini;
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+function P(n, w, o = 1) { let k = 0; for (const p of TEMPOS.cenas[n - 1].palavras) if (norm(p.w) === norm(w) && ++k === o) return p.t; console.error("palavra nao achada", n, w); return C(n); }
+await document.fonts.load("900 64px Nunito"); await document.fonts.ready;
+
+const W = 1080, H = 1920;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); renderer.setSize(W, H); renderer.setPixelRatio(1); renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
+const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
+const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 200);
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(12345);
+// buracos já cavados espalhados (peças do cenário, ficam parados)
+for (const [x, z] of [[7, 20], [17, 21], [4, 24], [-6, 12], [20, 9], [-11, 22]]) mundo.cavado(x, z);
+
+// ---------- gente da praia ----------
+const DIG = { x: 12, z: 15 }; // onde o grupo cava e o baú sobe
+const GENTE = [];
+for (const [a, n] of [["praca", 22], ["campinho", 10], ["pinta", 12], ["volei", 8]]) {
+  const area = AREAS.find((x) => x.id === a);
+  for (let i = 0; i < n; i++) {
+    const ang = r() * 6.283, d = Math.sqrt(r()) * area.r * .82; let x = area.x + Math.cos(ang) * d, z = area.z + Math.sin(ang) * d;
+    if (a === "praca" && Math.hypot(x - 0, z - 3) < 4) { x += 6; }
+    GENTE.push({ a, x, z, cor: Math.floor(r() * 8), id: GENTE.length, fase: r() * 6.28, gx: r() * 2.4, gz: r() * 2.4 });
+  }
+}
+for (let k = 0; k < 6; k++) GENTE.push({ a: "cava", ang: k / 6 * 6.283 + .4, cor: (k * 3) % 8, id: GENTE.length, fase: r() * 6.28 });
+
+// ---------- peças próprias do vídeo ----------
+// 15 marcas de X vermelhas na areia (somem em "escondidos")
+const XS = [];
+{ const rx = sem(4242); const matX = new THREE.MeshBasicMaterial({ color: 0xd62828, fog: false });
+  for (let i = 0; i < 15; i++) {
+    let x, z; do { x = (rx() - .5) * 60; z = -28 + rx() * 66; } while ((Math.abs(x) < 13 && z > -16 && z < 6) || Math.hypot(x - DIG.x, z - DIG.z) < 5);
+    const g = new THREE.Group(); g.position.set(x, .12, z);
+    for (const a of [.785, -.785]) { const b = new THREE.Mesh(new THREE.BoxGeometry(5.5, .3, .9), matX); b.rotation.y = a; g.add(b); }
+    g.visible = false; cena.add(g); XS.push({ g, t0: 0 });
+  } }
+// buraco que a turma está cavando agora + monte de areia
+const furo = new THREE.Mesh(new THREE.CircleGeometry(1.15, 18), new THREE.MeshLambertMaterial({ color: 0x6b4a22 })); furo.rotation.x = -Math.PI / 2; furo.position.set(DIG.x, .06, DIG.z); furo.visible = false; cena.add(furo);
+const monte = new THREE.Mesh(new THREE.SphereGeometry(.8, 10, 6, 0, 6.283, 0, 1.4), new THREE.MeshLambertMaterial({ color: 0xd9bb7c })); monte.position.set(DIG.x + 1.5, 0, DIG.z + .7); monte.scale.y = .55; monte.visible = false; cena.add(monte);
+// areia voando do buraco
+const NAR = 44, areia = new THREE.InstancedMesh(new THREE.BoxGeometry(.16, .16, .16), new THREE.MeshLambertMaterial({ color: 0xe0bf7a }), NAR); areia.frustumCulled = false; cena.add(areia);
+const AR = Array.from({ length: NAR }, () => ({ ph: r(), vx: (r() - .5) * 3, vz: (r() - .5) * 3, vy: 4.2 + r() * 2.2 }));
+const o3 = new THREE.Object3D();
+// baús que sobem da areia (modelo do cenário): 1 do ouro no buraco + 6 baús novos na cena 5
+const baus = [];
+const novoBau = (x, z, esc, t0) => { const b = mundo.bauModelo(0); b.position.set(x, -2, z); b.scale.setScalar(esc); b.visible = false; cena.add(b); baus.push({ b, x, z, esc, t0 }); return b; };
+const bauOuro = novoBau(DIG.x, DIG.z, 1.5, P(4, "bau"));
+const NOVOS = [[-4.2, 5], [3.5, 3], [-1, 9.5], [4.5, 10], [-4, 13.5], [1.2, 15.5]];
+NOVOS.forEach(([x, z], i) => novoBau(x, z, 1.25, P(5, "baus") - .1 + i * .17));
+function atualizaBaus(t) {
+  for (const o of baus) {
+    const d = t - o.t0, u = o.b.userData; o.b.visible = d > 0 && !(o.b === bauOuro && t > C(5));
+    o.b.position.set(o.x, Math.min(0, -1.4 + d * 1.8), o.z);
+    u.tampa.rotation.x = -clamp(d - .45, 0, 1) * 1.9; u.ouro.visible = u.brilho.visible = d > .8; u.brilho.material.opacity = .2 + Math.abs(Math.sin(t * 2.4)) * .2;
+  }
+}
+// tomadas: [início, x, z, dist de, alt de, dist até, alt até, visão geral?]
+const T = [
+  [0, 0, -4, 28, 13, 20, 9],
+  [C(2), 0, 0, 95, 90, 80, 76, 1],
+  [C(3), DIG.x, DIG.z + 2, 14, 6, 11, 5],
+  [C(4), DIG.x, DIG.z + 2, 12, 5.5, 9.5, 4],
+  [C(5), 0, 9, 26, 15, 21, 11],
+  [C(6), 0, -22, 36, 14, 28, 10],
+];
+const CHIPS = [
+  [0, C(2), "CAÇA AO TESOURO 🏴‍☠️"],
+  [C(2), C(3), "HOJE · 21H<small>15 baús escondidos</small>"],
+  [C(3), P(3, "frio") - .1, "⛏️ CAVA NA AREIA"],
+  [P(3, "frio") - .1, C(4), "🧭 SEGUE A DICA"],
+  [C(4), P(4, "dez"), "💰 BAÚ DE OURO"],
+  [P(4, "dez"), C(5), "+10 PONTOS 👑"],
+  [C(5), C(6), "⏱️ A CADA 10 MIN<small>baús novos</small>"],
+  [C(6), FIM + 1, "HOJE · 21H 🏴‍☠️"],
+];
+const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
+const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
+const elCta = mk("cta", '<div class="l1">🏴‍☠️ HOJE, 21H<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra cavar pelo teu estado</div>');
+const elTag = mk("tag", "💰 @teu.arroba"); elTag.style.cssText += ";top:640px;left:50%;background:#fff;border:8px solid #14204a;border-radius:36px;font-size:64px;color:#14204a;padding:12px 34px 16px;white-space:nowrap;box-shadow:0 10px 0 #14204a";
+const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
+const DESTAQUE = new Set(["tesouro", "praia", "turma", "brasil", "nove", "noite", "quinze", "baus", "escondidos", "areia", "cava", "frio", "morno", "quente", "pelando", "bau", "ouro", "dez", "pontos", "estado", "minutos", "novos", "cidade", "bio"]);
+const elG = mk("grande");
+const tc = (el, k, x = true) => el.style.transform = (x ? "translateX(-50%) " : "") + `scale(${k})`;
+// palavra grande no meio da tela: [início, fim, texto, cor]
+const GRANDES = [
+  [P(2, "quinze"), P(2, "escondidos") + .1, "15 BAÚS 🏴‍☠️", "#ffd23f"],
+  [P(3, "frio"), P(3, "morno"), "🧊 FRIO", "#7fd8ff"],
+  [P(3, "morno"), P(3, "quente"), "🌤️ MORNO", "#ffe27a"],
+  [P(3, "quente"), P(3, "pelando"), "🔥 QUENTE", "#ff9a3c"],
+  [P(3, "pelando"), C(4), "🔥🔥 PELANDO!", "#ff4a3a"],
+];
+
+function renderFrame(t) {
+  const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
+  const dist = s[3] + (s[5] - s[3]) * k, alt = s[4] + (s[6] - s[4]) * k, giro = (k - .5) * 5;
+  cam.position.set(s[1] + giro, alt, s[2] + dist); cam.lookAt(s[1], 1.5, s[2] - 2); cam.updateMatrixWorld();
+  if (cena.fog) { cena.fog.near = s[7] ? 420 : 110; cena.fog.far = s[7] ? 800 : 300; }
+  const tCava = P(3, "cava"), tOuro = P(4, "ouro"), vibra = prog(t, tOuro, tOuro + .2) * (t < C(5) ? 1 : 0);
+  let n = 0;
+  for (const p of GENTE) {
+    if (p.a === "cava") {
+      const x = DIG.x + Math.cos(p.ang) * 2.5, z = DIG.z + Math.sin(p.ang) * 2.5, cava = t >= tCava - .3 && t < tOuro;
+      const lado = x > DIG.x ? 1 : -1, bate = Math.abs(Math.sin(t * 6 + p.fase));
+      const rz = cava ? lado * (.15 + bate * .22) : lado * .05, pulo = cava ? bate * .12 : vibra * Math.abs(Math.sin(t * 9 + p.fase)) * .6;
+      bonecos.poe(n++, x, pulo, z, rz, p.cor, p.id); continue;
+    }
+    const x = p.x + Math.sin(t * .5 + p.fase) * p.gx, z = p.z + Math.cos(t * .4 + p.fase) * p.gz;
+    bonecos.poe(n++, x, Math.abs(Math.sin(t * 7 + p.fase)) * .1, z, 0, p.cor, p.id);
+  }
+  bonecos.fim(n);
+  // X na areia: aparecem em "quinze baús" e somem em "escondidos"
+  const tq = P(2, "quinze"), te = P(2, "escondidos");
+  XS.forEach((o, j) => { const kk = pop(t, tq + j * .05, .25) * (1 - prog(t, te, te + .35)); o.g.visible = kk > .01; o.g.scale.setScalar(Math.max(.01, kk)); });
+  // buraco, monte e areia voando
+  const kf = pop(t, tCava, .5) * (t < C(5) ? 1 : 0);
+  furo.visible = monte.visible = kf > .01; furo.scale.setScalar(Math.max(.01, kf)); monte.scale.set(Math.max(.01, kf), .55 * Math.max(.01, kf), Math.max(.01, kf));
+  const jorra = t >= tCava && t < tOuro ? 1 : 0.0001;
+  for (let j = 0; j < NAR; j++) { const a = AR[j], d = ((t * 1.4 + a.ph) % 1) * .95; o3.position.set(DIG.x + a.vx * d, .2 + a.vy * d - 4.9 * d * d, DIG.z + a.vz * d); o3.rotation.set(t * 4 + j, t * 3, 0); o3.scale.setScalar(jorra); o3.updateMatrix(); areia.setMatrixAt(j, o3.matrix); }
+  areia.instanceMatrix.needsUpdate = true;
+  atualizaBaus(t);
+  mundo.atualizar(t, s[1], s[2], !!s[7]);
+  renderer.render(cena, cam);
+  // textos
+  tc(elMarca, 1);
+  const c = CHIPS.find(([a, b]) => entre(t, a, b));
+  if (c) { elChip.innerHTML = c[2]; elChip.style.opacity = 1; tc(elChip, .55 + .45 * prog(t, c[0], c[0] + .16)); } else elChip.style.opacity = 0;
+  const gr = GRANDES.find(([a, b]) => entre(t, a, b));
+  if (gr) { elG.textContent = gr[2]; elG.style.color = gr[3]; elG.style.fontSize = Math.floor(Math.min(230, 980 / (gr[2].length * .62))) + "px"; elG.style.opacity = 1; tc(elG, .3 + .7 * pop(t, gr[0], .28)); } else elG.style.opacity = 0;
+  const tg = P(4, "ouro"), kt = entre(t, tg, P(4, "estado") + .3) ? pop(t, tg, .3) : 0; elTag.style.opacity = kt > 0 ? 1 : 0; tc(elTag, Math.max(.01, kt));
+  const kc = prog(t, P(6, "comenta") - .1, P(6, "comenta") + .2); elCta.style.opacity = kc; tc(elCta, .6 + .4 * kc + .03 * Math.sin(t * 9) * kc, false);
+  let atual = null; for (const p of PALAVRAS) if (t >= p.t) atual = p;
+  if (!atual || kc > 0) { elLeg.textContent = ""; }
+  else { elLeg.textContent = atual.w.toUpperCase(); elLeg.className = "ov" + (DESTAQUE.has(norm(atual.w)) ? " am" : ""); tc(elLeg, .8 + .2 * prog(t, atual.t, atual.t + .09), false); }
+}
+window.renderFrame = renderFrame;
+renderFrame(0);
+window.pronto = true;
+</script>
+</body></html>
