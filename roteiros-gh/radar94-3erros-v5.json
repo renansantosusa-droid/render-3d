@@ -1,0 +1,121 @@
+{
+ "nome": "radar94-3erros-v5",
+ "obs": "19/11: 4ª repetição do vencedor radar04/38/62 (6,2 mil, 4,9 mil e 4,9 mil views) com outro conjunto de cenas, mesmas durações. Áudio EU QUERO 21,1-66,6. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar94-3erros-v5-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3431_0_4.72.MOV",
+   "inicio": 0,
+   "duracao": 4.72
+  },
+  {
+   "arquivo": "IMG_3535_0_2.33.MOV",
+   "inicio": 0,
+   "duracao": 2.33
+  },
+  {
+   "arquivo": "IMG_3228_12_2.75.MOV",
+   "inicio": 0,
+   "duracao": 2.75,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3482_0_4.26.MOV",
+   "inicio": 0,
+   "duracao": 4.26,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3264_13_3.26.MOV",
+   "inicio": 0,
+   "duracao": 3.26,
+   "zoom": 1.18,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3559_2.5_3.12.MOV",
+   "inicio": 0,
+   "duracao": 3.12
+  },
+  {
+   "arquivo": "IMG_2666_0.5_2.48.MOV",
+   "inicio": 0,
+   "duracao": 2.48
+  },
+  {
+   "arquivo": "IMG_2732_0_2.69.MOV",
+   "inicio": 0,
+   "duracao": 2.69
+  },
+  {
+   "arquivo": "IMG_4713_0_2.79.MOV",
+   "inicio": 0,
+   "duracao": 2.79
+  },
+  {
+   "arquivo": "IMG_4178_0.5_3.73.MOV",
+   "inicio": 0,
+   "duracao": 3.73
+  },
+  {
+   "arquivo": "IMG_3486_4_2.96.MOV",
+   "inicio": 0,
+   "duracao": 2.96
+  },
+  {
+   "arquivo": "IMG_4716_0_3.35.MOV",
+   "inicio": 0,
+   "duracao": 3.35,
+   "zoom": 1.12,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3425_0_2.45.MOV",
+   "inicio": 0,
+   "duracao": 2.45
+  },
+  {
+   "arquivo": "IMG_2197_0_2.67.MOV",
+   "inicio": 0,
+   "duracao": 2.67
+  },
+  {
+   "arquivo": "IMG_2194_0_1.96.MOV",
+   "inicio": 0,
+   "duracao": 1.96
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 ERROS que fazem seu\nFOTO ÍMÃ NÃO COLAR\n(o último é o mais importante)",
+   "y": 0.66,
+   "de": 0,
+   "ate": 7.05
+  },
+  {
+   "texto": "ERRO 1: pouca PRESSÃO\nna alavanca",
+   "y": 0.68,
+   "de": 7.05,
+   "ate": 20.44
+  },
+  {
+   "texto": "ERRO 2: PAPEL errado\n(use fotográfico 115 g)",
+   "y": 0.68,
+   "de": 20.44,
+   "ate": 28.4
+  },
+  {
+   "texto": "ERRO 3 (o principal):\no GABARITO",
+   "y": 0.68,
+   "de": 28.4,
+   "ate": 38.44
+  },
+  {
+   "texto": "Comenta GABARITO 👇\nque eu te mando o que eu uso",
+   "y": 0.68,
+   "de": 38.44
+  }
+ ]
+}

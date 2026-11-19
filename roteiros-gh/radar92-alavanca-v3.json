@@ -1,0 +1,42 @@
+{
+ "nome": "radar92-alavanca-v3",
+ "obs": "19/11: repete radar14/68 (1 mil e 2,2 mil views) com cenas novas. Áudio EU QUERO 28,16-41,6. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar92-alavanca-v3-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3232_4_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5
+  },
+  {
+   "arquivo": "IMG_3535_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_4716_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "zoom": 1.12,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3431_0_3.44.MOV",
+   "inicio": 0,
+   "duracao": 3.44
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Seu foto ímã ABRE\ndepois de pronto?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 10
+  },
+  {
+   "texto": "Comenta GABARITO 👇",
+   "y": 0.68,
+   "de": 10
+  }
+ ]
+}

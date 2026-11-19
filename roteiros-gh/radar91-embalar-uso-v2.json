@@ -1,0 +1,79 @@
+{
+ "nome": "radar91-embalar-uso-v2",
+ "obs": "19/11: repete radar85 (5,6 mil views, melhor da semana) com cenas novas de embalagem. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3043_2_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_2758_3_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3037_2_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_2761_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3035_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_3034_1_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "TUDO QUE EU USO\npra EMBALAR foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 13
+  },
+  {
+   "texto": "1. A caixa branca",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. A fitinha de cetim",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. O saquinho",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Papel de seda",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. A etiqueta com a sua marca",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}

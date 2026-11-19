@@ -1,0 +1,79 @@
+{
+ "nome": "radar95-comecaria-hoje-v2",
+ "obs": "19/11: modelo radar11/74 (lista) com takes só de mãos, sem rosto. Mudo. SIMULADOR. Sem preço.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3232_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_2202_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_4711_0.6_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3759_0.2_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3238_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3757_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Como eu começaria HOJE\ncom POUCO DINHEIRO",
+   "y": 0.05,
+   "de": 0,
+   "ate": 12.5
+  },
+  {
+   "texto": "1. A máquina",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.5
+  },
+  {
+   "texto": "2. Papel fotográfico 115 g",
+   "y": 0.68,
+   "de": 2.5,
+   "ate": 5
+  },
+  {
+   "texto": "3. Uma tesoura boa",
+   "y": 0.68,
+   "de": 5,
+   "ate": 7.5
+  },
+  {
+   "texto": "4. Os insumos da máquina",
+   "y": 0.68,
+   "de": 7.5,
+   "ate": 10
+  },
+  {
+   "texto": "5. O gabarito certo",
+   "y": 0.68,
+   "de": 10,
+   "ate": 12.5
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra fazer a sua conta antes",
+   "y": 0.68,
+   "de": 12.5
+  }
+ ]
+}
