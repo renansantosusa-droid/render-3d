@@ -335,6 +335,7 @@ const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
 mundo.setPlacar(2, 1); mundo.setPlacarV(5, 4);
 const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(12345);
 const GENTE = [];
+let elTag;
 for (const [a, n] of [["palco", 44], ["praca", 36], ["campinho", 14], ["pinta", 8]]) {
   const area = AREAS.find((x) => x.id === a);
   for (let i = 0; i < n; i++) {
@@ -355,8 +356,8 @@ const T = [
   [C(3), 0, -30, 26, 16, 19, 11],
   [P(3, "campinho") - .15, 38, 0, 22, 18, 19, 15],
   [P(3, "loja") - .15, -4.5, 9, 13, 4.5, 12, 4, 0, 0, 4.5],
-  [C(4), -1.6, -33.5, 9, 3.4, 7, 2.9],
-  [P(4, "prefeito") - .25, 1.6, -33.5, 9, 3.4, 7, 2.9],
+  [C(4), -1.6, -33.5, 6.5, 3, 5, 2.7],
+  [P(4, "prefeito") - .25, 1.6, -33.5, 6.5, 3, 5, 2.7],
   [C(5), 0, 1, 22, 13, 18, 11],
   [C(6), 0, -2, 74, 72, 64, 62, 1],
 ];
@@ -377,6 +378,7 @@ const elCta = mk("cta", '<div class="l1">🎉 HOJE, 21H10<br>LINK DA BIO</div><d
 const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
 const DESTAQUE = new Set(["festa", "praca", "turma", "brasil", "nove", "dez", "noite", "palco", "dancar", "campinho", "bola", "loja", "roupa", "boneco", "governador", "coroa", "prefeito", "cartola", "quinze", "vinte", "pontos", "casa", "cidade", "estado", "bio"]);
 const elG = mk("grande");
+elTag = mk("tag", ""); elTag.style.cssText += ";top:660px;left:50%;background:#fff;border:8px solid #14204a;border-radius:36px;font-size:56px;color:#14204a;padding:12px 30px 16px;white-space:nowrap;box-shadow:0 10px 0 #14204a";
 const tc = (el, k, x = true) => el.style.transform = (x ? "translateX(-50%) " : "") + `scale(${k})`;
 
 function renderFrame(t) {
@@ -389,13 +391,14 @@ function renderFrame(t) {
   let n = 0;
   for (const p of GENTE) {
     if (p.a === "desfile") { const x = ((t * 1.5 + p.i * 1.7) % 15.3) - 7.65; bonecos.poe(n++, x, Math.abs(Math.sin(t * 7 + p.fase)) * .12, 9, Math.sin(t * 3.5 + p.fase) * .08, p.cor, p.id, p.sk < 6 ? p.sk : -1, t, p.sk >= 6 ? p.sk : -1); continue; }
+    if (p.a === "palco" && Math.abs(p.x) < 8 && entre(t, C(4) - .2, C(5))) continue; // fecha o close: ninguém na frente do governador e do prefeito
     const danca = p.a === "palco" && naPista(p.x, p.z);
     const x = p.x + (danca ? 0 : Math.sin(t * .5 + p.fase) * p.gx), z = p.z + (danca ? 0 : Math.cos(t * .4 + p.fase) * p.gz);
     const pulo = danca ? Math.abs(Math.sin(t * 6 + p.fase)) * .38 : Math.abs(Math.sin(t * 7 + p.fase)) * (.08 + (p.a === "praca" ? festa * .45 : 0));
     bonecos.poe(n++, x, pulo, z, danca ? Math.sin(t * 6 + p.fase) * .13 : 0, p.cor, p.id);
   }
   // governador (coroa grande) e prefeito (cartola) chegam andando pela frente do palco
-  const xg = -1.6 - 7.4 * (1 - prog(t, C(4) + .1, P(4, "coroa") + .1)), xp = 1.6 + 7.4 * (1 - prog(t, P(4, "prefeito") - .45, P(4, "cartola") - .2));
+  const xg = -1.6 - 4.2 * (1 - prog(t, C(4) + .05, C(4) + .9)), xp = 1.6 + 4.2 * (1 - prog(t, P(4, "prefeito") - .25, P(4, "prefeito") + .6));
   bonecos.poe(n++, xg, Math.abs(Math.sin(t * 9)) * .16, -33.5, Math.sin(t * 4.5) * .06, 1, 901, -1, t, -1, 2);
   bonecos.poe(n++, xp, Math.abs(Math.sin(t * 9 + 1)) * .16, -33.5, Math.sin(t * 4.5 + 1) * .06, 3, 902, -1, t, -1, 1);
   bonecos.fim(n);
@@ -404,6 +407,7 @@ function renderFrame(t) {
   // "+20" estoura na hora do "vinte"
   const tv = P(5, "vinte"), kv = pop(t, tv, .35) * (entre(t, tv, C(6)) ? 1 : 0); elG.textContent = kv > 0 ? "+20" : ""; elG.style.opacity = kv > 0 ? 1 : 0; tc(elG, Math.max(.01, kv));
   renderer.render(cena, cam);
+  const tg = entre(t, C(4) + .15, C(5)), kt = tg ? pop(t, t < T[6][0] ? C(4) + .15 : T[6][0] + .1, .3) : 0; elTag.innerHTML = t < T[6][0] ? "👑 GOVERNADOR · @teu.arroba" : "🎩 PREFEITO · @teu.arroba"; elTag.style.opacity = kt > 0 ? 1 : 0; tc(elTag, Math.max(.01, kt));
   // textos
   tc(elMarca, 1);
   const c = CHIPS.find(([a, b]) => entre(t, a, b));
