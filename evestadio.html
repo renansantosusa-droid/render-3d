@@ -329,7 +329,10 @@ const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
 mundo.setPlacar(2, 1); mundo.setPlacarV(5, 4);
 // etiquetas pequenas de nome de área (sprites a 2,4 m do chão) ficavam gigantes na frente da câmera: somem no vídeo
 cena.traverse((o) => { if (o.isSprite && Math.abs(o.position.y - 2.4) < .01) o.visible = false; });
-const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(12345);
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, SEMENTE = TEMPOS.semente || 0, r = sem(12345 + SEMENTE * 7919);
+// semente da semana (ev-semana.mjs): cada trecho de câmera gira um pouco em volta do alvo e aproxima/afasta; semente 0 = vídeo original
+const rv = sem(SEMENTE * 104729 + 3), GIROS = Array.from({ length: 16 }, () => SEMENTE ? (rv() * 2 - 1) * 0.45 : 0), ZOOMS = Array.from({ length: 16 }, () => SEMENTE ? 1 + (rv() * 2 - 1) * 0.1 : 1);
+function variaCam(i, tx, ty, tz) { if (!SEMENTE) return; const a = GIROS[i % 16], z = ZOOMS[i % 16], dx = cam.position.x - tx, dz = cam.position.z - tz; cam.position.set(tx + (dx * Math.cos(a) - dz * Math.sin(a)) * z, ty + (cam.position.y - ty) * z, tz + (dx * Math.sin(a) + dz * Math.cos(a)) * z); cam.lookAt(tx, ty, tz); }
 const GENTE = [];
 const PC = PISTA_C;
 for (let i = 0; i < 8; i++) GENTE.push({ a: "corre", x: PC.lx0 + 1.5 + r() * 2.5, z: PC.z0 + .6 + i * (PC.z1 - PC.z0 - 1.2) / 7, vel: 6.2 + r() * 1.8, reacao: r() * .5, cor: i % 8, id: GENTE.length, fase: r() * 6 });
@@ -390,6 +393,7 @@ const CHIPS = [
   [C(5), C(6), "🥇 MEDALHA<small>pro estado campeão</small>"],
   [C(6), FIM + 1, "HOJE · 21H 🏟️"],
 ];
+if (TEMPOS.chips) for (const [k, txt] of Object.entries(TEMPOS.chips)) if (CHIPS[k]) CHIPS[k][2] = txt; // chips com número real da semana
 const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
 const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
 const elCta = mk("cta", '<div class="l1">🏟️ HOJE, 21H<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra jogar pelo teu estado</div>');
@@ -403,7 +407,7 @@ function renderFrame(t) {
   const dist = s[3] + (s[5] - s[3]) * k, alt = s[4] + (s[6] - s[4]) * k, giro = (k - .5) * 5;
   let lx = s[1];
   if (s[8]) { const lider = Math.max(...GENTE.filter((p) => p.a === "corre").map((p) => Math.min(PC.x1 + 2, p.x + Math.max(0, t - LARGA - p.reacao) * p.vel))); lx = clamp(lider - 4, -36, -16); }
-  cam.position.set(lx + giro, alt, s[2] + dist); cam.lookAt(lx, 1.5, s[2] - 2); cam.updateMatrixWorld();
+  cam.position.set(lx + giro, alt, s[2] + dist); cam.lookAt(lx, 1.5, s[2] - 2); variaCam(i, lx, 1.5, s[2] - 2); cam.updateMatrixWorld();
   cena.fog.far = s[7] ? 700 : 340; cena.fog.near = s[7] ? 500 : 150;
   // cabo de guerra: a corda balança pros dois lados (posição vem direto do tempo, sem estado)
   const pos = Math.sin(t * 1.7) * 1.5 + Math.sin(t * .8) * .8;
