@@ -506,7 +506,10 @@ const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffe
 document.body.prepend(renderer.domElement);
 const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
 const mundo = montarCinema(cena, document.createElement("video")), bonecos = montarBonecos(cena, 260);
-const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(777);
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, SEMENTE = TEMPOS.semente || 0, r = sem(777 + SEMENTE * 7919);
+// semente da semana (ev-semana.mjs): cada trecho de câmera gira um pouco em volta do alvo e aproxima/afasta; semente 0 = vídeo original
+const rv = sem(SEMENTE * 104729 + 3), GIROS = Array.from({ length: 16 }, () => SEMENTE ? (rv() * 2 - 1) * 0.17 : 0), ZOOMS = Array.from({ length: 16 }, () => SEMENTE ? 1 + (rv() * 2 - 1) * 0.05 : 1);
+function variaCam(i, tx, ty, tz) { if (!SEMENTE) return; const a = GIROS[i % 16], z = ZOOMS[i % 16], dx = cam.position.x - tx, dz = cam.position.z - tz; cam.position.set(tx + (dx * Math.cos(a) - dz * Math.sin(a)) * z, ty + (cam.position.y - ty) * z, tz + (dx * Math.sin(a) + dz * Math.cos(a)) * z); cam.lookAt(tx, ty, tz); }
 
 // ---------- telão: antes da sessão fica o quadro "CINE TURMA"; quando liga, passa um filme de cores (peça própria, sem vídeo) ----------
 const mapaSala = mundo.telao.material.map;
@@ -557,6 +560,7 @@ const CHIPS = [
   [C(5), C(6), "+20 PONTOS 👑<small>ficando 15 minutos</small>"],
   [C(6), FIM + 1, "HOJE · 21H 🍿"],
 ];
+if (TEMPOS.chips) for (const [k, txt] of Object.entries(TEMPOS.chips)) if (CHIPS[k]) CHIPS[k][2] = txt; // chips com número real da semana
 const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
 const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
 const elCta = mk("cta", '<div class="l1">🎬 HOJE, 21H<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra sentar no cinema</div>');
@@ -571,7 +575,7 @@ function renderFrame(t) {
   // câmera
   const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
   const v = s[1].map((a, j) => a + (s[2][j] - a) * k);
-  cam.position.set(v[0], v[1], v[2]); cam.lookAt(v[3], v[4], v[5]); cam.updateMatrixWorld();
+  cam.position.set(v[0], v[1], v[2]); cam.lookAt(v[3], v[4], v[5]); variaCam(i, v[3], v[4], v[5]); cam.updateMatrixWorld();
   // luz da sala: acesa até "apaga", escurece em ~1,3 s; cortinas abrem junto; telão liga em "liga"
   const luz = t < tApaga ? 1 : 1 - .78 * prog(t, tApaga, tApaga + 1.3);
   globalThis.__abertura = prog(t, tApaga + .1, tApaga + 1.6);
