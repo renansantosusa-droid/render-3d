@@ -1,0 +1,89 @@
+{
+ "nome": "radar129-erros-bobinhos",
+ "obs": "21/11 bloco C teste anti repeticao (espelhar/cor). Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3238_0.3_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.1,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_4176_0_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "zoom": 1.2,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2202_0.3_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.15,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": -0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3256_0.3_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.12,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.18
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 erros BOBINHOS que fazem\niniciante perder dinheiro",
+   "y": 0.05,
+   "de": 0,
+   "ate": 11.4
+  },
+  {
+   "texto": "1. Comprar insumo demais de uma vez",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "2. Estragar foto por falta de teste",
+   "y": 0.68,
+   "de": 3,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Cobrar barato demais",
+   "y": 0.68,
+   "de": 5.4,
+   "ate": 8.4
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra conferir o seu preço",
+   "y": 0.68,
+   "de": 8.4
+  }
+ ]
+}
