@@ -22,7 +22,7 @@ const SAIDA = path.join(RAIZ, "saida");
 fs.mkdirSync(SAIDA, { recursive: true });
 const TOTAL = Math.round(Number(segStr) * FPS), NPARTES = Math.ceil(TOTAL / POR_PARTE);
 const nomeParte = (k) => path.join(SAIDA, `parte-${String(k).padStart(3, "0")}.mp4`);
-const tipos = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".jpg": "image/jpeg", ".webm": "video/webm", ".png": "image/png" };
+const tipos = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".jpg": "image/jpeg" };
 
 function servidor() {
   const srv = http.createServer((q, r) => {
