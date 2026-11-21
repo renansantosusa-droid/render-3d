@@ -1,0 +1,32 @@
+{
+ "nome": "radar119-empreendedora-apoia",
+ "obs": "20/11 bloco B: compilado ganchos idx13 (isca de comentario). IMG_4716 9-16 (perfil, monta e prensa). Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4716_9_7.MOV",
+   "inicio": 0,
+   "duracao": 7,
+   "zoom": 1.12,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Empreendedora apoia empreendedora:\ndeixa aqui a foto do seu\nFOTO ÍMÃ 👇",
+   "y": 0.7,
+   "de": 0,
+   "ate": 4.5
+  },
+  {
+   "texto": "Eu respondo todas 💗",
+   "y": 0.72,
+   "de": 4.5
+  }
+ ]
+}

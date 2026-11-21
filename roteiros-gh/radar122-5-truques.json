@@ -1,0 +1,116 @@
+{
+ "nome": "radar122-5-truques",
+ "obs": "20/11 bloco B: gancho ganchos.md #22 (truques, reduzido a 5). So takes idx%4==1. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2202_0.3_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3543_0.2_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3034_3_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_4767_2_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2452_8_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2186_33_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 truques SIMPLES pra vender\nfoto ímã pra QUALQUER pessoa",
+   "y": 0.05,
+   "de": 0,
+   "ate": 15.3
+  },
+  {
+   "texto": "1. Mostre o foto ímã pronto",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.5
+  },
+  {
+   "texto": "2. Use a foto que a pessoa ama",
+   "y": 0.68,
+   "de": 2.5,
+   "ate": 5
+  },
+  {
+   "texto": "3. Ofereça a caixinha pronta",
+   "y": 0.68,
+   "de": 5,
+   "ate": 7.5
+  },
+  {
+   "texto": "4. Mostre o passo a passo",
+   "y": 0.68,
+   "de": 7.5,
+   "ate": 10
+  },
+  {
+   "texto": "5. Capriche no material",
+   "y": 0.68,
+   "de": 10,
+   "ate": 12.5
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\npra ver como eu organizo",
+   "y": 0.68,
+   "de": 12.5
+  }
+ ]
+}
