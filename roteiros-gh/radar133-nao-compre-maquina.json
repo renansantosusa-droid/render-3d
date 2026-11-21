@@ -1,0 +1,43 @@
+{
+ "nome": "radar133-nao-compre-maquina",
+ "obs": "22/11 bloco D. Gancho radar 'frase-tese' (nao compre maquina agora). Mudo. SIMULADOR. Espelhado + cor.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3409_0.9_4.4.MOV",
+   "inicio": 0,
+   "duracao": 4.4,
+   "zoom": 1.25,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3256_1.4_4.6.MOV",
+   "inicio": 0,
+   "duracao": 4.6,
+   "zoom": 1.1,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "NÃO COMPRE máquina de\nfoto ímã sem fazer ISSO",
+   "y": 0.64
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.79,
+   "de": 5.5
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "nome": "radar138-bebe-no-colo-consegue",
+ "obs": "22/11 bloco D. Vencedor filhos (radar96/102) com texto novo e IMG_7807 em recorte novo (0,5 / zoom 1.35). Mudo. MÉTODO. Espelhado + cor.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7807_0.5_7.MOV",
+   "inicio": 0,
+   "duracao": 7,
+   "zoom": 1.35,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Eu faço foto ímã com a minha\nbebê no colo. Se eu consigo,\nvocê consegue 💗",
+   "y": 0.6
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.8,
+   "de": 5
+  }
+ ]
+}
