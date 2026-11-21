@@ -1,0 +1,119 @@
+{
+ "nome": "radar105-5-coisas-maquina",
+ "obs": "21/11 bloco A: gancho ganchos.md #1 (5 coisas que ninguem te conta antes de comprar a maquina). Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_E2132_2.4_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2729_4_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.3,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2734_0.3_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3546_3_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.3,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3043_10_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3249_2_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 COISAS que ninguém te conta\nantes de comprar a máquina",
+   "y": 0.05,
+   "de": 0,
+   "ate": 16
+  },
+  {
+   "texto": "1. Nas primeiras vezes, você vai errar",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. O papel e o gabarito mudam tudo",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. O insumo acaba rápido",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. A pressão da alavanca importa",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. Embalar bem faz o cliente voltar",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\npra eu te contar o resto",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}

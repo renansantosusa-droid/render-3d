@@ -1,0 +1,54 @@
+{
+ "nome": "radar106-faltam-natal",
+ "obs": "21/11 bloco A: gancho radar #4 (contagem, palavras gigantes) versao Natal, sem numero de dias. IMG_4166 espelhado. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4166_2.5_6.9.MOV",
+   "inicio": 0,
+   "duracao": 6.9,
+   "zoom": 1.15,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "FALTA\nPOUCO",
+   "y": 0.4,
+   "tamanho": 120,
+   "de": 0,
+   "ate": 1.3
+  },
+  {
+   "texto": "PRO\nNATAL",
+   "y": 0.4,
+   "tamanho": 120,
+   "de": 1.3,
+   "ate": 2.4
+  },
+  {
+   "texto": "E TODO\nMUNDO",
+   "y": 0.4,
+   "tamanho": 120,
+   "de": 2.4,
+   "ate": 3.5
+  },
+  {
+   "texto": "QUER UM\nPRESENTE",
+   "y": 0.4,
+   "tamanho": 120,
+   "de": 3.5,
+   "ate": 4.8
+  },
+  {
+   "texto": "Foto ímã é presente\nque emociona de verdade\nComenta NATAL 👇",
+   "y": 0.6,
+   "de": 4.8
+  }
+ ]
+}

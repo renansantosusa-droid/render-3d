@@ -1,0 +1,30 @@
+{
+ "nome": "radar107-bebe-no-colo",
+ "obs": "21/11 bloco A: modelo filhos (radar96/102) com IMG_7808 (sling) inicio novo 1.5, espelhado. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_1.5_7.6.MOV",
+   "inicio": 0,
+   "duracao": 7.6,
+   "zoom": 1.08,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "POV: você tem muito talento,\nmas eu faço foto ímã\ncom BEBÊ NO COLO 😅",
+   "y": 0.62
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.78,
+   "de": 5.2
+  }
+ ]
+}

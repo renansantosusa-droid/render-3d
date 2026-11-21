@@ -1,0 +1,73 @@
+{
+ "nome": "radar109-tecnica-simples",
+ "obs": "21/11 bloco A: gancho ganchos.md #17 (tecnica simples, perfeito de primeira) com IMG_3261 recortes novos. Mudo. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3261_11.5_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.15,
+   "ancoraY": 0.5,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3261_17.5_4.MOV",
+   "inicio": 0,
+   "duracao": 4,
+   "zoom": 1.15,
+   "ancoraY": 0.5,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3261_44_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5,
+   "zoom": 1.15,
+   "ancoraY": 0.5,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "TÉCNICA SIMPLES que faz meu\nfoto ímã sair PERFEITO\nde primeira",
+   "y": 0.05,
+   "de": 0,
+   "ate": 11.5
+  },
+  {
+   "texto": "Passo 1: encaixa e gira a base",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "Passo 2: pressão firme\nna alavanca",
+   "y": 0.68,
+   "de": 3,
+   "ate": 7
+  },
+  {
+   "texto": "Passo 3: tira e separa\ncom calma",
+   "y": 0.68,
+   "de": 7,
+   "ate": 8.8
+  },
+  {
+   "texto": "Comenta GABARITO 👇\nque eu te mando o que eu uso",
+   "y": 0.68,
+   "de": 8.8
+  }
+ ]
+}

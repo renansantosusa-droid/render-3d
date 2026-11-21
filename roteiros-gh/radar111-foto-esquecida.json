@@ -1,0 +1,61 @@
+{
+ "nome": "radar111-foto-esquecida",
+ "obs": "21/11 bloco A: gancho ganchos.md #13 (foto especial esquecida no celular). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3409_0.5_5.MOV",
+   "inicio": 0,
+   "duracao": 5,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3472_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3036_2_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.04,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "A foto mais especial\nnão deveria ficar esquecida\nno celular 📱",
+   "y": 0.05,
+   "de": 0,
+   "ate": 5.5
+  },
+  {
+   "texto": "Vira foto ímã e fica\nna geladeira pra sempre 🧲",
+   "y": 0.05,
+   "de": 5.5,
+   "ate": 8.5
+  },
+  {
+   "texto": "Comenta NATAL 👇\nque eu te mando o kit de Natal",
+   "y": 0.68,
+   "de": 8.5
+  }
+ ]
+}

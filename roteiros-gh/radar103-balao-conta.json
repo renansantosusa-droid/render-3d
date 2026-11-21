@@ -1,0 +1,38 @@
+{
+ "nome": "radar103-balao-conta",
+ "obs": "21/11 bloco A: gancho radar #0 (hater no balao, @heartprinted) com IMG_4771 (take nunca usado), espelhado + cor. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4771_0.5_8.2.MOV",
+   "inicio": 0,
+   "duracao": 8.2,
+   "zoom": 1.12,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "isso aí paga conta de verdade? 🙄",
+   "usuario": "carol.mendes_s",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-jupmoraes.jpg",
+   "y": 0.5
+  },
+  {
+   "texto": "POV: eu, trabalhando de casa\ncom foto ímã 😌",
+   "y": 0.64,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.76,
+   "de": 5.5
+  }
+ ]
+}

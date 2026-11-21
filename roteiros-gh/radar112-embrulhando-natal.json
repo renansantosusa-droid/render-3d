@@ -1,0 +1,28 @@
+{
+ "nome": "radar112-embrulhando-natal",
+ "obs": "21/11 bloco A: modelo presente-natal (radar66/101) com IMG_2758 (idx116) espelhado, so take %4. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2758_4.5_8.MOV",
+   "inicio": 0,
+   "duracao": 8,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0,
+    "contraste": 1.08,
+    "saturacao": 1.2
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Natal chegando e eu já\nembrulhando presente 🎁\nfeito com FOTO ÍMÃ",
+   "y": 0.06
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit de Natal",
+   "y": 0.68,
+   "de": 4.5
+  }
+ ]
+}

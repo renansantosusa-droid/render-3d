@@ -1,0 +1,97 @@
+{
+ "nome": "radar110-comecaria-ordem",
+ "obs": "21/11 bloco A: modelo comecaria-hoje (radar74/95/99) com cenas e texto novos. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_5135_6_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "DNNV9901_1.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2390_2.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3477_6_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3037_5_5.2.MOV",
+   "inicio": 0,
+   "duracao": 5.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "SE EU COMEÇASSE HOJE\neu faria nessa ordem",
+   "y": 0.05,
+   "de": 0,
+   "ate": 15.6
+  },
+  {
+   "texto": "1. Fazia o layout no Canva",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Imprimia a folha",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Recortava com calma",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Prensava na máquina",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. Embalava com carinho",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 12.8
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando os materiais",
+   "y": 0.68,
+   "de": 12.8
+  }
+ ]
+}
