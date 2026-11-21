@@ -1,0 +1,613 @@
+{
+ "titulo": "15 COISAS QUE VOCÊ PRECISA SABER",
+ "sub": "antes de jogar GTA 6",
+ "total_itens": 15,
+ "cenas": [
+  {
+   "abertura": true,
+   "texto": "Se você começar o Gê Tê Á seis jogando igual jogava o cinco, você vai perder dinheiro, ser preso à toa e até travar a história.",
+   "midia": [
+    "take:gta6-launch-013",
+    "take:gta6-t1-009"
+   ]
+  },
+  {
+   "texto": "Então aqui vão quinze coisas que você precisa saber antes de jogar. E a última foi descoberta por um jogador que passou sete minutos escalando uma torre.",
+   "midia": [
+    "img:lugar-vice-city-03.jpg",
+    "take:gta6-t2-007"
+   ]
+  },
+  {
+   "item": {
+    "n": 1,
+    "tit": "O dinheiro do bolso some"
+   },
+   "texto": "Primeira: o dinheiro que você carrega no bolso não é seu ainda.",
+   "midia": [
+    "take:gta6-t1-011",
+    "img:pessoa-jason-duval-03.jpg"
+   ]
+  },
+  {
+   "texto": "Se você morrer ou for preso, perde tudo que estava carregando. Não é uma parte. É tudo.",
+   "midia": [
+    "take:gta6-launch-011"
+   ],
+   "card": {
+    "tit": "MORREU OU FOI PRESO",
+    "solo": [
+     "PERDE TUDO",
+     "o dinheiro do bolso"
+    ]
+   }
+  },
+  {
+   "texto": "No começo, guarda no esconderijo embaixo do chão do quarto do Jason. Depois, quando abrir a missão do aplicativo do banco, passa tudo pra conta.",
+   "midia": [
+    "img:pessoa-jason-duval-07.jpg",
+    "take:gta6-t2-009"
+   ]
+  },
+  {
+   "texto": "No Gê Tê Á cinco, morrer custava só a conta do hospital. Aqui, um assalto bem feito pode virar zero numa batida de carro na volta pra casa. Então o caminho é sempre: roubou, guardou.",
+   "midia": [
+    "take:gta5-t2-012",
+    "take:gta6-launch-013"
+   ],
+   "card": {
+    "tit": "MORREU",
+    "la": "GTA 5",
+    "a": "HOSPITAL",
+    "sa": "uma taxinha",
+    "lb": "GTA 6",
+    "b": "TUDO",
+    "sb": "o que estava no bolso"
+   }
+  },
+  {
+   "item": {
+    "n": 2,
+    "tit": "Sem grana, a história trava"
+   },
+   "texto": "Segunda: no Gê Tê Á seis, dinheiro não é só pra comprar carro e roupa.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-02.jpg",
+    "take:gta6-t1-022"
+   ]
+  },
+  {
+   "texto": "A própria Rockstar confirmou que você precisa de dinheiro pra avançar na história. Tem missão que só começa com saldo na conta.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-05.jpg"
+   ],
+   "card": {
+    "tit": "SALDO MÍNIMO",
+    "solo": [
+     "FICOU LISO?",
+     "a história para"
+    ]
+   }
+  },
+  {
+   "texto": "Então gastar tudo no primeiro carro bonito que aparecer é o jeito mais rápido de ficar parado.",
+   "midia": [
+    "take:gta6-t1-018"
+   ]
+  },
+  {
+   "texto": "Pensa como o Jason e a Lucia: os dois estão começando do zero, sem nada. O jogo quer que você sinta isso. Cada real conta, principalmente nas primeiras horas.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-06.jpg",
+    "take:gta6-t2-003"
+   ]
+  },
+  {
+   "item": {
+    "n": 3,
+    "tit": "Três tipos de dinheiro"
+   },
+   "texto": "Terceira: o jogo separa o seu dinheiro em três.",
+   "midia": [
+    "take:gta6-t2-007",
+    "img:lugar-vice-city-08.jpg"
+   ]
+  },
+  {
+   "texto": "Dinheiro no banco, que está seguro. Dinheiro vivo, que você perde se cair. E mercadoria roubada, que vai na bolsa nas costas.",
+   "midia": [
+    "take:gta6-t1-008"
+   ],
+   "card": {
+    "tit": "SEU DINHEIRO",
+    "la": "SEGURO",
+    "a": "BANCO",
+    "sa": "no aplicativo",
+    "lb": "EM RISCO",
+    "b": "BOLSO",
+    "sb": "e a bolsa roubada"
+   }
+  },
+  {
+   "texto": "Roubou? Prioridade número um é transformar aquilo em saldo no banco.",
+   "midia": [
+    "img:pessoa-jason-duval-10.jpg"
+   ]
+  },
+  {
+   "texto": "E a mercadoria roubada não vira dinheiro sozinha. Você ainda precisa achar quem compre. Enquanto ela estiver na bolsa, é risco andando com você pela cidade.",
+   "midia": [
+    "take:gta6-t1-024",
+    "img:lugar-vice-city-10.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 4,
+    "tit": "Carro amassado vale menos"
+   },
+   "texto": "Quarta: dá pra vender carro roubado num receptador.",
+   "midia": [
+    "take:gta6-launch-009",
+    "take:gta6-t1-024"
+   ]
+  },
+  {
+   "texto": "Só que carro batido vale menos. Cada amassado na fuga é dinheiro que você está jogando fora.",
+   "midia": [
+    "take:gta6-t1-007"
+   ],
+   "card": {
+    "tit": "CARRO ROUBADO",
+    "la": "INTEIRO",
+    "a": "$$$",
+    "sa": "vale mais",
+    "lb": "AMASSADO",
+    "b": "$",
+    "sb": "vale menos"
+   }
+  },
+  {
+   "texto": "Então na fuga, dirige com cuidado. Parece estranho no Gê Tê Á, mas aqui compensa.",
+   "midia": [
+    "img:lugar-vice-city-12.jpg"
+   ]
+  },
+  {
+   "texto": "Juntando com a dica anterior: roubou o carro, levou inteiro, vendeu, e o dinheiro foi direto pro banco. Esse é o ciclo que deixa você rico rápido no começo.",
+   "midia": [
+    "take:gta6-launch-001",
+    "img:pessoa-jason-duval-05.jpg"
+   ],
+   "card": {
+    "tit": "O CICLO",
+    "solo": [
+     "ROUBA · LEVA INTEIRO · VENDE",
+     "e guarda no banco"
+    ]
+   }
+  },
+  {
+   "item": {
+    "n": 5,
+    "tit": "Salva na mão"
+   },
+   "texto": "Quinta, e essa salva muita gente: salva o jogo na mão.",
+   "midia": [
+    "img:pessoa-lucia-caminos-03.jpg",
+    "take:gta6-preload-003"
+   ]
+  },
+  {
+   "texto": "O salvamento automático só acontece depois de terminar uma missão. E não dá pra repetir missão depois.",
+   "midia": [
+    "take:gta6-launch-020"
+   ],
+   "card": {
+    "tit": "SALVAMENTO",
+    "solo": [
+     "SÓ NO FIM DA MISSÃO",
+     "e sem repetir missão"
+    ]
+   }
+  },
+  {
+   "texto": "A dica dos guias é usar um espaço de salvamento novo a cada capítulo. Se der ruim, você volta.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-08.jpg"
+   ]
+  },
+  {
+   "texto": "Isso importa porque o Gê Tê Á seis tem escolhas e consequências. Fez uma besteira que não tinha volta e só tinha o salvamento automático? Vai ter que conviver com ela.",
+   "midia": [
+    "img:pessoa-lucia-caminos-08.jpg",
+    "take:gta6-t2-012"
+   ]
+  },
+  {
+   "item": {
+    "n": 6,
+    "tit": "Sem testemunha, sem polícia"
+   },
+   "texto": "Sexta: a polícia não sabe de tudo na hora, igual no cinco.",
+   "midia": [
+    "take:gta6-t2-018",
+    "take:gta6-t2-010"
+   ]
+  },
+  {
+   "texto": "Ela só aparece se alguém avisar. Uma testemunha, um alarme ou o rastreador de um carro roubado.",
+   "midia": [
+    "take:gta6-t1-023"
+   ],
+   "card": {
+    "tit": "QUEM CHAMA A POLÍCIA",
+    "solo": [
+     "TESTEMUNHA · ALARME",
+     "ou rastreador do carro"
+    ]
+   }
+  },
+  {
+   "texto": "Sem ninguém olhando, você tem tempo. Com testemunha, o relógio começa a correr.",
+   "midia": [
+    "img:lugar-vice-city-15.jpg"
+   ]
+  },
+  {
+   "texto": "Na prática: antes de qualquer crime, olha em volta. Rua vazia, sem câmera e sem alarme? É ali. Praça cheia de gente filmando? Melhor nem tentar.",
+   "midia": [
+    "take:gta6-t2-005",
+    "img:lugar-vice-city-17.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 7,
+    "tit": "Seis estrelas"
+   },
+   "texto": "Sétima: agora são seis estrelas de procurado, uma a mais que no Gê Tê Á cinco.",
+   "midia": [
+    "take:gta5-t1-011",
+    "take:gta6-t1-010"
+   ]
+  },
+  {
+   "texto": "Quanto mais estrelas, mais pesado fica. E a sexta estrela é território novo pra todo mundo.",
+   "midia": [
+    "take:gta6-launch-001"
+   ],
+   "card": {
+    "tit": "ESTRELAS",
+    "la": "GTA 5",
+    "a": "5",
+    "sa": "estrelas",
+    "lb": "GTA 6",
+    "b": "6",
+    "sb": "estrelas"
+   }
+  },
+  {
+   "texto": "E as estrelas mudam de jeito. Tem a estrela vazada, a estrela branca, quando a polícia está te vendo, e a estrela piscando, quando ela perdeu você de vista. Isso leva direto pra próxima dica.",
+   "midia": [
+    "take:gta6-t1-023",
+    "img:pessoa-jason-duval-08.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 8,
+    "tit": "A estrela vazada"
+   },
+   "texto": "Oitava: repara na estrela vazada.",
+   "midia": [
+    "take:gta6-t1-009",
+    "img:pessoa-jason-duval-12.jpg"
+   ]
+  },
+  {
+   "texto": "Estrela vazada quer dizer que a polícia sabe que teve um crime, mas ainda não sabe que foi você.",
+   "midia": [
+    "take:gta6-t2-011"
+   ],
+   "card": {
+    "tit": "ESTRELA VAZADA",
+    "solo": [
+     "SABEM DO CRIME",
+     "não sabem que foi você"
+    ]
+   }
+  },
+  {
+   "texto": "É a sua chance de sair de fininho antes de virar perseguição.",
+   "midia": [
+    "img:lugar-vice-city-18.jpg"
+   ]
+  },
+  {
+   "texto": "Se a estrela ficar branca, aí já era: te viram. E quando ela começar a piscar, eles te perderam. É hora de sumir, não de voltar pra briga.",
+   "midia": [
+    "take:gta6-t2-010",
+    "take:gta6-t1-009"
+   ],
+   "card": {
+    "tit": "AS ESTRELAS",
+    "solo": [
+     "VAZADA · BRANCA · PISCANDO",
+     "sabem · te veem · te perderam"
+    ]
+   }
+  },
+  {
+   "item": {
+    "n": 9,
+    "tit": "Os ícones da polícia"
+   },
+   "texto": "Nona: embaixo das estrelas aparecem ícones.",
+   "midia": [
+    "take:gta6-t2-018",
+    "img:pessoa-lucia-caminos-06.jpg"
+   ]
+  },
+  {
+   "texto": "Eles mostram o que a polícia já sabe sobre você: o seu rosto, a sua roupa ou o seu carro.",
+   "midia": [
+    "take:gta6-t1-023"
+   ],
+   "card": {
+    "tit": "A POLÍCIA SABE",
+    "solo": [
+     "ROSTO · ROUPA · CARRO",
+     "e as câmeras"
+    ]
+   }
+  },
+  {
+   "texto": "Pra despistar, troca de roupa e troca de carro. As estrelas somem, mas o que ela sabe fica.",
+   "midia": [
+    "take:gta6-t1-024",
+    "img:pessoa-lucia-caminos-09.jpg"
+   ]
+  },
+  {
+   "texto": "E máscara ajuda, mas não resolve tudo. Ela esconde o rosto, mas a polícia continua vendo a roupa e o carro. Mascarado no mesmo carro do crime é pedir pra ser pego.",
+   "midia": [
+    "take:gta6-t1-009",
+    "img:pessoa-jason-duval-18.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 10,
+    "tit": "O calor é do bairro"
+   },
+   "texto": "Décima: o calor da polícia fica no lugar do crime.",
+   "midia": [
+    "img:lugar-vice-city-21.jpg",
+    "take:gta6-launch-013"
+   ]
+  },
+  {
+   "texto": "Se você volta onde fez a besteira, a procura pode recomeçar. O bairro lembra de você.",
+   "midia": [
+    "take:gta6-t2-010"
+   ],
+   "card": {
+    "tit": "VOLTOU NO LOCAL?",
+    "solo": [
+     "A CAÇA RECOMEÇA",
+     "espera o bairro esfriar"
+    ]
+   }
+  },
+  {
+   "texto": "O melhor é sumir por um tempo e esperar a região esfriar.",
+   "midia": [
+    "img:lugar-leonida-keys-02.jpg"
+   ]
+  },
+  {
+   "texto": "E o mapa é grande. Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia e o parque do Monte Kalaga. Fez barulho em Vice City? Vai passar um tempo nas Keys.",
+   "midia": [
+    "img:lugar-leonida-keys-05.jpg",
+    "img:lugar-port-gellhorn-02.jpg",
+    "img:lugar-ambrosia-03.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 11,
+    "tit": "Escaneia antes de roubar"
+   },
+   "texto": "Décima primeira: antes de roubar um carro, escaneia ele no celular.",
+   "midia": [
+    "take:gta6-t1-018",
+    "img:pessoa-jason-duval-14.jpg"
+   ]
+  },
+  {
+   "texto": "O aplicativo mostra se o carro tem alarme ou rastreador. Rastreador é polícia na sua cola sem você perceber.",
+   "midia": [
+    "take:gta6-t2-005"
+   ],
+   "card": {
+    "tit": "ANTES DE ROUBAR",
+    "solo": [
+     "ESCANEIA",
+     "alarme? rastreador?"
+    ]
+   }
+  },
+  {
+   "texto": "Lembra da sexta dica? O rastreador conta como alguém avisando a polícia. Então roubar um carro com rastreador é igual cometer um crime na frente de uma testemunha.",
+   "midia": [
+    "take:gta6-t1-018",
+    "img:lugar-vice-city-20.jpg"
+   ]
+  },
+  {
+   "item": {
+    "n": 12,
+    "tit": "O primeiro carro"
+   },
+   "texto": "Décima segunda: no começo, escolhe um carro velho e discreto.",
+   "midia": [
+    "img:lugar-grassrivers-03.jpg",
+    "take:gta6-t1-022"
+   ]
+  },
+  {
+   "texto": "Carro chamativo puxa atenção, e atenção vira estrela. Começo de jogo é pra passar despercebido.",
+   "midia": [
+    "take:gta6-launch-009"
+   ]
+  },
+  {
+   "texto": "E lembra: a polícia reconhece o seu carro. Se ele for o único carro esportivo amarelo da cidade, você vai ser achado rapidinho. O carro sem graça é o seu disfarce.",
+   "midia": [
+    "take:gta6-t1-007",
+    "img:lugar-grassrivers-05.jpg"
+   ],
+   "card": {
+    "tit": "PRIMEIRO CARRO",
+    "la": "CHAMATIVO",
+    "a": "ACHADO",
+    "sa": "todo mundo vê",
+    "lb": "DISCRETO",
+    "b": "SOME",
+    "sb": "ninguém repara"
+   }
+  },
+  {
+   "item": {
+    "n": 13,
+    "tit": "O modo Foco"
+   },
+   "texto": "Décima terceira: aprende a usar o modo Foco.",
+   "midia": [
+    "img:pessoa-lucia-caminos-11.jpg",
+    "take:gta6-t2-013"
+   ]
+  },
+  {
+   "texto": "Fora de tiroteio, ele dura o quanto você quiser e pinta o mapa pra você.",
+   "midia": [
+    "take:gta6-t1-004"
+   ]
+  },
+  {
+   "texto": "Vermelho é inimigo. Amarelo é coisa que dá pra usar. E verde é dinheiro.",
+   "midia": [
+    "img:lugar-vice-city-24.jpg"
+   ],
+   "card": {
+    "tit": "MODO FOCO",
+    "solo": [
+     "VERMELHO · AMARELO · VERDE",
+     "inimigo · usar · dinheiro"
+    ]
+   }
+  },
+  {
+   "texto": "Entrou num lugar novo? Liga o Foco antes de fazer qualquer coisa. Você acha dinheiro escondido que passaria batido e vê quem está armado antes de levar o primeiro tiro.",
+   "midia": [
+    "img:pessoa-lucia-caminos-13.jpg",
+    "take:gta6-t2-016"
+   ]
+  },
+  {
+   "item": {
+    "n": 14,
+    "tit": "Come, dorme e toma banho"
+   },
+   "texto": "Décima quarta: o Jason e a Lucia precisam se cuidar.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-12.jpg",
+    "take:gta6-t2-008"
+   ]
+  },
+  {
+   "texto": "Comer, dormir, tomar banho e malhar aumentam a vida, o fôlego e o Foco.",
+   "midia": [
+    "take:gta6-t2-020",
+    "take:gta6-t1-006"
+   ],
+   "card": {
+    "tit": "SE CUIDA",
+    "solo": [
+     "VIDA · FÔLEGO · FOCO",
+     "come, dorme, malha"
+    ]
+   }
+  },
+  {
+   "texto": "Largou de lado? Você entra em missão mais fraco do que deveria.",
+   "midia": [
+    "img:pessoa-jason-duval-16.jpg"
+   ]
+  },
+  {
+   "texto": "É parecido com o San Andreas, onde o CJ engordava ou ficava forte conforme você jogava. Só que agora isso mexe direto no Foco, que é a sua melhor arma.",
+   "midia": [
+    "take:gtasa-trailer-005",
+    "img:pessoa-jason-and-lucia-10.jpg"
+   ],
+   "card": {
+    "tit": "SE CUIDAR",
+    "la": "SAN ANDREAS",
+    "a": "CJ",
+    "sa": "forte ou gordo",
+    "lb": "GTA 6",
+    "b": "FOCO",
+    "sb": "vida e fôlego"
+   }
+  },
+  {
+   "item": {
+    "n": 15,
+    "tit": "O ovo da torre"
+   },
+   "texto": "E a décima quinta, a mais bizarra.",
+   "midia": [
+    "img:lugar-mount-kalaga-national-park-02.jpg"
+   ]
+  },
+  {
+   "texto": "Um jogador passou uns sete minutos escalando uma torre de comunicação em Leonida. Lá em cima, achou um ninho com ovos coloridos gigantes.",
+   "midia": [
+    "img:lugar-mount-kalaga-national-park-04.jpg",
+    "take:gta6-t1-010"
+   ]
+  },
+  {
+   "texto": "Ele jogou um ovo lá de cima. E isso destravou uma cena secreta, com o ovo caindo no para-brisa de um carro que passava embaixo.",
+   "midia": [
+    "take:gta6-t2-001"
+   ],
+   "card": {
+    "tit": "EASTER EGG",
+    "solo": [
+     "UM OVO DE VERDADE",
+     "e uma cena secreta"
+    ]
+   }
+  },
+  {
+   "texto": "Isso é relato de jogador, a Rockstar não falou nada. E de bônus: o toque de celular do Michael, do Gê Tê Á cinco, está escondido nas configurações do celular.",
+   "midia": [
+    "take:gta5-t2-010",
+    "img:pessoa-jason-and-lucia-15.jpg"
+   ]
+  },
+  {
+   "fim": true,
+   "texto": "Qual dessas você não sabia? Comenta aqui embaixo. E se inscreve, porque tem muito mais do Gê Tê Á seis vindo por aí.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-01.jpg",
+    "img:lugar-vice-city-01.jpg"
+   ]
+  }
+ ],
+ "credito": "Imagens: Rockstar Games",
+ "estilo": "animacao"
+}

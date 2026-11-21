@@ -1,0 +1,5037 @@
+{
+ "total": 408,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 7.83,
+   "texto": "Se você começar o Gê Tê Á seis jogando igual jogava o cinco, você vai perder dinheiro, ser preso à toa e até travar a história.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "começar",
+     "t": 0.51
+    },
+    {
+     "w": "o",
+     "t": 0.91
+    },
+    {
+     "w": "Gê",
+     "t": 1.03
+    },
+    {
+     "w": "Tê",
+     "t": 1.23
+    },
+    {
+     "w": "Á",
+     "t": 1.45
+    },
+    {
+     "w": "seis",
+     "t": 1.574
+    },
+    {
+     "w": "jogando",
+     "t": 1.93
+    },
+    {
+     "w": "igual",
+     "t": 2.43
+    },
+    {
+     "w": "jogava",
+     "t": 2.67
+    },
+    {
+     "w": "o",
+     "t": 3.03
+    },
+    {
+     "w": "cinco",
+     "t": 3.163
+    },
+    {
+     "w": "você",
+     "t": 3.718
+    },
+    {
+     "w": "vai",
+     "t": 3.97
+    },
+    {
+     "w": "perder",
+     "t": 4.196
+    },
+    {
+     "w": "dinheiro",
+     "t": 4.523
+    },
+    {
+     "w": "ser",
+     "t": 5.25
+    },
+    {
+     "w": "preso",
+     "t": 5.494
+    },
+    {
+     "w": "à",
+     "t": 5.87
+    },
+    {
+     "w": "toa",
+     "t": 5.963
+    },
+    {
+     "w": "e",
+     "t": 6.31
+    },
+    {
+     "w": "até",
+     "t": 6.55
+    },
+    {
+     "w": "travar",
+     "t": 6.854
+    },
+    {
+     "w": "a",
+     "t": 7.23
+    },
+    {
+     "w": "história",
+     "t": 7.323
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 7.98,
+   "fim": 16.7,
+   "texto": "Então aqui vão quinze coisas que você precisa saber antes de jogar. E a última foi descoberta por um jogador que passou sete minutos escalando uma torre.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 7.98
+    },
+    {
+     "w": "aqui",
+     "t": 8.364
+    },
+    {
+     "w": "vão",
+     "t": 8.5
+    },
+    {
+     "w": "quinze",
+     "t": 8.807
+    },
+    {
+     "w": "coisas",
+     "t": 9.18
+    },
+    {
+     "w": "que",
+     "t": 9.54
+    },
+    {
+     "w": "você",
+     "t": 9.708
+    },
+    {
+     "w": "precisa",
+     "t": 9.95
+    },
+    {
+     "w": "saber",
+     "t": 10.393
+    },
+    {
+     "w": "antes",
+     "t": 10.913
+    },
+    {
+     "w": "de",
+     "t": 11.207
+    },
+    {
+     "w": "jogar",
+     "t": 11.32
+    },
+    {
+     "w": "E",
+     "t": 12.18
+    },
+    {
+     "w": "a",
+     "t": 12.26
+    },
+    {
+     "w": "última",
+     "t": 12.357
+    },
+    {
+     "w": "foi",
+     "t": 12.74
+    },
+    {
+     "w": "descoberta",
+     "t": 12.908
+    },
+    {
+     "w": "por",
+     "t": 13.46
+    },
+    {
+     "w": "um",
+     "t": 13.607
+    },
+    {
+     "w": "jogador",
+     "t": 13.72
+    },
+    {
+     "w": "que",
+     "t": 14.18
+    },
+    {
+     "w": "passou",
+     "t": 14.332
+    },
+    {
+     "w": "sete",
+     "t": 14.76
+    },
+    {
+     "w": "minutos",
+     "t": 15.08
+    },
+    {
+     "w": "escalando",
+     "t": 15.567
+    },
+    {
+     "w": "uma",
+     "t": 16.1
+    },
+    {
+     "w": "torre",
+     "t": 16.28
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 16.85,
+   "fim": 20.77,
+   "texto": "Primeira: o dinheiro que você carrega no bolso não é seu ainda.",
+   "palavras": [
+    {
+     "w": "Primeira",
+     "t": 16.85
+    },
+    {
+     "w": "o",
+     "t": 17.65
+    },
+    {
+     "w": "dinheiro",
+     "t": 17.934
+    },
+    {
+     "w": "que",
+     "t": 18.31
+    },
+    {
+     "w": "você",
+     "t": 18.434
+    },
+    {
+     "w": "carrega",
+     "t": 18.73
+    },
+    {
+     "w": "no",
+     "t": 19.037
+    },
+    {
+     "w": "bolso",
+     "t": 19.17
+    },
+    {
+     "w": "não",
+     "t": 19.65
+    },
+    {
+     "w": "é",
+     "t": 19.97
+    },
+    {
+     "w": "seu",
+     "t": 20.11
+    },
+    {
+     "w": "ainda",
+     "t": 20.357
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 20.92,
+   "fim": 27.08,
+   "texto": "Se você morrer ou for preso, perde tudo que estava carregando. Não é uma parte. É tudo.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 20.92
+    },
+    {
+     "w": "você",
+     "t": 21.048
+    },
+    {
+     "w": "morrer",
+     "t": 21.3
+    },
+    {
+     "w": "ou",
+     "t": 21.667
+    },
+    {
+     "w": "for",
+     "t": 21.78
+    },
+    {
+     "w": "preso",
+     "t": 22.04
+    },
+    {
+     "w": "perde",
+     "t": 22.64
+    },
+    {
+     "w": "tudo",
+     "t": 23
+    },
+    {
+     "w": "que",
+     "t": 23.36
+    },
+    {
+     "w": "estava",
+     "t": 23.514
+    },
+    {
+     "w": "carregando",
+     "t": 23.76
+    },
+    {
+     "w": "Não",
+     "t": 24.54
+    },
+    {
+     "w": "é",
+     "t": 24.88
+    },
+    {
+     "w": "uma",
+     "t": 24.96
+    },
+    {
+     "w": "parte",
+     "t": 25.16
+    },
+    {
+     "w": "É",
+     "t": 25.86
+    },
+    {
+     "w": "tudo",
+     "t": 26.072
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 27.23,
+   "fim": 35.87,
+   "texto": "No começo, guarda no esconderijo embaixo do chão do quarto do Jason. Depois, quando abrir a missão do aplicativo do banco, passa tudo pra conta.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 27.23
+    },
+    {
+     "w": "começo",
+     "t": 27.39
+    },
+    {
+     "w": "guarda",
+     "t": 28.236
+    },
+    {
+     "w": "no",
+     "t": 28.537
+    },
+    {
+     "w": "esconderijo",
+     "t": 28.643
+    },
+    {
+     "w": "embaixo",
+     "t": 29.283
+    },
+    {
+     "w": "do",
+     "t": 29.737
+    },
+    {
+     "w": "chão",
+     "t": 29.843
+    },
+    {
+     "w": "do",
+     "t": 30.083
+    },
+    {
+     "w": "quarto",
+     "t": 30.217
+    },
+    {
+     "w": "do",
+     "t": 30.483
+    },
+    {
+     "w": "Jason",
+     "t": 30.657
+    },
+    {
+     "w": "Depois",
+     "t": 31.25
+    },
+    {
+     "w": "quando",
+     "t": 32.304
+    },
+    {
+     "w": "abrir",
+     "t": 32.563
+    },
+    {
+     "w": "a",
+     "t": 32.89
+    },
+    {
+     "w": "missão",
+     "t": 32.974
+    },
+    {
+     "w": "do",
+     "t": 33.177
+    },
+    {
+     "w": "aplicativo",
+     "t": 33.283
+    },
+    {
+     "w": "do",
+     "t": 33.843
+    },
+    {
+     "w": "banco",
+     "t": 34.003
+    },
+    {
+     "w": "passa",
+     "t": 34.622
+    },
+    {
+     "w": "tudo",
+     "t": 34.91
+    },
+    {
+     "w": "pra",
+     "t": 35.27
+    },
+    {
+     "w": "conta",
+     "t": 35.457
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 36.02,
+   "fim": 48.02,
+   "texto": "No Gê Tê Á cinco, morrer custava só a conta do hospital. Aqui, um assalto bem feito pode virar zero numa batida de carro na volta pra casa. Então o caminho é sempre: roubou, guardou.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 36.02
+    },
+    {
+     "w": "Gê",
+     "t": 36.18
+    },
+    {
+     "w": "Tê",
+     "t": 36.46
+    },
+    {
+     "w": "Á",
+     "t": 36.78
+    },
+    {
+     "w": "cinco",
+     "t": 36.869
+    },
+    {
+     "w": "morrer",
+     "t": 37.34
+    },
+    {
+     "w": "custava",
+     "t": 37.748
+    },
+    {
+     "w": "só",
+     "t": 38.233
+    },
+    {
+     "w": "a",
+     "t": 38.38
+    },
+    {
+     "w": "conta",
+     "t": 38.473
+    },
+    {
+     "w": "do",
+     "t": 38.767
+    },
+    {
+     "w": "hospital",
+     "t": 38.873
+    },
+    {
+     "w": "Aqui",
+     "t": 39.56
+    },
+    {
+     "w": "um",
+     "t": 40.607
+    },
+    {
+     "w": "assalto",
+     "t": 40.72
+    },
+    {
+     "w": "bem",
+     "t": 41.18
+    },
+    {
+     "w": "feito",
+     "t": 41.38
+    },
+    {
+     "w": "pode",
+     "t": 41.748
+    },
+    {
+     "w": "virar",
+     "t": 41.98
+    },
+    {
+     "w": "zero",
+     "t": 42.26
+    },
+    {
+     "w": "numa",
+     "t": 42.628
+    },
+    {
+     "w": "batida",
+     "t": 42.86
+    },
+    {
+     "w": "de",
+     "t": 43.193
+    },
+    {
+     "w": "carro",
+     "t": 43.34
+    },
+    {
+     "w": "na",
+     "t": 43.593
+    },
+    {
+     "w": "volta",
+     "t": 43.753
+    },
+    {
+     "w": "pra",
+     "t": 44.06
+    },
+    {
+     "w": "casa",
+     "t": 44.26
+    },
+    {
+     "w": "Então",
+     "t": 44.84
+    },
+    {
+     "w": "o",
+     "t": 45.5
+    },
+    {
+     "w": "caminho",
+     "t": 45.58
+    },
+    {
+     "w": "é",
+     "t": 45.94
+    },
+    {
+     "w": "sempre",
+     "t": 46.077
+    },
+    {
+     "w": "roubou",
+     "t": 46.78
+    },
+    {
+     "w": "guardou",
+     "t": 47.513
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 48.17,
+   "fim": 52.65,
+   "texto": "Segunda: no Gê Tê Á seis, dinheiro não é só pra comprar carro e roupa.",
+   "palavras": [
+    {
+     "w": "Segunda",
+     "t": 48.17
+    },
+    {
+     "w": "no",
+     "t": 48.97
+    },
+    {
+     "w": "Gê",
+     "t": 49.21
+    },
+    {
+     "w": "Tê",
+     "t": 49.47
+    },
+    {
+     "w": "Á",
+     "t": 49.65
+    },
+    {
+     "w": "seis",
+     "t": 49.77
+    },
+    {
+     "w": "dinheiro",
+     "t": 50.446
+    },
+    {
+     "w": "não",
+     "t": 50.77
+    },
+    {
+     "w": "é",
+     "t": 50.97
+    },
+    {
+     "w": "só",
+     "t": 51.103
+    },
+    {
+     "w": "pra",
+     "t": 51.25
+    },
+    {
+     "w": "comprar",
+     "t": 51.41
+    },
+    {
+     "w": "carro",
+     "t": 51.757
+    },
+    {
+     "w": "e",
+     "t": 52.13
+    },
+    {
+     "w": "roupa",
+     "t": 52.25
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 52.8,
+   "fim": 59.52,
+   "texto": "A própria Rockstar confirmou que você precisa de dinheiro pra avançar na história. Tem missão que só começa com saldo na conta.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 52.8
+    },
+    {
+     "w": "própria",
+     "t": 52.928
+    },
+    {
+     "w": "Rockstar",
+     "t": 53.248
+    },
+    {
+     "w": "confirmou",
+     "t": 53.8
+    },
+    {
+     "w": "que",
+     "t": 54.2
+    },
+    {
+     "w": "você",
+     "t": 54.368
+    },
+    {
+     "w": "precisa",
+     "t": 54.62
+    },
+    {
+     "w": "de",
+     "t": 55.067
+    },
+    {
+     "w": "dinheiro",
+     "t": 55.164
+    },
+    {
+     "w": "pra",
+     "t": 55.56
+    },
+    {
+     "w": "avançar",
+     "t": 55.728
+    },
+    {
+     "w": "na",
+     "t": 56.107
+    },
+    {
+     "w": "história",
+     "t": 56.213
+    },
+    {
+     "w": "Tem",
+     "t": 57.04
+    },
+    {
+     "w": "missão",
+     "t": 57.312
+    },
+    {
+     "w": "que",
+     "t": 57.64
+    },
+    {
+     "w": "só",
+     "t": 57.813
+    },
+    {
+     "w": "começa",
+     "t": 57.984
+    },
+    {
+     "w": "com",
+     "t": 58.44
+    },
+    {
+     "w": "saldo",
+     "t": 58.613
+    },
+    {
+     "w": "na",
+     "t": 58.907
+    },
+    {
+     "w": "conta",
+     "t": 59.027
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 59.67,
+   "fim": 64.87,
+   "texto": "Então gastar tudo no primeiro carro bonito que aparecer é o jeito mais rápido de ficar parado.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 59.67
+    },
+    {
+     "w": "gastar",
+     "t": 60.054
+    },
+    {
+     "w": "tudo",
+     "t": 60.358
+    },
+    {
+     "w": "no",
+     "t": 60.603
+    },
+    {
+     "w": "primeiro",
+     "t": 60.746
+    },
+    {
+     "w": "carro",
+     "t": 61.07
+    },
+    {
+     "w": "bonito",
+     "t": 61.31
+    },
+    {
+     "w": "que",
+     "t": 61.71
+    },
+    {
+     "w": "aparecer",
+     "t": 61.857
+    },
+    {
+     "w": "é",
+     "t": 62.51
+    },
+    {
+     "w": "o",
+     "t": 62.75
+    },
+    {
+     "w": "jeito",
+     "t": 62.843
+    },
+    {
+     "w": "mais",
+     "t": 63.19
+    },
+    {
+     "w": "rápido",
+     "t": 63.567
+    },
+    {
+     "w": "de",
+     "t": 63.937
+    },
+    {
+     "w": "ficar",
+     "t": 64.05
+    },
+    {
+     "w": "parado",
+     "t": 64.37
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 65.02,
+   "fim": 75.74,
+   "texto": "Pensa como o Jason e a Lucia: os dois estão começando do zero, sem nada. O jogo quer que você sinta isso. Cada real conta, principalmente nas primeiras horas.",
+   "palavras": [
+    {
+     "w": "Pensa",
+     "t": 65.02
+    },
+    {
+     "w": "como",
+     "t": 65.308
+    },
+    {
+     "w": "o",
+     "t": 65.6
+    },
+    {
+     "w": "Jason",
+     "t": 65.733
+    },
+    {
+     "w": "e",
+     "t": 65.94
+    },
+    {
+     "w": "a",
+     "t": 66.02
+    },
+    {
+     "w": "Lucia",
+     "t": 66.127
+    },
+    {
+     "w": "os",
+     "t": 66.993
+    },
+    {
+     "w": "dois",
+     "t": 67.164
+    },
+    {
+     "w": "estão",
+     "t": 67.46
+    },
+    {
+     "w": "começando",
+     "t": 67.713
+    },
+    {
+     "w": "do",
+     "t": 68.22
+    },
+    {
+     "w": "zero",
+     "t": 68.444
+    },
+    {
+     "w": "sem",
+     "t": 68.9
+    },
+    {
+     "w": "nada",
+     "t": 69.324
+    },
+    {
+     "w": "O",
+     "t": 70.02
+    },
+    {
+     "w": "jogo",
+     "t": 70.38
+    },
+    {
+     "w": "quer",
+     "t": 70.732
+    },
+    {
+     "w": "que",
+     "t": 70.88
+    },
+    {
+     "w": "você",
+     "t": 71.004
+    },
+    {
+     "w": "sinta",
+     "t": 71.34
+    },
+    {
+     "w": "isso",
+     "t": 71.804
+    },
+    {
+     "w": "Cada",
+     "t": 72.38
+    },
+    {
+     "w": "real",
+     "t": 72.924
+    },
+    {
+     "w": "conta",
+     "t": 73.26
+    },
+    {
+     "w": "principalmente",
+     "t": 73.799
+    },
+    {
+     "w": "nas",
+     "t": 74.66
+    },
+    {
+     "w": "primeiras",
+     "t": 74.82
+    },
+    {
+     "w": "horas",
+     "t": 75.327
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 75.89,
+   "fim": 79.01,
+   "texto": "Terceira: o jogo separa o seu dinheiro em três.",
+   "palavras": [
+    {
+     "w": "Terceira",
+     "t": 75.89
+    },
+    {
+     "w": "o",
+     "t": 76.65
+    },
+    {
+     "w": "jogo",
+     "t": 76.898
+    },
+    {
+     "w": "separa",
+     "t": 77.157
+    },
+    {
+     "w": "o",
+     "t": 77.55
+    },
+    {
+     "w": "seu",
+     "t": 77.61
+    },
+    {
+     "w": "dinheiro",
+     "t": 77.774
+    },
+    {
+     "w": "em",
+     "t": 78.21
+    },
+    {
+     "w": "três",
+     "t": 78.482
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "ini": 79.16,
+   "fim": 87,
+   "texto": "Dinheiro no banco, que está seguro. Dinheiro vivo, que você perde se cair. E mercadoria roubada, que vai na bolsa nas costas.",
+   "palavras": [
+    {
+     "w": "Dinheiro",
+     "t": 79.16
+    },
+    {
+     "w": "no",
+     "t": 79.533
+    },
+    {
+     "w": "banco",
+     "t": 79.693
+    },
+    {
+     "w": "que",
+     "t": 80.06
+    },
+    {
+     "w": "está",
+     "t": 80.152
+    },
+    {
+     "w": "seguro",
+     "t": 80.349
+    },
+    {
+     "w": "Dinheiro",
+     "t": 81.2
+    },
+    {
+     "w": "vivo",
+     "t": 81.576
+    },
+    {
+     "w": "que",
+     "t": 82.06
+    },
+    {
+     "w": "você",
+     "t": 82.184
+    },
+    {
+     "w": "perde",
+     "t": 82.52
+    },
+    {
+     "w": "se",
+     "t": 82.893
+    },
+    {
+     "w": "cair",
+     "t": 83.04
+    },
+    {
+     "w": "E",
+     "t": 83.68
+    },
+    {
+     "w": "mercadoria",
+     "t": 83.928
+    },
+    {
+     "w": "roubada",
+     "t": 84.56
+    },
+    {
+     "w": "que",
+     "t": 85.22
+    },
+    {
+     "w": "vai",
+     "t": 85.46
+    },
+    {
+     "w": "na",
+     "t": 85.667
+    },
+    {
+     "w": "bolsa",
+     "t": 85.8
+    },
+    {
+     "w": "nas",
+     "t": 86.27
+    },
+    {
+     "w": "costas",
+     "t": 86.424
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "ini": 87.15,
+   "fim": 92.19,
+   "texto": "Roubou? Prioridade número um é transformar aquilo em saldo no banco.",
+   "palavras": [
+    {
+     "w": "Roubou",
+     "t": 87.15
+    },
+    {
+     "w": "Prioridade",
+     "t": 87.937
+    },
+    {
+     "w": "número",
+     "t": 89.036
+    },
+    {
+     "w": "um",
+     "t": 89.39
+    },
+    {
+     "w": "é",
+     "t": 89.71
+    },
+    {
+     "w": "transformar",
+     "t": 89.918
+    },
+    {
+     "w": "aquilo",
+     "t": 90.49
+    },
+    {
+     "w": "em",
+     "t": 90.883
+    },
+    {
+     "w": "saldo",
+     "t": 91.043
+    },
+    {
+     "w": "no",
+     "t": 91.337
+    },
+    {
+     "w": "banco",
+     "t": 91.457
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "ini": 92.34,
+   "fim": 101.7,
+   "texto": "E a mercadoria roubada não vira dinheiro sozinha. Você ainda precisa achar quem compre. Enquanto ela estiver na bolsa, é risco andando com você pela cidade.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 92.34
+    },
+    {
+     "w": "a",
+     "t": 92.48
+    },
+    {
+     "w": "mercadoria",
+     "t": 92.564
+    },
+    {
+     "w": "roubada",
+     "t": 93.02
+    },
+    {
+     "w": "não",
+     "t": 93.66
+    },
+    {
+     "w": "vira",
+     "t": 94.08
+    },
+    {
+     "w": "dinheiro",
+     "t": 94.296
+    },
+    {
+     "w": "sozinha",
+     "t": 94.66
+    },
+    {
+     "w": "Você",
+     "t": 95.268
+    },
+    {
+     "w": "ainda",
+     "t": 95.82
+    },
+    {
+     "w": "precisa",
+     "t": 96.07
+    },
+    {
+     "w": "achar",
+     "t": 96.46
+    },
+    {
+     "w": "quem",
+     "t": 96.788
+    },
+    {
+     "w": "compre",
+     "t": 97.06
+    },
+    {
+     "w": "Enquanto",
+     "t": 97.753
+    },
+    {
+     "w": "ela",
+     "t": 98.36
+    },
+    {
+     "w": "estiver",
+     "t": 98.46
+    },
+    {
+     "w": "na",
+     "t": 98.793
+    },
+    {
+     "w": "bolsa",
+     "t": 98.964
+    },
+    {
+     "w": "é",
+     "t": 99.62
+    },
+    {
+     "w": "risco",
+     "t": 99.78
+    },
+    {
+     "w": "andando",
+     "t": 100.22
+    },
+    {
+     "w": "com",
+     "t": 100.54
+    },
+    {
+     "w": "você",
+     "t": 100.724
+    },
+    {
+     "w": "pela",
+     "t": 101.012
+    },
+    {
+     "w": "cidade",
+     "t": 101.209
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "ini": 101.85,
+   "fim": 105.05,
+   "texto": "Quarta: dá pra vender carro roubado num receptador.",
+   "palavras": [
+    {
+     "w": "Quarta",
+     "t": 101.85
+    },
+    {
+     "w": "dá",
+     "t": 102.463
+    },
+    {
+     "w": "pra",
+     "t": 102.77
+    },
+    {
+     "w": "vender",
+     "t": 102.93
+    },
+    {
+     "w": "carro",
+     "t": 103.263
+    },
+    {
+     "w": "roubado",
+     "t": 103.61
+    },
+    {
+     "w": "num",
+     "t": 104.05
+    },
+    {
+     "w": "receptador",
+     "t": 104.239
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "ini": 105.2,
+   "fim": 111.12,
+   "texto": "Só que carro batido vale menos. Cada amassado na fuga é dinheiro que você está jogando fora.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 105.2
+    },
+    {
+     "w": "que",
+     "t": 105.38
+    },
+    {
+     "w": "carro",
+     "t": 105.493
+    },
+    {
+     "w": "batido",
+     "t": 105.84
+    },
+    {
+     "w": "vale",
+     "t": 106.4
+    },
+    {
+     "w": "menos",
+     "t": 106.8
+    },
+    {
+     "w": "Cada",
+     "t": 107.6
+    },
+    {
+     "w": "amassado",
+     "t": 107.973
+    },
+    {
+     "w": "na",
+     "t": 108.507
+    },
+    {
+     "w": "fuga",
+     "t": 108.68
+    },
+    {
+     "w": "é",
+     "t": 109.12
+    },
+    {
+     "w": "dinheiro",
+     "t": 109.244
+    },
+    {
+     "w": "que",
+     "t": 109.64
+    },
+    {
+     "w": "você",
+     "t": 109.808
+    },
+    {
+     "w": "está",
+     "t": 110.032
+    },
+    {
+     "w": "jogando",
+     "t": 110.24
+    },
+    {
+     "w": "fora",
+     "t": 110.72
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "ini": 111.27,
+   "fim": 116.87,
+   "texto": "Então na fuga, dirige com cuidado. Parece estranho no Gê Tê Á, mas aqui compensa.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 111.27
+    },
+    {
+     "w": "na",
+     "t": 111.563
+    },
+    {
+     "w": "fuga",
+     "t": 111.71
+    },
+    {
+     "w": "dirige",
+     "t": 112.29
+    },
+    {
+     "w": "com",
+     "t": 112.75
+    },
+    {
+     "w": "cuidado",
+     "t": 112.918
+    },
+    {
+     "w": "Parece",
+     "t": 113.67
+    },
+    {
+     "w": "estranho",
+     "t": 114.438
+    },
+    {
+     "w": "no",
+     "t": 114.817
+    },
+    {
+     "w": "Gê",
+     "t": 114.91
+    },
+    {
+     "w": "Tê",
+     "t": 115.07
+    },
+    {
+     "w": "Á",
+     "t": 115.23
+    },
+    {
+     "w": "mas",
+     "t": 115.62
+    },
+    {
+     "w": "aqui",
+     "t": 115.878
+    },
+    {
+     "w": "compensa",
+     "t": 116.14
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "ini": 117.02,
+   "fim": 126.94,
+   "texto": "Juntando com a dica anterior: roubou o carro, levou inteiro, vendeu, e o dinheiro foi direto pro banco. Esse é o ciclo que deixa você rico rápido no começo.",
+   "palavras": [
+    {
+     "w": "Juntando",
+     "t": 117.02
+    },
+    {
+     "w": "com",
+     "t": 117.46
+    },
+    {
+     "w": "a",
+     "t": 117.62
+    },
+    {
+     "w": "dica",
+     "t": 117.7
+    },
+    {
+     "w": "anterior",
+     "t": 117.882
+    },
+    {
+     "w": "roubou",
+     "t": 118.62
+    },
+    {
+     "w": "o",
+     "t": 119.06
+    },
+    {
+     "w": "carro",
+     "t": 119.18
+    },
+    {
+     "w": "levou",
+     "t": 119.8
+    },
+    {
+     "w": "inteiro",
+     "t": 120.14
+    },
+    {
+     "w": "vendeu",
+     "t": 120.82
+    },
+    {
+     "w": "e",
+     "t": 121.62
+    },
+    {
+     "w": "o",
+     "t": 121.78
+    },
+    {
+     "w": "dinheiro",
+     "t": 121.856
+    },
+    {
+     "w": "foi",
+     "t": 122.18
+    },
+    {
+     "w": "direto",
+     "t": 122.364
+    },
+    {
+     "w": "pro",
+     "t": 122.82
+    },
+    {
+     "w": "banco",
+     "t": 123.007
+    },
+    {
+     "w": "Esse",
+     "t": 123.873
+    },
+    {
+     "w": "é",
+     "t": 124.26
+    },
+    {
+     "w": "o",
+     "t": 124.34
+    },
+    {
+     "w": "ciclo",
+     "t": 124.447
+    },
+    {
+     "w": "que",
+     "t": 124.8
+    },
+    {
+     "w": "deixa",
+     "t": 124.913
+    },
+    {
+     "w": "você",
+     "t": 125.164
+    },
+    {
+     "w": "rico",
+     "t": 125.484
+    },
+    {
+     "w": "rápido",
+     "t": 125.809
+    },
+    {
+     "w": "no",
+     "t": 126.247
+    },
+    {
+     "w": "começo",
+     "t": 126.364
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "ini": 127.09,
+   "fim": 130.77,
+   "texto": "Quinta, e essa salva muita gente: salva o jogo na mão.",
+   "palavras": [
+    {
+     "w": "Quinta",
+     "t": 127.09
+    },
+    {
+     "w": "e",
+     "t": 127.65
+    },
+    {
+     "w": "essa",
+     "t": 127.874
+    },
+    {
+     "w": "salva",
+     "t": 128.19
+    },
+    {
+     "w": "muita",
+     "t": 128.53
+    },
+    {
+     "w": "gente",
+     "t": 128.997
+    },
+    {
+     "w": "salva",
+     "t": 129.71
+    },
+    {
+     "w": "o",
+     "t": 130.01
+    },
+    {
+     "w": "jogo",
+     "t": 130.114
+    },
+    {
+     "w": "na",
+     "t": 130.397
+    },
+    {
+     "w": "mão",
+     "t": 130.49
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "ini": 130.92,
+   "fim": 137.4,
+   "texto": "O salvamento automático só acontece depois de terminar uma missão. E não dá pra repetir missão depois.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 130.92
+    },
+    {
+     "w": "salvamento",
+     "t": 131.048
+    },
+    {
+     "w": "automático",
+     "t": 131.613
+    },
+    {
+     "w": "só",
+     "t": 132.413
+    },
+    {
+     "w": "acontece",
+     "t": 132.737
+    },
+    {
+     "w": "depois",
+     "t": 133.309
+    },
+    {
+     "w": "de",
+     "t": 133.747
+    },
+    {
+     "w": "terminar",
+     "t": 133.857
+    },
+    {
+     "w": "uma",
+     "t": 134.32
+    },
+    {
+     "w": "missão",
+     "t": 134.488
+    },
+    {
+     "w": "E",
+     "t": 135.2
+    },
+    {
+     "w": "não",
+     "t": 135.52
+    },
+    {
+     "w": "dá",
+     "t": 135.72
+    },
+    {
+     "w": "pra",
+     "t": 135.92
+    },
+    {
+     "w": "repetir",
+     "t": 136.093
+    },
+    {
+     "w": "missão",
+     "t": 136.488
+    },
+    {
+     "w": "depois",
+     "t": 136.84
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "ini": 137.55,
+   "fim": 143.39,
+   "texto": "A dica dos guias é usar um espaço de salvamento novo a cada capítulo. Se der ruim, você volta.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 137.55
+    },
+    {
+     "w": "dica",
+     "t": 137.67
+    },
+    {
+     "w": "dos",
+     "t": 137.91
+    },
+    {
+     "w": "guias",
+     "t": 138.083
+    },
+    {
+     "w": "é",
+     "t": 138.59
+    },
+    {
+     "w": "usar",
+     "t": 138.814
+    },
+    {
+     "w": "um",
+     "t": 139.097
+    },
+    {
+     "w": "espaço",
+     "t": 139.207
+    },
+    {
+     "w": "de",
+     "t": 139.577
+    },
+    {
+     "w": "salvamento",
+     "t": 139.678
+    },
+    {
+     "w": "novo",
+     "t": 140.27
+    },
+    {
+     "w": "a",
+     "t": 140.67
+    },
+    {
+     "w": "cada",
+     "t": 140.798
+    },
+    {
+     "w": "capítulo",
+     "t": 141.05
+    },
+    {
+     "w": "Se",
+     "t": 141.737
+    },
+    {
+     "w": "der",
+     "t": 141.99
+    },
+    {
+     "w": "ruim",
+     "t": 142.163
+    },
+    {
+     "w": "você",
+     "t": 142.638
+    },
+    {
+     "w": "volta",
+     "t": 142.897
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "ini": 143.54,
+   "fim": 153.54,
+   "texto": "Isso importa porque o Gê Tê Á seis tem escolhas e consequências. Fez uma besteira que não tinha volta e só tinha o salvamento automático? Vai ter que conviver com ela.",
+   "palavras": [
+    {
+     "w": "Isso",
+     "t": 143.54
+    },
+    {
+     "w": "importa",
+     "t": 143.974
+    },
+    {
+     "w": "porque",
+     "t": 144.306
+    },
+    {
+     "w": "o",
+     "t": 144.66
+    },
+    {
+     "w": "Gê",
+     "t": 144.82
+    },
+    {
+     "w": "Tê",
+     "t": 145.02
+    },
+    {
+     "w": "Á",
+     "t": 145.18
+    },
+    {
+     "w": "seis",
+     "t": 145.284
+    },
+    {
+     "w": "tem",
+     "t": 145.6
+    },
+    {
+     "w": "escolhas",
+     "t": 145.86
+    },
+    {
+     "w": "e",
+     "t": 146.38
+    },
+    {
+     "w": "consequências",
+     "t": 146.47
+    },
+    {
+     "w": "Fez",
+     "t": 147.513
+    },
+    {
+     "w": "uma",
+     "t": 148.06
+    },
+    {
+     "w": "besteira",
+     "t": 148.22
+    },
+    {
+     "w": "que",
+     "t": 148.6
+    },
+    {
+     "w": "não",
+     "t": 148.7
+    },
+    {
+     "w": "tinha",
+     "t": 148.86
+    },
+    {
+     "w": "volta",
+     "t": 149.14
+    },
+    {
+     "w": "e",
+     "t": 149.66
+    },
+    {
+     "w": "só",
+     "t": 149.833
+    },
+    {
+     "w": "tinha",
+     "t": 149.98
+    },
+    {
+     "w": "o",
+     "t": 150.22
+    },
+    {
+     "w": "salvamento",
+     "t": 150.308
+    },
+    {
+     "w": "automático",
+     "t": 150.793
+    },
+    {
+     "w": "Vai",
+     "t": 151.82
+    },
+    {
+     "w": "ter",
+     "t": 152.22
+    },
+    {
+     "w": "que",
+     "t": 152.38
+    },
+    {
+     "w": "conviver",
+     "t": 152.548
+    },
+    {
+     "w": "com",
+     "t": 153.02
+    },
+    {
+     "w": "ela",
+     "t": 153.2
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "ini": 153.69,
+   "fim": 157.45,
+   "texto": "Sexta: a polícia não sabe de tudo na hora, igual no cinco.",
+   "palavras": [
+    {
+     "w": "Sexta",
+     "t": 153.69
+    },
+    {
+     "w": "a",
+     "t": 154.55
+    },
+    {
+     "w": "polícia",
+     "t": 154.64
+    },
+    {
+     "w": "não",
+     "t": 155.11
+    },
+    {
+     "w": "sabe",
+     "t": 155.354
+    },
+    {
+     "w": "de",
+     "t": 155.663
+    },
+    {
+     "w": "tudo",
+     "t": 155.802
+    },
+    {
+     "w": "na",
+     "t": 155.983
+    },
+    {
+     "w": "hora",
+     "t": 156.138
+    },
+    {
+     "w": "igual",
+     "t": 156.543
+    },
+    {
+     "w": "no",
+     "t": 156.837
+    },
+    {
+     "w": "cinco",
+     "t": 156.957
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "ini": 157.6,
+   "fim": 163.76,
+   "texto": "Ela só aparece se alguém avisar. Uma testemunha, um alarme ou o rastreador de um carro roubado.",
+   "palavras": [
+    {
+     "w": "Ela",
+     "t": 157.6
+    },
+    {
+     "w": "só",
+     "t": 157.813
+    },
+    {
+     "w": "aparece",
+     "t": 157.987
+    },
+    {
+     "w": "se",
+     "t": 158.533
+    },
+    {
+     "w": "alguém",
+     "t": 158.667
+    },
+    {
+     "w": "avisar",
+     "t": 158.944
+    },
+    {
+     "w": "Uma",
+     "t": 159.64
+    },
+    {
+     "w": "testemunha",
+     "t": 160.048
+    },
+    {
+     "w": "um",
+     "t": 161.067
+    },
+    {
+     "w": "alarme",
+     "t": 161.187
+    },
+    {
+     "w": "ou",
+     "t": 161.76
+    },
+    {
+     "w": "o",
+     "t": 162.16
+    },
+    {
+     "w": "rastreador",
+     "t": 162.272
+    },
+    {
+     "w": "de",
+     "t": 162.747
+    },
+    {
+     "w": "um",
+     "t": 162.827
+    },
+    {
+     "w": "carro",
+     "t": 162.92
+    },
+    {
+     "w": "roubado",
+     "t": 163.16
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "ini": 163.91,
+   "fim": 169.67,
+   "texto": "Sem ninguém olhando, você tem tempo. Com testemunha, o relógio começa a correr.",
+   "palavras": [
+    {
+     "w": "Sem",
+     "t": 163.91
+    },
+    {
+     "w": "ninguém",
+     "t": 164.11
+    },
+    {
+     "w": "olhando",
+     "t": 164.523
+    },
+    {
+     "w": "você",
+     "t": 165.046
+    },
+    {
+     "w": "tem",
+     "t": 165.51
+    },
+    {
+     "w": "tempo",
+     "t": 165.817
+    },
+    {
+     "w": "Com",
+     "t": 166.43
+    },
+    {
+     "w": "testemunha",
+     "t": 167.078
+    },
+    {
+     "w": "o",
+     "t": 167.87
+    },
+    {
+     "w": "relógio",
+     "t": 167.97
+    },
+    {
+     "w": "começa",
+     "t": 168.47
+    },
+    {
+     "w": "a",
+     "t": 168.91
+    },
+    {
+     "w": "correr",
+     "t": 168.99
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "ini": 169.82,
+   "fim": 180.46,
+   "texto": "Na prática: antes de qualquer crime, olha em volta. Rua vazia, sem câmera e sem alarme? É ali. Praça cheia de gente filmando? Melhor nem tentar.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 169.82
+    },
+    {
+     "w": "prática",
+     "t": 170.033
+    },
+    {
+     "w": "antes",
+     "t": 170.98
+    },
+    {
+     "w": "de",
+     "t": 171.233
+    },
+    {
+     "w": "qualquer",
+     "t": 171.384
+    },
+    {
+     "w": "crime",
+     "t": 171.82
+    },
+    {
+     "w": "olha",
+     "t": 172.513
+    },
+    {
+     "w": "em",
+     "t": 172.727
+    },
+    {
+     "w": "volta",
+     "t": 172.847
+    },
+    {
+     "w": "Rua",
+     "t": 173.46
+    },
+    {
+     "w": "vazia",
+     "t": 173.82
+    },
+    {
+     "w": "sem",
+     "t": 174.46
+    },
+    {
+     "w": "câmera",
+     "t": 174.753
+    },
+    {
+     "w": "e",
+     "t": 175.08
+    },
+    {
+     "w": "sem",
+     "t": 175.14
+    },
+    {
+     "w": "alarme",
+     "t": 175.327
+    },
+    {
+     "w": "É",
+     "t": 176.02
+    },
+    {
+     "w": "ali",
+     "t": 176.28
+    },
+    {
+     "w": "Praça",
+     "t": 176.76
+    },
+    {
+     "w": "cheia",
+     "t": 177.64
+    },
+    {
+     "w": "de",
+     "t": 177.953
+    },
+    {
+     "w": "gente",
+     "t": 178.1
+    },
+    {
+     "w": "filmando",
+     "t": 178.34
+    },
+    {
+     "w": "Melhor",
+     "t": 179
+    },
+    {
+     "w": "nem",
+     "t": 179.64
+    },
+    {
+     "w": "tentar",
+     "t": 179.884
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "ini": 180.61,
+   "fim": 185.89,
+   "texto": "Sétima: agora são seis estrelas de procurado, uma a mais que no Gê Tê Á cinco.",
+   "palavras": [
+    {
+     "w": "Sétima",
+     "t": 180.61
+    },
+    {
+     "w": "agora",
+     "t": 181.223
+    },
+    {
+     "w": "são",
+     "t": 181.97
+    },
+    {
+     "w": "seis",
+     "t": 182.274
+    },
+    {
+     "w": "estrelas",
+     "t": 182.59
+    },
+    {
+     "w": "de",
+     "t": 183.037
+    },
+    {
+     "w": "procurado",
+     "t": 183.147
+    },
+    {
+     "w": "uma",
+     "t": 184.11
+    },
+    {
+     "w": "a",
+     "t": 184.33
+    },
+    {
+     "w": "mais",
+     "t": 184.434
+    },
+    {
+     "w": "que",
+     "t": 184.71
+    },
+    {
+     "w": "no",
+     "t": 184.823
+    },
+    {
+     "w": "Gê",
+     "t": 184.97
+    },
+    {
+     "w": "Tê",
+     "t": 185.17
+    },
+    {
+     "w": "Á",
+     "t": 185.31
+    },
+    {
+     "w": "cinco",
+     "t": 185.41
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "ini": 186.04,
+   "fim": 192.52,
+   "texto": "Quanto mais estrelas, mais pesado fica. E a sexta estrela é território novo pra todo mundo.",
+   "palavras": [
+    {
+     "w": "Quanto",
+     "t": 186.04
+    },
+    {
+     "w": "mais",
+     "t": 186.344
+    },
+    {
+     "w": "estrelas",
+     "t": 186.64
+    },
+    {
+     "w": "mais",
+     "t": 187.528
+    },
+    {
+     "w": "pesado",
+     "t": 187.78
+    },
+    {
+     "w": "fica",
+     "t": 188.264
+    },
+    {
+     "w": "E",
+     "t": 188.96
+    },
+    {
+     "w": "a",
+     "t": 189.28
+    },
+    {
+     "w": "sexta",
+     "t": 189.384
+    },
+    {
+     "w": "estrela",
+     "t": 189.76
+    },
+    {
+     "w": "é",
+     "t": 190.32
+    },
+    {
+     "w": "território",
+     "t": 190.488
+    },
+    {
+     "w": "novo",
+     "t": 191.08
+    },
+    {
+     "w": "pra",
+     "t": 191.46
+    },
+    {
+     "w": "todo",
+     "t": 191.72
+    },
+    {
+     "w": "mundo",
+     "t": 192.107
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "ini": 192.67,
+   "fim": 204.43,
+   "texto": "E as estrelas mudam de jeito. Tem a estrela vazada, a estrela branca, quando a polícia está te vendo, e a estrela piscando, quando ela perdeu você de vista. Isso leva direto pra próxima dica.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 192.67
+    },
+    {
+     "w": "as",
+     "t": 192.803
+    },
+    {
+     "w": "estrelas",
+     "t": 192.95
+    },
+    {
+     "w": "mudam",
+     "t": 193.47
+    },
+    {
+     "w": "de",
+     "t": 193.843
+    },
+    {
+     "w": "jeito",
+     "t": 194.003
+    },
+    {
+     "w": "Tem",
+     "t": 194.55
+    },
+    {
+     "w": "a",
+     "t": 194.95
+    },
+    {
+     "w": "estrela",
+     "t": 195.03
+    },
+    {
+     "w": "vazada",
+     "t": 195.51
+    },
+    {
+     "w": "a",
+     "t": 196.07
+    },
+    {
+     "w": "estrela",
+     "t": 196.17
+    },
+    {
+     "w": "branca",
+     "t": 196.702
+    },
+    {
+     "w": "quando",
+     "t": 197.127
+    },
+    {
+     "w": "a",
+     "t": 197.53
+    },
+    {
+     "w": "polícia",
+     "t": 197.62
+    },
+    {
+     "w": "está",
+     "t": 197.982
+    },
+    {
+     "w": "te",
+     "t": 198.163
+    },
+    {
+     "w": "vendo",
+     "t": 198.31
+    },
+    {
+     "w": "e",
+     "t": 198.87
+    },
+    {
+     "w": "a",
+     "t": 199.11
+    },
+    {
+     "w": "estrela",
+     "t": 199.19
+    },
+    {
+     "w": "piscando",
+     "t": 199.662
+    },
+    {
+     "w": "quando",
+     "t": 200.156
+    },
+    {
+     "w": "ela",
+     "t": 200.47
+    },
+    {
+     "w": "perdeu",
+     "t": 200.65
+    },
+    {
+     "w": "você",
+     "t": 201.054
+    },
+    {
+     "w": "de",
+     "t": 201.177
+    },
+    {
+     "w": "vista",
+     "t": 201.31
+    },
+    {
+     "w": "Isso",
+     "t": 202.003
+    },
+    {
+     "w": "leva",
+     "t": 202.563
+    },
+    {
+     "w": "direto",
+     "t": 202.83
+    },
+    {
+     "w": "pra",
+     "t": 203.27
+    },
+    {
+     "w": "próxima",
+     "t": 203.46
+    },
+    {
+     "w": "dica",
+     "t": 204.03
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "ini": 204.58,
+   "fim": 207.22,
+   "texto": "Oitava: repara na estrela vazada.",
+   "palavras": [
+    {
+     "w": "Oitava",
+     "t": 204.58
+    },
+    {
+     "w": "repara",
+     "t": 205.62
+    },
+    {
+     "w": "na",
+     "t": 206.073
+    },
+    {
+     "w": "estrela",
+     "t": 206.24
+    },
+    {
+     "w": "vazada",
+     "t": 206.64
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "ini": 207.37,
+   "fim": 212.65,
+   "texto": "Estrela vazada quer dizer que a polícia sabe que teve um crime, mas ainda não sabe que foi você.",
+   "palavras": [
+    {
+     "w": "Estrela",
+     "t": 207.37
+    },
+    {
+     "w": "vazada",
+     "t": 207.97
+    },
+    {
+     "w": "quer",
+     "t": 208.378
+    },
+    {
+     "w": "dizer",
+     "t": 208.61
+    },
+    {
+     "w": "que",
+     "t": 208.83
+    },
+    {
+     "w": "a",
+     "t": 208.93
+    },
+    {
+     "w": "polícia",
+     "t": 209.01
+    },
+    {
+     "w": "sabe",
+     "t": 209.514
+    },
+    {
+     "w": "que",
+     "t": 209.79
+    },
+    {
+     "w": "teve",
+     "t": 209.903
+    },
+    {
+     "w": "um",
+     "t": 210.117
+    },
+    {
+     "w": "crime",
+     "t": 210.223
+    },
+    {
+     "w": "mas",
+     "t": 210.85
+    },
+    {
+     "w": "ainda",
+     "t": 211.023
+    },
+    {
+     "w": "não",
+     "t": 211.33
+    },
+    {
+     "w": "sabe",
+     "t": 211.53
+    },
+    {
+     "w": "que",
+     "t": 211.87
+    },
+    {
+     "w": "foi",
+     "t": 211.97
+    },
+    {
+     "w": "você",
+     "t": 212.186
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "ini": 212.8,
+   "fim": 216.32,
+   "texto": "É a sua chance de sair de fininho antes de virar perseguição.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 212.8
+    },
+    {
+     "w": "a",
+     "t": 212.98
+    },
+    {
+     "w": "sua",
+     "t": 213.13
+    },
+    {
+     "w": "chance",
+     "t": 213.326
+    },
+    {
+     "w": "de",
+     "t": 213.627
+    },
+    {
+     "w": "sair",
+     "t": 213.733
+    },
+    {
+     "w": "de",
+     "t": 214.027
+    },
+    {
+     "w": "fininho",
+     "t": 214.14
+    },
+    {
+     "w": "antes",
+     "t": 214.787
+    },
+    {
+     "w": "de",
+     "t": 215.147
+    },
+    {
+     "w": "virar",
+     "t": 215.26
+    },
+    {
+     "w": "perseguição",
+     "t": 215.56
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "ini": 216.47,
+   "fim": 224.95,
+   "texto": "Se a estrela ficar branca, aí já era: te viram. E quando ela começar a piscar, eles te perderam. É hora de sumir, não de voltar pra briga.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 216.47
+    },
+    {
+     "w": "a",
+     "t": 216.59
+    },
+    {
+     "w": "estrela",
+     "t": 216.67
+    },
+    {
+     "w": "ficar",
+     "t": 217.1
+    },
+    {
+     "w": "branca",
+     "t": 217.334
+    },
+    {
+     "w": "aí",
+     "t": 218.07
+    },
+    {
+     "w": "já",
+     "t": 218.283
+    },
+    {
+     "w": "era",
+     "t": 218.45
+    },
+    {
+     "w": "te",
+     "t": 218.843
+    },
+    {
+     "w": "viram",
+     "t": 219.15
+    },
+    {
+     "w": "E",
+     "t": 219.71
+    },
+    {
+     "w": "quando",
+     "t": 219.944
+    },
+    {
+     "w": "ela",
+     "t": 220.19
+    },
+    {
+     "w": "começar",
+     "t": 220.363
+    },
+    {
+     "w": "a",
+     "t": 220.79
+    },
+    {
+     "w": "piscar",
+     "t": 220.902
+    },
+    {
+     "w": "eles",
+     "t": 221.478
+    },
+    {
+     "w": "te",
+     "t": 221.723
+    },
+    {
+     "w": "perderam",
+     "t": 221.887
+    },
+    {
+     "w": "É",
+     "t": 222.59
+    },
+    {
+     "w": "hora",
+     "t": 222.838
+    },
+    {
+     "w": "de",
+     "t": 223.057
+    },
+    {
+     "w": "sumir",
+     "t": 223.19
+    },
+    {
+     "w": "não",
+     "t": 223.81
+    },
+    {
+     "w": "de",
+     "t": 224.017
+    },
+    {
+     "w": "voltar",
+     "t": 224.118
+    },
+    {
+     "w": "pra",
+     "t": 224.43
+    },
+    {
+     "w": "briga",
+     "t": 224.603
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "ini": 225.1,
+   "fim": 228.3,
+   "texto": "Nona: embaixo das estrelas aparecem ícones.",
+   "palavras": [
+    {
+     "w": "Nona",
+     "t": 225.1
+    },
+    {
+     "w": "embaixo",
+     "t": 225.927
+    },
+    {
+     "w": "das",
+     "t": 226.42
+    },
+    {
+     "w": "estrelas",
+     "t": 226.6
+    },
+    {
+     "w": "aparecem",
+     "t": 227.153
+    },
+    {
+     "w": "ícones",
+     "t": 227.78
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "ini": 228.45,
+   "fim": 234.13,
+   "texto": "Eles mostram o que a polícia já sabe sobre você: o seu rosto, a sua roupa ou o seu carro.",
+   "palavras": [
+    {
+     "w": "Eles",
+     "t": 228.45
+    },
+    {
+     "w": "mostram",
+     "t": 228.743
+    },
+    {
+     "w": "o",
+     "t": 229.13
+    },
+    {
+     "w": "que",
+     "t": 229.19
+    },
+    {
+     "w": "a",
+     "t": 229.29
+    },
+    {
+     "w": "polícia",
+     "t": 229.37
+    },
+    {
+     "w": "já",
+     "t": 229.703
+    },
+    {
+     "w": "sabe",
+     "t": 229.89
+    },
+    {
+     "w": "sobre",
+     "t": 230.25
+    },
+    {
+     "w": "você",
+     "t": 230.53
+    },
+    {
+     "w": "o",
+     "t": 231.37
+    },
+    {
+     "w": "seu",
+     "t": 231.45
+    },
+    {
+     "w": "rosto",
+     "t": 231.65
+    },
+    {
+     "w": "a",
+     "t": 232.33
+    },
+    {
+     "w": "sua",
+     "t": 232.43
+    },
+    {
+     "w": "roupa",
+     "t": 232.69
+    },
+    {
+     "w": "ou",
+     "t": 233.143
+    },
+    {
+     "w": "o",
+     "t": 233.47
+    },
+    {
+     "w": "seu",
+     "t": 233.56
+    },
+    {
+     "w": "carro",
+     "t": 233.717
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "ini": 234.28,
+   "fim": 240.52,
+   "texto": "Pra despistar, troca de roupa e troca de carro. As estrelas somem, mas o que ela sabe fica.",
+   "palavras": [
+    {
+     "w": "Pra",
+     "t": 234.28
+    },
+    {
+     "w": "despistar",
+     "t": 234.424
+    },
+    {
+     "w": "troca",
+     "t": 235.28
+    },
+    {
+     "w": "de",
+     "t": 235.533
+    },
+    {
+     "w": "roupa",
+     "t": 235.7
+    },
+    {
+     "w": "e",
+     "t": 236
+    },
+    {
+     "w": "troca",
+     "t": 236.1
+    },
+    {
+     "w": "de",
+     "t": 236.467
+    },
+    {
+     "w": "carro",
+     "t": 236.587
+    },
+    {
+     "w": "As",
+     "t": 237.213
+    },
+    {
+     "w": "estrelas",
+     "t": 237.7
+    },
+    {
+     "w": "somem",
+     "t": 238.2
+    },
+    {
+     "w": "mas",
+     "t": 238.9
+    },
+    {
+     "w": "o",
+     "t": 239.12
+    },
+    {
+     "w": "que",
+     "t": 239.2
+    },
+    {
+     "w": "ela",
+     "t": 239.38
+    },
+    {
+     "w": "sabe",
+     "t": 239.64
+    },
+    {
+     "w": "fica",
+     "t": 240.04
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "ini": 240.67,
+   "fim": 250.67,
+   "texto": "E máscara ajuda, mas não resolve tudo. Ela esconde o rosto, mas a polícia continua vendo a roupa e o carro. Mascarado no mesmo carro do crime é pedir pra ser pego.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 240.67
+    },
+    {
+     "w": "máscara",
+     "t": 240.83
+    },
+    {
+     "w": "ajuda",
+     "t": 241.31
+    },
+    {
+     "w": "mas",
+     "t": 241.91
+    },
+    {
+     "w": "não",
+     "t": 242.07
+    },
+    {
+     "w": "resolve",
+     "t": 242.24
+    },
+    {
+     "w": "tudo",
+     "t": 242.654
+    },
+    {
+     "w": "Ela",
+     "t": 243.123
+    },
+    {
+     "w": "esconde",
+     "t": 243.523
+    },
+    {
+     "w": "o",
+     "t": 243.83
+    },
+    {
+     "w": "rosto",
+     "t": 243.923
+    },
+    {
+     "w": "mas",
+     "t": 244.61
+    },
+    {
+     "w": "a",
+     "t": 244.75
+    },
+    {
+     "w": "polícia",
+     "t": 244.87
+    },
+    {
+     "w": "continua",
+     "t": 245.274
+    },
+    {
+     "w": "vendo",
+     "t": 245.67
+    },
+    {
+     "w": "a",
+     "t": 245.91
+    },
+    {
+     "w": "roupa",
+     "t": 246.01
+    },
+    {
+     "w": "e",
+     "t": 246.31
+    },
+    {
+     "w": "o",
+     "t": 246.39
+    },
+    {
+     "w": "carro",
+     "t": 246.497
+    },
+    {
+     "w": "Mascarado",
+     "t": 247.19
+    },
+    {
+     "w": "no",
+     "t": 248.083
+    },
+    {
+     "w": "mesmo",
+     "t": 248.243
+    },
+    {
+     "w": "carro",
+     "t": 248.55
+    },
+    {
+     "w": "do",
+     "t": 248.777
+    },
+    {
+     "w": "crime",
+     "t": 248.897
+    },
+    {
+     "w": "é",
+     "t": 249.35
+    },
+    {
+     "w": "pedir",
+     "t": 249.55
+    },
+    {
+     "w": "pra",
+     "t": 249.97
+    },
+    {
+     "w": "ser",
+     "t": 250.07
+    },
+    {
+     "w": "pego",
+     "t": 250.27
+    }
+   ]
+  },
+  {
+   "n": 38,
+   "ini": 250.82,
+   "fim": 254.34,
+   "texto": "Décima: o calor da polícia fica no lugar do crime.",
+   "palavras": [
+    {
+     "w": "Décima",
+     "t": 250.82
+    },
+    {
+     "w": "o",
+     "t": 251.66
+    },
+    {
+     "w": "calor",
+     "t": 251.847
+    },
+    {
+     "w": "da",
+     "t": 252.233
+    },
+    {
+     "w": "polícia",
+     "t": 252.4
+    },
+    {
+     "w": "fica",
+     "t": 252.948
+    },
+    {
+     "w": "no",
+     "t": 253.193
+    },
+    {
+     "w": "lugar",
+     "t": 253.367
+    },
+    {
+     "w": "do",
+     "t": 253.727
+    },
+    {
+     "w": "crime",
+     "t": 253.86
+    }
+   ]
+  },
+  {
+   "n": 39,
+   "ini": 254.49,
+   "fim": 262.57,
+   "texto": "Se você volta onde fez a besteira, a procura pode recomeçar. O bairro lembra de você.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 254.49
+    },
+    {
+     "w": "você",
+     "t": 254.634
+    },
+    {
+     "w": "volta",
+     "t": 254.97
+    },
+    {
+     "w": "onde",
+     "t": 255.434
+    },
+    {
+     "w": "fez",
+     "t": 255.77
+    },
+    {
+     "w": "a",
+     "t": 256.11
+    },
+    {
+     "w": "besteira",
+     "t": 256.243
+    },
+    {
+     "w": "a",
+     "t": 256.85
+    },
+    {
+     "w": "procura",
+     "t": 256.95
+    },
+    {
+     "w": "pode",
+     "t": 257.434
+    },
+    {
+     "w": "recomeçar",
+     "t": 257.75
+    },
+    {
+     "w": "O",
+     "t": 258.73
+    },
+    {
+     "w": "bairro",
+     "t": 259.05
+    },
+    {
+     "w": "lembra",
+     "t": 259.503
+    },
+    {
+     "w": "de",
+     "t": 259.823
+    },
+    {
+     "w": "você",
+     "t": 260.01
+    }
+   ]
+  },
+  {
+   "n": 40,
+   "ini": 262.72,
+   "fim": 266,
+   "texto": "O melhor é sumir por um tempo e esperar a região esfriar.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 262.72
+    },
+    {
+     "w": "melhor",
+     "t": 262.846
+    },
+    {
+     "w": "é",
+     "t": 263.16
+    },
+    {
+     "w": "sumir",
+     "t": 263.26
+    },
+    {
+     "w": "por",
+     "t": 263.64
+    },
+    {
+     "w": "um",
+     "t": 263.787
+    },
+    {
+     "w": "tempo",
+     "t": 263.907
+    },
+    {
+     "w": "e",
+     "t": 264.4
+    },
+    {
+     "w": "esperar",
+     "t": 264.613
+    },
+    {
+     "w": "a",
+     "t": 265.1
+    },
+    {
+     "w": "região",
+     "t": 265.19
+    },
+    {
+     "w": "esfriar",
+     "t": 265.493
+    }
+   ]
+  },
+  {
+   "n": 41,
+   "ini": 266.15,
+   "fim": 278.95,
+   "texto": "E o mapa é grande. Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia e o parque do Monte Kalaga. Fez barulho em Vice City? Vai passar um tempo nas Keys.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 266.15
+    },
+    {
+     "w": "o",
+     "t": 266.27
+    },
+    {
+     "w": "mapa",
+     "t": 266.374
+    },
+    {
+     "w": "é",
+     "t": 266.67
+    },
+    {
+     "w": "grande",
+     "t": 266.767
+    },
+    {
+     "w": "Vice",
+     "t": 267.334
+    },
+    {
+     "w": "City",
+     "t": 267.99
+    },
+    {
+     "w": "Leonida",
+     "t": 268.71
+    },
+    {
+     "w": "Keys",
+     "t": 269.27
+    },
+    {
+     "w": "Grassrivers",
+     "t": 269.777
+    },
+    {
+     "w": "Port",
+     "t": 271.174
+    },
+    {
+     "w": "Gellhorn",
+     "t": 271.47
+    },
+    {
+     "w": "Ambrosia",
+     "t": 272.19
+    },
+    {
+     "w": "e",
+     "t": 273.03
+    },
+    {
+     "w": "o",
+     "t": 273.23
+    },
+    {
+     "w": "parque",
+     "t": 273.35
+    },
+    {
+     "w": "do",
+     "t": 273.723
+    },
+    {
+     "w": "Monte",
+     "t": 273.883
+    },
+    {
+     "w": "Kalaga",
+     "t": 274.21
+    },
+    {
+     "w": "Fez",
+     "t": 275.163
+    },
+    {
+     "w": "barulho",
+     "t": 276.03
+    },
+    {
+     "w": "em",
+     "t": 276.337
+    },
+    {
+     "w": "Vice",
+     "t": 276.438
+    },
+    {
+     "w": "City",
+     "t": 276.694
+    },
+    {
+     "w": "Vai",
+     "t": 277.27
+    },
+    {
+     "w": "passar",
+     "t": 277.638
+    },
+    {
+     "w": "um",
+     "t": 277.937
+    },
+    {
+     "w": "tempo",
+     "t": 278.043
+    },
+    {
+     "w": "nas",
+     "t": 278.35
+    },
+    {
+     "w": "Keys",
+     "t": 278.55
+    }
+   ]
+  },
+  {
+   "n": 42,
+   "ini": 279.1,
+   "fim": 283.74,
+   "texto": "Décima primeira: antes de roubar um carro, escaneia ele no celular.",
+   "palavras": [
+    {
+     "w": "Décima",
+     "t": 279.1
+    },
+    {
+     "w": "primeira",
+     "t": 279.562
+    },
+    {
+     "w": "antes",
+     "t": 280.573
+    },
+    {
+     "w": "de",
+     "t": 280.993
+    },
+    {
+     "w": "roubar",
+     "t": 281.14
+    },
+    {
+     "w": "um",
+     "t": 281.447
+    },
+    {
+     "w": "carro",
+     "t": 281.567
+    },
+    {
+     "w": "escaneia",
+     "t": 282.2
+    },
+    {
+     "w": "ele",
+     "t": 282.76
+    },
+    {
+     "w": "no",
+     "t": 282.993
+    },
+    {
+     "w": "celular",
+     "t": 283.17
+    }
+   ]
+  },
+  {
+   "n": 43,
+   "ini": 283.89,
+   "fim": 291.17,
+   "texto": "O aplicativo mostra se o carro tem alarme ou rastreador. Rastreador é polícia na sua cola sem você perceber.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 283.89
+    },
+    {
+     "w": "aplicativo",
+     "t": 284.023
+    },
+    {
+     "w": "mostra",
+     "t": 284.667
+    },
+    {
+     "w": "se",
+     "t": 285.063
+    },
+    {
+     "w": "o",
+     "t": 285.21
+    },
+    {
+     "w": "carro",
+     "t": 285.29
+    },
+    {
+     "w": "tem",
+     "t": 285.55
+    },
+    {
+     "w": "alarme",
+     "t": 285.797
+    },
+    {
+     "w": "ou",
+     "t": 286.343
+    },
+    {
+     "w": "rastreador",
+     "t": 286.498
+    },
+    {
+     "w": "Rastreador",
+     "t": 287.57
+    },
+    {
+     "w": "é",
+     "t": 288.65
+    },
+    {
+     "w": "polícia",
+     "t": 288.91
+    },
+    {
+     "w": "na",
+     "t": 289.357
+    },
+    {
+     "w": "sua",
+     "t": 289.49
+    },
+    {
+     "w": "cola",
+     "t": 289.778
+    },
+    {
+     "w": "sem",
+     "t": 290.03
+    },
+    {
+     "w": "você",
+     "t": 290.274
+    },
+    {
+     "w": "perceber",
+     "t": 290.583
+    }
+   ]
+  },
+  {
+   "n": 44,
+   "ini": 291.32,
+   "fim": 301.4,
+   "texto": "Lembra da sexta dica? O rastreador conta como alguém avisando a polícia. Então roubar um carro com rastreador é igual cometer um crime na frente de uma testemunha.",
+   "palavras": [
+    {
+     "w": "Lembra",
+     "t": 291.32
+    },
+    {
+     "w": "da",
+     "t": 291.587
+    },
+    {
+     "w": "sexta",
+     "t": 291.688
+    },
+    {
+     "w": "dica",
+     "t": 292
+    },
+    {
+     "w": "O",
+     "t": 292.68
+    },
+    {
+     "w": "rastreador",
+     "t": 293.048
+    },
+    {
+     "w": "conta",
+     "t": 293.707
+    },
+    {
+     "w": "como",
+     "t": 294.088
+    },
+    {
+     "w": "alguém",
+     "t": 294.333
+    },
+    {
+     "w": "avisando",
+     "t": 294.664
+    },
+    {
+     "w": "a",
+     "t": 295.12
+    },
+    {
+     "w": "polícia",
+     "t": 295.2
+    },
+    {
+     "w": "Então",
+     "t": 295.96
+    },
+    {
+     "w": "roubar",
+     "t": 296.58
+    },
+    {
+     "w": "um",
+     "t": 296.947
+    },
+    {
+     "w": "carro",
+     "t": 297.053
+    },
+    {
+     "w": "com",
+     "t": 297.36
+    },
+    {
+     "w": "rastreador",
+     "t": 297.544
+    },
+    {
+     "w": "é",
+     "t": 298.48
+    },
+    {
+     "w": "igual",
+     "t": 298.733
+    },
+    {
+     "w": "cometer",
+     "t": 299.04
+    },
+    {
+     "w": "um",
+     "t": 299.427
+    },
+    {
+     "w": "crime",
+     "t": 299.533
+    },
+    {
+     "w": "na",
+     "t": 299.853
+    },
+    {
+     "w": "frente",
+     "t": 300.017
+    },
+    {
+     "w": "de",
+     "t": 300.387
+    },
+    {
+     "w": "uma",
+     "t": 300.48
+    },
+    {
+     "w": "testemunha",
+     "t": 300.648
+    }
+   ]
+  },
+  {
+   "n": 45,
+   "ini": 301.55,
+   "fim": 305.87,
+   "texto": "Décima segunda: no começo, escolhe um carro velho e discreto.",
+   "palavras": [
+    {
+     "w": "Décima",
+     "t": 301.55
+    },
+    {
+     "w": "segunda",
+     "t": 302
+    },
+    {
+     "w": "no",
+     "t": 302.643
+    },
+    {
+     "w": "começo",
+     "t": 303.134
+    },
+    {
+     "w": "escolhe",
+     "t": 303.71
+    },
+    {
+     "w": "um",
+     "t": 304.19
+    },
+    {
+     "w": "carro",
+     "t": 304.244
+    },
+    {
+     "w": "velho",
+     "t": 304.611
+    },
+    {
+     "w": "e",
+     "t": 305.071
+    },
+    {
+     "w": "discreto",
+     "t": 305.22
+    }
+   ]
+  },
+  {
+   "n": 46,
+   "ini": 306.02,
+   "fim": 312.9,
+   "texto": "Carro chamativo puxa atenção, e atenção vira estrela. Começo de jogo é pra passar despercebido.",
+   "palavras": [
+    {
+     "w": "Carro",
+     "t": 306.02
+    },
+    {
+     "w": "chamativo",
+     "t": 306.292
+    },
+    {
+     "w": "puxa",
+     "t": 306.98
+    },
+    {
+     "w": "atenção",
+     "t": 307.38
+    },
+    {
+     "w": "e",
+     "t": 308.02
+    },
+    {
+     "w": "atenção",
+     "t": 308.18
+    },
+    {
+     "w": "vira",
+     "t": 308.9
+    },
+    {
+     "w": "estrela",
+     "t": 309.2
+    },
+    {
+     "w": "Começo",
+     "t": 309.924
+    },
+    {
+     "w": "de",
+     "t": 310.687
+    },
+    {
+     "w": "jogo",
+     "t": 310.852
+    },
+    {
+     "w": "é",
+     "t": 311.34
+    },
+    {
+     "w": "pra",
+     "t": 311.42
+    },
+    {
+     "w": "passar",
+     "t": 311.588
+    },
+    {
+     "w": "despercebido",
+     "t": 312.009
+    }
+   ]
+  },
+  {
+   "n": 47,
+   "ini": 313.05,
+   "fim": 324.01,
+   "texto": "E lembra: a polícia reconhece o seu carro. Se ele for o único carro esportivo amarelo da cidade, você vai ser achado rapidinho. O carro sem graça é o seu disfarce.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 313.05
+    },
+    {
+     "w": "lembra",
+     "t": 313.21
+    },
+    {
+     "w": "a",
+     "t": 313.81
+    },
+    {
+     "w": "polícia",
+     "t": 314.09
+    },
+    {
+     "w": "reconhece",
+     "t": 314.717
+    },
+    {
+     "w": "o",
+     "t": 315.29
+    },
+    {
+     "w": "seu",
+     "t": 315.351
+    },
+    {
+     "w": "carro",
+     "t": 315.598
+    },
+    {
+     "w": "Se",
+     "t": 316.358
+    },
+    {
+     "w": "ele",
+     "t": 316.611
+    },
+    {
+     "w": "for",
+     "t": 316.771
+    },
+    {
+     "w": "o",
+     "t": 316.931
+    },
+    {
+     "w": "único",
+     "t": 317.038
+    },
+    {
+     "w": "carro",
+     "t": 317.398
+    },
+    {
+     "w": "esportivo",
+     "t": 317.584
+    },
+    {
+     "w": "amarelo",
+     "t": 318.064
+    },
+    {
+     "w": "da",
+     "t": 318.518
+    },
+    {
+     "w": "cidade",
+     "t": 318.64
+    },
+    {
+     "w": "você",
+     "t": 319.387
+    },
+    {
+     "w": "vai",
+     "t": 319.631
+    },
+    {
+     "w": "ser",
+     "t": 319.731
+    },
+    {
+     "w": "achado",
+     "t": 319.911
+    },
+    {
+     "w": "rapidinho",
+     "t": 320.331
+    },
+    {
+     "w": "O",
+     "t": 321.511
+    },
+    {
+     "w": "carro",
+     "t": 321.744
+    },
+    {
+     "w": "sem",
+     "t": 322.051
+    },
+    {
+     "w": "graça",
+     "t": 322.251
+    },
+    {
+     "w": "é",
+     "t": 322.891
+    },
+    {
+     "w": "o",
+     "t": 323.011
+    },
+    {
+     "w": "seu",
+     "t": 323.111
+    },
+    {
+     "w": "disfarce",
+     "t": 323.351
+    }
+   ]
+  },
+  {
+   "n": 48,
+   "ini": 324.16,
+   "fim": 327.2,
+   "texto": "Décima terceira: aprende a usar o modo Foco.",
+   "palavras": [
+    {
+     "w": "Décima",
+     "t": 324.16
+    },
+    {
+     "w": "terceira",
+     "t": 324.56
+    },
+    {
+     "w": "aprende",
+     "t": 325.143
+    },
+    {
+     "w": "a",
+     "t": 325.88
+    },
+    {
+     "w": "usar",
+     "t": 325.984
+    },
+    {
+     "w": "o",
+     "t": 326.34
+    },
+    {
+     "w": "modo",
+     "t": 326.48
+    },
+    {
+     "w": "Foco",
+     "t": 326.72
+    }
+   ]
+  },
+  {
+   "n": 49,
+   "ini": 327.35,
+   "fim": 331.99,
+   "texto": "Fora de tiroteio, ele dura o quanto você quiser e pinta o mapa pra você.",
+   "palavras": [
+    {
+     "w": "Fora",
+     "t": 327.35
+    },
+    {
+     "w": "de",
+     "t": 327.617
+    },
+    {
+     "w": "tiroteio",
+     "t": 327.723
+    },
+    {
+     "w": "ele",
+     "t": 328.53
+    },
+    {
+     "w": "dura",
+     "t": 328.75
+    },
+    {
+     "w": "o",
+     "t": 329.07
+    },
+    {
+     "w": "quanto",
+     "t": 329.224
+    },
+    {
+     "w": "você",
+     "t": 329.478
+    },
+    {
+     "w": "quiser",
+     "t": 329.697
+    },
+    {
+     "w": "e",
+     "t": 330.27
+    },
+    {
+     "w": "pinta",
+     "t": 330.55
+    },
+    {
+     "w": "o",
+     "t": 330.91
+    },
+    {
+     "w": "mapa",
+     "t": 331.014
+    },
+    {
+     "w": "pra",
+     "t": 331.31
+    },
+    {
+     "w": "você",
+     "t": 331.51
+    }
+   ]
+  },
+  {
+   "n": 50,
+   "ini": 332.14,
+   "fim": 338.38,
+   "texto": "Vermelho é inimigo. Amarelo é coisa que dá pra usar. E verde é dinheiro.",
+   "palavras": [
+    {
+     "w": "Vermelho",
+     "t": 332.14
+    },
+    {
+     "w": "é",
+     "t": 332.7
+    },
+    {
+     "w": "inimigo",
+     "t": 332.86
+    },
+    {
+     "w": "Amarelo",
+     "t": 333.713
+    },
+    {
+     "w": "é",
+     "t": 334.66
+    },
+    {
+     "w": "coisa",
+     "t": 334.833
+    },
+    {
+     "w": "que",
+     "t": 335.14
+    },
+    {
+     "w": "dá",
+     "t": 335.34
+    },
+    {
+     "w": "pra",
+     "t": 335.52
+    },
+    {
+     "w": "usar",
+     "t": 335.66
+    },
+    {
+     "w": "E",
+     "t": 336.26
+    },
+    {
+     "w": "verde",
+     "t": 336.527
+    },
+    {
+     "w": "é",
+     "t": 337.02
+    },
+    {
+     "w": "dinheiro",
+     "t": 337.224
+    }
+   ]
+  },
+  {
+   "n": 51,
+   "ini": 338.53,
+   "fim": 349.17,
+   "texto": "Entrou num lugar novo? Liga o Foco antes de fazer qualquer coisa. Você acha dinheiro escondido que passaria batido e vê quem está armado antes de levar o primeiro tiro.",
+   "palavras": [
+    {
+     "w": "Entrou",
+     "t": 338.53
+    },
+    {
+     "w": "num",
+     "t": 338.81
+    },
+    {
+     "w": "lugar",
+     "t": 338.97
+    },
+    {
+     "w": "novo",
+     "t": 339.25
+    },
+    {
+     "w": "Liga",
+     "t": 339.794
+    },
+    {
+     "w": "o",
+     "t": 340.45
+    },
+    {
+     "w": "Foco",
+     "t": 340.57
+    },
+    {
+     "w": "antes",
+     "t": 340.997
+    },
+    {
+     "w": "de",
+     "t": 341.357
+    },
+    {
+     "w": "fazer",
+     "t": 341.477
+    },
+    {
+     "w": "qualquer",
+     "t": 341.854
+    },
+    {
+     "w": "coisa",
+     "t": 342.277
+    },
+    {
+     "w": "Você",
+     "t": 342.93
+    },
+    {
+     "w": "acha",
+     "t": 343.61
+    },
+    {
+     "w": "dinheiro",
+     "t": 343.854
+    },
+    {
+     "w": "escondido",
+     "t": 344.237
+    },
+    {
+     "w": "que",
+     "t": 344.73
+    },
+    {
+     "w": "passaria",
+     "t": 344.898
+    },
+    {
+     "w": "batido",
+     "t": 345.31
+    },
+    {
+     "w": "e",
+     "t": 345.97
+    },
+    {
+     "w": "vê",
+     "t": 346.25
+    },
+    {
+     "w": "quem",
+     "t": 346.514
+    },
+    {
+     "w": "está",
+     "t": 346.658
+    },
+    {
+     "w": "armado",
+     "t": 346.89
+    },
+    {
+     "w": "antes",
+     "t": 347.463
+    },
+    {
+     "w": "de",
+     "t": 347.757
+    },
+    {
+     "w": "levar",
+     "t": 347.863
+    },
+    {
+     "w": "o",
+     "t": 348.21
+    },
+    {
+     "w": "primeiro",
+     "t": 348.326
+    },
+    {
+     "w": "tiro",
+     "t": 348.69
+    }
+   ]
+  },
+  {
+   "n": 52,
+   "ini": 349.32,
+   "fim": 353,
+   "texto": "Décima quarta: o Jason e a Lucia precisam se cuidar.",
+   "palavras": [
+    {
+     "w": "Décima",
+     "t": 349.32
+    },
+    {
+     "w": "quarta",
+     "t": 349.773
+    },
+    {
+     "w": "o",
+     "t": 350.44
+    },
+    {
+     "w": "Jason",
+     "t": 350.747
+    },
+    {
+     "w": "e",
+     "t": 351.12
+    },
+    {
+     "w": "a",
+     "t": 351.2
+    },
+    {
+     "w": "Lucia",
+     "t": 351.307
+    },
+    {
+     "w": "precisam",
+     "t": 351.731
+    },
+    {
+     "w": "se",
+     "t": 352.413
+    },
+    {
+     "w": "cuidar",
+     "t": 352.568
+    }
+   ]
+  },
+  {
+   "n": 53,
+   "ini": 353.15,
+   "fim": 358.75,
+   "texto": "Comer, dormir, tomar banho e malhar aumentam a vida, o fôlego e o Foco.",
+   "palavras": [
+    {
+     "w": "Comer",
+     "t": 353.15
+    },
+    {
+     "w": "dormir",
+     "t": 353.774
+    },
+    {
+     "w": "tomar",
+     "t": 354.577
+    },
+    {
+     "w": "banho",
+     "t": 354.97
+    },
+    {
+     "w": "e",
+     "t": 355.27
+    },
+    {
+     "w": "malhar",
+     "t": 355.37
+    },
+    {
+     "w": "aumentam",
+     "t": 355.893
+    },
+    {
+     "w": "a",
+     "t": 356.63
+    },
+    {
+     "w": "vida",
+     "t": 356.75
+    },
+    {
+     "w": "o",
+     "t": 357.43
+    },
+    {
+     "w": "fôlego",
+     "t": 357.59
+    },
+    {
+     "w": "e",
+     "t": 358.07
+    },
+    {
+     "w": "o",
+     "t": 358.15
+    },
+    {
+     "w": "Foco",
+     "t": 358.23
+    }
+   ]
+  },
+  {
+   "n": 54,
+   "ini": 358.9,
+   "fim": 362.5,
+   "texto": "Largou de lado? Você entra em missão mais fraco do que deveria.",
+   "palavras": [
+    {
+     "w": "Largou",
+     "t": 358.9
+    },
+    {
+     "w": "de",
+     "t": 359.327
+    },
+    {
+     "w": "lado",
+     "t": 359.46
+    },
+    {
+     "w": "Você",
+     "t": 360.212
+    },
+    {
+     "w": "entra",
+     "t": 360.54
+    },
+    {
+     "w": "em",
+     "t": 360.767
+    },
+    {
+     "w": "missão",
+     "t": 360.852
+    },
+    {
+     "w": "mais",
+     "t": 361.124
+    },
+    {
+     "w": "fraco",
+     "t": 361.433
+    },
+    {
+     "w": "do",
+     "t": 361.807
+    },
+    {
+     "w": "que",
+     "t": 361.88
+    },
+    {
+     "w": "deveria",
+     "t": 361.993
+    }
+   ]
+  },
+  {
+   "n": 55,
+   "ini": 362.65,
+   "fim": 371.69,
+   "texto": "É parecido com o San Andreas, onde o CJ engordava ou ficava forte conforme você jogava. Só que agora isso mexe direto no Foco, que é a sua melhor arma.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 362.65
+    },
+    {
+     "w": "parecido",
+     "t": 362.762
+    },
+    {
+     "w": "com",
+     "t": 363.17
+    },
+    {
+     "w": "o",
+     "t": 363.33
+    },
+    {
+     "w": "San",
+     "t": 363.41
+    },
+    {
+     "w": "Andreas",
+     "t": 363.59
+    },
+    {
+     "w": "onde",
+     "t": 364.202
+    },
+    {
+     "w": "o",
+     "t": 364.37
+    },
+    {
+     "w": "CJ",
+     "t": 364.543
+    },
+    {
+     "w": "engordava",
+     "t": 364.85
+    },
+    {
+     "w": "ou",
+     "t": 365.477
+    },
+    {
+     "w": "ficava",
+     "t": 365.57
+    },
+    {
+     "w": "forte",
+     "t": 365.983
+    },
+    {
+     "w": "conforme",
+     "t": 366.294
+    },
+    {
+     "w": "você",
+     "t": 366.714
+    },
+    {
+     "w": "jogava",
+     "t": 367.01
+    },
+    {
+     "w": "Só",
+     "t": 367.89
+    },
+    {
+     "w": "que",
+     "t": 368.03
+    },
+    {
+     "w": "agora",
+     "t": 368.157
+    },
+    {
+     "w": "isso",
+     "t": 368.57
+    },
+    {
+     "w": "mexe",
+     "t": 368.95
+    },
+    {
+     "w": "direto",
+     "t": 369.274
+    },
+    {
+     "w": "no",
+     "t": 369.663
+    },
+    {
+     "w": "Foco",
+     "t": 369.81
+    },
+    {
+     "w": "que",
+     "t": 370.37
+    },
+    {
+     "w": "é",
+     "t": 370.51
+    },
+    {
+     "w": "a",
+     "t": 370.55
+    },
+    {
+     "w": "sua",
+     "t": 370.63
+    },
+    {
+     "w": "melhor",
+     "t": 370.867
+    },
+    {
+     "w": "arma",
+     "t": 371.274
+    }
+   ]
+  },
+  {
+   "n": 56,
+   "ini": 371.84,
+   "fim": 374.32,
+   "texto": "E a décima quinta, a mais bizarra.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 371.84
+    },
+    {
+     "w": "a",
+     "t": 371.96
+    },
+    {
+     "w": "décima",
+     "t": 372.08
+    },
+    {
+     "w": "quinta",
+     "t": 372.48
+    },
+    {
+     "w": "a",
+     "t": 373.12
+    },
+    {
+     "w": "mais",
+     "t": 373.36
+    },
+    {
+     "w": "bizarra",
+     "t": 373.72
+    }
+   ]
+  },
+  {
+   "n": 57,
+   "ini": 374.47,
+   "fim": 383.03,
+   "texto": "Um jogador passou uns sete minutos escalando uma torre de comunicação em Leonida. Lá em cima, achou um ninho com ovos coloridos gigantes.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 374.47
+    },
+    {
+     "w": "jogador",
+     "t": 374.6
+    },
+    {
+     "w": "passou",
+     "t": 375.014
+    },
+    {
+     "w": "uns",
+     "t": 375.39
+    },
+    {
+     "w": "sete",
+     "t": 375.57
+    },
+    {
+     "w": "minutos",
+     "t": 376.02
+    },
+    {
+     "w": "escalando",
+     "t": 376.297
+    },
+    {
+     "w": "uma",
+     "t": 376.83
+    },
+    {
+     "w": "torre",
+     "t": 377.03
+    },
+    {
+     "w": "de",
+     "t": 377.403
+    },
+    {
+     "w": "comunicação",
+     "t": 377.55
+    },
+    {
+     "w": "em",
+     "t": 378.203
+    },
+    {
+     "w": "Leonida",
+     "t": 378.374
+    },
+    {
+     "w": "Lá",
+     "t": 379.19
+    },
+    {
+     "w": "em",
+     "t": 379.483
+    },
+    {
+     "w": "cima",
+     "t": 379.63
+    },
+    {
+     "w": "achou",
+     "t": 380.21
+    },
+    {
+     "w": "um",
+     "t": 380.523
+    },
+    {
+     "w": "ninho",
+     "t": 380.69
+    },
+    {
+     "w": "com",
+     "t": 381.07
+    },
+    {
+     "w": "ovos",
+     "t": 381.297
+    },
+    {
+     "w": "coloridos",
+     "t": 381.643
+    },
+    {
+     "w": "gigantes",
+     "t": 382.27
+    }
+   ]
+  },
+  {
+   "n": 58,
+   "ini": 383.18,
+   "fim": 390.38,
+   "texto": "Ele jogou um ovo lá de cima. E isso destravou uma cena secreta, com o ovo caindo no para-brisa de um carro que passava embaixo.",
+   "palavras": [
+    {
+     "w": "Ele",
+     "t": 383.18
+    },
+    {
+     "w": "jogou",
+     "t": 383.32
+    },
+    {
+     "w": "um",
+     "t": 383.633
+    },
+    {
+     "w": "ovo",
+     "t": 383.82
+    },
+    {
+     "w": "lá",
+     "t": 384.033
+    },
+    {
+     "w": "de",
+     "t": 384.167
+    },
+    {
+     "w": "cima",
+     "t": 384.34
+    },
+    {
+     "w": "E",
+     "t": 384.98
+    },
+    {
+     "w": "isso",
+     "t": 385.148
+    },
+    {
+     "w": "destravou",
+     "t": 385.393
+    },
+    {
+     "w": "uma",
+     "t": 385.84
+    },
+    {
+     "w": "cena",
+     "t": 385.964
+    },
+    {
+     "w": "secreta",
+     "t": 386.287
+    },
+    {
+     "w": "com",
+     "t": 387.08
+    },
+    {
+     "w": "o",
+     "t": 387.3
+    },
+    {
+     "w": "ovo",
+     "t": 387.42
+    },
+    {
+     "w": "caindo",
+     "t": 387.78
+    },
+    {
+     "w": "no",
+     "t": 388.087
+    },
+    {
+     "w": "para-brisa",
+     "t": 388.188
+    },
+    {
+     "w": "de",
+     "t": 388.727
+    },
+    {
+     "w": "um",
+     "t": 388.807
+    },
+    {
+     "w": "carro",
+     "t": 388.913
+    },
+    {
+     "w": "que",
+     "t": 389.22
+    },
+    {
+     "w": "passava",
+     "t": 389.404
+    },
+    {
+     "w": "embaixo",
+     "t": 389.793
+    }
+   ]
+  },
+  {
+   "n": 59,
+   "ini": 390.53,
+   "fim": 400.53,
+   "texto": "Isso é relato de jogador, a Rockstar não falou nada. E de bônus: o toque de celular do Michael, do Gê Tê Á cinco, está escondido nas configurações do celular.",
+   "palavras": [
+    {
+     "w": "Isso",
+     "t": 390.53
+    },
+    {
+     "w": "é",
+     "t": 390.83
+    },
+    {
+     "w": "relato",
+     "t": 390.92
+    },
+    {
+     "w": "de",
+     "t": 391.277
+    },
+    {
+     "w": "jogador",
+     "t": 391.4
+    },
+    {
+     "w": "a",
+     "t": 392.17
+    },
+    {
+     "w": "Rockstar",
+     "t": 392.258
+    },
+    {
+     "w": "não",
+     "t": 392.71
+    },
+    {
+     "w": "falou",
+     "t": 392.83
+    },
+    {
+     "w": "nada",
+     "t": 393.17
+    },
+    {
+     "w": "E",
+     "t": 393.97
+    },
+    {
+     "w": "de",
+     "t": 394.237
+    },
+    {
+     "w": "bônus",
+     "t": 394.37
+    },
+    {
+     "w": "o",
+     "t": 394.97
+    },
+    {
+     "w": "toque",
+     "t": 395.17
+    },
+    {
+     "w": "de",
+     "t": 395.517
+    },
+    {
+     "w": "celular",
+     "t": 395.63
+    },
+    {
+     "w": "do",
+     "t": 396.077
+    },
+    {
+     "w": "Michael",
+     "t": 396.18
+    },
+    {
+     "w": "do",
+     "t": 396.69
+    },
+    {
+     "w": "Gê",
+     "t": 396.89
+    },
+    {
+     "w": "Tê",
+     "t": 397.09
+    },
+    {
+     "w": "Á",
+     "t": 397.29
+    },
+    {
+     "w": "cinco",
+     "t": 397.37
+    },
+    {
+     "w": "está",
+     "t": 397.954
+    },
+    {
+     "w": "escondido",
+     "t": 398.237
+    },
+    {
+     "w": "nas",
+     "t": 398.73
+    },
+    {
+     "w": "configurações",
+     "t": 398.896
+    },
+    {
+     "w": "do",
+     "t": 399.677
+    },
+    {
+     "w": "celular",
+     "t": 399.79
+    }
+   ]
+  },
+  {
+   "n": 60,
+   "ini": 400.68,
+   "fim": 407.4,
+   "texto": "Qual dessas você não sabia? Comenta aqui embaixo. E se inscreve, porque tem muito mais do Gê Tê Á seis vindo por aí.",
+   "palavras": [
+    {
+     "w": "Qual",
+     "t": 400.68
+    },
+    {
+     "w": "dessas",
+     "t": 400.952
+    },
+    {
+     "w": "você",
+     "t": 401.288
+    },
+    {
+     "w": "não",
+     "t": 401.52
+    },
+    {
+     "w": "sabia",
+     "t": 401.68
+    },
+    {
+     "w": "Comenta",
+     "t": 402.46
+    },
+    {
+     "w": "aqui",
+     "t": 402.792
+    },
+    {
+     "w": "embaixo",
+     "t": 402.947
+    },
+    {
+     "w": "E",
+     "t": 403.68
+    },
+    {
+     "w": "se",
+     "t": 403.747
+    },
+    {
+     "w": "inscreve",
+     "t": 403.86
+    },
+    {
+     "w": "porque",
+     "t": 404.634
+    },
+    {
+     "w": "tem",
+     "t": 404.92
+    },
+    {
+     "w": "muito",
+     "t": 405.2
+    },
+    {
+     "w": "mais",
+     "t": 405.448
+    },
+    {
+     "w": "do",
+     "t": 405.667
+    },
+    {
+     "w": "Gê",
+     "t": 405.8
+    },
+    {
+     "w": "Tê",
+     "t": 406.04
+    },
+    {
+     "w": "Á",
+     "t": 406.24
+    },
+    {
+     "w": "seis",
+     "t": 406.344
+    },
+    {
+     "w": "vindo",
+     "t": 406.64
+    },
+    {
+     "w": "por",
+     "t": 406.94
+    },
+    {
+     "w": "aí",
+     "t": 407.08
+    }
+   ]
+  }
+ ]
+}
