@@ -1,0 +1,329 @@
+{
+ "total": 25.44,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 6.15,
+   "texto": "Um jogador passou sete minutos escalando uma torre no Gê Tê Á seis. E lá em cima tinha um ninho.",
+   "palavras": [
+    {
+     "w": "Um",
+     "t": 0.15
+    },
+    {
+     "w": "jogador",
+     "t": 0.28
+    },
+    {
+     "w": "passou",
+     "t": 0.694
+    },
+    {
+     "w": "sete",
+     "t": 1.11
+    },
+    {
+     "w": "minutos",
+     "t": 1.62
+    },
+    {
+     "w": "escalando",
+     "t": 1.883
+    },
+    {
+     "w": "uma",
+     "t": 2.35
+    },
+    {
+     "w": "torre",
+     "t": 2.55
+    },
+    {
+     "w": "no",
+     "t": 2.923
+    },
+    {
+     "w": "Gê",
+     "t": 3.15
+    },
+    {
+     "w": "Tê",
+     "t": 3.45
+    },
+    {
+     "w": "Á",
+     "t": 3.63
+    },
+    {
+     "w": "seis",
+     "t": 3.75
+    },
+    {
+     "w": "E",
+     "t": 4.59
+    },
+    {
+     "w": "lá",
+     "t": 4.657
+    },
+    {
+     "w": "em",
+     "t": 4.763
+    },
+    {
+     "w": "cima",
+     "t": 4.91
+    },
+    {
+     "w": "tinha",
+     "t": 5.257
+    },
+    {
+     "w": "um",
+     "t": 5.643
+    },
+    {
+     "w": "ninho",
+     "t": 5.81
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 6.3,
+   "fim": 8.22,
+   "texto": "Com ovos coloridos gigantes.",
+   "palavras": [
+    {
+     "w": "Com",
+     "t": 6.3
+    },
+    {
+     "w": "ovos",
+     "t": 6.54
+    },
+    {
+     "w": "coloridos",
+     "t": 6.913
+    },
+    {
+     "w": "gigantes",
+     "t": 7.48
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 8.37,
+   "fim": 17.01,
+   "texto": "Ele pegou um ovo e jogou lá de cima. E o jogo destravou uma cena secreta: o ovo cai no para-brisa de um carro passando embaixo.",
+   "palavras": [
+    {
+     "w": "Ele",
+     "t": 8.37
+    },
+    {
+     "w": "pegou",
+     "t": 8.59
+    },
+    {
+     "w": "um",
+     "t": 8.903
+    },
+    {
+     "w": "ovo",
+     "t": 9.13
+    },
+    {
+     "w": "e",
+     "t": 9.53
+    },
+    {
+     "w": "jogou",
+     "t": 9.71
+    },
+    {
+     "w": "lá",
+     "t": 10.023
+    },
+    {
+     "w": "de",
+     "t": 10.183
+    },
+    {
+     "w": "cima",
+     "t": 10.37
+    },
+    {
+     "w": "E",
+     "t": 11.17
+    },
+    {
+     "w": "o",
+     "t": 11.61
+    },
+    {
+     "w": "jogo",
+     "t": 11.73
+    },
+    {
+     "w": "destravou",
+     "t": 12.103
+    },
+    {
+     "w": "uma",
+     "t": 12.63
+    },
+    {
+     "w": "cena",
+     "t": 12.754
+    },
+    {
+     "w": "secreta",
+     "t": 13.09
+    },
+    {
+     "w": "o",
+     "t": 14.33
+    },
+    {
+     "w": "ovo",
+     "t": 14.49
+    },
+    {
+     "w": "cai",
+     "t": 14.81
+    },
+    {
+     "w": "no",
+     "t": 14.957
+    },
+    {
+     "w": "para-brisa",
+     "t": 15.058
+    },
+    {
+     "w": "de",
+     "t": 15.597
+    },
+    {
+     "w": "um",
+     "t": 15.677
+    },
+    {
+     "w": "carro",
+     "t": 15.77
+    },
+    {
+     "w": "passando",
+     "t": 16.034
+    },
+    {
+     "w": "embaixo",
+     "t": 16.477
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.16,
+   "fim": 24.84,
+   "texto": "A Rockstar não falou nada, é relato de jogador. Você ia escalar pra testar? Tem mais catorze dessas no vídeo completo do canal.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 17.16
+    },
+    {
+     "w": "Rockstar",
+     "t": 17.288
+    },
+    {
+     "w": "não",
+     "t": 17.68
+    },
+    {
+     "w": "falou",
+     "t": 17.84
+    },
+    {
+     "w": "nada",
+     "t": 18.12
+    },
+    {
+     "w": "é",
+     "t": 18.68
+    },
+    {
+     "w": "relato",
+     "t": 18.8
+    },
+    {
+     "w": "de",
+     "t": 19.213
+    },
+    {
+     "w": "jogador",
+     "t": 19.38
+    },
+    {
+     "w": "Você",
+     "t": 19.992
+    },
+    {
+     "w": "ia",
+     "t": 20.467
+    },
+    {
+     "w": "escalar",
+     "t": 20.58
+    },
+    {
+     "w": "pra",
+     "t": 20.96
+    },
+    {
+     "w": "testar",
+     "t": 21.144
+    },
+    {
+     "w": "Tem",
+     "t": 21.78
+    },
+    {
+     "w": "mais",
+     "t": 22.248
+    },
+    {
+     "w": "catorze",
+     "t": 22.48
+    },
+    {
+     "w": "dessas",
+     "t": 22.984
+    },
+    {
+     "w": "no",
+     "t": 23.427
+    },
+    {
+     "w": "vídeo",
+     "t": 23.533
+    },
+    {
+     "w": "completo",
+     "t": 23.853
+    },
+    {
+     "w": "do",
+     "t": 24.307
+    },
+    {
+     "w": "canal",
+     "t": 24.427
+    }
+   ]
+  }
+ ]
+}

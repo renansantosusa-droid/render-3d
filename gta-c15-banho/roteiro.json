@@ -1,0 +1,52 @@
+{
+ "topo": {
+  "grande": "VOLTOU DO SAN ANDREAS",
+  "sub": "comer, dormir e malhar"
+ },
+ "cenas": [
+  {
+   "texto": "O Gê Tê Á seis trouxe de volta uma coisa do San Andreas.",
+   "midia": [
+    "take:gtasa-trailer-005",
+    "img:pessoa-jason-and-lucia-12.jpg"
+   ]
+  },
+  {
+   "texto": "O Jason e a Lucia precisam comer, dormir, tomar banho e malhar.",
+   "midia": [
+    "take:gta6-t2-020",
+    "take:gta6-t2-008"
+   ]
+  },
+  {
+   "texto": "No San Andreas, o CJ engordava ou ficava forte. Agora, isso mexe na vida, no fôlego e no Foco.",
+   "midia": [
+    "take:gtasa-trailer-006",
+    "take:gta6-t1-006"
+   ],
+   "card": {
+    "tit": "SE CUIDAR",
+    "la": "SAN ANDREAS",
+    "a": "CJ",
+    "sa": "forte ou gordo",
+    "lb": "GTA 6",
+    "b": "FOCO",
+    "sb": "vida e fôlego"
+   }
+  },
+  {
+   "texto": "Largou de lado, entra em missão mais fraco. Você ia cuidar deles? Tem mais catorze dessas no vídeo completo do canal.",
+   "midia": [
+    "img:pessoa-jason-duval-16.jpg"
+   ],
+   "card": {
+    "tit": "COMENTA AÍ",
+    "solo": [
+     "VOCÊ IA CUIDAR?",
+     "ou deixar largado"
+    ]
+   }
+  }
+ ],
+ "credito": "Imagens: Rockstar Games"
+}

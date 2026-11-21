@@ -1,0 +1,58 @@
+{
+ "topo": {
+  "grande": "CARRO AMASSADO",
+  "sub": "vale menos no GTA 6"
+ },
+ "cenas": [
+  {
+   "texto": "No Gê Tê Á seis, bater o carro na fuga te deixa mais pobre.",
+   "midia": [
+    "take:gta6-t1-007",
+    "take:gta6-launch-009"
+   ]
+  },
+  {
+   "texto": "Dá pra vender carro roubado num receptador. Só que carro batido vale menos.",
+   "midia": [
+    "take:gta6-t1-024"
+   ],
+   "card": {
+    "tit": "CARRO ROUBADO",
+    "la": "INTEIRO",
+    "a": "$$$",
+    "sa": "vale mais",
+    "lb": "AMASSADO",
+    "b": "$",
+    "sb": "vale menos"
+   }
+  },
+  {
+   "texto": "Então o ciclo é: rouba, leva inteiro, vende, e guarda o dinheiro no banco. Porque se morrer, o dinheiro do bolso some.",
+   "midia": [
+    "take:gta6-launch-001",
+    "img:pessoa-jason-duval-05.jpg"
+   ],
+   "card": {
+    "tit": "O CICLO",
+    "solo": [
+     "ROUBA · LEVA INTEIRO · VENDE",
+     "e guarda no banco"
+    ]
+   }
+  },
+  {
+   "texto": "Você dirige com cuidado na fuga ou sai batendo em tudo? Tem mais catorze dessas no vídeo completo do canal.",
+   "midia": [
+    "img:lugar-vice-city-12.jpg"
+   ],
+   "card": {
+    "tit": "COMENTA AÍ",
+    "solo": [
+     "CUIDADO OU CAOS?",
+     "na fuga"
+    ]
+   }
+  }
+ ],
+ "credito": "Imagens: Rockstar Games"
+}

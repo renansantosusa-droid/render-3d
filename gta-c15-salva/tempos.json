@@ -1,0 +1,305 @@
+{
+ "total": 23.12,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.87,
+   "texto": "No Gê Tê Á seis, se você não salvar na mão, pode perder horas de jogo.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 0.15
+    },
+    {
+     "w": "Gê",
+     "t": 0.35
+    },
+    {
+     "w": "Tê",
+     "t": 0.51
+    },
+    {
+     "w": "Á",
+     "t": 0.67
+    },
+    {
+     "w": "seis",
+     "t": 0.79
+    },
+    {
+     "w": "se",
+     "t": 1.323
+    },
+    {
+     "w": "você",
+     "t": 1.478
+    },
+    {
+     "w": "não",
+     "t": 1.73
+    },
+    {
+     "w": "salvar",
+     "t": 1.979
+    },
+    {
+     "w": "na",
+     "t": 2.417
+    },
+    {
+     "w": "mão",
+     "t": 2.51
+    },
+    {
+     "w": "pode",
+     "t": 2.886
+    },
+    {
+     "w": "perder",
+     "t": 3.327
+    },
+    {
+     "w": "horas",
+     "t": 3.737
+    },
+    {
+     "w": "de",
+     "t": 4.097
+    },
+    {
+     "w": "jogo",
+     "t": 4.23
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 5.02,
+   "fim": 10.14,
+   "texto": "O jogo só salva sozinho quando termina uma missão. E não dá pra repetir missão depois.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 5.02
+    },
+    {
+     "w": "jogo",
+     "t": 5.164
+    },
+    {
+     "w": "só",
+     "t": 5.473
+    },
+    {
+     "w": "salva",
+     "t": 5.62
+    },
+    {
+     "w": "sozinho",
+     "t": 5.98
+    },
+    {
+     "w": "quando",
+     "t": 6.437
+    },
+    {
+     "w": "termina",
+     "t": 6.837
+    },
+    {
+     "w": "uma",
+     "t": 7.22
+    },
+    {
+     "w": "missão",
+     "t": 7.388
+    },
+    {
+     "w": "E",
+     "t": 8.16
+    },
+    {
+     "w": "não",
+     "t": 8.34
+    },
+    {
+     "w": "dá",
+     "t": 8.54
+    },
+    {
+     "w": "pra",
+     "t": 8.74
+    },
+    {
+     "w": "repetir",
+     "t": 8.9
+    },
+    {
+     "w": "missão",
+     "t": 9.292
+    },
+    {
+     "w": "depois",
+     "t": 9.58
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.29,
+   "fim": 13.33,
+   "texto": "Fez uma escolha errada? Vai ter que conviver com ela.",
+   "palavras": [
+    {
+     "w": "Fez",
+     "t": 10.29
+    },
+    {
+     "w": "uma",
+     "t": 10.47
+    },
+    {
+     "w": "escolha",
+     "t": 10.57
+    },
+    {
+     "w": "errada",
+     "t": 10.89
+    },
+    {
+     "w": "Vai",
+     "t": 11.73
+    },
+    {
+     "w": "ter",
+     "t": 12.09
+    },
+    {
+     "w": "que",
+     "t": 12.23
+    },
+    {
+     "w": "conviver",
+     "t": 12.354
+    },
+    {
+     "w": "com",
+     "t": 12.81
+    },
+    {
+     "w": "ela",
+     "t": 13.01
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 13.48,
+   "fim": 22.52,
+   "texto": "A dica é usar um espaço de salvamento novo a cada capítulo. Você salva na mão? Tem mais catorze dessas no vídeo completo do canal.",
+   "palavras": [
+    {
+     "w": "A",
+     "t": 13.48
+    },
+    {
+     "w": "dica",
+     "t": 13.64
+    },
+    {
+     "w": "é",
+     "t": 14.16
+    },
+    {
+     "w": "usar",
+     "t": 14.408
+    },
+    {
+     "w": "um",
+     "t": 14.627
+    },
+    {
+     "w": "espaço",
+     "t": 14.737
+    },
+    {
+     "w": "de",
+     "t": 15.107
+    },
+    {
+     "w": "salvamento",
+     "t": 15.208
+    },
+    {
+     "w": "novo",
+     "t": 15.88
+    },
+    {
+     "w": "a",
+     "t": 16.36
+    },
+    {
+     "w": "cada",
+     "t": 16.568
+    },
+    {
+     "w": "capítulo",
+     "t": 16.82
+    },
+    {
+     "w": "Você",
+     "t": 17.544
+    },
+    {
+     "w": "salva",
+     "t": 18.18
+    },
+    {
+     "w": "na",
+     "t": 18.467
+    },
+    {
+     "w": "mão",
+     "t": 18.6
+    },
+    {
+     "w": "Tem",
+     "t": 19.02
+    },
+    {
+     "w": "mais",
+     "t": 19.608
+    },
+    {
+     "w": "catorze",
+     "t": 19.84
+    },
+    {
+     "w": "dessas",
+     "t": 20.52
+    },
+    {
+     "w": "no",
+     "t": 20.973
+    },
+    {
+     "w": "vídeo",
+     "t": 21.133
+    },
+    {
+     "w": "completo",
+     "t": 21.462
+    },
+    {
+     "w": "do",
+     "t": 21.987
+    },
+    {
+     "w": "canal",
+     "t": 22.107
+    }
+   ]
+  }
+ ]
+}

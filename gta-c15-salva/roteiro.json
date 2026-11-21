@@ -1,0 +1,49 @@
+{
+ "topo": {
+  "grande": "SALVA NA MÃO",
+  "sub": "ou perde horas de jogo"
+ },
+ "cenas": [
+  {
+   "texto": "No Gê Tê Á seis, se você não salvar na mão, pode perder horas de jogo.",
+   "midia": [
+    "take:gta6-launch-020",
+    "img:pessoa-lucia-caminos-03.jpg"
+   ]
+  },
+  {
+   "texto": "O jogo só salva sozinho quando termina uma missão. E não dá pra repetir missão depois.",
+   "midia": [
+    "take:gta6-preload-003"
+   ],
+   "card": {
+    "tit": "SALVAMENTO",
+    "solo": [
+     "SÓ NO FIM DA MISSÃO",
+     "e sem repetir missão"
+    ]
+   }
+  },
+  {
+   "texto": "Fez uma escolha errada? Vai ter que conviver com ela.",
+   "midia": [
+    "take:gta6-t2-012",
+    "img:pessoa-lucia-caminos-08.jpg"
+   ]
+  },
+  {
+   "texto": "A dica é usar um espaço de salvamento novo a cada capítulo. Você salva na mão? Tem mais catorze dessas no vídeo completo do canal.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-08.jpg"
+   ],
+   "card": {
+    "tit": "COMENTA AÍ",
+    "solo": [
+     "SALVA NA MÃO?",
+     "ou confia no automático"
+    ]
+   }
+  }
+ ],
+ "credito": "Imagens: Rockstar Games"
+}

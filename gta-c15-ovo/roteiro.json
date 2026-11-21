@@ -1,0 +1,49 @@
+{
+ "topo": {
+  "grande": "O OVO DA TORRE",
+  "sub": "easter egg do GTA 6"
+ },
+ "cenas": [
+  {
+   "texto": "Um jogador passou sete minutos escalando uma torre no Gê Tê Á seis. E lá em cima tinha um ninho.",
+   "midia": [
+    "img:lugar-mount-kalaga-national-park-04.jpg",
+    "take:gta6-t1-010"
+   ]
+  },
+  {
+   "texto": "Com ovos coloridos gigantes.",
+   "midia": [
+    "img:lugar-mount-kalaga-national-park-02.jpg"
+   ],
+   "card": {
+    "tit": "NO TOPO DA TORRE",
+    "solo": [
+     "OVOS GIGANTES",
+     "num ninho"
+    ]
+   }
+  },
+  {
+   "texto": "Ele pegou um ovo e jogou lá de cima. E o jogo destravou uma cena secreta: o ovo cai no para-brisa de um carro passando embaixo.",
+   "midia": [
+    "take:gta6-t2-001",
+    "take:gta6-launch-009"
+   ]
+  },
+  {
+   "texto": "A Rockstar não falou nada, é relato de jogador. Você ia escalar pra testar? Tem mais catorze dessas no vídeo completo do canal.",
+   "midia": [
+    "img:pessoa-jason-and-lucia-15.jpg"
+   ],
+   "card": {
+    "tit": "COMENTA AÍ",
+    "solo": [
+     "VOCÊ ESCALARIA?",
+     "sete minutos de torre"
+    ]
+   }
+  }
+ ],
+ "credito": "Imagens: Rockstar Games"
+}

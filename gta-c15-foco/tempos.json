@@ -1,0 +1,305 @@
+{
+ "total": 24.56,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.75,
+   "texto": "Tem um botão no Gê Tê Á seis que mostra onde tem dinheiro escondido.",
+   "palavras": [
+    {
+     "w": "Tem",
+     "t": 0.15
+    },
+    {
+     "w": "um",
+     "t": 0.337
+    },
+    {
+     "w": "botão",
+     "t": 0.45
+    },
+    {
+     "w": "no",
+     "t": 0.737
+    },
+    {
+     "w": "Gê",
+     "t": 0.87
+    },
+    {
+     "w": "Tê",
+     "t": 1.07
+    },
+    {
+     "w": "Á",
+     "t": 1.23
+    },
+    {
+     "w": "seis",
+     "t": 1.334
+    },
+    {
+     "w": "que",
+     "t": 1.65
+    },
+    {
+     "w": "mostra",
+     "t": 1.887
+    },
+    {
+     "w": "onde",
+     "t": 2.278
+    },
+    {
+     "w": "tem",
+     "t": 2.53
+    },
+    {
+     "w": "dinheiro",
+     "t": 2.746
+    },
+    {
+     "w": "escondido",
+     "t": 3.083
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.9,
+   "fim": 10.06,
+   "texto": "É o modo Foco. Fora de tiroteio, ele dura o quanto você quiser e pinta o mapa.",
+   "palavras": [
+    {
+     "w": "É",
+     "t": 3.9
+    },
+    {
+     "w": "o",
+     "t": 4.02
+    },
+    {
+     "w": "modo",
+     "t": 4.124
+    },
+    {
+     "w": "Foco",
+     "t": 4.5
+    },
+    {
+     "w": "Fora",
+     "t": 5.52
+    },
+    {
+     "w": "de",
+     "t": 5.927
+    },
+    {
+     "w": "tiroteio",
+     "t": 6.033
+    },
+    {
+     "w": "ele",
+     "t": 6.84
+    },
+    {
+     "w": "dura",
+     "t": 7.06
+    },
+    {
+     "w": "o",
+     "t": 7.26
+    },
+    {
+     "w": "quanto",
+     "t": 7.386
+    },
+    {
+     "w": "você",
+     "t": 7.724
+    },
+    {
+     "w": "quiser",
+     "t": 8.007
+    },
+    {
+     "w": "e",
+     "t": 8.54
+    },
+    {
+     "w": "pinta",
+     "t": 8.78
+    },
+    {
+     "w": "o",
+     "t": 9.22
+    },
+    {
+     "w": "mapa",
+     "t": 9.356
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 10.21,
+   "fim": 15.57,
+   "texto": "Vermelho é inimigo. Amarelo é coisa que dá pra usar. E verde é dinheiro.",
+   "palavras": [
+    {
+     "w": "Vermelho",
+     "t": 10.21
+    },
+    {
+     "w": "é",
+     "t": 10.89
+    },
+    {
+     "w": "inimigo",
+     "t": 11.063
+    },
+    {
+     "w": "Amarelo",
+     "t": 11.81
+    },
+    {
+     "w": "é",
+     "t": 12.69
+    },
+    {
+     "w": "coisa",
+     "t": 12.823
+    },
+    {
+     "w": "que",
+     "t": 13.11
+    },
+    {
+     "w": "dá",
+     "t": 13.223
+    },
+    {
+     "w": "pra",
+     "t": 13.37
+    },
+    {
+     "w": "usar",
+     "t": 13.57
+    },
+    {
+     "w": "E",
+     "t": 14.19
+    },
+    {
+     "w": "verde",
+     "t": 14.37
+    },
+    {
+     "w": "é",
+     "t": 14.89
+    },
+    {
+     "w": "dinheiro",
+     "t": 15.063
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 15.72,
+   "fim": 23.96,
+   "texto": "Entrou num lugar novo? Liga o Foco antes de tudo. Você já usou? Tem mais catorze dessas no vídeo completo do canal.",
+   "palavras": [
+    {
+     "w": "Entrou",
+     "t": 15.72
+    },
+    {
+     "w": "num",
+     "t": 16.08
+    },
+    {
+     "w": "lugar",
+     "t": 16.253
+    },
+    {
+     "w": "novo",
+     "t": 16.6
+    },
+    {
+     "w": "Liga",
+     "t": 17.144
+    },
+    {
+     "w": "o",
+     "t": 17.76
+    },
+    {
+     "w": "Foco",
+     "t": 17.88
+    },
+    {
+     "w": "antes",
+     "t": 18.333
+    },
+    {
+     "w": "de",
+     "t": 18.653
+    },
+    {
+     "w": "tudo",
+     "t": 18.824
+    },
+    {
+     "w": "Você",
+     "t": 19.4
+    },
+    {
+     "w": "já",
+     "t": 20.093
+    },
+    {
+     "w": "usou",
+     "t": 20.227
+    },
+    {
+     "w": "Tem",
+     "t": 21.02
+    },
+    {
+     "w": "mais",
+     "t": 21.352
+    },
+    {
+     "w": "catorze",
+     "t": 21.56
+    },
+    {
+     "w": "dessas",
+     "t": 22.024
+    },
+    {
+     "w": "no",
+     "t": 22.467
+    },
+    {
+     "w": "vídeo",
+     "t": 22.587
+    },
+    {
+     "w": "completo",
+     "t": 22.964
+    },
+    {
+     "w": "do",
+     "t": 23.373
+    },
+    {
+     "w": "canal",
+     "t": 23.547
+    }
+   ]
+  }
+ ]
+}

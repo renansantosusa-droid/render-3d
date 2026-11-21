@@ -1,0 +1,313 @@
+{
+ "total": 25.36,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 4.07,
+   "texto": "No Gê Tê Á seis, bater o carro na fuga te deixa mais pobre.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 0.15
+    },
+    {
+     "w": "Gê",
+     "t": 0.31
+    },
+    {
+     "w": "Tê",
+     "t": 0.59
+    },
+    {
+     "w": "Á",
+     "t": 0.77
+    },
+    {
+     "w": "seis",
+     "t": 0.87
+    },
+    {
+     "w": "bater",
+     "t": 1.43
+    },
+    {
+     "w": "o",
+     "t": 1.87
+    },
+    {
+     "w": "carro",
+     "t": 1.95
+    },
+    {
+     "w": "na",
+     "t": 2.203
+    },
+    {
+     "w": "fuga",
+     "t": 2.39
+    },
+    {
+     "w": "te",
+     "t": 2.79
+    },
+    {
+     "w": "deixa",
+     "t": 3.003
+    },
+    {
+     "w": "mais",
+     "t": 3.318
+    },
+    {
+     "w": "pobre",
+     "t": 3.59
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4.22,
+   "fim": 9.18,
+   "texto": "Dá pra vender carro roubado num receptador. Só que carro batido vale menos.",
+   "palavras": [
+    {
+     "w": "Dá",
+     "t": 4.22
+    },
+    {
+     "w": "pra",
+     "t": 4.4
+    },
+    {
+     "w": "vender",
+     "t": 4.5
+    },
+    {
+     "w": "carro",
+     "t": 4.847
+    },
+    {
+     "w": "roubado",
+     "t": 5.22
+    },
+    {
+     "w": "num",
+     "t": 5.78
+    },
+    {
+     "w": "receptador",
+     "t": 5.969
+    },
+    {
+     "w": "Só",
+     "t": 7.02
+    },
+    {
+     "w": "que",
+     "t": 7.36
+    },
+    {
+     "w": "carro",
+     "t": 7.473
+    },
+    {
+     "w": "batido",
+     "t": 7.8
+    },
+    {
+     "w": "vale",
+     "t": 8.3
+    },
+    {
+     "w": "menos",
+     "t": 8.687
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.33,
+   "fim": 17.57,
+   "texto": "Então o ciclo é: rouba, leva inteiro, vende, e guarda o dinheiro no banco. Porque se morrer, o dinheiro do bolso some.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 9.33
+    },
+    {
+     "w": "o",
+     "t": 9.69
+    },
+    {
+     "w": "ciclo",
+     "t": 9.797
+    },
+    {
+     "w": "é",
+     "t": 10.21
+    },
+    {
+     "w": "rouba",
+     "t": 10.53
+    },
+    {
+     "w": "leva",
+     "t": 11.383
+    },
+    {
+     "w": "inteiro",
+     "t": 11.794
+    },
+    {
+     "w": "vende",
+     "t": 12.57
+    },
+    {
+     "w": "e",
+     "t": 13.29
+    },
+    {
+     "w": "guarda",
+     "t": 13.456
+    },
+    {
+     "w": "o",
+     "t": 13.77
+    },
+    {
+     "w": "dinheiro",
+     "t": 13.846
+    },
+    {
+     "w": "no",
+     "t": 14.157
+    },
+    {
+     "w": "banco",
+     "t": 14.277
+    },
+    {
+     "w": "Porque",
+     "t": 14.89
+    },
+    {
+     "w": "se",
+     "t": 15.437
+    },
+    {
+     "w": "morrer",
+     "t": 15.55
+    },
+    {
+     "w": "o",
+     "t": 16.17
+    },
+    {
+     "w": "dinheiro",
+     "t": 16.254
+    },
+    {
+     "w": "do",
+     "t": 16.637
+    },
+    {
+     "w": "bolso",
+     "t": 16.77
+    },
+    {
+     "w": "some",
+     "t": 17.17
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 17.72,
+   "fim": 24.76,
+   "texto": "Você dirige com cuidado na fuga ou sai batendo em tudo? Tem mais catorze dessas no vídeo completo do canal.",
+   "palavras": [
+    {
+     "w": "Você",
+     "t": 17.72
+    },
+    {
+     "w": "dirige",
+     "t": 18
+    },
+    {
+     "w": "com",
+     "t": 18.34
+    },
+    {
+     "w": "cuidado",
+     "t": 18.568
+    },
+    {
+     "w": "na",
+     "t": 19.027
+    },
+    {
+     "w": "fuga",
+     "t": 19.16
+    },
+    {
+     "w": "ou",
+     "t": 19.667
+    },
+    {
+     "w": "sai",
+     "t": 19.94
+    },
+    {
+     "w": "batendo",
+     "t": 20.18
+    },
+    {
+     "w": "em",
+     "t": 20.547
+    },
+    {
+     "w": "tudo",
+     "t": 20.68
+    },
+    {
+     "w": "Tem",
+     "t": 21.46
+    },
+    {
+     "w": "mais",
+     "t": 21.928
+    },
+    {
+     "w": "catorze",
+     "t": 22.16
+    },
+    {
+     "w": "dessas",
+     "t": 22.68
+    },
+    {
+     "w": "no",
+     "t": 23.133
+    },
+    {
+     "w": "vídeo",
+     "t": 23.293
+    },
+    {
+     "w": "completo",
+     "t": 23.604
+    },
+    {
+     "w": "do",
+     "t": 24.013
+    },
+    {
+     "w": "canal",
+     "t": 24.187
+    }
+   ]
+  }
+ ]
+}

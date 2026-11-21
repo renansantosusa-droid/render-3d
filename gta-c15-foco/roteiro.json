@@ -1,0 +1,49 @@
+{
+ "topo": {
+  "grande": "MODO FOCO",
+  "sub": "mostra dinheiro escondido"
+ },
+ "cenas": [
+  {
+   "texto": "Tem um botão no Gê Tê Á seis que mostra onde tem dinheiro escondido.",
+   "midia": [
+    "img:pessoa-lucia-caminos-11.jpg",
+    "take:gta6-t2-013"
+   ]
+  },
+  {
+   "texto": "É o modo Foco. Fora de tiroteio, ele dura o quanto você quiser e pinta o mapa.",
+   "midia": [
+    "take:gta6-t1-004"
+   ]
+  },
+  {
+   "texto": "Vermelho é inimigo. Amarelo é coisa que dá pra usar. E verde é dinheiro.",
+   "midia": [
+    "img:lugar-vice-city-24.jpg"
+   ],
+   "card": {
+    "tit": "MODO FOCO",
+    "solo": [
+     "VERMELHO · AMARELO · VERDE",
+     "inimigo · usar · dinheiro"
+    ]
+   }
+  },
+  {
+   "texto": "Entrou num lugar novo? Liga o Foco antes de tudo. Você já usou? Tem mais catorze dessas no vídeo completo do canal.",
+   "midia": [
+    "img:pessoa-lucia-caminos-13.jpg",
+    "take:gta6-t2-016"
+   ],
+   "card": {
+    "tit": "COMENTA AÍ",
+    "solo": [
+     "JÁ USOU O FOCO?",
+     "conta aqui"
+    ]
+   }
+  }
+ ],
+ "credito": "Imagens: Rockstar Games"
+}

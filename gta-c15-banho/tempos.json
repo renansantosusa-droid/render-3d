@@ -1,0 +1,297 @@
+{
+ "total": 22.96,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 3.27,
+   "texto": "O Gê Tê Á seis trouxe de volta uma coisa do San Andreas.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 0.15
+    },
+    {
+     "w": "Gê",
+     "t": 0.31
+    },
+    {
+     "w": "Tê",
+     "t": 0.55
+    },
+    {
+     "w": "Á",
+     "t": 0.75
+    },
+    {
+     "w": "seis",
+     "t": 0.87
+    },
+    {
+     "w": "trouxe",
+     "t": 1.222
+    },
+    {
+     "w": "de",
+     "t": 1.537
+    },
+    {
+     "w": "volta",
+     "t": 1.643
+    },
+    {
+     "w": "uma",
+     "t": 1.95
+    },
+    {
+     "w": "coisa",
+     "t": 2.123
+    },
+    {
+     "w": "do",
+     "t": 2.417
+    },
+    {
+     "w": "San",
+     "t": 2.53
+    },
+    {
+     "w": "Andreas",
+     "t": 2.77
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 3.42,
+   "fim": 7.5,
+   "texto": "O Jason e a Lucia precisam comer, dormir, tomar banho e malhar.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 3.42
+    },
+    {
+     "w": "Jason",
+     "t": 3.567
+    },
+    {
+     "w": "e",
+     "t": 3.94
+    },
+    {
+     "w": "a",
+     "t": 4.08
+    },
+    {
+     "w": "Lucia",
+     "t": 4.213
+    },
+    {
+     "w": "precisam",
+     "t": 4.414
+    },
+    {
+     "w": "comer",
+     "t": 4.78
+    },
+    {
+     "w": "dormir",
+     "t": 5.404
+    },
+    {
+     "w": "tomar",
+     "t": 6.033
+    },
+    {
+     "w": "banho",
+     "t": 6.38
+    },
+    {
+     "w": "e",
+     "t": 6.78
+    },
+    {
+     "w": "malhar",
+     "t": 6.92
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 7.65,
+   "fim": 14.61,
+   "texto": "No San Andreas, o CJ engordava ou ficava forte. Agora, isso mexe na vida, no fôlego e no Foco.",
+   "palavras": [
+    {
+     "w": "No",
+     "t": 7.65
+    },
+    {
+     "w": "San",
+     "t": 7.79
+    },
+    {
+     "w": "Andreas",
+     "t": 8.03
+    },
+    {
+     "w": "o",
+     "t": 8.65
+    },
+    {
+     "w": "CJ",
+     "t": 8.823
+    },
+    {
+     "w": "engordava",
+     "t": 9.13
+    },
+    {
+     "w": "ou",
+     "t": 9.837
+    },
+    {
+     "w": "ficava",
+     "t": 10.09
+    },
+    {
+     "w": "forte",
+     "t": 10.503
+    },
+    {
+     "w": "Agora",
+     "t": 11.117
+    },
+    {
+     "w": "isso",
+     "t": 11.858
+    },
+    {
+     "w": "mexe",
+     "t": 12.11
+    },
+    {
+     "w": "na",
+     "t": 12.397
+    },
+    {
+     "w": "vida",
+     "t": 12.53
+    },
+    {
+     "w": "no",
+     "t": 13.037
+    },
+    {
+     "w": "fôlego",
+     "t": 13.21
+    },
+    {
+     "w": "e",
+     "t": 13.85
+    },
+    {
+     "w": "no",
+     "t": 13.917
+    },
+    {
+     "w": "Foco",
+     "t": 14.09
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 14.76,
+   "fim": 22.36,
+   "texto": "Largou de lado, entra em missão mais fraco. Você ia cuidar deles? Tem mais catorze dessas no vídeo completo do canal.",
+   "palavras": [
+    {
+     "w": "Largou",
+     "t": 14.76
+    },
+    {
+     "w": "de",
+     "t": 15.213
+    },
+    {
+     "w": "lado",
+     "t": 15.384
+    },
+    {
+     "w": "entra",
+     "t": 15.933
+    },
+    {
+     "w": "em",
+     "t": 16.227
+    },
+    {
+     "w": "missão",
+     "t": 16.328
+    },
+    {
+     "w": "mais",
+     "t": 16.648
+    },
+    {
+     "w": "fraco",
+     "t": 16.867
+    },
+    {
+     "w": "Você",
+     "t": 17.512
+    },
+    {
+     "w": "ia",
+     "t": 18.013
+    },
+    {
+     "w": "cuidar",
+     "t": 18.168
+    },
+    {
+     "w": "deles",
+     "t": 18.52
+    },
+    {
+     "w": "Tem",
+     "t": 19.16
+    },
+    {
+     "w": "mais",
+     "t": 19.688
+    },
+    {
+     "w": "catorze",
+     "t": 19.92
+    },
+    {
+     "w": "dessas",
+     "t": 20.424
+    },
+    {
+     "w": "no",
+     "t": 20.893
+    },
+    {
+     "w": "vídeo",
+     "t": 21.04
+    },
+    {
+     "w": "completo",
+     "t": 21.293
+    },
+    {
+     "w": "do",
+     "t": 21.747
+    },
+    {
+     "w": "canal",
+     "t": 21.867
+    }
+   ]
+  }
+ ]
+}
