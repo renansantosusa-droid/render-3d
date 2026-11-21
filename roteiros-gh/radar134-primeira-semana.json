@@ -1,0 +1,127 @@
+{
+ "nome": "radar134-primeira-semana",
+ "obs": "22/11 bloco D. Gancho ganchos.md #8 (primeira semana), formato lista. Mudo. LISTA. Espelhado + cor.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2390_3.1_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.12,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3539_4.4_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.15,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3758_0.1_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.1,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": -0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2452_8.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.12,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3759_2_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.15,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3543_0.1_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.1,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O que eu faria na PRIMEIRA\nSEMANA com foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 12.5
+  },
+  {
+   "texto": "1. Escolher 1 nicho pra atender",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.5
+  },
+  {
+   "texto": "2. Testar com as minhas fotos",
+   "y": 0.68,
+   "de": 2.5,
+   "ate": 5
+  },
+  {
+   "texto": "3. Dar 3 ímãs de presente",
+   "y": 0.68,
+   "de": 5,
+   "ate": 7.5
+  },
+  {
+   "texto": "4. Postar o processo todo dia",
+   "y": 0.68,
+   "de": 7.5,
+   "ate": 10
+  },
+  {
+   "texto": "5. Abrir a agenda de pedidos",
+   "y": 0.68,
+   "de": 10,
+   "ate": 12.5
+  },
+  {
+   "texto": "Comenta LISTA 👇\npra eu te mandar o que comprar",
+   "y": 0.68,
+   "de": 12.5
+  }
+ ]
+}
