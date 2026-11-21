@@ -1,0 +1,118 @@
+{
+ "nome": "radar113-antes-de-prensar",
+ "obs": "20/11 bloco B: gancho ganchos.md #30 (antes de prensar). Mudo. LISTA. Espelhado/cor.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2888_1_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2390_1_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_4178_1.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3238_1.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2186_19_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.12,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2202_1.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.1,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 coisas que eu faço\nANTES de prensar\nQUALQUER foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 15.1
+  },
+  {
+   "texto": "1. Imprimo as fotos",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.5
+  },
+  {
+   "texto": "2. Recorto uma a uma",
+   "y": 0.68,
+   "de": 2.5,
+   "ate": 5
+  },
+  {
+   "texto": "3. Separo as peças",
+   "y": 0.68,
+   "de": 5,
+   "ate": 7.5
+  },
+  {
+   "texto": "4. Organizo as bases",
+   "y": 0.68,
+   "de": 7.5,
+   "ate": 10
+  },
+  {
+   "texto": "5. Só então eu prenso",
+   "y": 0.68,
+   "de": 10,
+   "ate": 12.5
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando o que eu uso",
+   "y": 0.68,
+   "de": 12.5
+  }
+ ]
+}

@@ -1,0 +1,151 @@
+{
+ "nome": "radar115-7-datas",
+ "obs": "20/11 bloco B: gancho ganchos.md #10 (7 datas). Mudo. 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3731_4.5_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3256_2_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2197_3_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3472_0.5_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.04,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3759_2_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3240_1.5_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3409_0_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2194_1_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.1,
+   "ancoraY": 0.4,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "7 datas do ano que mais\nvendem FOTO ÍMÃS",
+   "y": 0.05,
+   "de": 0,
+   "ate": 16.5
+  },
+  {
+   "texto": "1. Dia das Mães",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2
+  },
+  {
+   "texto": "2. Dia dos Namorados",
+   "y": 0.68,
+   "de": 2,
+   "ate": 4
+  },
+  {
+   "texto": "3. Dia dos Pais",
+   "y": 0.68,
+   "de": 4,
+   "ate": 6
+  },
+  {
+   "texto": "4. Dia das Crianças",
+   "y": 0.68,
+   "de": 6,
+   "ate": 8
+  },
+  {
+   "texto": "5. Black Friday",
+   "y": 0.68,
+   "de": 8,
+   "ate": 10
+  },
+  {
+   "texto": "6. Natal",
+   "y": 0.68,
+   "de": 10,
+   "ate": 12
+  },
+  {
+   "texto": "7. Formaturas e festas",
+   "y": 0.68,
+   "de": 12,
+   "ate": 14
+  },
+  {
+   "texto": "Comenta 2027 👇\nque eu te mando o calendário",
+   "y": 0.68,
+   "de": 14
+  }
+ ]
+}

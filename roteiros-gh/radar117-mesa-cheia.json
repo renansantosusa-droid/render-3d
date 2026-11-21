@@ -1,0 +1,30 @@
+{
+ "nome": "radar117-mesa-cheia",
+ "obs": "20/11 bloco B: gancho ganchos.md #14 (mesa cheia de pedidos). Mudo. MÉTODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4770_7_7.2.MOV",
+   "inicio": 0,
+   "duracao": 7.2,
+   "zoom": 1.5,
+   "ancoraY": 0.15,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Um dia você vai olhar pra sua\nmesa cheia de pedidos\ne lembrar desse vídeo",
+   "y": 0.04
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.72,
+   "de": 5
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "nome": "radar121-rica-v3",
+ "obs": "20/11 bloco B: compilado ganchos idx5 (Esse ano eu fiquei rica) com cenas novas. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3240_3.6_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3236_0.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2210_13.5_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2734_0.4_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Esse ano eu fiquei\nRICA 💗",
+   "y": 0.05,
+   "de": 0,
+   "ate": 5
+  },
+  {
+   "texto": "rica de lembranças\nem geladeira dos outros",
+   "y": 0.05,
+   "de": 5
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.7,
+   "de": 8.5
+  }
+ ]
+}

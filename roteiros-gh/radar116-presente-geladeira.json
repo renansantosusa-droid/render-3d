@@ -1,0 +1,29 @@
+{
+ "nome": "radar116-presente-geladeira",
+ "obs": "20/11 bloco B: vencedor presente-natal (radar66/101) com IMG_3539 (nunca usado). Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3539_0_7.2.MOV",
+   "inicio": 0,
+   "duracao": 7.2,
+   "zoom": 1.08,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Presente de Natal que\nvai direto pra GELADEIRA 🎄",
+   "y": 0.06
+  },
+  {
+   "texto": "Comenta NATAL 🎄\nque eu te mando o kit",
+   "y": 0.7,
+   "de": 4
+  }
+ ]
+}
