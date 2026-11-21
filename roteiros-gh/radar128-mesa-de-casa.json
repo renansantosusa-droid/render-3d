@@ -1,0 +1,88 @@
+{
+ "nome": "radar128-mesa-de-casa",
+ "obs": "21/11 bloco C teste anti repeticao (espelhar/cor). Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2734_0.3_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3539_3_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.25,
+   "ancoraY": 0.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2758_8_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.2,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2197_0.3_3.4.MOV",
+   "inicio": 0,
+   "duracao": 3.4,
+   "zoom": 1.12,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 coisas que aprendi\ntransformando a MESA DE CASA\nem negócio",
+   "y": 0.05,
+   "de": 0,
+   "ate": 12.4
+  },
+  {
+   "texto": "1. Tudo organizado na mesa",
+   "y": 0.68,
+   "de": 0,
+   "ate": 3
+  },
+  {
+   "texto": "2. Rotina curta, sem bagunça",
+   "y": 0.68,
+   "de": 3,
+   "ate": 6
+  },
+  {
+   "texto": "3. Cada pedido com carinho",
+   "y": 0.68,
+   "de": 6,
+   "ate": 9
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando o que eu uso",
+   "y": 0.68,
+   "de": 9
+  }
+ ]
+}
