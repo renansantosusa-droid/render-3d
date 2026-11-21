@@ -1,0 +1,127 @@
+{
+ "nome": "radar132-o-que-uso",
+ "obs": "21/11 bloco C teste anti repeticao (espelhar/cor). Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4179_1_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.12,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2663_0.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.15,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_4711_3.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.2,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": -0.02,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3232_4_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.12,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_4773_43_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.1,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3264_36_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.15,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O que eu uso em cima da mesa\npra MONTAR foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 16
+  },
+  {
+   "texto": "1. As bases brancas",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. As peças de metal",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Tesoura e fotos recortadas",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. A prensa",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. O foto ímã pronto",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}
