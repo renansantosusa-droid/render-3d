@@ -564,6 +564,7 @@ if (TEMPOS.chips) for (const [k, txt] of Object.entries(TEMPOS.chips)) if (CHIPS
 const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
 const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
 const elCta = mk("cta", '<div class="l1">🎬 HOJE, 21H<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra sentar no cinema</div>');
+if (TEMPOS.cta) elCta.innerHTML = TEMPOS.cta; // melhores momentos (ev-semana --mm): chamada do fim troca
 const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
 const DESTAQUE = new Set(["cinema", "turma", "brasil", "nove", "noite", "luz", "apaga", "telao", "liga", "poltrona", "pipoca", "assiste", "inteiro", "medo", "parte", "2", "quinze", "vinte", "pontos", "casa", "cidade", "estado", "bio"]);
 const elG = mk("grande");
