@@ -1,0 +1,48 @@
+{
+ "nome": "radar157-nao-desenhei-2027",
+ "obs": "23/11 bloco B: compilado ganchos idx9 (nao fui eu que fiz) adaptado: calendario ja vem pronto. Mudo. 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3256_0_3.6.MOV",
+   "inicio": 0,
+   "duracao": 3.6,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2202_0_4.2.MOV",
+   "inicio": 0,
+   "duracao": 4.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Esse calendário 2027\neu NÃO desenhei 😅",
+   "y": 0.05,
+   "de": 0,
+   "ate": 3.6
+  },
+  {
+   "texto": "Já vem PRONTO:\neu só TROQUEI as fotos 📸",
+   "y": 0.05,
+   "de": 3.6,
+   "ate": 7.8
+  },
+  {
+   "texto": "Comenta 2027 👇\npra receber o seu",
+   "y": 0.66,
+   "de": 4.2
+  }
+ ]
+}

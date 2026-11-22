@@ -1,0 +1,38 @@
+{
+ "nome": "radar159-seguidora-desde-comeco",
+ "obs": "23/11 bloco B: compilado ganchos idx1 (comentario de fa no balao), sem promessa. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2746_10_7.MOV",
+   "inicio": 0,
+   "duracao": 7,
+   "zoom": 1.08,
+   "ancoraY": 0.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "te sigo desde quando ela mal começava 🥹",
+   "usuario": "marcela.gsilva",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-marcelagsilva.jpg",
+   "y": 0.02
+  },
+  {
+   "texto": "POV: eu agradecendo\nquem tá comigo desde o começo 💗",
+   "y": 0.63,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.78,
+   "de": 5
+  }
+ ]
+}

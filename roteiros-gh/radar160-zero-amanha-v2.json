@@ -1,0 +1,79 @@
+{
+ "nome": "radar160-zero-amanha-v2",
+ "obs": "23/11 bloco B: gancho ganchos.md #6 (comecar do zero amanha), itens novos. Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4711_0.6_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3265_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3032_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3470_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Se eu começasse do ZERO amanhã\ncom foto ímã, faria isso",
+   "y": 0.05,
+   "de": 0,
+   "ate": 10.8
+  },
+  {
+   "texto": "1. Treinar o recorte e o gabarito",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Testar papel e pressão",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Embalar bonito desde o 1º pedido",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra calcular seu preço",
+   "y": 0.68,
+   "de": 7.8
+  }
+ ]
+}

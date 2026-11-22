@@ -1,0 +1,201 @@
+{
+ "nome": "radar155-3erros-v7",
+ "obs": "23/11 bloco B: repete radar38/98 (3 erros, 5 mil) com cenas novas e texto novo. Audio EU QUERO 21,1-66,6. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar155-3erros-v7-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3478_2_4.72.MOV",
+   "inicio": 0,
+   "duracao": 4.72,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3743_3_2.33.MOV",
+   "inicio": 0,
+   "duracao": 2.33,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_4168_12_2.75.MOV",
+   "inicio": 0,
+   "duracao": 2.75,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3262_13_4.26.MOV",
+   "inicio": 0,
+   "duracao": 4.26,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3228_12_3.26.MOV",
+   "inicio": 0,
+   "duracao": 3.26,
+   "zoom": 1.18,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3264_13_3.12.MOV",
+   "inicio": 0,
+   "duracao": 3.12,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2888_0_2.48.MOV",
+   "inicio": 0,
+   "duracao": 2.48,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_4767_0_2.69.MOV",
+   "inicio": 0,
+   "duracao": 2.69,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_2390_0_2.79.MOV",
+   "inicio": 0,
+   "duracao": 2.79,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_2452_2_3.73.MOV",
+   "inicio": 0,
+   "duracao": 3.73,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2210_3_2.96.MOV",
+   "inicio": 0,
+   "duracao": 2.96,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3262_43_3.35.MOV",
+   "inicio": 0,
+   "duracao": 3.35,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3460_0_2.45.MOV",
+   "inicio": 0,
+   "duracao": 2.45,
+   "zoom": 1.25,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3265_3_2.67.MOV",
+   "inicio": 0,
+   "duracao": 2.67,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3097_32_1.96.MOV",
+   "inicio": 0,
+   "duracao": 1.96,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 ERROS que deixam seu\nFOTO ÍMÃ SOLTANDO\n(o último é o principal)",
+   "y": 0.66,
+   "de": 0,
+   "ate": 7.05
+  },
+  {
+   "texto": "ERRO 1: apertar pouco\na ALAVANCA",
+   "y": 0.68,
+   "de": 7.05,
+   "ate": 20.44
+  },
+  {
+   "texto": "ERRO 2: PAPEL fora do padrão\n(fotográfico 115 g)",
+   "y": 0.68,
+   "de": 20.44,
+   "ate": 28.4
+  },
+  {
+   "texto": "ERRO 3: o GABARITO\nfora da medida",
+   "y": 0.68,
+   "de": 28.4,
+   "ate": 38.44
+  },
+  {
+   "texto": "Comenta GABARITO 👇\npra receber o meu",
+   "y": 0.68,
+   "de": 38.44
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "nome": "radar162-antes-de-prensar-v2",
+ "obs": "23/11 bloco B: gancho ganchos.md #30 (antes de prensar). Takes so catalogo resto 1. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4767_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_4178_0.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_2186_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.08,
+   "ancoraY": 0.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3228_0_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.18,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_4168_12_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3262_43_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 coisas que eu faço ANTES de\nprensar QUALQUER foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 16
+  },
+  {
+   "texto": "1. Recorto na medida do gabarito",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Separo as peças do ímã",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Posiciono a foto centralizada",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Encaixo e confiro a borda",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. Prenso com firmeza",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}

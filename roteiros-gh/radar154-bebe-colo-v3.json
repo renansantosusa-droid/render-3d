@@ -1,0 +1,30 @@
+{
+ "nome": "radar154-bebe-colo-v3",
+ "obs": "23/11 bloco B: variacao radar107 (1,5 mil) com IMG_7807 (outro take do sling), texto novo. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7807_0_7.4.MOV",
+   "inicio": 0,
+   "duracao": 7.4,
+   "zoom": 1.35,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Sim, dá pra fazer\nfoto ímã com\nBEBÊ NO COLO 🤍",
+   "y": 0.03
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.68,
+   "de": 5
+  }
+ ]
+}

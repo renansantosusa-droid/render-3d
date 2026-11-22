@@ -1,0 +1,64 @@
+{
+ "nome": "radar158-alavanca-v5",
+ "obs": "23/11 bloco B: repete radar100/68 (alavanca, 2 mil) cenas novas. Audio EU QUERO 28,16-41,6. GABARITO.",
+ "audio": "dados/veecriativos/audios/radar158-alavanca-v5-audio.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3743_0_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2186_26_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3483_16_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "cor": {
+    "brilho": 0.01,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3264_23_3.44.MOV",
+   "inicio": 0,
+   "duracao": 3.44,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto ímã ABRINDO\nnas pontas?",
+   "y": 0.66,
+   "de": 0,
+   "ate": 10
+  },
+  {
+   "texto": "Comenta GABARITO 👇",
+   "y": 0.68,
+   "de": 10
+  }
+ ]
+}
