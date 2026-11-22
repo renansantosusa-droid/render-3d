@@ -1,0 +1,97 @@
+{
+ "nome": "radar175-custos-esquecidos",
+ "obs": "24/11 bloco D: variacao cobrar-barato (radar108 845 views), takes novos, texto novo. Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2810_0.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2663_1.2_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "FCUE1620_18_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3757_0.4_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3470_0.5_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "4 custos que ninguém lembra\nna hora de cobrar foto ímã",
+   "y": 0.05,
+   "de": 0,
+   "ate": 13.1
+  },
+  {
+   "texto": "1. O papel e a tinta",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. As bases e o ímã",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. A embalagem",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. O seu tempo",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra calcular o preço certo",
+   "y": 0.68,
+   "de": 10.4
+  }
+ ]
+}

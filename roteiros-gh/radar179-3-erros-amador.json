@@ -1,0 +1,81 @@
+{
+ "nome": "radar179-3-erros-amador",
+ "obs": "24/11 bloco D: gancho novo 'erros que deixam com cara de amador'. Mudo. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4177_4.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3037_6.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3743_6_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3560_9.5_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 erros que deixam seu foto ímã\ncom cara de AMADOR",
+   "y": 0.05,
+   "de": 0,
+   "ate": 11.1
+  },
+  {
+   "texto": "1. Foto escura ou tremida",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Borda mal recortada",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Prensar com pressa",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.9
+  },
+  {
+   "texto": "Comenta GABARITO 👇\npra acertar a medida",
+   "y": 0.68,
+   "de": 7.9
+  }
+ ]
+}

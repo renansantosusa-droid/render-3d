@@ -1,0 +1,112 @@
+{
+ "nome": "radar176-5-coisas-1o-pedido",
+ "obs": "24/11 bloco D: variacao 5-coisas-maquina (radar105 907 views), takes novos, texto novo. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_5178_0.2_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3471_0.3_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_5172_4_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3096_2.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_4167_1.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3554_3_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 coisas que eu queria saber\nANTES do meu 1º pedido",
+   "y": 0.05,
+   "de": 0,
+   "ate": 15.7
+  },
+  {
+   "texto": "1. Faça um teste antes de vender",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Calcule o custo de cada foto ímã",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Peça a foto em boa qualidade",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Combine o prazo sem pressa",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. Embale com carinho",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\npra eu te contar o resto",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}

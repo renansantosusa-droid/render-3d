@@ -1,0 +1,82 @@
+{
+ "nome": "radar178-3-jeitos-mostrar",
+ "obs": "24/11 bloco D: gancho novo 'jeitos de mostrar o foto ima'. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3236_2_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "TNAR6378_7_2.9.MOV",
+   "inicio": 0,
+   "duracao": 2.9,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3259_1_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.25,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_2192_1.5_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 jeitos de mostrar seu foto ímã\nque fazem o cliente querer",
+   "y": 0.05,
+   "de": 0,
+   "ate": 10.8
+  },
+  {
+   "texto": "1. Mostre de pertinho",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Cole na geladeira de verdade",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.5
+  },
+  {
+   "texto": "3. Mostre a prensa funcionando",
+   "y": 0.68,
+   "de": 5.5,
+   "ate": 8.1
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando o que uso",
+   "y": 0.68,
+   "de": 8.1
+  }
+ ]
+}

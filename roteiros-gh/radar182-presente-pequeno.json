@@ -1,0 +1,57 @@
+{
+ "nome": "radar182-presente-pequeno",
+ "obs": "24/11 bloco D ULTIMO: so takes idx4k+3 (7137,3586,TNAR6378). Frase emocional. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7137_6_4.4.MOV",
+   "inicio": 0,
+   "duracao": 4.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3586_9.2_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "TNAR6378_0.8_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Presente pequeno,\nlembrança GRANDE 🤍",
+   "y": 0.64,
+   "de": 0,
+   "ate": 4.4
+  },
+  {
+   "texto": "Fica na geladeira\no ano inteiro",
+   "y": 0.64,
+   "de": 4.4,
+   "ate": 7.7
+  },
+  {
+   "texto": "Comenta LISTA 👇\npra ver como eu faço",
+   "y": 0.66,
+   "de": 7.7
+  }
+ ]
+}

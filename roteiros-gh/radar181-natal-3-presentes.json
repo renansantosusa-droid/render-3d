@@ -1,0 +1,80 @@
+{
+ "nome": "radar181-natal-3-presentes",
+ "obs": "24/11 bloco D: gancho novo natal presentes. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4768-2_1_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3472_0.4_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3256_3.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3478_9_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 presentes de Natal em foto ímã\npra você vender cedo",
+   "y": 0.05,
+   "de": 0,
+   "ate": 11.2
+  },
+  {
+   "texto": "1. Foto da família na geladeira",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Lembrancinha pra amiga secreta",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Kit de ímãs pros avós",
+   "y": 0.68,
+   "de": 5.4,
+   "ate": 8
+  },
+  {
+   "texto": "Comenta NATAL 👇\npra receber o Kit Natal",
+   "y": 0.68,
+   "de": 8
+  }
+ ]
+}
