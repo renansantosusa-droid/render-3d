@@ -1,0 +1,96 @@
+{
+ "nome": "radar171-parece-economia",
+ "obs": "24/11 bloco C: ganchos.md #23 (parecem economia). Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3256_3_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_2195_0_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  },
+  {
+   "arquivo": "IMG_3741_2_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3472_0.8_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_2316_3.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 coisas que PARECEM economia\nmas DESTROEM seu lucro",
+   "y": 0.05,
+   "de": 0,
+   "ate": 12.2
+  },
+  {
+   "texto": "1. Papel mais barato",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.4
+  },
+  {
+   "texto": "2. Gabarito improvisado",
+   "y": 0.68,
+   "de": 2.4,
+   "ate": 4.8
+  },
+  {
+   "texto": "3. Embalagem simples demais",
+   "y": 0.68,
+   "de": 4.8,
+   "ate": 7.2
+  },
+  {
+   "texto": "4. Preço baixo pra agradar",
+   "y": 0.68,
+   "de": 7.2,
+   "ate": 9.6
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra acertar o preço",
+   "y": 0.68,
+   "de": 9.6
+  }
+ ]
+}

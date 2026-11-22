@@ -1,0 +1,80 @@
+{
+ "nome": "radar165-vender-parte1",
+ "obs": "24/11 bloco C: gancho compilado idx2 serie numerada (parte 1). Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2197_0.3_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3486_4.5_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_2192_1.4_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3472_0.4_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "O que dá pra VENDER com a\nmáquina de foto ímã (parte 1)",
+   "y": 0.05,
+   "de": 0,
+   "ate": 10.6
+  },
+  {
+   "texto": "1. Lembrancinha de festa",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.7
+  },
+  {
+   "texto": "2. Presente pra mãe e pra vó",
+   "y": 0.68,
+   "de": 2.7,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Foto ímã do time do coração",
+   "y": 0.68,
+   "de": 5.4,
+   "ate": 8.1
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\npra começar a sua",
+   "y": 0.68,
+   "de": 8.1
+  }
+ ]
+}
