@@ -1,0 +1,59 @@
+{
+ "nome": "radar146-foto-celular-geladeira",
+ "obs": "23/11 bloco A: gancho ganchos.md #13 (foto esquecida no celular), texto novo, takes novos. Mudo. NATAL.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3731_2.4_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3741_1.8_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2,
+   "zoom": 1.1,
+   "ancoraY": 0.4,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_3240_3.2_3.4.MOV",
+   "inicio": 0,
+   "duracao": 3.4,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto no celular\nse perde na galeria 📱",
+   "y": 0.12,
+   "de": 0,
+   "ate": 3.2
+  },
+  {
+   "texto": "Foto ímã você vê\ntodo dia na geladeira 💗",
+   "y": 0.12,
+   "de": 3.2,
+   "ate": 6.6
+  },
+  {
+   "texto": "Presente que fica 🎄\nComenta NATAL 👇",
+   "y": 0.66,
+   "de": 6.6
+  }
+ ]
+}

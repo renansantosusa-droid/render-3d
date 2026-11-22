@@ -1,0 +1,102 @@
+{
+ "nome": "radar144-5-itens-presente",
+ "obs": "23/11 bloco A: variacao embalar-uso (radar85/91/97) com cenas/recortes novos e texto novo. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_2761_1.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2761_5.8_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_2761_17.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "FCUE1620_8_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "FCUE1620_17.2_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "5 COISAS que fazem o foto ímã\nvirar PRESENTE de verdade",
+   "y": 0.05,
+   "de": 0,
+   "ate": 16
+  },
+  {
+   "texto": "1. Papel de seda por dentro",
+   "y": 0.68,
+   "de": 0,
+   "ate": 2.6
+  },
+  {
+   "texto": "2. Saquinho bonito",
+   "y": 0.68,
+   "de": 2.6,
+   "ate": 5.2
+  },
+  {
+   "texto": "3. Cartão com a sua marca",
+   "y": 0.68,
+   "de": 5.2,
+   "ate": 7.8
+  },
+  {
+   "texto": "4. Caixa branca fechada",
+   "y": 0.68,
+   "de": 7.8,
+   "ate": 10.4
+  },
+  {
+   "texto": "5. Etiqueta pra finalizar",
+   "y": 0.68,
+   "de": 10.4,
+   "ate": 13
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.68,
+   "de": 13
+  }
+ ]
+}

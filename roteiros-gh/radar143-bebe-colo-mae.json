@@ -1,0 +1,29 @@
+{
+ "nome": "radar143-bebe-colo-mae",
+ "obs": "23/11 bloco A: variacao do radar107 (bebe no colo). IMG_7808 inicio 3.0 sem espelho, texto novo. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_3_7.MOV",
+   "inicio": 0,
+   "duracao": 7,
+   "zoom": 1.15,
+   "ancoraY": 0.3,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Mãe empreendedora também\nentrega pedido caprichado\ncom BEBÊ NO COLO 💗",
+   "y": 0.62
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.78,
+   "de": 4.6
+  }
+ ]
+}

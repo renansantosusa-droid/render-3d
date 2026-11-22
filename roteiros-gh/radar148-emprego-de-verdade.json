@@ -1,0 +1,38 @@
+{
+ "nome": "radar148-emprego-de-verdade",
+ "obs": "23/11 bloco A: gancho radar #0 (hater no balao), take IMG_7137 novo, espelhado. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7137_0.8_8.4.MOV",
+   "inicio": 0,
+   "duracao": 8.4,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.13
+   }
+  }
+ ],
+ "textos": [
+  {
+   "estilo": "comentario",
+   "texto": "vai arrumar um emprego de verdade 🙄",
+   "usuario": "ju.arantes_",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-marcelagsilva.jpg",
+   "y": 0.5
+  },
+  {
+   "texto": "POV: eu, \"desempregada\",\nvendendo foto ímã de casa 😌",
+   "y": 0.64,
+   "de": 1
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.78,
+   "de": 6
+  }
+ ]
+}

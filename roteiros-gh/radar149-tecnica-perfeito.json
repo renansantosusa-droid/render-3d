@@ -1,0 +1,32 @@
+{
+ "nome": "radar149-tecnica-perfeito",
+ "obs": "23/11 bloco A: gancho ganchos.md #17 (tecnica simples perfeitos), IMG_3265 recorte novo, espelhado. Mudo. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3265_0.3_7.MOV",
+   "inicio": 0,
+   "duracao": 7,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Técnica SIMPLES que deixa\no foto ímã PERFEITO\nde primeira",
+   "y": 0.05,
+   "de": 0,
+   "ate": 7
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.7,
+   "de": 4.5
+  }
+ ]
+}

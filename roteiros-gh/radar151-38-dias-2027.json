@@ -1,0 +1,54 @@
+{
+ "nome": "radar151-38-dias-2027",
+ "obs": "23/11 bloco A: gancho radar #4 (contagem regressiva fim do ano), IMG_3483 novo. Mudo. 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3483_10_8.MOV",
+   "inicio": 0,
+   "duracao": 8,
+   "zoom": 1.1,
+   "ancoraY": 0.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "FALTAM",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 0,
+   "ate": 1.2
+  },
+  {
+   "texto": "38 DIAS",
+   "y": 0.42,
+   "tamanho": 120,
+   "de": 1.2,
+   "ate": 2.6
+  },
+  {
+   "texto": "PRO FIM\nDO ANO",
+   "y": 0.38,
+   "tamanho": 120,
+   "de": 2.6,
+   "ate": 4.2
+  },
+  {
+   "texto": "E O CALENDÁRIO\n2027",
+   "y": 0.38,
+   "tamanho": 100,
+   "de": 4.2,
+   "ate": 5.6
+  },
+  {
+   "texto": "Já garantiu o seu\npra vender? 👇\nComenta 2027",
+   "y": 0.6,
+   "de": 5.6
+  }
+ ]
+}
