@@ -1,0 +1,32 @@
+{
+ "nome": "radar180-planos-de-deus-2027",
+ "obs": "24/11 bloco D: compilado ganchos idx11 (fe + conquista) modelo sonho radar43/89, IMG_4177 inicio novo 5. Mudo. 2027.",
+ "trechos": [
+  {
+   "arquivo": "IMG_4177_1.4_8.1.MOV",
+   "inicio": 0,
+   "duracao": 8.1,
+   "zoom": 1.25,
+   "ancoraY": 0.05,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.12
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Que 2027 seja o ano de VIVER\nos planos de Deus 🙏",
+   "y": 0.62,
+   "de": 0,
+   "ate": 4.8
+  },
+  {
+   "texto": "Comenta 2027 👇\npra receber o Calendário 2027",
+   "y": 0.64,
+   "de": 4.8
+  }
+ ]
+}
