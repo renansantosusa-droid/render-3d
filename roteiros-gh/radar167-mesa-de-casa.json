@@ -1,0 +1,85 @@
+{
+ "nome": "radar167-mesa-de-casa",
+ "obs": "24/11 bloco C: ganchos.md #15 (3 coisas mesa de casa em negocio). Mudo. SIMULADOR.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3558_0.5_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  },
+  {
+   "arquivo": "IMG_3554_0.3_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_2806_2_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3741_0.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "3 COISAS que aprendi transformando\na mesa de casa em negócio",
+   "y": 0.62,
+   "de": 0,
+   "ate": 10.6
+  },
+  {
+   "texto": "1. Comece pequeno, com o que tem",
+   "y": 0.77,
+   "de": 0,
+   "ate": 2.7
+  },
+  {
+   "texto": "2. Teste antes do primeiro pedido",
+   "y": 0.77,
+   "de": 2.7,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Capriche na embalagem",
+   "y": 0.77,
+   "de": 5.4,
+   "ate": 8.1
+  },
+  {
+   "texto": "Comenta SIMULADOR 👇\npra calcular o seu preço",
+   "y": 0.77,
+   "de": 8.1
+  }
+ ]
+}

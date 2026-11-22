@@ -1,0 +1,147 @@
+{
+ "nome": "radar169-7-erros-bobinhos",
+ "obs": "24/11 bloco C: ganchos.md #19 (7 erros bobinhos). Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3482_2_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "zoom": 1.18,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_4500_1_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_2184_2.8_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_2316_0.3_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_4711_4_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  },
+  {
+   "arquivo": "IMG_3543_0.7_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_4710_1.5_1.9.MOV",
+   "inicio": 0,
+   "duracao": 1.9,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3256_0.4_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "7 erros BOBINHOS que fazem\nqualquer iniciante perder dinheiro",
+   "y": 0.62,
+   "de": 0,
+   "ate": 15.8
+  },
+  {
+   "texto": "1. Comprar papel sem testar",
+   "y": 0.77,
+   "de": 0,
+   "ate": 1.9
+  },
+  {
+   "texto": "2. Não conferir o gabarito",
+   "y": 0.77,
+   "de": 1.9,
+   "ate": 3.8
+  },
+  {
+   "texto": "3. Prensar com pressa",
+   "y": 0.77,
+   "de": 3.8,
+   "ate": 5.7
+  },
+  {
+   "texto": "4. Cobrar só o material",
+   "y": 0.77,
+   "de": 5.7,
+   "ate": 7.6
+  },
+  {
+   "texto": "5. Embalar de qualquer jeito",
+   "y": 0.77,
+   "de": 7.6,
+   "ate": 9.5
+  },
+  {
+   "texto": "6. Usar foto de baixa qualidade",
+   "y": 0.77,
+   "de": 9.5,
+   "ate": 11.4
+  },
+  {
+   "texto": "7. Não guardar os pedidos",
+   "y": 0.77,
+   "de": 11.4,
+   "ate": 13.3
+  },
+  {
+   "texto": "Comenta MÉTODO 👇\npra evitar todos",
+   "y": 0.77,
+   "de": 13.3
+  }
+ ]
+}

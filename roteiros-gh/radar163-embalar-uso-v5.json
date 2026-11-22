@@ -1,0 +1,101 @@
+{
+ "nome": "radar163-embalar-uso-v5",
+ "obs": "24/11 bloco C: variacao embalar-uso (5-6 mil), so takes idx4k+2, texto novo. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3038_0.8_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "FCUE1620_12_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_3028_0_2.3.MOV",
+   "inicio": 0,
+   "duracao": 2.3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3035_3.6_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3038_5.5_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6,
+   "zoom": 1.2,
+   "ancoraY": 0,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Como eu EMBALO meu foto ímã\npra cliente guardar e voltar",
+   "y": 0.6,
+   "de": 0,
+   "ate": 13
+  },
+  {
+   "texto": "1. Monto a caixinha com carinho",
+   "y": 0.77,
+   "de": 0,
+   "ate": 2.7
+  },
+  {
+   "texto": "2. Encaixo cada foto ímã protegido",
+   "y": 0.77,
+   "de": 2.7,
+   "ate": 5.4
+  },
+  {
+   "texto": "3. Confiro e empilho os pedidos",
+   "y": 0.77,
+   "de": 5.4,
+   "ate": 7.7
+  },
+  {
+   "texto": "4. Fecho com a etiqueta da marca",
+   "y": 0.77,
+   "de": 7.7,
+   "ate": 10.4
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.77,
+   "de": 10.4
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "nome": "radar172-6-perguntas",
+ "obs": "24/11 bloco C: ganchos.md #31 (6 perguntas do cliente). So takes idx4k+2. Mudo. LISTA.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3560_0.5_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3253_3.2_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_4169_1.2_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  },
+  {
+   "arquivo": "IMG_3426_1.6_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  },
+  {
+   "arquivo": "IMG_3556_5_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.06,
+    "saturacao": 1.12
+   }
+  },
+  {
+   "arquivo": "IMG_4179_2_2.MOV",
+   "inicio": 0,
+   "duracao": 2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.04,
+    "contraste": 1.04,
+    "saturacao": 1.1
+   }
+  },
+  {
+   "arquivo": "IMG_3265_3.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "6 PERGUNTAS que todo cliente faz\nantes de comprar foto ímã",
+   "y": 0.62,
+   "de": 0,
+   "ate": 14.5
+  },
+  {
+   "texto": "1. Quanto tempo demora?",
+   "y": 0.77,
+   "de": 0,
+   "ate": 2
+  },
+  {
+   "texto": "2. Aceita foto do celular?",
+   "y": 0.77,
+   "de": 2,
+   "ate": 4
+  },
+  {
+   "texto": "3. Qual o tamanho?",
+   "y": 0.77,
+   "de": 4,
+   "ate": 6
+  },
+  {
+   "texto": "4. Dá pra encomendar vários?",
+   "y": 0.77,
+   "de": 6,
+   "ate": 8
+  },
+  {
+   "texto": "5. Quanto custa?",
+   "y": 0.77,
+   "de": 8,
+   "ate": 10
+  },
+  {
+   "texto": "6. Como chega até mim?",
+   "y": 0.77,
+   "de": 10,
+   "ate": 12
+  },
+  {
+   "texto": "Comenta LISTA 👇\nque eu te mando tudo",
+   "y": 0.77,
+   "de": 12
+  }
+ ]
+}

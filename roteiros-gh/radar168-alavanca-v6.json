@@ -1,0 +1,66 @@
+{
+ "nome": "radar168-alavanca-v6",
+ "obs": "24/11 bloco C: repete alavanca narrado (2 mil) cenas novas. Audio EU QUERO 28,16-41,6. GABARITO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_3042_2_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  },
+  {
+   "arquivo": "IMG_3477_5_3.5.MOV",
+   "inicio": 0,
+   "duracao": 3.5,
+   "zoom": 1.1,
+   "ancoraY": 0.2,
+   "cor": {
+    "brilho": 0.02,
+    "contraste": 1.05,
+    "saturacao": 1.14
+   }
+  },
+  {
+   "arquivo": "IMG_4772_9.5_3.MOV",
+   "inicio": 0,
+   "duracao": 3,
+   "espelhar": true,
+   "cor": {
+    "brilho": 0.05,
+    "contraste": 1.03,
+    "saturacao": 1.16
+   }
+  },
+  {
+   "arquivo": "IMG_4168_45_3.44.MOV",
+   "inicio": 0,
+   "duracao": 3.44,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.05,
+    "saturacao": 1.15
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Foto ímã com a BORDA\nLEVANTANDO?",
+   "y": 0.64,
+   "de": 0,
+   "ate": 10
+  },
+  {
+   "texto": "Comenta GABARITO 👇",
+   "y": 0.68,
+   "de": 10
+  }
+ ],
+ "audio": "dados/veecriativos/audios/radar168-alavanca-v6-audio.mp3"
+}

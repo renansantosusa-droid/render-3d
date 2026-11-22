@@ -1,0 +1,31 @@
+{
+ "nome": "radar170-bebe-no-colo-v4",
+ "obs": "24/11 bloco C: variacao bebe no colo (1,5 mil) IMG_7808 inicio novo 2.2. Mudo. METODO.",
+ "trechos": [
+  {
+   "arquivo": "IMG_7808_2.2_7.2.MOV",
+   "inicio": 0,
+   "duracao": 7.2,
+   "zoom": 1.25,
+   "ancoraY": 0,
+   "cor": {
+    "brilho": 0.03,
+    "contraste": 1.07,
+    "saturacao": 1.18
+   }
+  }
+ ],
+ "textos": [
+  {
+   "texto": "Mãe de bebê também pode ter\num negócio de FOTO ÍMÃ 🤍",
+   "y": 0.62,
+   "de": 0,
+   "ate": 7.2
+  },
+  {
+   "texto": "Leia a legenda 👇",
+   "y": 0.77,
+   "de": 5
+  }
+ ]
+}
