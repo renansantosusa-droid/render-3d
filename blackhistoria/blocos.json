@@ -16,7 +16,7 @@
      "rot": -4
     },
     {
-     "arq": "02-trabalho-clt.jpg",
+     "arq": "02-elevador-centro.jpg",
      "quando": "trabalhando",
      "x": 580,
      "y": 1060,
@@ -149,7 +149,7 @@
    "fala": "Juntei o que eu sabia com o que meu marido sabia de marketing, coloquei em prática e deu muito certo.",
    "fotos": [
     {
-     "arq": "06-producao.jpg",
+     "arq": "05-juntei.jpg",
      "quando": "Juntei",
      "x": 640,
      "y": 640,
@@ -167,12 +167,12 @@
      "rot": -4
     },
     {
-     "arq": "07-vendas.jpg",
+     "arq": "07-pratica.png",
      "quando": "coloquei",
      "x": 750,
-     "y": 1040,
+     "y": 1060,
      "w": 440,
-     "h": 520,
+     "h": 600,
      "rot": 5
     }
    ],
@@ -300,7 +300,7 @@
    "fala": "E agora eu juntei tudo o que eu tenho em um só lugar, a Black Magnética.",
    "fotos": [
     {
-     "arq": "10-vee-sorrindo.jpg",
+     "arq": "10-um-so-lugar.jpg",
      "quando": "E",
      "x": 540,
      "y": 760,
