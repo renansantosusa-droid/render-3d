@@ -110,12 +110,12 @@
    "fala": "Era uma gringa fazendo foto ímã, eu fiquei vidrada, fui atrás, procurei aprender tudo.",
    "fotos": [
     {
-     "arq": "04-primeiras-foto-ima.jpg",
+     "arq": "04-gringa.jpg",
      "quando": "gringa",
      "x": 420,
-     "y": 700,
-     "w": 580,
-     "h": 680,
+     "y": 720,
+     "w": 560,
+     "h": 760,
      "rot": -3
     },
     {
@@ -251,34 +251,43 @@
    },
    "fotos": [
     {
-     "arq": "09-liberdade.jpg",
+     "arq": "07-dep-mirian.jpg",
      "quando": "Mulheres",
      "x": 540,
-     "y": 980,
-     "w": 560,
-     "h": 620,
-     "rot": 4
+     "y": 800,
+     "w": 740,
+     "h": 489,
+     "rot": -3
+    },
+    {
+     "arq": "07-dep-libera.jpg",
+     "quando": "saindo",
+     "x": 560,
+     "y": 1150,
+     "w": 720,
+     "h": 212,
+     "rot": 3
+    },
+    {
+     "arq": "07-dep-empresas.jpg",
+     "quando": "CLT",
+     "x": 520,
+     "y": 1360,
+     "w": 720,
+     "h": 204,
+     "rot": -2
     },
     {
      "arq": "09-familia.jpg",
      "quando": "filhos",
      "x": 540,
-     "y": 960,
-     "w": 820,
-     "h": 540,
+     "y": 1000,
+     "w": 900,
+     "h": 600,
      "rot": -3
     }
    ],
-   "notas": [
-    {
-     "texto": "tchau, CLT",
-     "quando": "saindo",
-     "x": 300,
-     "y": 1340,
-     "rot": -6,
-     "tam": 70
-    }
-   ],
+   "notas": [],
    "legenda_destaque": [
     "CLT",
     "filhos",
