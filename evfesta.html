@@ -333,7 +333,10 @@ document.body.prepend(renderer.domElement);
 const cena = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, W / H, .1, 320);
 const mundo = montarCenario(cena), bonecos = montarBonecos(cena, 220);
 mundo.setPlacar(2, 1); mundo.setPlacarV(5, 4);
-const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, r = sem(12345);
+const sem = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647, SEMENTE = TEMPOS.semente || 0, r = sem(12345 + SEMENTE * 7919);
+// semente da semana (ev-semana.mjs): cada trecho de câmera gira um pouco em volta do alvo e aproxima/afasta; semente 0 = vídeo original
+const rv = sem(SEMENTE * 104729 + 3), GIROS = Array.from({ length: 16 }, () => SEMENTE ? (rv() * 2 - 1) * 0.45 : 0), ZOOMS = Array.from({ length: 16 }, () => SEMENTE ? 1 + (rv() * 2 - 1) * 0.1 : 1);
+function variaCam(i, tx, ty, tz) { if (!SEMENTE) return; const a = GIROS[i % 16], z = ZOOMS[i % 16], dx = cam.position.x - tx, dz = cam.position.z - tz; cam.position.set(tx + (dx * Math.cos(a) - dz * Math.sin(a)) * z, ty + (cam.position.y - ty) * z, tz + (dx * Math.sin(a) + dz * Math.cos(a)) * z); cam.lookAt(tx, ty, tz); }
 const GENTE = [];
 let elTag;
 for (const [a, n] of [["palco", 44], ["praca", 36], ["campinho", 14], ["pinta", 8]]) {
@@ -372,9 +375,11 @@ const CHIPS = [
   [C(5), C(6), "+20 PONTOS 👑<small>ficando 15 minutos</small>"],
   [C(6), FIM + 1, "HOJE · 21H10 🎉"],
 ];
+if (TEMPOS.chips) for (const [k, txt] of Object.entries(TEMPOS.chips)) if (CHIPS[k]) CHIPS[k][2] = txt; // chips com número real da semana
 const mk = (id, html = "") => { const d = document.createElement("div"); d.id = id; d.className = "ov"; d.innerHTML = html; document.body.appendChild(d); return d; };
 const elMarca = mk("marca", "A TURMA DO <b>BRASIL</b>"), elChip = mk("chip"), elLeg = mk("legenda");
 const elCta = mk("cta", '<div class="l1">🎉 HOJE, 21H10<br>LINK DA BIO</div><div class="l2">comenta tua cidade + estado pra entrar na festa</div>');
+if (TEMPOS.cta) elCta.innerHTML = TEMPOS.cta; // melhores momentos (ev-semana --mm): chamada do fim troca
 const PALAVRAS = TEMPOS.cenas.flatMap((c) => c.palavras);
 const DESTAQUE = new Set(["festa", "praca", "turma", "brasil", "nove", "dez", "noite", "palco", "dancar", "campinho", "bola", "loja", "roupa", "boneco", "governador", "coroa", "prefeito", "cartola", "quinze", "vinte", "pontos", "casa", "cidade", "estado", "bio"]);
 const elG = mk("grande");
@@ -385,7 +390,7 @@ function renderFrame(t) {
   const i = T.findLastIndex((s) => t >= s[0]), s = T[i], fim = T[i + 1]?.[0] ?? FIM, k = ease(clamp((t - s[0]) / (fim - s[0]), 0, 1));
   const dist = s[3] + (s[5] - s[3]) * k, alt = s[4] + (s[6] - s[4]) * k, giro = s[9] === undefined && !s[10] ? (k - .5) * 5 : 0;
   const lx = s[9] === undefined ? s[1] : s[1] + (s[9] - s[1]) * k;
-  cam.position.set(lx + giro, alt, s[2] + dist); cam.lookAt(lx, 1.5, s[2] - 2); cam.updateMatrixWorld();
+  cam.position.set(lx + giro, alt, s[2] + dist); cam.lookAt(lx, 1.5, s[2] - 2); variaCam(i, lx, 1.5, s[2] - 2); cam.updateMatrixWorld();
   cena.fog.far = s[7] ? 500 : 110; cena.fog.near = s[7] ? 300 : 48;
   const festa = prog(t, C(5), C(5) + .3); // na cena dos pontos o povo pula mais
   let n = 0;
