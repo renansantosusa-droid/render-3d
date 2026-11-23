@@ -18,27 +18,27 @@
     {
      "arq": "02-trabalho-clt.jpg",
      "quando": "trabalhando",
-     "x": 770,
-     "y": 1040,
-     "w": 420,
-     "h": 560,
-     "rot": 5
+     "x": 580,
+     "y": 1060,
+     "w": 440,
+     "h": 580,
+     "rot": 4
     }
    ],
    "notas": [
     {
      "texto": "30 semanas",
      "quando": "30",
-     "x": 300,
-     "y": 1150,
+     "x": 860,
+     "y": 520,
      "rot": -6,
      "tam": 76
     },
     {
      "texto": "+ CLT",
      "quando": "CLT",
-     "x": 880,
-     "y": 1390,
+     "x": 870,
+     "y": 1420,
      "rot": -5,
      "tam": 76
     }
