@@ -7,7 +7,7 @@
    "fala": "Eu estava grávida de 30 semanas, trabalhando CLT",
    "fotos": [
     {
-     "arq": "01-gravida.jpg",
+     "arq": "01-gravida-branco.jpg",
      "quando": "Eu",
      "x": 390,
      "y": 700,
@@ -151,10 +151,19 @@
     {
      "arq": "06-producao.jpg",
      "quando": "Juntei",
-     "x": 430,
+     "x": 640,
+     "y": 640,
+     "w": 480,
+     "h": 560,
+     "rot": 5
+    },
+    {
+     "arq": "06-casal.jpg",
+     "quando": "marido",
+     "x": 420,
      "y": 700,
-     "w": 600,
-     "h": 660,
+     "w": 580,
+     "h": 700,
      "rot": -4
     },
     {
@@ -196,7 +205,7 @@
    "fala": "Hoje eu envio pedido pro Brasil todo e ajudo centenas de pessoas a começarem também.",
    "fotos": [
     {
-     "arq": "08-pedidos.jpg",
+     "arq": "08-pedidos-rosa.jpg",
      "quando": "Hoje",
      "x": 540,
      "y": 720,
@@ -245,10 +254,19 @@
      "arq": "09-liberdade.jpg",
      "quando": "Mulheres",
      "x": 540,
-     "y": 1000,
-     "w": 620,
-     "h": 660,
-     "rot": 3
+     "y": 980,
+     "w": 560,
+     "h": 620,
+     "rot": 4
+    },
+    {
+     "arq": "09-familia.jpg",
+     "quando": "filhos",
+     "x": 540,
+     "y": 960,
+     "w": 820,
+     "h": 540,
+     "rot": -3
     }
    ],
    "notas": [
@@ -256,7 +274,7 @@
      "texto": "tchau, CLT",
      "quando": "saindo",
      "x": 300,
-     "y": 1420,
+     "y": 1340,
      "rot": -6,
      "tam": 70
     }
