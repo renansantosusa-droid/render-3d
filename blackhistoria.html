@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Caveat:wght@700&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:#f4f5f8;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// "Prazer, eu sou a Vee" × Black Magnética (22/11/2026). Estilo modelado do reel do @eder_barboosa:
+// fundo claro, fotos em polaroide com fita, títulos pretos com marca-texto amarelo, notas à mão (rosa no lugar do azul).
+// MOTOR: não precisa mexer. As cenas ficam em blackhistoria/blocos.json (1 bloco por frase).
+const W = 1080, H = 1920, g = document.getElementById("c").getContext("2d");
+const T = await (await fetch("/blackhistoria/tempos.json")).json(), CENAS = T.cenas;
+const B = (await (await fetch("/blackhistoria/blocos.json")).json()).blocos;
+const TINTA = "#15161a", AMARELO = "#ffd43b", ROSA = "#ff2e88", FUNDO = "#f4f5f8";
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const ease = (k) => 1 - Math.pow(1 - clamp(k), 3);
+const back = (k) => { k = clamp(k); const c = 1.6; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+// instante em que a palavra é dita dentro do bloco n (ocorrência k, começando em 1)
+const quando = (n, w, k = 1) => { const c = CENAS[n - 1]; const l = c.palavras.filter((p) => norm(p.w) === norm(w)); return (l[k - 1] || l[0] || { t: c.ini }).t; };
+
+// ---------- fotos (arquivo local ou url); se faltar, quadro cinza com o nome ----------
+const IMG = new Map();
+await Promise.all(B.flatMap((b) => (b.fotos || []).map((f) => new Promise((ok) => {
+  const src = f.url || `/blackhistoria/fotos/${f.arq}`, i = new Image();
+  i.onload = () => { IMG.set(src, i); ok(); }; i.onerror = () => ok(); i.src = src;
+}))));
+
+// ---------- desenho ----------
+const rr = (x, y, w, h, r, c) => { g.fillStyle = c; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+function polaroide(f, t, t0) {
+  const k = back((t - t0) / .32), a = clamp((t - t0) / .12);
+  if (a <= 0) return;
+  const src = f.url || `/blackhistoria/fotos/${f.arq}`, img = IMG.get(src);
+  const deriva = Math.sin((t - t0) * .9) * .004; // respiração leve, a foto nunca fica 100% parada
+  g.save(); g.globalAlpha = a; g.translate(f.x, f.y); g.rotate((f.rot + (1 - k) * 9) * Math.PI / 180 + deriva);
+  const s = (1.22 - .22 * k) * (1 + (t - t0) * .006); g.scale(s, s);
+  const w = f.w, h = f.h, m = 16;
+  g.shadowColor = "rgba(20,22,30,.22)"; g.shadowBlur = 38; g.shadowOffsetY = 14;
+  rr(-w / 2 - m, -h / 2 - m, w + 2 * m, h + 2 * m, 6, "#fff"); g.shadowColor = "transparent";
+  g.save(); g.beginPath(); g.rect(-w / 2, -h / 2, w, h); g.clip();
+  if (img) { const e = Math.max(w / img.width, h / img.height); g.drawImage(img, -img.width * e / 2, -img.height * e / 2, img.width * e, img.height * e); }
+  else { g.fillStyle = "#d9dbe2"; g.fillRect(-w / 2, -h / 2, w, h); txt("FOTO", 0, -24, 46, "#8b8f9c", { peso: 800 }); txt(f.arq || "", 0, 30, 30, "#8b8f9c", { peso: 600 }); }
+  g.restore();
+  // fita adesiva amarela no topo
+  g.save(); g.translate(0, -h / 2 - m); g.rotate(-.04); g.fillStyle = "rgba(255,212,59,.92)"; g.fillRect(-70, -18, 140, 36); g.restore();
+  if (f.cartao) cartao(f.cartao, -w / 2 + 10, h / 2 - 150, clamp((t - t0 - .5) / .3));
+  g.restore();
+}
+function cartao(c, x, y, a) {
+  if (a <= 0) return; g.save(); g.globalAlpha = a;
+  g.font = "800 46px 'Inter Tight'"; const w1 = g.measureText(c.nome).width;
+  rr(x, y, w1 + 40, 68, 4, "#fff"); txt(c.nome, x + 20, y + 35, 46, TINTA, { peso: 800, al: "left" });
+  g.font = "700 26px 'Inter Tight'"; const w2 = g.measureText(c.sub).width;
+  rr(x, y + 76, w2 + 28, 42, 3, AMARELO); txt(c.sub, x + 14, y + 98, 26, TINTA, { peso: 700, al: "left" });
+  g.restore();
+}
+function txt(s, x, y, tam, cor, { peso = 800, fonte = "Inter Tight", al = "center" } = {}) {
+  g.font = `${peso} ${tam}px '${fonte}'`; g.textAlign = al; g.textBaseline = "middle"; g.fillStyle = cor; g.fillText(s, x, y);
+}
+// texto com marca-texto amarelo crescendo da esquerda pra direita
+function linhaMarcada(palavras, x, y, tam, prog, { peso = 800, al = "left", esp = .26 } = {}) {
+  g.font = `${peso} ${tam}px 'Inter Tight'`; const sp = g.measureText(" ").width;
+  const larg = palavras.reduce((s, p) => s + g.measureText(p.w).width, 0) + sp * (palavras.length - 1);
+  let cx = al === "center" ? x - larg / 2 : x;
+  for (const p of palavras) {
+    const ww = g.measureText(p.w).width;
+    if (p.marca) rr(cx - 4, y + tam * esp - tam * .22, (ww + 8) * clamp(prog), tam * .36, 2, AMARELO);
+    g.textAlign = "left"; g.textBaseline = "middle"; g.fillStyle = TINTA; g.fillText(p.w, cx, y); cx += ww + sp;
+  }
+}
+function titulo(ti, t, t0) {
+  const a = clamp((t - t0) / .18); if (a <= 0) return;
+  const tam = ti.tam || 92, larg = 920, x = 80, marc = (ti.destaque || []).map(norm);
+  g.font = `800 ${tam}px 'Inter Tight'`;
+  const linhas = [[]]; let atual = 0; const sp = g.measureText(" ").width;
+  for (const w of ti.texto.split(" ")) {
+    const ww = g.measureText(w).width;
+    if (atual + ww > larg && linhas.at(-1).length) { linhas.push([]); atual = 0; }
+    linhas.at(-1).push({ w, marca: marc.includes(norm(w)) }); atual += ww + sp;
+  }
+  const al = ti.tam ? "center" : "left", y0 = (ti.y || 500) - (linhas.length - 1) * tam * .53;
+  g.save(); g.globalAlpha = a; g.translate(0, (1 - ease((t - t0) / .25)) * 30);
+  linhas.forEach((l, i) => linhaMarcada(l, al === "center" ? W / 2 : x, y0 + i * tam * 1.06, tam, (t - t0 - .25) / .35, { al }));
+  g.restore();
+}
+function nota(n, t, t0) {
+  const k = clamp((t - t0) / .45); if (k <= 0) return;
+  g.save(); g.translate(n.x, n.y); g.rotate((n.rot || -5) * Math.PI / 180);
+  g.font = `700 ${n.tam || 70}px Caveat`; const w = g.measureText(n.texto).width;
+  g.beginPath(); g.rect(-w / 2 - 10, -n.tam, (w + 20) * k, n.tam * 2); g.clip(); // "escrevendo"
+  txt(n.texto, 0, 0, n.tam || 70, ROSA, { peso: 700, fonte: "Caveat" });
+  g.restore();
+}
+function numero(nu, t, t0) {
+  const k = back((t - t0) / .35); if (k <= 0) return;
+  g.save(); g.translate(nu.x, nu.y); g.scale(.6 + .4 * k, .6 + .4 * k); g.globalAlpha = clamp((t - t0) / .12);
+  linhaMarcada([{ w: nu.texto, marca: true }], 0, 0, 120, (t - t0 - .15) / .3, { peso: 900, al: "center" });
+  if (nu.sub) txt(nu.sub, 0, 92, 38, TINTA, { peso: 700 });
+  g.restore();
+}
+function marcaBlack(m, t, t0) {
+  const k = back((t - t0) / .35); if (k <= 0) return;
+  g.save(); g.translate(W / 2, m.y); g.scale(.7 + .3 * k, .7 + .3 * k); g.globalAlpha = clamp((t - t0) / .12);
+  g.save(); g.rotate(-.03); rr(-400, -82, 800, 164, 10, TINTA);
+  txt("BLACK", -120, 4, 120, "#fff", { peso: 900 }); g.restore();
+  g.save(); g.rotate(.04); rr(70, -10, 360, 96, 8, ROSA); txt("MAGNÉTICA", 250, 40, 56, "#fff", { peso: 900 }); g.restore();
+  g.restore();
+}
+// legenda embaixo: 1 a 3 palavras por vez, as de destaque com marca-texto
+function legenda(t, b, c) {
+  const pal = c.palavras; let j = -1; for (let i = 0; i < pal.length; i++) if (t >= pal[i].t - .03) j = i;
+  if (j < 0) return;
+  const ini = Math.floor(j / 3) * 3, grupo = pal.slice(ini, Math.min(j + 1, ini + 3));
+  const marc = (b.legenda_destaque || []).map(norm);
+  linhaMarcada(grupo.map((p) => ({ w: p.w, marca: marc.includes(norm(p.w)) })), W / 2, 1560, 50, 1, { peso: 800, al: "center", esp: .2 });
+}
+
+window.renderFrame = (t) => {
+  g.fillStyle = FUNDO; g.fillRect(0, 0, W, H);
+  let i = 0; for (let k = 0; k < CENAS.length; k++) if (t >= CENAS[k].ini - .04) i = k;
+  const b = B[i], c = CENAS[i], n = i + 1;
+  if (b.titulo) titulo(b.titulo, t, quando(n, b.titulo.quando));
+  for (const f of b.fotos || []) polaroide(f, t, quando(n, f.quando, f.ocorrencia) - .06);
+  if (b.marca_black) marcaBlack(b.marca_black, t, quando(n, b.marca_black.quando));
+  if (b.numero) numero(b.numero, t, quando(n, b.numero.quando));
+  for (const no of b.notas || []) nota(no, t, quando(n, no.quando, no.ocorrencia));
+  legenda(t, b, c);
+};
+await document.fonts.load("800 40px 'Inter Tight'"); await document.fonts.load("900 40px 'Inter Tight'"); await document.fonts.load("700 40px 'Inter Tight'"); await document.fonts.load("700 40px Caveat"); await document.fonts.ready;
+window.renderFrame(0); window.pronto = true;
+</script>
+</body></html>

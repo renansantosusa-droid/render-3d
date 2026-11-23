@@ -1,0 +1,117 @@
+{
+ "_como_editar": "Cada bloco = uma frase da fala. Pra mudar uma cena, mexa só no bloco dela. 'quando' = palavra da fala em que o item entra. Fotos: arquivo em blackhistoria/fotos/ (se faltar, aparece um quadro cinza com o nome). x/y = centro (tela 1080x1920), w/h = tamanho, rot = inclinação em graus. 'destaque' = palavras com marca-texto amarelo. Notas = letra de mão rosa.",
+ "blocos": [
+  {
+   "n": 1, "inicio": 0, "fala": "Eu estava grávida de 30 semanas, trabalhando CLT",
+   "fotos": [
+    { "arq": "01-gravida.jpg", "quando": "Eu", "x": 400, "y": 720, "w": 560, "h": 720, "rot": -4 },
+    { "arq": "02-trabalho-clt.jpg", "quando": "trabalhando", "x": 760, "y": 1000, "w": 420, "h": 520, "rot": 5 }
+   ],
+   "notas": [
+    { "texto": "30 semanas", "quando": "30", "x": 330, "y": 1150, "rot": -6, "tam": 74 }
+   ],
+   "legenda_destaque": ["grávida", "30", "CLT"]
+  },
+  {
+   "n": 2, "inicio": 8, "fala": "e eu só pensava uma coisa, como ficar mais tempo com a minha filha depois que ela nascesse.",
+   "titulo": { "texto": "Como ficar mais tempo com a minha filha?", "destaque": ["filha?"], "quando": "como", "y": 420 },
+   "fotos": [
+    { "arq": "03-filha.jpg", "quando": "filha", "x": 560, "y": 1000, "w": 600, "h": 640, "rot": 3 }
+   ],
+   "legenda_destaque": ["filha"]
+  },
+  {
+   "n": 3, "inicio": 26, "fala": "Até que eu vi um vídeo e tudo mudou pra mim.",
+   "titulo": { "texto": "Até que eu vi um vídeo…", "destaque": ["vídeo…"], "quando": "Até", "y": 760 },
+   "notas": [
+    { "texto": "e tudo mudou", "quando": "tudo", "x": 620, "y": 1010, "rot": -5, "tam": 86 }
+   ],
+   "legenda_destaque": ["vídeo", "mudou"]
+  },
+  {
+   "n": 4, "inicio": 37, "fala": "Era uma gringa fazendo foto ímã, eu fiquei vidrada, fui atrás, procurei aprender tudo.",
+   "fotos": [
+    { "arq": "04-primeiras-foto-ima.jpg", "quando": "gringa", "x": 420, "y": 700, "w": 580, "h": 680, "rot": -3 },
+    { "arq": "05-aprendendo.jpg", "quando": "procurei", "x": 760, "y": 1060, "w": 420, "h": 500, "rot": 6 }
+   ],
+   "notas": [
+    { "texto": "fiquei vidrada", "quando": "vidrada,", "x": 330, "y": 1110, "rot": -5, "tam": 70 }
+   ],
+   "legenda_destaque": ["foto ímã", "vidrada"]
+  },
+  {
+   "n": 5, "inicio": 50, "fala": "Juntei o que eu sabia com o que meu marido sabia de marketing, coloquei em prática e deu muito certo.",
+   "fotos": [
+    { "arq": "06-casal.jpg", "quando": "Juntei", "x": 430, "y": 700, "w": 600, "h": 660, "rot": -4 },
+    { "arq": "07-vendas.jpg", "quando": "coloquei", "x": 750, "y": 1040, "w": 440, "h": 520, "rot": 5 }
+   ],
+   "notas": [
+    { "texto": "+ marketing", "quando": "marketing,", "x": 330, "y": 1080, "rot": -6, "tam": 70 },
+    { "texto": "deu certo!", "quando": "certo.", "x": 790, "y": 1350, "rot": -4, "tam": 70 }
+   ],
+   "legenda_destaque": ["marketing", "certo"]
+  },
+  {
+   "n": 6, "inicio": 70, "fala": "Hoje eu envio pedido pro Brasil todo e ajudo centenas de pessoas a começarem também.",
+   "fotos": [
+    { "arq": "08-pedidos.jpg", "quando": "Hoje", "x": 540, "y": 720, "w": 640, "h": 720, "rot": -3 }
+  ],
+   "notas": [
+    { "texto": "pro Brasil todo", "quando": "Brasil", "x": 390, "y": 1130, "rot": -5, "tam": 70 }
+   ],
+   "numero": { "texto": "centenas", "sub": "de pessoas começando", "quando": "centenas", "x": 720, "y": 1200 },
+   "legenda_destaque": ["Brasil", "centenas"]
+  },
+  {
+   "n": 7, "inicio": 86, "fala": "Mulheres saindo da CLT, tendo mais tempo pra curtir os filhos e conquistando a liberdade financeira e geográfica.",
+   "titulo": { "texto": "Liberdade financeira e geográfica", "destaque": ["financeira", "geográfica"], "quando": "liberdade", "y": 400 },
+   "fotos": [
+    { "arq": "09-familia.jpg", "quando": "Mulheres", "x": 540, "y": 1000, "w": 620, "h": 660, "rot": 3 }
+   ],
+   "notas": [
+    { "texto": "tchau, CLT", "quando": "saindo", "x": 300, "y": 1350, "rot": -6, "tam": 70 }
+   ],
+   "legenda_destaque": ["CLT", "filhos", "liberdade"]
+  },
+  {
+   "n": 8, "inicio": 104, "fala": "E agora eu juntei tudo o que eu tenho em um só lugar, a Black Magnética.",
+   "fotos": [
+    { "arq": "10-vee-sorrindo.jpg", "quando": "E", "x": 540, "y": 760, "w": 600, "h": 720, "rot": -2,
+      "cartao": { "nome": "Verônica", "sub": "Vee Criativos · foto ímã" } }
+   ],
+   "marca_black": { "quando": "Black", "y": 1280 },
+   "legenda_destaque": ["Black", "Magnética"]
+  },
+  {
+   "n": 9, "inicio": 120, "fala": "Tenho um curso desde o começo pra você produzir, divulgar e vender e todas as ferramentas que você precisa pra produzir.",
+   "fotos": [
+    { "url": "https://veecriativos.com/diagnostico/calendario-2027/img/capa-rm.webp", "quando": "curso", "x": 420, "y": 700, "w": 520, "h": 620, "rot": -4 },
+    { "url": "https://veecriativos.com/diagnostico/calendario-2027/img/capa-molde.webp", "quando": "ferramentas", "x": 780, "y": 820, "w": 380, "h": 460, "rot": 6 },
+    { "url": "https://veecriativos.com/diagnostico/calendario-2027/img/capa-bottons.webp", "quando": "precisa", "x": 300, "y": 1120, "w": 360, "h": 430, "rot": -7 },
+    { "url": "https://veecriativos.com/diagnostico/calendario-2027/img/bm-lacre.png", "quando": "pra", "ocorrencia": 2, "x": 760, "y": 1180, "w": 380, "h": 440, "rot": 4 }
+   ],
+   "notas": [
+    { "texto": "do zero", "quando": "começo", "x": 300, "y": 360, "rot": -6, "tam": 74 },
+    { "texto": "tudo pronto", "quando": "ferramentas", "x": 800, "y": 540, "rot": 5, "tam": 66 }
+   ],
+   "legenda_destaque": ["curso", "produzir", "divulgar", "vender", "ferramentas"]
+  },
+  {
+   "n": 10, "inicio": 141, "fala": "E a Black está nos últimos dias. O fim do ano é a melhor época pra vender personalizado. É agora.",
+   "titulo": { "texto": "A Black está nos últimos dias", "destaque": ["últimos", "dias"], "quando": "E", "y": 560 },
+   "notas": [
+    { "texto": "fim de ano = melhor época", "quando": "fim", "x": 540, "y": 900, "rot": -4, "tam": 68 }
+   ],
+   "numero": { "texto": "É agora.", "sub": "", "quando": "agora.", "x": 540, "y": 1150 },
+   "legenda_destaque": ["últimos", "melhor", "agora"]
+  },
+  {
+   "n": 11, "inicio": 161, "fala": "Comenta a Black que eu te mando o link.",
+   "titulo": { "texto": "Comenta BLACK", "destaque": ["BLACK"], "quando": "Comenta", "y": 760, "tam": 150 },
+   "notas": [
+    { "texto": "que eu te mando o link ♡", "quando": "mando", "x": 540, "y": 1000, "rot": -4, "tam": 70 }
+   ],
+   "legenda_destaque": ["Black", "link"]
+  }
+ ]
+}

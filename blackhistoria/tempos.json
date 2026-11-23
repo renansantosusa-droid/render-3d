@@ -1,0 +1,773 @@
+{
+ "total": 57.67,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0,
+   "fim": 4,
+   "texto": "Eu estava grávida de 30 semanas, trabalhando CLT",
+   "palavras": [
+    {
+     "w": "Eu",
+     "t": 0.09
+    },
+    {
+     "w": "estava",
+     "t": 0.23
+    },
+    {
+     "w": "grávida",
+     "t": 0.6
+    },
+    {
+     "w": "de",
+     "t": 1.12
+    },
+    {
+     "w": "30",
+     "t": 1.27
+    },
+    {
+     "w": "semanas,",
+     "t": 1.76
+    },
+    {
+     "w": "trabalhando",
+     "t": 2.51
+    },
+    {
+     "w": "CLT",
+     "t": 3.67
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 4,
+   "fim": 9.72,
+   "texto": "e eu só pensava uma coisa, como ficar mais tempo com a minha filha depois que ela nascesse.",
+   "palavras": [
+    {
+     "w": "e",
+     "t": 4
+    },
+    {
+     "w": "eu",
+     "t": 4.16
+    },
+    {
+     "w": "só",
+     "t": 4.6
+    },
+    {
+     "w": "pensava",
+     "t": 4.71
+    },
+    {
+     "w": "uma",
+     "t": 5.08
+    },
+    {
+     "w": "coisa,",
+     "t": 5.2
+    },
+    {
+     "w": "como",
+     "t": 6.07
+    },
+    {
+     "w": "ficar",
+     "t": 6.72
+    },
+    {
+     "w": "mais",
+     "t": 7.05
+    },
+    {
+     "w": "tempo",
+     "t": 7.32
+    },
+    {
+     "w": "com",
+     "t": 7.82
+    },
+    {
+     "w": "a",
+     "t": 7.9
+    },
+    {
+     "w": "minha",
+     "t": 7.91
+    },
+    {
+     "w": "filha",
+     "t": 7.98
+    },
+    {
+     "w": "depois",
+     "t": 8.06
+    },
+    {
+     "w": "que",
+     "t": 8.76
+    },
+    {
+     "w": "ela",
+     "t": 8.94
+    },
+    {
+     "w": "nascesse.",
+     "t": 9.18
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 9.72,
+   "fim": 12.44,
+   "texto": "Até que eu vi um vídeo e tudo mudou pra mim.",
+   "palavras": [
+    {
+     "w": "Até",
+     "t": 9.72
+    },
+    {
+     "w": "que",
+     "t": 9.95
+    },
+    {
+     "w": "eu",
+     "t": 10.15
+    },
+    {
+     "w": "vi",
+     "t": 10.31
+    },
+    {
+     "w": "um",
+     "t": 10.46
+    },
+    {
+     "w": "vídeo",
+     "t": 10.61
+    },
+    {
+     "w": "e",
+     "t": 10.97
+    },
+    {
+     "w": "tudo",
+     "t": 11.05
+    },
+    {
+     "w": "mudou",
+     "t": 11.35
+    },
+    {
+     "w": "pra",
+     "t": 11.72
+    },
+    {
+     "w": "mim.",
+     "t": 11.94
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 12.44,
+   "fim": 18.34,
+   "texto": "Era uma gringa fazendo foto ímã, eu fiquei vidrada, fui atrás, procurei aprender tudo.",
+   "palavras": [
+    {
+     "w": "Era",
+     "t": 12.44
+    },
+    {
+     "w": "uma",
+     "t": 12.67
+    },
+    {
+     "w": "gringa",
+     "t": 12.93
+    },
+    {
+     "w": "fazendo",
+     "t": 13.38
+    },
+    {
+     "w": "foto ímã,",
+     "t": 13.9
+    },
+    {
+     "w": "eu",
+     "t": 14.64
+    },
+    {
+     "w": "fiquei",
+     "t": 14.79
+    },
+    {
+     "w": "vidrada,",
+     "t": 15.24
+    },
+    {
+     "w": "fui",
+     "t": 16.16
+    },
+    {
+     "w": "atrás,",
+     "t": 16.38
+    },
+    {
+     "w": "procurei",
+     "t": 17.04
+    },
+    {
+     "w": "aprender",
+     "t": 17.54
+    },
+    {
+     "w": "tudo.",
+     "t": 17.98
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 18.34,
+   "fim": 24.73,
+   "texto": "Juntei o que eu sabia com o que meu marido sabia de marketing, coloquei em prática e deu muito certo.",
+   "palavras": [
+    {
+     "w": "Juntei",
+     "t": 18.34
+    },
+    {
+     "w": "o",
+     "t": 18.85
+    },
+    {
+     "w": "que",
+     "t": 18.91
+    },
+    {
+     "w": "eu",
+     "t": 19.07
+    },
+    {
+     "w": "sabia",
+     "t": 19.22
+    },
+    {
+     "w": "com",
+     "t": 19.59
+    },
+    {
+     "w": "o",
+     "t": 19.82
+    },
+    {
+     "w": "que",
+     "t": 19.89
+    },
+    {
+     "w": "meu",
+     "t": 20.11
+    },
+    {
+     "w": "marido",
+     "t": 20.33
+    },
+    {
+     "w": "sabia",
+     "t": 20.78
+    },
+    {
+     "w": "de",
+     "t": 21.15
+    },
+    {
+     "w": "marketing,",
+     "t": 21.3
+    },
+    {
+     "w": "coloquei",
+     "t": 21.82
+    },
+    {
+     "w": "em",
+     "t": 22.4
+    },
+    {
+     "w": "prática",
+     "t": 22.56
+    },
+    {
+     "w": "e",
+     "t": 23.09
+    },
+    {
+     "w": "deu",
+     "t": 23.16
+    },
+    {
+     "w": "muito",
+     "t": 23.37
+    },
+    {
+     "w": "certo.",
+     "t": 23.74
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 24.73,
+   "fim": 30.66,
+   "texto": "Hoje eu envio o pedido pro Brasil todo e ajudo centenas de pessoas a começarem também.",
+   "palavras": [
+    {
+     "w": "Hoje",
+     "t": 24.73
+    },
+    {
+     "w": "eu",
+     "t": 24.84
+    },
+    {
+     "w": "envio",
+     "t": 25.07
+    },
+    {
+     "w": "o",
+     "t": 25.42
+    },
+    {
+     "w": "pedido",
+     "t": 25.5
+    },
+    {
+     "w": "pro",
+     "t": 26
+    },
+    {
+     "w": "Brasil",
+     "t": 26.26
+    },
+    {
+     "w": "todo",
+     "t": 26.92
+    },
+    {
+     "w": "e",
+     "t": 27.1
+    },
+    {
+     "w": "ajudo",
+     "t": 27.18
+    },
+    {
+     "w": "centenas",
+     "t": 27.71
+    },
+    {
+     "w": "de",
+     "t": 28.4
+    },
+    {
+     "w": "pessoas",
+     "t": 28.44
+    },
+    {
+     "w": "a",
+     "t": 29.07
+    },
+    {
+     "w": "começarem",
+     "t": 29.11
+    },
+    {
+     "w": "também.",
+     "t": 29.94
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 30.66,
+   "fim": 37,
+   "texto": "Mulheres saindo da CLT tendo mais tempo pra curtir os filhos e conquistando a liberdade financeira e geográfica.",
+   "palavras": [
+    {
+     "w": "Mulheres",
+     "t": 30.66
+    },
+    {
+     "w": "saindo",
+     "t": 31.21
+    },
+    {
+     "w": "da",
+     "t": 31.62
+    },
+    {
+     "w": "CLT",
+     "t": 31.76
+    },
+    {
+     "w": "tendo",
+     "t": 32
+    },
+    {
+     "w": "mais",
+     "t": 32.32
+    },
+    {
+     "w": "tempo",
+     "t": 32.54
+    },
+    {
+     "w": "pra",
+     "t": 32.86
+    },
+    {
+     "w": "curtir",
+     "t": 33.04
+    },
+    {
+     "w": "os",
+     "t": 33.4
+    },
+    {
+     "w": "filhos",
+     "t": 33.52
+    },
+    {
+     "w": "e",
+     "t": 33.9
+    },
+    {
+     "w": "conquistando",
+     "t": 34.01
+    },
+    {
+     "w": "a",
+     "t": 34.73
+    },
+    {
+     "w": "liberdade",
+     "t": 34.87
+    },
+    {
+     "w": "financeira",
+     "t": 35.37
+    },
+    {
+     "w": "e",
+     "t": 36.02
+    },
+    {
+     "w": "geográfica.",
+     "t": 36.08
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 37,
+   "fim": 41.2,
+   "texto": "E agora eu juntei tudo o que eu tenho em um só lugar, a Black Magnética.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 37
+    },
+    {
+     "w": "agora",
+     "t": 37.23
+    },
+    {
+     "w": "eu",
+     "t": 37.42
+    },
+    {
+     "w": "juntei",
+     "t": 37.57
+    },
+    {
+     "w": "tudo",
+     "t": 37.98
+    },
+    {
+     "w": "o",
+     "t": 38.25
+    },
+    {
+     "w": "que",
+     "t": 38.33
+    },
+    {
+     "w": "eu",
+     "t": 38.54
+    },
+    {
+     "w": "tenho",
+     "t": 38.68
+    },
+    {
+     "w": "em",
+     "t": 39.03
+    },
+    {
+     "w": "um",
+     "t": 39.17
+    },
+    {
+     "w": "só",
+     "t": 39.42
+    },
+    {
+     "w": "lugar,",
+     "t": 39.45
+    },
+    {
+     "w": "a",
+     "t": 39.94
+    },
+    {
+     "w": "Black",
+     "t": 40.01
+    },
+    {
+     "w": "Magnética.",
+     "t": 40.36
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "ini": 41.2,
+   "fim": 49.22,
+   "texto": "Tenho um curso desde o começo pra você produzir, divulgar e vender e todas as ferramentas que você precisa pra produzir.",
+   "palavras": [
+    {
+     "w": "Tenho",
+     "t": 41.2
+    },
+    {
+     "w": "um",
+     "t": 41.58
+    },
+    {
+     "w": "curso",
+     "t": 41.75
+    },
+    {
+     "w": "desde",
+     "t": 42.12
+    },
+    {
+     "w": "o",
+     "t": 42.51
+    },
+    {
+     "w": "começo",
+     "t": 42.59
+    },
+    {
+     "w": "pra",
+     "t": 43.06
+    },
+    {
+     "w": "você",
+     "t": 43.34
+    },
+    {
+     "w": "produzir,",
+     "t": 43.6
+    },
+    {
+     "w": "divulgar",
+     "t": 44.37
+    },
+    {
+     "w": "e",
+     "t": 44.99
+    },
+    {
+     "w": "vender",
+     "t": 45.07
+    },
+    {
+     "w": "e",
+     "t": 45.66
+    },
+    {
+     "w": "todas",
+     "t": 45.74
+    },
+    {
+     "w": "as",
+     "t": 46.14
+    },
+    {
+     "w": "ferramentas",
+     "t": 46.3
+    },
+    {
+     "w": "que",
+     "t": 47.18
+    },
+    {
+     "w": "você",
+     "t": 47.42
+    },
+    {
+     "w": "precisa",
+     "t": 47.82
+    },
+    {
+     "w": "pra",
+     "t": 48.39
+    },
+    {
+     "w": "produzir.",
+     "t": 48.54
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "ini": 49.22,
+   "fim": 55.56,
+   "texto": "E a Black está nos últimos dias. O fim do ano é a melhor época pra vender personalizado. É agora.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 49.22
+    },
+    {
+     "w": "a",
+     "t": 49.31
+    },
+    {
+     "w": "Black",
+     "t": 49.45
+    },
+    {
+     "w": "está",
+     "t": 49.79
+    },
+    {
+     "w": "nos",
+     "t": 50.02
+    },
+    {
+     "w": "últimos",
+     "t": 50.24
+    },
+    {
+     "w": "dias.",
+     "t": 50.76
+    },
+    {
+     "w": "O",
+     "t": 51.27
+    },
+    {
+     "w": "fim",
+     "t": 51.34
+    },
+    {
+     "w": "do",
+     "t": 51.64
+    },
+    {
+     "w": "ano",
+     "t": 51.7
+    },
+    {
+     "w": "é",
+     "t": 51.92
+    },
+    {
+     "w": "a",
+     "t": 51.99
+    },
+    {
+     "w": "melhor",
+     "t": 52.06
+    },
+    {
+     "w": "época",
+     "t": 52.5
+    },
+    {
+     "w": "pra",
+     "t": 52.88
+    },
+    {
+     "w": "vender",
+     "t": 53.12
+    },
+    {
+     "w": "personalizado.",
+     "t": 53.56
+    },
+    {
+     "w": "É",
+     "t": 54.82
+    },
+    {
+     "w": "agora.",
+     "t": 54.92
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "ini": 55.56,
+   "fim": 57.67,
+   "texto": "Comenta a Black que eu te mando o link.",
+   "palavras": [
+    {
+     "w": "Comenta",
+     "t": 55.56
+    },
+    {
+     "w": "a",
+     "t": 55.94
+    },
+    {
+     "w": "Black",
+     "t": 56
+    },
+    {
+     "w": "que",
+     "t": 56.36
+    },
+    {
+     "w": "eu",
+     "t": 56.59
+    },
+    {
+     "w": "te",
+     "t": 56.71
+    },
+    {
+     "w": "mando",
+     "t": 56.85
+    },
+    {
+     "w": "o",
+     "t": 57.2
+    },
+    {
+     "w": "link.",
+     "t": 57.27
+    }
+   ]
+  }
+ ]
+}
