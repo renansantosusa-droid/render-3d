@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("altofalante", { fundo: 0x2a2f4a, seed: 9201 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, pulse, entre, C, F, P, T, V } = K;
+const PI = Math.PI;
+const cyl = (r, h, n = 48) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(40, 40), mat(0x3a4060), 0, 0, 0).rotation.x = -PI / 2;
+function spk(esc, x, z = 0) {
+  const g = grupo(x, 0, z); g.scale.setScalar(esc);
+  const ima = add(cyl(1.3, .7), mat(0x3a3d44, { metalness: .5 }), 0, .35, 0, g);
+  const polo = add(cyl(.35, 1.1), mat(0xb0b4bb, { metalness: .7 }), 0, .8, 0, g);
+  const cesto = add(cyl(1.95, .08), mat(0x20242a), 0, .75, 0, g);
+  const mov = grupo(0, 0, 0, g);
+  const cone = add(new THREE.CylinderGeometry(1.8, .55, 1.3, 48, 1, true), new THREE.MeshStandardMaterial({ color: 0xf2efe6, roughness: .8, side: THREE.DoubleSide }), 0, 1.7, 0, mov);
+  const bob = add(cyl(.5, .55), mat(0xd08a3a, { metalness: .6, roughness: .35 }), 0, 1.05, 0, mov);
+  const aranha = add(cyl(1.0, .05), mat(0x8a6a3a), 0, 1.3, 0, mov); aranha.visible = false;
+  const borr = add(new THREE.TorusGeometry(1.85, .1, 8, 48), mat(0x2a2a2a), 0, 2.35, 0, mov); borr.rotation.x = PI / 2; borr.visible = false;
+  const tampa = add(new THREE.SphereGeometry(.5, 20, 12, 0, PI * 2, 0, PI / 2), mat(0x20242a), 0, 1.15, 0, mov);
+  const luz = new THREE.PointLight(0xffaa44, 0, 5); luz.position.set(0, 1.2, 0); mov.add(luz);
+  return { g, mov, ima, bob, aranha, borr, luz };
+}
+const S = spk(.78, 0);
+const W = spk(.6, -1.0), Tw = spk(.3, 1.2, .5); Tw.g.visible = W.g.visible = false;
+// ondas
+const ondas = Array.from({ length: 6 }, () => { const m = new THREE.Mesh(new THREE.RingGeometry(.9, 1, 48), new THREE.MeshBasicMaterial({ color: 0x8ae0ff, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })); m.rotation.x = -PI / 2; K.scene.add(m); return m; });
+function ondasAtualiza(t, on, f, x, y, tam) { ondas.forEach((m, i) => { const k = ((t * f + i / ondas.length) % 1); m.visible = on; m.position.set(x, y + k * 3.2, 0); m.scale.setScalar(tam * (.4 + k * 1.4)); m.material.opacity = .8 * (1 - k); }); }
+// caixa
+const caixa = add(new THREE.BoxGeometry(4.2, 4.4, 3), vidro(.28, 0xcfd8ff), 0, -.6, 0); caixa.visible = false; caixa.position.y = -.4;
+const caixaMad = add(new THREE.BoxGeometry(4.0, 4.2, 2.8), mat(0x7a5a3a), 0, -2.6, 0, K.scene); caixaMad.visible = false;
+// mao / palma
+const palma = sprite(0xffe08a); palma.position.set(0, 1.8, 0);
+K.camera_({
+  wide: [V(0, 5.6, 11), V(0, 2.2, 0)],
+  topo: [V(0, 4.6, 8.5), V(0, 2.3, 0)],
+  duo: [V(0, 5.4, 11), V(0, 1.9, 0)],
+  fim: [V(0, 7.3, 12), V(0, 1.6, 0)],
+}, [[0, "wide"], [C(3), "wide"], [C(4), "duo"], [C(5), "topo"], [C(6), "fim"], [T, "fim"]]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const tc = P(1, "cone") - .2;
+  const quad = em(C(1), tc);
+  S.g.visible = t >= tc && !em(C(4) + .05, C(5) - .01) ? true : (t >= tc && t < C(4));
+  S.g.visible = t >= tc && (t < C(4) || t >= C(5));
+  S.g.scale.setScalar(.78 * (.02 + .98 * prog(t, tc, tc + .5)));
+  // palma: um pulso
+  const tp = P(1, "palma");
+  palma.scale.setScalar(.01); palma.material.opacity = 0;
+  if (em(tp - .1, tc)) { palma.scale.setScalar(2 + pulse(t, tp, .6) * 3); palma.material.opacity = pulse(t, tp, .6); }
+  // ima e bobina cores
+  const tI = P(2, "ímã") - .2;
+  S.ima.visible = t >= tI; S.bob.visible = t >= tI || true;
+  const ampT = prog(t, P(3, "vai") - .1, P(3, "vai") + 1.0);
+  const f = 2.2;
+  const s = Math.sin(t * f * 2 * PI);
+  const amp = ampT * (t < C(4) ? .25 : .2);
+  S.mov.position.y = s * amp;
+  S.bob.material.emissive.setHex(ampT > 0 ? (s > 0 ? 0xc02020 : 0x2040c0) : 0x000000);
+  S.luz.color.setHex(s > 0 ? 0xff4040 : 0x4060ff); S.luz.intensity = ampT * 8 * Math.abs(s);
+  S.aranha.visible = t >= P(5, "aranha") - .2; S.borr.visible = t >= P(5, "borracha") - .2;
+  // cena 4: woofer e tweeter
+  const em4 = em(C(4), C(5) - .01);
+  W.g.visible = Tw.g.visible = em4;
+  const kk = prog(t, C(4), C(4) + .6);
+  W.g.scale.setScalar(.6 * kk + .001); Tw.g.scale.setScalar(.3 * kk + .001);
+  W.mov.position.y = Math.sin(t * 2 * PI * 1.8) * .22; Tw.mov.position.y = Math.sin(t * 2 * PI * 8) * .08;
+  // caixa
+  const kc = prog(t, P(6, "caixa") - .2, P(6, "caixa") + .6);
+  caixa.visible = t >= P(6, "caixa") - .2 && t < C(7); caixa.scale.set(1, kc + .01, 1); caixa.position.y = -.4;
+  // ondas
+  const ligado = t >= P(3, "vai");
+  if (em4) ondasAtualiza(t, true, 1.4, 0, 2.2, 1.1);
+  else if (em(C(2) - 20, tc) && false) {}
+  else ondasAtualiza(t, ligado && t >= tc, 2.2, 0, 2.5, 1.4);
+  if (t < P(3, "vai") && !em4) { ondasAtualiza(t, em(tp, tp + 1.8), .6, 0, 1.8, 1.4); }
+  K.cartoes(t, [
+    [P(1, "palma") - .2, P(1, "cone") - .2, "PALMA: UMA BATIDA SÓ", "#ffd23a"],
+    [P(1, "cone") - .2, F(1), "CONE DE PAPEL BALANÇA O AR", "#ffffff"],
+    [P(2, "ímã") - .2, P(2, "bobina") - .2, "ÍMÃ FIXO", "#ff6a6a"],
+    [P(2, "bobina") - .2, F(2), "BOBINA PRESA NO CONE", "#ffa84a"],
+    [P(3, "vai") - .2, P(3, "puxada") - .2, "CORRENTE VAI: EMPURRA", "#ff6a6a"],
+    [P(3, "puxada") - .2, F(3), "CORRENTE VOLTA: PUXA", "#6a8aff"],
+    [C(4), P(4, "grave") - .2, "RÁPIDO = AGUDO", "#40e0ff"],
+    [P(4, "grave") - .2, P(4, "woofer") - .2, "GRAVE = CONE GRANDE E LENTO", "#ffffff"],
+    [P(4, "woofer") - .2, F(4), "WOOFER E TWEETER", "#ffd23a"],
+    [P(5, "borracha") - .2, P(5, "aranha") - .2, "BORRACHA DOBRADA", "#ffffff"],
+    [P(5, "aranha") - .2, F(5), "ARANHA: MOLA DE PANO", "#ffd23a"],
+    [P(6, "ar") - .2, P(6, "caixa") - .2, "O AR DE TRÁS ANULA O DA FRENTE", "#ff6a6a"],
+    [P(6, "caixa") - .2, F(6), "A CAIXA FECHA O SOM DE TRÁS", "#ffffff"],
+    [P(7, "construiu") - .2, T, "ALTO-FALANTE", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
