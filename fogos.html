@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("fogos", { fundo: 0x0b1030, seed: 7301 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, lin, pulse, entre, C, F, P, T, V, rnd } = K;
+const PI = Math.PI;
+const cyl = (r, h, n = 32) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(80, 80), mat(0x1a2236), 0, 0, 0).rotation.x = -PI / 2;
+// cidade ao fundo
+for (let i = 0; i < 14; i++) add(new THREE.BoxGeometry(1.2 + rnd() * 1.2, 1 + rnd() * 3, 1), mat(0x141a2e), -9 + i * 1.4, .8 + 0, -6 - rnd() * 3);
+// estrelas
+for (let i = 0; i < 60; i++) { const s = sprite(0xffffff); s.position.set((rnd() - .5) * 30, 3 + rnd() * 16, -10); s.scale.setScalar(.12); s.material.opacity = .5 + rnd() * .5; }
+// lancador
+const tubo = add(cyl(.62, 2.4), vidro(.3, 0xb8c8ff), 0, 1.2, 0);
+const carga = add(cyl(.46, .5), mat(0x2a2a2a), 0, .3, 0); carga.visible = false;
+const pavio = add(cyl(.03, 1.0, 6), mat(0xe0a040), .75, .2, 0); pavio.rotation.z = .4; pavio.visible = false;
+const fagulha = sprite(0xffa030); fagulha.position.set(1.0, .55, 0);
+// bola (casca)
+const bola = grupo(0, 1.6, 0); bola.visible = false;
+const papel = add(new THREE.SphereGeometry(.55, 24, 18), mat(0xc83a3a), 0, 0, 0, bola);
+const casca = add(new THREE.SphereGeometry(.7, 24, 18), vidro(.28, 0xffffff), 0, 0, 0, bola); casca.visible = false;
+const miolo = add(cyl(.12, .5), mat(0x333333), 0, 0, 0, bola); miolo.visible = false;
+const cores = [0xff3030, 0x30e060, 0x3a7aff, 0xffd030];
+const bolinhas = Array.from({ length: 16 }, (_, i) => { const a = i / 16 * PI * 2, r = .4; const b = add(new THREE.SphereGeometry(.07, 10, 8), new THREE.MeshBasicMaterial({ color: cores[i % 4] }), Math.cos(a) * r, Math.sin(a * 2) * .1 + (i % 3 - 1) * .15, Math.sin(a) * r, bola); b.visible = false; return b; });
+const pavioL = add(cyl(.025, .9, 6), mat(0xe0a040), .45, -.35, 0, bola); pavioL.visible = false; pavioL.rotation.z = -.6;
+const fagL = sprite(0xffa030, bola); fagL.position.set(.7, -.7, 0);
+// rastro
+const rastro = Array.from({ length: 10 }, () => sprite(0xffb050));
+// bursts
+function burst(n, dirs, corFn, R, c) {
+  const st = Array.from({ length: n }, (_, i) => ({ s: sprite(corFn(i)), d: dirs(i) }));
+  return { c, R, st, up(t, t0) { const k = t - t0; st.forEach((e) => { if (k < 0 || k > 3.4) { e.s.material.opacity = 0; return; } const r = R * (1 - Math.exp(-3 * k)); e.s.position.set(c.x + e.d.x * r, c.y + e.d.y * r - .3 * k * k, c.z + e.d.z * r); e.s.scale.setScalar(.45 * (1 - k / 4)); e.s.material.opacity = k < .15 ? 1 : Math.max(0, 1 - (k - .15) / 2.6); }); } };
+}
+const esf = (i) => { const u = rnd() * 2 - 1, a = rnd() * PI * 2, q = Math.sqrt(1 - u * u); return V(q * Math.cos(a), u, q * Math.sin(a)); };
+const heart = (i, n = 70) => { const a = i / n * PI * 2; return V(16 * Math.pow(Math.sin(a), 3) / 16, (13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a)) / 16, 0); };
+const topC = V(0, 9.5, 0);
+const bMain = burst(70, esf, () => 0xffe08a, 3.4, topC);
+const bCor = [[0xff3030, -2.6, 11], [0x30e060, 2.6, 11.5], [0x3a7aff, -2.4, 7.2], [0xffd030, 2.4, 7.5]].map(([c, x, y]) => burst(40, esf, () => c, 2.0, V(x, y, 0)));
+const bEsf = burst(110, esf, (i) => cores[i % 4], 3.8, V(0, 9, 0));
+const bCor2 = burst(70, (i) => heart(i), () => 0xff4a7a, 4.2, V(0, 9, 0));
+const flash = sprite(0xffffff); flash.position.copy(topC);
+const bum = new THREE.Sprite(new THREE.SpriteMaterial({ map: rotulo("BUM!", "#ffd23a", { w: 512, h: 256, tam: 190 }), transparent: true, opacity: 0, depthTest: false })); bum.position.set(0, 4.5, 2); bum.scale.set(5, 2.5, 1); K.scene.add(bum);
+const onda = new THREE.Mesh(new THREE.RingGeometry(.97, 1, 64), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: THREE.DoubleSide })); onda.position.copy(topC); K.scene.add(onda);
+const povo = add(new THREE.SphereGeometry(.3, 12, 10), mat(0xf0c8a0), 4, .9, 3); povo.visible = false;
+const tSub = () => P(2, "empurra");
+K.camera_({
+  base: [V(0, 2.6, 9), V(0, 1.4, 0)],
+  alto: [V(0, 6.5, 21), V(0, 6.8, 0)],
+  fim: [V(0, 3.0, 11), V(0, 2.6, 0)],
+}, [[0, "base"], [P(2, "empurra") - .5, "base"], [P(2, "empurra") + 3.5, "alto"], [C(7) - .01, "alto"], [C(7), "fim"], [T, "fim"]]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  const t0 = tSub();
+  // cena 1: monte de polvora e fogo branco que some
+  tubo.visible = t >= P(1, "lançamento") - 1.5;
+  // carga + pavio
+  carga.visible = t >= C(2); pavio.visible = t >= C(2);
+  const tAc = P(2, "pavio");
+  const queima = prog(t, tAc, t0);
+  fagulha.position.set(.55 + .55 * (1 - queima), .2 + .35 * (1 - queima), 0);
+  fagulha.scale.setScalar(.5 + .2 * Math.sin(t * 30)); fagulha.material.opacity = em(tAc, t0 + .2) ? 1 : 0;
+  // bola
+  bola.visible = t >= C(2);
+  const kU = lin(t, t0, F(3) + 1.5), yb = 1.6 + 7.9 * (1 - Math.pow(1 - kU, 2.2));
+  bola.position.y = t < t0 ? 1.6 : yb;
+  tubo.material.opacity = t >= t0 ? .12 : .3;
+  rastro.forEach((s, i) => { s.visible = em(t0, F(3) + 1.5); s.position.set((rnd() - .5) * .1 * 0 + Math.sin(t * 9 + i) * .15, bola.position.y - .6 - i * .28, 0); s.scale.setScalar(.5 * (1 - i / 11)); s.material.opacity = .9 * (1 - i / 10); });
+  // pavio lento dentro
+  const tp3 = P(3, "pavio", 1);
+  pavioL.visible = t >= tp3 && t < C(4) + .5; fagL.material.opacity = em(tp3, C(4) - .2) ? .9 : 0;
+  const q3 = prog(t, tp3, C(4) - .3); fagL.position.set(.7 - .35 * q3, -.7 + .45 * q3, 0);
+  // casca cutaway na cena 7
+  const em7 = t >= C(7);
+  casca.visible = em7; miolo.visible = em7; papel.visible = !em7 && t < C(4) + .5;
+  bolinhas.forEach((b) => b.visible = em7 && t >= P(7, "bolinhas") - .2);
+  if (em7) { bola.visible = true; bola.position.set(0, 3.6, 0); bola.scale.setScalar(1.25); tubo.visible = true; tubo.material.opacity = .3; carga.visible = true; pavio.visible = true; fagulha.material.opacity = 0; pavioL.visible = t >= P(7, "lento") - .2; fagL.material.opacity = 0; rastro.forEach((s) => s.visible = false); papel.visible = t >= P(7, "casca") - .2; papel.material.transparent = true; papel.material.opacity = .45; }
+  else { bola.scale.setScalar(1); if (t >= C(4) + .6 && t < C(7)) bola.visible = false; }
+  // explosoes
+  const tq = P(4, "queimam") - .6;
+  bMain.up(t, tq);
+  bCor[0].up(t, P(4, "estrôncio")); bCor[1].up(t, P(4, "bário")); bCor[2].up(t, P(4, "cobre")); bCor[3].up(t, P(4, "sódio"));
+  bEsf.up(t, P(5, "esfera") - .3);
+  bCor2.up(t, P(5, "coração", 1) - .2);
+  // cena 6: brilho e estrondo
+  const tb = P(6, "brilho"), te = P(6, "estrondo");
+  flash.material.opacity = em(tb, tb + .5) ? 1 - (t - tb) / .5 : 0; flash.scale.setScalar(5 * (1 + (t - tb))); flash.visible = em(C(6), C(7));
+  bum.material.opacity = em(te, te + 1.6) ? 1 - (t - te) / 1.6 : 0;
+  const ko = lin(t, tb, te + 1.5); onda.visible = em(tb, te + 2); onda.scale.setScalar(.2 + ko * 8); onda.material.opacity = .5 * (1 - ko);
+  povo.visible = false;
+  K.cartoes(t, [
+    [P(1, "pólvora") - .2, P(1, "sobe") - .2, "SÓ PÓLVORA: SEM COR", "#ffd23a"],
+    [P(1, "sobe") - .2, P(1, "lançamento") - .6, "LANÇAR + COLORIR", "#ffffff"],
+    [P(1, "lançamento") - .6, F(1), "PRIMEIRO: O LANÇAMENTO", "#40e0ff"],
+    [C(2), tAc - .2, "CARGA + BOLA DE PAPEL", "#ffffff"],
+    [tAc - .2, t0 - .2, "O PAVIO QUEIMA RÁPIDO", "#ff9a2a"],
+    [t0 - .2, F(2), "O GÁS EMPURRA A BOLA", "#ffd23a"],
+    [C(3), tp3 - .2, "SÓ PODE EXPLODIR LÁ EM CIMA", "#ffffff"],
+    [tp3 - .2, F(3), "SEGUNDO PAVIO: MAIS LENTO", "#ff9a2a"],
+    [C(4), P(4, "estrôncio") - .3, "SAIS DE METAL = CORES", "#ffffff"],
+    [P(4, "estrôncio") - .3, P(4, "bário") - .3, "ESTRÔNCIO: VERMELHO", "#ff4a4a"],
+    [P(4, "bário") - .3, P(4, "cobre") - .3, "BÁRIO: VERDE", "#40e070"],
+    [P(4, "cobre") - .3, P(4, "sódio") - .3, "COBRE: AZUL", "#4a8aff"],
+    [P(4, "sódio") - .3, F(4), "SÓDIO: AMARELO", "#ffd23a"],
+    [C(5), P(5, "esfera") - .3, "BOLINHAS ARRUMADAS EM VOLTA", "#ffffff"],
+    [P(5, "esfera") - .3, P(5, "coração") - .5, "FORMA UMA ESFERA", "#40e0ff"],
+    [P(5, "coração") - .5, F(5), "ARRUMOU EM CORAÇÃO: SAI CORAÇÃO", "#ff6a9a"],
+    [C(6), tb - .2, "A LUZ CHEGA ANTES", "#ffffff"],
+    [tb - .2, F(6), "SOM: 3 SEGUNDOS POR QUILÔMETRO", "#ffd23a"],
+    [P(7, "construiu") - .2, T, "FOGO DE ARTIFÍCIO", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

@@ -1,0 +1,993 @@
+{
+ "total": 68.45,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 10.63,
+   "texto": "Se você quiser fazer uma explosão bonita no céu, basta um pouco de pólvora. Mas ela sobe e some, sem cor nenhuma. Então você precisa de um jeito de lançar, e outro de colorir. Primeiro, o lançamento.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "quiser",
+     "t": 0.497
+    },
+    {
+     "w": "fazer",
+     "t": 0.83
+    },
+    {
+     "w": "uma",
+     "t": 1.07
+    },
+    {
+     "w": "explosão",
+     "t": 1.247
+    },
+    {
+     "w": "bonita",
+     "t": 1.79
+    },
+    {
+     "w": "no",
+     "t": 2.203
+    },
+    {
+     "w": "céu",
+     "t": 2.363
+    },
+    {
+     "w": "basta",
+     "t": 2.67
+    },
+    {
+     "w": "um",
+     "t": 2.977
+    },
+    {
+     "w": "pouco",
+     "t": 3.07
+    },
+    {
+     "w": "de",
+     "t": 3.323
+    },
+    {
+     "w": "pólvora",
+     "t": 3.47
+    },
+    {
+     "w": "Mas",
+     "t": 4.03
+    },
+    {
+     "w": "ela",
+     "t": 4.19
+    },
+    {
+     "w": "sobe",
+     "t": 4.39
+    },
+    {
+     "w": "e",
+     "t": 4.75
+    },
+    {
+     "w": "some",
+     "t": 4.854
+    },
+    {
+     "w": "sem",
+     "t": 5.25
+    },
+    {
+     "w": "cor",
+     "t": 5.49
+    },
+    {
+     "w": "nenhuma",
+     "t": 5.71
+    },
+    {
+     "w": "Então",
+     "t": 6.21
+    },
+    {
+     "w": "você",
+     "t": 6.582
+    },
+    {
+     "w": "precisa",
+     "t": 6.75
+    },
+    {
+     "w": "de",
+     "t": 7.083
+    },
+    {
+     "w": "um",
+     "t": 7.217
+    },
+    {
+     "w": "jeito",
+     "t": 7.323
+    },
+    {
+     "w": "de",
+     "t": 7.617
+    },
+    {
+     "w": "lançar",
+     "t": 7.734
+    },
+    {
+     "w": "e",
+     "t": 8.27
+    },
+    {
+     "w": "outro",
+     "t": 8.377
+    },
+    {
+     "w": "de",
+     "t": 8.737
+    },
+    {
+     "w": "colorir",
+     "t": 8.843
+    },
+    {
+     "w": "Primeiro",
+     "t": 9.47
+    },
+    {
+     "w": "o",
+     "t": 9.87
+    },
+    {
+     "w": "lançamento",
+     "t": 9.958
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 10.78,
+   "fim": 21.02,
+   "texto": "Na base fica uma carga de pólvora, e uma bola de papel acima dela. Quando você acende o pavio, a pólvora queima rápido e solta gás. Esse gás empurra a bola pra cima, a centenas de metros.",
+   "palavras": [
+    {
+     "w": "Na",
+     "t": 10.78
+    },
+    {
+     "w": "base",
+     "t": 11.004
+    },
+    {
+     "w": "fica",
+     "t": 11.308
+    },
+    {
+     "w": "uma",
+     "t": 11.52
+    },
+    {
+     "w": "carga",
+     "t": 11.647
+    },
+    {
+     "w": "de",
+     "t": 12.007
+    },
+    {
+     "w": "pólvora",
+     "t": 12.1
+    },
+    {
+     "w": "e",
+     "t": 12.58
+    },
+    {
+     "w": "uma",
+     "t": 12.66
+    },
+    {
+     "w": "bola",
+     "t": 12.828
+    },
+    {
+     "w": "de",
+     "t": 13.073
+    },
+    {
+     "w": "papel",
+     "t": 13.247
+    },
+    {
+     "w": "acima",
+     "t": 13.633
+    },
+    {
+     "w": "dela",
+     "t": 13.884
+    },
+    {
+     "w": "Quando",
+     "t": 14.414
+    },
+    {
+     "w": "você",
+     "t": 14.668
+    },
+    {
+     "w": "acende",
+     "t": 14.913
+    },
+    {
+     "w": "o",
+     "t": 15.32
+    },
+    {
+     "w": "pavio",
+     "t": 15.41
+    },
+    {
+     "w": "a",
+     "t": 15.78
+    },
+    {
+     "w": "pólvora",
+     "t": 15.9
+    },
+    {
+     "w": "queima",
+     "t": 16.32
+    },
+    {
+     "w": "rápido",
+     "t": 16.597
+    },
+    {
+     "w": "e",
+     "t": 17.02
+    },
+    {
+     "w": "solta",
+     "t": 17.16
+    },
+    {
+     "w": "gás",
+     "t": 17.46
+    },
+    {
+     "w": "Esse",
+     "t": 17.953
+    },
+    {
+     "w": "gás",
+     "t": 18.18
+    },
+    {
+     "w": "empurra",
+     "t": 18.5
+    },
+    {
+     "w": "a",
+     "t": 18.82
+    },
+    {
+     "w": "bola",
+     "t": 18.908
+    },
+    {
+     "w": "pra",
+     "t": 19.12
+    },
+    {
+     "w": "cima",
+     "t": 19.26
+    },
+    {
+     "w": "a",
+     "t": 19.68
+    },
+    {
+     "w": "centenas",
+     "t": 19.804
+    },
+    {
+     "w": "de",
+     "t": 20.407
+    },
+    {
+     "w": "metros",
+     "t": 20.517
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 21.17,
+   "fim": 29.49,
+   "texto": "Mas a bola precisa explodir só lá em cima. Então você coloca um segundo pavio, mais lento, que queima durante a subida. Quando ele termina, acende a carga de dentro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 21.17
+    },
+    {
+     "w": "a",
+     "t": 21.37
+    },
+    {
+     "w": "bola",
+     "t": 21.474
+    },
+    {
+     "w": "precisa",
+     "t": 21.77
+    },
+    {
+     "w": "explodir",
+     "t": 22.098
+    },
+    {
+     "w": "só",
+     "t": 22.61
+    },
+    {
+     "w": "lá",
+     "t": 22.797
+    },
+    {
+     "w": "em",
+     "t": 22.903
+    },
+    {
+     "w": "cima",
+     "t": 23.05
+    },
+    {
+     "w": "Então",
+     "t": 23.39
+    },
+    {
+     "w": "você",
+     "t": 23.698
+    },
+    {
+     "w": "coloca",
+     "t": 23.93
+    },
+    {
+     "w": "um",
+     "t": 24.237
+    },
+    {
+     "w": "segundo",
+     "t": 24.34
+    },
+    {
+     "w": "pavio",
+     "t": 24.77
+    },
+    {
+     "w": "mais",
+     "t": 25.298
+    },
+    {
+     "w": "lento",
+     "t": 25.53
+    },
+    {
+     "w": "que",
+     "t": 25.91
+    },
+    {
+     "w": "queima",
+     "t": 26.03
+    },
+    {
+     "w": "durante",
+     "t": 26.41
+    },
+    {
+     "w": "a",
+     "t": 26.75
+    },
+    {
+     "w": "subida",
+     "t": 26.84
+    },
+    {
+     "w": "Quando",
+     "t": 27.307
+    },
+    {
+     "w": "ele",
+     "t": 27.45
+    },
+    {
+     "w": "termina",
+     "t": 27.627
+    },
+    {
+     "w": "acende",
+     "t": 28.183
+    },
+    {
+     "w": "a",
+     "t": 28.61
+    },
+    {
+     "w": "carga",
+     "t": 28.717
+    },
+    {
+     "w": "de",
+     "t": 28.903
+    },
+    {
+     "w": "dentro",
+     "t": 29.056
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 29.64,
+   "fim": 39.72,
+   "texto": "Dentro da bola ficam bolinhas de pólvora misturadas com sais de metal. Quando elas queimam, cada metal solta uma cor. Estrôncio dá vermelho, bário dá verde, cobre dá azul e sódio dá amarelo.",
+   "palavras": [
+    {
+     "w": "Dentro",
+     "t": 29.64
+    },
+    {
+     "w": "da",
+     "t": 29.933
+    },
+    {
+     "w": "bola",
+     "t": 30.104
+    },
+    {
+     "w": "ficam",
+     "t": 30.42
+    },
+    {
+     "w": "bolinhas",
+     "t": 30.74
+    },
+    {
+     "w": "de",
+     "t": 31.107
+    },
+    {
+     "w": "pólvora",
+     "t": 31.24
+    },
+    {
+     "w": "misturadas",
+     "t": 31.608
+    },
+    {
+     "w": "com",
+     "t": 32.16
+    },
+    {
+     "w": "sais",
+     "t": 32.36
+    },
+    {
+     "w": "de",
+     "t": 32.707
+    },
+    {
+     "w": "metal",
+     "t": 32.813
+    },
+    {
+     "w": "Quando",
+     "t": 33.263
+    },
+    {
+     "w": "elas",
+     "t": 33.427
+    },
+    {
+     "w": "queimam",
+     "t": 33.68
+    },
+    {
+     "w": "cada",
+     "t": 34.072
+    },
+    {
+     "w": "metal",
+     "t": 34.28
+    },
+    {
+     "w": "solta",
+     "t": 34.74
+    },
+    {
+     "w": "uma",
+     "t": 35.02
+    },
+    {
+     "w": "cor",
+     "t": 35.16
+    },
+    {
+     "w": "Estrôncio",
+     "t": 35.64
+    },
+    {
+     "w": "dá",
+     "t": 36.067
+    },
+    {
+     "w": "vermelho",
+     "t": 36.18
+    },
+    {
+     "w": "bário",
+     "t": 36.72
+    },
+    {
+     "w": "dá",
+     "t": 37.053
+    },
+    {
+     "w": "verde",
+     "t": 37.213
+    },
+    {
+     "w": "cobre",
+     "t": 37.7
+    },
+    {
+     "w": "dá",
+     "t": 38.067
+    },
+    {
+     "w": "azul",
+     "t": 38.2
+    },
+    {
+     "w": "e",
+     "t": 38.56
+    },
+    {
+     "w": "sódio",
+     "t": 38.8
+    },
+    {
+     "w": "dá",
+     "t": 39.187
+    },
+    {
+     "w": "amarelo",
+     "t": 39.267
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 39.87,
+   "fim": 51.63,
+   "texto": "Mas as bolinhas precisam sair pra todos os lados. Então a carga fica no centro, e elas são arrumadas em volta. A explosão empurra todas ao mesmo tempo, e forma uma esfera. Se você arruma em forma de coração, sai um coração.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 39.87
+    },
+    {
+     "w": "as",
+     "t": 40.083
+    },
+    {
+     "w": "bolinhas",
+     "t": 40.23
+    },
+    {
+     "w": "precisam",
+     "t": 40.636
+    },
+    {
+     "w": "sair",
+     "t": 41.043
+    },
+    {
+     "w": "pra",
+     "t": 41.35
+    },
+    {
+     "w": "todos",
+     "t": 41.537
+    },
+    {
+     "w": "os",
+     "t": 41.923
+    },
+    {
+     "w": "lados",
+     "t": 42.07
+    },
+    {
+     "w": "Então",
+     "t": 42.51
+    },
+    {
+     "w": "a",
+     "t": 42.87
+    },
+    {
+     "w": "carga",
+     "t": 42.963
+    },
+    {
+     "w": "fica",
+     "t": 43.278
+    },
+    {
+     "w": "no",
+     "t": 43.523
+    },
+    {
+     "w": "centro",
+     "t": 43.676
+    },
+    {
+     "w": "e",
+     "t": 44.07
+    },
+    {
+     "w": "elas",
+     "t": 44.137
+    },
+    {
+     "w": "são",
+     "t": 44.37
+    },
+    {
+     "w": "arrumadas",
+     "t": 44.47
+    },
+    {
+     "w": "em",
+     "t": 44.963
+    },
+    {
+     "w": "volta",
+     "t": 45.11
+    },
+    {
+     "w": "A",
+     "t": 45.51
+    },
+    {
+     "w": "explosão",
+     "t": 45.687
+    },
+    {
+     "w": "empurra",
+     "t": 46.17
+    },
+    {
+     "w": "todas",
+     "t": 46.577
+    },
+    {
+     "w": "ao",
+     "t": 46.937
+    },
+    {
+     "w": "mesmo",
+     "t": 47.043
+    },
+    {
+     "w": "tempo",
+     "t": 47.363
+    },
+    {
+     "w": "e",
+     "t": 47.71
+    },
+    {
+     "w": "forma",
+     "t": 47.843
+    },
+    {
+     "w": "uma",
+     "t": 48.13
+    },
+    {
+     "w": "esfera",
+     "t": 48.243
+    },
+    {
+     "w": "Se",
+     "t": 48.803
+    },
+    {
+     "w": "você",
+     "t": 48.958
+    },
+    {
+     "w": "arruma",
+     "t": 49.19
+    },
+    {
+     "w": "em",
+     "t": 49.497
+    },
+    {
+     "w": "forma",
+     "t": 49.603
+    },
+    {
+     "w": "de",
+     "t": 49.897
+    },
+    {
+     "w": "coração",
+     "t": 49.99
+    },
+    {
+     "w": "sai",
+     "t": 50.65
+    },
+    {
+     "w": "um",
+     "t": 50.857
+    },
+    {
+     "w": "coração",
+     "t": 50.95
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 51.78,
+   "fim": 60.5,
+   "texto": "E o barulho? O som viaja mais devagar que a luz. Por isso você vê o brilho primeiro, e o estrondo chega depois, cerca de três segundos a cada quilômetro de distância.",
+   "palavras": [
+    {
+     "w": "E",
+     "t": 51.78
+    },
+    {
+     "w": "o",
+     "t": 51.94
+    },
+    {
+     "w": "barulho",
+     "t": 52.06
+    },
+    {
+     "w": "O",
+     "t": 52.52
+    },
+    {
+     "w": "som",
+     "t": 52.64
+    },
+    {
+     "w": "viaja",
+     "t": 52.88
+    },
+    {
+     "w": "mais",
+     "t": 53.268
+    },
+    {
+     "w": "devagar",
+     "t": 53.5
+    },
+    {
+     "w": "que",
+     "t": 53.9
+    },
+    {
+     "w": "a",
+     "t": 54.06
+    },
+    {
+     "w": "luz",
+     "t": 54.18
+    },
+    {
+     "w": "Por",
+     "t": 54.54
+    },
+    {
+     "w": "isso",
+     "t": 54.708
+    },
+    {
+     "w": "você",
+     "t": 54.964
+    },
+    {
+     "w": "vê",
+     "t": 55.3
+    },
+    {
+     "w": "o",
+     "t": 55.46
+    },
+    {
+     "w": "brilho",
+     "t": 55.567
+    },
+    {
+     "w": "primeiro",
+     "t": 55.896
+    },
+    {
+     "w": "e",
+     "t": 56.38
+    },
+    {
+     "w": "o",
+     "t": 56.48
+    },
+    {
+     "w": "estrondo",
+     "t": 56.564
+    },
+    {
+     "w": "chega",
+     "t": 56.94
+    },
+    {
+     "w": "depois",
+     "t": 57.197
+    },
+    {
+     "w": "cerca",
+     "t": 57.753
+    },
+    {
+     "w": "de",
+     "t": 58.047
+    },
+    {
+     "w": "três",
+     "t": 58.164
+    },
+    {
+     "w": "segundos",
+     "t": 58.464
+    },
+    {
+     "w": "a",
+     "t": 58.9
+    },
+    {
+     "w": "cada",
+     "t": 59.028
+    },
+    {
+     "w": "quilômetro",
+     "t": 59.268
+    },
+    {
+     "w": "de",
+     "t": 59.807
+    },
+    {
+     "w": "distância",
+     "t": 59.908
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 60.65,
+   "fim": 67.85,
+   "texto": "Coloque uma carga de lançamento, um pavio lento, bolinhas coloridas e uma casca de papel. Parabéns, você construiu um fogo de artifício.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 60.65
+    },
+    {
+     "w": "uma",
+     "t": 60.99
+    },
+    {
+     "w": "carga",
+     "t": 61.103
+    },
+    {
+     "w": "de",
+     "t": 61.397
+    },
+    {
+     "w": "lançamento",
+     "t": 61.498
+    },
+    {
+     "w": "um",
+     "t": 62.197
+    },
+    {
+     "w": "pavio",
+     "t": 62.31
+    },
+    {
+     "w": "lento",
+     "t": 62.65
+    },
+    {
+     "w": "bolinhas",
+     "t": 63.09
+    },
+    {
+     "w": "coloridas",
+     "t": 63.423
+    },
+    {
+     "w": "e",
+     "t": 64.01
+    },
+    {
+     "w": "uma",
+     "t": 64.13
+    },
+    {
+     "w": "casca",
+     "t": 64.33
+    },
+    {
+     "w": "de",
+     "t": 64.757
+    },
+    {
+     "w": "papel",
+     "t": 64.863
+    },
+    {
+     "w": "Parabéns",
+     "t": 65.41
+    },
+    {
+     "w": "você",
+     "t": 66.058
+    },
+    {
+     "w": "construiu",
+     "t": 66.307
+    },
+    {
+     "w": "um",
+     "t": 66.783
+    },
+    {
+     "w": "fogo",
+     "t": 66.89
+    },
+    {
+     "w": "de",
+     "t": 67.157
+    },
+    {
+     "w": "artifício",
+     "t": 67.27
+    }
+   ]
+  }
+ ]
+}
