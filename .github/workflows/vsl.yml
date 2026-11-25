@@ -1,0 +1,22 @@
+name: transcrever-vsl
+on: { push: { branches: [vsl-transcricao] }, workflow_dispatch: {} }
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs: { m: "${{ steps.s.outputs.m }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - id: s
+        run: echo "m=$(cat matriz.json)" >> $GITHUB_OUTPUT
+  t:
+    needs: prep
+    runs-on: ubuntu-latest
+    strategy: { fail-fast: false, max-parallel: 20, matrix: { j: "${{ fromJson(needs.prep.outputs.m) }}" } }
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+      - run: pip install -q faster-whisper
+      - run: ffmpeg -nostdin -loglevel error -y -i "${{ matrix.j.u }}" -vn -ac 1 -ar 16000 a.wav
+      - run: python transcrever.py a.wav "${{ matrix.j.n }}.txt"
+      - uses: actions/upload-artifact@v4
+        with: { name: "${{ matrix.j.n }}", path: "${{ matrix.j.n }}.txt" }
