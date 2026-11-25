@@ -1,0 +1,1241 @@
+{
+ "total": 110.76,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 12.15,
+   "texto": "Se você quiser guardar energia dentro do celular, basta colocar uma pilha comum. Mas ela gasta tudo uma vez só e vai pro lixo. Então você usa uma bateria que se recarrega.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.294
+    },
+    {
+     "w": "quiser",
+     "t": 0.603
+    },
+    {
+     "w": "guardar",
+     "t": 1.02
+    },
+    {
+     "w": "energia",
+     "t": 1.57
+    },
+    {
+     "w": "dentro",
+     "t": 2.07
+    },
+    {
+     "w": "do",
+     "t": 2.577
+    },
+    {
+     "w": "celular",
+     "t": 2.7
+    },
+    {
+     "w": "basta",
+     "t": 3.39
+    },
+    {
+     "w": "colocar",
+     "t": 3.803
+    },
+    {
+     "w": "uma",
+     "t": 4.21
+    },
+    {
+     "w": "pilha",
+     "t": 4.47
+    },
+    {
+     "w": "comum",
+     "t": 4.85
+    },
+    {
+     "w": "Mas",
+     "t": 5.41
+    },
+    {
+     "w": "ela",
+     "t": 5.65
+    },
+    {
+     "w": "gasta",
+     "t": 5.87
+    },
+    {
+     "w": "tudo",
+     "t": 6.326
+    },
+    {
+     "w": "uma",
+     "t": 6.75
+    },
+    {
+     "w": "vez",
+     "t": 6.95
+    },
+    {
+     "w": "só",
+     "t": 7.27
+    },
+    {
+     "w": "e",
+     "t": 7.55
+    },
+    {
+     "w": "vai",
+     "t": 7.75
+    },
+    {
+     "w": "pro",
+     "t": 8.03
+    },
+    {
+     "w": "lixo",
+     "t": 8.257
+    },
+    {
+     "w": "Então",
+     "t": 8.85
+    },
+    {
+     "w": "você",
+     "t": 9.19
+    },
+    {
+     "w": "usa",
+     "t": 9.57
+    },
+    {
+     "w": "uma",
+     "t": 9.79
+    },
+    {
+     "w": "bateria",
+     "t": 9.99
+    },
+    {
+     "w": "que",
+     "t": 10.67
+    },
+    {
+     "w": "se",
+     "t": 10.87
+    },
+    {
+     "w": "recarrega",
+     "t": 11.11
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 12.3,
+   "fim": 25.18,
+   "texto": "Dentro dela ficam dois lados. Um de grafite, e outro de óxido de lítio. Entre eles, um líquido e uma película bem fininha, cheia de furinhos. No começo, o lítio vive no lado do óxido.",
+   "palavras": [
+    {
+     "w": "Dentro",
+     "t": 12.3
+    },
+    {
+     "w": "dela",
+     "t": 12.7
+    },
+    {
+     "w": "ficam",
+     "t": 13.08
+    },
+    {
+     "w": "dois",
+     "t": 13.468
+    },
+    {
+     "w": "lados",
+     "t": 13.7
+    },
+    {
+     "w": "Um",
+     "t": 14.327
+    },
+    {
+     "w": "de",
+     "t": 14.567
+    },
+    {
+     "w": "grafite",
+     "t": 14.7
+    },
+    {
+     "w": "e",
+     "t": 15.46
+    },
+    {
+     "w": "outro",
+     "t": 15.66
+    },
+    {
+     "w": "de",
+     "t": 16.113
+    },
+    {
+     "w": "óxido",
+     "t": 16.38
+    },
+    {
+     "w": "de",
+     "t": 16.753
+    },
+    {
+     "w": "lítio",
+     "t": 16.94
+    },
+    {
+     "w": "Entre",
+     "t": 17.447
+    },
+    {
+     "w": "eles",
+     "t": 18.06
+    },
+    {
+     "w": "um",
+     "t": 18.593
+    },
+    {
+     "w": "líquido",
+     "t": 18.78
+    },
+    {
+     "w": "e",
+     "t": 19.22
+    },
+    {
+     "w": "uma",
+     "t": 19.3
+    },
+    {
+     "w": "película",
+     "t": 19.482
+    },
+    {
+     "w": "bem",
+     "t": 20.04
+    },
+    {
+     "w": "fininha",
+     "t": 20.28
+    },
+    {
+     "w": "cheia",
+     "t": 21.03
+    },
+    {
+     "w": "de",
+     "t": 21.367
+    },
+    {
+     "w": "furinhos",
+     "t": 21.48
+    },
+    {
+     "w": "No",
+     "t": 22.247
+    },
+    {
+     "w": "começo",
+     "t": 22.524
+    },
+    {
+     "w": "o",
+     "t": 23.14
+    },
+    {
+     "w": "lítio",
+     "t": 23.26
+    },
+    {
+     "w": "vive",
+     "t": 23.644
+    },
+    {
+     "w": "no",
+     "t": 23.927
+    },
+    {
+     "w": "lado",
+     "t": 24.044
+    },
+    {
+     "w": "do",
+     "t": 24.327
+    },
+    {
+     "w": "óxido",
+     "t": 24.5
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 25.33,
+   "fim": 40.13,
+   "texto": "Mas o lítio não anda sozinho. Então você liga o carregador, e a energia empurra os átomos de lítio pelo líquido, até o lado do grafite. Lá eles se encaixam entre as camadas, como livros numa estante. Isso é carregar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.33
+    },
+    {
+     "w": "o",
+     "t": 25.53
+    },
+    {
+     "w": "lítio",
+     "t": 25.65
+    },
+    {
+     "w": "não",
+     "t": 26.11
+    },
+    {
+     "w": "anda",
+     "t": 26.354
+    },
+    {
+     "w": "sozinho",
+     "t": 26.663
+    },
+    {
+     "w": "Então",
+     "t": 27.42
+    },
+    {
+     "w": "você",
+     "t": 27.794
+    },
+    {
+     "w": "liga",
+     "t": 28.13
+    },
+    {
+     "w": "o",
+     "t": 28.49
+    },
+    {
+     "w": "carregador",
+     "t": 28.55
+    },
+    {
+     "w": "e",
+     "t": 29.53
+    },
+    {
+     "w": "a",
+     "t": 29.69
+    },
+    {
+     "w": "energia",
+     "t": 29.82
+    },
+    {
+     "w": "empurra",
+     "t": 30.53
+    },
+    {
+     "w": "os",
+     "t": 31.063
+    },
+    {
+     "w": "átomos",
+     "t": 31.21
+    },
+    {
+     "w": "de",
+     "t": 31.597
+    },
+    {
+     "w": "lítio",
+     "t": 31.73
+    },
+    {
+     "w": "pelo",
+     "t": 32.098
+    },
+    {
+     "w": "líquido",
+     "t": 32.37
+    },
+    {
+     "w": "até",
+     "t": 33.07
+    },
+    {
+     "w": "o",
+     "t": 33.33
+    },
+    {
+     "w": "lado",
+     "t": 33.474
+    },
+    {
+     "w": "do",
+     "t": 33.757
+    },
+    {
+     "w": "grafite",
+     "t": 33.874
+    },
+    {
+     "w": "Lá",
+     "t": 34.81
+    },
+    {
+     "w": "eles",
+     "t": 35.074
+    },
+    {
+     "w": "se",
+     "t": 35.357
+    },
+    {
+     "w": "encaixam",
+     "t": 35.463
+    },
+    {
+     "w": "entre",
+     "t": 35.997
+    },
+    {
+     "w": "as",
+     "t": 36.183
+    },
+    {
+     "w": "camadas",
+     "t": 36.33
+    },
+    {
+     "w": "como",
+     "t": 37.17
+    },
+    {
+     "w": "livros",
+     "t": 37.41
+    },
+    {
+     "w": "numa",
+     "t": 37.842
+    },
+    {
+     "w": "estante",
+     "t": 38.03
+    },
+    {
+     "w": "Isso",
+     "t": 38.903
+    },
+    {
+     "w": "é",
+     "t": 39.29
+    },
+    {
+     "w": "carregar",
+     "t": 39.39
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 40.28,
+   "fim": 59.16,
+   "texto": "Mas cada átomo de lítio que atravessa deixa um elétron pra trás, e o elétron não passa pelo líquido. Então ele dá a volta pelo fio de fora. Quando você usa o celular, o caminho se inverte: o lítio volta pro óxido, e os elétrons passam pelo aparelho. É essa volta que acende a tela.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 40.28
+    },
+    {
+     "w": "cada",
+     "t": 40.68
+    },
+    {
+     "w": "átomo",
+     "t": 41.08
+    },
+    {
+     "w": "de",
+     "t": 41.453
+    },
+    {
+     "w": "lítio",
+     "t": 41.6
+    },
+    {
+     "w": "que",
+     "t": 41.9
+    },
+    {
+     "w": "atravessa",
+     "t": 42.027
+    },
+    {
+     "w": "deixa",
+     "t": 42.813
+    },
+    {
+     "w": "um",
+     "t": 43.293
+    },
+    {
+     "w": "elétron",
+     "t": 43.46
+    },
+    {
+     "w": "pra",
+     "t": 43.92
+    },
+    {
+     "w": "trás",
+     "t": 44.093
+    },
+    {
+     "w": "e",
+     "t": 44.64
+    },
+    {
+     "w": "o",
+     "t": 44.72
+    },
+    {
+     "w": "elétron",
+     "t": 44.86
+    },
+    {
+     "w": "não",
+     "t": 45.48
+    },
+    {
+     "w": "passa",
+     "t": 45.768
+    },
+    {
+     "w": "pelo",
+     "t": 46.088
+    },
+    {
+     "w": "líquido",
+     "t": 46.36
+    },
+    {
+     "w": "Então",
+     "t": 46.96
+    },
+    {
+     "w": "ele",
+     "t": 47.56
+    },
+    {
+     "w": "dá",
+     "t": 47.88
+    },
+    {
+     "w": "a",
+     "t": 48.08
+    },
+    {
+     "w": "volta",
+     "t": 48.187
+    },
+    {
+     "w": "pelo",
+     "t": 48.568
+    },
+    {
+     "w": "fio",
+     "t": 48.84
+    },
+    {
+     "w": "de",
+     "t": 49.027
+    },
+    {
+     "w": "fora",
+     "t": 49.176
+    },
+    {
+     "w": "Quando",
+     "t": 49.834
+    },
+    {
+     "w": "você",
+     "t": 50.104
+    },
+    {
+     "w": "usa",
+     "t": 50.42
+    },
+    {
+     "w": "o",
+     "t": 50.64
+    },
+    {
+     "w": "celular",
+     "t": 50.75
+    },
+    {
+     "w": "o",
+     "t": 51.44
+    },
+    {
+     "w": "caminho",
+     "t": 51.56
+    },
+    {
+     "w": "se",
+     "t": 51.987
+    },
+    {
+     "w": "inverte",
+     "t": 52.093
+    },
+    {
+     "w": "o",
+     "t": 52.88
+    },
+    {
+     "w": "lítio",
+     "t": 53
+    },
+    {
+     "w": "volta",
+     "t": 53.467
+    },
+    {
+     "w": "pro",
+     "t": 53.86
+    },
+    {
+     "w": "óxido",
+     "t": 54.12
+    },
+    {
+     "w": "e",
+     "t": 54.6
+    },
+    {
+     "w": "os",
+     "t": 54.733
+    },
+    {
+     "w": "elétrons",
+     "t": 54.92
+    },
+    {
+     "w": "passam",
+     "t": 55.528
+    },
+    {
+     "w": "pelo",
+     "t": 55.848
+    },
+    {
+     "w": "aparelho",
+     "t": 56.093
+    },
+    {
+     "w": "É",
+     "t": 56.9
+    },
+    {
+     "w": "essa",
+     "t": 57.096
+    },
+    {
+     "w": "volta",
+     "t": 57.547
+    },
+    {
+     "w": "que",
+     "t": 57.92
+    },
+    {
+     "w": "acende",
+     "t": 58.12
+    },
+    {
+     "w": "a",
+     "t": 58.56
+    },
+    {
+     "w": "tela",
+     "t": 58.728
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 59.31,
+   "fim": 74.67,
+   "texto": "Mas se os dois lados se encostarem, vem um curto-circuito e tudo esquenta. Então você mantém a película no meio, e só o lítio passa pelos furinhos. E um chip de proteção corta o carregador quando chega em cem por cento.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 59.31
+    },
+    {
+     "w": "se",
+     "t": 59.577
+    },
+    {
+     "w": "os",
+     "t": 59.683
+    },
+    {
+     "w": "dois",
+     "t": 59.838
+    },
+    {
+     "w": "lados",
+     "t": 60.11
+    },
+    {
+     "w": "se",
+     "t": 60.457
+    },
+    {
+     "w": "encostarem",
+     "t": 60.55
+    },
+    {
+     "w": "vem",
+     "t": 61.45
+    },
+    {
+     "w": "um",
+     "t": 61.657
+    },
+    {
+     "w": "curto-circuito",
+     "t": 61.79
+    },
+    {
+     "w": "e",
+     "t": 62.91
+    },
+    {
+     "w": "tudo",
+     "t": 63.15
+    },
+    {
+     "w": "esquenta",
+     "t": 63.523
+    },
+    {
+     "w": "Então",
+     "t": 64.51
+    },
+    {
+     "w": "você",
+     "t": 65.214
+    },
+    {
+     "w": "mantém",
+     "t": 65.518
+    },
+    {
+     "w": "a",
+     "t": 65.83
+    },
+    {
+     "w": "película",
+     "t": 65.923
+    },
+    {
+     "w": "no",
+     "t": 66.403
+    },
+    {
+     "w": "meio",
+     "t": 66.59
+    },
+    {
+     "w": "e",
+     "t": 67.19
+    },
+    {
+     "w": "só",
+     "t": 67.337
+    },
+    {
+     "w": "o",
+     "t": 67.63
+    },
+    {
+     "w": "lítio",
+     "t": 67.75
+    },
+    {
+     "w": "passa",
+     "t": 68.142
+    },
+    {
+     "w": "pelos",
+     "t": 68.39
+    },
+    {
+     "w": "furinhos",
+     "t": 68.65
+    },
+    {
+     "w": "E",
+     "t": 69.83
+    },
+    {
+     "w": "um",
+     "t": 70.163
+    },
+    {
+     "w": "chip",
+     "t": 70.35
+    },
+    {
+     "w": "de",
+     "t": 70.697
+    },
+    {
+     "w": "proteção",
+     "t": 70.803
+    },
+    {
+     "w": "corta",
+     "t": 71.566
+    },
+    {
+     "w": "o",
+     "t": 72.01
+    },
+    {
+     "w": "carregador",
+     "t": 72.07
+    },
+    {
+     "w": "quando",
+     "t": 72.796
+    },
+    {
+     "w": "chega",
+     "t": 73.13
+    },
+    {
+     "w": "em",
+     "t": 73.443
+    },
+    {
+     "w": "cem",
+     "t": 73.59
+    },
+    {
+     "w": "por",
+     "t": 73.77
+    },
+    {
+     "w": "cento",
+     "t": 74.014
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 74.82,
+   "fim": 87.62,
+   "texto": "Só que nada disso dura pra sempre. Cada recarga desgasta um pouco o grafite e o líquido. E com o calor, o líquido solta gás. Por isso a bateria velha estufa e segura cada vez menos carga.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 74.82
+    },
+    {
+     "w": "que",
+     "t": 75.02
+    },
+    {
+     "w": "nada",
+     "t": 75.22
+    },
+    {
+     "w": "disso",
+     "t": 75.62
+    },
+    {
+     "w": "dura",
+     "t": 76.1
+    },
+    {
+     "w": "pra",
+     "t": 76.46
+    },
+    {
+     "w": "sempre",
+     "t": 76.649
+    },
+    {
+     "w": "Cada",
+     "t": 77.18
+    },
+    {
+     "w": "recarga",
+     "t": 77.6
+    },
+    {
+     "w": "desgasta",
+     "t": 78.18
+    },
+    {
+     "w": "um",
+     "t": 78.767
+    },
+    {
+     "w": "pouco",
+     "t": 78.887
+    },
+    {
+     "w": "o",
+     "t": 79.26
+    },
+    {
+     "w": "grafite",
+     "t": 79.364
+    },
+    {
+     "w": "e",
+     "t": 79.88
+    },
+    {
+     "w": "o",
+     "t": 79.92
+    },
+    {
+     "w": "líquido",
+     "t": 80.02
+    },
+    {
+     "w": "E",
+     "t": 80.6
+    },
+    {
+     "w": "com",
+     "t": 80.72
+    },
+    {
+     "w": "o",
+     "t": 80.94
+    },
+    {
+     "w": "calor",
+     "t": 81.06
+    },
+    {
+     "w": "o",
+     "t": 81.62
+    },
+    {
+     "w": "líquido",
+     "t": 81.78
+    },
+    {
+     "w": "solta",
+     "t": 82.28
+    },
+    {
+     "w": "gás",
+     "t": 82.82
+    },
+    {
+     "w": "Por",
+     "t": 83.42
+    },
+    {
+     "w": "isso",
+     "t": 83.588
+    },
+    {
+     "w": "a",
+     "t": 83.82
+    },
+    {
+     "w": "bateria",
+     "t": 83.9
+    },
+    {
+     "w": "velha",
+     "t": 84.4
+    },
+    {
+     "w": "estufa",
+     "t": 84.72
+    },
+    {
+     "w": "e",
+     "t": 85.3
+    },
+    {
+     "w": "segura",
+     "t": 85.46
+    },
+    {
+     "w": "cada",
+     "t": 85.924
+    },
+    {
+     "w": "vez",
+     "t": 86.28
+    },
+    {
+     "w": "menos",
+     "t": 86.633
+    },
+    {
+     "w": "carga",
+     "t": 86.967
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 87.77,
+   "fim": 100.49,
+   "texto": "Mas então ela vicia, e é melhor deixar zerar? Não. Isso era das baterias antigas de níquel. A de lítio prefere ficar no meio, entre vinte e oitenta por cento, e longe do calor.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 87.77
+    },
+    {
+     "w": "então",
+     "t": 88.063
+    },
+    {
+     "w": "ela",
+     "t": 88.39
+    },
+    {
+     "w": "vicia",
+     "t": 88.61
+    },
+    {
+     "w": "e",
+     "t": 89.31
+    },
+    {
+     "w": "é",
+     "t": 89.45
+    },
+    {
+     "w": "melhor",
+     "t": 89.576
+    },
+    {
+     "w": "deixar",
+     "t": 89.898
+    },
+    {
+     "w": "zerar",
+     "t": 90.29
+    },
+    {
+     "w": "Não",
+     "t": 91.05
+    },
+    {
+     "w": "Isso",
+     "t": 91.903
+    },
+    {
+     "w": "era",
+     "t": 92.23
+    },
+    {
+     "w": "das",
+     "t": 92.45
+    },
+    {
+     "w": "baterias",
+     "t": 92.61
+    },
+    {
+     "w": "antigas",
+     "t": 93.29
+    },
+    {
+     "w": "de",
+     "t": 93.877
+    },
+    {
+     "w": "níquel",
+     "t": 94.01
+    },
+    {
+     "w": "A",
+     "t": 94.65
+    },
+    {
+     "w": "de",
+     "t": 94.863
+    },
+    {
+     "w": "lítio",
+     "t": 95.01
+    },
+    {
+     "w": "prefere",
+     "t": 95.338
+    },
+    {
+     "w": "ficar",
+     "t": 95.75
+    },
+    {
+     "w": "no",
+     "t": 96.143
+    },
+    {
+     "w": "meio",
+     "t": 96.314
+    },
+    {
+     "w": "entre",
+     "t": 96.783
+    },
+    {
+     "w": "vinte",
+     "t": 97.17
+    },
+    {
+     "w": "e",
+     "t": 97.53
+    },
+    {
+     "w": "oitenta",
+     "t": 97.65
+    },
+    {
+     "w": "por",
+     "t": 98.09
+    },
+    {
+     "w": "cento",
+     "t": 98.378
+    },
+    {
+     "w": "e",
+     "t": 98.89
+    },
+    {
+     "w": "longe",
+     "t": 99.146
+    },
+    {
+     "w": "do",
+     "t": 99.637
+    },
+    {
+     "w": "calor",
+     "t": 99.77
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "ini": 100.64,
+   "fim": 110.16,
+   "texto": "Coloque uma tampa de metal, um chip de proteção e dois contatos. Parabéns, você construiu uma bateria de celular.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 100.64
+    },
+    {
+     "w": "uma",
+     "t": 101.08
+    },
+    {
+     "w": "tampa",
+     "t": 101.28
+    },
+    {
+     "w": "de",
+     "t": 101.627
+    },
+    {
+     "w": "metal",
+     "t": 101.76
+    },
+    {
+     "w": "um",
+     "t": 102.453
+    },
+    {
+     "w": "chip",
+     "t": 102.64
+    },
+    {
+     "w": "de",
+     "t": 102.987
+    },
+    {
+     "w": "proteção",
+     "t": 103.093
+    },
+    {
+     "w": "e",
+     "t": 103.84
+    },
+    {
+     "w": "dois",
+     "t": 104.08
+    },
+    {
+     "w": "contatos",
+     "t": 104.464
+    },
+    {
+     "w": "Parabéns",
+     "t": 105.9
+    },
+    {
+     "w": "você",
+     "t": 107.6
+    },
+    {
+     "w": "construiu",
+     "t": 107.966
+    },
+    {
+     "w": "uma",
+     "t": 108.52
+    },
+    {
+     "w": "bateria",
+     "t": 108.72
+    },
+    {
+     "w": "de",
+     "t": 109.307
+    },
+    {
+     "w": "celular",
+     "t": 109.43
+    }
+   ]
+  }
+ ]
+}

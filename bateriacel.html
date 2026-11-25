@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("bateriacel", { fundo: 0xdfe8f2, seed: 4401 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, lin, pulse, entre, C, F, P, T, V, rnd } = K;
+const PI = Math.PI;
+const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const cyl = (r, h, n = 32) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(40, 40), mat(0xf4f7fb), 0, 0, 0).rotation.x = -PI / 2;
+// pilha comum
+const pilha = grupo(0, 3.2, 0);
+add(cyl(.8, 2.6), mat(0x2a6ad0), 0, 0, 0, pilha); add(cyl(.3, .3), mat(0xc0c0c0, { metalness: .7 }), 0, 1.4, 0, pilha);
+const xis = add(new THREE.PlaneGeometry(2.4, 1.2), new THREE.MeshBasicMaterial({ map: rotulo("LIXO", "#e02a2a", { w: 512, h: 256, tam: 190 }), transparent: true }), 0, 0, 1, pilha); xis.visible = false;
+// bateria em corte
+const bat = grupo(0, 0, 0); bat.visible = false;
+const yC = 4.5, yS = 3.3, yA = 2.1;
+const liquido = add(box(3.5, 3.4, 1.2), vidro(.25, 0xbfe4ff), 0, 3.3, 0, bat);
+const catodo = add(box(3.2, .9, 1), vidro(.65, 0xff9a2a), 0, yC, 0, bat);
+const anodo = add(box(3.2, .9, 1), vidro(.65, 0x3a3f46), 0, yA, 0, bat);
+const sep = add(box(3.3, .06, 1.1), mat(0xffffff, { transparent: true, opacity: .9 }), 0, yS, 0, bat);
+for (let i = 0; i < 9; i++) { const f = add(new THREE.CylinderGeometry(.09, .09, .08, 12), mat(0x20242a), -1.3 + i * .325, yS, .56, bat); f.rotation.x = PI / 2; f.position.z = .56; f.scale.set(1, 1, 1); f.castShadow = false; }
+const ions = Array.from({ length: 16 }, (_, i) => { const m = add(new THREE.SphereGeometry(.12, 14, 10), new THREE.MeshBasicMaterial({ color: 0x40e070 }), -1.35 + (i % 8) * .39 + (i < 8 ? 0 : .19), 0, (i < 8 ? .25 : -.25), bat); return m; });
+const rotC = add(new THREE.PlaneGeometry(1.4, .5), new THREE.MeshBasicMaterial({ map: rotulo("ÓXIDO", "#fff", { w: 256, h: 96, tam: 70 }), transparent: true }), 0, yC + .02, .52, bat); rotC.castShadow = false;
+const rotA = add(new THREE.PlaneGeometry(1.4, .5), new THREE.MeshBasicMaterial({ map: rotulo("GRAFITE", "#fff", { w: 256, h: 96, tam: 70 }), transparent: true }), 0, yA + .02, .52, bat); rotA.castShadow = false;
+// fio de fora
+const fio = new THREE.CatmullRomCurve3([V(1.6, yC, 0), V(2.1, yC, 0), V(2.1, yA, 0), V(1.6, yA, 0)]);
+const fioM = add(new THREE.TubeGeometry(fio, 20, .03, 6), mat(0xb87a30), 0, 0, 0, bat);
+const eletr = K.fluxo(fio, 10, 0xffd23a, bat);
+const carreg = add(box(.9, .6, .5), mat(0x2a2f36), 2.1, 3.3, 0, bat); carreg.visible = false;
+const celular = add(box(.8, .9, .15), mat(0x20242a), 2.1, 3.3, 0, bat); celular.visible = false;
+const tela = add(new THREE.PlaneGeometry(.65, .75), new THREE.MeshBasicMaterial({ color: 0x4aa8ff }), 2.1, 3.3, .09, bat); tela.visible = false;
+// curto
+const brilho = sprite(0xff3a2a, bat); brilho.position.set(0, yS, .6);
+const chip = add(box(.9, .12, .6), mat(0x1a9a50), -1.2, 5.9, 0, bat); chip.visible = false;
+const gas = Array.from({ length: 8 }, () => sprite(0xbbbbbb, bat));
+// caixa externa
+const caixa = add(box(3.9, 4.1, 1.5), vidro(.18, 0xaab4c0), 0, 3.3, 0, bat); caixa.visible = false;
+const tampa = add(box(3.9, .18, 1.5), mat(0xaab4c0, { metalness: .7 }), 0, 5.4, 0, bat); tampa.visible = false;
+const ct1 = add(box(.5, .3, .4), mat(0xe8c040, { metalness: .8 }), -.7, 1.05, 0, bat), ct2 = add(box(.5, .3, .4), mat(0xe8c040, { metalness: .8 }), .7, 1.05, 0, bat); ct1.visible = ct2.visible = false;
+// medidor
+const med = grupo(-2.35, 0, 0, bat); med.visible = false;
+add(box(.2, 3, .2), mat(0xe05050), 0, 3.3, 0, med);
+add(box(.22, 1.8, .22), mat(0x40c070), 0, 3.3, .02, med);
+const marc = add(new THREE.SphereGeometry(.2, 12, 10), new THREE.MeshBasicMaterial({ color: 0x20242a }), 0, 3.3, .2, med);
+K.camera_({
+  wide: [V(0, 3.9, 14.5), V(0, 3.6, 0)],
+  perto: [V(0, 3.9, 14.5), V(0, 3.6, 0)],
+  alto: [V(0, 4.4, 14.5), V(0, 3.9, 0)],
+}, [[0, "wide"], [C(2), "wide"], [C(3), "perto"], [F(7), "perto"], [C(8), "alto"], [T, "alto"]]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  pilha.visible = t < C(2) - .5; xis.visible = t >= P(1, "lixo") - .2;
+  pilha.rotation.y = t * .6;
+  bat.visible = t >= P(1, "recarrega") - .3; bat.scale.setScalar(.01 + .99 * prog(t, P(1, "recarrega") - .3, P(1, "recarrega") + .5));
+  // tempo de carga/descarga
+  const cp = lin(t, P(3, "carregador"), P(3, "carregador") + 7), dp = lin(t, P(4, "inverte"), P(4, "inverte") + 8);
+  const wear = prog(t, P(6, "desgasta"), P(6, "desgasta") + 3);
+  ions.forEach((m, i) => {
+    const d = (i % 8) * .06;
+    const s = Math.min(1, Math.max(0, (cp * 1.5 - d)) ) - Math.min(1, Math.max(0, (dp * 1.5 - d)));
+    m.position.y = yC - (yC - yA) * s - (s > 0 && s < 1 ? 0 : (s >= 1 ? 0 : -(.0))) + (s <= 0 ? -.55 : 0) + (s >= 1 ? .55 : 0) * 1;
+    m.position.y = s <= 0 ? yC - .55 : s >= 1 ? yA + .55 : (yC - .55) + (yA + .55 - (yC - .55)) * s;
+    m.visible = bat.visible && i < 16 - Math.floor(wear * 7) && !(t >= C(8));
+    m.material.color.setHex(wear > .3 ? 0x90b090 : 0x40e070);
+  });
+  const carregando = em(P(3, "carregador"), P(3, "carregador") + 7.5), usando = em(P(4, "inverte"), P(4, "inverte") + 8.5);
+  const vel = carregando ? -.5 : (usando ? .5 : 0);
+  eletr.atualiza(t, (carregando || usando), vel || .5, .35, 1);
+  carreg.visible = t >= P(3, "carregador") - .2 && t < P(4, "inverte"); celular.visible = tela.visible = t >= P(4, "inverte") && t < C(8);
+  tela.material.color.setHex(em(P(4, "acende") - .2, F(4)) ? 0xffffaa : 0x4aa8ff);
+  // curto
+  const cur = em(P(5, "encostarem") - .1, P(5, "película") - .1);
+  const sh = cur ? prog(t, P(5, "encostarem") - .1, P(5, "encostarem") + .6) : 0;
+  catodo.position.y = yC - sh * .45; anodo.position.y = yA + sh * .45;
+  if (!cur) { catodo.position.y = yC; anodo.position.y = yA; }
+  brilho.material.opacity = cur ? .6 + .4 * Math.sin(t * 25) : 0; brilho.scale.setScalar(2.5);
+  chip.visible = t >= P(5, "chip") - .2 && t < C(8); fio.getPoint(0);
+  // gas / estufa
+  const ge = prog(t, P(6, "estufa") - 1.5, P(6, "estufa") + .5);
+  liquido.scale.y = 1 + .12 * ge; liquido.position.y = 3.3 + .2 * ge;
+  gas.forEach((s, i) => { const k = ((t * .4 + i / 8) % 1); s.position.set(-1.4 + (i % 4) * .9, 3 + k * 2, .7); s.scale.setScalar(.35); s.material.opacity = em(P(6, "gás") - .3, C(7)) ? .7 * Math.sin(k * PI) : 0; });
+  // medidor
+  med.visible = t >= P(7, "meio") - 2 && t < C(8);
+  const mv = t < P(7, "meio") ? 0 : 1;
+  marc.position.y = 3.3 + (t < P(7, "zerar") ? -1.35 : 0) * 1 + (t >= P(7, "zerar") && t < P(7, "meio") - .5 ? -1.45 : 0) + .15 * Math.sin(t * 3) * (t >= P(7, "meio") ? 1 : 0);
+  // caixa final
+  caixa.visible = t >= P(8, "tampa") - .2; tampa.visible = caixa.visible; ct1.visible = ct2.visible = t >= P(8, "contatos") - .3;
+  K.cartoes(t, [
+    [P(1, "pilha") - .2, P(1, "recarrega") - .6, "PILHA COMUM: GASTA E VAI PRO LIXO", "#ff6a6a"],
+    [P(1, "recarrega") - .6, F(1), "BATERIA QUE RECARREGA", "#40e0ff"],
+    [C(2), P(2, "furinhos") - .6, "DOIS LADOS: GRAFITE E ÓXIDO DE LÍTIO", "#ffffff"],
+    [P(2, "furinhos") - .6, P(2, "começo") - .2, "PELÍCULA COM FURINHOS", "#ffffff"],
+    [P(2, "começo") - .2, F(2), "O LÍTIO COMEÇA NO ÓXIDO", "#80ffa0"],
+    [C(3), P(3, "carregador") - .2, "O LÍTIO NÃO ANDA SOZINHO", "#ffffff"],
+    [P(3, "carregador") - .2, P(3, "livros") - .2, "ENERGIA EMPURRA O LÍTIO PRO GRAFITE", "#ffd23a"],
+    [P(3, "livros") - .2, P(3, "carregar") - .2, "ENCAIXAM COMO LIVROS NA ESTANTE", "#ffffff"],
+    [P(3, "carregar") - .2, F(3), "ISSO É CARREGAR", "#80ffa0"],
+    [C(4), P(4, "inverte") - .3, "O ELÉTRON DÁ A VOLTA PELO FIO", "#ffd23a"],
+    [P(4, "inverte") - .3, P(4, "acende") - .3, "USANDO: O CAMINHO INVERTE", "#40e0ff"],
+    [P(4, "acende") - .3, F(4), "ELÉTRONS ACENDEM A TELA", "#ffffaa"],
+    [C(5), P(5, "película") - .2, "ENCOSTOU: CURTO-CIRCUITO", "#ff6a6a"],
+    [P(5, "película") - .2, P(5, "chip") - .2, "PELÍCULA NO MEIO", "#ffffff"],
+    [P(5, "chip") - .2, F(5), "CHIP CORTA EM 100%", "#80ffa0"],
+    [C(6), P(6, "desgasta") - .2, "NADA DURA PRA SEMPRE", "#ffffff"],
+    [P(6, "desgasta") - .2, P(6, "calor") - .2, "CADA RECARGA DESGASTA UM POUCO", "#ffa84a"],
+    [P(6, "calor") - .2, F(6), "CALOR: GÁS = BATERIA ESTUFADA", "#ff6a6a"],
+    [C(7), P(7, "meio") - .2, "ZERAR NÃO FAZ BEM (ERA DE NÍQUEL)", "#ffffff"],
+    [P(7, "meio") - .2, F(7), "IDEAL: ENTRE 20% E 80%", "#80ffa0"],
+    [P(8, "construiu") - .2, T, "BATERIA DE CELULAR", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
