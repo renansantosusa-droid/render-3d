@@ -1,0 +1,138 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("cadeado", { fundo: 0xe6dccb, seed: 3301 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, lin, pulse, entre, C, F, P, T, V } = K;
+const PI = Math.PI;
+const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const cyl = (r, h, n = 20) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(40, 40), mat(0xd8cdb8), 0, 0, 0).rotation.x = -PI / 2;
+const aco = (c = 0xb8bec6) => mat(c, { metalness: .3, roughness: .45 });
+// corrente
+const corrente = grupo(0, 0, 0);
+for (let i = 0; i < 7; i++) { const l = add(new THREE.TorusGeometry(.38, .09, 8, 20), aco(0x8a9098), 0, 1.0 + i * .62, 0, corrente); l.scale.set(.7, 1, 1); l.rotation.y = i % 2 ? PI / 2 : 0; }
+// cadeado
+const cad = grupo(0, 0, 0); cad.visible = false;
+const corpo = add(box(4, 2.8, 1.3), vidro(.2, 0xcfd6e0), 0, 2.2, 0, cad);
+const bordas = add(box(4.02, 2.82, 1.32), new THREE.MeshBasicMaterial({ color: 0x5a6270, wireframe: true }), 0, 2.2, 0, cad); bordas.castShadow = false;
+const arco = grupo(0, 0, 0, cad);
+const arc = add(new THREE.TorusGeometry(1.5, .17, 12, 40, PI), aco(), 0, 3.6, 0, arco);
+const pe1 = add(cyl(.17, 1.1), aco(), -1.5, 3.1, 0, arco), pe2 = add(cyl(.17, 1.1), aco(), 1.5, 3.1, 0, arco);
+const entalhe = add(box(.16, .3, .36), mat(0x30343a), 1.4, 3.05, 0, arco);
+const trinco = add(box(.5, .26, .3), aco(0xd8a030), 1.2, 3.05, 0, cad); trinco.visible = false;
+const lamina = add(box(.12, 1.7, .5), aco(0xd8a030), .7, 2.4, 0, cad); lamina.visible = false;
+const plug = add(box(3.0, 1.2, 1.0), new THREE.MeshStandardMaterial({ color: 0xb4bac2, roughness: .7, transparent: true, opacity: .4, depthWrite: false }), -.5, 1.6, 0, cad); plug.visible = false;
+const fenda = add(box(3.0, .12, .6), mat(0x1a1d22), -.5, 1.42, .3, cad); fenda.visible = false;
+const limite = add(box(4, .04, 1.34), new THREE.MeshBasicMaterial({ color: 0xff3a3a }), 0, 2.2, 0, cad); limite.visible = false; limite.castShadow = false;
+const XC = [-1.2, -.9, -.6, -.3, 0], H = [.1, .4, .2, .5, .3], y0 = 1.45;
+const furos = XC.map((x) => { const f = add(cyl(.12, .3), mat(0x1a1d22), x, 3.5, .0, cad); f.visible = false; return f; });
+const pinos = XC.map((x, i) => {
+  const L = .75 - H[i];
+  const kp = add(cyl(.09, 1), mat(0xe8c050, { metalness: .8 }), x, 0, 0, cad), dp = add(cyl(.09, .7), mat(0xc07a30, { metalness: .7 }), x, 0, 0, cad), mo = add(cyl(.045, 1), mat(0x8a9098), x, 0, 0, cad);
+  kp.visible = dp.visible = mo.visible = false; return { x, L, kp, dp, mo };
+});
+const verm = XC.map((x) => { const s = sprite(0xff2a2a, cad); s.scale.setScalar(.5); return s; }), verd = sprite(0x30ff70, cad); verd.scale.setScalar(1.2);
+// chaves
+function chave(cor) { const g = grupo(-3, 0, .1, cad); add(box(3.2, .22, .4), aco(cor), -1.6 + 0, y0 - .12, 0, g); add(new THREE.TorusGeometry(.4, .1, 8, 20), aco(cor), -3.6, y0 - .12, 0, g); XC.forEach((x, i) => { const d = add(box(.22, 1, .36), aco(cor), x - 1.3, 0, 0, g); d.userData.i = i; g.userData.d = (g.userData.d || []).concat(d); }); return g; }
+const kR = chave(0xd8d040), kW = chave(0xd04040); kR.visible = kW.visible = false;
+const HW = H.map((h, i) => h + [.2, -.1, -.1, .25, 0][i]);
+function dentes(g, hs) { g.userData.d.forEach((d, i) => { d.scale.y = hs[i] + .001; d.position.y = y0 - .01 + hs[i] / 2; }); }
+dentes(kR, H); dentes(kW, HW);
+// alicate
+const al = grupo(0, 6.2, 0); al.visible = false;
+const a1 = add(box(.16, 1.2, .22), mat(0xd03a3a), -.3, .3, 0, al), a2 = add(box(.16, 1.2, .22), mat(0xd03a3a), .3, .3, 0, al);
+const fag = sprite(0xffd060); fag.position.set(0, 5.35, 0);
+// chapas
+const chapas = Array.from({ length: 5 }, (_, i) => { const c = add(box(4, 2.8, .2), aco(0x9aa2ac), 0, 2.2, -.5 + i * .25, cad); c.visible = false; return c; });
+// chuva
+const chuva = Array.from({ length: 16 }, () => sprite(0x4a90e0)); 
+const tampa = add(box(.45, .35, .8), mat(0x30343a), -2.0, 1.4, .3, cad); tampa.visible = false;
+const oleo = sprite(0xffc040, cad); oleo.position.set(-2.1, 1.7, .5);
+K.camera_({
+  wide: [V(0, 3.5, 12.5), V(0, 3.0, 0)],
+  perto: [V(0, 3.3, 9.8), V(0, 3.2, 0)],
+  fim: [V(0, 3.4, 13.5), V(0, 2.8, 0)],
+}, [[0, "wide"], [C(2), "wide"], [C(3), "perto"], [C(5), "wide"], [C(7), "fim"], [T, "fim"]]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  corrente.visible = t < P(1, "arco") + .3; 
+  cad.visible = t >= P(1, "arco") - .3; cad.scale.setScalar(.01 + .99 * prog(t, P(1, "arco") - .3, P(1, "arco") + .5));
+  // cena 2
+  trinco.visible = t >= P(2, "trinco") - .2; lamina.visible = plug.visible = fenda.visible = t >= P(2, "cilindro") - .2;
+  // chave
+  const tc = P(4, "chave"), te = P(4, "errada");
+  const kxR = -3 + 4.3 * prog(t, tc, tc + 2.2) - 4.3 * prog(t, te - 1.0, te - .3);
+  const kxW = -3 + 4.3 * prog(t, te, te + 1.8);
+  kR.visible = t >= tc && t < te - .2 || (t >= C(7) && false); kW.visible = em(te - .3, F(4) + 1);
+  kR.position.x = kxR; kW.position.x = kxW;
+  const errada = t >= te - .1 && t < C(5) ;
+  const kp = errada ? prog(kxW, .3, 1.3) : prog(kxR, .3, 1.3);
+  const aberto = em(P(4, "gira"), te - 1.0) || t >= C(7) && false;
+  // pinos
+  const verPinos = t >= P(3, "pinos") - .2 && t < C(5) + 1 || t >= P(7, "cilindro") - .2;
+  furos.forEach((f) => f.visible = t >= P(3, "furos") - .2 && t < C(4));
+  limite.visible = t >= P(3, "limite") - .2 && t < C(5);
+  let incorreto = false;
+  pinos.forEach((p, i) => {
+    const off = (errada ? HW[i] : H[i]) * kp, bnd = y0 + off + p.L;
+    if (errada && Math.abs(bnd - 2.2) > .03 && kp > .9) incorreto = true;
+    const v = verPinos && !(t >= C(5) + 1 && t < P(7, "cilindro") - .2);
+    p.kp.visible = p.dp.visible = p.mo.visible = v;
+    p.kp.scale.y = p.L; p.kp.position.y = y0 + off + p.L / 2;
+    p.dp.position.y = bnd + .35;
+    const top = bnd + .7, h = Math.max(.05, 3.4 - top); p.mo.scale.y = h; p.mo.position.y = top + h / 2;
+    verm[i].position.set(p.x, bnd, .6); verm[i].material.opacity = errada && kp > .9 && Math.abs(bnd - 2.2) > .03 ? .8 : 0;
+    // chacoalha mola
+    if (t < P(3, "mola") + 1) p.mo.visible = p.mo.visible && t >= P(3, "mola") - .2;
+  });
+  verd.position.set(-.6, 2.2, .7); verd.material.opacity = (!errada && kp > .95 && t < C(5)) ? .5 + .3 * Math.sin(t * 6) : 0;
+  // arco abre
+  const ab = aberto ? prog(t, P(4, "gira"), P(4, "gira") + .8) : (t >= te - 1.0 && t < te - .3 ? 1 - prog(t, te - 1.0, te - .3) : 0);
+  arco.position.y = .7 * (t >= P(4, "gira") && t < te - 1.0 ? prog(t, P(4, "gira") + .3, P(4, "gira") + 1.1) : (t >= te - 1.0 && t < te - .3 ? 1 - prog(t, te - 1.0, te - .3) : 0));
+  trinco.position.x = 1.2 - .45 * (t >= P(4, "gira") && t < te - 1.0 ? prog(t, P(4, "gira"), P(4, "gira") + .5) : (t >= te - 1.0 && t < te - .3 ? 1 - prog(t, te - 1.0, te - .3) : 0));
+  lamina.rotation.z = -.5 * (t >= P(4, "gira") && t < te - 1.0 ? prog(t, P(4, "gira"), P(4, "gira") + .5) : 0);
+  // cena 5
+  const tal = P(5, "alicate");
+  al.visible = em(tal - .3, P(5, "chapas") - .2);
+  const sq = pulse(t, tal + .4, 1.2);
+  a1.rotation.z = .4 - .4 * sq; a2.rotation.z = -.4 + .4 * sq; a1.position.x = -.3 + .08 * sq; a2.position.x = .3 - .08 * sq;
+  al.position.y = 6.2 - .6 * prog(t, tal - .3, tal + .3);
+  fag.material.opacity = em(tal + .6, tal + 1.1) ? .9 : 0; fag.scale.setScalar(1.2);
+  arc.material.color.setHex(t >= P(5, "endurecido") ? 0x6a7a90 : 0xb8bec6);
+  chapas.forEach((c, i) => { c.visible = t >= P(5, "chapas") - .2 && t < C(6); c.position.z = -.5 + i * .25 + .35 * (i - 2) * prog(t, P(5, "chapas") - .2, P(5, "chapas") + .6) * .6; });
+  corpo.visible = !(t >= P(5, "chapas") - .2 && t < C(6));
+  // cena 6
+  const tch = P(6, "chuva");
+  chuva.forEach((s, i) => { const k = ((t * .7 + i / 16) % 1); s.position.set(-1.8 + (i % 8) * .5, 6.5 - k * 5, .8); s.scale.setScalar(.14); s.material.opacity = em(tch, P(6, "tampinha")) ? .8 : 0; });
+  const fer = prog(t, P(6, "ferrugem"), P(6, "ferrugem") + 1.5) * (t < P(6, "tampinha") ? 1 : 1 - prog(t, P(6, "lubrificante"), P(6, "lubrificante") + 1.5));
+  plug.material.color.lerpColors(new THREE.Color(0xb4bac2), new THREE.Color(0xa04a1a), fer);
+  tampa.visible = t >= P(6, "tampinha") - .2 && t < C(7); oleo.material.opacity = em(P(6, "lubrificante"), P(6, "lubrificante") + 1.5) ? .8 : 0; oleo.scale.setScalar(.6);
+  K.cartoes(t, [
+    [P(1, "corrente") - .2, P(1, "desenrola") - .2, "CORRENTE: BASTA DESENROLAR", "#ff6a6a"],
+    [P(1, "arco") - .4, F(1), "ARCO DE AÇO + UMA TRAVA", "#ffd23a"],
+    [C(2), P(2, "entalhe") - .2, "UM PÉ FICA DENTRO DO CORPO", "#ffffff"],
+    [P(2, "entalhe") - .2, P(2, "cilindro") - .6, "ENTALHE + TRINCO TRAVAM O ARCO", "#ffd23a"],
+    [P(2, "cilindro") - .6, F(2), "CILINDRO GIRA E A LÂMINA PUXA O TRINCO", "#ffffff"],
+    [C(3), P(3, "furos") - .2, "SE GIRAR COM QUALQUER COISA, UM ARAME ABRE", "#ff6a6a"],
+    [P(3, "furos") - .2, P(3, "descem") - .2, "FUROS + PINOS COM MOLA", "#ffffff"],
+    [P(3, "descem") - .2, F(3), "OS PINOS TRAVAM O GIRO", "#ff6a6a"],
+    [C(4), P(4, "levanta") - .2, "AGORA A CHAVE", "#ffd23a"],
+    [P(4, "levanta") - .2, P(4, "alinham") - .2, "CADA DENTE LEVANTA UM PINO", "#ffffff"],
+    [P(4, "alinham") - .2, te - 1.0, "TUDO ALINHADO NA LINHA: GIRA", "#40ff80"],
+    [te - 1.0, F(4), "CHAVE ERRADA: PINO ATRAVESSA", "#ff6a6a"],
+    [C(5), P(5, "endurecido") - .2, "ALGUÉM CORTA O ARCO COM ALICATE", "#ffffff"],
+    [P(5, "endurecido") - .2, P(5, "chapas") - .2, "ARCO DE AÇO ENDURECIDO", "#80b0ff"],
+    [P(5, "chapas") - .2, F(5), "CORPO DE CHAPAS EMPILHADAS", "#ffd23a"],
+    [C(6), P(6, "ferrugem") - .2, "CHUVA ENTRA PELA FENDA", "#8ac8ff"],
+    [P(6, "ferrugem") - .2, P(6, "tampinha") - .2, "FERRUGEM TRAVA TUDO", "#e08a4a"],
+    [P(6, "tampinha") - .2, F(6), "TAMPINHA + LUBRIFICANTE", "#ffd23a"],
+    [P(7, "construiu") - .2, T, "CADEADO", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>

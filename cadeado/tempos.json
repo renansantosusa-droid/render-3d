@@ -1,0 +1,1209 @@
+{
+ "total": 97.49,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 10.63,
+   "texto": "Se você quiser fechar um portão, basta enrolar uma corrente. Mas qualquer pessoa desenrola. Então você prende a corrente com um arco de aço, e esse arco precisa de uma trava.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.358
+    },
+    {
+     "w": "quiser",
+     "t": 0.577
+    },
+    {
+     "w": "fechar",
+     "t": 0.87
+    },
+    {
+     "w": "um",
+     "t": 1.217
+    },
+    {
+     "w": "portão",
+     "t": 1.318
+    },
+    {
+     "w": "basta",
+     "t": 2.03
+    },
+    {
+     "w": "enrolar",
+     "t": 2.363
+    },
+    {
+     "w": "uma",
+     "t": 2.75
+    },
+    {
+     "w": "corrente",
+     "t": 2.91
+    },
+    {
+     "w": "Mas",
+     "t": 3.78
+    },
+    {
+     "w": "qualquer",
+     "t": 4.034
+    },
+    {
+     "w": "pessoa",
+     "t": 4.447
+    },
+    {
+     "w": "desenrola",
+     "t": 4.83
+    },
+    {
+     "w": "Então",
+     "t": 5.85
+    },
+    {
+     "w": "você",
+     "t": 6.278
+    },
+    {
+     "w": "prende",
+     "t": 6.51
+    },
+    {
+     "w": "a",
+     "t": 6.77
+    },
+    {
+     "w": "corrente",
+     "t": 6.85
+    },
+    {
+     "w": "com",
+     "t": 7.31
+    },
+    {
+     "w": "um",
+     "t": 7.457
+    },
+    {
+     "w": "arco",
+     "t": 7.563
+    },
+    {
+     "w": "de",
+     "t": 7.883
+    },
+    {
+     "w": "aço",
+     "t": 8.03
+    },
+    {
+     "w": "e",
+     "t": 8.59
+    },
+    {
+     "w": "esse",
+     "t": 8.678
+    },
+    {
+     "w": "arco",
+     "t": 8.923
+    },
+    {
+     "w": "precisa",
+     "t": 9.25
+    },
+    {
+     "w": "de",
+     "t": 9.697
+    },
+    {
+     "w": "uma",
+     "t": 9.79
+    },
+    {
+     "w": "trava",
+     "t": 9.977
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 10.78,
+   "fim": 26.86,
+   "texto": "O arco tem dois pés. Um fica sempre dentro do corpo. O outro tem um entalhe, onde entra um trinco que impede o arco de subir. Mas esse trinco precisa sair na hora certa. Então você coloca um cilindro que gira, com uma lâmina que puxa o trinco pra trás.",
+   "palavras": [
+    {
+     "w": "O",
+     "t": 10.78
+    },
+    {
+     "w": "arco",
+     "t": 10.913
+    },
+    {
+     "w": "tem",
+     "t": 11.22
+    },
+    {
+     "w": "dois",
+     "t": 11.388
+    },
+    {
+     "w": "pés",
+     "t": 11.66
+    },
+    {
+     "w": "Um",
+     "t": 12.247
+    },
+    {
+     "w": "fica",
+     "t": 12.668
+    },
+    {
+     "w": "sempre",
+     "t": 12.929
+    },
+    {
+     "w": "dentro",
+     "t": 13.386
+    },
+    {
+     "w": "do",
+     "t": 13.713
+    },
+    {
+     "w": "corpo",
+     "t": 13.887
+    },
+    {
+     "w": "O",
+     "t": 14.58
+    },
+    {
+     "w": "outro",
+     "t": 14.753
+    },
+    {
+     "w": "tem",
+     "t": 15.06
+    },
+    {
+     "w": "um",
+     "t": 15.207
+    },
+    {
+     "w": "entalhe",
+     "t": 15.32
+    },
+    {
+     "w": "onde",
+     "t": 16.108
+    },
+    {
+     "w": "entra",
+     "t": 16.34
+    },
+    {
+     "w": "um",
+     "t": 16.567
+    },
+    {
+     "w": "trinco",
+     "t": 16.7
+    },
+    {
+     "w": "que",
+     "t": 17.14
+    },
+    {
+     "w": "impede",
+     "t": 17.3
+    },
+    {
+     "w": "o",
+     "t": 17.7
+    },
+    {
+     "w": "arco",
+     "t": 17.793
+    },
+    {
+     "w": "de",
+     "t": 18.087
+    },
+    {
+     "w": "subir",
+     "t": 18.2
+    },
+    {
+     "w": "Mas",
+     "t": 18.9
+    },
+    {
+     "w": "esse",
+     "t": 19.308
+    },
+    {
+     "w": "trinco",
+     "t": 19.553
+    },
+    {
+     "w": "precisa",
+     "t": 20.02
+    },
+    {
+     "w": "sair",
+     "t": 20.353
+    },
+    {
+     "w": "na",
+     "t": 20.673
+    },
+    {
+     "w": "hora",
+     "t": 20.812
+    },
+    {
+     "w": "certa",
+     "t": 21.02
+    },
+    {
+     "w": "Então",
+     "t": 21.86
+    },
+    {
+     "w": "você",
+     "t": 22.364
+    },
+    {
+     "w": "coloca",
+     "t": 22.66
+    },
+    {
+     "w": "um",
+     "t": 22.967
+    },
+    {
+     "w": "cilindro",
+     "t": 23.08
+    },
+    {
+     "w": "que",
+     "t": 23.6
+    },
+    {
+     "w": "gira",
+     "t": 23.74
+    },
+    {
+     "w": "com",
+     "t": 24.34
+    },
+    {
+     "w": "uma",
+     "t": 24.5
+    },
+    {
+     "w": "lâmina",
+     "t": 24.66
+    },
+    {
+     "w": "que",
+     "t": 24.98
+    },
+    {
+     "w": "puxa",
+     "t": 25.18
+    },
+    {
+     "w": "o",
+     "t": 25.54
+    },
+    {
+     "w": "trinco",
+     "t": 25.633
+    },
+    {
+     "w": "pra",
+     "t": 26
+    },
+    {
+     "w": "trás",
+     "t": 26.14
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 27.01,
+   "fim": 42.77,
+   "texto": "Mas se o cilindro gira com qualquer coisa, um arame abre. Então você faz pequenos furos por cima, e coloca pinos com mola. Os pinos descem, atravessam o limite entre o cilindro e o corpo, e travam o giro. Cada pino é empurrado pela mola, sempre pra baixo.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 27.01
+    },
+    {
+     "w": "se",
+     "t": 27.117
+    },
+    {
+     "w": "o",
+     "t": 27.21
+    },
+    {
+     "w": "cilindro",
+     "t": 27.29
+    },
+    {
+     "w": "gira",
+     "t": 27.73
+    },
+    {
+     "w": "com",
+     "t": 28.01
+    },
+    {
+     "w": "qualquer",
+     "t": 28.183
+    },
+    {
+     "w": "coisa",
+     "t": 28.677
+    },
+    {
+     "w": "um",
+     "t": 29.277
+    },
+    {
+     "w": "arame",
+     "t": 29.383
+    },
+    {
+     "w": "abre",
+     "t": 29.794
+    },
+    {
+     "w": "Então",
+     "t": 30.35
+    },
+    {
+     "w": "você",
+     "t": 30.658
+    },
+    {
+     "w": "faz",
+     "t": 30.89
+    },
+    {
+     "w": "pequenos",
+     "t": 31.058
+    },
+    {
+     "w": "furos",
+     "t": 31.49
+    },
+    {
+     "w": "por",
+     "t": 31.85
+    },
+    {
+     "w": "cima",
+     "t": 32.05
+    },
+    {
+     "w": "e",
+     "t": 32.55
+    },
+    {
+     "w": "coloca",
+     "t": 32.65
+    },
+    {
+     "w": "pinos",
+     "t": 33.09
+    },
+    {
+     "w": "com",
+     "t": 33.47
+    },
+    {
+     "w": "mola",
+     "t": 33.69
+    },
+    {
+     "w": "Os",
+     "t": 34.343
+    },
+    {
+     "w": "pinos",
+     "t": 34.59
+    },
+    {
+     "w": "descem",
+     "t": 34.914
+    },
+    {
+     "w": "atravessam",
+     "t": 35.477
+    },
+    {
+     "w": "o",
+     "t": 36.09
+    },
+    {
+     "w": "limite",
+     "t": 36.187
+    },
+    {
+     "w": "entre",
+     "t": 36.57
+    },
+    {
+     "w": "o",
+     "t": 36.81
+    },
+    {
+     "w": "cilindro",
+     "t": 36.89
+    },
+    {
+     "w": "e",
+     "t": 37.37
+    },
+    {
+     "w": "o",
+     "t": 37.53
+    },
+    {
+     "w": "corpo",
+     "t": 37.69
+    },
+    {
+     "w": "e",
+     "t": 38.07
+    },
+    {
+     "w": "travam",
+     "t": 38.226
+    },
+    {
+     "w": "o",
+     "t": 38.73
+    },
+    {
+     "w": "giro",
+     "t": 38.85
+    },
+    {
+     "w": "Cada",
+     "t": 39.37
+    },
+    {
+     "w": "pino",
+     "t": 39.89
+    },
+    {
+     "w": "é",
+     "t": 40.17
+    },
+    {
+     "w": "empurrado",
+     "t": 40.25
+    },
+    {
+     "w": "pela",
+     "t": 40.738
+    },
+    {
+     "w": "mola",
+     "t": 40.97
+    },
+    {
+     "w": "sempre",
+     "t": 41.547
+    },
+    {
+     "w": "pra",
+     "t": 41.93
+    },
+    {
+     "w": "baixo",
+     "t": 42.13
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 42.92,
+   "fim": 63.32,
+   "texto": "Agora a chave. Os pinos de baixo têm tamanhos diferentes. Cada dente da chave levanta um pino na altura exata, até a emenda entre os pinos ficar bem na linha onde o cilindro se separa do corpo. Quando todos alinham, nada mais trava, e a chave gira. Uma chave errada deixa algum pino atravessando, e o cilindro não gira.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 42.92
+    },
+    {
+     "w": "a",
+     "t": 43.3
+    },
+    {
+     "w": "chave",
+     "t": 43.4
+    },
+    {
+     "w": "Os",
+     "t": 44.28
+    },
+    {
+     "w": "pinos",
+     "t": 44.56
+    },
+    {
+     "w": "de",
+     "t": 44.867
+    },
+    {
+     "w": "baixo",
+     "t": 44.973
+    },
+    {
+     "w": "têm",
+     "t": 45.34
+    },
+    {
+     "w": "tamanhos",
+     "t": 45.44
+    },
+    {
+     "w": "diferentes",
+     "t": 45.938
+    },
+    {
+     "w": "Cada",
+     "t": 47
+    },
+    {
+     "w": "dente",
+     "t": 47.44
+    },
+    {
+     "w": "da",
+     "t": 47.747
+    },
+    {
+     "w": "chave",
+     "t": 47.867
+    },
+    {
+     "w": "levanta",
+     "t": 48.26
+    },
+    {
+     "w": "um",
+     "t": 48.653
+    },
+    {
+     "w": "pino",
+     "t": 48.8
+    },
+    {
+     "w": "na",
+     "t": 49.027
+    },
+    {
+     "w": "altura",
+     "t": 49.126
+    },
+    {
+     "w": "exata",
+     "t": 49.48
+    },
+    {
+     "w": "até",
+     "t": 50.36
+    },
+    {
+     "w": "a",
+     "t": 50.64
+    },
+    {
+     "w": "emenda",
+     "t": 50.733
+    },
+    {
+     "w": "entre",
+     "t": 51.107
+    },
+    {
+     "w": "os",
+     "t": 51.293
+    },
+    {
+     "w": "pinos",
+     "t": 51.44
+    },
+    {
+     "w": "ficar",
+     "t": 51.76
+    },
+    {
+     "w": "bem",
+     "t": 52.16
+    },
+    {
+     "w": "na",
+     "t": 52.333
+    },
+    {
+     "w": "linha",
+     "t": 52.48
+    },
+    {
+     "w": "onde",
+     "t": 52.744
+    },
+    {
+     "w": "o",
+     "t": 53.06
+    },
+    {
+     "w": "cilindro",
+     "t": 53.15
+    },
+    {
+     "w": "se",
+     "t": 53.507
+    },
+    {
+     "w": "separa",
+     "t": 53.627
+    },
+    {
+     "w": "do",
+     "t": 54.067
+    },
+    {
+     "w": "corpo",
+     "t": 54.187
+    },
+    {
+     "w": "Quando",
+     "t": 54.931
+    },
+    {
+     "w": "todos",
+     "t": 55.547
+    },
+    {
+     "w": "alinham",
+     "t": 55.933
+    },
+    {
+     "w": "nada",
+     "t": 56.664
+    },
+    {
+     "w": "mais",
+     "t": 56.984
+    },
+    {
+     "w": "trava",
+     "t": 57.293
+    },
+    {
+     "w": "e",
+     "t": 57.8
+    },
+    {
+     "w": "a",
+     "t": 58
+    },
+    {
+     "w": "chave",
+     "t": 58.093
+    },
+    {
+     "w": "gira",
+     "t": 58.44
+    },
+    {
+     "w": "Uma",
+     "t": 59.2
+    },
+    {
+     "w": "chave",
+     "t": 59.613
+    },
+    {
+     "w": "errada",
+     "t": 59.92
+    },
+    {
+     "w": "deixa",
+     "t": 60.333
+    },
+    {
+     "w": "algum",
+     "t": 60.573
+    },
+    {
+     "w": "pino",
+     "t": 60.88
+    },
+    {
+     "w": "atravessando",
+     "t": 61.133
+    },
+    {
+     "w": "e",
+     "t": 61.98
+    },
+    {
+     "w": "o",
+     "t": 62.08
+    },
+    {
+     "w": "cilindro",
+     "t": 62.18
+    },
+    {
+     "w": "não",
+     "t": 62.56
+    },
+    {
+     "w": "gira",
+     "t": 62.76
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 63.47,
+   "fim": 76.67,
+   "texto": "Mas alguém pode cortar o arco com um alicate grande. Então você faz o arco de aço endurecido, e o corpo com várias chapas de aço empilhadas. Cortar passa a dar trabalho e barulho, e muita gente desiste.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 63.47
+    },
+    {
+     "w": "alguém",
+     "t": 63.657
+    },
+    {
+     "w": "pode",
+     "t": 63.998
+    },
+    {
+     "w": "cortar",
+     "t": 64.238
+    },
+    {
+     "w": "o",
+     "t": 64.59
+    },
+    {
+     "w": "arco",
+     "t": 64.723
+    },
+    {
+     "w": "com",
+     "t": 65.03
+    },
+    {
+     "w": "um",
+     "t": 65.177
+    },
+    {
+     "w": "alicate",
+     "t": 65.27
+    },
+    {
+     "w": "grande",
+     "t": 65.767
+    },
+    {
+     "w": "Então",
+     "t": 66.45
+    },
+    {
+     "w": "você",
+     "t": 67.134
+    },
+    {
+     "w": "faz",
+     "t": 67.31
+    },
+    {
+     "w": "o",
+     "t": 67.59
+    },
+    {
+     "w": "arco",
+     "t": 67.683
+    },
+    {
+     "w": "de",
+     "t": 67.977
+    },
+    {
+     "w": "aço",
+     "t": 68.11
+    },
+    {
+     "w": "endurecido",
+     "t": 68.316
+    },
+    {
+     "w": "e",
+     "t": 69.27
+    },
+    {
+     "w": "o",
+     "t": 69.51
+    },
+    {
+     "w": "corpo",
+     "t": 69.617
+    },
+    {
+     "w": "com",
+     "t": 69.99
+    },
+    {
+     "w": "várias",
+     "t": 70.19
+    },
+    {
+     "w": "chapas",
+     "t": 70.574
+    },
+    {
+     "w": "de",
+     "t": 70.963
+    },
+    {
+     "w": "aço",
+     "t": 71.11
+    },
+    {
+     "w": "empilhadas",
+     "t": 71.35
+    },
+    {
+     "w": "Cortar",
+     "t": 72.222
+    },
+    {
+     "w": "passa",
+     "t": 72.974
+    },
+    {
+     "w": "a",
+     "t": 73.35
+    },
+    {
+     "w": "dar",
+     "t": 73.43
+    },
+    {
+     "w": "trabalho",
+     "t": 73.603
+    },
+    {
+     "w": "e",
+     "t": 74.15
+    },
+    {
+     "w": "barulho",
+     "t": 74.33
+    },
+    {
+     "w": "e",
+     "t": 75.05
+    },
+    {
+     "w": "muita",
+     "t": 75.23
+    },
+    {
+     "w": "gente",
+     "t": 75.683
+    },
+    {
+     "w": "desiste",
+     "t": 76.01
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 76.82,
+   "fim": 89.46,
+   "texto": "Só que ao ar livre, a chuva entra pelo buraco da chave, e a ferrugem trava tudo. Então você põe uma tampinha na entrada, e um pouco de lubrificante de vez em quando. É por isso que cadeado esquecido na chuva emperra.",
+   "palavras": [
+    {
+     "w": "Só",
+     "t": 76.82
+    },
+    {
+     "w": "que",
+     "t": 77.02
+    },
+    {
+     "w": "ao",
+     "t": 77.167
+    },
+    {
+     "w": "ar",
+     "t": 77.273
+    },
+    {
+     "w": "livre",
+     "t": 77.433
+    },
+    {
+     "w": "a",
+     "t": 77.98
+    },
+    {
+     "w": "chuva",
+     "t": 78.08
+    },
+    {
+     "w": "entra",
+     "t": 78.473
+    },
+    {
+     "w": "pelo",
+     "t": 78.788
+    },
+    {
+     "w": "buraco",
+     "t": 79.02
+    },
+    {
+     "w": "da",
+     "t": 79.407
+    },
+    {
+     "w": "chave",
+     "t": 79.54
+    },
+    {
+     "w": "e",
+     "t": 80.22
+    },
+    {
+     "w": "a",
+     "t": 80.3
+    },
+    {
+     "w": "ferrugem",
+     "t": 80.388
+    },
+    {
+     "w": "trava",
+     "t": 80.953
+    },
+    {
+     "w": "tudo",
+     "t": 81.284
+    },
+    {
+     "w": "Então",
+     "t": 81.98
+    },
+    {
+     "w": "você",
+     "t": 82.228
+    },
+    {
+     "w": "põe",
+     "t": 82.46
+    },
+    {
+     "w": "uma",
+     "t": 82.68
+    },
+    {
+     "w": "tampinha",
+     "t": 82.804
+    },
+    {
+     "w": "na",
+     "t": 83.273
+    },
+    {
+     "w": "entrada",
+     "t": 83.43
+    },
+    {
+     "w": "e",
+     "t": 84.06
+    },
+    {
+     "w": "um",
+     "t": 84.127
+    },
+    {
+     "w": "pouco",
+     "t": 84.233
+    },
+    {
+     "w": "de",
+     "t": 84.553
+    },
+    {
+     "w": "lubrificante",
+     "t": 84.7
+    },
+    {
+     "w": "de",
+     "t": 85.407
+    },
+    {
+     "w": "vez",
+     "t": 85.52
+    },
+    {
+     "w": "em",
+     "t": 85.727
+    },
+    {
+     "w": "quando",
+     "t": 85.826
+    },
+    {
+     "w": "É",
+     "t": 86.54
+    },
+    {
+     "w": "por",
+     "t": 86.62
+    },
+    {
+     "w": "isso",
+     "t": 86.788
+    },
+    {
+     "w": "que",
+     "t": 87
+    },
+    {
+     "w": "cadeado",
+     "t": 87.14
+    },
+    {
+     "w": "esquecido",
+     "t": 87.673
+    },
+    {
+     "w": "na",
+     "t": 88.207
+    },
+    {
+     "w": "chuva",
+     "t": 88.32
+    },
+    {
+     "w": "emperra",
+     "t": 88.72
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 89.61,
+   "fim": 96.89,
+   "texto": "Coloque um arco, um corpo de chapas, um cilindro com pinos e duas chaves. Parabéns, você construiu um cadeado.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 89.61
+    },
+    {
+     "w": "um",
+     "t": 90.063
+    },
+    {
+     "w": "arco",
+     "t": 90.223
+    },
+    {
+     "w": "um",
+     "t": 90.757
+    },
+    {
+     "w": "corpo",
+     "t": 90.863
+    },
+    {
+     "w": "de",
+     "t": 91.183
+    },
+    {
+     "w": "chapas",
+     "t": 91.338
+    },
+    {
+     "w": "um",
+     "t": 92.037
+    },
+    {
+     "w": "cilindro",
+     "t": 92.15
+    },
+    {
+     "w": "com",
+     "t": 92.61
+    },
+    {
+     "w": "pinos",
+     "t": 92.79
+    },
+    {
+     "w": "e",
+     "t": 93.25
+    },
+    {
+     "w": "duas",
+     "t": 93.354
+    },
+    {
+     "w": "chaves",
+     "t": 93.663
+    },
+    {
+     "w": "Parabéns",
+     "t": 94.33
+    },
+    {
+     "w": "você",
+     "t": 95.498
+    },
+    {
+     "w": "construiu",
+     "t": 95.736
+    },
+    {
+     "w": "um",
+     "t": 96.197
+    },
+    {
+     "w": "cadeado",
+     "t": 96.314
+    }
+   ]
+  }
+ ]
+}
