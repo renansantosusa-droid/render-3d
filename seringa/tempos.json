@@ -1,0 +1,985 @@
+{
+ "total": 81.01,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 13.27,
+   "texto": "Se você quiser tirar líquido de um frasco, basta um canudo. Mas o líquido só sobe se você chupar. Então você coloca um tubo com uma tampa que desliza lá dentro. Esse tubo é a seringa.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.358
+    },
+    {
+     "w": "quiser",
+     "t": 0.577
+    },
+    {
+     "w": "tirar",
+     "t": 0.91
+    },
+    {
+     "w": "líquido",
+     "t": 1.27
+    },
+    {
+     "w": "de",
+     "t": 1.643
+    },
+    {
+     "w": "um",
+     "t": 1.777
+    },
+    {
+     "w": "frasco",
+     "t": 1.883
+    },
+    {
+     "w": "basta",
+     "t": 2.67
+    },
+    {
+     "w": "um",
+     "t": 2.977
+    },
+    {
+     "w": "canudo",
+     "t": 3.09
+    },
+    {
+     "w": "Mas",
+     "t": 3.96
+    },
+    {
+     "w": "o",
+     "t": 4.31
+    },
+    {
+     "w": "líquido",
+     "t": 4.443
+    },
+    {
+     "w": "só",
+     "t": 4.923
+    },
+    {
+     "w": "sobe",
+     "t": 5.13
+    },
+    {
+     "w": "se",
+     "t": 5.59
+    },
+    {
+     "w": "você",
+     "t": 5.798
+    },
+    {
+     "w": "chupar",
+     "t": 6.017
+    },
+    {
+     "w": "Então",
+     "t": 6.77
+    },
+    {
+     "w": "você",
+     "t": 7.574
+    },
+    {
+     "w": "coloca",
+     "t": 7.73
+    },
+    {
+     "w": "um",
+     "t": 8.123
+    },
+    {
+     "w": "tubo",
+     "t": 8.33
+    },
+    {
+     "w": "com",
+     "t": 8.75
+    },
+    {
+     "w": "uma",
+     "t": 8.91
+    },
+    {
+     "w": "tampa",
+     "t": 9.11
+    },
+    {
+     "w": "que",
+     "t": 9.59
+    },
+    {
+     "w": "desliza",
+     "t": 9.89
+    },
+    {
+     "w": "lá",
+     "t": 10.417
+    },
+    {
+     "w": "dentro",
+     "t": 10.527
+    },
+    {
+     "w": "Esse",
+     "t": 11.217
+    },
+    {
+     "w": "tubo",
+     "t": 11.91
+    },
+    {
+     "w": "é",
+     "t": 12.35
+    },
+    {
+     "w": "a",
+     "t": 12.51
+    },
+    {
+     "w": "seringa",
+     "t": 12.63
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 13.42,
+   "fim": 25.1,
+   "texto": "Quando você puxa a tampa pra trás, o espaço dentro do tubo aumenta, e não tem ar nenhum pra ocupar. Mas a seringa não puxa nada. Quem empurra o líquido pra dentro é a pressão do frasco.",
+   "palavras": [
+    {
+     "w": "Quando",
+     "t": 13.42
+    },
+    {
+     "w": "você",
+     "t": 13.644
+    },
+    {
+     "w": "puxa",
+     "t": 13.98
+    },
+    {
+     "w": "a",
+     "t": 14.28
+    },
+    {
+     "w": "tampa",
+     "t": 14.34
+    },
+    {
+     "w": "pra",
+     "t": 14.66
+    },
+    {
+     "w": "trás",
+     "t": 14.86
+    },
+    {
+     "w": "o",
+     "t": 15.46
+    },
+    {
+     "w": "espaço",
+     "t": 15.58
+    },
+    {
+     "w": "dentro",
+     "t": 16.117
+    },
+    {
+     "w": "do",
+     "t": 16.487
+    },
+    {
+     "w": "tubo",
+     "t": 16.62
+    },
+    {
+     "w": "aumenta",
+     "t": 17.134
+    },
+    {
+     "w": "e",
+     "t": 17.7
+    },
+    {
+     "w": "não",
+     "t": 17.78
+    },
+    {
+     "w": "tem",
+     "t": 17.96
+    },
+    {
+     "w": "ar",
+     "t": 18.193
+    },
+    {
+     "w": "nenhum",
+     "t": 18.36
+    },
+    {
+     "w": "pra",
+     "t": 18.8
+    },
+    {
+     "w": "ocupar",
+     "t": 18.924
+    },
+    {
+     "w": "Mas",
+     "t": 19.56
+    },
+    {
+     "w": "a",
+     "t": 20.02
+    },
+    {
+     "w": "seringa",
+     "t": 20.12
+    },
+    {
+     "w": "não",
+     "t": 20.58
+    },
+    {
+     "w": "puxa",
+     "t": 20.74
+    },
+    {
+     "w": "nada",
+     "t": 21.1
+    },
+    {
+     "w": "Quem",
+     "t": 21.74
+    },
+    {
+     "w": "empurra",
+     "t": 22.12
+    },
+    {
+     "w": "o",
+     "t": 22.6
+    },
+    {
+     "w": "líquido",
+     "t": 22.7
+    },
+    {
+     "w": "pra",
+     "t": 22.98
+    },
+    {
+     "w": "dentro",
+     "t": 23.157
+    },
+    {
+     "w": "é",
+     "t": 23.66
+    },
+    {
+     "w": "a",
+     "t": 23.86
+    },
+    {
+     "w": "pressão",
+     "t": 23.967
+    },
+    {
+     "w": "do",
+     "t": 24.407
+    },
+    {
+     "w": "frasco",
+     "t": 24.513
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 25.25,
+   "fim": 36.05,
+   "texto": "Mas o líquido precisa entrar por um buraco pequeno. Então você coloca uma agulha oca na ponta, bem fininha, com a ponta cortada em diagonal pra furar a pele sem rasgar.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 25.25
+    },
+    {
+     "w": "o",
+     "t": 25.45
+    },
+    {
+     "w": "líquido",
+     "t": 25.57
+    },
+    {
+     "w": "precisa",
+     "t": 25.95
+    },
+    {
+     "w": "entrar",
+     "t": 26.427
+    },
+    {
+     "w": "por",
+     "t": 26.81
+    },
+    {
+     "w": "um",
+     "t": 26.957
+    },
+    {
+     "w": "buraco",
+     "t": 27.07
+    },
+    {
+     "w": "pequeno",
+     "t": 27.49
+    },
+    {
+     "w": "Então",
+     "t": 28.31
+    },
+    {
+     "w": "você",
+     "t": 28.994
+    },
+    {
+     "w": "coloca",
+     "t": 29.29
+    },
+    {
+     "w": "uma",
+     "t": 29.61
+    },
+    {
+     "w": "agulha",
+     "t": 29.81
+    },
+    {
+     "w": "oca",
+     "t": 30.33
+    },
+    {
+     "w": "na",
+     "t": 30.583
+    },
+    {
+     "w": "ponta",
+     "t": 30.77
+    },
+    {
+     "w": "bem",
+     "t": 31.39
+    },
+    {
+     "w": "fininha",
+     "t": 31.63
+    },
+    {
+     "w": "com",
+     "t": 32.41
+    },
+    {
+     "w": "a",
+     "t": 32.57
+    },
+    {
+     "w": "ponta",
+     "t": 32.674
+    },
+    {
+     "w": "cortada",
+     "t": 33.122
+    },
+    {
+     "w": "em",
+     "t": 33.463
+    },
+    {
+     "w": "diagonal",
+     "t": 33.632
+    },
+    {
+     "w": "pra",
+     "t": 34.19
+    },
+    {
+     "w": "furar",
+     "t": 34.45
+    },
+    {
+     "w": "a",
+     "t": 34.81
+    },
+    {
+     "w": "pele",
+     "t": 34.93
+    },
+    {
+     "w": "sem",
+     "t": 35.25
+    },
+    {
+     "w": "rasgar",
+     "t": 35.55
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 36.2,
+   "fim": 48.84,
+   "texto": "Mas se a tampa escorregar solta, o líquido vaza pela borda. Então você põe um anel de borracha nela, que gruda na parede e veda tudo. E os números na lateral mostram quanto cabe, em mililitros.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 36.2
+    },
+    {
+     "w": "se",
+     "t": 36.387
+    },
+    {
+     "w": "a",
+     "t": 36.48
+    },
+    {
+     "w": "tampa",
+     "t": 36.6
+    },
+    {
+     "w": "escorregar",
+     "t": 36.88
+    },
+    {
+     "w": "solta",
+     "t": 37.48
+    },
+    {
+     "w": "o",
+     "t": 38.08
+    },
+    {
+     "w": "líquido",
+     "t": 38.2
+    },
+    {
+     "w": "vaza",
+     "t": 38.68
+    },
+    {
+     "w": "pela",
+     "t": 39.032
+    },
+    {
+     "w": "borda",
+     "t": 39.224
+    },
+    {
+     "w": "Então",
+     "t": 39.76
+    },
+    {
+     "w": "você",
+     "t": 40.248
+    },
+    {
+     "w": "põe",
+     "t": 40.48
+    },
+    {
+     "w": "um",
+     "t": 40.707
+    },
+    {
+     "w": "anel",
+     "t": 40.813
+    },
+    {
+     "w": "de",
+     "t": 41.107
+    },
+    {
+     "w": "borracha",
+     "t": 41.208
+    },
+    {
+     "w": "nela",
+     "t": 41.64
+    },
+    {
+     "w": "que",
+     "t": 42.22
+    },
+    {
+     "w": "gruda",
+     "t": 42.573
+    },
+    {
+     "w": "na",
+     "t": 42.947
+    },
+    {
+     "w": "parede",
+     "t": 43.064
+    },
+    {
+     "w": "e",
+     "t": 43.6
+    },
+    {
+     "w": "veda",
+     "t": 43.8
+    },
+    {
+     "w": "tudo",
+     "t": 44.216
+    },
+    {
+     "w": "E",
+     "t": 44.96
+    },
+    {
+     "w": "os",
+     "t": 45.133
+    },
+    {
+     "w": "números",
+     "t": 45.29
+    },
+    {
+     "w": "na",
+     "t": 45.667
+    },
+    {
+     "w": "lateral",
+     "t": 45.79
+    },
+    {
+     "w": "mostram",
+     "t": 46.347
+    },
+    {
+     "w": "quanto",
+     "t": 46.886
+    },
+    {
+     "w": "cabe",
+     "t": 47.24
+    },
+    {
+     "w": "em",
+     "t": 47.72
+    },
+    {
+     "w": "mililitros",
+     "t": 47.92
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 48.99,
+   "fim": 60.67,
+   "texto": "Agora, empurre a tampa. O líquido não tem pra onde ir, só pela agulha. E quanto menor o furo, mais forte é o jato na saída. É por isso que um empurrãozinho vira um esguicho fino.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 48.99
+    },
+    {
+     "w": "empurre",
+     "t": 49.54
+    },
+    {
+     "w": "a",
+     "t": 49.83
+    },
+    {
+     "w": "tampa",
+     "t": 49.91
+    },
+    {
+     "w": "O",
+     "t": 50.47
+    },
+    {
+     "w": "líquido",
+     "t": 50.75
+    },
+    {
+     "w": "não",
+     "t": 51.19
+    },
+    {
+     "w": "tem",
+     "t": 51.37
+    },
+    {
+     "w": "pra",
+     "t": 51.59
+    },
+    {
+     "w": "onde",
+     "t": 51.742
+    },
+    {
+     "w": "ir",
+     "t": 51.95
+    },
+    {
+     "w": "só",
+     "t": 52.51
+    },
+    {
+     "w": "pela",
+     "t": 52.702
+    },
+    {
+     "w": "agulha",
+     "t": 52.883
+    },
+    {
+     "w": "E",
+     "t": 53.71
+    },
+    {
+     "w": "quanto",
+     "t": 53.916
+    },
+    {
+     "w": "menor",
+     "t": 54.27
+    },
+    {
+     "w": "o",
+     "t": 54.71
+    },
+    {
+     "w": "furo",
+     "t": 54.83
+    },
+    {
+     "w": "mais",
+     "t": 55.438
+    },
+    {
+     "w": "forte",
+     "t": 55.697
+    },
+    {
+     "w": "é",
+     "t": 56.07
+    },
+    {
+     "w": "o",
+     "t": 56.15
+    },
+    {
+     "w": "jato",
+     "t": 56.23
+    },
+    {
+     "w": "na",
+     "t": 56.457
+    },
+    {
+     "w": "saída",
+     "t": 56.59
+    },
+    {
+     "w": "É",
+     "t": 57.19
+    },
+    {
+     "w": "por",
+     "t": 57.43
+    },
+    {
+     "w": "isso",
+     "t": 57.598
+    },
+    {
+     "w": "que",
+     "t": 57.83
+    },
+    {
+     "w": "um",
+     "t": 57.977
+    },
+    {
+     "w": "empurrãozinho",
+     "t": 58.09
+    },
+    {
+     "w": "vira",
+     "t": 59.03
+    },
+    {
+     "w": "um",
+     "t": 59.337
+    },
+    {
+     "w": "esguicho",
+     "t": 59.47
+    },
+    {
+     "w": "fino",
+     "t": 60.046
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 60.82,
+   "fim": 72.34,
+   "texto": "Mas e as bolhas? Elas ficam no topo, porque o ar é mais leve que o líquido. Então você vira a seringa com a agulha pra cima, e dá uma batidinha. As bolhas sobem e saem primeiro.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 60.82
+    },
+    {
+     "w": "e",
+     "t": 61.02
+    },
+    {
+     "w": "as",
+     "t": 61.113
+    },
+    {
+     "w": "bolhas",
+     "t": 61.28
+    },
+    {
+     "w": "Elas",
+     "t": 62.073
+    },
+    {
+     "w": "ficam",
+     "t": 62.46
+    },
+    {
+     "w": "no",
+     "t": 62.687
+    },
+    {
+     "w": "topo",
+     "t": 62.852
+    },
+    {
+     "w": "porque",
+     "t": 63.506
+    },
+    {
+     "w": "o",
+     "t": 63.82
+    },
+    {
+     "w": "ar",
+     "t": 63.913
+    },
+    {
+     "w": "é",
+     "t": 64.1
+    },
+    {
+     "w": "mais",
+     "t": 64.244
+    },
+    {
+     "w": "leve",
+     "t": 64.564
+    },
+    {
+     "w": "que",
+     "t": 64.84
+    },
+    {
+     "w": "o",
+     "t": 64.94
+    },
+    {
+     "w": "líquido",
+     "t": 65.033
+    },
+    {
+     "w": "Então",
+     "t": 65.58
+    },
+    {
+     "w": "você",
+     "t": 66.084
+    },
+    {
+     "w": "vira",
+     "t": 66.42
+    },
+    {
+     "w": "a",
+     "t": 66.62
+    },
+    {
+     "w": "seringa",
+     "t": 66.72
+    },
+    {
+     "w": "com",
+     "t": 67.18
+    },
+    {
+     "w": "a",
+     "t": 67.34
+    },
+    {
+     "w": "agulha",
+     "t": 67.407
+    },
+    {
+     "w": "pra",
+     "t": 67.68
+    },
+    {
+     "w": "cima",
+     "t": 67.94
+    },
+    {
+     "w": "e",
+     "t": 68.54
+    },
+    {
+     "w": "dá",
+     "t": 68.793
+    },
+    {
+     "w": "uma",
+     "t": 68.94
+    },
+    {
+     "w": "batidinha",
+     "t": 69.16
+    },
+    {
+     "w": "As",
+     "t": 70.233
+    },
+    {
+     "w": "bolhas",
+     "t": 70.48
+    },
+    {
+     "w": "sobem",
+     "t": 70.9
+    },
+    {
+     "w": "e",
+     "t": 71.34
+    },
+    {
+     "w": "saem",
+     "t": 71.54
+    },
+    {
+     "w": "primeiro",
+     "t": 71.824
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 72.49,
+   "fim": 80.41,
+   "texto": "Coloque um tubo com números, um êmbolo de borracha e uma agulha oca. Parabéns, você construiu uma seringa.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 72.49
+    },
+    {
+     "w": "um",
+     "t": 72.917
+    },
+    {
+     "w": "tubo",
+     "t": 73.03
+    },
+    {
+     "w": "com",
+     "t": 73.33
+    },
+    {
+     "w": "números",
+     "t": 73.52
+    },
+    {
+     "w": "um",
+     "t": 74.383
+    },
+    {
+     "w": "êmbolo",
+     "t": 74.57
+    },
+    {
+     "w": "de",
+     "t": 74.917
+    },
+    {
+     "w": "borracha",
+     "t": 75.018
+    },
+    {
+     "w": "e",
+     "t": 75.77
+    },
+    {
+     "w": "uma",
+     "t": 75.97
+    },
+    {
+     "w": "agulha",
+     "t": 76.17
+    },
+    {
+     "w": "oca",
+     "t": 76.61
+    },
+    {
+     "w": "Parabéns",
+     "t": 77.29
+    },
+    {
+     "w": "você",
+     "t": 78.202
+    },
+    {
+     "w": "construiu",
+     "t": 78.707
+    },
+    {
+     "w": "uma",
+     "t": 79.36
+    },
+    {
+     "w": "seringa",
+     "t": 79.51
+    }
+   ]
+  }
+ ]
+}

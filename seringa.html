@@ -1,0 +1,116 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("seringa", { fundo: 0xe4eef4, seed: 8101 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, pulse, entre, C, F, P, T, V } = K;
+const PI = Math.PI;
+const cyl = (r, h, n = 40) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(40, 40), mat(0xf6fafc), 0, 0, 0).rotation.x = -PI / 2;
+// frasco
+const frasco = grupo(0, 0, 0);
+add(cyl(.95, 1.7), vidro(.25, 0xcfe8f5), 0, .85, 0, frasco);
+const liqF = add(cyl(.9, 1), vidro(.75, 0x4aa8ff), 0, .6, 0, frasco);
+add(cyl(.6, .22), mat(0x8a8f96), 0, 1.8, 0, frasco);
+add(cyl(.5, .1), mat(0x2a2f36), 0, 1.95, 0, frasco);
+// canudo
+const canudo = add(cyl(.07, 2.6, 12), mat(0xff5a7a), .4, 1.4, 0);
+// seringa
+const L = 2.8;
+const giro = grupo(0, 4.6, 0);
+const sir = grupo(0, -1.4, 0, giro);
+const pecas = grupo(0, 0, 0, sir); pecas.visible = false;
+add(cyl(.22, .3), mat(0xeeeeee), 0, -.1, 0, pecas);
+const agulha = add(cyl(.045, 1.4, 10), mat(0xc8ccd2, { metalness: .8, roughness: .3 }), 0, -.8, 0, pecas); agulha.visible = false;
+const ponta = add(new THREE.ConeGeometry(.045, .22, 10), mat(0xc8ccd2, { metalness: .8 }), 0, -1.55, 0, pecas); ponta.rotation.z = .35; ponta.rotation.x = PI; ponta.visible = false;
+add(cyl(.56, L), vidro(.28, 0xe6f4ff), 0, L / 2, 0, pecas);
+add(cyl(.82, .1), mat(0xdfe6ea), 0, L, 0, pecas);
+const liq = add(cyl(.5, 1), vidro(.8, 0x4aa8ff), 0, .5, 0, pecas);
+const pist = add(cyl(.54, .26), mat(0x2f3338), 0, .5, 0, pecas);
+const anel = add(new THREE.TorusGeometry(.55, .06, 8, 40), mat(0xffd23a, { emissive: 0x806000 }), 0, .5, 0, pecas); anel.rotation.x = PI / 2; anel.visible = false;
+const haste = add(cyl(.12, 3, 12), mat(0xf2f2f2), 0, 2, 0, pecas);
+const disco = add(cyl(.62, .1), mat(0xffffff), 0, 3.5, 0, pecas);
+const ticks = grupo(0, 0, 0, pecas); ticks.visible = false;
+for (let i = 1; i <= 10; i++) add(new THREE.BoxGeometry(i % 5 ? .26 : .42, .03, .03), new THREE.MeshBasicMaterial({ color: 0x20242a }), .56 * 0 + 0, i * L / 10 - .15, .57, ticks).castShadow = false;
+const ml = add(new THREE.PlaneGeometry(.7, .35), new THREE.MeshBasicMaterial({ map: rotulo("mL", "#20242a", { w: 256, h: 128, tam: 100 }), transparent: true }), 0, L - .35, .6, ticks); ml.castShadow = false;
+// bolhas
+const bolhas = Array.from({ length: 6 }, (_, i) => { const b = add(new THREE.SphereGeometry(.09, 12, 10), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .9 }), (i % 3 - 1) * .2, 0, (i % 2 - .5) * .3, pecas); b.castShadow = false; b.visible = false; return b; });
+// fluxos
+const entra = new THREE.CatmullRomCurve3([V(0, 1.1, 0), V(0, 0, 0)].map((v) => v), false);
+const curvaDentro = new THREE.LineCurve3(V(0, -1.6, 0), V(0, -.3, 0));
+const fDentro = K.fluxo(curvaDentro, 6, 0x4aa8ff, pecas);
+const jato = K.fluxo(new THREE.LineCurve3(V(0, -1.6, 0), V(0, -3.4, 0)), 12, 0x4aa8ff, pecas);
+// pele
+const pele = add(new THREE.BoxGeometry(3, .5, 2), mat(0xf0b898), 0, -.3, 0); pele.visible = false;
+
+K.camera_({
+  wide: [V(0, 3.2, 12.5), V(0, 3.2, 0)],
+  close: [V(0, 3.9, 11), V(0, 3.9, 0)],
+  topo: [V(0, 4.4, 10.5), V(0, 4.4, 0)],
+}, [[0, "wide"], [F(2), "wide"], [C(3), "close"], [F(4), "close"], [C(5), "wide"], [F(5), "wide"], [C(6), "close"], [C(7), "topo"], [T, "topo"]]);
+
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // canudo some quando a seringa entra
+  const tS = P(1, "tubo") - .3;
+  canudo.visible = t < tS + .3;
+  pecas.visible = t >= tS; giro.scale.setScalar(.62 * (.02 + .98 * prog(t, tS, tS + .6)));
+  // quantidade
+  const tp = P(2, "puxa");
+  const a2 = .8 * prog(t, tp, tp + 2.6);
+  const a5 = .5 * prog(t, P(5, "empurre") + .2, P(5, "empurre") + 3.4);
+  const a6 = .12 * prog(t, P(6, "saem"), P(6, "saem") + 1.4);
+  const a = a2 - a5 - a6;
+  const topoP = a * L;
+  liq.scale.y = Math.max(.001, topoP); liq.position.y = topoP / 2;
+  pist.position.y = topoP + .13; anel.position.y = topoP + .13; haste.position.y = topoP + 1.6; haste.scale.y = 1; disco.position.y = topoP + 3.1;
+  anel.visible = t >= P(4, "anel") - .1; anel.material.emissiveIntensity = 1 + pulse(t, P(4, "anel"), 1);
+  ticks.visible = t >= P(4, "números") - .2;
+  // frasco
+  liqF.scale.y = 1.15 - .62 * (a2 / .8) + .001; liqF.position.y = .1 + liqF.scale.y / 2;
+  // agulha
+  agulha.visible = ponta.visible = t >= tS;
+  // posicao: entra no frasco ate a cena 3, depois sobe
+  giro.position.y = t < C(3) ? 3.0 : 3.0 + 1.4 * prog(t, C(3), C(3) + .8);
+  frasco.visible = t < P(6, "bolhas") - .2;
+  pele.visible = false;
+  // flip
+  const fl = prog(t, P(6, "vira"), P(6, "vira") + .9);
+  giro.rotation.z = PI * fl * (t < C(7) ? 1 : 1 - prog(t, C(7), C(7) + .8));
+  if (t >= C(7) + .8) giro.rotation.z = 0;
+  // bolhas
+  const bv = em(P(6, "bolhas") - .1, C(7) + 1);
+  const kTopo = prog(t, P(6, "topo") - .1, P(6, "topo") + .8), kSobem = prog(t, P(6, "sobem") - .1, P(6, "sobem") + 1.2);
+  bolhas.forEach((b, i) => {
+    b.visible = bv && t < P(6, "saem") + 1.2;
+    const y0 = (.25 + .5 * ((i * .37) % 1)) * Math.max(.4, .3 * L), y1 = Math.max(.1, topoP) - .12 - (i % 3) * .06, y2 = .2 + (i % 3) * .1;
+    b.position.y = (y0 + (y1 - y0) * kTopo) * (1 - kSobem) + y2 * kSobem + .03 * Math.sin(t * 4 + i);
+  });
+  // fluxos
+  fDentro.atualiza(t, em(tp, tp + 3.2), .45, .13, .9);
+  jato.atualiza(t, em(P(5, "empurre") + .3, P(5, "empurre") + 3.6) || em(P(6, "saem"), P(6, "saem") + 1.4), 1.1, .09, .9);
+  K.cartoes(t, [
+    [P(1, "canudo") - .2, P(1, "chupar") - .6, "CANUDO: SÓ SOBE SE CHUPAR", "#ff6a8a"],
+    [P(1, "tubo") - .2, F(1), "TUBO COM TAMPA QUE DESLIZA", "#ffffff"],
+    [P(2, "puxa") - .2, P(2, "seringa") - .2, "O ESPAÇO AUMENTA: ONDE NÃO TEM AR", "#8ac8ff"],
+    [P(2, "seringa") - .2, F(2), "A PRESSÃO EMPURRA O LÍQUIDO", "#ffd23a"],
+    [C(3), P(3, "agulha") - .2, "BURACO PEQUENO", "#ffffff"],
+    [P(3, "agulha") - .2, P(3, "diagonal") - .2, "AGULHA OCA E FININHA", "#40e0ff"],
+    [P(3, "diagonal") - .2, F(3), "PONTA EM DIAGONAL", "#ffd23a"],
+    [C(4), P(4, "anel") - .2, "SE ESCORREGAR SOLTA: VAZA", "#ff6a6a"],
+    [P(4, "anel") - .2, P(4, "números") - .2, "ANEL DE BORRACHA VEDA", "#ffd23a"],
+    [P(4, "números") - .2, F(4), "NÚMEROS EM MILILITROS", "#ffffff"],
+    [P(5, "empurre") - .2, P(5, "furo") - .2, "EMPURRA: SAI SÓ PELA AGULHA", "#ffffff"],
+    [P(5, "furo") - .2, F(5), "FURO PEQUENO = JATO FORTE", "#40e0ff"],
+    [P(6, "bolhas") - .2, P(6, "vira") - .2, "BOLHAS FICAM NO TOPO", "#ffffff"],
+    [P(6, "vira") - .2, P(6, "sobem") - .2, "AGULHA PRA CIMA + BATIDINHA", "#ffd23a"],
+    [P(6, "sobem") - .2, F(6), "AS BOLHAS SAEM PRIMEIRO", "#8ac8ff"],
+    [P(7, "construiu") - .2, T, "SERINGA", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
