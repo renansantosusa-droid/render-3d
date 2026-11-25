@@ -1,0 +1,1209 @@
+{
+ "total": 82.69,
+ "cenas": [
+  {
+   "n": 1,
+   "ini": 0.15,
+   "fim": 13.19,
+   "texto": "Se você quiser ver dentro do corpo sem abrir ninguém, precisa de uma luz que atravesse a pele. Mas a luz comum para na pele. Então você usa uma luz invisível. Em mil oitocentos e noventa e cinco, Röntgen achou essa luz, e chamou de X porque não sabia o que era.",
+   "palavras": [
+    {
+     "w": "Se",
+     "t": 0.15
+    },
+    {
+     "w": "você",
+     "t": 0.278
+    },
+    {
+     "w": "quiser",
+     "t": 0.497
+    },
+    {
+     "w": "ver",
+     "t": 0.77
+    },
+    {
+     "w": "dentro",
+     "t": 0.996
+    },
+    {
+     "w": "do",
+     "t": 1.297
+    },
+    {
+     "w": "corpo",
+     "t": 1.43
+    },
+    {
+     "w": "sem",
+     "t": 1.89
+    },
+    {
+     "w": "abrir",
+     "t": 2.11
+    },
+    {
+     "w": "ninguém",
+     "t": 2.35
+    },
+    {
+     "w": "precisa",
+     "t": 2.83
+    },
+    {
+     "w": "de",
+     "t": 3.137
+    },
+    {
+     "w": "uma",
+     "t": 3.23
+    },
+    {
+     "w": "luz",
+     "t": 3.41
+    },
+    {
+     "w": "que",
+     "t": 3.61
+    },
+    {
+     "w": "atravesse",
+     "t": 3.73
+    },
+    {
+     "w": "a",
+     "t": 4.27
+    },
+    {
+     "w": "pele",
+     "t": 4.363
+    },
+    {
+     "w": "Mas",
+     "t": 4.75
+    },
+    {
+     "w": "a",
+     "t": 4.91
+    },
+    {
+     "w": "luz",
+     "t": 4.99
+    },
+    {
+     "w": "comum",
+     "t": 5.17
+    },
+    {
+     "w": "para",
+     "t": 5.558
+    },
+    {
+     "w": "na",
+     "t": 5.777
+    },
+    {
+     "w": "pele",
+     "t": 5.91
+    },
+    {
+     "w": "Então",
+     "t": 6.35
+    },
+    {
+     "w": "você",
+     "t": 6.598
+    },
+    {
+     "w": "usa",
+     "t": 6.83
+    },
+    {
+     "w": "uma",
+     "t": 6.99
+    },
+    {
+     "w": "luz",
+     "t": 7.17
+    },
+    {
+     "w": "invisível",
+     "t": 7.403
+    },
+    {
+     "w": "Em",
+     "t": 8.097
+    },
+    {
+     "w": "mil",
+     "t": 8.19
+    },
+    {
+     "w": "oitocentos",
+     "t": 8.35
+    },
+    {
+     "w": "e",
+     "t": 8.91
+    },
+    {
+     "w": "noventa",
+     "t": 8.977
+    },
+    {
+     "w": "e",
+     "t": 9.31
+    },
+    {
+     "w": "cinco",
+     "t": 9.39
+    },
+    {
+     "w": "Röntgen",
+     "t": 9.79
+    },
+    {
+     "w": "achou",
+     "t": 10.29
+    },
+    {
+     "w": "essa",
+     "t": 10.598
+    },
+    {
+     "w": "luz",
+     "t": 10.85
+    },
+    {
+     "w": "e",
+     "t": 11.21
+    },
+    {
+     "w": "chamou",
+     "t": 11.302
+    },
+    {
+     "w": "de",
+     "t": 11.563
+    },
+    {
+     "w": "X",
+     "t": 11.83
+    },
+    {
+     "w": "porque",
+     "t": 12.024
+    },
+    {
+     "w": "não",
+     "t": 12.27
+    },
+    {
+     "w": "sabia",
+     "t": 12.43
+    },
+    {
+     "w": "o",
+     "t": 12.75
+    },
+    {
+     "w": "que",
+     "t": 12.81
+    },
+    {
+     "w": "era",
+     "t": 12.91
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "ini": 13.34,
+   "fim": 26.38,
+   "texto": "Primeiro, um tubo fechado, sem ar. Dentro dele, um filamento esquenta, igual ao de uma lâmpada, e solta elétrons. Mas elétrons soltos ficam parados em volta do filamento. Então você liga dezenas de milhares de volts, e eles disparam pro outro lado.",
+   "palavras": [
+    {
+     "w": "Primeiro",
+     "t": 13.34
+    },
+    {
+     "w": "um",
+     "t": 13.847
+    },
+    {
+     "w": "tubo",
+     "t": 13.98
+    },
+    {
+     "w": "fechado",
+     "t": 14.38
+    },
+    {
+     "w": "sem",
+     "t": 15
+    },
+    {
+     "w": "ar",
+     "t": 15.233
+    },
+    {
+     "w": "Dentro",
+     "t": 15.452
+    },
+    {
+     "w": "dele",
+     "t": 15.788
+    },
+    {
+     "w": "um",
+     "t": 16.087
+    },
+    {
+     "w": "filamento",
+     "t": 16.2
+    },
+    {
+     "w": "esquenta",
+     "t": 16.753
+    },
+    {
+     "w": "igual",
+     "t": 17.313
+    },
+    {
+     "w": "ao",
+     "t": 17.607
+    },
+    {
+     "w": "de",
+     "t": 17.687
+    },
+    {
+     "w": "uma",
+     "t": 17.76
+    },
+    {
+     "w": "lâmpada",
+     "t": 17.86
+    },
+    {
+     "w": "e",
+     "t": 18.34
+    },
+    {
+     "w": "solta",
+     "t": 18.46
+    },
+    {
+     "w": "elétrons",
+     "t": 18.82
+    },
+    {
+     "w": "Mas",
+     "t": 19.46
+    },
+    {
+     "w": "elétrons",
+     "t": 19.64
+    },
+    {
+     "w": "soltos",
+     "t": 20.12
+    },
+    {
+     "w": "ficam",
+     "t": 20.5
+    },
+    {
+     "w": "parados",
+     "t": 20.82
+    },
+    {
+     "w": "em",
+     "t": 21.287
+    },
+    {
+     "w": "volta",
+     "t": 21.393
+    },
+    {
+     "w": "do",
+     "t": 21.687
+    },
+    {
+     "w": "filamento",
+     "t": 21.78
+    },
+    {
+     "w": "Então",
+     "t": 22.36
+    },
+    {
+     "w": "você",
+     "t": 22.668
+    },
+    {
+     "w": "liga",
+     "t": 22.9
+    },
+    {
+     "w": "dezenas",
+     "t": 23.18
+    },
+    {
+     "w": "de",
+     "t": 23.607
+    },
+    {
+     "w": "milhares",
+     "t": 23.72
+    },
+    {
+     "w": "de",
+     "t": 24.167
+    },
+    {
+     "w": "volts",
+     "t": 24.273
+    },
+    {
+     "w": "e",
+     "t": 24.74
+    },
+    {
+     "w": "eles",
+     "t": 24.828
+    },
+    {
+     "w": "disparam",
+     "t": 25.08
+    },
+    {
+     "w": "pro",
+     "t": 25.62
+    },
+    {
+     "w": "outro",
+     "t": 25.78
+    },
+    {
+     "w": "lado",
+     "t": 26.028
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "ini": 26.53,
+   "fim": 40.77,
+   "texto": "Do outro lado, os elétrons batem numa placa de tungstênio. Na freada, uma pequena parte da energia sai como raio-X. Mas quase tudo vira calor, e a placa esquenta demais. Então você faz a placa girar, pra o calor se espalhar, e esfria tudo com óleo.",
+   "palavras": [
+    {
+     "w": "Do",
+     "t": 26.53
+    },
+    {
+     "w": "outro",
+     "t": 26.65
+    },
+    {
+     "w": "lado",
+     "t": 26.898
+    },
+    {
+     "w": "os",
+     "t": 27.197
+    },
+    {
+     "w": "elétrons",
+     "t": 27.31
+    },
+    {
+     "w": "batem",
+     "t": 27.87
+    },
+    {
+     "w": "numa",
+     "t": 28.178
+    },
+    {
+     "w": "placa",
+     "t": 28.423
+    },
+    {
+     "w": "de",
+     "t": 28.743
+    },
+    {
+     "w": "tungstênio",
+     "t": 28.898
+    },
+    {
+     "w": "Na",
+     "t": 29.703
+    },
+    {
+     "w": "freada",
+     "t": 29.877
+    },
+    {
+     "w": "uma",
+     "t": 30.33
+    },
+    {
+     "w": "pequena",
+     "t": 30.482
+    },
+    {
+     "w": "parte",
+     "t": 30.837
+    },
+    {
+     "w": "da",
+     "t": 31.197
+    },
+    {
+     "w": "energia",
+     "t": 31.31
+    },
+    {
+     "w": "sai",
+     "t": 31.81
+    },
+    {
+     "w": "como",
+     "t": 32.098
+    },
+    {
+     "w": "raio-X",
+     "t": 32.343
+    },
+    {
+     "w": "Mas",
+     "t": 33.05
+    },
+    {
+     "w": "quase",
+     "t": 33.197
+    },
+    {
+     "w": "tudo",
+     "t": 33.554
+    },
+    {
+     "w": "vira",
+     "t": 33.85
+    },
+    {
+     "w": "calor",
+     "t": 34.103
+    },
+    {
+     "w": "e",
+     "t": 34.53
+    },
+    {
+     "w": "a",
+     "t": 34.65
+    },
+    {
+     "w": "placa",
+     "t": 34.743
+    },
+    {
+     "w": "esquenta",
+     "t": 35.09
+    },
+    {
+     "w": "demais",
+     "t": 35.53
+    },
+    {
+     "w": "Então",
+     "t": 36.11
+    },
+    {
+     "w": "você",
+     "t": 36.418
+    },
+    {
+     "w": "faz",
+     "t": 36.69
+    },
+    {
+     "w": "a",
+     "t": 36.97
+    },
+    {
+     "w": "placa",
+     "t": 37.063
+    },
+    {
+     "w": "girar",
+     "t": 37.47
+    },
+    {
+     "w": "pra",
+     "t": 37.93
+    },
+    {
+     "w": "o",
+     "t": 38.09
+    },
+    {
+     "w": "calor",
+     "t": 38.183
+    },
+    {
+     "w": "se",
+     "t": 38.477
+    },
+    {
+     "w": "espalhar",
+     "t": 38.59
+    },
+    {
+     "w": "e",
+     "t": 39.21
+    },
+    {
+     "w": "esfria",
+     "t": 39.33
+    },
+    {
+     "w": "tudo",
+     "t": 39.794
+    },
+    {
+     "w": "com",
+     "t": 40.07
+    },
+    {
+     "w": "óleo",
+     "t": 40.21
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "ini": 40.92,
+   "fim": 52.68,
+   "texto": "Agora o feixe sai por uma janelinha e passa pelo paciente. Mas ele não atravessa tudo do mesmo jeito. A pele e o músculo, leves e cheios de água, deixam quase tudo passar. O osso, cheio de cálcio, segura boa parte.",
+   "palavras": [
+    {
+     "w": "Agora",
+     "t": 40.92
+    },
+    {
+     "w": "o",
+     "t": 41.36
+    },
+    {
+     "w": "feixe",
+     "t": 41.453
+    },
+    {
+     "w": "sai",
+     "t": 41.78
+    },
+    {
+     "w": "por",
+     "t": 42
+    },
+    {
+     "w": "uma",
+     "t": 42.16
+    },
+    {
+     "w": "janelinha",
+     "t": 42.32
+    },
+    {
+     "w": "e",
+     "t": 42.88
+    },
+    {
+     "w": "passa",
+     "t": 43.048
+    },
+    {
+     "w": "pelo",
+     "t": 43.384
+    },
+    {
+     "w": "paciente",
+     "t": 43.542
+    },
+    {
+     "w": "Mas",
+     "t": 44.24
+    },
+    {
+     "w": "ele",
+     "t": 44.4
+    },
+    {
+     "w": "não",
+     "t": 44.54
+    },
+    {
+     "w": "atravessa",
+     "t": 44.667
+    },
+    {
+     "w": "tudo",
+     "t": 45.224
+    },
+    {
+     "w": "do",
+     "t": 45.507
+    },
+    {
+     "w": "mesmo",
+     "t": 45.613
+    },
+    {
+     "w": "jeito",
+     "t": 45.933
+    },
+    {
+     "w": "A",
+     "t": 46.44
+    },
+    {
+     "w": "pele",
+     "t": 46.573
+    },
+    {
+     "w": "e",
+     "t": 46.86
+    },
+    {
+     "w": "o",
+     "t": 46.9
+    },
+    {
+     "w": "músculo",
+     "t": 47
+    },
+    {
+     "w": "leves",
+     "t": 47.56
+    },
+    {
+     "w": "e",
+     "t": 47.92
+    },
+    {
+     "w": "cheios",
+     "t": 48.02
+    },
+    {
+     "w": "de",
+     "t": 48.387
+    },
+    {
+     "w": "água",
+     "t": 48.48
+    },
+    {
+     "w": "deixam",
+     "t": 48.888
+    },
+    {
+     "w": "quase",
+     "t": 49.187
+    },
+    {
+     "w": "tudo",
+     "t": 49.528
+    },
+    {
+     "w": "passar",
+     "t": 49.768
+    },
+    {
+     "w": "O",
+     "t": 50.3
+    },
+    {
+     "w": "osso",
+     "t": 50.44
+    },
+    {
+     "w": "cheio",
+     "t": 50.8
+    },
+    {
+     "w": "de",
+     "t": 51.107
+    },
+    {
+     "w": "cálcio",
+     "t": 51.213
+    },
+    {
+     "w": "segura",
+     "t": 51.7
+    },
+    {
+     "w": "boa",
+     "t": 52.1
+    },
+    {
+     "w": "parte",
+     "t": 52.333
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "ini": 52.83,
+   "fim": 61.63,
+   "texto": "Então você põe um detector atrás da pessoa. Onde o raio chegou forte, fica escuro. Onde o osso segurou, fica claro. A imagem é só a sombra do osso, e por isso ele aparece branco.",
+   "palavras": [
+    {
+     "w": "Então",
+     "t": 52.83
+    },
+    {
+     "w": "você",
+     "t": 53.214
+    },
+    {
+     "w": "põe",
+     "t": 53.35
+    },
+    {
+     "w": "um",
+     "t": 53.523
+    },
+    {
+     "w": "detector",
+     "t": 53.621
+    },
+    {
+     "w": "atrás",
+     "t": 54.23
+    },
+    {
+     "w": "da",
+     "t": 54.483
+    },
+    {
+     "w": "pessoa",
+     "t": 54.647
+    },
+    {
+     "w": "Onde",
+     "t": 55.11
+    },
+    {
+     "w": "o",
+     "t": 55.35
+    },
+    {
+     "w": "raio",
+     "t": 55.417
+    },
+    {
+     "w": "chegou",
+     "t": 55.598
+    },
+    {
+     "w": "forte",
+     "t": 55.937
+    },
+    {
+     "w": "fica",
+     "t": 56.414
+    },
+    {
+     "w": "escuro",
+     "t": 56.55
+    },
+    {
+     "w": "Onde",
+     "t": 57.03
+    },
+    {
+     "w": "o",
+     "t": 57.27
+    },
+    {
+     "w": "osso",
+     "t": 57.363
+    },
+    {
+     "w": "segurou",
+     "t": 57.59
+    },
+    {
+     "w": "fica",
+     "t": 58.062
+    },
+    {
+     "w": "claro",
+     "t": 58.243
+    },
+    {
+     "w": "A",
+     "t": 58.71
+    },
+    {
+     "w": "imagem",
+     "t": 58.807
+    },
+    {
+     "w": "é",
+     "t": 59.19
+    },
+    {
+     "w": "só",
+     "t": 59.283
+    },
+    {
+     "w": "a",
+     "t": 59.43
+    },
+    {
+     "w": "sombra",
+     "t": 59.53
+    },
+    {
+     "w": "do",
+     "t": 59.817
+    },
+    {
+     "w": "osso",
+     "t": 59.95
+    },
+    {
+     "w": "e",
+     "t": 60.31
+    },
+    {
+     "w": "por",
+     "t": 60.39
+    },
+    {
+     "w": "isso",
+     "t": 60.542
+    },
+    {
+     "w": "ele",
+     "t": 60.71
+    },
+    {
+     "w": "aparece",
+     "t": 60.87
+    },
+    {
+     "w": "branco",
+     "t": 61.257
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "ini": 61.78,
+   "fim": 75.78,
+   "texto": "Mas raio-X mexe com as moléculas das células, e muito dele faz mal. Então você usa uma dose pequena, abre o feixe só no lugar do exame, e o técnico fica atrás de uma parede com chumbo. Uma radiografia de peito equivale a poucos dias da radiação natural que você já recebe.",
+   "palavras": [
+    {
+     "w": "Mas",
+     "t": 61.78
+    },
+    {
+     "w": "raio-X",
+     "t": 61.993
+    },
+    {
+     "w": "mexe",
+     "t": 62.56
+    },
+    {
+     "w": "com",
+     "t": 62.84
+    },
+    {
+     "w": "as",
+     "t": 62.927
+    },
+    {
+     "w": "moléculas",
+     "t": 63.04
+    },
+    {
+     "w": "das",
+     "t": 63.58
+    },
+    {
+     "w": "células",
+     "t": 63.76
+    },
+    {
+     "w": "e",
+     "t": 64.26
+    },
+    {
+     "w": "muito",
+     "t": 64.38
+    },
+    {
+     "w": "dele",
+     "t": 64.628
+    },
+    {
+     "w": "faz",
+     "t": 64.88
+    },
+    {
+     "w": "mal",
+     "t": 65.12
+    },
+    {
+     "w": "Então",
+     "t": 65.38
+    },
+    {
+     "w": "você",
+     "t": 65.812
+    },
+    {
+     "w": "usa",
+     "t": 65.98
+    },
+    {
+     "w": "uma",
+     "t": 66.14
+    },
+    {
+     "w": "dose",
+     "t": 66.308
+    },
+    {
+     "w": "pequena",
+     "t": 66.548
+    },
+    {
+     "w": "abre",
+     "t": 67.108
+    },
+    {
+     "w": "o",
+     "t": 67.34
+    },
+    {
+     "w": "feixe",
+     "t": 67.433
+    },
+    {
+     "w": "só",
+     "t": 67.833
+    },
+    {
+     "w": "no",
+     "t": 67.967
+    },
+    {
+     "w": "lugar",
+     "t": 68.06
+    },
+    {
+     "w": "do",
+     "t": 68.313
+    },
+    {
+     "w": "exame",
+     "t": 68.473
+    },
+    {
+     "w": "e",
+     "t": 68.86
+    },
+    {
+     "w": "o",
+     "t": 68.94
+    },
+    {
+     "w": "técnico",
+     "t": 69.044
+    },
+    {
+     "w": "fica",
+     "t": 69.508
+    },
+    {
+     "w": "atrás",
+     "t": 69.76
+    },
+    {
+     "w": "de",
+     "t": 70.047
+    },
+    {
+     "w": "uma",
+     "t": 70.14
+    },
+    {
+     "w": "parede",
+     "t": 70.308
+    },
+    {
+     "w": "com",
+     "t": 70.7
+    },
+    {
+     "w": "chumbo",
+     "t": 70.847
+    },
+    {
+     "w": "Uma",
+     "t": 71.34
+    },
+    {
+     "w": "radiografia",
+     "t": 71.508
+    },
+    {
+     "w": "de",
+     "t": 72.153
+    },
+    {
+     "w": "peito",
+     "t": 72.313
+    },
+    {
+     "w": "equivale",
+     "t": 72.62
+    },
+    {
+     "w": "a",
+     "t": 72.98
+    },
+    {
+     "w": "poucos",
+     "t": 73.04
+    },
+    {
+     "w": "dias",
+     "t": 73.444
+    },
+    {
+     "w": "da",
+     "t": 73.727
+    },
+    {
+     "w": "radiação",
+     "t": 73.82
+    },
+    {
+     "w": "natural",
+     "t": 74.31
+    },
+    {
+     "w": "que",
+     "t": 74.7
+    },
+    {
+     "w": "você",
+     "t": 74.884
+    },
+    {
+     "w": "já",
+     "t": 75.193
+    },
+    {
+     "w": "recebe",
+     "t": 75.357
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "ini": 75.93,
+   "fim": 82.09,
+   "texto": "Coloque um tubo, uma janela, um detector e uma parede de chumbo. Parabéns, você construiu um aparelho de raio-X.",
+   "palavras": [
+    {
+     "w": "Coloque",
+     "t": 75.93
+    },
+    {
+     "w": "um",
+     "t": 76.303
+    },
+    {
+     "w": "tubo",
+     "t": 76.47
+    },
+    {
+     "w": "uma",
+     "t": 76.85
+    },
+    {
+     "w": "janela",
+     "t": 77.01
+    },
+    {
+     "w": "um",
+     "t": 77.557
+    },
+    {
+     "w": "detector",
+     "t": 77.672
+    },
+    {
+     "w": "e",
+     "t": 78.25
+    },
+    {
+     "w": "uma",
+     "t": 78.37
+    },
+    {
+     "w": "parede",
+     "t": 78.554
+    },
+    {
+     "w": "de",
+     "t": 78.917
+    },
+    {
+     "w": "chumbo",
+     "t": 79.023
+    },
+    {
+     "w": "Parabéns",
+     "t": 79.52
+    },
+    {
+     "w": "você",
+     "t": 80.138
+    },
+    {
+     "w": "construiu",
+     "t": 80.376
+    },
+    {
+     "w": "um",
+     "t": 80.837
+    },
+    {
+     "w": "aparelho",
+     "t": 80.943
+    },
+    {
+     "w": "de",
+     "t": 81.397
+    },
+    {
+     "w": "raio-X",
+     "t": 81.503
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=block" rel="stylesheet">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import { iniciar } from "/kit3d.js";
+const K = await iniciar("raiox", { fundo: 0x1c2a3c, seed: 5501 });
+const { THREE, add, grupo, mat, vidro, sprite, rotulo, prog, lin, pulse, entre, C, F, P, T, V } = K;
+const PI = Math.PI;
+const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const cyl = (r, h, n = 40) => new THREE.CylinderGeometry(r, r, h, n);
+add(new THREE.PlaneGeometry(40, 40), mat(0x2a3a50), 0, 0, 0).rotation.x = -PI / 2;
+const MB = (c, o = .3) => new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: o, depthWrite: false });
+// tubo
+const tubo = grupo(0, 7, 0);
+add(cyl(1.0, 2.4), vidro(.22, 0xbfe0ff), 0, 0, 0, tubo);
+const fil = add(new THREE.TorusGeometry(.25, .04, 8, 24), mat(0xffa040, { emissive: 0xff6010 }), 0, .85, 0, tubo); fil.rotation.x = PI / 2;
+const brFil = sprite(0xff8030, tubo); brFil.position.set(0, .85, 0);
+const anodo = add(cyl(.75, .16), mat(0xc0c4cc, { metalness: .8, roughness: .3 }), 0, -.6, 0, tubo);
+for (let i = 0; i < 4; i++) add(box(.18, .2, .18), mat(0x303840), Math.cos(i * PI / 2) * .5, -.5, Math.sin(i * PI / 2) * .5, anodo);
+const brCalor = sprite(0xff3010, tubo); brCalor.position.set(0, -.5, .2);
+const eletr = K.fluxo(new THREE.LineCurve3(V(0, .75, 0), V(0, -.5, 0)), 14, 0x80e0ff, tubo);
+const oleo = add(cyl(1.2, 2.8), vidro(.2, 0x2a6ad0), 0, 0, 0, tubo); oleo.visible = false;
+const voltLbl = add(new THREE.PlaneGeometry(1.6, .8), new THREE.MeshBasicMaterial({ map: rotulo("50.000 V", "#ffd23a", { w: 512, h: 256, tam: 130 }), transparent: true }), 1.9, .2, 0, tubo); voltLbl.visible = false; voltLbl.castShadow = false;
+// janela
+const jan1 = add(box(1.4, .15, 1), mat(0x6a707a, { metalness: .6 }), -.9, 5.4, 0), jan2 = add(box(1.4, .15, 1), mat(0x6a707a, { metalness: .6 }), .9, 5.4, 0); jan1.visible = jan2.visible = false;
+// paciente
+const pac = add(box(3.1, 1.7, 1.2), vidro(.42, 0xf0b898), 0, 3.3, 0);
+const ossos = [-.75, .75].map((x) => add(cyl(.2, 1.35), mat(0xf4f0e0), x, 3.3, 0));
+ossos.forEach((o) => { o.rotation.x = 0; });
+const ossoLbl = add(new THREE.PlaneGeometry(1.2, .5), new THREE.MeshBasicMaterial({ map: rotulo("OSSO", "#fff", { w: 256, h: 128, tam: 90 }), transparent: true }), 0, 2.15, .8); ossoLbl.visible = false; ossoLbl.castShadow = false;
+// raios
+const feixeCima = add(new THREE.ConeGeometry(1.5, 2.6, 32, 1, true), MB(0x60e0ff, .28), 0, 4.7, 0); feixeCima.rotation.x = PI; feixeCima.castShadow = false; feixeCima.visible = false;
+const segs = [[-1.35, .55, .5], [-.75, .5, .08], [0, .95, .5], [.75, .5, .08], [1.35, .55, .5]].map(([x, w, o]) => { const m = add(box(w, 1.2, .9), MB(0x60e0ff, o), x, 1.9, 0); m.castShadow = false; m.visible = false; m.userData.o = o; return m; });
+// monitor
+const cv = document.createElement("canvas"); cv.width = 512; cv.height = 300; const g = cv.getContext("2d");
+g.fillStyle = "#06090d"; g.fillRect(0, 0, 512, 300); g.fillStyle = "#cfd6dc"; g.fillRect(120, 40, 58, 220); g.fillRect(334, 40, 58, 220);
+g.strokeStyle = "rgba(200,210,220,.5)"; g.lineWidth = 8; for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(178, 70 + i * 50); g.lineTo(334, 70 + i * 50); g.stroke(); }
+const tm = new THREE.CanvasTexture(cv); tm.colorSpace = THREE.SRGBColorSpace;
+const monitor = add(box(3.4, 2.0, .12), mat(0x10151c), 0, .55, 0); 
+const tela = add(new THREE.PlaneGeometry(3.1, 1.8), new THREE.MeshBasicMaterial({ map: tm, transparent: true, opacity: 0 }), 0, .55, .08); tela.castShadow = false;
+monitor.visible = false;
+// parede de chumbo + tecnico
+const parede = add(box(.35, 4.4, 1.6), mat(0x586070, { metalness: .5 }), 3.4, 2.4, 0); parede.visible = false;
+const tecn = grupo(4.6, 0, 0); tecn.visible = false;
+add(cyl(.35, 1.3), mat(0x3a8ad0), 0, .8, 0, tecn); add(new THREE.SphereGeometry(.3, 16, 12), mat(0xf0c8a0), 0, 1.7, 0, tecn);
+const lampada = add(new THREE.SphereGeometry(.35, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe070 }), -3.3, 5.8, 0); lampada.visible = false;
+const luzComum = K.fluxo(new THREE.LineCurve3(V(-3, 5.6, 0), V(-1.5, 4.0, 0)), 10, 0xffe070);
+K.camera_({
+  wide: [V(0, 4.6, 17), V(0, 4.3, 0)],
+  alto: [V(0, 7.4, 12), V(0, 7.4, 0)],
+  paci: [V(0, 3.6, 13), V(0, 3.3, 0)],
+  baixo: [V(0, 2.4, 13), V(0, 2.2, 0)],
+  fim: [V(0, 4.4, 18), V(0, 4.1, 0)],
+}, [[0, "wide"], [C(2), "wide"], [C(2) + .5, "alto"], [C(3), "alto"], [C(4), "paci"], [C(5), "baixo"], [C(6), "wide"], [C(7), "fim"], [T, "fim"]]);
+K.pronto((t) => {
+  const em = (a, b) => entre(t, a, b);
+  // cena 1
+  lampada.visible = em(P(1, "luz") - .2, P(1, "invisível") - .2);
+  luzComum.atualiza(t, em(P(1, "comum") - .2, P(1, "invisível") - .2), .6, .35, 1);
+  const tinv = P(1, "invisível");
+  const feixe1 = em(tinv, C(2)), feixe3 = t >= P(3, "raiox") && t < C(6) - 0, fim = t >= C(7);
+  const bv = feixe1 || (t >= P(4, "feixe") - .2 && t < C(7)) || fim;
+  const kAb = t >= P(6, "abre") ? 1 - .55 * prog(t, P(6, "abre"), P(6, "abre") + .8) : 1;
+  feixeCima.visible = bv; feixeCima.scale.set(kAb, 1, kAb);
+  segs.forEach((m, i) => { m.visible = bv; const p = i === 2 ? 1 : (i === 1 || i === 3 ? 1 : 1); m.material.opacity = m.userData.o * (t >= P(6, "dose") ? .45 : 1) ; if (t >= P(6, "abre")) m.visible = bv && (i === 1 || i === 2 || i === 3); });
+  // tubo / cena 2
+  const e2 = em(P(2, "elétrons"), C(3)) || em(P(2, "volts") - .5, C(3));
+  eletr.atualiza(t, e2 && t >= P(2, "filamento") + .5, t >= P(2, "volts") ? 1.4 : .25, .22, 1);
+  brFil.material.opacity = t >= P(2, "filamento") ? .5 + .3 * Math.sin(t * 8) : 0; brFil.scale.setScalar(.9);
+  voltLbl.visible = t >= P(2, "volts") - .3 && t < C(3);
+  // cena 3
+  brCalor.material.opacity = em(P(3, "calor") - .1, C(4)) ? .6 : 0; brCalor.scale.setScalar(1.2 + .3 * Math.sin(t * 12));
+  anodo.rotation.y = t >= P(3, "girar") ? (t - P(3, "girar")) * 6 : 0;
+  oleo.visible = t >= P(3, "óleo") - .2;
+  // cena 4/6
+  jan1.visible = jan2.visible = t >= P(4, "janelinha") - .2 && t < C(7);
+  const jg = t >= P(6, "abre") ? .9 - .5 * prog(t, P(6, "abre"), P(6, "abre") + .8) : .9;
+  jan1.position.x = -jg - .1; jan2.position.x = jg + .1;
+  ossoLbl.visible = em(P(4, "osso"), C(5));
+  // cena 5
+  monitor.visible = t >= P(5, "detector") - .2 && t < C(7);
+  tela.material.opacity = em(P(5, "forte") - .2, C(7)) ? prog(t, P(5, "forte") - .2, P(5, "forte") + 1) : 0;
+  tela.visible = monitor.visible;
+  // cena 6
+  parede.visible = tecn.visible = t >= P(6, "parede") - .3 && t < C(7);
+  // cena 7
+  const k7 = fim;
+  K.cartoes(t, [
+    [P(1, "luz") - .2, P(1, "comum") - .2, "ENXERGAR DENTRO SEM ABRIR", "#ffffff"],
+    [P(1, "comum") - .2, tinv - .2, "LUZ COMUM PARA NA PELE", "#ffd23a"],
+    [tinv - .2, P(1, "Röntgen") - .2, "LUZ INVISÍVEL: RAIO-X", "#60e0ff"],
+    [P(1, "Röntgen") - .2, F(1), "RÖNTGEN, 1895: CHAMOU DE X", "#ffffff"],
+    [C(2), P(2, "filamento") - .2, "TUBO FECHADO, SEM AR", "#ffffff"],
+    [P(2, "filamento") - .2, P(2, "volts") - .5, "FILAMENTO QUENTE SOLTA ELÉTRONS", "#ffa84a"],
+    [P(2, "volts") - .5, F(2), "MILHARES DE VOLTS: DISPARAM", "#ffd23a"],
+    [C(3), P(3, "freada") - .2, "ELÉTRONS BATEM NO TUNGSTÊNIO", "#ffffff"],
+    [P(3, "freada") - .2, P(3, "calor") - .2, "NA FREADA SAI O RAIO-X", "#60e0ff"],
+    [P(3, "calor") - .2, P(3, "girar") - .2, "QUASE TUDO VIRA CALOR", "#ff6a4a"],
+    [P(3, "girar") - .2, F(3), "PLACA GIRA + ÓLEO ESFRIA", "#ffd23a"],
+    [C(4), P(4, "pele") - .2, "O FEIXE SAI PELA JANELINHA", "#ffffff"],
+    [P(4, "pele") - .2, P(4, "osso") - .2, "PELE E MÚSCULO DEIXAM PASSAR", "#80ffa0"],
+    [P(4, "osso") - .2, F(4), "O OSSO SEGURA", "#ffffff"],
+    [C(5), P(5, "forte") - .2, "DETECTOR ATRÁS DA PESSOA", "#ffffff"],
+    [P(5, "forte") - .2, P(5, "osso") - .2, "RAIO FORTE: FICA ESCURO", "#8aa8ff"],
+    [P(5, "osso") - .2, F(5), "OSSO SEGUROU: FICA BRANCO", "#ffffff"],
+    [C(6), P(6, "dose") - .2, "RAIO-X FAZ MAL EM EXCESSO", "#ff6a6a"],
+    [P(6, "dose") - .2, P(6, "parede") - .2, "DOSE PEQUENA, FEIXE SÓ NO LUGAR", "#ffd23a"],
+    [P(6, "parede") - .2, F(6), "TÉCNICO ATRÁS DE PAREDE DE CHUMBO", "#ffffff"],
+    [P(7, "construiu") - .2, T, "APARELHO DE RAIO-X", "#ffd23a"],
+  ]);
+});
+</script>
+</body></html>
