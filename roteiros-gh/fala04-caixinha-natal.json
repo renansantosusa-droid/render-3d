@@ -1,0 +1,57 @@
+{
+ "nome": "fala04-caixinha-natal",
+ "arquivo": "dados/veecriativos/falas/fala04-caixinha-natal-bruto.MOV",
+ "palavras": "dados/veecriativos/falas/IMG_9372.palavras.json",
+ "duracao": 23.25,
+ "obs": "resposta de caixinha: mandada embora, renda pro Natal (24/11)",
+ "legenda": {
+  "y": 0.12,
+  "tamanho": 66
+ },
+ "zooms": [
+  {
+   "de": 0,
+   "zoom": 1
+  },
+  {
+   "de": 2.86,
+   "zoom": 1.12
+  },
+  {
+   "de": 7.52,
+   "zoom": 1
+  },
+  {
+   "de": 10.45,
+   "zoom": 1.1
+  },
+  {
+   "de": 15.51,
+   "zoom": 1
+  },
+  {
+   "de": 19.04,
+   "zoom": 1.12
+  }
+ ],
+ "elementos": [
+  {
+   "tipo": "caixinha",
+   "titulo": "Faça uma pergunta",
+   "avatar": "ferramentas/veecriativos-videos/imagens/avatar-veecriativos.jpg",
+   "pergunta": "Fui mandada embora e preciso\nde uma renda para o Natal.\nDá para começar com foto ímã?",
+   "de": 0,
+   "ate": 21.45,
+   "y": 0.75,
+   "largura": 860,
+   "tamanho": 50
+  },
+  {
+   "tipo": "seta",
+   "texto": "CLICA NO BOTÃO",
+   "de": 21.45,
+   "y": 0.72
+  }
+ ],
+ "saida": "dados/veecriativos/videos-novos"
+}
