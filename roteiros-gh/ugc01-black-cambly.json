@@ -1,0 +1,361 @@
+{
+ "nome": "ugc01-black-cambly",
+ "arquivo": "dados/veecriativos/falas/ugc01-black-cambly-bruto.MOV",
+ "duracao": 27.35,
+ "legendaY": 0.56,
+ "legendaTam": 64,
+ "imagens": {
+  "tudo": "dados/veecriativos/falas/ugc-black/tudo-que-vem.png",
+  "kit": "dados/veecriativos/falas/ugc-black/kit-embalagem.jpg"
+ },
+ "cards": {
+  "renda": {
+   "img": "tudo",
+   "r": [
+    82,
+    473,
+    376,
+    496
+   ]
+  },
+  "calend": {
+   "img": "tudo",
+   "r": [
+    487,
+    473,
+    376,
+    496
+   ]
+  },
+  "natal": {
+   "img": "tudo",
+   "r": [
+    892,
+    473,
+    376,
+    496
+   ]
+  },
+  "diag": {
+   "img": "tudo",
+   "r": [
+    1297,
+    473,
+    376,
+    496
+   ]
+  },
+  "polar": {
+   "img": "tudo",
+   "r": [
+    1702,
+    473,
+    376,
+    496
+   ]
+  },
+  "bottons": {
+   "img": "tudo",
+   "r": [
+    82,
+    1309,
+    376,
+    503
+   ]
+  },
+  "catalogo": {
+   "img": "tudo",
+   "r": [
+    487,
+    1309,
+    376,
+    503
+   ]
+  },
+  "segmentos": {
+   "img": "tudo",
+   "r": [
+    892,
+    1309,
+    376,
+    503
+   ]
+  },
+  "protocolo": {
+   "img": "tudo",
+   "r": [
+    1297,
+    1309,
+    376,
+    503
+   ]
+  },
+  "kit": {
+   "img": "kit",
+   "ancoraY": 0.5
+  }
+ },
+ "zooms": [
+  {
+   "de": 0,
+   "zoom": 1.4,
+   "ancoraX": 1,
+   "ancoraY": 0.22
+  },
+  {
+   "de": 4.85,
+   "zoom": 1.15,
+   "ancoraX": 0.85,
+   "ancoraY": 0.3
+  },
+  {
+   "de": 12.55,
+   "zoom": 1.22,
+   "ancoraX": 0.8,
+   "ancoraY": 0.3
+  },
+  {
+   "de": 16.35,
+   "zoom": 1.34,
+   "ancoraX": 0.75,
+   "ancoraY": 0.27
+  },
+  {
+   "de": 21.1,
+   "zoom": 1.15,
+   "ancoraX": 0.8,
+   "ancoraY": 0.3
+  },
+  {
+   "de": 25.15,
+   "zoom": 1.3,
+   "ancoraX": 0.75,
+   "ancoraY": 0.27
+  }
+ ],
+ "blocos": [
+  {
+   "de": 6.55,
+   "ate": 12.55,
+   "faixaY": 440,
+   "faixaH": 608,
+   "legendaY": 1190,
+   "videos": [
+    {
+     "de": 6.55,
+     "arquivo": "dados/veecriativos/falas/ugc-black/prensa.mp4",
+     "ss": 0.2,
+     "cropY": 640
+    },
+    {
+     "de": 9.35,
+     "arquivo": "dados/veecriativos/falas/ugc-black/pilha.mp4",
+     "ss": 1,
+     "cropY": 200
+    },
+    {
+     "de": 11.5,
+     "arquivo": null
+    }
+   ]
+  }
+ ],
+ "elementos": [
+  {
+   "tipo": "faixaTopo",
+   "de": 0,
+   "ate": 4,
+   "y": 60,
+   "h": 300,
+   "cards": [
+    "renda",
+    "calend",
+    "natal",
+    "diag",
+    "polar"
+   ]
+  },
+  {
+   "tipo": "precoVelho",
+   "de": 0.3,
+   "ate": 2.25,
+   "texto": "+ de R$1.000",
+   "x": 64,
+   "y": 485,
+   "tam": 104,
+   "x_de": 1.45
+  },
+  {
+   "tipo": "etiqueta",
+   "de": 2.25,
+   "ate": 4.85,
+   "texto": "só R$97",
+   "x": 56,
+   "y": 500,
+   "tam": 112
+  },
+  {
+   "tipo": "selo",
+   "de": 4,
+   "y": 64
+  },
+  {
+   "tipo": "emoji",
+   "de": 10.3,
+   "ate": 11.5,
+   "texto": "🇧🇷 📦 🧲",
+   "y": 370,
+   "tam": 76
+  },
+  {
+   "tipo": "grade",
+   "de": 11.5,
+   "ate": 12.55,
+   "passo": 0.07,
+   "colunas": 5,
+   "cards": [
+    "renda",
+    "calend",
+    "natal",
+    "diag",
+    "polar",
+    "bottons",
+    "catalogo",
+    "segmentos",
+    "protocolo",
+    "kit"
+   ]
+  },
+  {
+   "tipo": "cardLado",
+   "de": 13.55,
+   "ate": 16.35,
+   "x": 60,
+   "y": 1260,
+   "w": 290,
+   "cards": [
+    "renda"
+   ]
+  },
+  {
+   "tipo": "cardLado",
+   "de": 17.85,
+   "ate": 20.95,
+   "x": 60,
+   "y": 1260,
+   "w": 290,
+   "rot": 0.05,
+   "cards": [
+    "diag",
+    "polar",
+    "calend"
+   ]
+  }
+ ],
+ "frases": [
+  {
+   "de": 0.1,
+   "ate": 2.2,
+   "texto": "era mais de mil reais,"
+  },
+  {
+   "de": 2.2,
+   "ate": 4.05,
+   "texto": "agora só 97"
+  },
+  {
+   "de": 4.05,
+   "ate": 4.85,
+   "texto": "você acredita?"
+  },
+  {
+   "de": 4.85,
+   "ate": 6.55,
+   "texto": "essa é a Black Magnética"
+  },
+  {
+   "de": 6.55,
+   "ate": 8.35,
+   "texto": "aprenda a trabalhar de casa"
+  },
+  {
+   "de": 8.35,
+   "ate": 9.35,
+   "texto": "fazendo personalizados"
+  },
+  {
+   "de": 9.35,
+   "ate": 11.5,
+   "texto": "e foto ímãs vendendo\npara o Brasil todo"
+  },
+  {
+   "de": 11.5,
+   "ate": 12.55,
+   "texto": "são 11 produtos"
+  },
+  {
+   "de": 12.55,
+   "ate": 14.25,
+   "texto": "que vai desde o curso"
+  },
+  {
+   "de": 14.25,
+   "ate": 16.35,
+   "texto": "que te ajuda a produzir,\ndivulgar"
+  },
+  {
+   "de": 16.35,
+   "ate": 17.85,
+   "texto": "e vender o seu trabalho"
+  },
+  {
+   "de": 17.85,
+   "ate": 19.05,
+   "texto": "até ferramentas"
+  },
+  {
+   "de": 19.05,
+   "ate": 21,
+   "texto": "pra realizar os seus\npersonalizados"
+  },
+  {
+   "de": 21,
+   "ate": 22.75,
+   "texto": "é o *MAIOR* desconto do ano!!"
+  },
+  {
+   "de": 22.75,
+   "ate": 24.25,
+   "texto": "mas essa promo não vai durar"
+  },
+  {
+   "de": 24.25,
+   "ate": 25.15,
+   "texto": "por muito tempo"
+  },
+  {
+   "de": 25.15,
+   "ate": 27.35,
+   "texto": "comenta *BLACK* que eu\nte envio o link"
+  }
+ ],
+ "previa": [
+  0.5,
+  1.7,
+  2.7,
+  4.4,
+  5.6,
+  7.5,
+  10.6,
+  12.2,
+  12.8,
+  14.8,
+  18.5,
+  20.2,
+  21.8,
+  24.6,
+  26.5,
+  27.2
+ ],
+ "saida": "dados/veecriativos/videos-novos"
+}
