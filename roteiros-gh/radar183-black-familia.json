@@ -1,0 +1,353 @@
+{
+ "nome": "radar183-black-familia",
+ "obs": "27/11 Reel narrado com a voz da Vee (Black Magnética, narrativa família). Áudio voz-vee-enxuta.mp3 2:06,2; 41 cenas casadas com a fala (whisper); textos de destaque; CTA BLACK.",
+ "audio": "dados/veecriativos/audios/voz-vee-enxuta.mp3",
+ "trechos": [
+  {
+   "arquivo": "IMG_3227_1.2_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3
+  },
+  {
+   "arquivo": "IMG_4500_0_2.9.MOV",
+   "inicio": 0,
+   "duracao": 2.9
+  },
+  {
+   "arquivo": "IMG_3032_0_3.8.MOV",
+   "inicio": 0,
+   "duracao": 3.8
+  },
+  {
+   "arquivo": "IMG_3731_2.2_4.MOV",
+   "inicio": 0,
+   "duracao": 4
+  },
+  {
+   "arquivo": "IMG_3478_2_2.2.MOV",
+   "inicio": 0,
+   "duracao": 2.2
+  },
+  {
+   "arquivo": "IMG_2210_3.5_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8
+  },
+  {
+   "arquivo": "IMG_3256_0_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_3240_3.3_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7
+  },
+  {
+   "arquivo": "IMG_3560_12.3_4.7.MOV",
+   "inicio": 0,
+   "duracao": 4.7
+  },
+  {
+   "arquivo": "IMG_3586_9_3.1.MOV",
+   "inicio": 0,
+   "duracao": 3.1
+  },
+  {
+   "arquivo": "IMG_7808_0_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3
+  },
+  {
+   "arquivo": "IMG_4713_0_3.4.MOV",
+   "inicio": 0,
+   "duracao": 3.4
+  },
+  {
+   "arquivo": "IMG_4767_0_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3
+  },
+  {
+   "arquivo": "IMG_4716_18.9_4.5.MOV",
+   "inicio": 0,
+   "duracao": 4.5
+  },
+  {
+   "arquivo": "IMG_7727_0_4.6.MOV",
+   "inicio": 0,
+   "duracao": 4.6
+  },
+  {
+   "arquivo": "IMG_3042_4.5_4.9.MOV",
+   "inicio": 0,
+   "duracao": 4.9
+  },
+  {
+   "arquivo": "IMG_7751_0_2.3.MOV",
+   "inicio": 0,
+   "duracao": 2.3
+  },
+  {
+   "arquivo": "IMG_5171_0_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7,
+   "zoom": 1.3,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_2316_3.6_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4
+  },
+  {
+   "arquivo": "IMG_7806_0_3.4.MOV",
+   "inicio": 0,
+   "duracao": 3.4
+  },
+  {
+   "arquivo": "IMG_7808_7.3_2.9.MOV",
+   "inicio": 0,
+   "duracao": 2.9
+  },
+  {
+   "arquivo": "IMG_7137_6.4_3.4.MOV",
+   "inicio": 0,
+   "duracao": 3.4
+  },
+  {
+   "arquivo": "IMG_3558_0_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8
+  },
+  {
+   "arquivo": "IMG_3551_0_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5,
+   "zoom": 1.2,
+   "ancoraY": 0
+  },
+  {
+   "arquivo": "IMG_3034_0.5_2.5.MOV",
+   "inicio": 0,
+   "duracao": 2.5
+  },
+  {
+   "arquivo": "IMG_3431_0_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7
+  },
+  {
+   "arquivo": "IMG_4770_6.3_2.8.MOV",
+   "inicio": 0,
+   "duracao": 2.8,
+   "zoom": 1.5,
+   "ancoraY": 0.15
+  },
+  {
+   "arquivo": "IMG_3426_1.2_2.3.MOV",
+   "inicio": 0,
+   "duracao": 2.3
+  },
+  {
+   "arquivo": "IMG_3560_2_3.1.MOV",
+   "inicio": 0,
+   "duracao": 3.1
+  },
+  {
+   "arquivo": "IMG_3743_3_2.6.MOV",
+   "inicio": 0,
+   "duracao": 2.6
+  },
+  {
+   "arquivo": "IMG_5135_0.5_2.4.MOV",
+   "inicio": 0,
+   "duracao": 2.4
+  },
+  {
+   "arquivo": "DNNV9901_0_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7
+  },
+  {
+   "arquivo": "IMG_2746_0_2.3.MOV",
+   "inicio": 0,
+   "duracao": 2.3
+  },
+  {
+   "arquivo": "IMG_2758_2_2.2.MOV",
+   "inicio": 0,
+   "duracao": 2.2
+  },
+  {
+   "arquivo": "IMG_2210_12.3_3.2.MOV",
+   "inicio": 0,
+   "duracao": 3.2
+  },
+  {
+   "arquivo": "IMG_3472_0_3.3.MOV",
+   "inicio": 0,
+   "duracao": 3.3
+  },
+  {
+   "arquivo": "IMG_2888_0_2.9.MOV",
+   "inicio": 0,
+   "duracao": 2.9
+  },
+  {
+   "arquivo": "IMG_3741_0_2.7.MOV",
+   "inicio": 0,
+   "duracao": 2.7
+  },
+  {
+   "arquivo": "IMG_2186_26_3.MOV",
+   "inicio": 0,
+   "duracao": 3
+  },
+  {
+   "arquivo": "IMG_4167_1.5_3.8.MOV",
+   "inicio": 0,
+   "duracao": 3.8
+  },
+  {
+   "arquivo": "IMG_3478_11_2.82.MOV",
+   "inicio": 0,
+   "duracao": 2.82
+  }
+ ],
+ "textos": [
+  {
+   "texto": "PRIMEIRO\nFOTO ÍMÃ",
+   "y": 0.66,
+   "de": 1,
+   "ate": 3.4,
+   "tamanho": 64
+  },
+  {
+   "texto": "+300 CIDADES",
+   "y": 0.66,
+   "de": 8,
+   "ate": 10.2,
+   "tamanho": 64
+  },
+  {
+   "texto": "TRABALHAR DE CASA",
+   "y": 0.66,
+   "de": 13.9,
+   "ate": 16.1,
+   "tamanho": 64
+  },
+  {
+   "texto": "MEU PRÓPRIO DINHEIRO",
+   "y": 0.66,
+   "de": 16.3,
+   "ate": 18.9,
+   "tamanho": 64
+  },
+  {
+   "texto": "AJUDAR NAS CONTAS",
+   "y": 0.66,
+   "de": 19.1,
+   "ate": 20.8,
+   "tamanho": 64
+  },
+  {
+   "texto": "PERTO DA FAMÍLIA",
+   "y": 0.66,
+   "de": 22.7,
+   "ate": 24.6,
+   "tamanho": 64
+  },
+  {
+   "texto": "SEM SAIR DE CASA",
+   "y": 0.66,
+   "de": 33.4,
+   "ate": 35.5,
+   "tamanho": 64
+  },
+  {
+   "texto": "CANSOU DE PEDIR\nDINHEIRO?",
+   "y": 0.66,
+   "de": 36.4,
+   "ate": 38.6,
+   "tamanho": 64
+  },
+  {
+   "texto": "NÃO CONSEGUE\nVENDER?",
+   "y": 0.66,
+   "de": 44,
+   "ate": 46.2,
+   "tamanho": 64
+  },
+  {
+   "texto": "VOCÊ NÃO ESTÁ SOZINHA",
+   "y": 0.66,
+   "de": 121.7,
+   "ate": 123.3,
+   "tamanho": 64
+  },
+  {
+   "texto": "BLACK MAGNÉTICA",
+   "y": 0.66,
+   "de": 72.5,
+   "ate": 73.7,
+   "tamanho": 64
+  },
+  {
+   "texto": "A HORA É AGORA",
+   "y": 0.66,
+   "de": 90.6,
+   "ate": 92.2,
+   "tamanho": 64
+  },
+  {
+   "texto": "DECISÕES\nDECIDEM\nDESTINOS",
+   "y": 0.62,
+   "de": 92.4,
+   "ate": 94.7,
+   "tamanho": 92
+  },
+  {
+   "texto": "MOLDE PRONTO",
+   "y": 0.66,
+   "de": 103.1,
+   "ate": 104.5,
+   "tamanho": 64
+  },
+  {
+   "texto": "11 PRODUTOS\nPOR R$97",
+   "y": 0.66,
+   "de": 104.7,
+   "ate": 107.6,
+   "tamanho": 64
+  },
+  {
+   "texto": "AINDA DÁ TEMPO",
+   "y": 0.66,
+   "de": 112.4,
+   "ate": 113.8,
+   "tamanho": 64
+  },
+  {
+   "texto": "2027 DIFERENTE",
+   "y": 0.66,
+   "de": 117.6,
+   "ate": 119.4,
+   "tamanho": 64
+  },
+  {
+   "texto": "VOCÊ É MAIS FORTE",
+   "y": 0.66,
+   "de": 119.6,
+   "ate": 121.6,
+   "tamanho": 64
+  },
+  {
+   "texto": "COMENTA BLACK 👇",
+   "y": 0.66,
+   "de": 123.4,
+   "ate": 126.22,
+   "tamanho": 72
+  }
+ ]
+}
