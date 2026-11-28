@@ -1,0 +1,40 @@
+{
+ "video": "C:/Users/Renan/Downloads/IMG_9539.MOV",
+ "saida": "Vee - YouTube foto ima com CTAs.mp4",
+ "eventos": [
+  {
+   "tipo": "ig",
+   "ini": 13.85,
+   "fim": 19.6
+  },
+  {
+   "tipo": "cmt",
+   "ini": 43.1,
+   "fim": 47.7,
+   "titulo": "Quer um vídeo só de polaroide?",
+   "sub": "Comenta aqui embaixo"
+  },
+  {
+   "tipo": "cmt",
+   "ini": 274.85,
+   "fim": 279.8,
+   "titulo": "Ficou com alguma dúvida?",
+   "sub": "Manda aqui nos comentários"
+  },
+  {
+   "tipo": "ig",
+   "ini": 282.6,
+   "fim": 291.3,
+   "chip": "Instagram, grupo de ofertas e curso: links na descrição"
+  },
+  {
+   "tipo": "yt",
+   "ini": 295.3,
+   "fim": 303.28,
+   "like": 295.65,
+   "share": 296.75,
+   "sub": 298.3,
+   "cmt": 299.95
+  }
+ ]
+}

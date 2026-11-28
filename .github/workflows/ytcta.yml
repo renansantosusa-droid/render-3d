@@ -1,0 +1,25 @@
+name: YouTube CTA Vee
+on:
+  push:
+    branches: ["ytcta-*"]
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: render
+        run: |
+          cat partes/p* > video.MOV
+          export FFMPEG="$(node -p 'require("ffmpeg-static")')"
+          mkdir -p saida
+          node render.mjs eventos.json video.MOV "saida/video.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ytcta-fotoima1
+          path: saida/*.mp4
+          retention-days: 3
