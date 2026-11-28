@@ -1,0 +1,30 @@
+name: Montar Vee
+on:
+  push:
+    branches: ["vee-*"]
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null
+      - name: montar
+        run: |
+          export FFMPEG="$(node -p 'require("ffmpeg-static")')"
+          export VC_EMOJI=/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+          mkdir -p dados/veecriativos/videos-novos
+          for r in roteiros-gh/*.json; do node ferramentas/veecriativos-videos/montar.mjs "$r"; done
+          if ls estilos-gh/*.json >/dev/null 2>&1; then
+            if grep -q '"atras"' estilos-gh/*.json; then pip install -q "rembg[cpu]" pillow; fi
+            for e in estilos-gh/*.json; do node ferramentas/veecriativos-videos/estilo-gp.mjs "$e"; rm -f "dados/veecriativos/videos-novos/$(basename "$e" .json).mp4"; done
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vee-black-gp-2811b
+          path: dados/veecriativos/videos-novos/*.mp4
+          retention-days: 3
